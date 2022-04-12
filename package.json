@@ -21,6 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "esbuild-runner": "^2.2.1",
     "h5p-types": "github:boyum/h5p-types",
     "h5p-utils": "github:boyum/h5p-utils",
     "nodemon": "^2.0.15",
