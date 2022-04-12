@@ -1,0 +1,20 @@
+{
+  "title": "h5p bildetema",
+  "machineName": "H5P.H5pBildetema",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "preloadedJs": [
+    {
+      "path": "src/h5p-bildetema.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5PEditor.H5pBildetema",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}
