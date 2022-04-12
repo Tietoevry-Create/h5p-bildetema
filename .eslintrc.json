@@ -45,17 +45,19 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.*",
-          "**/*.stories.*",
-          "vite.config.ts"
-        ]
+        "devDependencies": ["**/*.test.*", "**/*.stories.*", "vite.config.ts"]
       }
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
     "react/require-default-props": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
     "react/jsx-filename-extension": [
       "warn",
       {
