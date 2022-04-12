@@ -1,5 +1,3 @@
-
-   
 import * as fs from "fs";
 import { H5PField, H5PBehaviour, H5PL10n } from "h5p-types";
 import { semantics } from "./src/semantics";

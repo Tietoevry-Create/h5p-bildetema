@@ -45,11 +45,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.*",
-          "**/*.stories.*",
-          "vite.config.ts"
-        ]
+        "devDependencies": ["**/*.test.*", "**/*.stories.*", "vite.config.ts"]
       }
     ],
     "react-hooks/rules-of-hooks": "error",
