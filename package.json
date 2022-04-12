@@ -17,29 +17,26 @@
     "lint": "npm run format:check && npm run eslint:check",
     "lint:fix": "npm run format:fix && npm run eslint:fix",
     "test": "jest",
-    
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-    
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "h5p-types": "github:boyum/h5p-types",
-    "h5p-utils": "github:boyum/h5p-utils"
+    "h5p-utils": "github:boyum/h5p-utils",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    
     "@storybook/addon-essentials": "^6.4.20",
     "@storybook/addon-links": "^6.4.20",
     "@storybook/builder-webpack5": "^6.4.20",
     "@storybook/manager-webpack5": "^6.4.20",
     "@storybook/react": "^6.4.20",
-    
     "@types/jest": "^27.4.1",
     "@types/jquery": "^3.5.14",
     "@types/react": "^17.0.38",
