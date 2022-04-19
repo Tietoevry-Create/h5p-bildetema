@@ -7,14 +7,12 @@
   "runnable": 1,
   "preloadedJs": [
     {
-      "path": "src/h5p-bildetema.js"
+      "path": "dist/bundle.js"
     }
   ],
-  "preloadedDependencies": [
+  "preloadedCss": [
     {
-      "machineName": "H5PEditor.H5pBildetema",
-      "majorVersion": 1,
-      "minorVersion": 0
+      "path": "dist/main.css"
     }
   ]
 }

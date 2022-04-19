@@ -18,7 +18,9 @@
     "lint:fix": "npm run format:fix && npm run eslint:fix",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "generate-semantics": "esr generate-semantics.ts",
+    "watch-semantics": "nodemon generate-semantics.ts --exec 'esr generate-semantics.ts'"
   },
   "dependencies": {
     "h5p-types": "github:boyum/h5p-types",
