@@ -17,7 +17,7 @@
     "lint": "npm run format:check && npm run eslint:check",
     "lint:fix": "npm run format:fix && npm run eslint:fix",
     "test": "jest",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -h localhost",
     "build-storybook": "build-storybook",
     "generate-semantics": "esr generate-semantics.ts",
     "watch-semantics": "nodemon generate-semantics.ts --exec 'esr generate-semantics.ts'"
