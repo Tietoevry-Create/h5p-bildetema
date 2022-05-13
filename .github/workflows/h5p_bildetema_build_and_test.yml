@@ -5,13 +5,13 @@ on:
   - workflow_dispatch
 
 env:
-  working-directory: './h5p-bildetema '
+  working-directory: './h5p-bildetema'
 
 jobs:
   build:
     defaults:
         run:
-          working-directory: ${working-directory}
+          working-directory: ./h5p-bildetema
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
