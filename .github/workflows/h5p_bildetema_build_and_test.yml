@@ -19,7 +19,7 @@ jobs:
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
         with:
-          'working-directory': ${{ working-directory }}
+          'working-directory': ./h5p-bildetema
       - name: Build
         run: npm run build
         working-directory: './h5p-bildetema'
