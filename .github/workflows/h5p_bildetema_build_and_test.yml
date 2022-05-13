@@ -13,9 +13,6 @@ defaults:
 
 jobs:
   build:
-    defaults:
-        run:
-          working-directory: ./h5p-bildetema
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,9 +26,6 @@ jobs:
         working-directory: './h5p-bildetema'
 
   validate:
-    defaults:
-        run:
-          working-directory: ${{env.working-directory}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
