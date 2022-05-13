@@ -16,12 +16,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
-
+        with:
+          working-directory: ${{ working-directory }}
       - name: Build
         run: npm run build
+        working-directory: './h5p-bildetema'
 
   validate:
     defaults:
