@@ -9,7 +9,7 @@ env:
 
 defaults:
         run:
-          working-directory: ${{env.working-directory}}
+          working-directory: './h5p-bildetema'
 
 jobs:
   build:
