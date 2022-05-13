@@ -7,6 +7,10 @@ on:
 env:
   working-directory: './h5p-bildetema'
 
+defaults:
+        run:
+          working-directory: ${working-directory}
+
 jobs:
   build:
     defaults:
@@ -35,14 +39,12 @@ jobs:
 
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
-
+        with:
+          'working-directory': ${working-directory}
       - name: Lint
         run: npm run lint
 
   test:
-    defaults:
-        run:
-          working-directory: ${working-directory}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -50,7 +52,8 @@ jobs:
 
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
-
+        with:
+          'working-directory': ${working-directory}
       - name: Test
         run: npm run test
         env:
