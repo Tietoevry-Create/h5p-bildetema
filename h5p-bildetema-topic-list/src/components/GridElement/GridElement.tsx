@@ -9,7 +9,7 @@ export type GridElementProps = {
 const GridElement: React.FC<GridElementProps> = ({ item }) => {
   return (
     <button key={item.title} className={styles.gridElement} type="button">
-      {item.title}
+      <span>{item.title}</span>
     </button>
   );
 };

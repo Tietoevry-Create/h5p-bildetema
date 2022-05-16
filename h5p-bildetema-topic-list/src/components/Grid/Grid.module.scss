@@ -1,7 +1,5 @@
 .grid {
   display: inline-grid;
-  justify-content: center;
-  align-items: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   width: 100%;

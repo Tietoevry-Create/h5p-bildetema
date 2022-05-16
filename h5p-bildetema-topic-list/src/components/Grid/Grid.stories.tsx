@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
+import { DUMMY_ITEMS } from "../App/App";
 import Grid from "./Grid";
 
 export default {
@@ -14,10 +15,5 @@ const Template: ComponentStory<typeof Grid> = args => (
 
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {
-  items: [
-    { title: "looooooooooooooooooooooong item" },
-    { title: "item 2" },
-    { title: "item 3" },
-    { title: "item 4" },
-  ],
+  items: DUMMY_ITEMS,
 };

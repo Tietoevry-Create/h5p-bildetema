@@ -1,10 +1,20 @@
 .gridElement {
-  width: 100%;
-  height: 100%;
-  word-wrap: break-word;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  // height: 100%;
+  word-wrap: break-word;
+  padding: 0.75rem 0.75rem 0.75rem 1.75rem;
+  border-radius: 0;
+  background-color: #f6f5f4;
+  font-size: medium;
+  font-weight: bold;
+  border: 1.5px solid #ebeae8;
+  cursor: pointer;
+  transition-duration: 0.2s;
 
-  // flex-basis: 33.3%;
-  // margin: 10px;
+  &:hover {
+    background-color: #ebeae8;
+  }
 }
