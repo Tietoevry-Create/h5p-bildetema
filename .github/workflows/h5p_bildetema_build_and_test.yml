@@ -8,8 +8,8 @@ env:
   working-directory: './h5p-bildetema'
 
 defaults:
-        run:
-          working-directory: './h5p-bildetema'
+  run:
+    working-directory: './h5p-bildetema'
 
 jobs:
   build:
