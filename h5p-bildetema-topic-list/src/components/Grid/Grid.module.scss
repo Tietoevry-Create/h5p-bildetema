@@ -1,0 +1,20 @@
+.grid {
+  display: inline-grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  // flex-flow: row wrap;
+  // flex-wrap: wrap;
+  // margin: -10px;
+}
+
+.gridItem {
+  width: 100%;
+  word-wrap: break-word;
+  justify-content: center;
+  align-items: center;
+  // flex-basis: 33.3%;
+  // margin: 10px;
+}
