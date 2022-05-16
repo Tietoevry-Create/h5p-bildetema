@@ -25,4 +25,4 @@ jobs:
       - name: Check library version
         uses: boyum/comment-h5p-library-version-action@v1 # https://github.com/boyum/comment-h5p-library-version-action
         with:
-          'working-directory': ${{env.working-directory}}
+          working-directory: ${{env.working-directory}}
