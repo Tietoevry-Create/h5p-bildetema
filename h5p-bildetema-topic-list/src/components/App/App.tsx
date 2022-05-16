@@ -3,7 +3,7 @@ import { fetchData } from "./utils/data.utils";
 import Grid from "../Grid/Grid";
 
 const DUMMY_ITEMS = [
-  { title: "item 1" },
+  { title: "loooooooooooooooong item" },
   { title: "item 2" },
   { title: "item 3" },
   { title: "item 4" },
