@@ -18,9 +18,7 @@ defaults:
 jobs:
   check-h5p-library-version:
     name: Check H5P if library version is updated
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Check library version
         uses: boyum/comment-h5p-library-version-action@v1 # https://github.com/boyum/comment-h5p-library-version-action
