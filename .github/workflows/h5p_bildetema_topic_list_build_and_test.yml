@@ -3,15 +3,15 @@ name: Node.js CI
 on:
   push:
     paths:
-      - "./h5p-bildetema/**"
+      - "./h5p-bildetema-topic-list/**"
   workflow_dispatch: {}
 
 env:
-  working-directory: './h5p-bildetema'
+  working-directory: './h5p-bildetema-topic-list'
 
 defaults:
   run:
-    working-directory: './h5p-bildetema'
+    working-directory: './h5p-bildetema-topic-list'
 
 jobs:
   build:
