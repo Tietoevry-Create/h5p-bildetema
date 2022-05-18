@@ -3,18 +3,6 @@ import { Topic } from "../../../../types";
 import { fetchData, getTopics } from "../../utils/data.utils";
 import Grid from "../Grid/Grid";
 
-export const DUMMY_ITEMS = [
-  { title: "loooooooooooooooong item" },
-  { title: "item 2" },
-  { title: "item 3" },
-  { title: "item 4" },
-  { title: "item 5" },
-  { title: "item 6" },
-  { title: "item 7" },
-  { title: "item 8" },
-  { title: "item 9" },
-];
-
 export type AppProps = {
   adjective?: string;
 };
