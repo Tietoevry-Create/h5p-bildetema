@@ -102,7 +102,6 @@ const parseData = (data: ArrayBuffer) => {
       });
     }
   });
-  console.log(topics);
 };
 
 const pascalToCamel = (str: string): string => {
