@@ -1,15 +1,24 @@
-export type Word = {
-  Title: string;
-  Tema1: string;
+export type InputWord = {
 } & Record<string, string>;
 
-export type Language = {
-  Name: string;
-  Code: string;
-  Rtl: boolean;
+export type Word = {
+  title: string;
+  tema1: string;
+  bane: string
+  bildeA: string
+  bildeB: string
+  bildeC: string
+  elementtype: string
+  undertema1: string
+  translations: Map<string, string>;
 }
 
-export type Theme = {
-  Title: string;
-  SubThemes?: Map<string,Theme>
-} & Record<string, string>;
+export type Language = {
+  name: string;
+  code: string;
+  rtl: boolean;
+}
+
+export type Topic = Word &{
+  subTopics?: Map<string,Topic>
+}
