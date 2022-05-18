@@ -1,4 +1,4 @@
-# gih5p-bildetema
+# h5p-bildetema
 
 Empty project.
 
