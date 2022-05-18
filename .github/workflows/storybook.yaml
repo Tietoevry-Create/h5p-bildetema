@@ -13,15 +13,18 @@ jobs:
           persist-credentials: false
       - name: Install and Build # TODO: Because these can be run separately, we could look at seperating these into jobs, and make one Deploy job that waits for the build jobs
         run: |
-          cd h5p-bildetema
+          pushd h5p-bildetema
           npm install
           npm run build-storybook
-          cd h5p-bildetema-topic-list
+          popd
+          pushd h5p-bildetema-topic-list
           npm install
           npm run build-storybook
-          cd h5p-bildetema-topic-view
+          popd
+          pushd h5p-bildetema-topic-view
           npm install
           npm run build-storybook
+          popd
           mkdir -p storybook-static
           mv h5p-bildetema/storybook-static storybook-static/h5p-bildetema
           mv h5p-bildetema-topic-list/storybook-static storybook-static/h5p-bildetema-topic-list
