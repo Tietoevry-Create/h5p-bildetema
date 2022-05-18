@@ -7,13 +7,16 @@ on:
       - labeled # PR is labeled
       - unlabeled # A label is removed from PR
       - synchronize # A commit is added - i.e. the PR's code is changed
+    paths:
+      - "./h5p-bildetema-topic-view/**"
+
 
 env:
-  working-directory: './h5p-bildetema'
+  working-directory: './h5p-bildetema-topic-view'
 
 defaults:
         run:
-          working-directory: './h5p-bildetema'
+          working-directory: ${{env.working-directory}}
 
 jobs:
   check-h5p-library-version:

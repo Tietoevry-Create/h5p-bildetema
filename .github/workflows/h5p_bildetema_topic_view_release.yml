@@ -1,6 +1,15 @@
-name: Pack and release content type
+name: Pack and release content type h5p-bildetema-topic-view
 
-on: [push, workflow_dispatch]
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - "./h5p-bildetema-topic-view/**"
+  workflow_dispatch: {}
+
+env:
+  working-directory: './h5p-bildetema-topic-view'
 
 jobs:
   pack-and-release:
@@ -11,7 +20,7 @@ jobs:
       - uses: boyum/pack-h5p-action@0.0.6
         id: release-h5p
         with:
-          working-directory: './h5p-bildetema'
+          working-directory: ${{env.working-directory}}
       - uses: "marvinpinto/action-automatic-releases@latest" # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
@@ -19,4 +28,4 @@ jobs:
           automatic_release_tag: ${{steps.release-h5p.outputs.version}}
           prerelease: false
           files: |
-            ${{steps.release-h'5p.outputs.filePath}}
+            ${{steps.release-h5p.outputs.filePath}}
