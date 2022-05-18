@@ -27,7 +27,8 @@
     "h5p-types": "github:boyum/h5p-types",
     "h5p-utils": "github:boyum/h5p-utils",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
