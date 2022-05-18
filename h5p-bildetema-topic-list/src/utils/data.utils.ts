@@ -44,13 +44,31 @@ export const getWords = async (): Promise<Word[]> => {
   return words;
 };
 
-export const fetchData = async () => {
-  const res = await fetch(databaseURL);
-  const arrBuffer = await res.arrayBuffer();
-  parseData(arrBuffer);
+const pascalToCamel = (str: string): string => {
+  let strArr = str.split("_");
+  let tempStr = str.length > 1 ? str[0].toLowerCase + str.slice(1) : "";
+  if (strArr.length > 1) {
+    strArr = strArr.map(item => item[0].toUpperCase() + item.slice(1));
+  }
+  tempStr = strArr.join("");
+  return tempStr.length > 1 ? tempStr[0].toLowerCase() + tempStr.slice(1) : "";
 };
 
-const parseData = (data: ArrayBuffer) => {
+const pascalWordToCamelWord = (input: InputWord): Word => {
+  const translations = new Map<string, string>();
+  const objEntires: string[][] = [];
+  Object.entries(input).forEach(([key, value]) => {
+    if (NON_LANGUAGE_FIELDS.includes(key)) {
+      objEntires.push([pascalToCamel(key), value]);
+      return;
+    }
+    const [_, languageCode] = key.split("_");
+    translations.set(languageCode, value);
+  });
+  return { ...Object.fromEntries(objEntires), translations };
+};
+
+const parseData = (data: ArrayBuffer): void => {
   languages.length = 0;
   words.length = 0;
   topics.length = 0;
@@ -98,32 +116,14 @@ const parseData = (data: ArrayBuffer) => {
       languages.push({
         name: languageName,
         code: languageCode,
-        rtl: rtl === undefined ? false : true,
+        rtl: rtl !== undefined,
       });
     }
   });
 };
 
-const pascalToCamel = (str: string): string => {
-  let strArr = str.split("_");
-  str = str.length > 1 ? str[0].toLowerCase + str.slice(1) : "";
-  if (strArr.length > 1) {
-    strArr = strArr.map(item => item[0].toUpperCase() + item.slice(1));
-  }
-  str = strArr.join("");
-  return str.length > 1 ? str[0].toLowerCase() + str.slice(1) : "";
-};
-
-const pascalWordToCamelWord = (input: InputWord): Word => {
-  const translations = new Map<string, string>();
-  const objEntires: string[][] = [];
-  Object.entries(input).map(([key, value]) => {
-    if (NON_LANGUAGE_FIELDS.includes(key)) {
-      objEntires.push([pascalToCamel(key), value]);
-      return;
-    }
-    const [_, languageCode] = key.split("_");
-    translations.set(languageCode, value);
-  });
-  return { ...Object.fromEntries(objEntires), translations };
+export const fetchData = async (): Promise<void> => {
+  const res = await fetch(databaseURL);
+  const arrBuffer = await res.arrayBuffer();
+  parseData(arrBuffer);
 };

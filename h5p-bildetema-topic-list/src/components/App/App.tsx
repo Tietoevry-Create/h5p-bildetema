@@ -1,5 +1,5 @@
 import * as React from "react";
-import { fetchData } from "./utils/data.utils";
+import { fetchData } from "../../utils/data.utils";
 import Grid from "../Grid/Grid";
 
 export const DUMMY_ITEMS = [
@@ -20,7 +20,7 @@ export type AppProps = {
 
 const App: React.FC<AppProps> = ({ adjective }) => {
   React.useEffect(() => {
-    const run = async () => {
+    const run = async (): Promise<void> => {
       await fetchData();
     };
     run();
