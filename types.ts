@@ -13,9 +13,3 @@ export type Theme = {
   Title: string;
   SubThemes?: Map<string,Theme>
 } & Record<string, string>;
-
-export type Database = {
-  Themes: Theme[];
-  Words: Word[];
-  Languages: Language[];
-}

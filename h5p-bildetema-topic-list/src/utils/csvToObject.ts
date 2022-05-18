@@ -1,5 +1,5 @@
 import * as xlsx from "xlsx";
-import { Word, Theme, Language, Database } from "../../../types";
+import { Word, Theme, Language } from "../../../types";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
