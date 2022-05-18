@@ -62,7 +62,7 @@ const pascalWordToCamelWord = (input: InputWord): Word => {
       objEntires.push([pascalToCamel(key), value]);
       return;
     }
-    const [_, languageCode] = key.split("_");
+    const [, languageCode] = key.split("_");
     translations.set(languageCode, value);
   });
   return { ...Object.fromEntries(objEntires), translations };

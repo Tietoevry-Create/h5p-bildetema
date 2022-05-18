@@ -14,5 +14,5 @@ const Template: ComponentStory<typeof GridElement> = args => (
 
 export const ThemesGridElement = Template.bind({});
 ThemesGridElement.args = {
-  item: { title: "test" },
+  item: undefined,
 };
