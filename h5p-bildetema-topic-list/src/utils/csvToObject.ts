@@ -24,7 +24,9 @@ export const getLanguages = async (): Promise<Language[]> => {
   return languages;
 };
 
-export const getLanguage = async (languageCode: string): Promise<Language|undefined> => {
+export const getLanguage = async (
+  languageCode: string,
+): Promise<Language | undefined> => {
   return languages.find(item => item.code === languageCode);
 };
 
@@ -32,7 +34,9 @@ export const getTopics = async (): Promise<Topic[]> => {
   return topics;
 };
 
-export const getTopic = async (topicTitle: string): Promise<Topic | undefined> => {
+export const getTopic = async (
+  topicTitle: string,
+): Promise<Topic | undefined> => {
   return topics.find(item => item.title === topicTitle);
 };
 
@@ -61,7 +65,7 @@ const parseData = (data: ArrayBuffer) => {
 
   const topicsMap = new Map<string, Topic>();
   json.forEach((element: InputWord) => {
-    const word = pascalWordToCamelWord(element)
+    const word = pascalWordToCamelWord(element);
     if (word.title.includes("T")) {
       if (topicsMap.has(word.tema1)) {
         // Add subTopics
@@ -98,29 +102,29 @@ const parseData = (data: ArrayBuffer) => {
       });
     }
   });
-  console.log(topics)
+  console.log(topics);
 };
 
 const pascalToCamel = (str: string): string => {
   let strArr = str.split("_");
   str = str.length > 1 ? str[0].toLowerCase + str.slice(1) : "";
-  if ( strArr.length>1 ) {
-    strArr = strArr.map(item => item[0].toUpperCase() + item.slice(1))
+  if (strArr.length > 1) {
+    strArr = strArr.map(item => item[0].toUpperCase() + item.slice(1));
   }
   str = strArr.join("");
-  return str.length > 1 ? str[0].toLowerCase() + str.slice(1) : ""
-}
+  return str.length > 1 ? str[0].toLowerCase() + str.slice(1) : "";
+};
 
 const pascalWordToCamelWord = (input: InputWord): Word => {
-  const translations = new Map<string,string>()
-  const objEntires: string[][] = []
+  const translations = new Map<string, string>();
+  const objEntires: string[][] = [];
   Object.entries(input).map(([key, value]) => {
-    if( NON_LANGUAGE_FIELDS.includes(key)) {
-      objEntires.push([pascalToCamel(key), value])
-      return
+    if (NON_LANGUAGE_FIELDS.includes(key)) {
+      objEntires.push([pascalToCamel(key), value]);
+      return;
     }
-    const [_ , languageCode] = key.split("_")
-    translations.set(languageCode, value)
-  })
-   return {...Object.fromEntries(objEntires), translations}
-}
+    const [_, languageCode] = key.split("_");
+    translations.set(languageCode, value);
+  });
+  return { ...Object.fromEntries(objEntires), translations };
+};
