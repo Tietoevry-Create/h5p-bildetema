@@ -1,5 +1,5 @@
 import * as xlsx from "xlsx";
-import { Word, Theme, Language } from "../../../types";
+import { InputWord, Word, Theme, Language } from "../../../types";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -20,23 +20,23 @@ const languages: Language[] = [];
 const themes: Theme[] = [];
 const words: Word[] = [];
 
-export const getLanguages = (): Language[] => {
+export const getLanguages = async (): Promise<Language[]> => {
   return languages;
 };
 
-export const getLanguage = (languageCode: string): Language | undefined => {
-  return languages.find(item => item.Code === languageCode);
+export const getLanguage = async (languageCode: string): Promise<Language|undefined> => {
+  return languages.find(item => item.code === languageCode);
 };
 
-export const getThemes = (): Theme[] => {
+export const getThemes = async (): Promise<Theme[]> => {
   return themes;
 };
 
-export const getTheme = (themeTitle: string): Theme | undefined => {
-  return themes.find(item => item.Title === themeTitle);
+export const getTheme = async (themeTitle: string): Promise<Theme | undefined> => {
+  return themes.find(item => item.title === themeTitle);
 };
 
-export const getWords = (): Word[] => {
+export const getWords = async (): Promise<Word[]> => {
   return words;
 };
 
@@ -54,31 +54,32 @@ const parseData = (data: ArrayBuffer) => {
   const workbook = xlsx.read(data, { type: "array" });
   const sheetName = workbook.SheetNames[0];
   const worksheet = workbook.Sheets[sheetName];
-  const json = xlsx.utils.sheet_to_json<Word>(worksheet, {
+  const json = xlsx.utils.sheet_to_json<InputWord>(worksheet, {
     blankrows: true,
     defval: "",
   });
 
   const themesMap = new Map<string, Theme>();
-  json.forEach((element: Word) => {
-    if (element.Title.includes("T")) {
-      if (themesMap.has(element.Tema1)) {
+  json.forEach((element: InputWord) => {
+    const word = pascalWordToCamelWord(element)
+    if (word.title.includes("T")) {
+      if (themesMap.has(word.tema1)) {
         // Add subThemes
-        themesMap.get(element.Tema1)?.SubThemes?.set(element.Title, {
-          ...element,
+        themesMap.get(word.tema1)?.subThemes?.set(word.title, {
+          ...word,
         });
         return;
       }
 
       // Add theme
-      themesMap.set(element.Tema1, {
-        SubThemes: new Map<string, Theme>(),
-        ...element,
+      themesMap.set(word.tema1, {
+        subThemes: new Map<string, Theme>(),
+        ...word,
       });
       return;
     }
 
-    words.push({ ...element });
+    words.push({ ...word });
   });
 
   themesMap.forEach(theme => {
@@ -86,15 +87,40 @@ const parseData = (data: ArrayBuffer) => {
   });
 
   // find languages
-  const word: Word = json[0];
+  const word: Word = words[0];
   Object.keys(word).forEach(language => {
     if (!NON_LANGUAGE_FIELDS.includes(language)) {
-      const [languageName, languageCode, rlt] = language.split("_");
+      const [languageName, languageCode, rtl] = language.split("_");
       languages.push({
-        Name: languageName,
-        Code: languageCode,
-        Rtl: rlt === undefined ? false : true,
+        name: languageName,
+        code: languageCode,
+        rtl: rtl === undefined ? false : true,
       });
     }
   });
+  console.log(themes)
 };
+
+const pascalToCamel = (str: string): string => {
+  let strArr = str.split("_");
+  str = str.length > 1 ? str[0].toLowerCase + str.slice(1) : "";
+  if ( strArr.length>1 ) {
+    strArr = strArr.map(item => item[0].toUpperCase() + item.slice(1))
+  }
+  str = strArr.join("");
+  return str.length > 1 ? str[0].toLowerCase() + str.slice(1) : ""
+}
+
+const pascalWordToCamelWord = (input: InputWord): Word => {
+  const translations = new Map<string,string>()
+  const objEntires: string[][] = []
+  Object.entries(input).map(([key, value]) => {
+    if( NON_LANGUAGE_FIELDS.includes(key)) {
+      objEntires.push([pascalToCamel(key), value])
+      return
+    }
+    const [_ , languageCode] = key.split("_")
+    translations.set(languageCode, value)
+  })
+   return {...Object.fromEntries(objEntires), translations}
+}
