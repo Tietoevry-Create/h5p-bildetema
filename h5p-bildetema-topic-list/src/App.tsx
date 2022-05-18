@@ -1,5 +1,5 @@
 import * as React from "react";
-import { fetchData } from "./utils/csvToObject";
+import { fetchData } from "./utils/data.utils";
 
 export type AppProps = {
   adjective: string;
