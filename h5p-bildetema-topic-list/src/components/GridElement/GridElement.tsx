@@ -1,15 +1,16 @@
 import * as React from "react";
-import { GridItem } from "../../types/GridItem";
+import { Topic, Word } from "../../../../types";
 import styles from "./GridElement.module.scss";
 
 export type GridElementProps = {
-  item: GridItem;
+  item?: Topic | Word;
+  title: string;
 };
 
-const GridElement: React.FC<GridElementProps> = ({ item }) => {
+const GridElement: React.FC<GridElementProps> = ({ item, title }) => {
   return (
-    <button key={item.title} className={styles.gridElement} type="button">
-      <span>{item.title}</span>
+    <button className={styles.gridElement} type="button">
+      <span>{title}</span>
     </button>
   );
 };

@@ -11,7 +11,7 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
     super();
     this.wrapper = H5PWrapper.createWrapperElement();
     const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App adjective="peachy" />, this.wrapper);
+    root.render(<App />, this.wrapper);
   }
 
   attach($container: JQuery<HTMLElement>): void {

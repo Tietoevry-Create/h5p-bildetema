@@ -21,4 +21,4 @@ const Template: ComponentStory<typeof App> = args => (
 );
 
 export const BildetemaTopicList = Template.bind({});
-BildetemaTopicList.args = { adjective: "test" };
+BildetemaTopicList.args = {};

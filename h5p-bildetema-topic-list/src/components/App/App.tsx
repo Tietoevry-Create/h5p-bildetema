@@ -1,5 +1,6 @@
 import * as React from "react";
-import { fetchData } from "../../utils/data.utils";
+import { Topic } from "../../../../types";
+import { fetchData, getTopics } from "../../utils/data.utils";
 import Grid from "../Grid/Grid";
 
 export const DUMMY_ITEMS = [
@@ -15,21 +16,25 @@ export const DUMMY_ITEMS = [
 ];
 
 export type AppProps = {
-  adjective: string;
+  adjective?: string;
 };
 
-const App: React.FC<AppProps> = ({ adjective }) => {
+const App: React.FC<AppProps> = () => {
+  const [topics, setTopics] = React.useState<Topic[]>([]);
+
   React.useEffect(() => {
     const run = async (): Promise<void> => {
       await fetchData();
+      setTopics(await getTopics());
     };
     run();
   }, []);
 
   return (
     <>
-      <h1>Hi, you&apos;re {adjective}</h1>
-      <Grid items={DUMMY_ITEMS} />
+      <h1>Choose a topic</h1>
+      {!!topics.length && <Grid items={topics} />}
+      {!topics.length && <h2>Loading...</h2>}
     </>
   );
 };

@@ -1,17 +1,17 @@
 import * as React from "react";
-import { GridItem } from "../../types/GridItem";
+import { Topic, Word } from "../../../../types";
 import GridElement from "../GridElement/GridElement";
 import styles from "./Grid.module.scss";
 
 export type GridProps = {
-  items: GridItem[];
+  items: Topic[] | Word[];
 };
 
 const Grid: React.FC<GridProps> = ({ items }) => {
   return (
     <div className={styles.grid}>
       {items.map(item => {
-        return <GridElement item={item} />;
+        return <GridElement key={item.title} item={item} title={item.tema1} />;
       })}
     </div>
   );
