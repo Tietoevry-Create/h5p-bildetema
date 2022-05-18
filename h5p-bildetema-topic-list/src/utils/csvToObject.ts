@@ -1,5 +1,5 @@
 import * as xlsx from "xlsx";
-import { InputWord, Word, Theme, Language } from "../../../types";
+import { InputWord, Word, Topic, Language } from "../../../types";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -17,7 +17,7 @@ const databaseURL =
   "https://devaudiobildetema.blob.core.windows.net/database/database.xlsx";
 
 const languages: Language[] = [];
-const themes: Theme[] = [];
+const topics: Topic[] = [];
 const words: Word[] = [];
 
 export const getLanguages = async (): Promise<Language[]> => {
@@ -28,12 +28,12 @@ export const getLanguage = async (languageCode: string): Promise<Language|undefi
   return languages.find(item => item.code === languageCode);
 };
 
-export const getThemes = async (): Promise<Theme[]> => {
-  return themes;
+export const getTopics = async (): Promise<Topic[]> => {
+  return topics;
 };
 
-export const getTheme = async (themeTitle: string): Promise<Theme | undefined> => {
-  return themes.find(item => item.title === themeTitle);
+export const getTopic = async (topicTitle: string): Promise<Topic | undefined> => {
+  return topics.find(item => item.title === topicTitle);
 };
 
 export const getWords = async (): Promise<Word[]> => {
@@ -49,7 +49,7 @@ export const fetchData = async () => {
 const parseData = (data: ArrayBuffer) => {
   languages.length = 0;
   words.length = 0;
-  themes.length = 0;
+  topics.length = 0;
 
   const workbook = xlsx.read(data, { type: "array" });
   const sheetName = workbook.SheetNames[0];
@@ -59,21 +59,21 @@ const parseData = (data: ArrayBuffer) => {
     defval: "",
   });
 
-  const themesMap = new Map<string, Theme>();
+  const topicsMap = new Map<string, Topic>();
   json.forEach((element: InputWord) => {
     const word = pascalWordToCamelWord(element)
     if (word.title.includes("T")) {
-      if (themesMap.has(word.tema1)) {
-        // Add subThemes
-        themesMap.get(word.tema1)?.subThemes?.set(word.title, {
+      if (topicsMap.has(word.tema1)) {
+        // Add subTopics
+        topicsMap.get(word.tema1)?.subTopics?.set(word.title, {
           ...word,
         });
         return;
       }
 
-      // Add theme
-      themesMap.set(word.tema1, {
-        subThemes: new Map<string, Theme>(),
+      // Add topic
+      topicsMap.set(word.tema1, {
+        subTopics: new Map<string, Topic>(),
         ...word,
       });
       return;
@@ -82,8 +82,8 @@ const parseData = (data: ArrayBuffer) => {
     words.push({ ...word });
   });
 
-  themesMap.forEach(theme => {
-    themes.push(theme);
+  topicsMap.forEach(topic => {
+    topics.push(topic);
   });
 
   // find languages
@@ -98,7 +98,7 @@ const parseData = (data: ArrayBuffer) => {
       });
     }
   });
-  console.log(themes)
+  console.log(topics)
 };
 
 const pascalToCamel = (str: string): string => {
