@@ -28,7 +28,7 @@ jobs:
           mkdir -p storybook-static
           mv h5p-bildetema/storybook-static storybook-static/h5p-bildetema
           mv h5p-bildetema-topic-list/storybook-static storybook-static/h5p-bildetema-topic-list
-          mv h5p-bildetema/storybook-static-topic-view storybook-static/h5p-bildetema-topic-view
+          mv h5p-bildetema-topic-view/storybook-static storybook-static/h5p-bildetema-topic-view
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
