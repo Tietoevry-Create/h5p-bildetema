@@ -1,0 +1,9 @@
+@use "../../abstracts" as a;
+
+.grid {
+  display: inline-grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: a.$spacing--16;
+  width: 100%;
+}

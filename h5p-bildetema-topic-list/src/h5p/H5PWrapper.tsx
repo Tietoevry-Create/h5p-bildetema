@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { H5PExtras, IH5PContentType } from "h5p-types";
-import * as ReactDOM from "react-dom";
-import App from "../App";
+import * as ReactDOM from "react-dom/client";
+import App from "../components/App/App";
 import { H5P } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
@@ -10,8 +10,8 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   constructor(params: unknown, contentId: string, extras?: H5PExtras) {
     super();
     this.wrapper = H5PWrapper.createWrapperElement();
-
-    ReactDOM.render(<App adjective="peachy" />, this.wrapper);
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />, this.wrapper);
   }
 
   attach($container: JQuery<HTMLElement>): void {
