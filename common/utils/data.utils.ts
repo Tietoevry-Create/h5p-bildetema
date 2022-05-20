@@ -107,7 +107,6 @@ const fillTopicsWithWords = (json: InputWord[], topicMap: Map<string, Topic>) =>
         images: images,
       };
       const wordInMainTopic = element.Undertema1 !== element.Tema1
-      // words within mainTopic
       if (wordInMainTopic) {
         topicMap
           .get(element.Tema1)
