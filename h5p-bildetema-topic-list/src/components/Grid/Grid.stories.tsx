@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { Topic } from "../../../../types";
+import { Topic } from "../../../../common/types/types";
 import Grid from "./Grid";
 
 export default {

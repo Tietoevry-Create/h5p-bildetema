@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Topic } from "../../../../types";
-import { fetchData, getTopics } from "../../utils/data.utils";
+import { Topic } from "../../../../common/types/types";
+import { fetchData, getTopics } from "../../../../common/utils/data.utils";
 import Grid from "../Grid/Grid";
 
 export type AppProps = {

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
+  }
+}
