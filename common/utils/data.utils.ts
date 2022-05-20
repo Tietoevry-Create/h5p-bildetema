@@ -153,3 +153,4 @@ export const fetchData = async (): Promise<void> => {
   const arrBuffer = await res.arrayBuffer();
   parseData(arrBuffer);
 };
+
