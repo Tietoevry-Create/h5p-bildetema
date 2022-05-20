@@ -4,7 +4,7 @@ import GridElement from "../GridElement/GridElement";
 import styles from "./Grid.module.scss";
 
 export type GridProps = {
-  items: Topic[] | Word[];
+  items: Topic[];
 };
 
 const Grid: React.FC<GridProps> = ({ items }) => {
@@ -13,9 +13,9 @@ const Grid: React.FC<GridProps> = ({ items }) => {
       {items.map(item => {
         return (
           <GridElement
-            key={item.title}
+            key={item.id}
             item={item}
-            title={item.tema1}
+            title={item.label}
             index={items.indexOf(item)}
           />
         );

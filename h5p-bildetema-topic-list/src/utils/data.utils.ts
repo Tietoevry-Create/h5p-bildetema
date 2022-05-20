@@ -1,5 +1,5 @@
 import * as xlsx from "xlsx";
-import { InputWord, Word, Topic, Language } from "../../../types";
+import { InputWord, Word, Topic, Language, LanguageCode } from "../../../types";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -18,7 +18,6 @@ const databaseURL =
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
-const words: Word[] = [];
 
 export const getLanguages = async (): Promise<Language[]> => {
   return languages;
@@ -34,43 +33,8 @@ export const getTopics = async (): Promise<Topic[]> => {
   return topics;
 };
 
-export const getTopic = async (
-  topicTitle: string,
-): Promise<Topic | undefined> => {
-  return topics.find(item => item.title === topicTitle);
-};
-
-export const getWords = async (): Promise<Word[]> => {
-  return words;
-};
-
-const pascalToCamel = (str: string): string => {
-  let strArr = str.split("_");
-  let tempStr = str.length > 1 ? str[0].toLowerCase + str.slice(1) : "";
-  if (strArr.length > 1) {
-    strArr = strArr.map(item => item[0].toUpperCase() + item.slice(1));
-  }
-  tempStr = strArr.join("");
-  return tempStr.length > 1 ? tempStr[0].toLowerCase() + tempStr.slice(1) : "";
-};
-
-const pascalWordToCamelWord = (input: InputWord): Word => {
-  const translations = new Map<string, string>();
-  const objEntires: string[][] = [];
-  Object.entries(input).forEach(([key, value]) => {
-    if (NON_LANGUAGE_FIELDS.includes(key)) {
-      objEntires.push([pascalToCamel(key), value]);
-      return;
-    }
-    const [, languageCode] = key.split("_");
-    translations.set(languageCode, value);
-  });
-  return { ...Object.fromEntries(objEntires), translations };
-};
-
 const parseData = (data: ArrayBuffer): void => {
   languages.length = 0;
-  words.length = 0;
   topics.length = 0;
 
   const workbook = xlsx.read(data, { type: "array" });
@@ -81,44 +45,95 @@ const parseData = (data: ArrayBuffer): void => {
     defval: "",
   });
 
-  const topicsMap = new Map<string, Topic>();
-  json.forEach((element: InputWord) => {
-    const word = pascalWordToCamelWord(element);
-    if (word.title.includes("T")) {
-      if (topicsMap.has(word.tema1)) {
-        // Add subTopics
-        topicsMap.get(word.tema1)?.subTopics?.set(word.title, {
-          ...word,
-        });
-        return;
-      }
-
-      // Add topic
-      topicsMap.set(word.tema1, {
-        subTopics: new Map<string, Topic>(),
-        ...word,
-      });
-      return;
-    }
-
-    words.push({ ...word });
-  });
-
-  topicsMap.forEach(topic => {
-    topics.push(topic);
-  });
-
   // find languages
-  const word: Word = words[0];
-  Object.keys(word).forEach(language => {
+  Object.keys(json[0]).forEach(language => {
     if (!NON_LANGUAGE_FIELDS.includes(language)) {
       const [languageName, languageCode, rtl] = language.split("_");
       languages.push({
-        name: languageName,
+        label: languageName,
         code: languageCode,
         rtl: rtl !== undefined,
       });
     }
+  });
+
+  const topicMap = new Map<string, Topic>();
+  const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
+    map.set(topic.label, topic);
+    languages.forEach(language => {
+      topic.words.set(language.code, []);
+    });
+  };
+
+  // find topics
+  json.forEach((element: InputWord) => {
+    if (!element.Title.includes("T")) return;
+
+    // add main topic
+    if (!topicMap.has(element.Tema1)) {
+      const topic: Topic = {
+        id: element.Title,
+        label: element.Tema1,
+        subTopics: new Map(),
+        words: new Map(),
+      };
+      setTopic(topic, topicMap);
+      return;
+    }
+
+    // add subtopic
+    const topic: Topic = {
+      id: element.Title,
+      label: element.Bokmål_nb,
+      subTopics: new Map(),
+      words: new Map(),
+    };
+    setTopic(
+      topic,
+      topicMap.get(element.Tema1)?.subTopics as Map<string, Topic>,
+    );
+  });
+
+  // fill words into topics
+  json.forEach((element: InputWord) => {
+    if (!element.Title.includes("V")) return;
+    let images: string[] = [];
+    // find images for the word
+    Object.entries(element).forEach(([key, value]) => {
+      if (key.includes("Bilde")) {
+        images.push(value);
+        return;
+      }
+      return;
+    });
+  
+    Object.entries(element).forEach(([key, value]) => {
+      if (NON_LANGUAGE_FIELDS.includes(key)) return;
+      const [_, languageCode] = key.split("_");
+      const word: Word = {
+        id: element.Title,
+        label: value,
+        images: images,
+      };
+      if (element.Undertema1 !== "") {
+        topicMap
+          .get(element.Tema1)
+          ?.subTopics.get(element.Undertema1)
+          ?.words.get(languageCode)
+          ?.push(word);
+        return;
+      }
+    });
+  });
+
+  // add topics to array and fix subtopic keys
+  topicMap.forEach(topic => {
+    const subTopics = new Map<string, Topic>();
+    topic.subTopics.forEach(element => {
+      subTopics.set(element.id, element);
+    });
+    topic.subTopics = subTopics;
+    topics.push(topic)
   });
 };
 
@@ -126,4 +141,5 @@ export const fetchData = async (): Promise<void> => {
   const res = await fetch(databaseURL);
   const arrBuffer = await res.arrayBuffer();
   parseData(arrBuffer);
+  console.log(topics)
 };
