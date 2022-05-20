@@ -58,6 +58,7 @@ const parseData = (data: ArrayBuffer): void => {
   });
 
   const topicMap = new Map<string, Topic>();
+  
   const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
     map.set(topic.label, topic);
     languages.forEach((language) => {
@@ -67,11 +68,11 @@ const parseData = (data: ArrayBuffer): void => {
 
   // find main topics
   json.forEach((element: InputWord) => {
-    const mainTopic =
+    const isMainTopic =
       element.Title.includes("T") &&
       element.Bokmål_nb.toLocaleLowerCase() ===
         element.Tema1.toLocaleLowerCase();
-    if (!mainTopic) return;
+    if (!isMainTopic) return;
 
     if (!topicMap.has(element.Tema1)) {
       const topic: Topic = {
@@ -87,11 +88,11 @@ const parseData = (data: ArrayBuffer): void => {
 
   // find subTopics
   json.forEach((element: InputWord) => {
-    const subTopic =
+    const isSubTopic =
       element.Title.includes("T") &&
       element.Bokmål_nb.toLocaleLowerCase() !==
         element.Tema1.toLocaleLowerCase();
-    if (!subTopic) return;
+    if (!isSubTopic) return;
     const topic: Topic = {
       id: element.Title,
       label: element.Bokmål_nb,
