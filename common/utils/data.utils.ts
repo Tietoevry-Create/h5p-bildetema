@@ -32,41 +32,31 @@ export const getLanguage = async (
 export const getTopics = async (): Promise<Topic[]> => {
   return topics;
 };
-
-const parseData = (data: ArrayBuffer): void => {
-  languages.length = 0;
-  topics.length = 0;
-
-  const workbook = xlsx.read(data, { type: "array" });
-  const sheetName = workbook.SheetNames[0];
-  const worksheet = workbook.Sheets[sheetName];
-  const json = xlsx.utils.sheet_to_json<InputWord>(worksheet, {
-    blankrows: true,
-    defval: "",
+const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
+  map.set(topic.label, topic);
+  languages.forEach((language) => {
+    topic.words.set(language.code, []);
   });
+};
 
-  // find languages
-  Object.keys(json[0]).forEach((language) => {
-    if (!NON_LANGUAGE_FIELDS.includes(language)) {
-      const [languageName, languageCode, rtl] = language.split("_");
-      languages.push({
-        label: languageName,
-        code: languageCode,
-        rtl: rtl !== undefined,
-      });
-    }
+const findSubTopics = (json: InputWord[], topicMap: Map<string, Topic>): void => {
+  json.forEach((element: InputWord) => {
+    const isSubTopic =
+      element.Title.includes("T") &&
+      element.Bokmål_nb.toLocaleLowerCase() !==
+        element.Tema1.toLocaleLowerCase();
+    if (!isSubTopic) return;
+    const topic: Topic = {
+      id: element.Title,
+      label: element.Bokmål_nb,
+      subTopics: new Map(),
+      words: new Map(),
+    };
+    setTopic(topic, topicMap.get(element.Tema1)!.subTopics);
   });
+}
 
-  const topicMap = new Map<string, Topic>();
-  
-  const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
-    map.set(topic.label, topic);
-    languages.forEach((language) => {
-      topic.words.set(language.code, []);
-    });
-  };
-
-  // find main topics
+const findMainTopics = (json: InputWord[], topicMap: Map<string, Topic>): void => {
   json.forEach((element: InputWord) => {
     const isMainTopic =
       element.Title.includes("T") &&
@@ -82,38 +72,31 @@ const parseData = (data: ArrayBuffer): void => {
         words: new Map(),
       };
       setTopic(topic, topicMap);
-      return;
     }
   });
+}
 
-  // find subTopics
-  json.forEach((element: InputWord) => {
-    const isSubTopic =
-      element.Title.includes("T") &&
-      element.Bokmål_nb.toLocaleLowerCase() !==
-        element.Tema1.toLocaleLowerCase();
-    if (!isSubTopic) return;
-    const topic: Topic = {
-      id: element.Title,
-      label: element.Bokmål_nb,
-      subTopics: new Map(),
-      words: new Map(),
-    };
-    setTopic(topic, topicMap.get(element.Tema1)!.subTopics);
-  });
+const findTopics = (json: InputWord[], topicMap: Map<string, Topic>) => {
+  findMainTopics(json, topicMap)
+  findSubTopics(json, topicMap)
+}
 
-  // fill words into topics
+const fillTopicsWithWords = (json: InputWord[], topicMap: Map<string, Topic>) => {
+  
   json.forEach((element: InputWord) => {
     if (!element.Title.includes("V")) return;
     let images: string[] = [];
-    // find images for the word
-    Object.entries(element).forEach(([key, value]) => {
-      if (key.includes("Bilde")) {
-        images.push(value);
+    
+    const findImages = () => {
+      Object.entries(element).forEach(([key, value]) => {
+        if (key.includes("Bilde")) {
+          images.push(value);
+          return;
+        }
         return;
-      }
-      return;
-    });
+      });
+    }
+    findImages();
 
     Object.entries(element).forEach(([key, value]) => {
       if (NON_LANGUAGE_FIELDS.includes(key)) return;
@@ -123,8 +106,9 @@ const parseData = (data: ArrayBuffer): void => {
         label: value,
         images: images,
       };
+      const wordInMainTopic = element.Undertema1 !== element.Tema1
       // words within mainTopic
-      if (element.Undertema1 !== element.Tema1) {
+      if (wordInMainTopic) {
         topicMap
           .get(element.Tema1)
           ?.subTopics.get(element.Undertema1)
@@ -132,20 +116,60 @@ const parseData = (data: ArrayBuffer): void => {
           ?.push(word);
         return;
       }
-      // words within subTopic
       topicMap.get(element.Tema1)?.words.get(languageCode)?.push(word);
     });
   });
+}
 
-  // add topics to array and fix subtopic keys
+const fixTopicMapKeys = (topic: Topic) => {
+  const topicMap = new Map<string, Topic>();
+  topic.subTopics.forEach((element) => {
+    topicMap.set(element.id, element);
+  });
+  return topicMap
+}
+
+const addTopicsToArray = (topicMap: Map<string, Topic>) => {
   topicMap.forEach((topic) => {
-    const subTopics = new Map<string, Topic>();
-    topic.subTopics.forEach((element) => {
-      subTopics.set(element.id, element);
-    });
-    topic.subTopics = subTopics;
+    topic.subTopics = fixTopicMapKeys(topic)
     topics.push(topic);
   });
+}
+
+const addLanguagesToArray = (input: InputWord) => {
+  Object.keys(input).forEach((language) => {
+    if (!NON_LANGUAGE_FIELDS.includes(language)) {
+      const [languageName, languageCode, rtl] = language.split("_");
+      languages.push({
+        label: languageName,
+        code: languageCode,
+        rtl: rtl !== undefined,
+      });
+    }
+  });
+}
+
+const parseData = (data: ArrayBuffer): void => {
+  languages.length = 0;
+  topics.length = 0;
+
+  const workbook = xlsx.read(data, { type: "array" });
+  const sheetName = workbook.SheetNames[0];
+  const worksheet = workbook.Sheets[sheetName];
+  const json = xlsx.utils.sheet_to_json<InputWord>(worksheet, {
+    blankrows: true,
+    defval: "",
+  });
+  
+  const topicMap = new Map<string, Topic>();
+  
+  addLanguagesToArray(json[0])
+  
+  findTopics(json, topicMap)
+  
+  fillTopicsWithWords(json, topicMap)
+
+  addTopicsToArray(topicMap)
 };
 
 export const fetchData = async (): Promise<void> => {
