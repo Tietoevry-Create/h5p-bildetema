@@ -72,7 +72,6 @@ const parseData = (data: ArrayBuffer): void => {
       element.Bokmål_nb.toLocaleLowerCase() ===
         element.Tema1.toLocaleLowerCase();
     if (!mainTopic) return;
-    console.log("hi");
 
     if (!topicMap.has(element.Tema1)) {
       const topic: Topic = {
@@ -101,7 +100,6 @@ const parseData = (data: ArrayBuffer): void => {
     };
     setTopic(topic, topicMap.get(element.Tema1)!.subTopics);
   });
-  console.log(topicMap);
 
   // fill words into topics
   json.forEach((element: InputWord) => {
@@ -153,5 +151,4 @@ export const fetchData = async (): Promise<void> => {
   const res = await fetch(databaseURL);
   const arrBuffer = await res.arrayBuffer();
   parseData(arrBuffer);
-  console.log(topics);
 };
