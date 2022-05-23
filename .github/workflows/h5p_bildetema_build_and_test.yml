@@ -1,4 +1,4 @@
-name: Build and validate `h5p-bildetema`
+name: Build and validate h5p-bildetema
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Build and validate `h5p-bildetema-topic-list`
+name: Build and validate h5p-bildetema-topic-list
 
 on:
   push:
