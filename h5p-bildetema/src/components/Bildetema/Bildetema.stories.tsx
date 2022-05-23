@@ -7,8 +7,7 @@ export default {
   component: Bildetema,
 } as ComponentMeta<typeof Bildetema>;
 
-export const Default = () => <Bildetema  />;
-// export const Default = (args: AppProps) => <App {...args} />;
+export const Default = ():JSX.Element => <Bildetema  />;
 
 Default.args = {
   adjective: "test",

@@ -2,37 +2,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1440px;
-  background-color: #F6F5F4;
+  gap: 2rem;
+  width: 100%;
 }
 
-.left_menu {
+.language_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 2.5rem;
+  font-size: 1.5rem;
 }
 
-.image {
-  height: 32px;
+.logo {
+  height: 2rem;
 }
-.image img{
+.logo img{
   height: 100%;
-}
-.menu {
-  flex: 10;
-}
-
-.right_menu {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 40px;
 }
 
 .languages {
   justify-content: center;
   align-items: center;
   display: flex;
-  gap: 20px;
+  gap: 1rem;
 }

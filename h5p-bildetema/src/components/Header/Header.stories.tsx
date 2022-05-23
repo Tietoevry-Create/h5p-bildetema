@@ -7,8 +7,7 @@ export default {
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-export const Default = () => <Header  />;
-// export const Default = (args: AppProps) => <App {...args} />;
+export const Default = ():JSX.Element => <Header  />;
 
 Default.args = {
   adjective: "test",

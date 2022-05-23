@@ -5,13 +5,10 @@ import logo from './logo_no.png'
 const Header = (): JSX.Element => {
   return (
     <div className={styles.header}>
-      <div className={styles.left_menu}>
-        <div className={styles.menu}> Menu</div>
-        <div className={styles.image}>
+        <div className={styles.logo}>
           <img src={logo} alt="" />
         </div>
-      </div>
-      <div className={styles.right_menu}>
+      <div className={styles.language_container}>
         <div>Språkvalg</div>
         <div className={styles.languages}>
           <p>Engelsk</p>

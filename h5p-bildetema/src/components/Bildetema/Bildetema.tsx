@@ -5,8 +5,10 @@ import { Header } from '..'
 const Bildetema = ():JSX.Element => {
   return (
     <div>
-      <div className={styles.header_container}>
-        <Header />
+      <div className={styles.container}>
+        <div className={styles.header_container}>
+          <Header />
+        </div>
       </div>
     </div>
   )
