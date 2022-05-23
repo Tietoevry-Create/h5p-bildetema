@@ -3,7 +3,8 @@ name: Build and validate h5p-bildetema-topic-view
 on:
   push:
     paths:
-      - "h5p-bildetema-topic-view/**"
+      - common
+      - h5p-bildetema-topic-view/**
   workflow_dispatch: {}
 
 env:
