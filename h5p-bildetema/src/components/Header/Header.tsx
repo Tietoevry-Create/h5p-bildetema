@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Header.module.scss'
 import logo from './logo_no.png'
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <div className={styles.header}>
       <div className={styles.left_menu}>

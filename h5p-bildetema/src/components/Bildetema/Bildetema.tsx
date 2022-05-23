@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Bildetema.module.scss'
-import { Header } from '../'
+import { Header } from '..'
 
-const Bildetema = () => {
+const Bildetema = ():JSX.Element => {
   return (
     <div>
       <div className={styles.header_container}>
