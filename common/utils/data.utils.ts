@@ -39,8 +39,8 @@ const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
   });
 };
 
-const findSubTopics = (json: InputWord[], topicMap: Map<string, Topic>): void => {
-  json.forEach((element: InputWord) => {
+const findSubTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>): void => {
+  inputWords.forEach((element: InputWord) => {
     const isSubTopic =
       element.Title.includes("T") &&
       element.Bokmål_nb.toLocaleLowerCase() !==
@@ -56,8 +56,8 @@ const findSubTopics = (json: InputWord[], topicMap: Map<string, Topic>): void =>
   });
 }
 
-const findMainTopics = (json: InputWord[], topicMap: Map<string, Topic>): void => {
-  json.forEach((element: InputWord) => {
+const findMainTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>): void => {
+  inputWords.forEach((element: InputWord) => {
     const isMainTopic =
       element.Title.includes("T") &&
       element.Bokmål_nb.toLocaleLowerCase() ===
@@ -76,14 +76,14 @@ const findMainTopics = (json: InputWord[], topicMap: Map<string, Topic>): void =
   });
 }
 
-const findTopics = (json: InputWord[], topicMap: Map<string, Topic>) => {
-  findMainTopics(json, topicMap)
-  findSubTopics(json, topicMap)
+const findTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
+  findMainTopics(inputWords, topicMap)
+  findSubTopics(inputWords, topicMap)
 }
 
-const fillTopicsWithWords = (json: InputWord[], topicMap: Map<string, Topic>) => {
+const fillTopicsWithWords = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
   
-  json.forEach((element: InputWord) => {
+  inputWords.forEach((element: InputWord) => {
     if (!element.Title.includes("V")) return;
     let images: string[] = [];
     
@@ -155,18 +155,18 @@ const parseData = (data: ArrayBuffer): void => {
   const workbook = xlsx.read(data, { type: "array" });
   const sheetName = workbook.SheetNames[0];
   const worksheet = workbook.Sheets[sheetName];
-  const json = xlsx.utils.sheet_to_json<InputWord>(worksheet, {
+  const inputWords = xlsx.utils.sheet_to_json<InputWord>(worksheet, {
     blankrows: true,
     defval: "",
   });
   
   const topicMap = new Map<string, Topic>();
   
-  addLanguagesToArray(json[0])
+  addLanguagesToArray(inputWords[0])
   
-  findTopics(json, topicMap)
+  findTopics(inputWords, topicMap)
   
-  fillTopicsWithWords(json, topicMap)
+  fillTopicsWithWords(inputWords, topicMap)
 
   addTopicsToArray(topicMap)
 };
