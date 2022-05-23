@@ -44,6 +44,7 @@ export default defineConfig({
           return assetInfo.name;
         },
       },
+      external: id => id === "xlsx",
     },
 
     target: "esnext",
