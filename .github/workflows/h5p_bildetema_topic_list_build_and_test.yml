@@ -1,28 +1,30 @@
-name: Node.js CI
+name: Build and validate h5p-bildetema-topic-list
 
 on:
   push:
     paths:
-      - "./h5p-bildetema-topic-list/**"
+      - "h5p-bildetema-topic-list/**"
   workflow_dispatch: {}
 
 env:
-  working-directory: './h5p-bildetema-topic-list'
+  working-directory: "./h5p-bildetema-topic-list"
 
 defaults:
   run:
-    working-directory: './h5p-bildetema-topic-list'
+    working-directory: "./h5p-bildetema-topic-list"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
         with:
-          'working-directory': ${{env.working-directory}}
+          working-directory: ${{env.working-directory}}
+
       - name: Build
         run: npm run build
         working-directory: ${{env.working-directory}}
@@ -31,12 +33,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
         with:
-          'working-directory': ${{env.working-directory}}
+          working-directory: ${{env.working-directory}}
+
       - name: Lint
         run: npm run lint
 
@@ -44,12 +47,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
         with:
-          'working-directory': ${{env.working-directory}}
+          working-directory: ${{env.working-directory}}
+
       - name: Test
         run: npm run test
         env:
@@ -61,7 +65,7 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout
-  #       uses: actions/checkout@v2
+  #       uses: actions/checkout@v3
   #       with:
   #         fetch-depth: 0 # 👈 Required to retrieve git history
 
