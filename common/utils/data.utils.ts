@@ -39,101 +39,103 @@ const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
   });
 };
 
-const findSubTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>): void => {
-  inputWords.forEach((element: InputWord) => {
+const findSubTopics = (
+  inputWords: InputWord[],
+  topicMap: Map<string, Topic>
+): void => {
+  inputWords.forEach((inputWord: InputWord) => {
     const isSubTopic =
-      element.Title.includes("T") &&
-      element.Bokmål_nb.toLocaleLowerCase() !==
-        element.Tema1.toLocaleLowerCase();
+      inputWord.Title.includes("T") &&
+      inputWord.Bokmål_nb.toLocaleLowerCase() !==
+        inputWord.Tema1.toLocaleLowerCase();
     if (!isSubTopic) return;
     const topic: Topic = {
-      id: element.Title,
-      label: element.Bokmål_nb,
+      id: inputWord.Title,
+      label: inputWord.Bokmål_nb,
       subTopics: new Map(),
       words: new Map(),
     };
-    setTopic(topic, topicMap.get(element.Tema1)!.subTopics);
+    setTopic(topic, topicMap.get(inputWord.Tema1)!.subTopics);
   });
-}
+};
 
-const findMainTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>): void => {
-  inputWords.forEach((element: InputWord) => {
+const findMainTopics = (
+  inputWords: InputWord[],
+  topicMap: Map<string, Topic>
+): void => {
+  inputWords.forEach((inputWord: InputWord) => {
     const isMainTopic =
-      element.Title.includes("T") &&
-      element.Bokmål_nb.toLocaleLowerCase() ===
-        element.Tema1.toLocaleLowerCase();
+      inputWord.Title.includes("T") &&
+      inputWord.Bokmål_nb.toLocaleLowerCase() ===
+        inputWord.Tema1.toLocaleLowerCase();
     if (!isMainTopic) return;
 
-    if (!topicMap.has(element.Tema1)) {
+    if (!topicMap.has(inputWord.Tema1)) {
       const topic: Topic = {
-        id: element.Title,
-        label: element.Tema1,
+        id: inputWord.Title,
+        label: inputWord.Tema1,
         subTopics: new Map(),
         words: new Map(),
       };
       setTopic(topic, topicMap);
     }
   });
-}
+};
 
 const findTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
-  findMainTopics(inputWords, topicMap)
-  findSubTopics(inputWords, topicMap)
-}
+  findMainTopics(inputWords, topicMap);
+  findSubTopics(inputWords, topicMap);
+};
 
-const fillTopicsWithWords = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
-  
-  inputWords.forEach((element: InputWord) => {
-    if (!element.Title.includes("V")) return;
-    let images: string[] = [];
-    
-    const findImages = () => {
-      Object.entries(element).forEach(([key, value]) => {
-        if (key.includes("Bilde")) {
-          images.push(value);
-          return;
-        }
-        return;
-      });
-    }
-    findImages();
+const findImages = (inputWord: InputWord) =>
+  Object.entries(inputWord)
+    .filter(([key, imageUrl]) => key.includes("Bilde") && imageUrl !== "")
+    .map(([, imageUrl]) => imageUrl);
 
-    Object.entries(element).forEach(([key, value]) => {
+const fillTopicsWithWords = (
+  inputWords: InputWord[],
+  topicMap: Map<string, Topic>
+) => {
+  inputWords.forEach((inputWord: InputWord) => {
+    if (!inputWord.Title.includes("V")) return;
+    const images: string[] = findImages(inputWord);
+
+    Object.entries(inputWord).forEach(([key, value]) => {
       if (NON_LANGUAGE_FIELDS.includes(key)) return;
       const [_, languageCode] = key.split("_");
       const word: Word = {
-        id: element.Title,
+        id: inputWord.Title,
         label: value,
         images: images,
       };
-      const wordInMainTopic = element.Undertema1 !== element.Tema1
+      const wordInMainTopic = inputWord.Undertema1 !== inputWord.Tema1;
       if (wordInMainTopic) {
         topicMap
-          .get(element.Tema1)
-          ?.subTopics.get(element.Undertema1)
+          .get(inputWord.Tema1)
+          ?.subTopics.get(inputWord.Undertema1)
           ?.words.get(languageCode)
           ?.push(word);
         return;
       }
-      topicMap.get(element.Tema1)?.words.get(languageCode)?.push(word);
+      topicMap.get(inputWord.Tema1)?.words.get(languageCode)?.push(word);
     });
   });
-}
+};
 
 const fixTopicMapKeys = (topic: Topic) => {
   const topicMap = new Map<string, Topic>();
-  topic.subTopics.forEach((element) => {
-    topicMap.set(element.id, element);
+  topic.subTopics.forEach((subTopic) => {
+    topicMap.set(subTopic.id, subTopic);
   });
-  return topicMap
-}
+  return topicMap;
+};
 
 const addTopicsToArray = (topicMap: Map<string, Topic>) => {
   topicMap.forEach((topic) => {
-    topic.subTopics = fixTopicMapKeys(topic)
+    topic.subTopics = fixTopicMapKeys(topic);
     topics.push(topic);
   });
-}
+};
 
 const addLanguagesToArray = (input: InputWord) => {
   Object.keys(input).forEach((language) => {
@@ -146,7 +148,7 @@ const addLanguagesToArray = (input: InputWord) => {
       });
     }
   });
-}
+};
 
 const parseData = (data: ArrayBuffer): void => {
   languages.length = 0;
@@ -159,16 +161,16 @@ const parseData = (data: ArrayBuffer): void => {
     blankrows: true,
     defval: "",
   });
-  
-  const topicMap = new Map<string, Topic>();
-  
-  addLanguagesToArray(inputWords[0])
-  
-  findTopics(inputWords, topicMap)
-  
-  fillTopicsWithWords(inputWords, topicMap)
 
-  addTopicsToArray(topicMap)
+  const topicMap = new Map<string, Topic>();
+
+  addLanguagesToArray(inputWords[0]);
+
+  findTopics(inputWords, topicMap);
+
+  fillTopicsWithWords(inputWords, topicMap);
+
+  addTopicsToArray(topicMap);
 };
 
 export const fetchData = async (): Promise<void> => {
