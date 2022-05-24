@@ -1,13 +1,13 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import Header from "./Header";
+import { Header } from "./Header";
 
 export default {
-  title: "Header/Header",
+  title: "Components/Header",
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-export const Default = ():JSX.Element => <Header  />;
+export const Default = (): JSX.Element => <Header />;
 
 Default.args = {
   adjective: "test",

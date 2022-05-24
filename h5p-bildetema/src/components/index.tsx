@@ -1,2 +1,2 @@
-export {default as Bildetema} from "./Bildetema/Bildetema"
-export {default as Header} from "./Header/Header"
+export { Bildetema } from "./Bildetema/Bildetema";
+export { Header } from "./Header/Header";

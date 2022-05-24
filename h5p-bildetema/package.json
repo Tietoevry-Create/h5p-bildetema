@@ -24,6 +24,7 @@
     "watch-semantics": "nodemon generate-semantics.ts --exec 'esr generate-semantics.ts'"
   },
   "dependencies": {
+    "@mdx-js/react": "^2.1.1",
     "h5p-types": "^0.0.21",
     "h5p-utils": "github:boyum/h5p-utils",
     "react": "^18.0.0",

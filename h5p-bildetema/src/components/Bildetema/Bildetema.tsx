@@ -1,8 +1,8 @@
-import React from 'react'
-import styles from './Bildetema.module.scss'
-import { Header } from '..'
+import React from "react";
+import styles from "./Bildetema.module.scss";
+import { Header } from "..";
 
-const Bildetema = ():JSX.Element => {
+export const Bildetema = (): JSX.Element => {
   return (
     <div>
       <div className={styles.container}>
@@ -11,7 +11,5 @@ const Bildetema = ():JSX.Element => {
         </div>
       </div>
     </div>
-  )
-}
-
-export default Bildetema
+  );
+};
