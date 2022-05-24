@@ -2,7 +2,7 @@ import * as React from "react";
 import { Topic, Word } from "../../../../common/types/types";
 import styles from "./GridElement.module.scss";
 
-export type GridElementProps = {
+type GridElementProps = {
   item?: Topic | Word;
   index: number;
   title: string;

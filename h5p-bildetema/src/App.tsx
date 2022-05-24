@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export type AppProps = {
+type AppProps = {
   adjective: string;
 };
 

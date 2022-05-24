@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-export type WordProps = {
+type WordProps = {
   clickHandler: React.Dispatch<WordType>;
   word: WordType;
   textVisible: boolean;

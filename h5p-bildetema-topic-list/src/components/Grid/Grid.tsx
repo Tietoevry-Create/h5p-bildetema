@@ -3,7 +3,7 @@ import { Topic, Word } from "../../../../common/types/types";
 import { GridElement } from "..";
 import styles from "./Grid.module.scss";
 
-export type GridProps = {
+type GridProps = {
   items: Topic[];
 };
 
