@@ -3,7 +3,7 @@ name: "Build and validate: h5p-bildetema"
 on:
   push:
     paths:
-      - common
+      - common/**
       - h5p-bildetema/**
 
   workflow_dispatch: {}

@@ -3,7 +3,7 @@ name: "Check H5P library version: h5p-bildetema-topic-list"
 on:
   pull_request:
     paths:
-      - common
+      - common/**
       - h5p-bildetema-topic-list/**
 
 env:
