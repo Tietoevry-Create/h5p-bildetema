@@ -35,14 +35,14 @@ const Word: React.FC<WordProps> = ({ clickHandler, textVisible, word }) => {
         {images.length !== 0 ? (
           images.map(image => (
             <SwiperSlide key={image}>
-              <div className={styles.test}>
+              <div>
                 <img src={image} alt="" />
               </div>
             </SwiperSlide>
           ))
         ) : (
           <SwiperSlide>
-            <div className={styles.test}>
+            <div>
               <img
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
                 alt=""

@@ -48,7 +48,7 @@ MultipleImages.args = {
 export const NoImages = Template.bind({});
 NoImages.args = {
   clickHandler(word: WordType) {
-    console.log(word);
+    console.info(word);
   },
   word: {
     id: "V0889",
@@ -61,7 +61,7 @@ NoImages.args = {
 export const HiddenText = Template.bind({});
 HiddenText.args = {
   clickHandler(word: WordType) {
-    console.log(word);
+    console.info(word);
   },
   word: {
     id: "V0889",
