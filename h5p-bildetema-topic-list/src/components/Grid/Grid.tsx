@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Topic, Word } from "../../../../common/types/types";
-import GridElement from "../GridElement/GridElement";
+import { GridElement } from "..";
 import styles from "./Grid.module.scss";
 
 export type GridProps = {
   items: Topic[];
 };
 
-const Grid: React.FC<GridProps> = ({ items }) => {
+export const Grid: React.FC<GridProps> = ({ items }) => {
   return (
     <div className={styles.grid}>
       {items.map(item => {
@@ -23,5 +23,3 @@ const Grid: React.FC<GridProps> = ({ items }) => {
     </div>
   );
 };
-
-export default Grid;

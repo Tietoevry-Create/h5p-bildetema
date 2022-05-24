@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Topic } from "../../../../common/types/types";
-import Grid from "./Grid";
+import { Grid } from "./Grid";
 
 export default {
   title: "Molecules/Grid",

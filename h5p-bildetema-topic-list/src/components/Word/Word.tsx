@@ -16,7 +16,11 @@ export type WordProps = {
   textVisible: boolean;
 };
 
-const Word: React.FC<WordProps> = ({ clickHandler, textVisible, word }) => {
+export const Word: React.FC<WordProps> = ({
+  clickHandler,
+  textVisible,
+  word,
+}) => {
   const { label, images } = word;
 
   const renderImages = (): JSX.Element => {
@@ -61,5 +65,3 @@ const Word: React.FC<WordProps> = ({ clickHandler, textVisible, word }) => {
     </div>
   );
 };
-
-export default Word;
