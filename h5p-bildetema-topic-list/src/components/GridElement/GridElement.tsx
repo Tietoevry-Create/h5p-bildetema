@@ -8,6 +8,7 @@ export type GridElementProps = {
   title: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GridElement: React.FC<GridElementProps> = ({ item, title, index }) => {
   return (
     <button className={styles.gridElement} type="button">

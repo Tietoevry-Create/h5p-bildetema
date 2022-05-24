@@ -27,6 +27,7 @@
     "h5p-utils": "github:boyum/h5p-utils",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "swiper": "^8.1.5",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
   "devDependencies": {
