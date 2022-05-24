@@ -3,7 +3,7 @@ import { Topic } from "../../../../common/types/types";
 import { fetchData, getTopics } from "../../../../common/utils/data.utils";
 import { Grid } from "..";
 
-export type AppProps = {
+type AppProps = {
   adjective?: string;
 };
 
