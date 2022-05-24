@@ -24,9 +24,9 @@ export const getLanguages = async (): Promise<Language[]> => {
 };
 
 export const getLanguage = async (
-  languageCode: string
+  languageCode: string,
 ): Promise<Language | undefined> => {
-  return languages.find((item) => item.code === languageCode);
+  return languages.find(item => item.code === languageCode);
 };
 
 export const getTopics = async (): Promise<Topic[]> => {
@@ -34,14 +34,14 @@ export const getTopics = async (): Promise<Topic[]> => {
 };
 const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
   map.set(topic.label, topic);
-  languages.forEach((language) => {
+  languages.forEach(language => {
     topic.words.set(language.code, []);
   });
 };
 
 const findSubTopics = (
   inputWords: InputWord[],
-  topicMap: Map<string, Topic>
+  topicMap: Map<string, Topic>,
 ): void => {
   inputWords.forEach((inputWord: InputWord) => {
     const isSubTopic =
@@ -61,7 +61,7 @@ const findSubTopics = (
 
 const findMainTopics = (
   inputWords: InputWord[],
-  topicMap: Map<string, Topic>
+  topicMap: Map<string, Topic>,
 ): void => {
   inputWords.forEach((inputWord: InputWord) => {
     const isMainTopic =
@@ -94,7 +94,7 @@ const findImages = (inputWord: InputWord) =>
 
 const fillTopicsWithWords = (
   inputWords: InputWord[],
-  topicMap: Map<string, Topic>
+  topicMap: Map<string, Topic>,
 ) => {
   inputWords.forEach((inputWord: InputWord) => {
     if (!inputWord.Title.includes("V")) return;
@@ -124,21 +124,21 @@ const fillTopicsWithWords = (
 
 const fixTopicMapKeys = (topic: Topic) => {
   const topicMap = new Map<string, Topic>();
-  topic.subTopics.forEach((subTopic) => {
+  topic.subTopics.forEach(subTopic => {
     topicMap.set(subTopic.id, subTopic);
   });
   return topicMap;
 };
 
 const addTopicsToArray = (topicMap: Map<string, Topic>) => {
-  topicMap.forEach((topic) => {
+  topicMap.forEach(topic => {
     topic.subTopics = fixTopicMapKeys(topic);
     topics.push(topic);
   });
 };
 
 const addLanguagesToArray = (input: InputWord) => {
-  Object.keys(input).forEach((language) => {
+  Object.keys(input).forEach(language => {
     if (!NON_LANGUAGE_FIELDS.includes(language)) {
       const [languageName, languageCode, rtl] = language.split("_");
       languages.push({

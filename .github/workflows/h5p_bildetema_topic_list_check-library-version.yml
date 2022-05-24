@@ -12,13 +12,12 @@ on:
       - common
       - h5p-bildetema-topic-list/**
 
-
 env:
-  working-directory: './h5p-bildetema-topic-list'
+  working-directory: "./h5p-bildetema-topic-list"
 
 defaults:
-        run:
-          working-directory: ${{env.working-directory}}
+  run:
+    working-directory: ${{env.working-directory}}
 
 jobs:
   check-h5p-library-version:
