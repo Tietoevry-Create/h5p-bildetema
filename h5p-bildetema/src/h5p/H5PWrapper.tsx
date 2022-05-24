@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { H5PExtras, IH5PContentType } from "h5p-types";
 import * as ReactDOM from "react-dom";
-import App from "../App";
+import App from "../components/App/App";
 import { H5P } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
