@@ -1,10 +1,11 @@
 name: "Build and validate: h5p-bildetema-topic-view"
 
 on:
-  push:
+  pull_request:
     paths:
-      - common
+      - common/**
       - h5p-bildetema-topic-view/**
+
   workflow_dispatch: {}
 
 env:

@@ -1,5 +1,12 @@
 {
+  "scripts": {
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --write"
+  },
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
   }
 }
