@@ -1,4 +1,4 @@
-name: Check H5P library version
+name: "Check H5P library version: h5p-bildetema"
 
 on:
   pull_request:
@@ -7,8 +7,10 @@ on:
       - labeled # PR is labeled
       - unlabeled # A label is removed from PR
       - synchronize # A commit is added - i.e. the PR's code is changed
+
     paths:
-      - "./h5p-bildetema/**"
+      - common
+      - h5p-bildetema/**
 
 
 env:

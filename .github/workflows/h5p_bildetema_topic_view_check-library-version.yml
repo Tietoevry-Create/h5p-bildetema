@@ -1,4 +1,4 @@
-name: Check H5P library version
+name: "Check H5P library version: h5p-bildetema-topic-view"
 
 on:
   pull_request:
@@ -7,16 +7,17 @@ on:
       - labeled # PR is labeled
       - unlabeled # A label is removed from PR
       - synchronize # A commit is added - i.e. the PR's code is changed
-    paths:
-      - "./h5p-bildetema-topic-view/**"
 
+    paths:
+      - common
+      - h5p-bildetema-topic-view/**
 
 env:
-  working-directory: './h5p-bildetema-topic-view'
+  working-directory: "./h5p-bildetema-topic-view"
 
 defaults:
-        run:
-          working-directory: ${{env.working-directory}}
+  run:
+    working-directory: ${{env.working-directory}}
 
 jobs:
   check-h5p-library-version:
