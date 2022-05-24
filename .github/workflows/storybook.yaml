@@ -21,14 +21,9 @@ jobs:
           npm install
           npm run build-storybook
           popd
-          pushd h5p-bildetema-topic-view
-          npm install
-          npm run build-storybook
-          popd
           mkdir -p storybook-static
           mv h5p-bildetema/storybook-static storybook-static/h5p-bildetema
           mv h5p-bildetema-topic-list/storybook-static storybook-static/h5p-bildetema-topic-list
-          mv h5p-bildetema-topic-view/storybook-static storybook-static/h5p-bildetema-topic-view
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
