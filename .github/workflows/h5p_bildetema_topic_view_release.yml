@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - common
+      - common/**
       - ./h5p-bildetema-topic-view/**
 
   workflow_dispatch: {}

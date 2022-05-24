@@ -9,7 +9,7 @@ on:
       - synchronize # A commit is added - i.e. the PR's code is changed
 
     paths:
-      - common
+      - common/**
       - h5p-bildetema-topic-list/**
 
 env:
@@ -17,7 +17,7 @@ env:
 
 defaults:
   run:
-    working-directory: ${{env.working-directory}}
+    working-directory: "./h5p-bildetema-topic-list"
 
 jobs:
   check-h5p-library-version:
