@@ -9,12 +9,14 @@ export type GridElementProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GridElement: React.FC<GridElementProps> = ({ item, title, index }) => {
+export const GridElement: React.FC<GridElementProps> = ({
+  item,
+  title,
+  index,
+}) => {
   return (
     <button className={styles.gridElement} type="button">
       <span>{`${index + 1}. ${title}`}</span>
     </button>
   );
 };
-
-export default GridElement;

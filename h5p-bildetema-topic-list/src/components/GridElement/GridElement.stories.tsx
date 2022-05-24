@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import GridElement from "./GridElement";
+import { GridElement } from "./GridElement";
 
 export default {
   title: "Atoms/Grid Element",

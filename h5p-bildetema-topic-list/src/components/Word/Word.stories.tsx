@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import Word from "./Word";
+import { Word } from "./Word";
 import { Word as WordType } from "../../../../common/types/types";
 
 export default {
