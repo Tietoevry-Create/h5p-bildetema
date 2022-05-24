@@ -1,0 +1,20 @@
+name: Validate root project
+
+on:
+  - push
+
+jobs:
+  check-format:
+    name: Check format
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Check format
+        run: npm run format:check

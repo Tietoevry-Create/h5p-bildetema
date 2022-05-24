@@ -64,7 +64,6 @@
     "jest": "^27.5.1",
     "mini-css-extract-plugin": "^2.6.0",
     "nodemon": "^2.0.15",
-    "prettier": "^2.6.2",
     "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",

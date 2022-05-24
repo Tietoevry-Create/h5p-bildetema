@@ -1,6 +1,6 @@
 name: "Pack and release content type: h5p-bildetema"
 
-on: 
+on:
   push:
     branches:
       - main
@@ -11,7 +11,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  working-directory: './h5p-bildetema'
+  working-directory: "./h5p-bildetema"
 
 jobs:
   pack-and-release:
