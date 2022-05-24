@@ -1,15 +1,17 @@
-name: Pack and release content type h5p-bildetema-topic-view
+name: "Pack and release content type: h5p-bildetema-topic-view"
 
-on: 
+on:
   push:
     branches:
       - main
     paths:
-      - "./h5p-bildetema-topic-view/**"
+      - common
+      - ./h5p-bildetema-topic-view/**
+
   workflow_dispatch: {}
 
 env:
-  working-directory: './h5p-bildetema-topic-view'
+  working-directory: "./h5p-bildetema-topic-view"
 
 jobs:
   pack-and-release:
