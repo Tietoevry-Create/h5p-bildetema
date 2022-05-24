@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import Word from "./Word";
@@ -17,7 +16,7 @@ const Template: ComponentStory<typeof Word> = args => (
 export const Default = Template.bind({});
 Default.args = {
   clickHandler(word: WordType) {
-    console.log(word);
+    console.info(word);
   },
   word: {
     id: "V0889",
@@ -32,7 +31,7 @@ Default.args = {
 export const MultipleImages = Template.bind({});
 MultipleImages.args = {
   clickHandler(word: WordType) {
-    console.log(word);
+    console.info(word);
   },
   word: {
     id: "V0889",
