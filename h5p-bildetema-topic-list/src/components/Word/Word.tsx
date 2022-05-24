@@ -1,6 +1,14 @@
+/* eslint-disable import/no-unresolved */
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
 import styles from "./Word.module.scss";
 import { Word as WordType } from "../../../../common/types/types";
+
+// import Swiper and modules styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export type WordProps = {
   clickHandler: React.Dispatch<WordType>;
@@ -8,31 +16,49 @@ export type WordProps = {
   textVisible: boolean;
 };
 
-const Word: React.FC<WordProps> = ({
-  clickHandler,
-  textVisible,
-  word,
-}) => {
-  const { id, label, images } = word
+const Word: React.FC<WordProps> = ({ clickHandler, textVisible, word }) => {
+  const { label, images } = word;
+
   const renderImages = (): JSX.Element => {
-    switch(images.length) {
-      case 0:
-        return (<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019" alt="" />)
-      case 1:
-        return (<img src={images[0]} alt="" />)
-      default:
-        return (<div>greater than 1</div>)
-        
-    }
-  }
+    const multipleImages = images.length > 1;
+
+    return (
+      <Swiper
+        onClick={() => clickHandler(word)}
+        pagination={{
+          dynamicBullets: multipleImages,
+        }}
+        navigation={multipleImages}
+        modules={multipleImages ? [Pagination, Navigation] : []}
+        loop={multipleImages}
+      >
+        {images.length !== 0 ? (
+          images.map(image => (
+            <SwiperSlide key={image}>
+              <div className={styles.test}>
+                <img src={image} alt="" />
+              </div>
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <div className={styles.test}>
+              <img
+                src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
+                alt=""
+              />
+            </div>
+          </SwiperSlide>
+        )}
+      </Swiper>
+    );
+  };
 
   return (
-    <button onClick={() => {clickHandler(word)} }className={styles.word} type="button">
-      <div className={styles.image_container}>
-        {renderImages()}
-      </div>
-      {textVisible && <p>{label}</p>}
-    </button>
+    <div className={styles.word}>
+      <div className={styles.image_container}>{renderImages()}</div>
+      {textVisible && <p className={styles.word_label}> {label} </p>}
+    </div>
   );
 };
 

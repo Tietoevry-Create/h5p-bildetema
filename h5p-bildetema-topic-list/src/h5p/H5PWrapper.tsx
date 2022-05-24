@@ -7,6 +7,7 @@ import { H5P } from "./H5P.util";
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   private wrapper: HTMLElement;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(params: unknown, contentId: string, extras?: H5PExtras) {
     super();
     this.wrapper = H5PWrapper.createWrapperElement();
