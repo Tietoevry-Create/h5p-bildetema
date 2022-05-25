@@ -15,6 +15,5 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "skipLibCheck": true
-  },
-  "include": ["./src/**/*", "typings.d.ts", "../common/utils/data.utils.ts"]
+  }
 }

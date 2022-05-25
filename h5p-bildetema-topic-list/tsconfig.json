@@ -1,3 +1,4 @@
 {
-  "extends": "../tsconfig.base.json"
+  "extends": "../tsconfig.base.json",
+  "include": ["./src/**/*", "typings.d.ts", "../common/utils/data.utils.ts"]
 }
