@@ -7,7 +7,6 @@ import { WordsGrid } from "../WordsGrid/WordsGrid";
 
 type AppProps = {
   currentLanguageCode: Language;
-  adjective: string;
 };
 
 const App: React.FC<AppProps> = ({ currentLanguageCode }) => {

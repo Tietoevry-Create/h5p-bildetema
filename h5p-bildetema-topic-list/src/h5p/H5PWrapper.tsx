@@ -19,6 +19,17 @@ export class H5PWrapper extends H5PContentType implements IH5PContentType {
     containerElement.classList.add("h5p-bildetema-topic-list");
 
     const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App adjective="beautiful" />, this.wrapper);
+    root.render(
+      <HashRouter>
+        <App
+          currentLanguageCode={{
+            label: "Norsk Bokmål",
+            code: "nb",
+            rtl: false,
+          }}
+        />
+      </HashRouter>,
+      this.wrapper,
+    );
   }
 }
