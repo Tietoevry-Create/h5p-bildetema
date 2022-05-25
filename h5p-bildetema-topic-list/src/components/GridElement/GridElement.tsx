@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import { Topic, Word } from "../../../../common/types/types";
 import styles from "./GridElement.module.scss";
 
@@ -14,8 +15,12 @@ export const GridElement: React.FC<GridElementProps> = ({
   title,
   index,
 }) => {
+  const navigate = useNavigate();
+  const handleClick = (): void => {
+    navigate(`${encodeURIComponent(title.toLowerCase().split(" ").join("-"))}`);
+  };
   return (
-    <button className={styles.gridElement} type="button">
+    <button onClick={handleClick} className={styles.gridElement} type="button">
       <span>{`${index + 1}. ${title}`}</span>
     </button>
   );

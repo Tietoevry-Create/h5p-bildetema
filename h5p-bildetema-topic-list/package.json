@@ -24,10 +24,12 @@
     "watch-semantics": "nodemon generate-semantics.ts --exec 'esr generate-semantics.ts'"
   },
   "dependencies": {
+    "@mdx-js/react": "^2.1.1",
     "h5p-types": "^0.0.21",
     "h5p-utils": "^2.0.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
     "swiper": "^8.1.5",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },

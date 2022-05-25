@@ -2,6 +2,7 @@ import type { IH5PContentType } from "h5p-types";
 import { H5PContentType } from "h5p-utils";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
+import { HashRouter } from "react-router-dom";
 import App from "../components/App/App";
 
 export class H5PWrapper extends H5PContentType implements IH5PContentType {

@@ -1,20 +1,20 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Topic } from "../../../../common/types/types";
-import { Grid } from "./Grid";
+import { TopicsGrid } from "./TopicsGrid";
 
 export default {
-  title: "Molecules/Grid",
-  component: Grid,
-} as ComponentMeta<typeof Grid>;
+  title: "Molecules/TopicsGrid",
+  component: TopicsGrid,
+} as ComponentMeta<typeof TopicsGrid>;
 
-const Template: ComponentStory<typeof Grid> = args => (
+const Template: ComponentStory<typeof TopicsGrid> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Grid {...args} />
+  <TopicsGrid {...args} />
 );
 
-export const ThemesGrid = Template.bind({});
-ThemesGrid.args = {
+export const TopicsGridStory = Template.bind({});
+TopicsGridStory.args = {
   items: [
     { title: "test1", tema1: "test1" } as Topic,
     { title: "test2", tema1: "test2" } as Topic,
