@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "h5p-types": "^0.0.21",
-    "h5p-utils": "github:boyum/h5p-utils",
+    "h5p-utils": "^2.0.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "swiper": "^8.1.5",
