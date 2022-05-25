@@ -4,7 +4,7 @@ import { fetchData, getTopics } from "../../../../common/utils/data.utils";
 import { Grid } from "..";
 
 type AppProps = {
-  adjective?: string;
+  adjective: string;
 };
 
 const App: React.FC<AppProps> = () => {
