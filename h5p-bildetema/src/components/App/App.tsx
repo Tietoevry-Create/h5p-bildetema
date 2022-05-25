@@ -1,7 +1,7 @@
 import * as React from "react";
 
 type AppProps = {
-  adjective: string;
+  adjective?: string;
 };
 
 const App: React.FC<AppProps> = ({ adjective }) => {
