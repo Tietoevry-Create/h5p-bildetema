@@ -4,6 +4,4 @@ export type CommonItemType = {
   index?: number;
 
   description?: string;
-
-
 };

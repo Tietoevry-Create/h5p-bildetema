@@ -4,7 +4,6 @@ import type { H5PExtras, IH5PContentType } from "h5p-types";
 import * as ReactDOM from "react-dom";
 import App from "../components/App/App";
 
-
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   private wrapper: HTMLElement;
 
@@ -18,7 +17,7 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   static createWrapperElement(): HTMLElement {
     throw new Error("Method not implemented.");
   }
-  
+
   attach($container: JQuery<HTMLElement>): void {
     const containerElement = $container.get(0);
     if (!containerElement) {
