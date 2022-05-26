@@ -23,6 +23,7 @@
     "watch-semantics": "nodemon generate-semantics.ts --exec 'esr generate-semantics.ts'"
   },
   "dependencies": {
+    "@testing-library/react": "^13.2.0",
     "da": "^0.0.3",
     "h5p-types": "github:boyum/h5p-types",
     "h5p-utils": "github:boyum/h5p-utils",
