@@ -1,29 +1,49 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
-import { Topic } from "../../../../types";
-import Grid from "./Grid";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+import { Grid, GridProps } from "./Grid";
 
 export default {
-  title: "Molecules/Grid",
+  title: "Organisms/Grid",
   component: Grid,
 } as ComponentMeta<typeof Grid>;
 
-const Template: ComponentStory<typeof Grid> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Grid {...args} />
-);
+const defaultArgs: GridProps = {
+  items: [],
+  gridDimensions: {numberOfColumns: 10, numberOfRows: 10},
+};
 
-export const ThemesGrid = Template.bind({});
-ThemesGrid.args = {
-  items: [
-    { title: "test1", tema1: "test1" } as Topic,
-    { title: "test2", tema1: "test2" } as Topic,
-    { title: "test3", tema1: "test3" } as Topic,
-    { title: "test4", tema1: "test4" } as Topic,
-    { title: "test5", tema1: "test5" } as Topic,
-    { title: "test6", tema1: "test6" } as Topic,
-    { title: "test7", tema1: "test7" } as Topic,
-    { title: "test8", tema1: "test8" } as Topic,
-    { title: "test9", tema1: "test9" } as Topic,
-  ],
+export const WithItems: ComponentStory<typeof Grid> = () => {
+  const args: GridProps = {
+    ...defaultArgs,
+    items: [
+      {
+        id: "1",
+        label: "Sheep in the distance",
+        description: "",
+        width: 1,
+        height: 1,
+        xPosition: 3,
+        yPosition: 5,
+      },
+      {
+        id: "2",
+        
+        label: "Sheep close up",
+        description: "Sheep looking right at you.",
+        width: 2,
+        height: 1,
+        xPosition: 5,
+        yPosition: 3,
+        
+      },
+    ],
+  };
+  return (<div style={{height: "600px", width: "600px"}}><Grid {...args} /></div>) ;
+};
+
+export const WithoutItems: ComponentStory<typeof Grid> = () => {
+  const args: GridProps = { ...defaultArgs };
+  return <Grid {...args} />;
 };
