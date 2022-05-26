@@ -1,5 +1,5 @@
-import { H5P } from "./h5p/H5P.util";
+import { registerContentType } from "h5p-utils";
 import { H5PWrapper } from "./h5p/H5PWrapper";
 import "./index.scss";
 
-(H5P as any).H5pBildetema = H5PWrapper;
+registerContentType("BildetemaTopicList", H5PWrapper);

@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - directory: /
+    package-ecosystem: npm
+    rebase-strategy: auto
+    schedule:
+      interval: daily
+    labels:
+      - non-functional
+
+  - directory: /h5p-bildetema
+    package-ecosystem: npm
+    rebase-strategy: auto
+    schedule:
+      interval: daily
+    labels:
+      - non-functional
+
+  - directory: /h5p-bildetema-topic-list
+    package-ecosystem: npm
+    rebase-strategy: auto
+    schedule:
+      interval: daily
+    labels:
+      - non-functional
+
+  - directory: /
+    package-ecosystem: github-actions
+    rebase-strategy: auto
+    schedule:
+      interval: daily
+    labels:
+      - non-functional

@@ -1,8 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
+
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Grid, GridProps } from "./Grid";
+
+import { Topic } from "../../../../common/types/types";
+
+
 
 export default {
   title: "Organisms/Grid",

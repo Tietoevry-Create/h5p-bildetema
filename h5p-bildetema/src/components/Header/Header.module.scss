@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.language_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.logo {
+  height: 2rem;
+}
+.logo img {
+  height: 100%;
+}
+
+.languages {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}

@@ -1,33 +1,30 @@
+import type { IH5PContentType } from "h5p-types";
+import { H5PContentType } from "h5p-utils";
 import * as React from "react";
-import type { H5PExtras, IH5PContentType } from "h5p-types";
-import * as ReactDOM from "react-dom";
-import App from "../App";
-import { H5P } from "./H5P.util";
+import { createRoot } from "react-dom/client";
+import App from "../components/App/App";
 
-export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
-  private wrapper: HTMLElement;
+type Params = {
+  region: string;
+};
 
-  constructor(params: unknown, contentId: string, extras?: H5PExtras) {
-    super();
-    this.wrapper = H5PWrapper.createWrapperElement();
-
-    ReactDOM.render(<App adjective="peachy" />, this.wrapper);
-  }
-
+export class H5PWrapper
+  extends H5PContentType<Params>
+  implements IH5PContentType
+{
   attach($container: JQuery<HTMLElement>): void {
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(
-        "Found no containing element to attach `h5p-h5p-bildetema` to.",
+        "Found no containing element to attach `h5p-bildetema` to.",
       );
       return;
     }
 
     containerElement.appendChild(this.wrapper);
-    containerElement.classList.add("h5p-h5p-bildetema");
-  }
+    containerElement.classList.add("h5p-bildetema");
 
-  private static createWrapperElement(): HTMLDivElement {
-    return document.createElement("div");
+    const root = createRoot(this.wrapper);
+    root.render(<App adjective="peachy" />);
   }
 }

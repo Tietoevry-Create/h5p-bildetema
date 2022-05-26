@@ -1,7 +1,8 @@
+import { H5PContentType } from "h5p-utils";
 import * as React from "react";
 import type { H5PExtras, IH5PContentType } from "h5p-types";
 import * as ReactDOM from "react-dom";
-import App from "../App";
+import App from "../components/App/App";
 import { H5P } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
@@ -14,20 +15,22 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
     ReactDOM.render(<App adjective="peachy" />, this.wrapper);
   }
 
+  static createWrapperElement(): HTMLElement {
+    throw new Error("Method not implemented.");
+  }
   attach($container: JQuery<HTMLElement>): void {
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(
-        "Found no containing element to attach `h5p-h5p-bildetema` to.",
+        "Found no containing element to attach `h5p-bildetema-topic-list` to.",
       );
       return;
     }
 
     containerElement.appendChild(this.wrapper);
-    containerElement.classList.add("h5p-h5p-bildetema");
-  }
+    containerElement.classList.add("h5p-bildetema-topic-list");
 
-  private static createWrapperElement(): HTMLDivElement {
-    return document.createElement("div");
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App adjective="beautiful" />, this.wrapper);
   }
 }
