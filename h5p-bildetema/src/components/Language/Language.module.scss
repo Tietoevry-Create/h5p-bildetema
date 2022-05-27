@@ -28,13 +28,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  width : 100%;
-  height : 100%;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   box-shadow: 0 0 0 3px black;
   border-radius: 5px;
 }
-
 
 .input_container input:checked ~ .checkmark {
   background-color: black;
