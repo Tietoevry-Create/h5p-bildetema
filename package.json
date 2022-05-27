@@ -8,6 +8,7 @@
     "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-topic-list'"
   },
   "dependencies": {
+    "type-fest": "^2.13.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
   "devDependencies": {

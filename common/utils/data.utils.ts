@@ -1,5 +1,12 @@
 import * as xlsx from "xlsx";
-import { InputWord, Word, Topic, Language, LanguageCode } from "../types/types";
+import {
+  InputWord,
+  Word,
+  Topic,
+  Language,
+  LanguageCode,
+  makeLanguageCode,
+} from "../types/types";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -32,7 +39,7 @@ export const getLanguage = async (
 export const getTopics = async (): Promise<Topic[]> => {
   return topics;
 };
-const setTopic = (topic: Topic, map: Map<LanguageCode, Topic>) => {
+const setTopic = (topic: Topic, map: Map<string, Topic>) => {
   map.set(topic.label, topic);
   languages.forEach(language => {
     topic.words.set(language.code, []);
@@ -102,7 +109,8 @@ const fillTopicsWithWords = (
 
     Object.entries(inputWord).forEach(([key, value]) => {
       if (NON_LANGUAGE_FIELDS.includes(key)) return;
-      const [_, languageCode] = key.split("_");
+      const [_, strLanguageCode] = key.split("_");
+      const languageCode = makeLanguageCode(strLanguageCode);
       const word: Word = {
         id: inputWord.Title,
         label: value,
@@ -140,7 +148,8 @@ const addTopicsToArray = (topicMap: Map<string, Topic>) => {
 const addLanguagesToArray = (input: InputWord) => {
   Object.keys(input).forEach(language => {
     if (!NON_LANGUAGE_FIELDS.includes(language)) {
-      const [languageName, languageCode, rtl] = language.split("_");
+      const [languageName, strLanguageCode, rtl] = language.split("_");
+      const languageCode = makeLanguageCode(strLanguageCode);
       languages.push({
         label: languageName,
         code: languageCode,
@@ -177,4 +186,5 @@ export const fetchData = async (): Promise<void> => {
   const res = await fetch(databaseURL);
   const arrBuffer = await res.arrayBuffer();
   parseData(arrBuffer);
+  console.log(topics);
 };
