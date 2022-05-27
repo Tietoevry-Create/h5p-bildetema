@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Outlet } from "react-router-dom";
 import { Topic } from "../../../../common/types/types";
 import { GridElement } from "..";
 import styles from "./TopicsGrid.module.scss";
 
 type TopicsGridProps = {
-  items: Topic[];
   topic?: string;
+  items: Topic[];
 };
 
 export const TopicsGrid: React.FC<TopicsGridProps> = ({ items, topic }) => {
@@ -25,7 +24,6 @@ export const TopicsGrid: React.FC<TopicsGridProps> = ({ items, topic }) => {
           );
         })}
       </div>
-      <Outlet />
     </>
   );
 };

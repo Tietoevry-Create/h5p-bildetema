@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Outlet } from "react-router-dom";
-import { Word } from "../../../../common/types/types";
-import { GridElement } from "..";
+import { Word as WordType } from "../../../../common/types/types";
+import { Word } from "..";
 import styles from "./WordsGrid.module.scss";
 
 type WordsGridProps = {
   topic: string;
-  items: Word[];
+  items: WordType[];
 };
 
 export const WordsGrid: React.FC<WordsGridProps> = ({ items, topic }) => {
@@ -14,18 +13,19 @@ export const WordsGrid: React.FC<WordsGridProps> = ({ items, topic }) => {
     <>
       <h1>Current topic - {topic}</h1>
       <div className={styles.grid}>
-        {items.map(item => {
+        {items.map(word => {
           return (
-            <GridElement
-              key={item.id}
-              item={item}
-              title={item.label}
-              index={items.indexOf(item)}
+            <Word
+              key={word.id}
+              clickHandler={(): void => {
+                throw new Error("Function not implemented.");
+              }}
+              word={word}
+              textVisible
             />
           );
         })}
       </div>
-      <Outlet />
     </>
   );
 };
