@@ -53,10 +53,7 @@ export const TopicViewItem: FC<TopicViewItemProps> = ({
       onClick={onClick}
       ref={buttonElement}
     >
-      
-      <div
-        className={`${styles.inner} `}
-      />
+      <div className={`${styles.inner} `} />
     </button>
   );
 };

@@ -1,3 +1,3 @@
 export type TopicViewItemType = {
-    id: string;
+  id: string;
 };

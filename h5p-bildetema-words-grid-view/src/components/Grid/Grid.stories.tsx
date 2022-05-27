@@ -11,7 +11,7 @@ export default {
 
 const defaultArgs: GridProps = {
   items: [],
-  gridDimensions: {numberOfColumns: 10, numberOfRows: 10},
+  gridDimensions: { numberOfColumns: 10, numberOfRows: 10 },
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {
@@ -29,18 +29,21 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
       },
       {
         id: "2",
-        
+
         label: "Sheep close up",
         description: "Sheep looking right at you.",
         width: 2,
         height: 1,
         xPosition: 5,
         yPosition: 3,
-        
       },
     ],
   };
-  return (<div style={{height: "600px", width: "600px"}}><Grid {...args} /></div>) ;
+  return (
+    <div style={{ height: "600px", width: "600px" }}>
+      <Grid {...args} />
+    </div>
+  );
 };
 
 export const WithoutItems: ComponentStory<typeof Grid> = () => {
