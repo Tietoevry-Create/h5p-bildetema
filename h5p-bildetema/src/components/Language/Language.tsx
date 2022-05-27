@@ -6,16 +6,20 @@ type SelectProps = {
   language: LanguageType;
 };
 
-export const Language: React.FC<SelectProps> = ({ language: { label } }) => {
+export const Language: React.FC<SelectProps> = ({
+  language: { label, code },
+}) => {
   return (
     <div className={styles.language}>
       <div>
-        <label className={styles.input_container}>
-          <input type="checkbox" />
-          <span className={styles.checkmark}></span>
+        <label htmlFor={code} className={styles.input_container}>
+          <input type="checkbox" id={code} />
+          <span className={styles.checkmark} />
         </label>
       </div>
-      <button className={styles.language_label}>{label}</button>
+      <button type="button" className={styles.language_label}>
+        {label}
+      </button>
     </div>
   );
 };
