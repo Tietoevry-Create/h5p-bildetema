@@ -27,34 +27,28 @@ Default.args = {
       isFavorite: true,
     },
     {
+      label: "هذا نص منسوخ من جوجل",
+      code: "longtest",
+      rtl: true,
+      isFavorite: true,
+    },
+    {
       label: "Engelsk",
       code: "en",
       rtl: false,
       isFavorite: false,
     },
     {
-      label: "Rtl language",
-      code: "rtllang",
+      label: "عربىge",
+      code: "ar",
       rtl: true,
-      isFavorite: false,
+      isFavorite: true,
     },
     {
       label: "Dansk",
       code: "dk",
       rtl: false,
       isFavorite: false,
-    },
-    {
-      label: "This language has a very long name",
-      code: "longName",
-      rtl: false,
-      isFavorite: true,
-    },
-    {
-      label: "Another rtl language",
-      code: "an",
-      rtl: true,
-      isFavorite: true,
     },
   ],
 };

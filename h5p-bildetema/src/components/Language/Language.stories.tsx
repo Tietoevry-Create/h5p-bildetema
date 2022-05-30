@@ -36,9 +36,9 @@ Favorite.args = {
 export const RTL = Template.bind({});
 RTL.args = {
   language: {
-    label: "Norsk",
-    code: "no",
+    label: "عربىge",
+    code: "ar",
     rtl: true,
-    isFavorite: false,
+    isFavorite: true,
   },
 };
