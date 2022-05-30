@@ -18,9 +18,11 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   return (
     <div className={styles.languageSelector}>
       {languages.map(language => (
-        <div key={language.code} className={styles.language_select}>
-          <Language handleChange={handleChange} language={language} />
-        </div>
+        <Language
+          key={language.code}
+          handleChange={handleChange}
+          language={language}
+        />
       ))}
     </div>
   );

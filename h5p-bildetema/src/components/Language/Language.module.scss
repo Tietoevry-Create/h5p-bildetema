@@ -59,21 +59,17 @@
 }
 
 .language_label {
+  all: unset;
   flex: 1;
   display: flex;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: none;
-  overflow: hidden;
-  outline: none;
 }
 
 .language_label:hover {
   text-decoration-line: underline;
 }
-.language_label:focus-within {
+.language_label:focus {
   box-shadow: 0 0 0 2px $checkbox-shadow-color;
 }
 
