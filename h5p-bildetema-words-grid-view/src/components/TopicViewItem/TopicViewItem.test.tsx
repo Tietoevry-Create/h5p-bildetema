@@ -1,3 +1,4 @@
+import { assert, describe, expect, it } from 'vitest'
 import { render } from "@testing-library/react";
 import * as React from "react";
 import { TopicViewItem } from "./TopicViewItem";
@@ -23,7 +24,7 @@ describe(TopicViewItem.name, () => {
       },
     };
 
-    const onClick = jest.fn();
+    const onClick = ():void => {console.info("Clicked")};
 
     const { container } = render(
       <TopicViewItem item={item} onClick={onClick} />,
