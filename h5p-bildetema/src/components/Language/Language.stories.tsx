@@ -19,5 +19,26 @@ Default.args = {
     label: "Norsk",
     code: "no",
     rtl: false,
+    isFavorite: false,
+  },
+};
+
+export const Favorite = Template.bind({});
+Favorite.args = {
+  language: {
+    label: "Norsk",
+    code: "no",
+    rtl: false,
+    isFavorite: true,
+  },
+};
+
+export const RTL = Template.bind({});
+RTL.args = {
+  language: {
+    label: "Norsk",
+    code: "no",
+    rtl: true,
+    isFavorite: false,
   },
 };
