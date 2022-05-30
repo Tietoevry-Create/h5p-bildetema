@@ -1,4 +1,4 @@
-import { Opaque } from "type-fest";
+import {LanguageCode} from "./LanguageCode"
 
 export type InputWord = Record<string, string>;
 
@@ -6,13 +6,6 @@ export type Word = {
   id: string;
   label: string;
   images: string[];
-};
-
-export type LanguageCode = Opaque<string, "LanguageCode">;
-
-export const makeLanguageCode = (str: string) => {
-  // preform some validation if needed
-  return str as LanguageCode;
 };
 
 export type Language = {

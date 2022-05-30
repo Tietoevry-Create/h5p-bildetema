@@ -4,9 +4,8 @@ import {
   Word,
   Topic,
   Language,
-  LanguageCode,
-  makeLanguageCode,
 } from "../types/types";
+import { makeLanguageCode } from "../utils/LanguageCode.utils"
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -186,5 +185,4 @@ export const fetchData = async (): Promise<void> => {
   const res = await fetch(databaseURL);
   const arrBuffer = await res.arrayBuffer();
   parseData(arrBuffer);
-  console.log(topics);
 };
