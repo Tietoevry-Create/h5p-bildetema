@@ -1,7 +1,11 @@
 {
   "scripts": {
     "format:check": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+    "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-topic-list'",
+    "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-topic-list'",
+    "test": "concurrently 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-topic-list'",
+    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-topic-list'"
   },
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
@@ -9,6 +13,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
+    "concurrently": "^7.2.1",
     "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
