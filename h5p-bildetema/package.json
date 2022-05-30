@@ -22,7 +22,7 @@
     "storybook": "start-storybook -p 6006 -h localhost",
     "build-storybook": "build-storybook",
     "generate-semantics": "h5p-generate-configs s --in ./src/semantics.ts --out ./semantics.json --translations ./src/types/TranslationKey.ts",
-    "watch-semantics": "nodemon ./src --exec 'npm run generate-semantics'"
+    "//watch-semantics": "nodemon ./src/**/* --exec 'npm run generate-semantics'"
   },
   "dependencies": {
     "@mdx-js/react": "^2.1.1",
