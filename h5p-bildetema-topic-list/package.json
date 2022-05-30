@@ -8,6 +8,7 @@
   "license": "ISC",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
+    "start:dev": "vite",
     "build:dev": "vite build --mode=development",
     "build": "vite build",
     "format:check": "prettier . --check",
