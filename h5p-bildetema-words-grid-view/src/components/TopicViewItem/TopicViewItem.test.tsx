@@ -1,4 +1,4 @@
-import { assert, describe, expect, it } from 'vitest'
+import { assert, describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import * as React from "react";
 import { TopicViewItem } from "./TopicViewItem";
@@ -24,7 +24,9 @@ describe(TopicViewItem.name, () => {
       },
     };
 
-    const onClick = ():void => {console.info("Clicked")};
+    const onClick = (): void => {
+      console.info("Clicked");
+    };
 
     const { container } = render(
       <TopicViewItem item={item} onClick={onClick} />,
