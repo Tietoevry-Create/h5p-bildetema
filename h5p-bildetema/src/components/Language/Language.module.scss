@@ -1,5 +1,4 @@
-@import "../../abstracts/_mixins.scss";
-@import "../../abstracts/_variables.scss";
+@use "../../abstracts" as *;
 
 .language {
   box-sizing: border-box;
@@ -18,10 +17,10 @@
 }
 
 .checkbox input {
-  @include visuallyHidden;
+  @include visually-hidden;
 }
 
-.checkbox_container:focus-within {
+.checkboxContainer:focus-within {
   box-shadow: 0 0 0 2px $checkbox-shadow-color;
   border-radius: 5px;
 }
@@ -58,19 +57,20 @@
   transform: rotate(45deg);
 }
 
-.language_label {
+.languageLabel {
   all: unset;
   flex: 1;
   display: flex;
   font-size: 1.2rem;
   cursor: pointer;
-}
 
-.language_label:hover {
-  text-decoration-line: underline;
-}
-.language_label:focus {
-  box-shadow: 0 0 0 2px $checkbox-shadow-color;
+  &:hover {
+    text-decoration-line: underline;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $checkbox-shadow-color;
+  }
 }
 
 .rtl {

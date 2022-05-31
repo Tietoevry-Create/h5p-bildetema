@@ -13,12 +13,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   languages,
   handleChange,
 }) => {
-  const getAmountOfRows = (): number => {
-    if (languages.length <= 1) return 1;
-    console.info(languages.length / 2);
-
-    return Math.ceil(languages.length / 2);
-  };
+  const getAmountOfRows = (): number =>
+    Math.max(1, Math.ceil(languages.length / 2));
 
   return (
     <div

@@ -14,7 +14,7 @@ export const Language: React.FC<LanguageProps> = ({
 }) => {
   return (
     <div className={`${styles.language}`}>
-      <div className={styles.checkbox_container}>
+      <div className={styles.checkboxContainer}>
         <label htmlFor={code} className={styles.checkbox}>
           <input
             className={styles.visuallyHidden}
@@ -28,7 +28,7 @@ export const Language: React.FC<LanguageProps> = ({
       </div>
       <button
         type="button"
-        className={`${styles.language_label} ${rtl ? styles.rtl : ""}`}
+        className={`${styles.languageLabel} ${rtl ? styles.rtl : ""}`}
       >
         {label}
       </button>
