@@ -1,18 +1,18 @@
 import * as React from "react";
 import { Topic } from "../../../../common/types/types";
-import { GridElement } from "..";
-import styles from "./Grid.module.scss";
+import { TopicGridElement } from "..";
+import styles from "./TopicGrid.module.scss";
 
-type GridProps = {
+type TopicGridProps = {
   items: Topic[];
 };
 
-export const Grid: React.FC<GridProps> = ({ items }) => {
+export const TopicGrid: React.FC<TopicGridProps> = ({ items }) => {
   return (
     <div className={styles.grid}>
       {items.map(item => {
         return (
-          <GridElement
+          <TopicGridElement
             key={item.id}
             item={item}
             title={item.label}
