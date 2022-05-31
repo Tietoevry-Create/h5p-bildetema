@@ -29,7 +29,7 @@
     "h5p-utils": "^2.0.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "swiper": "^8.1.5",
+    "swiper": "^8.2.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
   "devDependencies": {
