@@ -13,8 +13,18 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   languages,
   handleChange,
 }) => {
+  const getAmountOfRows = (): number => {
+    if (languages.length <= 1) return 1;
+    console.info(languages.length / 2);
+
+    return Math.ceil(languages.length / 2);
+  };
+
   return (
-    <div className={styles.languageSelector}>
+    <div
+      className={styles.languageSelector}
+      style={{ gridTemplateRows: `repeat(${getAmountOfRows()}, 2rem)` }}
+    >
       {languages.map(language => (
         <Language
           key={language.code}
