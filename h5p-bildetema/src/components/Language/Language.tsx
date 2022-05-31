@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Language.module.scss";
 import { Language as LanguageType } from "../../../../common/types/types";
-import type { LanguageCode } from "../../../../common/types/types";
+import type { LanguageCode } from "../../../../common/types/LanguageCode";
 
 type LanguageProps = {
   language: LanguageType;

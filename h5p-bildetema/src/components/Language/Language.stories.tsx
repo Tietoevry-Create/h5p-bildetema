@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Language } from "./Language";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
   title: "Components/Language",
@@ -17,7 +18,7 @@ export const Default = Template.bind({});
 Default.args = {
   language: {
     label: "Norsk",
-    code: "no",
+    code: makeLanguageCode("no"),
     rtl: false,
     isFavorite: false,
   },
@@ -27,7 +28,7 @@ export const Favorite = Template.bind({});
 Favorite.args = {
   language: {
     label: "Norsk",
-    code: "no",
+    code: makeLanguageCode("no"),
     rtl: false,
     isFavorite: true,
   },
@@ -37,7 +38,7 @@ export const RTL = Template.bind({});
 RTL.args = {
   language: {
     label: "عربىge",
-    code: "ar",
+    code: makeLanguageCode("ar"),
     rtl: true,
     isFavorite: true,
   },

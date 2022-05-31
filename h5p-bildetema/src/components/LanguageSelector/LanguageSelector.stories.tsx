@@ -1,7 +1,8 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LanguageSelector } from "./LanguageSelector";
-import type { LanguageCode } from "../../../../common/types/types";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
   title: "Components/LanguageSelector",
@@ -22,31 +23,31 @@ Default.args = {
   languages: [
     {
       label: "Norsk",
-      code: "no",
+      code: makeLanguageCode("no"),
       rtl: false,
       isFavorite: true,
     },
     {
       label: "هذا نص منسوخ من جوجل",
-      code: "longtest",
+      code: makeLanguageCode("longtest"),
       rtl: true,
       isFavorite: true,
     },
     {
       label: "Engelsk",
-      code: "en",
+      code: makeLanguageCode("en"),
       rtl: false,
       isFavorite: false,
     },
     {
       label: "عربىge",
-      code: "ar",
+      code: makeLanguageCode("ar"),
       rtl: true,
       isFavorite: true,
     },
     {
       label: "Dansk",
-      code: "dk",
+      code: makeLanguageCode("dk"),
       rtl: false,
       isFavorite: false,
     },
