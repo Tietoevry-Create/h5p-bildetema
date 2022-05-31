@@ -1,3 +1,5 @@
+import { LanguageCode } from "./LanguageCode";
+
 export type InputWord = Record<string, string>;
 
 export type Word = {
@@ -5,8 +7,6 @@ export type Word = {
   label: string;
   images: string[];
 };
-
-export type LanguageCode = string;
 
 export type Language = {
   label: string;

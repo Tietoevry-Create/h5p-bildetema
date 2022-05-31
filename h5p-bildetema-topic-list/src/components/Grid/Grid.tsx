@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Topic, Word } from "../../../../common/types/types";
+import { Topic } from "../../../../common/types/types";
 import { GridElement } from "..";
 import styles from "./Grid.module.scss";
 
