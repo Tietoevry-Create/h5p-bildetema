@@ -1,15 +1,15 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { GridElement } from "./GridElement";
+import { TopicGridElement } from "./TopicGridElement";
 
 export default {
   title: "Atoms/Grid Element",
-  component: GridElement,
-} as ComponentMeta<typeof GridElement>;
+  component: TopicGridElement,
+} as ComponentMeta<typeof TopicGridElement>;
 
-const Template: ComponentStory<typeof GridElement> = args => (
+const Template: ComponentStory<typeof TopicGridElement> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <GridElement {...args} />
+  <TopicGridElement {...args} />
 );
 
 export const ThemesGridElement = Template.bind({});

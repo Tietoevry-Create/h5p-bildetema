@@ -1,4 +1,4 @@
-name: "Check H5P library version: h5p-bildetema-topic-list"
+name: "Check H5P library version: h5p-bildetema-words-grid-view"
 
 on:
   pull_request:
@@ -10,14 +10,14 @@ on:
 
     paths:
       - common/**
-      - h5p-bildetema-topic-list/**
+      - h5p-bildetema-words-grid-view/**
 
 env:
-  working-directory: "./h5p-bildetema-topic-list"
+  working-directory: "./h5p-bildetema-words-grid-view"
 
 defaults:
   run:
-    working-directory: "./h5p-bildetema-topic-list"
+    working-directory: "./h5p-bildetema-words-grid-view"
 
 jobs:
   check-h5p-library-version:

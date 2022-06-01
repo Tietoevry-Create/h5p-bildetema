@@ -1,13 +1,12 @@
 import * as React from "react";
 import { Topic } from "../../../../common/types/types";
 import { fetchData, getTopics } from "../../../../common/utils/data.utils";
-import { Grid } from "..";
+import { TopicGrid } from "../TopicGrid/TopicGrid";
 
-type AppProps = {
-  adjective: string;
-};
+type TopicsListProps = Record<string, never>;
 
-const App: React.FC<AppProps> = () => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const TopicsList: React.FC<TopicsListProps> = props => {
   const [topics, setTopics] = React.useState<Topic[]>([]);
 
   React.useEffect(() => {
@@ -18,13 +17,5 @@ const App: React.FC<AppProps> = () => {
     run();
   }, []);
 
-  return (
-    <>
-      <h1>Choose a topic</h1>
-      {!!topics.length && <Grid items={topics} />}
-      {!topics.length && <h2>Loading...</h2>}
-    </>
-  );
+  return <TopicGrid items={topics} />;
 };
-
-export default App;

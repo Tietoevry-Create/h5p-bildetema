@@ -1,19 +1,19 @@
-name: "Build and validate: h5p-bildetema-topic-list"
+name: "Build and validate: h5p-bildetema-words-grid-view"
 
 on:
   pull_request:
     paths:
       - common/**
-      - h5p-bildetema-topic-list/**
+      - h5p-bildetema-words-grid-view/**
 
   workflow_dispatch: {}
 
 env:
-  working-directory: "./h5p-bildetema-topic-list"
+  working-directory: "./h5p-bildetema-words-grid-view"
 
 defaults:
   run:
-    working-directory: "./h5p-bildetema-topic-list"
+    working-directory: "./h5p-bildetema-words-grid-view"
 
 jobs:
   build:
