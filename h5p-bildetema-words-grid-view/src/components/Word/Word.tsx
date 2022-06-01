@@ -14,12 +14,14 @@ type WordProps = {
   clickHandler: React.Dispatch<WordType>;
   word: WordType;
   textVisible: boolean;
+  isFocused: boolean;
 };
 
 export const Word: React.FC<WordProps> = ({
   clickHandler,
   textVisible,
   word,
+  isFocused,
 }) => {
   const { label, images } = word;
 
@@ -59,7 +61,7 @@ export const Word: React.FC<WordProps> = ({
   };
 
   return (
-    <div className={styles.word}>
+    <div className={`${styles.word} ${isFocused ? styles.focus : ""}`}>
       <div className={styles.image_container}>{renderImages()}</div>
       {textVisible && <p className={styles.word_label}> {label} </p>}
     </div>
