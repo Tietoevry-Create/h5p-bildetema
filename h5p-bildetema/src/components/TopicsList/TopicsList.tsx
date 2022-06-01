@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Topic, Word } from "../../../../common/types/types";
+import { Topic } from "../../../../common/types/types";
 import { fetchData, getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 
-type TopicsListProps = {};
+type TopicsListProps = Record<string, never>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TopicsList: React.FC<TopicsListProps> = ({}) => {
+export const TopicsList: React.FC<TopicsListProps> = (props) => {
   const [topics, setTopics] = React.useState<Topic[]>([]);
 
   React.useEffect(() => {
@@ -18,8 +18,6 @@ export const TopicsList: React.FC<TopicsListProps> = ({}) => {
   }, []);
 
   return (
-    <>
-      <TopicGrid items={topics} />
-    </>
+    <TopicGrid items={topics} />
   );
 };

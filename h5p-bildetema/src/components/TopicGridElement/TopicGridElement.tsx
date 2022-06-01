@@ -16,7 +16,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
 }) => {
   return (
     <button className={styles.gridElement} type="button">
-      <span>{`${index + 1}. ${title}`}</span>
+      <span>{`${index + 1}. ${title} ${item}`}</span>
     </button>
   );
 };
