@@ -1,4 +1,4 @@
-name: "Pack and release content type: h5p-bildetema-topic-list"
+name: "Pack and release content type: h5p-bildetema-words-grid-view"
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - main
     paths:
       - common/**
-      - h5p-bildetema-topic-list/**
+      - h5p-bildetema-words-grid-view/**
 
   workflow_dispatch: {}
 
 env:
-  working-directory: "./h5p-bildetema-topic-list"
+  working-directory: "./h5p-bildetema-words-grid-view"
 
 jobs:
   pack-and-release:

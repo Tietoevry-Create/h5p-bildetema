@@ -16,7 +16,7 @@ updates:
     labels:
       - non-functional
 
-  - directory: /h5p-bildetema-topic-list
+  - directory: /h5p-bildetema-words-grid-view
     package-ecosystem: npm
     rebase-strategy: auto
     schedule:

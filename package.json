@@ -2,10 +2,10 @@
   "scripts": {
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
-    "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-topic-list'",
-    "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-topic-list'",
-    "test": "concurrently 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-topic-list'",
-    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-topic-list'"
+    "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view'",
+    "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-words-grid-view'",
+    "test": "concurrently 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-words-grid-view'",
+    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view'"
   },
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
