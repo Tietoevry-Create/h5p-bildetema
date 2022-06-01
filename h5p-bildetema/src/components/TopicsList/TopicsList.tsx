@@ -6,7 +6,7 @@ import { TopicGrid } from "../TopicGrid/TopicGrid";
 type TopicsListProps = Record<string, never>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TopicsList: React.FC<TopicsListProps> = (props) => {
+export const TopicsList: React.FC<TopicsListProps> = props => {
   const [topics, setTopics] = React.useState<Topic[]>([]);
 
   React.useEffect(() => {
@@ -17,7 +17,5 @@ export const TopicsList: React.FC<TopicsListProps> = (props) => {
     run();
   }, []);
 
-  return (
-    <TopicGrid items={topics} />
-  );
+  return <TopicGrid items={topics} />;
 };
