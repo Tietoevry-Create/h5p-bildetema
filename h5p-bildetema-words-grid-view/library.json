@@ -1,10 +1,10 @@
 {
-  "title": "h5p bildetema",
-  "machineName": "H5P.H5pBildetema",
+  "title": "H5P Bildetema Grid View",
+  "machineName": "H5P.BildetemaGridView",
   "majorVersion": 1,
   "minorVersion": 0,
   "patchVersion": 0,
-  "runnable": 1,
+  "runnable": 0,
   "preloadedJs": [
     {
       "path": "dist/bundle.js"
