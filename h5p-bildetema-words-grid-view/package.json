@@ -29,7 +29,8 @@
     "h5p-types": "github:boyum/h5p-types",
     "h5p-utils": "github:boyum/h5p-utils",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "swiper": "^8.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

@@ -4,7 +4,7 @@ import { Word } from "./Word";
 import { Word as WordType } from "../../../../common/types/types";
 
 export default {
-  title: "Word",
+  title: "Atom/Word",
   component: Word,
 } as ComponentMeta<typeof Word>;
 
