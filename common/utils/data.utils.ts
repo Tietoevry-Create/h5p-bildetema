@@ -148,6 +148,7 @@ const addLanguagesToArray = (input: InputWord) => {
         label: languageName,
         code: languageCode,
         rtl: rtl !== undefined,
+        isFavorite: false,
       });
     }
   });

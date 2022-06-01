@@ -12,6 +12,7 @@ export type Language = {
   label: string;
   code: LanguageCode;
   rtl: boolean;
+  isFavorite: boolean;
 };
 
 export type Topic = {

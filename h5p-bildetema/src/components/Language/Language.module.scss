@@ -1,0 +1,78 @@
+@use "../../abstracts" as *;
+
+.language {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.4rem;
+}
+
+.checkbox {
+  position: relative;
+  padding-left: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox input {
+  @include visually-hidden;
+}
+
+.checkboxContainer:focus-within {
+  box-shadow: 0 0 0 2px $checkbox-shadow-color;
+  border-radius: 5px;
+}
+
+.checkmark {
+  position: absolute;
+  inset: 0;
+  background-color: $checkmark-color;
+  border-radius: 5px;
+  box-shadow: 0 0 0 3px $checkbox-color inset;
+}
+
+.checkbox input:checked ~ .checkmark {
+  background-color: $checkbox-color;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox .checkmark:after {
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid $checkmark-color;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.languageLabel {
+  all: unset;
+  flex: 1;
+  display: flex;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration-line: underline;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $checkbox-shadow-color;
+  }
+}
+
+.rtl {
+  direction: rtl;
+}
