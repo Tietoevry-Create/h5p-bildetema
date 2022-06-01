@@ -12,7 +12,5 @@ const Template: ComponentStory<typeof TopicsList> = args => (
   <TopicsList {...args} />
 );
 
-
 export const ThemesTopicList = Template.bind({});
-ThemesTopicList.args = {
-};
+ThemesTopicList.args = {};

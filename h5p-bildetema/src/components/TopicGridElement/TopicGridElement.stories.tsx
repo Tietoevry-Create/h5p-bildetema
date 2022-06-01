@@ -12,7 +12,6 @@ const Template: ComponentStory<typeof TopicGridElement> = args => (
   <TopicGridElement {...args} />
 );
 
-
 export const ThemesGridElement = Template.bind({});
 ThemesGridElement.args = {
   index: 0,

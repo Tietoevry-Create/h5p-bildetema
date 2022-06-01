@@ -3,12 +3,10 @@ import { Topic, Word } from "../../../../common/types/types";
 import { fetchData, getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 
-type TopicsListProps = {
-};
+type TopicsListProps = {};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TopicsList: React.FC<TopicsListProps> = ({
-}) => {
+export const TopicsList: React.FC<TopicsListProps> = ({}) => {
   const [topics, setTopics] = React.useState<Topic[]>([]);
 
   React.useEffect(() => {
