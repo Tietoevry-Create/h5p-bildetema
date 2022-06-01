@@ -62,7 +62,7 @@
     "file-loader": "^6.2.0",
     "h5p-generate-configs": "^0.2.0",
     "h5p-types": "^0.0.23",
-    "happy-dom": "^4.1.0",
+    "happy-dom": "^5.0.0",
     "identity-obj-proxy": "^3.0.0",
     "mini-css-extract-plugin": "^2.6.0",
     "nodemon": "^2.0.15",
