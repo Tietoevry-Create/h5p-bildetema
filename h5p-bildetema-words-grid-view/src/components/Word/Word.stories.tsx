@@ -24,6 +24,7 @@ Default.args = {
     images: [
       "https://images.unsplash.com/photo-1549471013-3364d7220b75?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750",
     ],
+    audio: "https://www.w3schools.com/TAGS/horse.ogg",
   },
   textVisible: true,
 };
@@ -41,6 +42,7 @@ MultipleImages.args = {
       "https://images.unsplash.com/photo-1602391950852-88bf9be72b24?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1654",
       "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070",
     ],
+    audio: "https://www.w3schools.com/TAGS/horse.ogg",
   },
   textVisible: true,
 };
@@ -54,6 +56,7 @@ NoImages.args = {
     id: "V0889",
     label: "Elg",
     images: [],
+    audio: undefined,
   },
   textVisible: true,
 };
@@ -69,6 +72,7 @@ HiddenText.args = {
     images: [
       "https://images.unsplash.com/photo-1549471013-3364d7220b75?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750",
     ],
+    audio: undefined,
   },
   textVisible: false,
 };

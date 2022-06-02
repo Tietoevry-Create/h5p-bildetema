@@ -9,6 +9,7 @@ import { Word as WordType } from "../../../../common/types/types";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { WordAudio } from "../WordAudio/WordAudio";
 
 type WordProps = {
   clickHandler: React.Dispatch<WordType>;
@@ -61,7 +62,11 @@ export const Word: React.FC<WordProps> = ({
   return (
     <div className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
-      {textVisible && <p className={styles.word_label}> {label} </p>}
+      <p className={styles.word_label}>
+        {" "}
+        {textVisible && label}
+        {word.audio && <WordAudio word={word} />}{" "}
+      </p>
     </div>
   );
 };
