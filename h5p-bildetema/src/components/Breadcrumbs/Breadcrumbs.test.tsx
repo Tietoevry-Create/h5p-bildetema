@@ -13,18 +13,16 @@ describe(Breadcrumbs.name, () => {
     );
     return container;
   };
-  
+
   it("No breadcrumbs should render nothing", () => {
     const container = template({ breadcrumbs: [] });
 
     expect(container.childElementCount).toEqual(0);
   });
-  
+
   it("Single breadcrumb should render nothing", () => {
     const container = template({
-      breadcrumbs: [
-        { label: "Tema", path: "/tema" },
-      ],
+      breadcrumbs: [{ label: "Tema", path: "/tema" }],
     });
     expect(container.childElementCount).toEqual(0);
   });
@@ -37,5 +35,5 @@ describe(Breadcrumbs.name, () => {
       ],
     });
     expect(container.childElementCount).toBeGreaterThanOrEqual(1);
-  })
+  });
 });
