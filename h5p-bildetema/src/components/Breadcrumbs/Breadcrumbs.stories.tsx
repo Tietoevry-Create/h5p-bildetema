@@ -29,3 +29,8 @@ export const SingleBreadcrumb = Template.bind({});
 SingleBreadcrumb.args = {
   breadcrumbs: [{ label: "Tema", path: "/tema" }],
 };
+
+export const EmptyBreadcrumb = Template.bind({});
+EmptyBreadcrumb.args = {
+  breadcrumbs: [],
+};

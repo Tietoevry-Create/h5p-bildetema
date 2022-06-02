@@ -14,26 +14,35 @@ describe(Breadcrumbs.name, () => {
     return container;
   };
 
-  it("No breadcrumbs should render nothing", () => {
+  it("Should render nothing if there are no links", () => {
     const container = template({ breadcrumbs: [] });
 
-    expect(container.childElementCount).toEqual(0);
+    expect(container.textContent).toEqual(",");
+    expect(container.querySelector("div")).toBeTruthy();
+    expect(container.querySelector("a")).toBeFalsy();
+    expect(container.querySelector("span")).toBeFalsy();
   });
 
-  it("Single breadcrumb should render nothing", () => {
+  it("Should only render a span if there are only one link", () => {
     const container = template({
       breadcrumbs: [{ label: "Tema", path: "/tema" }],
     });
-    expect(container.childElementCount).toEqual(0);
+    expect(container.textContent).toEqual("Tema,");
+    expect(container.querySelector("span")).toBeTruthy();
+    expect(container.querySelector("a")).toBeFalsy();
+    expect(container.querySelector("svg")).toBeFalsy();
   });
 
-  it("Multiple breadcrumbs should render something", () => {
+  it("Multiple breadcrumbs should render links", () => {
     const container = template({
       breadcrumbs: [
         { label: "Tema", path: "/tema" },
         { label: "Dyr", path: "/tema/dyr" },
       ],
     });
-    expect(container.childElementCount).toBeGreaterThanOrEqual(1);
+    expect(container.textContent).toEqual("TemaDyr,");
+    expect(container.querySelector("span")).toBeTruthy();
+    expect(container.querySelector("a")).toBeTruthy();
+    expect(container.querySelector("svg")).toBeTruthy();
   });
 });
