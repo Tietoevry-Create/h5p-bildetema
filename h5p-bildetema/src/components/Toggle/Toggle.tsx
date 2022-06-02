@@ -14,7 +14,7 @@ export const Toggle: React.FC<ToggleProps> = ({
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className={styles.container}>
-      {label && <p className={styles.label}>{label}</p>}
+      {label && <span className={styles.label}>{label}</span>}
       <span className={styles.toggle}>
         <input
           checked={checked}
