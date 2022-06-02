@@ -1,5 +1,14 @@
+/**
+ * {1} Add a non-breaking space to set the minimum height of the
+ *     element to the line-height. This prevents layout shifting.
+ */
 .Breadcrumbs {
   font-size: 1.5rem;
+
+  &::after {
+    $nbsp: \00A0;
+    content: "#{$nbsp}"; /* {1} */
+  }
 }
 
 .link {
@@ -11,5 +20,9 @@
 }
 
 .arrow {
-  margin: 0.8rem;
+  margin: .8rem;
+}
+
+.currentPage {
+  font-weight: bold;
 }

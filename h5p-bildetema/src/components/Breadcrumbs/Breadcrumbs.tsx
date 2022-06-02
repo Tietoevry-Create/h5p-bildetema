@@ -10,8 +10,6 @@ export type BreadcrumbsProps = {
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
-  if (breadcrumbs.length <= 1) return null;
-
   return (
     <div className={styles.Breadcrumbs}>
       {breadcrumbs.map(({ label, path }, index) =>
@@ -20,10 +18,24 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
             <Link to={path} className={styles.link}>
               {label}
             </Link>
-            <span className={styles.arrow}>&gt;</span>
+            <span className={styles.arrow}>
+              <svg
+                width="10"
+                height="17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
+                  fill="currentcolor"
+                />
+              </svg>
+            </span>
           </span>
         ) : (
-          <span key={path}>{label}</span>
+          <span className={styles.currentPage} key={path}>
+            {label}
+          </span>
         ),
       )}
     </div>
