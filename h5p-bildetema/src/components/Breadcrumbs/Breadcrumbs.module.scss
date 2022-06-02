@@ -1,0 +1,15 @@
+.Breadcrumbs {
+  font-size: 1.5rem;
+}
+
+.link {
+  all: unset;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.arrow {
+  margin: 0.8rem;
+}
