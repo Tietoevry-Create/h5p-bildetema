@@ -3,3 +3,4 @@ export { Header } from "./Header/Header";
 export { LanguageSelector } from "./LanguageSelector/LanguageSelector";
 export { Language } from "./Language/Language";
 export { TopicGridElement } from "./TopicGridElement/TopicGridElement";
+export { Toggle } from "./Toggle/Toggle";
