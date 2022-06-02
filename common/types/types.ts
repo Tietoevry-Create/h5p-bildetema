@@ -6,6 +6,7 @@ export type Word = {
   id: string;
   label: string;
   images: string[];
+  audio: string | undefined; 
 };
 
 export type Language = {
