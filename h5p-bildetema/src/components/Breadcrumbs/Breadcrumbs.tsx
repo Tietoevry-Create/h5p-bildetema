@@ -10,20 +10,22 @@ export type BreadcrumbsProps = {
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
-  if (breadcrumbs.length <= 1) return null
-  
+  if (breadcrumbs.length <= 1) return null;
+
   return (
     <div className={styles.Breadcrumbs}>
-      {breadcrumbs.map(({ label, path }, index) => (
-        index !== breadcrumbs.length -1 ?
-        <span key={path}>
-          <Link to={path} className={styles.link}>
-            {label}
-          </Link>
-          <span className={styles.arrow}>&gt;</span>
-        </span>
-          : <span key={path}>{label}</span>
-      ))}
+      {breadcrumbs.map(({ label, path }, index) =>
+        index !== breadcrumbs.length - 1 ? (
+          <span key={path}>
+            <Link to={path} className={styles.link}>
+              {label}
+            </Link>
+            <span className={styles.arrow}>&gt;</span>
+          </span>
+        ) : (
+          <span key={path}>{label}</span>
+        ),
+      )}
     </div>
   );
 };
