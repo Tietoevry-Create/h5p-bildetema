@@ -6,6 +6,7 @@ import { Language } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
+import { Footer } from "../Footer/Footer";
 
 type BildetemaProps = {
   currentLanguage: Language;
@@ -26,6 +27,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
         <div className={styles.header_container}>
           <Header />
         </div>
+        <Footer />
       </div>
       <Routes>
         <Route path="/" element={<h1>Hello</h1>} />
