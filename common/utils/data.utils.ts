@@ -31,6 +31,7 @@ export const getLanguage = async (
 };
 
 export const getTopics = async (): Promise<Topic[]> => {
+  if (!topics.length) await fetchData();
   return topics;
 };
 const setTopic = (topic: Topic, map: Map<string, Topic>) => {

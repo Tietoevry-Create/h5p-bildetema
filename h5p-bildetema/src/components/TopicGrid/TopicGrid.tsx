@@ -17,7 +17,6 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   return (
     <>
       {topic ? <h1>Current topic - {topic}</h1> : <h1>Choose a topic</h1>}
-      {!items?.length && !words?.length && <h1>Loading...</h1>}
       <div className={styles.grid}>
         {items?.map(item => {
           return (

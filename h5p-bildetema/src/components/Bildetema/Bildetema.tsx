@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 import { Header } from "..";
-import { Language, Topic } from "../../../../common/types/types";
-import { fetchData, getTopics } from "../../../../common/utils/data.utils";
+import { Language } from "../../../../common/types/types";
+import { getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
 
@@ -11,16 +12,11 @@ type BildetemaProps = {
 };
 
 export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
-  const [topics, setTopics] = React.useState<Topic[]>([]);
   const navigate = useNavigate();
+  const { isLoading, data: topics } = useQuery("topicsFromDB", getTopics);
 
   React.useEffect(() => {
-    const run = async (): Promise<void> => {
-      await fetchData();
-      setTopics(await getTopics());
-      navigate(`/${currentLanguage.code}`);
-    };
-    run();
+    navigate(`/${currentLanguage.code}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage.code]);
 
@@ -37,7 +33,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
           path={`/${currentLanguage.code}`}
           element={<TopicGrid items={topics} />}
         />
-        {topics.map(topic => {
+        {topics?.map(topic => {
           const currTopicPath = `/${currentLanguage.code}/${encodeURIComponent(
             topic.label.toLowerCase().split(" ").join("-"),
           )}`;
@@ -86,6 +82,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
           );
         })}
       </Routes>
+      {isLoading && <h1>Loading...</h1>}
     </div>
   );
 };
