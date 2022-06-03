@@ -3,11 +3,10 @@ import { Language } from "../../../../common/types/types";
 import { Bildetema } from "../Bildetema/Bildetema";
 
 type AppProps = {
-  adjective: string;
   currentLanguage: Language;
 };
 
-const App: React.FC<AppProps> = ({ adjective, currentLanguage }) => {
+const App: React.FC<AppProps> = ({ currentLanguage }) => {
   return <Bildetema currentLanguage={currentLanguage} />;
 };
 

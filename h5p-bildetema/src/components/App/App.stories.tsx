@@ -24,7 +24,6 @@ const Template: ComponentStory<typeof App> = args => (
 export const Default = Template.bind({});
 
 Default.args = {
-  adjective: "funny",
   currentLanguage: {
     label: "Norsk Bokmål",
     code: makeLanguageCode("nb"),

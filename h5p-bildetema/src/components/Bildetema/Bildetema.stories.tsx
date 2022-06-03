@@ -23,7 +23,6 @@ export const Default = (
 ): JSX.Element => <Bildetema {...args} />;
 
 Default.args = {
-  adjective: "test",
   currentLanguage: {
     label: "Norsk Bokmål",
     code: makeLanguageCode("nb"),

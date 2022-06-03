@@ -30,7 +30,6 @@ export class H5PWrapper
     root.render(
       <HashRouter>
         <App
-          adjective="peachy"
           currentLanguage={{
             label: "Norsk Bokmål",
             code: makeLanguageCode("nb"),

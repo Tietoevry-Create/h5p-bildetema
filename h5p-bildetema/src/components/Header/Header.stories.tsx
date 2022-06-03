@@ -8,7 +8,3 @@ export default {
 } as ComponentMeta<typeof Header>;
 
 export const Default = (): JSX.Element => <Header />;
-
-Default.args = {
-  adjective: "test",
-};
