@@ -1,9 +1,9 @@
-@use "../../abstracts" as a;
+@use "../../abstracts" as *;
 
 .main {
   display: flex;
   flex-direction: column;
-  gap: a.$spacing--16;
+  gap: $spacing--16;
   width: 100%;
 }
 
