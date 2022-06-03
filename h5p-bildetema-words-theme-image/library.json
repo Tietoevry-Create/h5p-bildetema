@@ -1,0 +1,18 @@
+{
+  "title": "H5P Bildetema Theme Image View",
+  "machineName": "H5P.BildetemaThemeImageView",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "preloadedJs": [
+    {
+      "path": "dist/bundle.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "dist/main.css"
+    }
+  ]
+}
