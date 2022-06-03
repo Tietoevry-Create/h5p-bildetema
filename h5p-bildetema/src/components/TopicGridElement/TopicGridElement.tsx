@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Topic, Word } from "../../../../common/types/types";
 import styles from "./TopicGridElement.module.scss";
 
@@ -15,15 +15,12 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   title,
   index,
 }) => {
-  const navigate = useNavigate();
-  const handleClick = (): void => {
-    // temp - stop navigation when the words are displayed instead of topics
-    if (item) return;
-    navigate(`${encodeURIComponent(title.toLowerCase().split(" ").join("-"))}`);
-  };
   return (
-    <button className={styles.gridElement} type="button" onClick={handleClick}>
+    <Link
+      className={`${styles.gridElement} ${item ? styles.disabled : ""}`}
+      to={`${encodeURIComponent(title.toLowerCase().split(" ").join("-"))}`}
+    >
       <span>{`${index + 1}. ${title}`}</span>
-    </button>
+    </Link>
   );
 };
