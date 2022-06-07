@@ -7,7 +7,6 @@ import { getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
 import { Footer } from "../Footer/Footer";
-import { TopicsList } from "../TopicsList/TopicsList";
 
 type BildetemaProps = {
   currentLanguage: Language;
@@ -35,7 +34,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
             element={<TopicGrid items={topics} />}
           />
           {topics?.map(topic => {
-            const currTopicPath = `/${currentLanguage.code}/${encodeURIComponent(
+            const currTopicPath = `/${
+              currentLanguage.code
+            }/${encodeURIComponent(
               topic.label.toLowerCase().split(" ").join("-"),
             )}`;
 
