@@ -18,13 +18,13 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(
-        "Found no containing element to attach `h5p-h5p-bildetema` to.",
+        "Found no containing element to attach `h5p-bildetema-topic-image-view` to.",
       );
       return;
     }
 
     containerElement.appendChild(this.wrapper);
-    containerElement.classList.add("h5p-h5p-bildetema");
+    containerElement.classList.add("h5p-bildetema-topic-image-view");
   }
 
   private static createWrapperElement(): HTMLDivElement {
