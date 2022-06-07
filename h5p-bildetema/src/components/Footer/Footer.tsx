@@ -5,7 +5,7 @@ export const Footer = (): JSX.Element => {
   return (
     <div className={styles.footer}>
       {/* TODO: Replace with the current language translation */}
-      <h4>Kontaktinformasjon</h4>
+      <p className={styles.heading}>Kontaktinformasjon</p>
       <div className={styles.groupedElements}>
         <a href="https://nafo.oslomet.no/">
           NAFO - Nasjonalt senter for flerkulturell opplæring
