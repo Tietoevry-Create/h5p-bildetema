@@ -27,6 +27,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
         <div className={styles.header_container}>
           <Header />
         </div>
+        {/* TODO: Look at extracting some of this code out of this render function */}
         <Routes>
           <Route path="/" element={<h1>Hello</h1>} />
           <Route
