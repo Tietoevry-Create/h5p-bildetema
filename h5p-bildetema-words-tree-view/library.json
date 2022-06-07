@@ -1,6 +1,6 @@
 {
-  "title": "H5P Bildetema Grid View",
-  "machineName": "H5P.BildetemaGridView",
+  "title": "H5P Bildetema Tree View",
+  "machineName": "H5P.BildetemaTreeView",
   "majorVersion": 1,
   "minorVersion": 0,
   "patchVersion": 0,
