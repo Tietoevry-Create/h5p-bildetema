@@ -1,11 +1,20 @@
 import * as React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Language } from "../../../../common/types/types";
+import { Bildetema } from "../Bildetema/Bildetema";
 
 type AppProps = {
-  adjective: string;
+  currentLanguage: Language;
 };
 
-const App: React.FC<AppProps> = ({ adjective }) => {
-  return <h1>Hi, you&apos;re {adjective}</h1>;
+const queryClient = new QueryClient();
+
+const App: React.FC<AppProps> = ({ currentLanguage }) => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Bildetema currentLanguage={currentLanguage} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;

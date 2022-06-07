@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import App from "./App";
 
 export default {
@@ -13,6 +14,12 @@ const Template: ComponentStory<typeof App> = args => (
 );
 
 export const Default = Template.bind({});
+
 Default.args = {
-  adjective: "funny",
+  currentLanguage: {
+    label: "Norsk Bokmål",
+    code: makeLanguageCode("nb"),
+    rtl: false,
+    isFavorite: false,
+  },
 };
