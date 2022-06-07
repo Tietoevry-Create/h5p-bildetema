@@ -7,10 +7,10 @@ export const Footer = (): JSX.Element => {
       {/* TODO: Replace with the current language translation */}
       <h4>Kontaktinformasjon</h4>
       <div className={styles.groupedElements}>
-        <a href="http://nafo.oslomet.no/">
+        <a href="https://nafo.oslomet.no/">
           NAFO - Nasjonalt senter for flerkulturell opplæring
         </a>
-        <a href="http://oslomet.no/">OsloMet - Storbyuniversitetet</a>
+        <a href="https://oslomet.no/">OsloMet - Storbyuniversitetet</a>
         <a href="https://lexin.oslomet.no/">
           LEXIN - Nettbasert ordbok på norsk og forskjellige språk for
           minoritetsspråklige
@@ -19,8 +19,8 @@ export const Footer = (): JSX.Element => {
       <hr className={styles.divider} />
       <p>
         Copyright © 2022 · All Rights Reserved ·{" "}
-        <a href="http://nafo.oslomet.no/">NAFO</a> |{" "}
-        <a href="http://oslomet.no/">OsloMet</a>
+        <a href="https://nafo.oslomet.no/">NAFO</a> |{" "}
+        <a href="https://oslomet.no/">OsloMet</a>
       </p>
     </div>
   );
