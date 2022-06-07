@@ -1,8 +1,8 @@
 import type { Library } from "h5p-types";
 
 export const library: Library = {
-  title: "H5P Bildetema Theme Image View",
-  machineName: "H5P.BildetemaThemeImageView",
+  title: "H5P Bildetema Topic Image View",
+  machineName: "H5P.BildetemaTopicImageView",
   majorVersion: 1,
   minorVersion: 0,
   patchVersion: 0,
