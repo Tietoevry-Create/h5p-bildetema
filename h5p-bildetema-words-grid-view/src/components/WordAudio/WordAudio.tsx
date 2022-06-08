@@ -32,7 +32,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word }) => {
   return (
     <div className={styles.wordAudio}>
       <button type="button" onClick={play}>
-        🔊<span class={styles.visuallyHidden}>{playText}</span>
+        🔊<span className={styles.visuallyHidden}>{playText}</span>
       </button>
     </div>
   );
