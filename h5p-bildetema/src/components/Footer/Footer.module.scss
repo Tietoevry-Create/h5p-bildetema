@@ -1,7 +1,7 @@
 @use "../../../../common/abstracts" as *;
 
 .footer {
-  background-color: #800020;
+  background-color: $burgundy;
   color: white;
   // TODO: Update padding to be consistent with the rest of the app
   padding: $spacing--32;
@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: $spacing--24;
-  font-size: 1.5rem;
+  font-size: $font-size-24;
 
   .heading {
     font-size: $font-size-20;
@@ -40,13 +40,13 @@
 
   .divider {
     border: 0;
-    border-top: 1px solid #bbb;
+    border-top: 1px solid $grey;
     width: 100%;
   }
 
   .groupedElements {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: $spacing--8;
   }
 }
