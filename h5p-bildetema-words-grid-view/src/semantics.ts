@@ -18,7 +18,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Words",
         name: "words",
         type: H5PFieldType.List,
-        entity: "Timeline item",
+        entity: "Word",
         importance: "low",
         field: {
           label: "Item",
@@ -35,6 +35,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
               label: "Images",
               name: "images",
               type: H5PFieldType.List,
+              entity: "Image",
               field: {
                 label: "Image URL",
                 name: "imageUrl",
@@ -47,10 +48,10 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
               type: H5PFieldType.Text,
             },
           ],
-        } as H5PFieldGroup,
-      } as H5PFieldList,
+        }
+      } 
     ],
-  } as H5PFieldGroup,
+  } 
   {
     name: "behaviour",
     type: H5PFieldType.Group,
