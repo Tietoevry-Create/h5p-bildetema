@@ -1,9 +1,9 @@
-@use "../../abstracts" as a;
+@use "../../../../common/abstracts" as *;
 
 .topicgrid {
   display: inline-grid;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: a.$spacing--16;
+  gap: $spacing--16;
   width: 100%;
 }
