@@ -13,7 +13,10 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
     console.info("Bildetema words view grid constructor", params);
     this.wrapper = H5PWrapper.createWrapperElement();
 
-    ReactDOM.render(<App words={params["bildetema-words-grid-view"] as Word[]} />, this.wrapper);
+    ReactDOM.render(
+      <App words={params["bildetema-words-grid-view"] as Word[]} />,
+      this.wrapper,
+    );
   }
 
   attach($container: JQuery<HTMLElement>): void {
