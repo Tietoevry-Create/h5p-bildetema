@@ -4,13 +4,13 @@ import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
 
 type TopicWordsGridProps = {
-  items: WordType[];
+  words: WordType[];
 };
 
-export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ items }) => {
+export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words }) => {
   return (
     <div className={styles.topicgrid}>
-      {items.map(item => {
+      {words.map(item => {
         return (
           <Word
             key={item.id}

@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof TopicWordsGrid> = args => (
 
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {
-  items: [
+  words: [
     { ...baseWord, id: "1", label: "test1", tema1: "test1" } as Word,
     { ...baseWord, id: "2", label: "test2", tema1: "test2" } as Word,
     { ...baseWord, id: "3", label: "test3", tema1: "test3" } as Word,

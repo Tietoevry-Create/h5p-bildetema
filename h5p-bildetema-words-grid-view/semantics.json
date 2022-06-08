@@ -1,1 +1,60 @@
-[]
+[
+  {
+    "label": "Bildetema Words Grid View",
+    "name": "bildetema-words-grid-view",
+    "type": "group",
+    "importance": "high",
+    "fields": [
+      {
+        "label": "Words",
+        "name": "words",
+        "type": "list",
+        "entity": "Word",
+        "importance": "low",
+        "field": {
+          "label": "Item",
+          "name": "wordItems",
+          "importance": "low",
+          "type": "group",
+          "fields": [
+            {
+              "label": "Word",
+              "name": "label",
+              "type": "text"
+            },
+            {
+              "label": "Images",
+              "name": "images",
+              "type": "list",
+              "entity": "Image",
+              "field": {
+                "label": "Image URL",
+                "name": "imageUrl",
+                "type": "text"
+              }
+            },
+            {
+              "label": "Audio URL",
+              "name": "audio",
+              "type": "text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "behaviour",
+    "type": "group",
+    "label": "Behavioral settings",
+    "importance": "low",
+    "fields": []
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "common": true,
+    "label": "Localize",
+    "fields": []
+  }
+]

@@ -26,7 +26,7 @@
     "//watch-library": "nodemon ./src/**/* --exec 'npm run generate-library'"
   },
   "dependencies": {
-    "h5p-utils": "^2.0.6",
+    "h5p-utils": "^2.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.0.0",
     "swiper": "^8.2.1"

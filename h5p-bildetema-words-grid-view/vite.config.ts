@@ -46,7 +46,7 @@ export default defineConfig({
       },
     },
 
-    target: "esnext",
+    target: "es6",
   },
   test: {
     environment: "happy-dom",
