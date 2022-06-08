@@ -14,8 +14,6 @@ const l10n = Object.fromEntries(
     .fields.map(field => [field.name, field.default]),
 );
 
-console.log({ l10n });
-
 const h5pInstance = new H5PWrapper({ region: "", l10n }, contentId, undefined);
 
 export const parameters = {
