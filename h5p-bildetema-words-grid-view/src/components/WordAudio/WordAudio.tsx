@@ -17,21 +17,22 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word }) => {
 
   useEffect(() => {
     if (playing) audio.play();
-  }, [playing]);
+  }, [audio, playing]);
 
   useEffect(() => {
     audio.addEventListener("ended", () => setPlaying(false));
     return () => {
       audio.removeEventListener("ended", () => setPlaying(false));
     };
-  }, []);
+  }, [audio]);
 
   const play = (): void => setPlaying(true);
-
+  // TODO: Translate
+  const playText = "Play";
   return (
     <div className={styles.wordAudio}>
       <button type="button" onClick={play}>
-        Play
+        🔊<span className={styles.visuallyHidden}>{playText}</span>
       </button>
     </div>
   );

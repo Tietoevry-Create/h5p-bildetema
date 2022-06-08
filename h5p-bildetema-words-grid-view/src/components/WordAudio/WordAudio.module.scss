@@ -1,0 +1,28 @@
+.wordAudio {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+.wordAudio button {
+  all: unset;
+  cursor: pointer;
+}
+
+.visuallyHidden {
+  // TODO: Use `visually-hidden` mixin
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
