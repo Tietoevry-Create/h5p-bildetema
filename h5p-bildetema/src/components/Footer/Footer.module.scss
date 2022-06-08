@@ -1,0 +1,52 @@
+@use "../../abstracts" as *;
+
+.footer {
+  background-color: #800020;
+  color: white;
+  // TODO: Update padding to be consistent with the rest of the app
+  padding: $spacing--32;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $spacing--24;
+  font-size: 1.5rem;
+
+  .heading {
+    font-size: $font-size-20;
+    font-weight: bold;
+  }
+
+  a,
+  p,
+  hr {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  a,
+  p {
+    font-size: $font-size-16;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .divider {
+    border: 0;
+    border-top: 1px solid #bbb;
+    width: 100%;
+  }
+
+  .groupedElements {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

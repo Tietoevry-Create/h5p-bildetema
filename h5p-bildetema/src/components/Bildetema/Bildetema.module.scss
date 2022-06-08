@@ -1,6 +1,6 @@
 @use "../../abstracts" as *;
 
-.main {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: $spacing--16;
@@ -9,9 +9,12 @@
 
 .container {
   max-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing--16;
+  min-height: 100vh;
 }
 
-.header_container {
-  background-color: #f6f5f4;
-  padding: 2rem;
+.body {
+  flex-grow: 1;
 }

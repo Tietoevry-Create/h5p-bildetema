@@ -6,6 +6,7 @@ import { Language } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
+import { Footer } from "../Footer/Footer";
 
 type BildetemaProps = {
   currentLanguage: Language;
@@ -21,68 +22,75 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   }, [currentLanguage.code]);
 
   return (
-    <div className={styles.main}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.header_container}>
-          <Header />
-        </div>
-      </div>
-      <Routes>
-        <Route path="/" element={<h1>Hello</h1>} />
-        <Route
-          path={`/${currentLanguage.code}`}
-          element={<TopicGrid items={topics} />}
-        />
-        {topics?.map(topic => {
-          const currTopicPath = `/${currentLanguage.code}/${encodeURIComponent(
-            topic.label.toLowerCase().split(" ").join("-"),
-          )}`;
-
-          return topic.subTopics.size ? (
-            Array.from(topic.subTopics.values()).map(subtopic => {
-              const currSubtopicPath = `${currTopicPath}/${encodeURIComponent(
-                subtopic.label.toLowerCase().split(" ").join("-"),
-              )}`;
-              const topicGridItems = Array.from(topic.subTopics.values());
-              const wordsGridItems =
-                subtopic.words.get(currentLanguage.code) ?? [];
-
-              return (
-                <>
-                  <Route
-                    key={topic.id}
-                    path={currTopicPath}
-                    element={
-                      <TopicGrid items={topicGridItems} topic={topic.label} />
-                    }
-                  />
-                  <Route
-                    path={currSubtopicPath}
-                    element={
-                      <TopicGrid
-                        words={wordsGridItems}
-                        topic={subtopic.label}
-                      />
-                    }
-                  />
-                </>
-              );
-            })
-          ) : (
+        <Header />
+        <div className={styles.body}>
+          {/* TODO: Look at extracting some of this code out of this render function */}
+          <Routes>
+            <Route path="/" element={<h1>Hello</h1>} />
             <Route
-              key={topic.id}
-              path={currTopicPath}
-              element={
-                <TopicGrid
-                  words={topic.words.get(currentLanguage.code) ?? []}
-                  topic={topic.label}
-                />
-              }
+              path={`/${currentLanguage.code}`}
+              element={<TopicGrid items={topics} />}
             />
-          );
-        })}
-      </Routes>
-      {isLoading && <h1>Loading...</h1>}
+            {topics?.map(topic => {
+              const currTopicPath = `/${
+                currentLanguage.code
+              }/${encodeURIComponent(
+                topic.label.toLowerCase().split(" ").join("-"),
+              )}`;
+
+              return topic.subTopics.size ? (
+                Array.from(topic.subTopics.values()).map(subtopic => {
+                  const currSubtopicPath = `${currTopicPath}/${encodeURIComponent(
+                    subtopic.label.toLowerCase().split(" ").join("-"),
+                  )}`;
+                  const topicGridItems = Array.from(topic.subTopics.values());
+                  const wordsGridItems =
+                    subtopic.words.get(currentLanguage.code) ?? [];
+
+                  return (
+                    <>
+                      <Route
+                        key={topic.id}
+                        path={currTopicPath}
+                        element={
+                          <TopicGrid
+                            items={topicGridItems}
+                            topic={topic.label}
+                          />
+                        }
+                      />
+                      <Route
+                        path={currSubtopicPath}
+                        element={
+                          <TopicGrid
+                            words={wordsGridItems}
+                            topic={subtopic.label}
+                          />
+                        }
+                      />
+                    </>
+                  );
+                })
+              ) : (
+                <Route
+                  key={topic.id}
+                  path={currTopicPath}
+                  element={
+                    <TopicGrid
+                      words={topic.words.get(currentLanguage.code) ?? []}
+                      topic={topic.label}
+                    />
+                  }
+                />
+              );
+            })}
+          </Routes>
+          {isLoading && <h1>Loading...</h1>}
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 };
