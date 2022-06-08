@@ -86,8 +86,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
           })}
         </Routes>
         {isLoading && <h1>Loading...</h1>}
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
