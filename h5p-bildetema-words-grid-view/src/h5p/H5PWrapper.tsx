@@ -5,7 +5,7 @@ import App from "../App";
 import { H5P } from "./H5P.util";
 import { Word } from "../../../common/types/types";
 type Params = {
-  ["bildetema-words-grid-view"]?: Word[],
+  ["bildetema-words-grid-view"]?: Word[];
 };
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   private wrapper: HTMLElement;
