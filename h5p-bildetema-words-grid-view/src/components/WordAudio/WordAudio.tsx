@@ -27,11 +27,12 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word }) => {
   }, [audio]);
 
   const play = (): void => setPlaying(true);
-
+  // TODO: Translate
+  const playText = "Play"; 
   return (
     <div className={styles.wordAudio}>
       <button type="button" onClick={play}>
-        🔊
+        🔊<span class={styles.visuallyHidden}>{playText}</span>
       </button>
     </div>
   );
