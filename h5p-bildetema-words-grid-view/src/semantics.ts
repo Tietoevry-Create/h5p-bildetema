@@ -1,10 +1,4 @@
-import type {
-  H5PBehaviour,
-  H5PField,
-  H5PFieldGroup,
-  H5PFieldList,
-  H5PL10n,
-} from "h5p-types";
+import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
 import { H5PFieldType } from "../../common/types/H5PFieldType";
 
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
@@ -48,10 +42,10 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
               type: H5PFieldType.Text,
             },
           ],
-        }
-      } 
+        },
+      },
     ],
-  } 
+  },
   {
     name: "behaviour",
     type: H5PFieldType.Group,

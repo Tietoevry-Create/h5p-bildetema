@@ -9,7 +9,7 @@
         "label": "Words",
         "name": "words",
         "type": "list",
-        "entity": "Timeline item",
+        "entity": "Word",
         "importance": "low",
         "field": {
           "label": "Item",
@@ -26,6 +26,7 @@
               "label": "Images",
               "name": "images",
               "type": "list",
+              "entity": "Image",
               "field": {
                 "label": "Image URL",
                 "name": "imageUrl",
