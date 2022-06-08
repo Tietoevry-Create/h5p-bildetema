@@ -1,12 +1,13 @@
 import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Header } from "..";
 import { Language } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
+import { useL10n } from "../../hooks/useL10n";
+import { Footer } from "../Footer/Footer";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
-import { Footer } from "../Footer/Footer";
 
 type BildetemaProps = {
   currentLanguage: Language;
@@ -15,6 +16,8 @@ type BildetemaProps = {
 export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const navigate = useNavigate();
   const { isLoading, data: topics } = useQuery("topicsFromDB", getTopics);
+
+  const loadingLabel = useL10n("pageIsLoading");
 
   React.useEffect(() => {
     navigate(`/${currentLanguage.code}`);
@@ -87,7 +90,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
               );
             })}
           </Routes>
-          {isLoading && <h1>Loading...</h1>}
+          {isLoading && <h1>{loadingLabel}</h1>}
         </div>
         <Footer />
       </div>
