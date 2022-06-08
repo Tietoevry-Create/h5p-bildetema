@@ -4,6 +4,7 @@ import * as ReactDOM from "react-dom";
 import App from "../App";
 import { H5P } from "./H5P.util";
 import { Word } from "../../../common/types/types";
+
 type Params = {
   ["bildetema-words-grid-view"]?: Word[];
 };
