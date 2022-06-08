@@ -28,7 +28,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word }) => {
 
   const play = (): void => setPlaying(true);
   // TODO: Translate
-  const playText = "Play"; 
+  const playText = "Play";
   return (
     <div className={styles.wordAudio}>
       <button type="button" onClick={play}>
