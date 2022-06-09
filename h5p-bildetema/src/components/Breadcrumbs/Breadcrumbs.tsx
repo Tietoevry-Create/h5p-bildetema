@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BreadcrumbsArrowIcon } from "../Icons/Icons";
 import styles from "./Breadcrumbs.module.scss";
 
 export type BreadcrumbsProps = {
@@ -19,17 +20,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
               {label}
             </Link>
             <span className={styles.arrow}>
-              <svg
-                width="10"
-                height="17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
-                  fill="currentcolor"
-                />
-              </svg>
+              <BreadcrumbsArrowIcon />
             </span>
           </span>
         ) : (
