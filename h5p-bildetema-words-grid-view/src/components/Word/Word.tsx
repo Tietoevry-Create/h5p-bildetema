@@ -12,16 +12,11 @@ import "swiper/css/navigation";
 import { WordAudio } from "../WordAudio/WordAudio";
 
 type WordProps = {
-  clickHandler: React.Dispatch<WordType>;
   word: WordType;
   textVisible: boolean;
 };
 
-export const Word: React.FC<WordProps> = ({
-  clickHandler,
-  textVisible,
-  word,
-}) => {
+export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { label, images } = word;
 
   const renderImages = (): JSX.Element => {
@@ -29,7 +24,6 @@ export const Word: React.FC<WordProps> = ({
 
     return (
       <Swiper
-        onClick={() => clickHandler(word)}
         pagination={{
           dynamicBullets: multipleImages,
         }}
@@ -63,9 +57,8 @@ export const Word: React.FC<WordProps> = ({
     <div className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
       <p className={styles.word_label}>
-        {" "}
         {textVisible && label}
-        {word.audio && <WordAudio word={word} />}{" "}
+        {word.audio && <WordAudio word={word} />}
       </p>
     </div>
   );
