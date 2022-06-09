@@ -29,7 +29,8 @@
   "dependencies": {
     "h5p-utils": "^2.1.0",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "use-h5p": "^1.0.0"
   },
   "devDependencies": {
     "@mdx-js/react": "^2.1.1",
