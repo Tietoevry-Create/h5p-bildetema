@@ -15,7 +15,9 @@ export const Breadcrumbs: React.FC = () => {
         index !== breadcrumbs.length - 1 ? (
           <span key={key}>
             <Link to={key} className={styles.link}>
-              {breadcrumb}
+              {decodeURIComponent(
+                (breadcrumb as React.ReactPortal).props.children,
+              )}
             </Link>
             <span className={styles.arrow}>
               <BreadcrumbsArrowIcon />
@@ -23,7 +25,9 @@ export const Breadcrumbs: React.FC = () => {
           </span>
         ) : (
           <span className={styles.currentPage} key={key}>
-            {breadcrumb}
+            {decodeURIComponent(
+              (breadcrumb as React.ReactPortal).props.children,
+            )}
           </span>
         ),
       )}
