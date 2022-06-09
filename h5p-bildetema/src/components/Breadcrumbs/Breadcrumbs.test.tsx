@@ -33,7 +33,7 @@ describe(Breadcrumbs.name, () => {
     expect(container.querySelector("svg")).toBeFalsy();
   });
 
-  it("Multiple breadcrumbs should render links", () => {
+  it("should render breadcrumbs if there are multiple links", () => {
     const container = template({
       breadcrumbs: [
         { label: "Tema", path: "/tema" },
