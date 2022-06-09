@@ -5,6 +5,10 @@
   flex-direction: column;
   gap: $spacing--16;
   width: 100%;
+
+  :focus {
+    outline: 3px solid $orange;
+  }
 }
 
 .container {
