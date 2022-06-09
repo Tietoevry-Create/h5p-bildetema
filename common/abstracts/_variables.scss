@@ -11,17 +11,18 @@ $spacing--24: 1.5rem;
 $spacing--32: 2rem;
 $spacing--40: 2.5rem;
 
-$checkbox-color: black;
-$checkbox-shadow-color: orange;
-$checkmark-color: white;
-
-$toggle-on-color: orange;
-$toggle-off-color: #ccc;
-$toggle-slider-color: white;
-$toggle-focus-color: black;
-
 $grey: #f6f6f6;
 $beige: #f6f5f4;
 $dark-beige: #ebeae8;
 $dark-red: #99002b;
 $burgundy: #800020;
+$orange: hsla(39, 100%, 50%, 1);
+
+$checkbox-color: black;
+$checkbox-shadow-color: $orange;
+$checkmark-color: white;
+
+$toggle-on-color: $orange;
+$toggle-off-color: #ccc;
+$toggle-slider-color: white;
+$toggle-focus-color: black;
