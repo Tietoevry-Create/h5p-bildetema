@@ -58,6 +58,19 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     type: H5PFieldType.Group,
     common: true,
     label: "Localize",
-    fields: [],
+    fields: [
+      {
+        label: "Play audio",
+        name: "playAudio",
+        default: "Play audio",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Pause audio",
+        name: "pauseAudio",
+        default: "Pause audio",
+        type: H5PFieldType.Text,
+      },
+    ],
   },
 ];
