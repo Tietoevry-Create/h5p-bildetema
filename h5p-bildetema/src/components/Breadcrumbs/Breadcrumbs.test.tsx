@@ -1,21 +1,21 @@
 import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import * as React from "react";
 import { Breadcrumbs, BreadcrumbsProps } from "./Breadcrumbs";
 
 describe(Breadcrumbs.name, () => {
-  const template = ({ breadcrumbs }: BreadcrumbsProps): HTMLElement => {
+  const template = ({ breadCrumbs }: BreadcrumbsProps): HTMLElement => {
     const { container } = render(
-      <MemoryRouter>
-        <Breadcrumbs breadcrumbs={breadcrumbs} />,
-      </MemoryRouter>,
+      <HashRouter>
+        <Breadcrumbs breadCrumbs={breadCrumbs} />,
+      </HashRouter>,
     );
     return container;
   };
 
   it("Should render nothing if there are no links", () => {
-    const container = template({ breadcrumbs: [] });
+    const container = template({ breadCrumbs: [] });
 
     expect(container.textContent).toEqual(",");
     expect(container.querySelector("div")).toBeTruthy();
@@ -25,7 +25,7 @@ describe(Breadcrumbs.name, () => {
 
   it("Should only render a span if there are only one link", () => {
     const container = template({
-      breadcrumbs: [{ label: "Tema", path: "/tema" }],
+      breadCrumbs: [{ label: "Tema", path: "/tema" }],
     });
     expect(container.textContent).toEqual("Tema,");
     expect(container.querySelector("span")).toBeTruthy();
@@ -35,7 +35,7 @@ describe(Breadcrumbs.name, () => {
 
   it("should render breadcrumbs if there are multiple links", () => {
     const container = template({
-      breadcrumbs: [
+      breadCrumbs: [
         { label: "Tema", path: "/tema" },
         { label: "Dyr", path: "/tema/dyr" },
       ],
