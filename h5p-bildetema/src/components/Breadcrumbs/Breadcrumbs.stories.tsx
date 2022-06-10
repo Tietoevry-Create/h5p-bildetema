@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof Breadcrumbs> = args => (
 
 export const Default = Template.bind({});
 Default.args = {
-  breadcrumbsTest: [
+  breadCrumbs: [
     { label: "Tema", path: "/tema" },
     { label: "Dyr", path: "/tema/dyr" },
     { label: "Dyr i skogen", path: "/tema/dyr/dyr-i-skogen" },
@@ -24,10 +24,10 @@ Default.args = {
 
 export const SingleBreadcrumb = Template.bind({});
 SingleBreadcrumb.args = {
-  breadcrumbsTest: [{ label: "Tema", path: "/tema" }],
+  breadCrumbs: [{ label: "Tema", path: "/tema" }],
 };
 
 export const EmptyBreadcrumb = Template.bind({});
 EmptyBreadcrumb.args = {
-  breadcrumbsTest: [],
+  breadCrumbs: [],
 };

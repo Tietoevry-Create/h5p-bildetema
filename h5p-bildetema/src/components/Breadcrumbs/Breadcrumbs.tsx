@@ -7,18 +7,16 @@ import styles from "./Breadcrumbs.module.scss";
 const routes = [{ path: "/nb", breadcrumb: "Norsk (bokmål)" }];
 
 export type BreadcrumbsProps = {
-  breadcrumbsTest?: {
+  breadCrumbs?: {
     label: string;
     path: string;
   }[];
 };
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
-  breadcrumbsTest,
-}) => {
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadCrumbs }) => {
   const breadcrumbs = useBreadcrumbs(routes);
 
-  return !breadcrumbsTest ? (
+  return !breadCrumbs ? (
     <div className={styles.Breadcrumbs}>
       {breadcrumbs.map(({ breadcrumb, key }, index) =>
         index !== breadcrumbs.length - 1 ? (
@@ -43,8 +41,8 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     </div>
   ) : (
     <div className={styles.Breadcrumbs}>
-      {breadcrumbsTest.map(({ label, path }, index) =>
-        index !== breadcrumbsTest.length - 1 ? (
+      {breadCrumbs.map(({ label, path }, index) =>
+        index !== breadCrumbs.length - 1 ? (
           <span key={path}>
             <Link to={path} className={styles.link}>
               {label}

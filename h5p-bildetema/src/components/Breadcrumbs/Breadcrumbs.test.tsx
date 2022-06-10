@@ -5,17 +5,17 @@ import * as React from "react";
 import { Breadcrumbs, BreadcrumbsProps } from "./Breadcrumbs";
 
 describe(Breadcrumbs.name, () => {
-  const template = ({ breadcrumbsTest }: BreadcrumbsProps): HTMLElement => {
+  const template = ({ breadCrumbs }: BreadcrumbsProps): HTMLElement => {
     const { container } = render(
       <HashRouter>
-        <Breadcrumbs breadcrumbsTest={breadcrumbsTest} />,
+        <Breadcrumbs breadCrumbs={breadCrumbs} />,
       </HashRouter>,
     );
     return container;
   };
 
   it("Should render nothing if there are no links", () => {
-    const container = template({ breadcrumbsTest: [] });
+    const container = template({ breadCrumbs: [] });
 
     expect(container.textContent).toEqual(",");
     expect(container.querySelector("div")).toBeTruthy();
@@ -25,7 +25,7 @@ describe(Breadcrumbs.name, () => {
 
   it("Should only render a span if there are only one link", () => {
     const container = template({
-      breadcrumbsTest: [{ label: "Tema", path: "/tema" }],
+      breadCrumbs: [{ label: "Tema", path: "/tema" }],
     });
     expect(container.textContent).toEqual("Tema,");
     expect(container.querySelector("span")).toBeTruthy();
@@ -35,7 +35,7 @@ describe(Breadcrumbs.name, () => {
 
   it("should render breadcrumbs if there are multiple links", () => {
     const container = template({
-      breadcrumbsTest: [
+      breadCrumbs: [
         { label: "Tema", path: "/tema" },
         { label: "Dyr", path: "/tema/dyr" },
       ],
