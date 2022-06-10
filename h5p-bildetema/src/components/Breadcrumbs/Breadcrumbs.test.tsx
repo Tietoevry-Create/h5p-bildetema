@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import * as React from "react";
 import { Breadcrumbs, BreadcrumbsProps } from "./Breadcrumbs";
 
 describe(Breadcrumbs.name, () => {
   const template = ({ breadcrumbsTest }: BreadcrumbsProps): HTMLElement => {
     const { container } = render(
-      <MemoryRouter>
+      <HashRouter>
         <Breadcrumbs breadcrumbsTest={breadcrumbsTest} />,
-      </MemoryRouter>,
+      </HashRouter>,
     );
     return container;
   };
