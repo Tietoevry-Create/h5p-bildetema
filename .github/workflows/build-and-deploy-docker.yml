@@ -1,4 +1,4 @@
-name: Build, push and deploy to azure web apps
+name: Docker, Azure web apps
 
 on:
   push:
