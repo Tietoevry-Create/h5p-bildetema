@@ -1,4 +1,4 @@
-name: Build and push docker image
+name: Docker, Azure web apps
 
 on:
   push:
@@ -10,6 +10,8 @@ jobs:
   push:
     name: Build and push
     runs-on: ubuntu-latest
+    outputs:
+      docker_image_tag: ${{  steps.docker_image.outputs.tag  }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -63,5 +65,33 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.DOCKER_SHA }},${{ env.DOCKER_LATEST }}
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Set image as output
+        id: docker_image
+        shell: bash
+        run: echo "::set-output name=tag::${{ env.DOCKER_SHA }}"
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy azure web apps
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
+
+    runs-on: ubuntu-latest
+    needs: [push]
+    strategy:
+      max-parallel: 1
+      matrix:
+        env: [dev]
+        # Need to create test env first, and add PUBLISH_PROFILE secret
+        # env: [dev, test]
+    environment: ${{ matrix.env }}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: "${{ matrix.env }}-bildetema-drupal"
+          publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+          images: "ghcr.io/${{ needs.push.outputs.docker_image_tag }}"
