@@ -28,6 +28,10 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=$(echo -n ${GITHUB_HEAD_REF} | tr -c '[:alnum:]' '-')" >> $GITHUB_ENV
 
+      - name: Get Repository name
+        shell: bash
+        run: echo "REPOSITORY_NAME=$(echo -n ${{ github.repository }} | awk '{print tolower($0)}'" >> $GITHUB_ENV
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
