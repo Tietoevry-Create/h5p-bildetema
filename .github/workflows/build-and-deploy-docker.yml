@@ -81,9 +81,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        env: [dev]
-        # Need to create test env first, and add PUBLISH_PROFILE secret
-        # env: [dev, test]
+        env: [dev, test]
     environment: ${{ matrix.env }}
 
     steps:
