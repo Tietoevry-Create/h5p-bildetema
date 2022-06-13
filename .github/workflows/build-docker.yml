@@ -31,6 +31,14 @@ jobs:
       - name: Get Repository name
         shell: bash
         run: echo "REPOSITORY_NAME=$(echo -n ${{ github.repository }} | awk '{print tolower($0)}')" >> $GITHUB_ENV
+      
+      - name: Set docker image with sha tag
+        shell: bash
+        run: echo "DOCKER_SHA=ghcr.io/${{ env.REPOSITORY_NAME }}:${{ env.BRANCH_NAME }}-${{ env.SHORT_SHA }}" >> $GITHUB_ENV
+      
+      - name: Set docker image with latest tag
+        shell: bash
+        run: echo "DOCKER_LATEST=ghcr.io/${{ env.REPOSITORY_NAME }}:latest" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
