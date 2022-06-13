@@ -30,7 +30,7 @@ jobs:
 
       - name: Get Repository name
         shell: bash
-        run: echo "REPOSITORY_NAME=$(echo -n ${{ github.repository }} | awk '{print tolower($0)}'" >> $GITHUB_ENV
+        run: echo "REPOSITORY_NAME=$(echo -n ${{ github.repository }} | awk '{print tolower($0)}')" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
