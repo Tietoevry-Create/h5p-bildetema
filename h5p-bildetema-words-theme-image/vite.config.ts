@@ -18,7 +18,7 @@ const wrapIIFE = (): PluginOption => ({
       const chunk = chunks[i];
       if (isOutputChunk(chunk)) {
         // eslint-disable-next-line no-param-reassign
-        chunk.code = `(function(){\n${chunk.code}\n})()`;
+        chunk.code = `(function(){${chunk.code}})()`;
       }
     }
   },
@@ -34,19 +34,22 @@ export default defineConfig({
       input: "src/index.tsx",
       output: {
         file: "dist/bundle.js",
-        dir: null,
+        dir: undefined,
         inlineDynamicImports: true,
-        manualChunks: null,
+        manualChunks: undefined,
         assetFileNames: assetInfo => {
           if (assetInfo.name === "index.css") {
             return "main.css";
           }
-          return assetInfo.name;
+
+          return assetInfo.name ?? "";
         },
+        esModule: false,
+        format: "iife",
       },
     },
 
-    target: "esnext",
+    target: "es6",
   },
   test: {
     environment: "happy-dom",
