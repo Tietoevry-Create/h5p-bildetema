@@ -44,10 +44,9 @@ export default defineConfig({
           return assetInfo.name;
         },
       },
-      external: id => id === "xlsx",
     },
 
-    target: "esnext",
+    target: "es6",
   },
   test: {
     environment: "happy-dom",
