@@ -16,4 +16,3 @@ export const App: React.FC<AppProps> = ({ currentLanguage }) => {
     </QueryClientProvider>
   );
 };
-
