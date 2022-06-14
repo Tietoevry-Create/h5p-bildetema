@@ -11,10 +11,11 @@ ADD ./docker-php-entrypoint docker-php-entrypoint
 RUN npm install 
 
 # Build sub projects
-RUN cd h5p-bildetema                     && npm run build
+RUN cd h5p-bildetema                     && npm run build && rm -rf node_modules
 # RUN cd h5p-bildetema-words-grid-view     && npm run build
 # RUN cd h5p-bildetema-words-theme-image   && npm run build
 # RUN cd h5p-bildetema-words-tree-view     && npm run build
+RUN rm -rf node_modules 
 
 FROM kentis123/drupal-h5p:drupal-7
 
