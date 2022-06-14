@@ -4,9 +4,17 @@ RUN npm install -g h5p
 RUN mkdir -p /dev-h5p/cp
 
 WORKDIR /dev-h5p
-ADD h5p-bildetema h5p-bildetema
+ADD . .
 ADD ./docker-php-entrypoint docker-php-entrypoint
-RUN cd h5p-bildetema && npm install && npm run build; exit 0
+
+# Install packages in main projects and all sub projects
+RUN npm install 
+
+# Build sub projects
+RUN cd h5p-bildetema                     && npm run build
+# RUN cd h5p-bildetema-words-grid-view     && npm run build
+# RUN cd h5p-bildetema-words-theme-image   && npm run build
+# RUN cd h5p-bildetema-words-tree-view     && npm run build
 
 FROM kentis123/drupal-h5p:drupal-7
 
