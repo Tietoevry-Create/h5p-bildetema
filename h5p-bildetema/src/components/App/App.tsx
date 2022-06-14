@@ -9,7 +9,7 @@ type AppProps = {
 
 const queryClient = new QueryClient();
 
-const App: React.FC<AppProps> = ({ currentLanguage }) => {
+export const App: React.FC<AppProps> = ({ currentLanguage }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Bildetema currentLanguage={currentLanguage} />
@@ -17,4 +17,3 @@ const App: React.FC<AppProps> = ({ currentLanguage }) => {
   );
 };
 
-export default App;
