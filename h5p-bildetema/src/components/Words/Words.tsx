@@ -9,7 +9,6 @@ type WordsProps = {
 };
 
 export const Words: React.FC<WordsProps> = ({ words }) => {
-
   const ref = React.useRef<HTMLDivElement>(null);
   useEffect(() => {
     const library = new (H5P as any).BildetemaWordsGridView({
