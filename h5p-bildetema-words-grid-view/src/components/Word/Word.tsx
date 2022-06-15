@@ -22,8 +22,11 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   // Temporary workaround while we don't have images in a known location.
   // To test add images to /sites/default/files/h5p/development/h5p-bilder/
   // For dev-root add images in the folder h5p-bilder in the dev-root and restart
-  const removeSharepointLink = (url: string):string => {
-    return url.replace("https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/", "/sites/default/files/h5p/development/h5p-bilder/");
+  const removeSharepointLink = (url: string): string => {
+    return url.replace(
+      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/",
+      "/sites/default/files/h5p/development/h5p-bilder/",
+    );
   };
 
   const renderImages = (): JSX.Element => {

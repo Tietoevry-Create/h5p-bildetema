@@ -9,8 +9,7 @@ type TopicGridProps = {
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({ items, words }) => {
-  
-  if(items) {
+  if (items) {
     return (
       <div className={styles.grid}>
         {items?.map(item => {
@@ -25,10 +24,10 @@ export const TopicGrid: React.FC<TopicGridProps> = ({ items, words }) => {
       </div>
     );
   }
-  
-  if(words) {
-    return (<Words words={words} />);
+
+  if (words) {
+    return <Words words={words} />;
   }
-  
-  return (<div>No items</div>);
+
+  return <div>No items</div>;
 };
