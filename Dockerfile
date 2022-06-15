@@ -24,3 +24,4 @@ COPY --from=builder /dev-h5p/docker-php-entrypoint /usr/local/bin/docker-php-ent
 RUN chmod +x /usr/local/bin/docker-php-entrypoint
 
 RUN ./vendor/bin/drush vset theme_default seven
+
