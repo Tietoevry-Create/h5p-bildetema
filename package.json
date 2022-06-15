@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "setup-drupal": "ts-node puppeteer/setup-drupal.ts",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-theme-image'",
@@ -11,7 +12,7 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
   "devDependencies": {
-    "type-fest": "^2.13.0",
+    "@types/puppeteer": "^5.4.6",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "concurrently": "^7.2.1",
@@ -24,6 +25,9 @@
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-storybook": "^0.5.12",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "puppeteer": "^14.4.0",
+    "ts-node": "^10.8.1",
+    "type-fest": "^2.13.0"
   }
 }
