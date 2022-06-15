@@ -69,9 +69,9 @@ jobs:
         id: docker_image
         shell: bash
         run: echo "::set-output name=tag::${{ env.DOCKER_SHA }}"
-  deploy:
+  deploy-dev:
     if: github.ref == 'refs/heads/main'
-    name: Deploy azure web apps
+    name: Deploy dev
     concurrency:
       group: ${{ github.ref }}
       cancel-in-progress: true
@@ -81,7 +81,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        env: [dev, test]
+        env: [dev]
     environment: ${{ matrix.env }}
 
     steps:
@@ -93,18 +93,72 @@ jobs:
           app-name: "${{ matrix.env }}-bildetema-drupal"
           publish-profile: ${{ secrets.PUBLISH_PROFILE }}
           images: "ghcr.io/${{ needs.push.outputs.docker_image_tag }}"
-  setup:
+
+  deploy-test:
     if: github.ref == 'refs/heads/main'
-    name: Setup drupal
+    name: Deploy dev
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
+
     runs-on: ubuntu-latest
-    needs: [push, deploy]
+    needs: [push, deploy-dev]
+    strategy:
+      max-parallel: 1
+      matrix:
+        env: [test]
+    environment: ${{ matrix.env }}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: "${{ matrix.env }}-bildetema-drupal"
+          publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+          images: "ghcr.io/${{ needs.push.outputs.docker_image_tag }}"
+
+  setup-dev:
+    if: github.ref == 'refs/heads/main'
+    name: Setup drupal dev
+    runs-on: ubuntu-latest
+    needs: [push, deploy-dev]
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
     strategy:
       matrix:
-        env: [dev, test]
+        env: [dev]
         title: [Norsk]
-    environment: ${{ matrix.env }}
     env:
-      DRUPAL_URL: ${{ secrets.DRUPAL_URL }}
+      DRUPAL_URL: "https://${{matrix.env}}${{secrets.DRUPAL_URL}}"
+      TITLE: ${{matrix.title}}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Setup
+        run: npm run setup-drupal
+
+  setup-test:
+    if: github.ref == 'refs/heads/main'
+    name: Setup drupal test
+    runs-on: ubuntu-latest
+    needs: [push, deploy-test, setup-dev]
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
+    strategy:
+      matrix:
+        env: [test]
+        title: [Norsk]
+    env:
+      DRUPAL_URL: "https://${{matrix.env}}${{secrets.DRUPAL_URL}}"
       TITLE: ${{matrix.title}}
 
     steps:

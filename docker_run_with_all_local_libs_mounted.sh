@@ -11,5 +11,4 @@ done
 
 echo $mounts
 
-docker run --rm -p $1:80 $mounts kentis123/drupal-h5p:drupal-7
-# docker run --rm -d -p $2:80 $mounts $1
+docker run --rm -p $2:80 $mounts $1

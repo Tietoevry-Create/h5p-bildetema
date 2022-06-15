@@ -24,11 +24,11 @@ import puppeteer from "puppeteer";
     waitUntil: "networkidle2",
   });
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(5000);
   const h5pEditorIframe = page.mainFrame().childFrames()[1].childFrames()[0];
 
   await h5pEditorIframe.click("#h5p-bildetema");
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(5000);
 
   const h5pBildetemaEditorIframe = page
     .mainFrame()
