@@ -6,7 +6,7 @@ export type Word = {
   id: string;
   label: string;
   images: string[];
-  audio: string | undefined;
+  audio?: string;
 };
 
 export type Language = {
@@ -21,4 +21,22 @@ export type Topic = {
   label: string;
   subTopics: Map<string, Topic>;
   words: Map<LanguageCode, Word[]>;
+  image?: Image;
+};
+
+export type Image = {
+  path: string;
+  alt?: string;
+  height?: number;
+  width?: number;
+  copyright?: Copyright;
+};
+
+export type Copyright = {
+  author?: string;
+  license?: string;
+  source?: string;
+  title?: string;
+  version?: string;
+  year?: string;
 };
