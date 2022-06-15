@@ -5,3 +5,4 @@ export { Language } from "./Language/Language";
 export { TopicGridElement } from "./TopicGridElement/TopicGridElement";
 export { Toggle } from "./Toggle/Toggle";
 export { Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
+export { Words } from "./Words/Words";

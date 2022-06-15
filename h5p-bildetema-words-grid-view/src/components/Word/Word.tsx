@@ -19,6 +19,13 @@ type WordProps = {
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { label, images } = word;
 
+  // Temporary workaround while we don't have images in a known location.
+  // To test add images to /sites/default/files/h5p/development/h5p-bilder/
+  // For dev-root add images in the folder h5p-bilder in the dev-root and restart
+  const removeSharepointLink = (url: string):string => {
+    return url.replace("https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/", "/sites/default/files/h5p/development/h5p-bilder/");
+  };
+
   const renderImages = (): JSX.Element => {
     const multipleImages = images.length > 1;
 
@@ -35,7 +42,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           images.map(image => (
             <SwiperSlide key={image}>
               <div>
-                <img src={image} alt="" />
+                <img src={removeSharepointLink(image)} alt="" />
               </div>
             </SwiperSlide>
           ))

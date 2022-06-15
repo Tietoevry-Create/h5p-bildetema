@@ -17,4 +17,11 @@ export const library: Library = {
       path: "dist/main.css",
     },
   ],
+  preloadedDependencies: [
+    {
+      machineName: "H5P.BildetemaWordsGridView",
+      majorVersion: 1,
+      minorVersion: 0,
+    },
+  ],
 };
