@@ -18,6 +18,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({ items, words }) => {
               key={item.id}
               title={item.label}
               index={items.indexOf(item)}
+              image={item.image}
             />
           );
         })}
@@ -29,5 +30,5 @@ export const TopicGrid: React.FC<TopicGridProps> = ({ items, words }) => {
     return <Words words={words} />;
   }
 
-  return <div>No items</div>;
+  return <h1>No items</h1>;
 };

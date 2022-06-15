@@ -1,10 +1,6 @@
 @use "../../../../common/abstracts" as *;
 
 .gridElement {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: fit-content;
   word-wrap: break-word;
   padding: 0.75rem 0.75rem 0.75rem 1.75rem;
   border-radius: 0;
@@ -12,16 +8,32 @@
   font-size: $font-size-16;
   font-weight: bold;
   border: 1.5px solid $dark-beige;
-  cursor: pointer;
-  transition-duration: 0.2s;
   text-decoration: none;
   color: black;
-
-  &:hover {
-    background-color: $dark-beige;
-  }
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition-duration: 0.2s;
+  box-sizing: border-box;
 
   &.disabled {
     pointer-events: none;
   }
+}
+
+.topicCard {
+  display: flex;
+  flex-direction: column;
+  width: $topic-card-width;
+  height: $topic-card-height;
+  position: relative;
+  cursor: pointer;
+}
+
+.topicCard:hover > .gridElement {
+  background-color: $dark-beige;
+}
+
+.topicImage {
+  object-fit: cover;
 }
