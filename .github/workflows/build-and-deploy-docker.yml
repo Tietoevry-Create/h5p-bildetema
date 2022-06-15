@@ -93,3 +93,28 @@ jobs:
           app-name: "${{ matrix.env }}-bildetema-drupal"
           publish-profile: ${{ secrets.PUBLISH_PROFILE }}
           images: "ghcr.io/${{ needs.push.outputs.docker_image_tag }}"
+  setup:
+    # if: github.ref == 'refs/heads/main'
+    name: Setup drupal
+    runs-on: ubuntu-latest
+    # needs: [push]
+    strategy:
+      # max-parallel: 1
+      matrix:
+        # env: [dev, test]
+        env: [dev]
+        title: [norsk, svensk]
+    environment: ${{ matrix.env }}
+    env: 
+      DRUPAL_URL: ${{ secrets.DRUPAL_URL }}
+      TITLE: ${{matrix.title}}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+      
+      - name: Setup
+        run: npm run setup-drupal
