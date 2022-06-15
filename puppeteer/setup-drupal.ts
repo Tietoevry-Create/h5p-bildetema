@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer";
 
 (async () => {
   const url = process.env.DRUPAL_URL
@@ -25,19 +25,16 @@ const puppeteer = require("puppeteer");
   });
 
   await page.waitForTimeout(1000);
-  const h5pEditorIframe = await page
-    .mainFrame()
-    .childFrames()[1]
-    .childFrames()[0];
+  const h5pEditorIframe = page.mainFrame().childFrames()[1].childFrames()[0];
 
   await h5pEditorIframe.click("#h5p-bildetema");
   await page.waitForTimeout(1000);
 
-  const h5pBildetemaEditorIframe = await page
+  const h5pBildetemaEditorIframe = page
     .mainFrame()
     .childFrames()[1]
     .childFrames()[0];
-  const editorIframe = await page.mainFrame().childFrames()[1];
+  const editorIframe = page.mainFrame().childFrames()[1];
 
   await h5pBildetemaEditorIframe.type("#field-extratitle--1", title);
   await editorIframe.click("#edit-submit");

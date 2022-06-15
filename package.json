@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "setup-drupal": "node puppeteer/setup-drupal.js",
+    "setup-drupal": "esr puppeteer/setup-drupal.ts",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-theme-image'",
@@ -16,6 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "concurrently": "^7.2.1",
+    "esbuild-runner": "^2.2.1",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
