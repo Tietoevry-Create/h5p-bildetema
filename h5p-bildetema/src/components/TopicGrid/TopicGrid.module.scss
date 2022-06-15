@@ -2,8 +2,13 @@
 
 .grid {
   display: inline-grid;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $spacing--16;
+
+  /* static elements */
+  // grid-template-columns: repeat(auto-fill, $topic-card-width);
+
+  /* dynamic elements */
+  grid-template-columns: repeat(auto-fill, minmax($topic-card-width, 1fr));
+
+  grid-gap: $spacing--16;
   width: 100%;
 }

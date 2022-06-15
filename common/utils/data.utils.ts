@@ -56,6 +56,8 @@ const findSubTopics = (
       label: inputWord.Bokmål_nob,
       subTopics: new Map(),
       words: new Map(),
+      // TODO: uncomment after getting access to the images
+      // image: { path: inputWord.Bilde_a },
     };
     setTopic(topic, topicMap.get(inputWord.Tema1)!.subTopics);
   });
@@ -78,6 +80,8 @@ const findMainTopics = (
         label: inputWord.Tema1,
         subTopics: new Map(),
         words: new Map(),
+        // TODO: uncomment after getting access to the images
+        // image: { path: inputWord.Bilde_a },
       };
       setTopic(topic, topicMap);
     }
