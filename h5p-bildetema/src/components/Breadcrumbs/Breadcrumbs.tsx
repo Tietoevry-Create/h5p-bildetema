@@ -1,25 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { BreadcrumbsArrowIcon } from "../Icons/Icons";
 import styles from "./Breadcrumbs.module.scss";
-
-const routes = [{ path: "/nb", breadcrumb: "Norsk (bokmål)" }];
 
 export type BreadcrumbsProps = {
   breadCrumbs?: {
     label: string;
     path: string;
   }[];
+  currentLanguageCode: string;
 };
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadCrumbs }) => {
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
+  breadCrumbs,
+  currentLanguageCode,
+}) => {
+  const topicLabel = useL10n("breadcrumbsTopic");
+  const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const breadcrumbs = useBreadcrumbs(routes);
 
   return !breadCrumbs ? (
     <div className={styles.Breadcrumbs}>
-      {breadcrumbs.map(({ breadcrumb, key }, index) =>
-        index !== breadcrumbs.length - 1 ? (
+      {breadcrumbs.slice(1).map(({ breadcrumb, key }, index) =>
+        index !== breadcrumbs.length - 2 ? (
           <span key={key}>
             <Link to={key} className={styles.link}>
               {decodeURIComponent(

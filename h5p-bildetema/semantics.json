@@ -52,6 +52,12 @@
         "name": "footerLink3Href",
         "default": "https://lexin.oslomet.no/",
         "type": "text"
+      },
+      {
+        "label": "Breadcrumbs 'Topic' label",
+        "name": "breadcrumbsTopic",
+        "default": "Topic",
+        "type": "text"
       }
     ]
   }

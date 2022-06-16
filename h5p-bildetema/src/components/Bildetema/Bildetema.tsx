@@ -1,48 +1,30 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Header } from "..";
-import { Language, Topic } from "../../../../common/types/types";
+import { Language } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
 import { useL10n } from "../../hooks/useL10n";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { Footer } from "../Footer/Footer";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
-
-const tempHomeItems: Topic[] = [
-  {
-    id: "-1",
-    label: "nb",
-    subTopics: new Map(),
-    words: new Map(),
-  },
-];
 
 type BildetemaProps = {
   currentLanguage: Language;
 };
 
 export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
-  const navigate = useNavigate();
   const { isLoading, data: topics } = useQuery("topicsFromDB", getTopics);
 
   const loadingLabel = useL10n("pageIsLoading");
 
-  React.useEffect(() => {
-    navigate(`/${currentLanguage.code}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentLanguage.code]);
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <Header />
-        <Breadcrumbs />
+        <Header currentLanguageCode={currentLanguage.code} />
         <div className={styles.body}>
           {/* TODO: Look at extracting some of this code out of this render function */}
           <Routes>
-            <Route path="/" element={<TopicGrid items={tempHomeItems} />} />
             <Route
               path={`/${currentLanguage.code}`}
               element={<TopicGrid items={topics} />}
@@ -89,6 +71,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                 />
               );
             })}
+            <Route
+              path="*"
+              element={<Navigate to={`/${currentLanguage.code}`} replace />}
+            />
           </Routes>
           {isLoading && <h1>{loadingLabel}</h1>}
         </div>
