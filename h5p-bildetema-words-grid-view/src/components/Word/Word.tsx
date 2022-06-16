@@ -25,7 +25,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const removeSharepointLink = (url: string): string => {
     return url.replace(
       "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/",
-      "/sites/default/files/h5p/development/h5p-bilder/",
+      "https://prodbildetemabackend.blob.core.windows.net/images/",
     );
   };
 
