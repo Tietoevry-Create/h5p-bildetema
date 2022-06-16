@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
-import App from "./App";
+import { App } from "./App";
 
 export default {
   title: "App",
