@@ -22,7 +22,7 @@ describe(Breadcrumbs.name, () => {
   };
 
   it("Should render nothing if there are no links", () => {
-    const container = template({ breadCrumbs: [], currentLanguageCode: "nb" });
+    const container = template({ breadCrumbs: [], currentLanguageCode: "nob" });
 
     expect(container.textContent).toEqual(",");
     expect(container.querySelector("div")).toBeTruthy();
@@ -33,7 +33,7 @@ describe(Breadcrumbs.name, () => {
   it("Should only render a span if there are only one link", () => {
     const container = template({
       breadCrumbs: [{ label: "Tema", path: "/tema" }],
-      currentLanguageCode: "nb",
+      currentLanguageCode: "nob",
     });
     expect(container.textContent).toEqual("Tema,");
     expect(container.querySelector("span")).toBeTruthy();
@@ -47,7 +47,7 @@ describe(Breadcrumbs.name, () => {
         { label: "Tema", path: "/tema" },
         { label: "Dyr", path: "/tema/dyr" },
       ],
-      currentLanguageCode: "nb",
+      currentLanguageCode: "nob",
     });
     expect(container.textContent).toEqual("TemaDyr,");
     expect(container.querySelector("span")).toBeTruthy();
