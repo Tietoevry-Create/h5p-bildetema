@@ -27,6 +27,7 @@ import puppeteer from "puppeteer";
   await page.waitForTimeout(5000);
   const h5pEditorIframe = page.mainFrame().childFrames()[1].childFrames()[0];
 
+  await page.waitForTimeout(5000);
   await h5pEditorIframe.click("#h5p-bildetema");
   await page.waitForTimeout(5000);
 
