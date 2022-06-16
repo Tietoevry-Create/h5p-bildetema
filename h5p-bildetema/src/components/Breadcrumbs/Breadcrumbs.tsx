@@ -18,8 +18,8 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadCrumbs }) => {
 
   return !breadCrumbs ? (
     <div className={styles.Breadcrumbs}>
-      {breadcrumbs.map(({ breadcrumb, key }, index) =>
-        index !== breadcrumbs.length - 1 ? (
+      {breadcrumbs.slice(1).map(({ breadcrumb, key }, index) =>
+        index !== breadcrumbs.length - 2 ? (
           <span key={key}>
             <Link to={key} className={styles.link}>
               {decodeURIComponent(
