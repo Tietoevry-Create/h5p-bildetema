@@ -18,8 +18,8 @@ import puppeteer from "puppeteer";
   await page.type("#edit-name", "admin");
   await page.type("#edit-pass", "admin");
   await page.click("#edit-submit");
-  await page.waitForNavigation({ waitUntil: "networkidle2" });
 
+  await page.waitForSelector("a[href='/node/add']");
   await page.goto(`${url}/node#overlay=node/add/h5p-content`, {
     waitUntil: "networkidle2",
   });
@@ -38,7 +38,7 @@ import puppeteer from "puppeteer";
 
   await h5pBildetemaEditorIframe.type("#field-extratitle--1", title);
   await editorIframe.click("#edit-submit");
-  await page.waitForNavigation({ waitUntil: "networkidle2" });
+  await page.waitForTimeout(5000);
 
   await browser.close();
 })();
