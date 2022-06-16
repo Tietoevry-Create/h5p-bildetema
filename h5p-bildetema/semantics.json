@@ -56,7 +56,7 @@
       {
         "label": "Breadcrumbs 'Topic' label",
         "name": "breadcrumbsTopic",
-        "default": "Tema",
+        "default": "Topic",
         "type": "text"
       }
     ]

@@ -59,7 +59,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Breadcrumbs 'Topic' label",
         name: "breadcrumbsTopic",
-        default: "Tema",
+        default: "Topic",
         type: "text",
       },
     ],
