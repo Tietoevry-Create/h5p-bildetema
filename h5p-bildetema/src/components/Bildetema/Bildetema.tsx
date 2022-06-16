@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Header } from "..";
 import { Language } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
@@ -17,6 +17,19 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const { isLoading, data: topics } = useQuery("topicsFromDB", getTopics);
 
   const loadingLabel = useL10n("pageIsLoading");
+
+  const dynamicRedirect = React.useRef<JSX.Element>();
+
+  React.useEffect(() => {
+    if (topics) {
+      dynamicRedirect.current = (
+        <Route
+          path="*"
+          element={<Navigate to={`/${currentLanguage.code}`} replace />}
+        />
+      );
+    }
+  }, [topics, currentLanguage.code]);
 
   return (
     <div className={styles.wrapper}>
@@ -71,10 +84,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                 />
               );
             })}
-            <Route
-              path="/"
-              element={<Navigate to={`/${currentLanguage.code}`} replace />}
-            />
+            {dynamicRedirect.current}
           </Routes>
           {isLoading && <h1>{loadingLabel}</h1>}
         </div>
