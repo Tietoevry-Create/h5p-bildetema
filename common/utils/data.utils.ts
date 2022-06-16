@@ -15,7 +15,7 @@ const NON_LANGUAGE_FIELDS = [
 ];
 
 const databaseURL =
-  "https://devaudiobildetema.blob.core.windows.net/database/database.xlsx";
+  "https://prodbildetemabackend.blob.core.windows.net/data/database.xlsx";
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
@@ -48,12 +48,12 @@ const findSubTopics = (
   inputWords.forEach((inputWord: InputWord) => {
     const isSubTopic =
       inputWord.Title.includes("T") &&
-      inputWord.Bokmål_nb.toLocaleLowerCase() !==
+      inputWord.Bokmål_nob.toLocaleLowerCase() !==
         inputWord.Tema1.toLocaleLowerCase();
     if (!isSubTopic) return;
     const topic: Topic = {
       id: inputWord.Title,
-      label: inputWord.Bokmål_nb,
+      label: inputWord.Bokmål_nob,
       subTopics: new Map(),
       words: new Map(),
     };
@@ -68,7 +68,7 @@ const findMainTopics = (
   inputWords.forEach((inputWord: InputWord) => {
     const isMainTopic =
       inputWord.Title.includes("T") &&
-      inputWord.Bokmål_nb.toLocaleLowerCase() ===
+      inputWord.Bokmål_nob.toLocaleLowerCase() ===
         inputWord.Tema1.toLocaleLowerCase();
     if (!isMainTopic) return;
 
@@ -107,6 +107,7 @@ const fillTopicsWithWords = (
       const [_, strLanguageCode] = key.split("_");
       const languageCode = makeLanguageCode(strLanguageCode);
       const word: Word = {
+        audio: "",
         id: inputWord.Title,
         label: value,
         images: images,
@@ -166,7 +167,6 @@ const parseData = (data: ArrayBuffer): void => {
     blankrows: true,
     defval: "",
   });
-
   const topicMap = new Map<string, Topic>();
 
   addLanguagesToArray(inputWords[0]);
