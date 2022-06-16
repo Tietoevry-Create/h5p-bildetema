@@ -40,3 +40,8 @@ export type Copyright = {
   version?: string;
   year?: string;
 };
+
+export enum TopicGridSizes {
+  Big,
+  Compact,
+}
