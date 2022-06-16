@@ -7,14 +7,16 @@ WORKDIR /dev-h5p
 ADD . .
 ADD ./docker-php-entrypoint docker-php-entrypoint
 
-# Install packages in main projects and all sub projects
+# Install packages in main project and all sub projects
 RUN npm install 
 
 # Build sub projects
 RUN cd h5p-bildetema                     && npm run build && rm -rf node_modules
-# RUN cd h5p-bildetema-words-grid-view     && npm run build && rm -rf node_modules
-# RUN cd h5p-bildetema-words-theme-image   && npm run build && rm -rf node_modules
-# RUN cd h5p-bildetema-words-tree-view     && npm run build && rm -rf node_modules
+RUN cd h5p-bildetema-words-grid-view     && npm run build && rm -rf node_modules
+RUN cd h5p-bildetema-words-theme-image   && npm run build && rm -rf node_modules
+RUN cd h5p-bildetema-words-tree-view     && npm run build && rm -rf node_modules
+
+# Remove main project modules as we don't need them inside the container
 RUN rm -rf node_modules 
 
 FROM kentis123/drupal-h5p:drupal-7
