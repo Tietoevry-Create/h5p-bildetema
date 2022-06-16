@@ -2,7 +2,11 @@ import React from "react";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import styles from "./Header.module.scss";
 
-export const Header = (): JSX.Element => {
+export type HeaderProps = {
+  currentLanguageCode: string;
+};
+
+export const Header: React.FC<HeaderProps> = ({ currentLanguageCode }) => {
   return (
     <>
       <div className={styles.header}>
@@ -16,7 +20,7 @@ export const Header = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <Breadcrumbs />
+      <Breadcrumbs currentLanguageCode={currentLanguageCode} />
     </>
   );
 };

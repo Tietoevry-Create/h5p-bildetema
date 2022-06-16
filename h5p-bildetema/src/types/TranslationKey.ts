@@ -12,4 +12,5 @@ export type TranslationKey =
   | "footerLink2Label"
   | "footerLink2Href"
   | "footerLink3Label"
-  | "footerLink3Href";
+  | "footerLink3Href"
+  | "breadcrumbsTopic";

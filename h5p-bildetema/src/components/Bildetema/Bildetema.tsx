@@ -36,7 +36,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <Header />
+        <Header currentLanguageCode={currentLanguage.code} />
         <div className={styles.body}>
           {/* TODO: Look at extracting some of this code out of this render function */}
           <Routes>
