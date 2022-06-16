@@ -5,7 +5,6 @@ import { Header } from "..";
 import { Language, Topic } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
 import { useL10n } from "../../hooks/useL10n";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { Footer } from "../Footer/Footer";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
@@ -38,7 +37,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-        <Breadcrumbs />
         <div className={styles.body}>
           {/* TODO: Look at extracting some of this code out of this render function */}
           <Routes>
