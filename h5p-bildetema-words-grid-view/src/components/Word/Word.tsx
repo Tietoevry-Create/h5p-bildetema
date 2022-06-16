@@ -45,7 +45,13 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           images.map(image => (
             <SwiperSlide key={image}>
               <div>
-                <img src={removeSharepointLink(image)} alt="" />
+                <img
+                  className={styles.img}
+                  src={removeSharepointLink(image)}
+                  alt=""
+                  width="250"
+                  height="250"
+                />
               </div>
             </SwiperSlide>
           ))
@@ -53,8 +59,11 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           <SwiperSlide>
             <div>
               <img
+                className={styles.img}
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
                 alt=""
+                width="250"
+                height="250"
               />
             </div>
           </SwiperSlide>
