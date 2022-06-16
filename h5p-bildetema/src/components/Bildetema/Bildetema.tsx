@@ -72,7 +72,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
               );
             })}
             <Route
-              path="*"
+              path="/"
               element={<Navigate to={`/${currentLanguage.code}`} replace />}
             />
           </Routes>

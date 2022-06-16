@@ -11,4 +11,4 @@ done
 
 echo $mounts
 
-docker run --rm -p $2:80 $mounts $1
+docker run --rm $3 -p $2:80 $mounts $1
