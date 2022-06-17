@@ -1,14 +1,23 @@
 @use "../../../../common/abstracts" as *;
 
-.grid {
+.gridBig,
+.gridCompact {
   display: inline-grid;
-
-  /* static elements */
-  // grid-template-columns: repeat(auto-fill, $topic-card-width);
-
-  /* dynamic elements */
-  grid-template-columns: repeat(auto-fill, minmax($topic-card-width, 1fr));
-
   grid-gap: $spacing--16;
   width: 100%;
+}
+
+.gridBig {
+  /* static elements */
+  // grid-template-columns: repeat(auto-fill, $topic-card-big-width);
+
+  /* dynamic elements */
+  grid-template-columns: repeat(auto-fit, minmax($topic-card-big-width, 1fr));
+}
+
+.gridCompact {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax($topic-card-compact-width, 1fr)
+  );
 }

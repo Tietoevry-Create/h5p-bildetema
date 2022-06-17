@@ -1,0 +1,21 @@
+@use "../../../../common/abstracts" as *;
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing--16;
+}
+
+.buttonBig,
+.buttonCompact {
+  cursor: pointer;
+
+  &.active {
+    pointer-events: none;
+    font-weight: bold;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
