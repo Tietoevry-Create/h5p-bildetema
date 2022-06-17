@@ -19,7 +19,7 @@ ImageContainer.args = {
     id: "1",
     label: "Bildetema",
     images: [""],
-    audio: "",    
+    audio: "",
   },
   themeImageType: "vectorImageWithHotspots",
   words: [

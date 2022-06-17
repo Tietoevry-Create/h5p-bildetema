@@ -20,23 +20,23 @@ export const ThemeImageContainer: React.FC<ThemeImageContainerProps> = ({
     setCurrentWord(word);
   };
 
-  if(themeImageType === "vectorImageWithHotspots") {
-  return (
-    <div className={styles.wrapper}>
-      {theme.label} <br />
-      {themeImageType} <br />
-      {currentWord} <br />
-      {words.map(word => {
-        return (
-          <div key={word.id}>
-            <button type="button" onClick={() => handleClick(word.label)}>
-              {word.label}
-            </button>
-          </div>
-        );
-      })}
-    </div>
-  );
-    }
-    return (<div />);
+  if (themeImageType === "vectorImageWithHotspots") {
+    return (
+      <div className={styles.wrapper}>
+        {theme.label} <br />
+        {themeImageType} <br />
+        {currentWord} <br />
+        {words.map(word => {
+          return (
+            <div key={word.id}>
+              <button type="button" onClick={() => handleClick(word.label)}>
+                {word.label}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+  return <div />;
 };
