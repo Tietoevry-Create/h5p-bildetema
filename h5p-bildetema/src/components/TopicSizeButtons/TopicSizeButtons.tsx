@@ -12,15 +12,18 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
   topicsSize,
   setTopicsSize,
 }) => {
-  const handleClick = () => {
-    topicsSize === TopicGridSizes.Big
-      ? setTopicsSize(TopicGridSizes.Compact)
-      : setTopicsSize(TopicGridSizes.Big);
+  const handleClick = (): void => {
+    if (topicsSize === TopicGridSizes.Big) {
+      setTopicsSize(TopicGridSizes.Compact);
+    } else {
+      setTopicsSize(TopicGridSizes.Big);
+    }
   };
 
   return (
     <div className={styles.buttons}>
       <button
+        type="button"
         className={`${styles.buttonBig} ${
           topicsSize === TopicGridSizes.Big ? styles.active : ""
         }`}
@@ -31,6 +34,7 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         Big
       </button>
       <button
+        type="button"
         className={`${styles.buttonCompact} ${
           topicsSize === TopicGridSizes.Compact ? styles.active : ""
         }`}
