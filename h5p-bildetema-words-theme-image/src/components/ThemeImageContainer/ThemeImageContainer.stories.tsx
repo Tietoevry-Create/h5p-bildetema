@@ -15,6 +15,13 @@ const Template: ComponentStory<typeof ThemeImageContainer> = args => (
 
 export const ImageContainer = Template.bind({});
 ImageContainer.args = {
+  theme: {
+    id: "1",
+    label: "Bildetema",
+    images: [""],
+    audio: "",    
+  },
+  themeImageType: "vectorImageWithHotspots",
   words: [
     {
       id: "1",
