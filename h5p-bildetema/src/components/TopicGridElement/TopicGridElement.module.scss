@@ -1,6 +1,7 @@
 @use "../../../../common/abstracts" as *;
 
-.gridElement {
+.gridElementBig,
+.gridElementCompact {
   word-wrap: break-word;
   padding: 0.75rem 0.75rem 0.75rem 1.75rem;
   border-radius: 0;
@@ -8,10 +9,7 @@
   font-size: $font-size-16;
   font-weight: bold;
   border: 1.5px solid $dark-beige;
-  text-decoration: none;
   color: black;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   transition-duration: 0.2s;
   box-sizing: border-box;
@@ -21,19 +19,45 @@
   }
 }
 
-.topicCard {
-  display: flex;
-  flex-direction: column;
-  width: $topic-card-width;
-  height: $topic-card-height;
-  position: relative;
-  cursor: pointer;
+.gridElementBig {
+  position: absolute;
+  bottom: 0;
 }
 
-.topicCard:hover > .gridElement {
+.gridElementCompact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.topicCardBig,
+.topicCardCompact {
+  display: flex;
+  margin: auto;
+  position: relative;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  text-decoration: none;
+}
+
+.topicCardBig {
+  width: $topic-card-big-width;
+  height: $topic-card-big-height;
+  flex-direction: column;
+}
+
+.topicCardCompact {
+  width: $topic-card-compact-width;
+  height: $topic-card-compact-height;
+  flex-direction: row;
+  vertical-align: middle;
+}
+
+.topicCardBig:hover > *,
+.topicCardCompact:hover > * {
   background-color: $dark-beige;
 }
 
 .topicImage {
-  object-fit: cover;
+  object-fit: contain;
 }

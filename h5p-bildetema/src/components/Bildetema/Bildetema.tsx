@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Header } from "..";
-import { Language } from "../../../../common/types/types";
+import { Language, TopicGridSizes } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { Footer } from "../Footer/Footer";
@@ -15,6 +15,9 @@ type BildetemaProps = {
 
 export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const { isLoading, data: topics } = useQuery("topicsFromDB", getTopics);
+  const [topicsSize, setTopicsSize] = React.useState<TopicGridSizes>(
+    TopicGridSizes.Big,
+  );
 
   const loadingLabel = useL10n("pageIsLoading");
 
@@ -34,13 +37,17 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <Header currentLanguageCode={currentLanguage.code} />
+        <Header
+          currentLanguageCode={currentLanguage.code}
+          topicsSize={topicsSize}
+          setTopicsSize={setTopicsSize}
+        />
         <div className={styles.body}>
           {/* TODO: Look at extracting some of this code out of this render function */}
           <Routes>
             <Route
               path={`/${currentLanguage.code}`}
-              element={<TopicGrid items={topics} />}
+              element={<TopicGrid topicsSize={topicsSize} items={topics} />}
             />
             {topics?.map(topic => {
               const currTopicPath = `/${
@@ -63,11 +70,21 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                       <Route
                         key={topic.id}
                         path={currTopicPath}
-                        element={<TopicGrid items={topicGridItems} />}
+                        element={
+                          <TopicGrid
+                            topicsSize={topicsSize}
+                            items={topicGridItems}
+                          />
+                        }
                       />
                       <Route
                         path={currSubtopicPath}
-                        element={<TopicGrid words={wordsGridItems} />}
+                        element={
+                          <TopicGrid
+                            topicsSize={topicsSize}
+                            words={wordsGridItems}
+                          />
+                        }
                       />
                     </>
                   );
@@ -79,6 +96,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                   element={
                     <TopicGrid
                       words={topic.words.get(currentLanguage.code) ?? []}
+                      topicsSize={topicsSize}
                     />
                   }
                 />
