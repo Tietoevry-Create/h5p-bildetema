@@ -3,7 +3,7 @@ import { Word } from "../../../../common/types/types";
 import { ThemeImageTypes } from "../../types/ThemeImageTypes";
 import styles from "./ThemeImageContainer.module.scss";
 
-type ThemeImageContainerProps = {
+export type ThemeImageContainerProps = {
   theme: Word;
   themeImageType: ThemeImageTypes;
   words: Word[];
@@ -20,6 +20,7 @@ export const ThemeImageContainer: React.FC<ThemeImageContainerProps> = ({
     setCurrentWord(word);
   };
 
+  if(themeImageType === "vectorImageWithHotspots") {
   return (
     <div className={styles.wrapper}>
       {theme.label} <br />
@@ -36,4 +37,6 @@ export const ThemeImageContainer: React.FC<ThemeImageContainerProps> = ({
       })}
     </div>
   );
+    }
+    return (<div />);
 };
