@@ -26,6 +26,7 @@ export class H5PWrapper
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { l10n, region } = this.params;
 
     containerElement.appendChild(this.wrapper);
