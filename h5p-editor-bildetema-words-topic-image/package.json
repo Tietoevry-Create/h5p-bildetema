@@ -1,0 +1,53 @@
+{
+  "name": "bildetema-words-topic-image",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "vite build --mode=development --watch --minify=false",
+    "build:dev": "vite build --mode=development",
+    "build": "tsc && vite build && npm run generate-semantics && npm run generate-library",
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --write",
+    "eslint:check": "eslint .",
+    "eslint:fix": "eslint . --fix",
+    "lint": "npm run format:check && npm run eslint:check",
+    "lint:fix": "npm run format:fix && npm run eslint:fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "generate-semantics": "h5p-generate-configs s --type-definition ./src/semantics.ts --out ./semantics.json --translations ./src/types/TranslationKey.ts",
+    "generate-library": "h5p-generate-configs l --type-definition ./src/library.ts --out ./library.json"
+  },
+  "dependencies": {
+    "h5p-utils": "2.0.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.13",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "@vitejs/plugin-react": "^1.3.2",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "h5p-generate-configs": "^0.2.0",
+    "h5p-types": "^0.0.23",
+    "prettier": "^2.6.2",
+    "sass": "^1.52.2",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3",
+    "vite": "^2.9.10",
+    "vitest": "^0.14.1"
+  }
+}
