@@ -1,4 +1,5 @@
 import { LanguageCode } from "./LanguageCode";
+import type { Media } from "h5p-types";
 
 export type InputWord = Record<string, string>;
 
@@ -24,22 +25,7 @@ export type Topic = {
   image?: Image;
 };
 
-export type Image = {
-  path: string;
-  alt?: string;
-  height?: number;
-  width?: number;
-  copyright?: Copyright;
-};
-
-export type Copyright = {
-  author?: string;
-  license?: string;
-  source?: string;
-  title?: string;
-  version?: string;
-  year?: string;
-};
+export type Image = Media;
 
 export enum TopicGridSizes {
   Big,
