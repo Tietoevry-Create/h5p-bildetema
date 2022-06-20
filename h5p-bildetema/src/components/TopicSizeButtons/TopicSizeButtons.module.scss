@@ -9,10 +9,23 @@
 .buttonBig,
 .buttonCompact {
   cursor: pointer;
+  min-width: 2.5rem;
+  max-width: 2.5rem;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 8px;
+  border-color: transparent;
 
   &.active {
     pointer-events: none;
-    font-weight: bold;
+    background-color: $burgundy;
+
+    path {
+      fill: white;
+      stroke: white;
+    }
 
     &:focus {
       outline: none;

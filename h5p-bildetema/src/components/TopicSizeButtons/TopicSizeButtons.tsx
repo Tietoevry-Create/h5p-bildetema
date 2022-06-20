@@ -1,5 +1,6 @@
 import * as React from "react";
 import { TopicGridSizes } from "../../../../common/types/types";
+import { BigTopicsIcon, CompactTopicsIcon } from "../Icons/Icons";
 import styles from "./TopicSizeButtons.module.scss";
 
 export type TopicSizeButtonsProps = {
@@ -30,8 +31,7 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         onClick={handleClick}
         tabIndex={topicsSize === TopicGridSizes.Big ? -1 : 0}
       >
-        {/* TODO: Replace with svg */}
-        Big
+        <BigTopicsIcon />
       </button>
       <button
         type="button"
@@ -41,8 +41,7 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         onClick={handleClick}
         tabIndex={topicsSize === TopicGridSizes.Compact ? -1 : 0}
       >
-        {/* TODO: Replace with svg */}
-        Compact
+        <CompactTopicsIcon />
       </button>
     </div>
   );
