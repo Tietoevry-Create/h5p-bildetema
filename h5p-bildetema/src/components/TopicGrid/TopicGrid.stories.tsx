@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Topic, Word } from "../../../../common/types/types";
+import { Topic, TopicGridSizes, Word } from "../../../../common/types/types";
 import { TopicGrid } from "./TopicGrid";
 
 export default {
@@ -37,4 +37,5 @@ ThemesGrid.args = {
     { ...baseTopic, label: "test8", tema1: "test8" } as Topic,
     { ...baseTopic, label: "test9", tema1: "test9" } as Topic,
   ],
+  topicsSize: TopicGridSizes.Big,
 };
