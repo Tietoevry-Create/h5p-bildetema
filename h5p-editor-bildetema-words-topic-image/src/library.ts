@@ -12,6 +12,5 @@ export const library: Library = {
       path: "src/bildetema-words-topic-image.js",
     },
   ],
-  preloadedDependencies: [
-    ],
+  preloadedDependencies: [],
 };
