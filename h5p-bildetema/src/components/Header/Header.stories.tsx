@@ -7,4 +7,4 @@ export default {
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-export const Default = (): JSX.Element => <Header />;
+export const Default = (): JSX.Element => <Header currentLanguageCode="nob" />;
