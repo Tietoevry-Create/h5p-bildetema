@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Word } from "./Word";
-import { Word as WordType } from "../../../../common/types/types";
 
 export default {
   title: "Atoms/Word",
@@ -15,9 +14,6 @@ const Template: ComponentStory<typeof Word> = args => (
 
 export const Default = Template.bind({});
 Default.args = {
-  clickHandler(word: WordType) {
-    console.info(word);
-  },
   word: {
     id: "V0600",
     label: "Brettspill",
@@ -31,9 +27,6 @@ Default.args = {
 
 export const MultipleImages = Template.bind({});
 MultipleImages.args = {
-  clickHandler(word: WordType) {
-    console.info(word);
-  },
   word: {
     id: "V0599",
     label: "Puslespill",
@@ -49,9 +42,6 @@ MultipleImages.args = {
 
 export const NoImages = Template.bind({});
 NoImages.args = {
-  clickHandler(word: WordType) {
-    console.info(word);
-  },
   word: {
     id: "V0889",
     label: "Elg",
@@ -63,9 +53,6 @@ NoImages.args = {
 
 export const HiddenText = Template.bind({});
 HiddenText.args = {
-  clickHandler(word: WordType) {
-    console.info(word);
-  },
   word: {
     id: "V0889",
     label: "Elg",
