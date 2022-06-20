@@ -4,6 +4,9 @@
  */
 .Breadcrumbs {
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
   &::after {
     $nbsp: \00A0;
