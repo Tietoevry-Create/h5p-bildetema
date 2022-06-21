@@ -21,7 +21,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { label, images } = word;
 
   const renderImages = (): JSX.Element => {
-    const multipleImages = images.length > 1;
+    const multipleImages = images && images.length > 1;
 
     return (
       <Swiper
