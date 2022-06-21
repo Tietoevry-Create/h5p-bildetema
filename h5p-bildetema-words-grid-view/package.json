@@ -1,5 +1,5 @@
 {
-  "name": "h5p-bildetema",
+  "name": "h5p-bildetema-words-grid-view",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -23,7 +23,8 @@
     "generate-semantics": "h5p-generate-configs s --type-definition ./src/semantics.ts --out ./semantics.json --translations ./src/types/TranslationKey.ts",
     "//watch-semantics": "nodemon ./src/**/* --exec 'npm run generate-semantics'",
     "generate-library": "h5p-generate-configs l --type-definition ./src/library.ts --out ./library.json",
-    "//watch-library": "nodemon ./src/**/* --exec 'npm run generate-library'"
+    "//watch-library": "nodemon ./src/**/* --exec 'npm run generate-library'",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "h5p-utils": "^2.1.0",

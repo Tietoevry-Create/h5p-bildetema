@@ -6,8 +6,16 @@
     "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-theme-image'",
     "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-words-grid-view' 'npm start --prefix h5p-bildetema-words-tree-view' 'npm start --prefix h5p-bildetema-words-theme-image'",
     "test": "concurrently 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-words-grid-view' 'npm test --prefix h5p-bildetema-words-tree-view' 'npm test --prefix h5p-bildetema-words-theme-image'",
-    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view' 'npm test:watch --prefix h5p-bildetema-words-tree-view' 'npm test:watch --prefix h5p-bildetema-words-theme-image'"
+    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view' 'npm test:watch --prefix h5p-bildetema-words-tree-view' 'npm test:watch --prefix h5p-bildetema-words-theme-image'",
+    "typecheck": "npm run typecheck -w h5p-bildetema -w h5p-bildetema-words-grid-view -w h5p-bildetema-words-theme-image -w h5p-bildetema-words-tree-view"
   },
+  "workspaces": [
+    "h5p-bildetema",
+    "h5p-bildetema-words-grid-view",
+    "h5p-bildetema-words-theme-image",
+    "h5p-bildetema-words-tree-view",
+    "h5p-editor-bildetema-words-topic-image"
+  ],
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
@@ -28,6 +36,6 @@
     "prettier": "^2.6.2",
     "puppeteer": "^14.4.0",
     "ts-node": "^10.8.1",
-    "type-fest": "^2.13.0"
+    "type-fest": "^2.13.1"
   }
 }
