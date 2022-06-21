@@ -1,4 +1,5 @@
 import { LanguageCode } from "./LanguageCode";
+import type { Image } from "h5p-types";
 
 export type InputWord = Record<string, string>;
 
@@ -6,7 +7,7 @@ export type Word = {
   id: string;
   label: string;
   images: string[];
-  audio: string | undefined;
+  audio?: string;
 };
 
 export type Language = {
@@ -21,4 +22,10 @@ export type Topic = {
   label: string;
   subTopics: Map<string, Topic>;
   words: Map<LanguageCode, Word[]>;
+  image?: Image;
 };
+
+export enum TopicGridSizes {
+  Big,
+  Compact,
+}

@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Topic, Word } from "../../../../common/types/types";
+import { Topic, TopicGridSizes, Word } from "../../../../common/types/types";
 import { TopicGrid } from "./TopicGrid";
 
 export default {
@@ -14,6 +14,9 @@ const baseTopic: Topic = {
   label: "",
   subTopics: new Map<string, Topic>(),
   words: new Map<LanguageCode, Word[]>(),
+  image: {
+    path: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
+  },
 };
 
 const Template: ComponentStory<typeof TopicGrid> = args => (
@@ -34,4 +37,5 @@ ThemesGrid.args = {
     { ...baseTopic, label: "test8", tema1: "test8" } as Topic,
     { ...baseTopic, label: "test9", tema1: "test9" } as Topic,
   ],
+  topicsSize: TopicGridSizes.Big,
 };

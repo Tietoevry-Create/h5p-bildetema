@@ -30,3 +30,15 @@
   display: flex;
   gap: $spacing--16;
 }
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing--16;
+}

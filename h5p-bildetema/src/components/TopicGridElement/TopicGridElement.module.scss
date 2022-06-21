@@ -1,27 +1,60 @@
 @use "../../../../common/abstracts" as *;
 
-.gridElement {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: fit-content;
+.gridElementBig,
+.gridElementCompact {
   word-wrap: break-word;
   padding: 0.75rem 0.75rem 0.75rem 1.75rem;
   border-radius: 0;
   background-color: $beige;
-  font-size: $font-size-16;
+  font-size: $font-size-18;
   font-weight: bold;
   border: 1.5px solid $dark-beige;
-  cursor: pointer;
-  transition-duration: 0.2s;
-  text-decoration: none;
   color: black;
-
-  &:hover {
-    background-color: $dark-beige;
-  }
+  width: 100%;
+  transition-duration: 0.2s;
+  box-sizing: border-box;
 
   &.disabled {
     pointer-events: none;
+  }
+}
+
+.gridElementCompact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.topicCardBig,
+.topicCardCompact {
+  text-decoration: none;
+
+  &:hover > * {
+    background-color: $dark-beige;
+  }
+}
+
+.topicCardBig {
+  display: flex;
+  flex-direction: column;
+}
+
+.topicCardCompact {
+  display: inline-flex;
+  flex-direction: row;
+  margin-block-end: $spacing--16;
+  inline-size: 100%;
+}
+
+.topicImage {
+  object-fit: cover;
+
+  .topicCardBig & {
+    aspect-ratio: 16 / 9;
+    inline-size: 100%;
+  }
+
+  .topicCardCompact & {
+    block-size: 4.375rem;
   }
 }

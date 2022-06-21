@@ -9,6 +9,7 @@ type WordsProps = {
 export const Words: React.FC<WordsProps> = ({ words }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const library = new (H5P as any).BildetemaWordsGridView({
       "bildetema-words-grid-view": words,
     });

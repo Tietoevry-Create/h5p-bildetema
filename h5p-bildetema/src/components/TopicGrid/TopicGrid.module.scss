@@ -1,9 +1,24 @@
 @use "../../../../common/abstracts" as *;
 
-.grid {
-  display: inline-grid;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $spacing--16;
-  width: 100%;
+.gridBig {
+  display: grid;
+  grid-gap: $spacing--16;
+
+  /* static elements */
+  // grid-template-columns: repeat(auto-fill, $topic-card-big-width);
+
+  /* dynamic elements */
+  grid-template-columns: repeat(auto-fit, minmax($topic-card-big-width, 1fr));
+}
+
+.gridCompact {
+  column-gap: $spacing--16;
+
+  @media screen and (min-width: 50rem) {
+    column-count: 2;
+  }
+
+  @media screen and (min-width: 75rem) {
+    column-count: 3;
+  }
 }

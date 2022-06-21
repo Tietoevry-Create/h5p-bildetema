@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Topic } from "../../../../common/types/types";
+import { Topic, TopicGridSizes } from "../../../../common/types/types";
 import { fetchData, getTopics } from "../../../../common/utils/data.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 
@@ -17,5 +17,5 @@ export const TopicsList: React.FC<TopicsListProps> = props => {
     run();
   }, []);
 
-  return <TopicGrid items={topics} />;
+  return <TopicGrid items={topics} topicsSize={TopicGridSizes.Big} />;
 };
