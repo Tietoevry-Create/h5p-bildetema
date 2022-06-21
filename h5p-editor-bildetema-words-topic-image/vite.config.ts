@@ -1,56 +1,11 @@
 import react from "@vitejs/plugin-react";
-import type { OutputAsset, OutputChunk } from "rollup";
-import { defineConfig, PluginOption } from "vite";
-
-const isOutputChunk = (
-  chunkOrAsset: OutputChunk | OutputAsset,
-): chunkOrAsset is OutputChunk => {
-  // eslint-disable-next-line dot-notation
-  return chunkOrAsset["code"] != null;
-};
-
-const wrapIIFE = (): PluginOption => ({
-  name: "wrap-iife",
-  generateBundle(options, bundle) {
-    const chunks = Object.values(bundle);
-
-    for (let i = 0; i < chunks.length; i += 1) {
-      const chunk = chunks[i];
-      if (isOutputChunk(chunk)) {
-        // eslint-disable-next-line no-param-reassign
-        chunk.code = `(function(){${chunk.code}})()`;
-      }
-    }
-  },
-});
+import { defineConfig } from "vitest/config";
+import { getBuildConfig, wrapIIFE } from "../common/utils/vite-config.utils";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), wrapIIFE()],
-  build: {
-    minify: "esbuild",
-
-    rollupOptions: {
-      input: "src/index.tsx",
-      output: {
-        file: "dist/bundle.js",
-        dir: undefined,
-        inlineDynamicImports: true,
-        manualChunks: undefined,
-        assetFileNames: assetInfo => {
-          if (assetInfo.name === "index.css") {
-            return "main.css";
-          }
-
-          return assetInfo.name ?? "";
-        },
-        esModule: false,
-        format: "iife",
-      },
-    },
-
-    target: "es6",
-  },
+  build: getBuildConfig(),
   test: {
     environment: "happy-dom",
   },
