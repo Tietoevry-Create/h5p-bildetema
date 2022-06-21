@@ -11,13 +11,7 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words }) => {
   return (
     <div className={styles.topicgrid}>
       {words.map(item => {
-        return (
-          <Word
-            key={item.id}
-            word={item}
-            textVisible
-          />
-        );
+        return <Word key={item.id} word={item} textVisible />;
       })}
     </div>
   );
