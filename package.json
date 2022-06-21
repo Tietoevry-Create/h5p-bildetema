@@ -25,6 +25,7 @@
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-storybook": "^0.5.12",
+    "h5p-types": "^0.1.0",
     "prettier": "^2.6.2",
     "puppeteer": "^14.4.0",
     "ts-node": "^10.8.1",
