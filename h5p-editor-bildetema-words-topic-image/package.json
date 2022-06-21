@@ -18,6 +18,8 @@
     "lint:fix": "npm run format:fix && npm run eslint:fix",
     "test": "vitest run",
     "test:watch": "vitest",
+    "storybook": "start-storybook -p 6006 -h localhost",
+    "build-storybook": "build-storybook",
     "generate-semantics": "h5p-generate-configs s --type-definition ./src/semantics.ts --out ./semantics.json --translations ./src/types/TranslationKey.ts",
     "generate-library": "h5p-generate-configs l --type-definition ./src/library.ts --out ./library.json"
   },
@@ -27,6 +29,10 @@
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-vite": "^0.1.36",
+    "@storybook/react": "^6.5.9",
     "@types/jquery": "^3.5.13",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
@@ -43,6 +49,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "h5p-generate-configs": "^0.2.0",
     "h5p-types": "^0.0.23",
+    "happy-dom": "^5.3.1",
     "prettier": "^2.6.2",
     "sass": "^1.52.2",
     "ts-node": "^10.8.1",
