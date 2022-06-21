@@ -2,8 +2,6 @@ name: "Pack and release content type: h5p-bildetema"
 
 on:
   push:
-    branches:
-      - main
     paths:
       - common/**
       - h5p-bildetema/**
@@ -18,16 +16,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Pack and release
     steps:
-      - uses: actions/checkout@v2
-      - uses: boyum/pack-h5p-action@0.0.6
-        id: release-h5p
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Pack H5P
+        uses: boyum/pack-h5p-action@0.0.6
+        id: pack-h5p
         with:
           working-directory: ${{env.working-directory}}
+
       - uses: "marvinpinto/action-automatic-releases@latest" # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{steps.release-h5p.outputs.version}}
+          automatic_release_tag: h5p-bildetema_${{steps.pack-h5p.outputs.version}}
           prerelease: false
           files: |
-            ${{steps.release-h5p.outputs.filePath}}
+            ${{steps.pack-h5p.outputs.filePath}}
