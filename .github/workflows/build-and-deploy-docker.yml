@@ -78,11 +78,8 @@ jobs:
 
     runs-on: ubuntu-latest
     needs: [push]
-    strategy:
-      max-parallel: 1
-      matrix:
-        env: [dev]
-    environment: ${{ matrix.env }}
+
+    environment: dev
 
     steps:
       - name: Check out the repo
@@ -90,7 +87,7 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: "${{ matrix.env }}-bildetema-drupal"
+          app-name: "dev-bildetema-drupal"
           publish-profile: ${{ secrets.PUBLISH_PROFILE }}
           images: "ghcr.io/${{ needs.push.outputs.docker_image_tag }}"
 
@@ -103,11 +100,7 @@ jobs:
 
     runs-on: ubuntu-latest
     needs: [push, deploy-dev]
-    strategy:
-      max-parallel: 1
-      matrix:
-        env: [test]
-    environment: ${{ matrix.env }}
+    environment: test
 
     steps:
       - name: Check out the repo
@@ -115,7 +108,7 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: "${{ matrix.env }}-bildetema-drupal"
+          app-name: "test-bildetema-drupal"
           publish-profile: ${{ secrets.PUBLISH_PROFILE }}
           images: "ghcr.io/${{ needs.push.outputs.docker_image_tag }}"
 
