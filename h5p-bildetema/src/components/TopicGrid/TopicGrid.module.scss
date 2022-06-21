@@ -1,13 +1,9 @@
 @use "../../../../common/abstracts" as *;
 
-.gridBig,
-.gridCompact {
-  display: inline-grid;
-  grid-gap: $spacing--16;
-  width: 100%;
-}
-
 .gridBig {
+  display: grid;
+  grid-gap: $spacing--16;
+
   /* static elements */
   // grid-template-columns: repeat(auto-fill, $topic-card-big-width);
 
@@ -16,8 +12,9 @@
 }
 
 .gridCompact {
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax($topic-card-compact-width, 1fr)
-  );
+  column-gap: $spacing--16;
+
+  @media screen and (min-width: 50rem) {
+    column-count: 2;
+  }
 }
