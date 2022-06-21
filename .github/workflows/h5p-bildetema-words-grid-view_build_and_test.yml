@@ -25,9 +25,6 @@ jobs:
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Install root dependencies
-        uses: bahmutov/npm-install@v1
-
       - name: Install Node.js dependencies
         uses: bahmutov/npm-install@v1
         with:

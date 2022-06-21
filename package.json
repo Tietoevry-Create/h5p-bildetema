@@ -3,7 +3,6 @@
     "setup-drupal": "ts-node puppeteer/setup-drupal.ts",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
-    "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-theme-image'",
     "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-words-grid-view' 'npm start --prefix h5p-bildetema-words-tree-view' 'npm start --prefix h5p-bildetema-words-theme-image'",
     "test": "concurrently 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-words-grid-view' 'npm test --prefix h5p-bildetema-words-tree-view' 'npm test --prefix h5p-bildetema-words-theme-image'",
     "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view' 'npm test:watch --prefix h5p-bildetema-words-tree-view' 'npm test:watch --prefix h5p-bildetema-words-theme-image'",
