@@ -1,6 +1,6 @@
 # h5p-bildetema
 
-Empty project.
+H5P Bildetema is an [H5P](https://h5p.org) content type that provides an environment for teaching and learning new languages.
 
 ## Building and running on localhost
 
