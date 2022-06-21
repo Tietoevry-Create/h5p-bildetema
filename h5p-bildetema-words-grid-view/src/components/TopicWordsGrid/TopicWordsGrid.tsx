@@ -16,9 +16,6 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words }) => {
             key={item.id}
             word={item}
             textVisible
-            clickHandler={() => {
-              ("");
-            }}
           />
         );
       })}
