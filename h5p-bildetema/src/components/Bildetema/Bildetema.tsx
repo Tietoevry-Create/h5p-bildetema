@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Header } from "..";
 import { Language, TopicGridSizes } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { Footer } from "../Footer/Footer";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
@@ -12,6 +13,27 @@ import styles from "./Bildetema.module.scss";
 type BildetemaProps = {
   currentLanguage: Language;
 };
+
+const selectedLanguages: Language[] = [
+  {
+    label: "Engelsk",
+    code: makeLanguageCode("eng"),
+    rtl: false,
+    isFavorite: true,
+  },
+  {
+    label: "Norsk (Bokmål)",
+    code: makeLanguageCode("nob"),
+    rtl: false,
+    isFavorite: true,
+  },
+  {
+    label: "Norsk (Nynorsk)",
+    code: makeLanguageCode("non"),
+    rtl: false,
+    isFavorite: true,
+  },
+];
 
 export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const { isLoading, data: topics } = useQuery("topicsFromDB", getTopics);
@@ -49,6 +71,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
           isWordView={isWordView}
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
+          selectedLanguages={selectedLanguages}
         />
         <div className={styles.body}>
           {/* TODO: Look at extracting some of this code out of this render function */}

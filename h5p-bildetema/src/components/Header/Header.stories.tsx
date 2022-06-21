@@ -22,6 +22,7 @@ const Template = (isWordView: boolean): JSX.Element => {
         setChecked(value);
       }}
       toggleChecked={checked}
+      selectedLanguages={[]}
     />
   );
 };
