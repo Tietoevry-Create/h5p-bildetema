@@ -1,11 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import {
-  Topic,
-  Word,
-  Image,
-  TopicGridSizes,
-} from "../../../../common/types/types";
+import type { Image } from "h5p-types";
+import { Topic, Word, TopicGridSizes } from "../../../../common/types/types";
 import styles from "./TopicGridElement.module.scss";
 
 type TopicGridElementProps = {
