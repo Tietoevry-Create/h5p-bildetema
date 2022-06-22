@@ -84,13 +84,13 @@ SvgComponent.args = {
       id: "1",
       wordId: "ID000ØRE",
       outline:
-        '<rect width="100" height="100" x="60%" y="5%" style="fill:none;stroke:red;stroke-width:3;stroke:red;"></rect>',
+        '<rect width="10%" height="10%" x="65%" y="5%" style="fill:none;stroke:red;stroke-width:3;stroke:red;"></rect>',
     },
     {
       id: "2",
       wordId: "ID000POTE",
       outline:
-        '<rect width="100" height="100" style="fill:none;stroke:red;stroke-width:3;stroke:red;" y="65%" x="70%"></rect>',
+        '<rect width="10%" height="10%" style="fill:none;stroke:red;stroke-width:3;stroke:red;" y="72%" x="75%"></rect>',
     },
   ],
 };

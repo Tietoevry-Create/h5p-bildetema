@@ -20,7 +20,7 @@ export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
   });
   return (
     <div>
-      <div>
+      <div className={styles.imageContainer}>
         <div dangerouslySetInnerHTML={{ __html: image }} />
         <svg className={styles.overlays}>{overlayFields}</svg>
       </div>
