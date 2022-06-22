@@ -3,4 +3,9 @@
   margin: 0 auto;
   height: 100%;
   border: 1px solid #ccc;
+  flex: initial;
+}
+
+.selected {
+  border: 2px solid yellowgreen;
 }

@@ -1,7 +1,7 @@
 @use "../../../../common/abstracts" as *;
 
 .wrapper {
-  display: flex;
+  display: -webkit-box;
   flex-direction: column;
   gap: $spacing--16;
   width: 100%;

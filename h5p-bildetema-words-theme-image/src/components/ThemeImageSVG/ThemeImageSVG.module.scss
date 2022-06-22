@@ -6,6 +6,12 @@
   height: 100%;
 }
 
+.overlay {
+  pointer-events: all;
+}
+
 .imageContainer {
   position: relative;
+  flex: initial;
+  width: 80%;
 }
