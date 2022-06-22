@@ -9,7 +9,7 @@
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
-    "build": "tsc && vite build && npm run generate-semantics && npm run generate-library",
+    "build": "tsc && vite build && npm run generate-library",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "eslint:check": "eslint .",
