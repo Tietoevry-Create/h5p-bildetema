@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Topic, TopicGridSizes, Word } from "../../../../common/types/types";
+import {
+  Language,
+  Topic,
+  TopicGridSizes,
+  Word,
+} from "../../../../common/types/types";
 import { TopicGridElement, Words } from "..";
 import styles from "./TopicGrid.module.scss";
 
@@ -9,6 +14,11 @@ type TopicGridProps = {
   topicsSize: TopicGridSizes;
   setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
   showWrittenWords: boolean;
+  currentLanguage: Language;
+  setCurrentTopic: React.Dispatch<React.SetStateAction<Topic | undefined>>;
+  setCurrentSubTopic: React.Dispatch<React.SetStateAction<Topic | undefined>>;
+  topic?: Topic;
+  subTopic?: Topic;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -17,7 +27,17 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   topicsSize,
   setIsWordView,
   showWrittenWords,
+  currentLanguage,
+  setCurrentTopic,
+  topic,
+  setCurrentSubTopic,
+  subTopic,
 }) => {
+  React.useEffect(() => {
+    setCurrentTopic(topic);
+    setCurrentSubTopic(subTopic);
+  });
+
   if (items) {
     setIsWordView(false);
     return (
@@ -32,7 +52,10 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
           return (
             <TopicGridElement
               key={item.id}
-              title={item.label}
+              title={
+                item.labelTranslations.get(currentLanguage.code)?.label ??
+                item.id
+              }
               index={items.indexOf(item)}
               images={item.images}
               topicSize={topicsSize}

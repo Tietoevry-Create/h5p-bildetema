@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
 import { TopicGridSizes } from "../../../../common/types/types";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
   title: "Components/Header",
@@ -14,7 +15,13 @@ const Template = (isWordView: boolean): JSX.Element => {
 
   return (
     <Header
-      currentLanguageCode="nob"
+      currentLanguage={{
+        label: "Norsk (Bokmål)",
+        code: makeLanguageCode("nob"),
+        rtl: false,
+        isFavorite: false,
+      }}
+      changeCurrentLanguage={() => null}
       setTopicsSize={setTopicsSize}
       topicsSize={topicSize}
       isWordView={isWordView}

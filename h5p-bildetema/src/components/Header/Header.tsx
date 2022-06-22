@@ -9,23 +9,25 @@ import { Toggle, Breadcrumbs } from "..";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
-  currentLanguageCode: string;
+  currentLanguage: Language;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
   selectedLanguages: Language[];
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
+  changeCurrentLanguage: (newLanguage: Language) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
-  currentLanguageCode,
+  currentLanguage,
   topicsSize,
   setTopicsSize,
   selectedLanguages,
   isWordView,
   toggleChecked,
   handleToggleChange,
+  changeCurrentLanguage,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -66,7 +68,14 @@ export const Header: React.FC<HeaderProps> = ({
             <p>{translations.lang_non}</p>
             {selectedLanguages.map(language => {
               return (
-                <button className={styles.languageButton} type="button">
+                <button
+                  key={language.code}
+                  onClick={() => changeCurrentLanguage(language)}
+                  className={`${styles.languageButton} ${
+                    language === currentLanguage ? styles.active : ""
+                  }`}
+                  type="button"
+                >
                   {language.label}
                 </button>
               );
@@ -80,8 +89,12 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       <div className={styles.bottom}>
-        <Breadcrumbs currentLanguageCode={currentLanguageCode} />
+        <Breadcrumbs currentLanguageCode={currentLanguage.code} />
         {renderLeftMenu()}
+        <TopicSizeButtons
+          topicsSize={topicsSize}
+          setTopicsSize={setTopicsSize}
+        />
       </div>
     </div>
   );

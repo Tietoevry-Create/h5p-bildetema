@@ -59,13 +59,15 @@
 }
 
 .languageButton {
-  &:hover,
-  :active {
+  &:hover {
     text-decoration: underline;
   }
 
-  &:active &:focus {
-    outline: none;
+  &.active {
+    text-decoration: underline;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
