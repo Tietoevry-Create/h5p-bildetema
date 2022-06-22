@@ -15,13 +15,14 @@ const baseWord = {
 };
 
 describe(ThemeImageWordList.name, () => {
-  const template = ({ words }: ThemeImageWordListProps): HTMLElement => {
-    const { container } = render(<ThemeImageWordList words={words} />);
+  const template = ({ words, currentWordId }: ThemeImageWordListProps): HTMLElement => {
+    const { container } = render(<ThemeImageWordList words={words} currentWordId={currentWordId} />);
     return container;
   };
 
   it("Should render nothing if wordList is Empty", () => {
     const container = template({
+      currentWordId: undefined,
       words: [],
     });
 
@@ -31,6 +32,7 @@ describe(ThemeImageWordList.name, () => {
 
   it("Should one child when words hase one element", () => {
     const container = template({
+      currentWordId: undefined,
       words: [{ ...baseWord }],
     });
     expect(container.querySelector("div")).toBeTruthy();

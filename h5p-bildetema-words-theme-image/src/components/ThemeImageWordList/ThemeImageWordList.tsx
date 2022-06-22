@@ -4,7 +4,7 @@ import styles from "./ThemeImageWordList.module.scss";
 
 export type ThemeImageWordListProps = {
   words: Word[];
-  currentWordId: string;
+  currentWordId: string | undefined;
 };
 
 export const ThemeImageWordList: React.FC<ThemeImageWordListProps> = ({
