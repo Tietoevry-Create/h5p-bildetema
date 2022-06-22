@@ -38,7 +38,7 @@ describe(ThemeImageContainer.name, () => {
       theme: { ...baseWord },
       themeImage: "test",
       themeOverlays: [],
-      themeImageType: "vectorImageWithHotspots",
+      themeImageType: "nonVectorImageWithHotspots",
       words: [{ ...baseWord }],
     });
 
