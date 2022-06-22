@@ -15,8 +15,13 @@ const baseWord = {
 };
 
 describe(ThemeImageWordList.name, () => {
-  const template = ({ words, currentWordId }: ThemeImageWordListProps): HTMLElement => {
-    const { container } = render(<ThemeImageWordList words={words} currentWordId={currentWordId} />);
+  const template = ({
+    words,
+    currentWordId,
+  }: ThemeImageWordListProps): HTMLElement => {
+    const { container } = render(
+      <ThemeImageWordList words={words} currentWordId={currentWordId} />,
+    );
     return container;
   };
 
