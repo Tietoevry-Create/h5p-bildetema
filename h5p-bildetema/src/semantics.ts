@@ -62,6 +62,30 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "Topic",
         type: "text",
       },
+      {
+        label: "Language selection label",
+        name: "selectLanguage",
+        default: "Language",
+        type: "text",
+      },
+      {
+        label: "English",
+        name: "lang_eng",
+        default: "English",
+        type: "text",
+      },
+      {
+        label: "Norwegian bokmål",
+        name: "lang_nob",
+        default: "Norwegian bokmål",
+        type: "text",
+      },
+      {
+        label: "Norwegian nynorsk",
+        name: "lang_non",
+        default: "Norwegian nynorsk",
+        type: "text",
+      },
     ],
   },
 ];
