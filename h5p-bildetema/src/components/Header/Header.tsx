@@ -1,26 +1,45 @@
 import React from "react";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
-import { useL10ns } from "../../hooks/useL10n";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { useL10n } from "../../hooks/useL10n";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
+import { Toggle, Breadcrumbs } from "..";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
   currentLanguageCode: string;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
+  isWordView: boolean;
+  toggleChecked: boolean;
+  handleToggleChange: (value: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
   currentLanguageCode,
   topicsSize,
   setTopicsSize,
+  isWordView,
+  toggleChecked,
+  handleToggleChange,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${typeof languages[number]}`>;
-  const translations = useL10ns(...languageKeys, "selectLanguage");
+  const translations = useL10n(...languageKeys, "selectLanguage");
+  const renderLeftMenu = (): JSX.Element => {
+    const element = isWordView ? (
+      <Toggle
+        label="Vis skrevne ord"
+        checked={toggleChecked}
+        handleChange={handleToggleChange}
+      />
+    ) : (
+      <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
+    );
+
+    return element;
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -37,10 +56,11 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
       <div className={styles.bottom}>
         <Breadcrumbs currentLanguageCode={currentLanguageCode} />
-        <TopicSizeButtons
+        {/* <TopicSizeButtons
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
-        />
+          /> */}
+        {renderLeftMenu()}
       </div>
     </div>
   );
