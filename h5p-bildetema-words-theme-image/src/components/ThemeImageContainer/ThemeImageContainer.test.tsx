@@ -6,8 +6,9 @@ import {
   ThemeImageContainerProps,
 } from "./ThemeImageContainer";
 import { ThemeImageTypes } from "../../types/ThemeImageTypes";
+import { Word } from "../../../../common/types/types";
 
-const baseWord = {
+const baseWord: Word = {
   id: "1",
   label: "Bildetema",
   images: [""],
@@ -25,6 +26,8 @@ describe(ThemeImageContainer.name, () => {
         theme={theme}
         themeImageType={themeImageType}
         words={words}
+        themeImage="test"
+        themeOverlays={[]}
       />,
     );
     return container;
@@ -33,8 +36,10 @@ describe(ThemeImageContainer.name, () => {
   it("Should render nothing if type != vectorImageWithHotspots", () => {
     const container = template({
       theme: { ...baseWord },
+      themeImage: "test",
+      themeOverlays: [],
       themeImageType: "nonVectorImageWithHotspots",
-      words: [],
+      words: [{ ...baseWord }],
     });
 
     expect(container.querySelector("div")).toBeTruthy();
@@ -43,6 +48,8 @@ describe(ThemeImageContainer.name, () => {
 
   it("Should only render if type == vectorImageWithHotspots", () => {
     const container = template({
+      themeImage: "test",
+      themeOverlays: [],
       theme: { ...baseWord },
       themeImageType: "vectorImageWithHotspots",
       words: [],

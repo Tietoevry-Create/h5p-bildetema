@@ -2,6 +2,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { ThemeImageContainer } from "./ThemeImageContainer";
+import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 
 export default {
   label: "Molecules/ToppicGrid",
@@ -21,17 +22,19 @@ ImageContainer.args = {
     images: [""],
     audio: "",
   },
+  themeImage: cat,
+  themeOverlays: overlays,
   themeImageType: "vectorImageWithHotspots",
   words: [
     {
-      id: "1",
-      label: "Bildetema",
+      id: overlays[0].wordId,
+      label: "Øre",
       images: [""],
       audio: "",
     },
     {
-      id: "2",
-      label: "Temabilde",
+      id: overlays[1].wordId,
+      label: "Pote",
       images: [""],
       audio: "",
     },

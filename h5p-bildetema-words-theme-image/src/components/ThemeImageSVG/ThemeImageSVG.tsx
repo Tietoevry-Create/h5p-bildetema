@@ -8,22 +8,28 @@ export type ThemeImageSVGProps = {
   words: Word[];
   image: string;
   overlays: OverlayType[];
+  selectWord: (word: string) => void;
 };
 
 export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
   image,
   words,
   overlays,
+  selectWord,
 }) => {
   const overlayFields = overlays.map((overlay, index) => {
-    return <g dangerouslySetInnerHTML={{ __html: overlay.outline }} />;
+    return (
+      <g
+        className={styles.overlay}
+        onClick={() => selectWord(overlay.wordId)}
+        dangerouslySetInnerHTML={{ __html: overlay.outline }}
+      />
+    );
   });
   return (
-    <div>
-      <div>
-        <div dangerouslySetInnerHTML={{ __html: image }} />
-        <svg className={styles.overlays}>{overlayFields}</svg>
-      </div>
+    <div className={styles.imageContainer}>
+      <div dangerouslySetInnerHTML={{ __html: image }} />
+      <svg className={styles.overlays}>{overlayFields}</svg>
     </div>
   );
 };
