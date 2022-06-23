@@ -62,8 +62,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: true
-          # push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.DOCKER_SHA }},${{ env.DOCKER_LATEST }}
 
       - name: Set image as output
@@ -71,7 +70,7 @@ jobs:
         shell: bash
         run: echo "::set-output name=tag::${{ env.DOCKER_SHA }}"
   deploy-dev:
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     name: Deploy dev
 
     runs-on: ubuntu-latest
