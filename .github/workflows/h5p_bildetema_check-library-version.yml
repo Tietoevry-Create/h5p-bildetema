@@ -15,16 +15,22 @@ on:
 env:
   working-directory: "./h5p-bildetema"
 
-defaults:
-  run:
-    working-directory: "./h5p-bildetema"
-
 jobs:
   check-h5p-library-version:
     name: Check H5P if library version is updated
     runs-on: ubuntu-latest
     steps:
       - name: Check library version
-        uses: boyum/comment-h5p-library-version-action@v1 # https://github.com/boyum/comment-h5p-library-version-action
+        uses: boyum/comment-h5p-library-version-action@v2 # https://github.com/boyum/comment-h5p-library-version-action
         with:
           working-directory: ${{env.working-directory}}
+          project-id: h5p-bildetema
+          cancel-label: non-functional-h5p-bildetema
+          version-changed-message: |
+            :tada: \`H5P.Bildetema\`'s library version was updated from **%OLD_VERSION%** to **%NEW_VERSION%**.
+          version-not-changed-message: |
+            :warning: \`H5P.Bildetema\`'s library version was not updated.
+            Add the label \`%CANCEL_LABEL%\` if this PR does not require a change of version numbers.
+
+            **Current version:** %NEW_VERSION%
+            **Main version:** %OLD_VERSION%
