@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import styles from "./Word.module.scss";
 import { Word as WordType } from "../../../../common/types/types";
+import { Image } from "../Image/Image";
 
 // import Swiper and modules styles
 import "swiper/css";
@@ -16,17 +17,42 @@ type WordProps = {
   textVisible: boolean;
 };
 
+enum Size {
+  Small,
+  Medium,
+  Large,
+  XLarge,
+}
+
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { label, images } = word;
 
-  // Temporary workaround while we don't have images in a known location.
-  // To test add images to /sites/default/files/h5p/development/h5p-bilder/
-  // For dev-root add images in the folder h5p-bilder in the dev-root and restart
-  const removeSharepointLink = (url: string): string => {
-    return url.replace(
-      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/",
-      "https://prodbildetemabackend.blob.core.windows.net/images/large/",
-    );
+  const getImageUrl = (url: string, size?: Size): string => {
+    const storageUrl =
+      "https://prodbildetemabackend.blob.core.windows.net/images/";
+    const fileName = url.split("/").pop() || "";
+
+    switch (size) {
+      case Size.Small:
+        return `${storageUrl}small/${fileName}`;
+      case Size.Medium:
+        return `${storageUrl}medium/${fileName}`;
+      case Size.Large:
+        return `${storageUrl}large/${fileName}`;
+      case Size.XLarge:
+        return `${storageUrl}xlarge/${fileName}`;
+      default:
+        return `${storageUrl}large/${fileName}`;
+    }
+  };
+
+  const getSrcSet = (url: string): string => {
+    return `
+      ${getImageUrl(url, Size.Small)} 200,
+      ${getImageUrl(url, Size.Medium)} 350,
+      ${getImageUrl(url, Size.Large)} 600,
+      ${getImageUrl(url, Size.XLarge)} 1000,
+    `;
   };
 
   const renderImages = (): JSX.Element => {
@@ -45,10 +71,9 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           images.map(image => (
             <SwiperSlide key={image}>
               <div>
-                <img
-                  className={styles.img}
-                  src={removeSharepointLink(image)}
-                  alt=""
+                <Image
+                  src={getImageUrl(image)}
+                  srcSet={getSrcSet(image)}
                   width="250"
                   height="250"
                 />
@@ -58,10 +83,8 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
         ) : (
           <SwiperSlide>
             <div>
-              <img
-                className={styles.img}
+              <Image
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
-                alt=""
                 width="250"
                 height="250"
               />
