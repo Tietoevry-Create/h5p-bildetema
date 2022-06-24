@@ -21,7 +21,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
 
   const [isWordView, setIsWordView] = React.useState(false);
 
-  const [showWrittenWords, setShowWrittenWords] = React.useState(false);
+  const [showWrittenWords, setShowWrittenWords] = React.useState(true);
 
   const loadingLabel = useL10n("pageIsLoading");
 
@@ -61,6 +61,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                   setIsWordView={setIsWordView}
                   topicsSize={topicsSize}
                   items={topics}
+                  showWrittenWords={showWrittenWords}
                 />
               }
             />
@@ -90,6 +91,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                             topicsSize={topicsSize}
                             items={topicGridItems}
                             setIsWordView={setIsWordView}
+                            showWrittenWords={showWrittenWords}
                           />
                         }
                       />
@@ -100,6 +102,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                             topicsSize={topicsSize}
                             words={wordsGridItems}
                             setIsWordView={setIsWordView}
+                            showWrittenWords={showWrittenWords}
                           />
                         }
                       />
@@ -115,6 +118,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                       words={topic.words.get(currentLanguage.code) ?? []}
                       topicsSize={topicsSize}
                       setIsWordView={setIsWordView}
+                      showWrittenWords={showWrittenWords}
                     />
                   }
                 />

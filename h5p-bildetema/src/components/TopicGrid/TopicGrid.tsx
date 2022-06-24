@@ -8,6 +8,7 @@ type TopicGridProps = {
   words?: Word[];
   topicsSize: TopicGridSizes;
   setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
+  showWrittenWords: boolean;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -15,6 +16,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   words,
   topicsSize,
   setIsWordView,
+  showWrittenWords,
 }) => {
   if (items) {
     setIsWordView(false);
@@ -43,7 +45,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
 
   if (words) {
     setIsWordView(true);
-    return <Words words={words} />;
+    return <Words words={words} showWrittenWords={showWrittenWords} />;
   }
 
   return <h1>No items</h1>;

@@ -29,11 +29,13 @@ export const Header: React.FC<HeaderProps> = ({
   const translations = useL10n(...languageKeys, "selectLanguage");
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
-      <Toggle
-        label="Vis skrevne ord"
-        checked={toggleChecked}
-        handleChange={handleToggleChange}
-      />
+      <span className={styles.toggle}>
+        <Toggle
+          label="Vis skrevne ord"
+          checked={toggleChecked}
+          handleChange={handleToggleChange}
+        />
+      </span>
     ) : (
       <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
     );

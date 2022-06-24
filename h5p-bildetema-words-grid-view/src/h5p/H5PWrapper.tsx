@@ -8,7 +8,8 @@ import App from "../App";
 import { TranslationKey } from "../types/TranslationKey";
 
 type Params = {
-  ["bildetema-words-grid-view"]?: Word[];
+  ["bildetema-words-grid-view-words"]?: Word[];
+  ["bildetema-words-grid-view-show"]?: boolean;
   l10n: Record<TranslationKey, string>;
 };
 
@@ -25,7 +26,11 @@ export class H5PWrapper
       return;
     }
 
-    const { l10n, "bildetema-words-grid-view": words } = this.params;
+    const {
+      l10n,
+      "bildetema-words-grid-view-words": words,
+      "bildetema-words-grid-view-show": showWrittenWords,
+    } = this.params;
 
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema-words-grid-view");
@@ -35,7 +40,10 @@ export class H5PWrapper
       <H5PContext.Provider value={this}>
         <L10nContext.Provider value={l10n}>
           <ContentIdContext.Provider value={this.contentId}>
-            <App words={words ?? []} />
+            <App
+              words={words ?? []}
+              showWrittenWords={showWrittenWords ?? true}
+            />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
       </H5PContext.Provider>,

@@ -5,14 +5,22 @@ import styles from "./TopicWordsGrid.module.scss";
 
 type TopicWordsGridProps = {
   words: WordType[];
+  showWrittenWords: boolean;
 };
 
-export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words }) => {
-  return (
-    <div className={styles.topicgrid}>
-      {words.map(item => {
-        return <Word key={item.id} word={item} textVisible />;
-      })}
-    </div>
+export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
+  words,
+  showWrittenWords,
+}) => {
+  const renderWords = React.useMemo(
+    () =>
+      words.map(item => {
+        return (
+          <Word key={item.id} word={item} textVisible={showWrittenWords} />
+        );
+      }),
+    [showWrittenWords, words],
   );
+
+  return <div className={styles.topicgrid}>{renderWords}</div>;
 };
