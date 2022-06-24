@@ -24,14 +24,12 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const dynamicRedirect = React.useRef<JSX.Element>();
 
   React.useEffect(() => {
-    if (topics) {
-      dynamicRedirect.current = (
-        <Route
-          path="*"
-          element={<Navigate to={`/${currentLanguage.code}`} replace />}
-        />
-      );
-    }
+    dynamicRedirect.current = (
+      <Route
+        path="*"
+        element={<Navigate to={`/${currentLanguage.code}`} replace />}
+      />
+    );
   }, [topics, currentLanguage.code]);
 
   return (
