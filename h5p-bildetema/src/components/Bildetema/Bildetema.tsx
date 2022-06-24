@@ -30,7 +30,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
         element={<Navigate to={`/${currentLanguage.code}`} replace />}
       />
     );
-  }, [topics, currentLanguage.code]);
+  }, [currentLanguage.code]);
 
   return (
     <div className={styles.wrapper}>
