@@ -27,11 +27,13 @@ export const Header: React.FC<HeaderProps> = ({
     lang => `lang_${lang}`,
   ) as Array<`lang_${typeof languages[number]}`>;
   const translations = useL10n(...languageKeys, "selectLanguage");
+  const toggleLabel = useL10n("showWrittenWordsLabel")
+  
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.toggle}>
         <Toggle
-          label="Vis skrevne ord"
+          label={toggleLabel}
           checked={toggleChecked}
           handleChange={handleToggleChange}
         />

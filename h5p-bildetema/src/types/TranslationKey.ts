@@ -6,6 +6,7 @@
 
 export type TranslationKey =
   | "pageIsLoading"
+  | "showWrittenWordsLabel"
   | "footerContactInfoLabel"
   | "footerLink1Label"
   | "footerLink1Href"

@@ -14,6 +14,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Show written words labelnpm",
+        name: "showWrittenWordsLabel",
+        default: "Show written words",
+        type: "text",
+      },
+      {
         label: "Footer contact info label",
         name: "footerContactInfoLabel",
         default: "Contact info",
