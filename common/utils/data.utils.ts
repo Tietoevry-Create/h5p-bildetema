@@ -1,5 +1,5 @@
 import * as xlsx from "xlsx";
-import { InputWord, Word, Topic, Language } from "../types/types";
+import { InputWord, Word, Topic, Language, ImageUrl } from "../types/types";
 import { makeLanguageCode } from "../utils/LanguageCode.utils";
 
 const NON_LANGUAGE_FIELDS = [
@@ -56,8 +56,7 @@ const findSubTopics = (
       label: inputWord.Bokmål_nob,
       subTopics: new Map(),
       words: new Map(),
-      // TODO: uncomment after getting access to the images
-      // image: { path: inputWord.Bilde_a },
+      images: findImages(inputWord),
     };
     setTopic(topic, topicMap.get(inputWord.Tema1)!.subTopics);
   });
@@ -80,8 +79,7 @@ const findMainTopics = (
         label: inputWord.Tema1,
         subTopics: new Map(),
         words: new Map(),
-        // TODO: uncomment after getting access to the images
-        // image: { path: inputWord.Bilde_a },
+        images: findImages(inputWord),
       };
       setTopic(topic, topicMap);
     }
@@ -93,10 +91,24 @@ const findTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
   findSubTopics(inputWords, topicMap);
 };
 
-const findImages = (inputWord: InputWord) =>
-  Object.entries(inputWord)
+const findImages = (inputWord: InputWord) => {
+  const storageUrl =
+    "https://prodbildetemabackend.blob.core.windows.net/images/";
+  return Object.entries(inputWord)
     .filter(([key, imageUrl]) => key.includes("Bilde") && imageUrl !== "")
-    .map(([, imageUrl]) => imageUrl);
+    .map(([, imageUrl]) => {
+      const fileName = imageUrl.split("/").pop() || "";
+      return {
+        src: `${storageUrl}large/${fileName}`,
+        srcSet: [
+          { src: `${storageUrl}small/${fileName}`, width: 200 },
+          { src: `${storageUrl}medium/${fileName}`, width: 350 },
+          { src: `${storageUrl}large/${fileName}`, width: 600 },
+          { src: `${storageUrl}xlarge/${fileName}`, width: 1000 },
+        ],
+      };
+    });
+};
 
 const fillTopicsWithWords = (
   inputWords: InputWord[],
@@ -104,7 +116,7 @@ const fillTopicsWithWords = (
 ) => {
   inputWords.forEach((inputWord: InputWord) => {
     if (!inputWord.Title.includes("V")) return;
-    const images: string[] = findImages(inputWord);
+    const images: ImageUrl[] = findImages(inputWord);
 
     Object.entries(inputWord).forEach(([key, value]) => {
       if (NON_LANGUAGE_FIELDS.includes(key)) return;

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import styles from "./Word.module.scss";
 import { Word as WordType } from "../../../../common/types/types";
-import { Image } from "../Image/Image";
+import { Image, srcSet } from "../Image/Image";
 
 // import Swiper and modules styles
 import "swiper/css";
@@ -17,43 +17,8 @@ type WordProps = {
   textVisible: boolean;
 };
 
-enum Size {
-  Small,
-  Medium,
-  Large,
-  XLarge,
-}
-
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { label, images } = word;
-
-  const getImageUrl = (url: string, size?: Size): string => {
-    const storageUrl =
-      "https://prodbildetemabackend.blob.core.windows.net/images/";
-    const fileName = url.split("/").pop() || "";
-
-    switch (size) {
-      case Size.Small:
-        return `${storageUrl}small/${fileName}`;
-      case Size.Medium:
-        return `${storageUrl}medium/${fileName}`;
-      case Size.Large:
-        return `${storageUrl}large/${fileName}`;
-      case Size.XLarge:
-        return `${storageUrl}xlarge/${fileName}`;
-      default:
-        return `${storageUrl}large/${fileName}`;
-    }
-  };
-
-  const getSrcSet = (url: string): string => {
-    return `
-      ${getImageUrl(url, Size.Small)} 200,
-      ${getImageUrl(url, Size.Medium)} 350,
-      ${getImageUrl(url, Size.Large)} 600,
-      ${getImageUrl(url, Size.XLarge)} 1000,
-    `;
-  };
 
   const renderImages = (): JSX.Element => {
     const multipleImages = images.length > 1;
@@ -69,11 +34,11 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
       >
         {images.length !== 0 ? (
           images.map(image => (
-            <SwiperSlide key={image}>
+            <SwiperSlide key={image.src}>
               <div>
                 <Image
-                  src={getImageUrl(image)}
-                  srcSet={getSrcSet(image)}
+                  src={image.src}
+                  srcSet={image.srcSet}
                   width="250"
                   height="250"
                 />

@@ -15,8 +15,24 @@ const Template: ComponentStory<typeof Image> = args => (
 export const Default = Template.bind({});
 Default.args = {
   src: "https://prodbildetemabackend.blob.core.windows.net/images/large/V1037a.jpeg",
-  srcSet:
-    "https://prodbildetemabackend.blob.core.windows.net/images/small/V1037a.jpeg 200, https://prodbildetemabackend.blob.core.windows.net/images/medium/V1037a.jpeg 350,https://prodbildetemabackend.blob.core.windows.net/images/large/V1037a.jpeg 100, https://prodbildetemabackend.blob.core.windows.net/images/xlarge/V1037a.jpeg 600",
+  srcSet: [
+    {
+      src: "https://prodbildetemabackend.blob.core.windows.net/images/small/V1037a.jpeg",
+      width: 200,
+    },
+    {
+      src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V1037a.jpeg",
+      width: 350,
+    },
+    {
+      src: "https://prodbildetemabackend.blob.core.windows.net/images/large/V1037a.jpeg",
+      width: 600,
+    },
+    {
+      src: "https://prodbildetemabackend.blob.core.windows.net/images/xlarge/V1037a.jpeg",
+      width: 1000,
+    },
+  ],
   width: "250",
   height: "250",
 };
