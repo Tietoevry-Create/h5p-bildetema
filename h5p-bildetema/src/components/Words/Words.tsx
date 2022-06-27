@@ -9,13 +9,14 @@ type WordsProps = {
 
 export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
   const ref = React.useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const library = new (H5P as any).BildetemaWordsGridView({
-      "bildetema-words-grid-view-words": words,
-      "bildetema-words-grid-view-show": showWrittenWords,
-    });
     if (ref.current) {
+      if( ref.current.childElementCount > 0) ref.current.removeChild(ref.current.childNodes[0]);
+      const library = new (H5P as any).BildetemaWordsGridView({
+        "bildetema-words-grid-view-words": words,
+        "bildetema-words-grid-view-show": showWrittenWords,
+      });
       library.attach(H5P.jQuery(ref.current));
     }
   }, [words, showWrittenWords]);
