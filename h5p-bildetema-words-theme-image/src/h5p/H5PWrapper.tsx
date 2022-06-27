@@ -1,12 +1,15 @@
-import type { IH5PContentType } from "h5p-types";
+import type { IH5PContentType, Image } from "h5p-types";
 import { H5PContentType } from "h5p-utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
+import type { ThemeImageHotspot } from "../../../common/types/ThemeImageHotspot";
 import App from "../App";
-import { TranslationKey } from "../types/TranslationKey";
+import type { TranslationKey } from "../types/TranslationKey";
 
 type Params = {
+  themeImage: Image;
+  hotspots: Array<ThemeImageHotspot>;
   l10n: Record<TranslationKey, string>;
 };
 

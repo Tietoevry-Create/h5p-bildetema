@@ -1,7 +1,7 @@
 [
   {
     "label": "Image",
-    "name": "topicImage",
+    "name": "themeImage",
     "type": "image"
   },
   {
