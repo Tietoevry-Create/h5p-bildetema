@@ -10,6 +10,20 @@ type TopicWordsGridProps = {
 };
 
 export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words, showWrittenWords }) => {
+  
+  const [textVisible, setTextVisible] = React.useState(showWrittenWords)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> ): void => {
+    setTextVisible(e.target.checked)
+  }
+
+  React.useEffect(() => {
+    document.getElementById('toggle')?.addEventListener('change', e => handleChange(e as any))
+
+    return () => {
+      document.getElementById('toggle')?.removeEventListener('change', e => handleChange(e as any))
+    }
+  },[])
 
   return (
     <div className={styles.topicgrid}>
@@ -17,7 +31,7 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words, showWritt
         <Word
           key={word.id}
           word={word}
-          textVisible={showWrittenWords}
+          textVisible={textVisible}
         />
       ))}
     </div>

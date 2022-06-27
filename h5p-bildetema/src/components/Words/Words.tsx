@@ -19,7 +19,7 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
       });
       library.attach(H5P.jQuery(ref.current));
     }
-  }, [words, showWrittenWords]);
+  }, []);
 
   return <div ref={ref} />;
 };
