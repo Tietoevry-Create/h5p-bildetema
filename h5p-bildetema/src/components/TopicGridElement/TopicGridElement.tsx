@@ -45,7 +45,6 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   return (
     <Link className={topicCardClassName} to={linkTo}>
       {
-        // eslint-disable-next-line jsx-a11y/img-redundant-alt
         <img className={styles.topicImage} src={imageSrc} alt="" />
       }
       <span className={gridElementClassName}>{topicLabel}</span>
