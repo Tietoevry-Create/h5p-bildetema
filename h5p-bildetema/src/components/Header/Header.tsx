@@ -1,4 +1,5 @@
 import React from "react";
+import { useContentId } from "use-h5p";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
 import { useL10n } from "../../hooks/useL10n";
@@ -30,6 +31,8 @@ export const Header: React.FC<HeaderProps> = ({
   const toggleLabel = useL10n("showWrittenWordsLabel")
   
 
+  const contentId = useContentId();
+
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.toggle}>
@@ -37,6 +40,7 @@ export const Header: React.FC<HeaderProps> = ({
           label={toggleLabel}
           checked={toggleChecked}
           handleChange={handleToggleChange}
+          id={`toggle-${contentId}`}
         />
       </span>
     ) : (

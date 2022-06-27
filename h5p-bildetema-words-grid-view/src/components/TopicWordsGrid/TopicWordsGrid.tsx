@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContentId } from "use-h5p";
 import { Word as WordType } from "../../../../common/types/types";
 import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
@@ -14,19 +15,21 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
 }) => {
   const [textVisible, setTextVisible] = React.useState(showWrittenWords);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setTextVisible(e.target.checked);
+  const handleChange = (e: Event): void => {
+    setTextVisible((e.target as HTMLInputElement).checked);
   };
+
+  const contentId = useContentId()
 
   React.useEffect(() => {
     document
-      .getElementById("toggle")
-      ?.addEventListener("change", e => handleChange(e as any));
+      .getElementById(`toggle-${contentId}`)
+      ?.addEventListener("change", handleChange);
 
     return () => {
       document
-        .getElementById("toggle")
-        ?.removeEventListener("change", e => handleChange(e as any));
+        .getElementById(`toggle-${contentId}`)
+        ?.removeEventListener("change", handleChange);
     };
   }, []);
 
