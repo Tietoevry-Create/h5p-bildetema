@@ -100,7 +100,7 @@ const findImages = (inputWord: InputWord) => {
       const fileName = imageUrl.split("/").pop() || "";
       return {
         src: `${storageUrl}large/${fileName}`,
-        srcSet: [
+        srcSets: [
           { src: `${storageUrl}small/${fileName}`, width: 200 },
           { src: `${storageUrl}medium/${fileName}`, width: 350 },
           { src: `${storageUrl}large/${fileName}`, width: 600 },

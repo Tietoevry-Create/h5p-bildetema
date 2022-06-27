@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import styles from "./Word.module.scss";
 import { Word as WordType } from "../../../../common/types/types";
-import { Image, srcSet } from "../Image/Image";
+import { Image } from "../Image/Image";
 
 // import Swiper and modules styles
 import "swiper/css";
@@ -38,7 +38,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
               <div>
                 <Image
                   src={image.src}
-                  srcSet={image.srcSet}
+                  srcSets={image.srcSets}
                   width="250"
                   height="250"
                 />

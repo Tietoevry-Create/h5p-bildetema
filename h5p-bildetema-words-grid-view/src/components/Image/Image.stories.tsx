@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Image> = args => (
 export const Default = Template.bind({});
 Default.args = {
   src: "https://prodbildetemabackend.blob.core.windows.net/images/large/V1037a.jpeg",
-  srcSet: [
+  srcSets: [
     {
       src: "https://prodbildetemabackend.blob.core.windows.net/images/small/V1037a.jpeg",
       width: 200,

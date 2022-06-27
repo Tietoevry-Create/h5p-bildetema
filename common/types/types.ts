@@ -11,7 +11,7 @@ export type Word = {
 
 export type ImageUrl = {
   src: string;
-  srcSet?: { src: string; width: number }[];
+  srcSets?: { src: string; width: number }[];
 };
 
 export type Language = {

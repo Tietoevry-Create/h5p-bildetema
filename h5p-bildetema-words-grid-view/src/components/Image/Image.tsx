@@ -8,18 +8,23 @@ export type srcSet = {
 
 export type ImageProps = {
   src: string;
-  srcSet?: srcSet[];
+  srcSets?: srcSet[];
   width: string;
   height: string;
 };
 
-export const Image: React.FC<ImageProps> = ({ src, srcSet, width, height }) => {
+export const Image: React.FC<ImageProps> = ({
+  src,
+  srcSets,
+  width,
+  height,
+}) => {
   return (
     <img
       className={styles.img}
       src={src}
       alt=""
-      srcSet={srcSet?.map(image => `${image.src} ${image.width}w`).join(",")}
+      srcSet={srcSets?.map(image => `${image.src} ${image.width}w`).join(",")}
       width={width}
       height={height}
     />
