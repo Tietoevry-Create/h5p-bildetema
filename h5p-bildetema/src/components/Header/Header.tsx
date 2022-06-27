@@ -29,6 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
   const translations = useL10n(...languageKeys, "selectLanguage");
   const toggleLabel = useL10n("showWrittenWordsLabel")
   
+
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.toggle}>

@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { Word as WordType } from "../../../../common/types/types";
 import { Word } from "../Word/Word";
@@ -6,33 +5,35 @@ import styles from "./TopicWordsGrid.module.scss";
 
 type TopicWordsGridProps = {
   words: WordType[];
-  showWrittenWords: boolean
+  showWrittenWords: boolean;
 };
 
-export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({ words, showWrittenWords }) => {
-  
-  const [textVisible, setTextVisible] = React.useState(showWrittenWords)
+export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
+  words,
+  showWrittenWords,
+}) => {
+  const [textVisible, setTextVisible] = React.useState(showWrittenWords);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement> ): void => {
-    setTextVisible(e.target.checked)
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setTextVisible(e.target.checked);
+  };
 
   React.useEffect(() => {
-    document.getElementById('toggle')?.addEventListener('change', e => handleChange(e as any))
+    document
+      .getElementById("toggle")
+      ?.addEventListener("change", e => handleChange(e as any));
 
     return () => {
-      document.getElementById('toggle')?.removeEventListener('change', e => handleChange(e as any))
-    }
-  },[])
+      document
+        .getElementById("toggle")
+        ?.removeEventListener("change", e => handleChange(e as any));
+    };
+  }, []);
 
   return (
     <div className={styles.topicgrid}>
       {words.map(word => (
-        <Word
-          key={word.id}
-          word={word}
-          textVisible={textVisible}
-        />
+        <Word key={word.id} word={word} textVisible={textVisible} />
       ))}
     </div>
   );

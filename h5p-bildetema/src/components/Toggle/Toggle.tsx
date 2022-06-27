@@ -17,7 +17,7 @@ export const Toggle: React.FC<ToggleProps> = ({
       {label && <span className={styles.label}>{label}</span>}
       <span className={styles.toggle}>
         <input
-          id='toggle'
+          id="toggle"
           checked={checked}
           type="checkbox"
           onChange={e => handleChange(e.target.checked)}

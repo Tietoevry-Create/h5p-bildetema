@@ -37,5 +37,5 @@ ThemesGrid.args = {
     { ...baseWord, id: "8", label: "test8", tema1: "test8" } as Word,
     { ...baseWord, id: "9", label: "test9", tema1: "test9" } as Word,
   ],
-  showWrittenWords: true
+  showWrittenWords: true,
 };
