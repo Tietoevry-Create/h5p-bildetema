@@ -19,7 +19,7 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
     setTextVisible((e.target as HTMLInputElement).checked);
   };
 
-  const contentId = useContentId()
+  const contentId = useContentId();
 
   React.useEffect(() => {
     document
