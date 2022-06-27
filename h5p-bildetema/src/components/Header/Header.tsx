@@ -61,10 +61,6 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
       <div className={styles.bottom}>
         <Breadcrumbs currentLanguageCode={currentLanguageCode} />
-        {/* <TopicSizeButtons
-          topicsSize={topicsSize}
-          setTopicsSize={setTopicsSize}
-          /> */}
         {renderLeftMenu()}
       </div>
     </div>
