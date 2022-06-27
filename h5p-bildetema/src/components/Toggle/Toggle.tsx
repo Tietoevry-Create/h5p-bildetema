@@ -14,8 +14,7 @@ export const Toggle: React.FC<ToggleProps> = ({
   id,
 }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className={styles.container}>
+    <label className={styles.container} htmlFor={id}>
       {label && <span className={styles.label}>{label}</span>}
       <span className={styles.toggle}>
         <input

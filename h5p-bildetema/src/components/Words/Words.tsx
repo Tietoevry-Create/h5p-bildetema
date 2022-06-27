@@ -24,7 +24,9 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
       );
       library.attach(H5P.jQuery(ref.current));
     }
-  }, []);
+    // Avoid updating when `showWrittenWords` changes, because all images are re-rendered (and blink) every time it changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contentId, words]);
 
   return <div ref={ref} />;
 };
