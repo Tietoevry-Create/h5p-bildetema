@@ -1,5 +1,9 @@
 import React from "react";
-import { TopicGridSizes, Language } from "../../../../common/types/types";
+import {
+  TopicGridSizes,
+  Language,
+  UserData,
+} from "../../../../common/types/types";
 import { useContentId } from "use-h5p";
 import { languages } from "../../constants/languages";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
@@ -17,6 +21,7 @@ export type HeaderProps = {
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
   changeCurrentLanguage: (newLanguage: Language) => void;
+  userData: UserData;
 };
 
 export const Header: React.FC<HeaderProps> = ({
@@ -28,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
   toggleChecked,
   handleToggleChange,
   changeCurrentLanguage,
+  userData,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -56,6 +62,14 @@ export const Header: React.FC<HeaderProps> = ({
     return element;
   };
 
+  const handleChangeLanguage = (newLanguage: Language): void => {
+    changeCurrentLanguage(newLanguage);
+    localStorage.setItem(
+      "bildetema-userdata",
+      JSON.stringify({ ...userData, currentLanguage: newLanguage }),
+    );
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -70,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
               return (
                 <button
                   key={language.code}
-                  onClick={() => changeCurrentLanguage(language)}
+                  onClick={() => handleChangeLanguage(language)}
                   className={`${styles.languageButton} ${
                     language === currentLanguage ? styles.active : ""
                   }`}

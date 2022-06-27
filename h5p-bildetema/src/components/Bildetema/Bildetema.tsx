@@ -12,6 +12,7 @@ import {
   Language,
   Topic,
   TopicGridSizes,
+  UserData,
 } from "../../../../common/types/types";
 import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
@@ -70,9 +71,14 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [showWrittenWords, setShowWrittenWords] = React.useState(true);
 
   const loadingLabel = useL10n("pageIsLoading");
+  const userData = JSON.parse(
+    localStorage.getItem("bildetema-userdata") ?? "{}",
+  ) as UserData;
+
   const [currentLanguage, setCurrentLanguage] = React.useState(
-    currentMetaLanguage ?? selectedLanguages[0],
+    userData.currentLanguage ?? selectedLanguages[0],
   );
+
   const [currentTopic, setCurrentTopic] = React.useState<Topic>();
   const [currentSubTopic, setCurrentSubTopic] = React.useState<Topic>();
 
@@ -239,6 +245,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           selectedLanguages={selectedLanguages}
           currentLanguage={currentLanguage}
           changeCurrentLanguage={setCurrentLanguage}
+          userData={userData}
         />
         <div className={styles.body}>
           {routes}

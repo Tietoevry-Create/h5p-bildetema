@@ -34,3 +34,7 @@ export enum TopicGridSizes {
   Big,
   Compact,
 }
+
+export type UserData = {
+  currentLanguage: Language;
+};
