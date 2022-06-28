@@ -17,7 +17,7 @@ export const Default = (
 Default.args = {
   currentLanguage: {
     label: "Norsk Bokmål",
-    code: makeLanguageCode("nb"),
+    code: makeLanguageCode("nob"),
     rtl: false,
     isFavorite: false,
   },

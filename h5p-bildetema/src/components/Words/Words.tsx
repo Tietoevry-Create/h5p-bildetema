@@ -11,6 +11,7 @@ type WordsProps = {
 export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const contentId = useContentId();
+
   useEffect(() => {
     if (ref.current) {
       if (ref.current.childElementCount > 0)
@@ -22,6 +23,7 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
         },
         contentId,
       );
+
       library.attach(H5P.jQuery(ref.current));
     }
     // Avoid updating when `showWrittenWords` changes, because all images are re-rendered (and blink) every time it changes

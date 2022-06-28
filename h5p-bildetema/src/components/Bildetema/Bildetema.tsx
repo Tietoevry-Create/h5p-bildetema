@@ -18,7 +18,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const [topicsSize, setTopicsSize] = React.useState<TopicGridSizes>(
     TopicGridSizes.Big,
   );
-
   const [isWordView, setIsWordView] = React.useState(false);
 
   const [showWrittenWords, setShowWrittenWords] = React.useState(true);
