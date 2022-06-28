@@ -8,10 +8,26 @@ export default {
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-export const Default = (): JSX.Element => (
-  <Header
-    currentLanguageCode="nob"
-    setTopicsSize={() => null}
-    topicsSize={TopicGridSizes.Big}
-  />
-);
+const Template = (isWordView: boolean):JSX.Element => {
+  const [checked, setChecked] = React.useState(true)
+  const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big)
+
+  return (
+    <Header
+      currentLanguageCode = "nob"
+      setTopicsSize={setTopicsSize}
+      topicsSize={topicSize}
+      isWordView={isWordView}
+      handleToggleChange={(value: boolean) => {setChecked(value)}}
+      toggleChecked={checked}
+    />
+  )
+}
+
+export const Default = (): JSX.Element => {
+  return Template(false)
+}
+
+export const isWordView = (): JSX.Element => {
+  return Template(true)
+}
