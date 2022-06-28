@@ -2,7 +2,7 @@ import React from "react";
 import { useContentId } from "use-h5p";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
-import { useL10n } from "../../hooks/useL10n";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle, Breadcrumbs } from "..";
 import styles from "./Header.module.scss";
@@ -27,9 +27,10 @@ export const Header: React.FC<HeaderProps> = ({
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${typeof languages[number]}`>;
-  const translations = useL10n(...languageKeys, "selectLanguage");
-  const toggleLabel = useL10n("showWrittenWordsLabel")
-  
+
+  const translations = useL10ns(...languageKeys, "selectLanguage");
+
+  const toggleLabel = useL10n("showWrittenWordsLabel");
 
   const contentId = useContentId();
 

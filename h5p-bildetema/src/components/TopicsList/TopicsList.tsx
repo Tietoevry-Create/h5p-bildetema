@@ -17,5 +17,12 @@ export const TopicsList: React.FC<TopicsListProps> = props => {
     run();
   }, []);
 
-  return <TopicGrid setIsWordView={()=>null} showWrittenWords={false} items={topics} topicsSize={TopicGridSizes.Big} />;
+  return (
+    <TopicGrid
+      setIsWordView={() => null}
+      showWrittenWords={false}
+      items={topics}
+      topicsSize={TopicGridSizes.Big}
+    />
+  );
 };
