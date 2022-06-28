@@ -22,13 +22,13 @@ ImageContainer.args = {
     {
       id: "1",
       label: "Bildetema",
-      images: [""],
+      images: [{ src: "" }],
       audio: "",
     },
     {
       id: "2",
       label: "Temabilde",
-      images: [""],
+      images: [{ src: "" }],
       audio: "",
     },
   ],

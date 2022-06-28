@@ -29,7 +29,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
               key={item.id}
               title={item.label}
               index={items.indexOf(item)}
-              image={item.image}
+              images={item.images}
               topicSize={topicsSize}
             />
           );

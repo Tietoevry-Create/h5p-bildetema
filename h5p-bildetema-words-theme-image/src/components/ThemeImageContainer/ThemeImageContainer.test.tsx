@@ -11,7 +11,7 @@ import { Word } from "../../../../common/types/types";
 const baseWord: Word = {
   id: "1",
   label: "Bildetema",
-  images: [""],
+  images: [{ src: "" }],
   audio: "",
 };
 

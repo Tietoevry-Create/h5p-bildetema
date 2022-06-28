@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import styles from "./Word.module.scss";
 import { Word as WordType } from "../../../../common/types/types";
+import { Image } from "../Image/Image";
 
 // import Swiper and modules styles
 import "swiper/css";
@@ -19,16 +20,6 @@ type WordProps = {
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { label, images } = word;
 
-  // Temporary workaround while we don't have images in a known location.
-  // To test add images to /sites/default/files/h5p/development/h5p-bilder/
-  // For dev-root add images in the folder h5p-bilder in the dev-root and restart
-  const removeSharepointLink = (url: string): string => {
-    return url.replace(
-      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/",
-      "https://prodbildetemabackend.blob.core.windows.net/images/large/",
-    );
-  };
-
   const renderImages = (): JSX.Element => {
     const multipleImages = images.length > 1;
 
@@ -43,12 +34,11 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
       >
         {images.length !== 0 ? (
           images.map(image => (
-            <SwiperSlide key={image}>
+            <SwiperSlide key={image.src}>
               <div>
-                <img
-                  className={styles.img}
-                  src={removeSharepointLink(image)}
-                  alt=""
+                <Image
+                  src={image.src}
+                  srcSets={image.srcSets}
                   width="250"
                   height="250"
                 />
@@ -58,10 +48,8 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
         ) : (
           <SwiperSlide>
             <div>
-              <img
-                className={styles.img}
+              <Image
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
-                alt=""
                 width="250"
                 height="250"
               />

@@ -18,7 +18,9 @@ Default.args = {
     id: "V0600",
     label: "Brettspill",
     images: [
-      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0600a.jpeg",
+      {
+        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+      },
     ],
     audio: "https://www.w3schools.com/TAGS/horse.ogg",
   },
@@ -31,9 +33,12 @@ MultipleImages.args = {
     id: "V0599",
     label: "Puslespill",
     images: [
-      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0599a.jpeg",
-      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0599b.jpeg",
-      "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0599c.jpeg",
+      {
+        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+      },
+      {
+        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575b.jpeg",
+      },
     ],
     audio: "https://www.w3schools.com/TAGS/horse.ogg",
   },
@@ -57,7 +62,9 @@ HiddenText.args = {
     id: "V0889",
     label: "Elg",
     images: [
-      "https://images.unsplash.com/photo-1549471013-3364d7220b75?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750",
+      {
+        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+      },
     ],
     audio: undefined,
   },

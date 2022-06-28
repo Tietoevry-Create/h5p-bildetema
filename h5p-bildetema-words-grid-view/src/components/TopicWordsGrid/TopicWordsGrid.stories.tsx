@@ -12,9 +12,9 @@ const baseWord: Word = {
   id: "V0599",
   label: "Puslespill",
   images: [
-    "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0599a.jpeg",
-    "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0599b.jpeg",
-    "https://hioa365.sharepoint.com/sites/Bildetema/bildefiler/Lek_og_spill/V0599c.jpeg",
+    {
+      src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+    },
   ],
   audio: "https://www.w3schools.com/TAGS/horse.ogg",
 };

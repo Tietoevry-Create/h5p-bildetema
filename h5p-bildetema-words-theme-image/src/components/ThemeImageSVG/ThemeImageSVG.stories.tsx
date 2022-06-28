@@ -20,13 +20,13 @@ SvgComponent.args = {
     {
       id: "1",
       label: "Øre",
-      images: [""],
+      images: [{ src: "" }],
       audio: "",
     },
     {
       id: "2",
       label: "Pote",
-      images: [""],
+      images: [{ src: "" }],
       audio: "",
     },
   ],
