@@ -35,7 +35,7 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.1",
     "react-router-dom": "^6.3.0",
-    "use-h5p": "^1.0.0",
+    "use-h5p": "^1.1.2",
     "use-react-router-breadcrumbs": "^3.2.1"
   },
   "devDependencies": {
