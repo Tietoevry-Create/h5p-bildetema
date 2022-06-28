@@ -19,7 +19,7 @@ ImageContainer.args = {
   theme: {
     id: "1",
     label: "Bildetema",
-    images: [""],
+    images: [{ src: "" }],
     audio: "",
   },
   themeImage: cat,
@@ -29,13 +29,13 @@ ImageContainer.args = {
     {
       id: overlays[0].wordId,
       label: "Øre",
-      images: [""],
+      images: [{ src: "" }],
       audio: "",
     },
     {
       id: overlays[1].wordId,
       label: "Pote",
-      images: [""],
+      images: [{ src: "" }],
       audio: "",
     },
   ],

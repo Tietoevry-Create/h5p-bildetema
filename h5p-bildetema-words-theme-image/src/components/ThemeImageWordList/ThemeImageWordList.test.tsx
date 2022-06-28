@@ -10,7 +10,7 @@ import { ThemeImageTypes } from "../../types/ThemeImageTypes";
 const baseWord = {
   id: "1",
   label: "Bildetema",
-  images: [""],
+  images: [{ src: "" }],
   audio: "",
 };
 
