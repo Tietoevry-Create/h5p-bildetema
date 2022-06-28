@@ -16,6 +16,10 @@ const NON_LANGUAGE_FIELDS = [
 
 const databaseURL =
   "https://prodbildetemabackend.blob.core.windows.net/data/database.xlsx";
+  const imageContainerURL =
+  "https://prodbildetemabackend.blob.core.windows.net/images/";
+  const audioContainerURL =
+  "https://prodbildetemabackend.blob.core.windows.net/audio/";
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
@@ -92,19 +96,17 @@ const findTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
 };
 
 const findImages = (inputWord: InputWord) => {
-  const storageUrl =
-    "https://prodbildetemabackend.blob.core.windows.net/images/";
   return Object.entries(inputWord)
     .filter(([key, imageUrl]) => key.includes("Bilde") && imageUrl !== "")
     .map(([, imageUrl]) => {
       const fileName = imageUrl.split("/").pop() || "";
       return {
-        src: `${storageUrl}large/${fileName}`,
+        src: `${imageContainerURL}large/${fileName}`,
         srcSets: [
-          { src: `${storageUrl}small/${fileName}`, width: 200 },
-          { src: `${storageUrl}medium/${fileName}`, width: 350 },
-          { src: `${storageUrl}large/${fileName}`, width: 600 },
-          { src: `${storageUrl}xlarge/${fileName}`, width: 1000 },
+          { src: `${imageContainerURL}small/${fileName}`, width: 200 },
+          { src: `${imageContainerURL}medium/${fileName}`, width: 350 },
+          { src: `${imageContainerURL}large/${fileName}`, width: 600 },
+          { src: `${imageContainerURL}xlarge/${fileName}`, width: 1000 },
         ],
       };
     });
@@ -123,7 +125,7 @@ const fillTopicsWithWords = (
       const [_, strLanguageCode] = key.split("_");
       const languageCode = makeLanguageCode(strLanguageCode);
       const word: Word = {
-        audio: "",
+        audio: `${audioContainerURL}${languageCode}/${inputWord.Title}.wav`,
         id: inputWord.Title,
         label: value,
         images: images,
