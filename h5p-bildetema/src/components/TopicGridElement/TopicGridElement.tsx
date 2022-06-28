@@ -44,9 +44,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
 
   return (
     <Link className={topicCardClassName} to={linkTo}>
-      {
         <img className={styles.topicImage} src={imageSrc} alt="" />
-      }
       <span className={gridElementClassName}>{topicLabel}</span>
     </Link>
   );
