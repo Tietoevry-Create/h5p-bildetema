@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-// import type { Image } from "h5p-types";
 import {
   Topic,
   Word,
@@ -44,7 +43,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
 
   return (
     <Link className={topicCardClassName} to={linkTo}>
-        <img className={styles.topicImage} src={imageSrc} alt="" />
+      <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={gridElementClassName}>{topicLabel}</span>
     </Link>
   );
