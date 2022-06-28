@@ -16,9 +16,9 @@ const NON_LANGUAGE_FIELDS = [
 
 const databaseURL =
   "https://prodbildetemabackend.blob.core.windows.net/data/database.xlsx";
-  const imageContainerURL =
+const imageContainerURL =
   "https://prodbildetemabackend.blob.core.windows.net/images/";
-  const audioContainerURL =
+const audioContainerURL =
   "https://prodbildetemabackend.blob.core.windows.net/audio/";
 
 const languages: Language[] = [];
