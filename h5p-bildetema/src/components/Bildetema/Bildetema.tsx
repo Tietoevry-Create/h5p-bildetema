@@ -14,7 +14,7 @@ import {
   TopicGridSizes,
   UserData,
 } from "../../../../common/types/types";
-import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
+import { getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { Footer } from "../Footer/Footer";
@@ -51,6 +51,7 @@ const selectedLanguages: Language[] = [
 export const Bildetema: React.FC<BildetemaProps> = ({
   currentLanguage: currentMetaLanguage,
 }) => {
+  // TODO: use the language array to generate the list of selectable languages
   // const { isLoading: isLoadingLanguages, data: languages } = useQuery(
   //   "languagesFromDB",
   //   getLanguages,
@@ -63,8 +64,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     TopicGridSizes.Big,
   );
   const [isWordView, setIsWordView] = React.useState(false);
+  // TODO?: handle going back in history
+  // (handle the case when user goes back after changing the language)
   const navigate = useNavigate();
-  // TODO: process going back in history (re-render when current address changes)
   const location = useLocation();
   const dynamicRedirect = React.useRef<JSX.Element>();
 
@@ -87,6 +89,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const handleToggleChange = (value: boolean): void => {
     setShowWrittenWords(value);
   };
+
+  const [firstVisit, setFirstVisit] = React.useState(true);
 
   React.useEffect(() => {
     setRoutes(
@@ -187,51 +191,89 @@ export const Bildetema: React.FC<BildetemaProps> = ({
         {dynamicRedirect.current}
       </Routes>,
     );
-
-    const newPath = `/${currentLanguage.code}${
-      currentTopic
-        ? `/${encodeURIComponent(
-            currentTopic.labelTranslations
-              .get(currentLanguage.code)
-              ?.label.toLowerCase()
-              .split(" ")
-              .join("-") ?? currentTopic.id.toLowerCase(),
-          )}`
-        : ""
-    }${
-      currentSubTopic
-        ? `/${encodeURIComponent(
-            currentSubTopic.labelTranslations
-              .get(currentLanguage.code)
-              ?.label.toLowerCase()
-              .split(" ")
-              .join("-") ?? currentSubTopic.id.toLowerCase(),
-          )}`
-        : ""
-    }`;
-
-    navigate(newPath);
-
-    dynamicRedirect.current = (
-      <Route
-        path="*"
-        element={<Navigate to={`/${currentLanguage.code}`} replace />}
-      />
-    );
   }, [currentLanguage, topics]);
-
-  const loadingLabel = useL10n("pageIsLoading");
 
   React.useEffect(() => {
     if (topics) {
+      let newPath;
+
+      // process current path if this is a first visit
+      // i.e. link is copy-pasted into the address bar
+      if (firstVisit) {
+        const pathArray = location.pathname.split("/");
+        const [topic, subTopic] = pathArray.slice(2).map(tempTopic => {
+          return topics?.find(
+            existingTopic =>
+              existingTopic.labelTranslations
+                .get(makeLanguageCode(pathArray[1]))
+                ?.label.toLowerCase()
+                .split(" ")
+                .join("-") ??
+              existingTopic.id.toLowerCase() === decodeURIComponent(tempTopic),
+          );
+        });
+
+        setCurrentTopic(topic);
+        setCurrentSubTopic(subTopic);
+        setFirstVisit(false);
+
+        // build new path based on topic and subtopic
+        // since currentTopic and currentSubTopic are still undefined at this point
+        newPath = `/${currentLanguage.code}${
+          topic
+            ? `/${encodeURIComponent(
+                topic.labelTranslations
+                  .get(currentLanguage.code)
+                  ?.label.toLowerCase()
+                  .split(" ")
+                  .join("-") ?? topic.id.toLowerCase(),
+              )}`
+            : ""
+        }${
+          subTopic
+            ? `/${encodeURIComponent(
+                subTopic.labelTranslations
+                  .get(currentLanguage.code)
+                  ?.label.toLowerCase()
+                  .split(" ")
+                  .join("-") ?? subTopic.id.toLowerCase(),
+              )}`
+            : ""
+        }`;
+      } else {
+        newPath = `/${currentLanguage.code}${
+          currentTopic
+            ? `/${encodeURIComponent(
+                currentTopic.labelTranslations
+                  .get(currentLanguage.code)
+                  ?.label.toLowerCase()
+                  .split(" ")
+                  .join("-") ?? currentTopic.id.toLowerCase(),
+              )}`
+            : ""
+        }${
+          currentSubTopic
+            ? `/${encodeURIComponent(
+                currentSubTopic.labelTranslations
+                  .get(currentLanguage.code)
+                  ?.label.toLowerCase()
+                  .split(" ")
+                  .join("-") ?? currentSubTopic.id.toLowerCase(),
+              )}`
+            : ""
+        }`;
+      }
       dynamicRedirect.current = (
         <Route
           path="*"
           element={<Navigate to={`/${currentLanguage.code}`} replace />}
         />
       );
+      navigate(newPath);
     }
-  }, [topics]);
+  }, [currentLanguage, topics]);
+
+  const loadingLabel = useL10n("pageIsLoading");
 
   return (
     <div className={styles.wrapper}>

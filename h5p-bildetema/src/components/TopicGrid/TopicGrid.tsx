@@ -36,7 +36,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   React.useEffect(() => {
     setCurrentTopic(topic);
     setCurrentSubTopic(subTopic);
-  });
+  }, [topic, subTopic, setCurrentTopic, setCurrentSubTopic]);
 
   if (items) {
     setIsWordView(false);
