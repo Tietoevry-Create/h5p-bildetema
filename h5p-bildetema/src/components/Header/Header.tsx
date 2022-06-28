@@ -2,6 +2,7 @@ import React from "react";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
 import { useL10ns } from "../../hooks/useL10n";
+import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import styles from "./Header.module.scss";
@@ -19,7 +20,9 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${typeof languages[number]}`>;
+  ) as Array<`lang_${AllowedLanguage}`>;
+
+  const selectedLanguages: Array<AllowedLanguage> = useUserData();
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
   return (
@@ -29,9 +32,11 @@ export const Header: React.FC<HeaderProps> = ({
         <div className={styles.language_container}>
           <div>{translations.selectLanguage}</div>
           <div className={styles.languages}>
-            <p>{translations.lang_eng}</p>
-            <p>{translations.lang_nob}</p>
-            <p>{translations.lang_non}</p>
+            {selectedLanguages.map(language => (
+              <button type="button" onClick={() => setActiveLanguage(language)}>
+                {translations[`lang_${language}`]}
+              </button>
+            ))}
           </div>
         </div>
       </div>
