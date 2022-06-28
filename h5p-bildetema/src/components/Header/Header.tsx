@@ -86,7 +86,7 @@ export const Header: React.FC<HeaderProps> = ({
                   key={language.code}
                   onClick={() => handleChangeLanguage(language)}
                   className={`${styles.languageButton} ${
-                    language === currentLanguage ? styles.active : ""
+                    language.code === currentLanguage.code ? styles.active : ""
                   }`}
                   type="button"
                 >
