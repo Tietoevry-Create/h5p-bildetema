@@ -7,6 +7,8 @@ import {
 import { useContentId } from "use-h5p";
 import { languages } from "../../constants/languages";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
+import { AllowedLanguage } from "../../types/AllowedLanguage";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { LanguageMenuArrowIcon } from "../Icons/Icons";
 import { Toggle, Breadcrumbs } from "..";
@@ -37,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${typeof languages[number]}`>;
+  ) as Array<`lang_${AllowedLanguage}`>;
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
@@ -77,9 +79,6 @@ export const Header: React.FC<HeaderProps> = ({
         <div className={styles.language_container}>
           <div>{translations.selectLanguage}</div>
           <div className={styles.languages}>
-            <p>{translations.lang_eng}</p>
-            <p>{translations.lang_nob}</p>
-            <p>{translations.lang_non}</p>
             {selectedLanguages.map(language => {
               return (
                 <button
@@ -90,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                   type="button"
                 >
-                  {language.label}
+                  {translations[`lang_${language.code as AllowedLanguage}`]}
                 </button>
               );
             })}
