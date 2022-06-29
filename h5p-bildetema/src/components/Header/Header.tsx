@@ -1,17 +1,17 @@
 import React from "react";
+import { useContentId } from "use-h5p";
 import {
   TopicGridSizes,
   Language,
   UserData,
 } from "../../../../common/types/types";
-import { useContentId } from "use-h5p";
 import { languages } from "../../constants/languages";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { LanguageMenuArrowIcon } from "../Icons/Icons";
-import { Toggle, Breadcrumbs } from "..";
+import { Toggle } from "..";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
 
-  const translations = useL10ns(...languageKeys);
+  const translations = useL10ns(...languageKeys, "selectLanguage");
 
   const toggleLabel = useL10n("showWrittenWordsLabel");
 
@@ -94,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           {/* TODO: Replace with separate component */}
           <button type="button" className={styles.languageMenuButton}>
-            Språkvalg
+            {translations.selectLanguage}
             <LanguageMenuArrowIcon />
           </button>
         </div>
@@ -102,10 +102,6 @@ export const Header: React.FC<HeaderProps> = ({
       <div className={styles.bottom}>
         <Breadcrumbs currentLanguageCode={currentLanguage.code} />
         {renderLeftMenu()}
-        <TopicSizeButtons
-          topicsSize={topicsSize}
-          setTopicsSize={setTopicsSize}
-        />
       </div>
     </div>
   );

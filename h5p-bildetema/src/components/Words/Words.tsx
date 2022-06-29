@@ -16,6 +16,7 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
     if (ref.current) {
       if (ref.current.childElementCount > 0)
         ref.current.removeChild(ref.current.childNodes[0]);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const library = new (H5P as any).BildetemaWordsGridView(
         {
           "bildetema-words-grid-view-words": words,

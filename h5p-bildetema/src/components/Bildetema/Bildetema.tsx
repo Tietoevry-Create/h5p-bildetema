@@ -12,7 +12,6 @@ import {
   Language,
   Topic,
   TopicGridSizes,
-  UserData,
 } from "../../../../common/types/types";
 import { getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
@@ -103,6 +102,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
               currentLanguage={currentLanguage}
               setCurrentTopic={setCurrentTopic}
               setCurrentSubTopic={setCurrentSubTopic}
+              setIsWordView={setIsWordView}
+              showWrittenWords={showWrittenWords}
             />
           }
         />
@@ -149,6 +150,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                         topic={topic}
                         setCurrentTopic={setCurrentTopic}
                         setCurrentSubTopic={setCurrentSubTopic}
+                        setIsWordView={setIsWordView}
+                        showWrittenWords={showWrittenWords}
                       />
                     }
                   />
@@ -164,6 +167,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                         subTopic={subtopic}
                         setCurrentTopic={setCurrentTopic}
                         setCurrentSubTopic={setCurrentSubTopic}
+                        setIsWordView={setIsWordView}
+                        showWrittenWords={showWrittenWords}
                       />
                     }
                   />
@@ -182,6 +187,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                   topic={topic}
                   setCurrentTopic={setCurrentTopic}
                   setCurrentSubTopic={setCurrentSubTopic}
+                  setIsWordView={setIsWordView}
+                  showWrittenWords={showWrittenWords}
                 />
               }
             />
@@ -190,7 +197,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
         {dynamicRedirect.current}
       </Routes>,
     );
-  }, [currentLanguage, topics, topicsSize]);
+  }, [currentLanguage, showWrittenWords, topics, topicsSize]);
 
   React.useEffect(() => {
     if (topics) {
@@ -271,8 +278,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       navigate(newPath);
     }
   }, [currentLanguage, topics]);
-
-  const loadingLabel = useL10n("pageIsLoading");
 
   return (
     <div className={styles.wrapper}>
