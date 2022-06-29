@@ -18,10 +18,17 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
   const [topicsSize, setTopicsSize] = React.useState<TopicGridSizes>(
     TopicGridSizes.Big,
   );
+  const [isWordView, setIsWordView] = React.useState(false);
+
+  const [showWrittenWords, setShowWrittenWords] = React.useState(true);
 
   const loadingLabel = useL10n("pageIsLoading");
 
   const dynamicRedirect = React.useRef<JSX.Element>();
+
+  const handleToggleChange = (value: boolean): void => {
+    setShowWrittenWords(value);
+  };
 
   React.useEffect(() => {
     dynamicRedirect.current = (
@@ -39,13 +46,23 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
           currentLanguageCode={currentLanguage.code}
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
+          isWordView={isWordView}
+          handleToggleChange={handleToggleChange}
+          toggleChecked={showWrittenWords}
         />
         <div className={styles.body}>
           {/* TODO: Look at extracting some of this code out of this render function */}
           <Routes>
             <Route
               path={`/${currentLanguage.code}`}
-              element={<TopicGrid topicsSize={topicsSize} items={topics} />}
+              element={
+                <TopicGrid
+                  setIsWordView={setIsWordView}
+                  topicsSize={topicsSize}
+                  items={topics}
+                  showWrittenWords={showWrittenWords}
+                />
+              }
             />
             {topics?.map(topic => {
               const currTopicPath = `/${
@@ -72,6 +89,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                           <TopicGrid
                             topicsSize={topicsSize}
                             items={topicGridItems}
+                            setIsWordView={setIsWordView}
+                            showWrittenWords={showWrittenWords}
                           />
                         }
                       />
@@ -81,6 +100,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                           <TopicGrid
                             topicsSize={topicsSize}
                             words={wordsGridItems}
+                            setIsWordView={setIsWordView}
+                            showWrittenWords={showWrittenWords}
                           />
                         }
                       />
@@ -95,6 +116,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({ currentLanguage }) => {
                     <TopicGrid
                       words={topic.words.get(currentLanguage.code) ?? []}
                       topicsSize={topicsSize}
+                      setIsWordView={setIsWordView}
+                      showWrittenWords={showWrittenWords}
                     />
                   }
                 />

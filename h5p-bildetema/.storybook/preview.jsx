@@ -4,6 +4,9 @@ import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import { H5PWrapper } from "../src/h5p/H5PWrapper";
 import { semantics } from "../src/semantics";
+import "../../h5p-bildetema-words-grid-view/src";
+import "../../h5p-bildetema-words-theme-image/src";
+import "../../h5p-bildetema-words-tree-view/src";
 
 const queryClient = new QueryClient();
 

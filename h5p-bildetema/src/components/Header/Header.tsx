@@ -1,26 +1,55 @@
 import React from "react";
+import { useContentId } from "use-h5p";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
-import { useL10ns } from "../../hooks/useL10n";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
+import { Toggle, Breadcrumbs } from "..";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
   currentLanguageCode: string;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
+  isWordView: boolean;
+  toggleChecked: boolean;
+  handleToggleChange: (value: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
   currentLanguageCode,
   topicsSize,
   setTopicsSize,
+  isWordView,
+  toggleChecked,
+  handleToggleChange,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${typeof languages[number]}`>;
+
   const translations = useL10ns(...languageKeys, "selectLanguage");
+
+  const toggleLabel = useL10n("showWrittenWordsLabel");
+
+  const contentId = useContentId();
+
+  const renderLeftMenu = (): JSX.Element => {
+    const element = isWordView ? (
+      <span className={styles.toggle}>
+        <Toggle
+          label={toggleLabel}
+          checked={toggleChecked}
+          handleChange={handleToggleChange}
+          id={`toggle-${contentId}`}
+        />
+      </span>
+    ) : (
+      <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
+    );
+
+    return element;
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -37,10 +66,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
       <div className={styles.bottom}>
         <Breadcrumbs currentLanguageCode={currentLanguageCode} />
-        <TopicSizeButtons
-          topicsSize={topicsSize}
-          setTopicsSize={setTopicsSize}
-        />
+        {renderLeftMenu()}
       </div>
     </div>
   );
