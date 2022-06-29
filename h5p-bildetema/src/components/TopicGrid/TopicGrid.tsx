@@ -7,14 +7,19 @@ type TopicGridProps = {
   items?: Topic[];
   words?: Word[];
   topicsSize: TopicGridSizes;
+  setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
+  showWrittenWords: boolean;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
   items,
   words,
   topicsSize,
+  setIsWordView,
+  showWrittenWords,
 }) => {
   if (items) {
+    setIsWordView(false);
     return (
       <div
         className={`${
@@ -39,7 +44,8 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   }
 
   if (words) {
-    return <Words words={words} />;
+    setIsWordView(true);
+    return <Words words={words} showWrittenWords={showWrittenWords} />;
   }
 
   return <h1>No items</h1>;

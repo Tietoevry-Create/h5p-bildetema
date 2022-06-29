@@ -18,7 +18,7 @@ export const Default = Template.bind({});
 Default.args = {
   currentLanguage: {
     label: "Norsk Bokmål",
-    code: makeLanguageCode("nb"),
+    code: makeLanguageCode("nob"),
     rtl: false,
     isFavorite: false,
   },

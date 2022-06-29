@@ -1,7 +1,7 @@
 [
   {
-    "label": "Bildetema Words Grid View",
-    "name": "bildetema-words-grid-view",
+    "label": "Bildetema Words Grid View Words",
+    "name": "bildetema-words-grid-view-words",
     "type": "group",
     "importance": "high",
     "fields": [
@@ -69,5 +69,12 @@
         "type": "text"
       }
     ]
+  },
+  {
+    "label": "Show written words",
+    "name": "bildetema-words-grid-view-show",
+    "type": "boolean",
+    "default": true,
+    "importance": "low"
   }
 ]
