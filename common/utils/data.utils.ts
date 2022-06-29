@@ -42,7 +42,11 @@ const setTopic = (topic: Topic, map: Map<string, Topic>) => {
   map.set(topic.label, topic);
   languages.forEach(language => {
     topic.words.set(language.code, []);
-    topic.labelTranslations.set(language.code, { id: "", label: "" });
+    topic.labelTranslations.set(language.code, {
+      id: "",
+      label: "",
+      images: [],
+    });
   });
 };
 
@@ -121,7 +125,7 @@ const fillTopicsWithWords = (
 ) => {
   inputWords.forEach((inputWord: InputWord) => {
     const images: ImageUrl[] = findImages(inputWord);
-    
+
     if (inputWord.Title.includes("T")) {
       Object.entries(inputWord).forEach(([key, value]) => {
         if (NON_LANGUAGE_FIELDS.includes(key)) return;
