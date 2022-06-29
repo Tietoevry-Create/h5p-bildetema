@@ -12,6 +12,7 @@ export default {
 const Template = (isWordView: boolean): JSX.Element => {
   const [checked, setChecked] = React.useState(true);
   const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
+    
 
   return (
     <Header
@@ -30,6 +31,15 @@ const Template = (isWordView: boolean): JSX.Element => {
       }}
       toggleChecked={checked}
       selectedLanguages={[]}
+      userData={{
+        currentLanguage: {
+          label: "Norsk (Bokmål)",
+          code: makeLanguageCode("nob"),
+          rtl: false,
+          isFavorite: false,
+        },
+      }}
+      setUserData={() => null}
     />
   );
 };

@@ -17,6 +17,7 @@ import {
 import { getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
+import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
@@ -73,9 +74,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [showWrittenWords, setShowWrittenWords] = React.useState(true);
 
   const loadingLabel = useL10n("pageIsLoading");
-  const userData = JSON.parse(
-    localStorage.getItem("bildetema-userdata") ?? "{}",
-  ) as UserData;
+  const [userData, setUserData] = useUserData();
 
   const [currentLanguage, setCurrentLanguage] = React.useState(
     userData.currentLanguage ?? selectedLanguages[0],
@@ -288,6 +287,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           currentLanguage={currentLanguage}
           changeCurrentLanguage={setCurrentLanguage}
           userData={userData}
+          setUserData={setUserData}
         />
         <div className={styles.body}>
           {routes}

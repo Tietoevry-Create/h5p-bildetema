@@ -24,6 +24,7 @@ export type HeaderProps = {
   handleToggleChange: (value: boolean) => void;
   changeCurrentLanguage: (newLanguage: Language) => void;
   userData: UserData;
+  setUserData: (updatedUserData: UserData) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
@@ -36,6 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
   handleToggleChange,
   changeCurrentLanguage,
   userData,
+  setUserData,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -66,10 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleChangeLanguage = (newLanguage: Language): void => {
     changeCurrentLanguage(newLanguage);
-    localStorage.setItem(
-      "bildetema-userdata",
-      JSON.stringify({ ...userData, currentLanguage: newLanguage }),
-    );
+    setUserData({ ...userData, currentLanguage: newLanguage });
   };
 
   return (
