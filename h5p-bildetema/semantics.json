@@ -12,7 +12,7 @@
         "type": "text"
       },
       {
-        "label": "Show written words labelnpm",
+        "label": "Show written words label",
         "name": "showWrittenWordsLabel",
         "default": "Show written words",
         "type": "text"

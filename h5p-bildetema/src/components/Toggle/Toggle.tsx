@@ -4,8 +4,8 @@ import styles from "./Toggle.module.scss";
 type ToggleProps = {
   handleChange: (checked: boolean) => void;
   checked: boolean;
-  label?: string;
-  id?: string;
+  label: string;
+  id: string;
 };
 export const Toggle: React.FC<ToggleProps> = ({
   handleChange,

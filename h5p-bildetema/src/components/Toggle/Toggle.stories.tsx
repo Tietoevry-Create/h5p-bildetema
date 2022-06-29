@@ -7,7 +7,7 @@ export default {
   component: Toggle,
 } as ComponentMeta<typeof Toggle>;
 
-const Template = (size: string, label?: string): JSX.Element => {
+const Template = (size: string, label: string): JSX.Element => {
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (value: boolean): void => {
@@ -16,7 +16,7 @@ const Template = (size: string, label?: string): JSX.Element => {
 
   return (
     <span style={{ fontSize: size }}>
-      <Toggle label={label} checked={checked} handleChange={handleChange} />
+      <Toggle label={label} id={label} checked={checked} handleChange={handleChange} />
     </span>
   );
 };
@@ -35,16 +35,4 @@ export const LabelMedium = (): JSX.Element => {
 
 export const LabelLarge = (): JSX.Element => {
   return Template(large, "Large");
-};
-
-export const Small = (): JSX.Element => {
-  return Template(small);
-};
-
-export const Medium = (): JSX.Element => {
-  return Template(medium);
-};
-
-export const Large = (): JSX.Element => {
-  return Template(large);
 };
