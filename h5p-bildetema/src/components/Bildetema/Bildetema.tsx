@@ -49,6 +49,10 @@ const selectedLanguages: Language[] = [
 ];
 
 export const Bildetema: React.FC<BildetemaProps> = ({
+  // this variable can be used for setting default language
+  // when user first visits the page
+  // we can get the language object from languagesFromDB query data
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   currentLanguage: currentMetaLanguage,
 }) => {
   // TODO: use the language array to generate the list of selectable languages
@@ -277,6 +281,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       );
       navigate(newPath);
     }
+    // this hook handles the navigation to updated path when changing current language
+    // with current implementation it should only depend on currentLanguage and topics
+    // topics are only updated once when the data is fetched from remote host
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage, topics]);
 
   return (
