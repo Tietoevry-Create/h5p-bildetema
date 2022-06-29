@@ -16,7 +16,12 @@ const Template = (size: string, label: string): JSX.Element => {
 
   return (
     <span style={{ fontSize: size }}>
-      <Toggle label={label} id={label} checked={checked} handleChange={handleChange} />
+      <Toggle
+        label={label}
+        id={label}
+        checked={checked}
+        handleChange={handleChange}
+      />
     </span>
   );
 };
