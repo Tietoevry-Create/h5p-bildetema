@@ -190,7 +190,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
         {dynamicRedirect.current}
       </Routes>,
     );
-  }, [currentLanguage, topics]);
+  }, [currentLanguage, topics, topicsSize]);
 
   React.useEffect(() => {
     if (topics) {
