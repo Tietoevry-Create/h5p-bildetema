@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
 
-  const translations = useL10ns(...languageKeys, "selectLanguage");
+  const translations = useL10ns(...languageKeys);
 
   const toggleLabel = useL10n("showWrittenWordsLabel");
 
@@ -77,7 +77,6 @@ export const Header: React.FC<HeaderProps> = ({
       <div className={styles.header}>
         <div className={styles.logo}>{/* TODO: Add logo as SVG */}</div>
         <div className={styles.language_container}>
-          <div>{translations.selectLanguage}</div>
           <div className={styles.languages}>
             {selectedLanguages.map(language => {
               return (

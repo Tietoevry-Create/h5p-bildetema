@@ -98,6 +98,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Polish",
+        name: "lang_pol",
+        default: "Polish",
+        type: "text",
+      },
+      {
         label: "Copyright",
         name: "footerCopyright",
         default: "Copyright © 2022 · All Rights Reserved",
