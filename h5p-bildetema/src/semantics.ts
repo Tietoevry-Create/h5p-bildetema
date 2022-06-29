@@ -22,13 +22,19 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer contact info label",
         name: "footerContactInfoLabel",
-        default: "Contact info",
+        default: "Contact us",
+        type: "text",
+      },
+      {
+        label: "Footer contact info URL",
+        name: "footerContactInfoHref",
+        default: "mailto:support@lexindrift.atlassian.net",
         type: "text",
       },
       {
         label: "Footer link 1 label",
         name: "footerLink1Label",
-        default: "NAFO - Nasjonalt senter for flerkulturell opplæring",
+        default: "NAFO - National Centre of Multicultural Education",
         type: "text",
       },
       {
@@ -40,7 +46,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer link 2 label",
         name: "footerLink2Label",
-        default: "OsloMet - Storbyuniversitetet",
+        default: "OsloMet",
         type: "text",
       },
       {
@@ -52,8 +58,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer link 3 label",
         name: "footerLink3Label",
-        default:
-          "LEXIN - Nettbasert ordbok på norsk og forskjellige språk for minoritetsspråklige",
+        default: "LEXIN",
         type: "text",
       },
       {
@@ -90,6 +95,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Norwegian nynorsk",
         name: "lang_non",
         default: "Norwegian nynorsk",
+        type: "text",
+      },
+      {
+        label: "Copyright",
+        name: "footerCopyright",
+        default: "Copyright © 2022 · All Rights Reserved",
         type: "text",
       },
     ],

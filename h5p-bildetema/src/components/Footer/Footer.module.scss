@@ -1,36 +1,22 @@
 @use "../../../../common/abstracts" as *;
 
 .footer {
-  background-color: $burgundy;
-  color: white;
-  // TODO: Update padding to be consistent with the rest of the app
-  padding: $spacing--32;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: $spacing--24;
-  font-size: $font-size-24;
-
-  .heading {
-    font-size: $font-size-20;
-    font-weight: bold;
-  }
-
-  a,
-  p,
-  hr {
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $spacing--16;
+  background-color: $burgundy;
+  padding: $spacing--32;
+  font-size: $font-size-18;
 
   a,
   p {
-    font-size: $font-size-16;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    color: white;
   }
 
   a {
-    color: white;
     text-decoration: none;
 
     &:hover {
@@ -38,15 +24,13 @@
     }
   }
 
-  .divider {
-    border: 0;
-    border-top: 1px solid $grey;
-    width: 100%;
+  p {
+    border-right: 1px solid white;
+    padding-right: $spacing--16;
   }
 
-  .groupedElements {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing--8;
+  p:last-child {
+    border-right: none;
+    padding-right: none;
   }
 }
