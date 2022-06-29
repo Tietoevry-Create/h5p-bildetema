@@ -36,10 +36,17 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   React.useEffect(() => {
     setCurrentTopic(topic);
     setCurrentSubTopic(subTopic);
-  }, [topic, subTopic, setCurrentTopic, setCurrentSubTopic]);
+    setIsWordView(!!words);
+  }, [
+    topic,
+    subTopic,
+    setCurrentTopic,
+    setCurrentSubTopic,
+    words,
+    setIsWordView,
+  ]);
 
   if (items) {
-    setIsWordView(false);
     return (
       <div
         className={`${
@@ -67,7 +74,6 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   }
 
   if (words) {
-    setIsWordView(true);
     return <Words words={words} showWrittenWords={showWrittenWords} />;
   }
 
