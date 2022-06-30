@@ -8,6 +8,7 @@ export type TranslationKey =
   | "pageIsLoading"
   | "showWrittenWordsLabel"
   | "footerContactInfoLabel"
+  | "footerContactInfoHref"
   | "footerLink1Label"
   | "footerLink1Href"
   | "footerLink2Label"
@@ -18,4 +19,5 @@ export type TranslationKey =
   | "selectLanguage"
   | "lang_eng"
   | "lang_nob"
-  | "lang_non";
+  | "lang_non"
+  | "footerCopyright";
