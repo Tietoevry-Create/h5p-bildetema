@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import {
   Navigate,
   Route,
   Routes,
-  useNavigate,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import { Header } from "..";
 import {
@@ -17,6 +17,7 @@ import { getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
+import { getTopicSlug } from "../../utils/router.utils";
 import { Footer } from "../Footer/Footer";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import styles from "./Bildetema.module.scss";
@@ -64,37 +65,33 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     "topicsFromDB",
     getTopics,
   );
-  const [topicsSize, setTopicsSize] = React.useState<TopicGridSizes>(
-    TopicGridSizes.Big,
-  );
-  const [isWordView, setIsWordView] = React.useState(false);
-  // TODO?: handle going back in history
-  // (handle the case when user goes back after changing the language)
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dynamicRedirect = React.useRef<JSX.Element>();
-
-  const [showWrittenWords, setShowWrittenWords] = React.useState(true);
 
   const loadingLabel = useL10n("pageIsLoading");
   const [userData, setUserData] = useUserData();
 
-  const [currentLanguage, setCurrentLanguage] = React.useState(
+  // TODO?: handle going back in history
+  // (handle the case when user goes back after changing the language)
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
+  const [isWordView, setIsWordView] = useState(false);
+  const [showWrittenWords, setShowWrittenWords] = useState(true);
+  const [currentLanguage, setCurrentLanguage] = useState(
     userData.currentLanguage ?? selectedLanguages[0],
   );
+  const [currentTopic, setCurrentTopic] = useState<Topic>();
+  const [currentSubTopic, setCurrentSubTopic] = useState<Topic>();
+  const [routes, setRoutes] = useState<JSX.Element>();
+  const [firstVisit, setFirstVisit] = useState(true);
 
-  const [currentTopic, setCurrentTopic] = React.useState<Topic>();
-  const [currentSubTopic, setCurrentSubTopic] = React.useState<Topic>();
-
-  const [routes, setRoutes] = React.useState<JSX.Element>();
+  const dynamicRedirect = useRef<JSX.Element>();
 
   const handleToggleChange = (value: boolean): void => {
     setShowWrittenWords(value);
   };
 
-  const [firstVisit, setFirstVisit] = React.useState(true);
-
-  React.useEffect(() => {
+  useEffect(() => {
     setRoutes(
       <Routes>
         <Route
@@ -203,9 +200,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     );
   }, [currentLanguage, showWrittenWords, topics, topicsSize]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (topics) {
-      let newPath;
+      let newPath: string;
 
       // process current path if this is a first visit
       // i.e. link is copy-pasted into the address bar
@@ -229,49 +226,22 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
         // build new path based on topic and subtopic
         // since currentTopic and currentSubTopic are still undefined at this point
-        newPath = `/${currentLanguage.code}${
-          topic
-            ? `/${encodeURIComponent(
-                topic.labelTranslations
-                  .get(currentLanguage.code)
-                  ?.label.toLowerCase()
-                  .split(" ")
-                  .join("-") ?? topic.id.toLowerCase(),
-              )}`
-            : ""
-        }${
-          subTopic
-            ? `/${encodeURIComponent(
-                subTopic.labelTranslations
-                  .get(currentLanguage.code)
-                  ?.label.toLowerCase()
-                  .split(" ")
-                  .join("-") ?? subTopic.id.toLowerCase(),
-              )}`
-            : ""
-        }`;
+        newPath = [
+          `/${currentLanguage.code}`,
+          topic && getTopicSlug(topic, currentLanguage.code),
+          subTopic && getTopicSlug(subTopic, currentLanguage.code),
+        ]
+          .filter(Boolean)
+          .join("/");
       } else {
-        newPath = `/${currentLanguage.code}${
-          currentTopic
-            ? `/${encodeURIComponent(
-                currentTopic.labelTranslations
-                  .get(currentLanguage.code)
-                  ?.label.toLowerCase()
-                  .split(" ")
-                  .join("-") ?? currentTopic.id.toLowerCase(),
-              )}`
-            : ""
-        }${
-          currentSubTopic
-            ? `/${encodeURIComponent(
-                currentSubTopic.labelTranslations
-                  .get(currentLanguage.code)
-                  ?.label.toLowerCase()
-                  .split(" ")
-                  .join("-") ?? currentSubTopic.id.toLowerCase(),
-              )}`
-            : ""
-        }`;
+        newPath = [
+          `/${currentLanguage.code}`,
+          currentTopic && getTopicSlug(currentTopic, currentLanguage.code),
+          currentSubTopic &&
+            getTopicSlug(currentSubTopic, currentLanguage.code),
+        ]
+          .filter(Boolean)
+          .join("/");
       }
       dynamicRedirect.current = (
         <Route
