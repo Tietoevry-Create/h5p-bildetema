@@ -1,4 +1,16 @@
 .editor {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.canvas {
   position: relative;
   border: 1px solid red;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
