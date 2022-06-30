@@ -42,6 +42,11 @@ const setTopic = (topic: Topic, map: Map<string, Topic>) => {
   map.set(topic.label, topic);
   languages.forEach(language => {
     topic.words.set(language.code, []);
+    topic.labelTranslations.set(language.code, {
+      id: "",
+      label: "",
+      images: [],
+    });
   });
 };
 
@@ -58,6 +63,7 @@ const findSubTopics = (
     const topic: Topic = {
       id: inputWord.Title,
       label: inputWord.Bokmål_nob,
+      labelTranslations: new Map(),
       subTopics: new Map(),
       words: new Map(),
       images: findImages(inputWord),
@@ -81,6 +87,7 @@ const findMainTopics = (
       const topic: Topic = {
         id: inputWord.Title,
         label: inputWord.Tema1,
+        labelTranslations: new Map(),
         subTopics: new Map(),
         words: new Map(),
         images: findImages(inputWord),
@@ -117,8 +124,34 @@ const fillTopicsWithWords = (
   topicMap: Map<string, Topic>,
 ) => {
   inputWords.forEach((inputWord: InputWord) => {
-    if (!inputWord.Title.includes("V")) return;
     const images: ImageUrl[] = findImages(inputWord);
+
+    if (inputWord.Title.includes("T")) {
+      Object.entries(inputWord).forEach(([key, value]) => {
+        if (NON_LANGUAGE_FIELDS.includes(key)) return;
+        const [_, strLanguageCode] = key.split("_");
+        const languageCode = makeLanguageCode(strLanguageCode);
+        const word: Word = {
+          audio: "",
+          id: inputWord.Title,
+          label: value,
+          images: images,
+        };
+
+        const wordInSubTopic = inputWord.Bokmål_nob !== inputWord.Tema1;
+        if (wordInSubTopic) {
+          topicMap
+            .get(inputWord.Tema1)
+            ?.subTopics.get(inputWord.Bokmål_nob)
+            ?.labelTranslations.set(languageCode, word);
+        } else {
+          topicMap
+            .get(inputWord.Tema1)
+            ?.labelTranslations.set(languageCode, word);
+        }
+      });
+      return;
+    }
 
     Object.entries(inputWord).forEach(([key, value]) => {
       if (NON_LANGUAGE_FIELDS.includes(key)) return;
@@ -130,8 +163,8 @@ const fillTopicsWithWords = (
         label: value,
         images: images,
       };
-      const wordInMainTopic = inputWord.Undertema1 !== inputWord.Tema1;
-      if (wordInMainTopic) {
+      const wordInSubTopic = inputWord.Undertema1 !== inputWord.Tema1;
+      if (wordInSubTopic) {
         topicMap
           .get(inputWord.Tema1)
           ?.subTopics.get(inputWord.Undertema1)

@@ -20,4 +20,5 @@ export type TranslationKey =
   | "lang_eng"
   | "lang_nob"
   | "lang_non"
+  | "lang_pol"
   | "footerCopyright";

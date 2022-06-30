@@ -5,8 +5,9 @@
   justify-content: space-between;
   align-items: center;
   gap: $spacing--32;
-  background-color: $beige;
+  background-color: $burgundy;
   padding: $spacing--32;
+  color: white;
 }
 
 .language_container {
@@ -46,4 +47,32 @@
 
 .toggle {
   font-size: 1.2rem;
+}
+
+.languageButton,
+.languageMenuButton {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-18;
+}
+
+.languageButton {
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.active {
+    text-decoration: underline;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.languageMenuButton {
+  display: flex;
+  gap: $spacing--8;
+  align-items: center;
 }

@@ -1,32 +1,47 @@
 import React from "react";
 import { useContentId } from "use-h5p";
-import { TopicGridSizes } from "../../../../common/types/types";
+import {
+  TopicGridSizes,
+  Language,
+  UserData,
+} from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
+import { AllowedLanguage } from "../../types/AllowedLanguage";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
-import { Toggle, Breadcrumbs } from "..";
+import { LanguageMenuArrowIcon } from "../Icons/Icons";
+import { Toggle } from "..";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
-  currentLanguageCode: string;
+  currentLanguage: Language;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
+  selectedLanguages: Language[];
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
+  changeCurrentLanguage: (newLanguage: Language) => void;
+  userData: UserData;
+  setUserData: (updatedUserData: UserData) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
-  currentLanguageCode,
+  currentLanguage,
   topicsSize,
   setTopicsSize,
+  selectedLanguages,
   isWordView,
   toggleChecked,
   handleToggleChange,
+  changeCurrentLanguage,
+  userData,
+  setUserData,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${typeof languages[number]}`>;
+  ) as Array<`lang_${AllowedLanguage}`>;
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
@@ -51,21 +66,41 @@ export const Header: React.FC<HeaderProps> = ({
     return element;
   };
 
+  const handleChangeLanguage = (newLanguage: Language): void => {
+    changeCurrentLanguage(newLanguage);
+    setUserData({ ...userData, currentLanguage: newLanguage });
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <div className={styles.logo}>{/* TODO: Add logo as SVG */}</div>
         <div className={styles.language_container}>
-          <div>{translations.selectLanguage}</div>
           <div className={styles.languages}>
-            <p>{translations.lang_eng}</p>
-            <p>{translations.lang_nob}</p>
-            <p>{translations.lang_non}</p>
+            {selectedLanguages.map(language => {
+              return (
+                <button
+                  key={language.code}
+                  onClick={() => handleChangeLanguage(language)}
+                  className={`${styles.languageButton} ${
+                    language.code === currentLanguage.code ? styles.active : ""
+                  }`}
+                  type="button"
+                >
+                  {translations[`lang_${language.code as AllowedLanguage}`]}
+                </button>
+              );
+            })}
           </div>
+          {/* TODO: Replace with separate component */}
+          <button type="button" className={styles.languageMenuButton}>
+            {translations.selectLanguage}
+            <LanguageMenuArrowIcon />
+          </button>
         </div>
       </div>
       <div className={styles.bottom}>
-        <Breadcrumbs currentLanguageCode={currentLanguageCode} />
+        <Breadcrumbs currentLanguageCode={currentLanguage.code} />
         {renderLeftMenu()}
       </div>
     </div>

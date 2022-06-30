@@ -96,6 +96,12 @@
         "type": "text"
       },
       {
+        "label": "Polish",
+        "name": "lang_pol",
+        "default": "Polish",
+        "type": "text"
+      },
+      {
         "label": "Copyright",
         "name": "footerCopyright",
         "default": "Copyright © 2022 · All Rights Reserved",

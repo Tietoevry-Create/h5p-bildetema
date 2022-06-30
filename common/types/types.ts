@@ -24,6 +24,7 @@ export type Language = {
 export type Topic = {
   id: string;
   label: string;
+  labelTranslations: Map<LanguageCode, Word>;
   subTopics: Map<string, Topic>;
   words: Map<LanguageCode, Word[]>;
   images: ImageUrl[];
@@ -33,3 +34,7 @@ export enum TopicGridSizes {
   Big,
   Compact,
 }
+
+export type UserData = {
+  currentLanguage: Language;
+};
