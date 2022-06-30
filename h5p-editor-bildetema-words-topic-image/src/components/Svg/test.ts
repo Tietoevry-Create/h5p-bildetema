@@ -3,9 +3,8 @@ const svg: SVGElement = document.querySelector(".svg");
 const canvas: HTMLCanvasElement = document.querySelector(".canvas");
 const path: SVGPathElement = document.querySelector(".path");
 
-const finishButton: HTMLButtonElement = document.querySelector(
-  ".finish-button"
-);
+const finishButton: HTMLButtonElement =
+  document.querySelector(".finish-button");
 const clearButton: HTMLButtonElement = document.querySelector(".clear-button");
 
 const link = document.querySelector(".link");
@@ -18,7 +17,7 @@ const viewBoxHeight = 100;
 
 enum State {
   Drawing,
-  Finished
+  Finished,
 }
 let state = State.Drawing;
 
@@ -65,13 +64,13 @@ function handlePointClick(event: Event) {
 
   const startPointWasClicked =
     [...target.parentElement.childNodes]
-      .filter((element) => element.tagName?.toUpperCase() === "CIRCLE")
+      .filter(element => element.tagName?.toUpperCase() === "CIRCLE")
       .indexOf(target) === 0;
   const threeOrMorePoints = points.length > 2;
-  
+
   if (startPointWasClicked) {
-    if (threeOrMorePoints) {   
-      finishDrawing(); 
+    if (threeOrMorePoints) {
+      finishDrawing();
     }
     return;
   }
@@ -94,7 +93,7 @@ function draw(points) {
 }
 
 function removePoint(x: number, y: number) {
-  points = points.filter((point) => point.x !== x && point.y !== y);
+  points = points.filter(point => point.x !== x && point.y !== y);
 }
 
 function createPoint(x: number, y: number) {
@@ -127,7 +126,7 @@ function finishDrawing() {
   path.setAttribute("d", newD);
 
   wrapPathInLink();
-  
+
   canvas.classList.add("canvas--finished");
 
   state = State.Finished;
@@ -142,12 +141,12 @@ function reset() {
 
   unwrapPathFromLink();
 
-  Array.from(svg.querySelectorAll("circle")).forEach((circle) =>
-    circle.parentNode.removeChild(circle)
+  Array.from(svg.querySelectorAll("circle")).forEach(circle =>
+    circle.parentNode.removeChild(circle),
   );
 
   state = State.Drawing;
-  
+
   canvas.classList.remove("canvas--finished");
 }
 
