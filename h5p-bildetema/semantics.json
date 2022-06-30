@@ -78,21 +78,75 @@
         "type": "text"
       },
       {
+        "label": "Copyright",
+        "name": "footerCopyright",
+        "default": "Copyright © 2022 · All Rights Reserved",
+        "type": "text"
+      },
+      {
+        "label": "Arabic",
+        "name": "lang_ara",
+        "default": "Arabic",
+        "type": "text"
+      },
+      {
+        "label": "Sorani",
+        "name": "lang_ckb",
+        "default": "Sorani",
+        "type": "text"
+      },
+      {
+        "label": "Danish",
+        "name": "lang_dan",
+        "default": "Danish",
+        "type": "text"
+      },
+      {
         "label": "English",
         "name": "lang_eng",
         "default": "English",
         "type": "text"
       },
       {
-        "label": "Norwegian bokmål",
-        "name": "lang_nob",
-        "default": "Norwegian bokmål",
+        "label": "Persian",
+        "name": "lang_fas",
+        "default": "Persian",
         "type": "text"
       },
       {
-        "label": "Norwegian nynorsk",
-        "name": "lang_non",
-        "default": "Norwegian nynorsk",
+        "label": "French",
+        "name": "lang_fra",
+        "default": "French",
+        "type": "text"
+      },
+      {
+        "label": "Icelandic",
+        "name": "lang_isl",
+        "default": "Icelandic",
+        "type": "text"
+      },
+      {
+        "label": "Kurmanji",
+        "name": "lang_kmr",
+        "default": "Kurmanji",
+        "type": "text"
+      },
+      {
+        "label": "Lithuanian",
+        "name": "lang_lit",
+        "default": "Lithuanian",
+        "type": "text"
+      },
+      {
+        "label": "Norwegian (nynorsk)",
+        "name": "lang_nno",
+        "default": "Norwegian (nynorsk)",
+        "type": "text"
+      },
+      {
+        "label": "Norwegian (bokmål)",
+        "name": "lang_nob",
+        "default": "Norwegian (bokmål)",
         "type": "text"
       },
       {
@@ -102,9 +156,75 @@
         "type": "text"
       },
       {
-        "label": "Copyright",
-        "name": "footerCopyright",
-        "default": "Copyright © 2022 · All Rights Reserved",
+        "label": "Dari",
+        "name": "lang_prs",
+        "default": "Dari",
+        "type": "text"
+      },
+      {
+        "label": "Pashto",
+        "name": "lang_pus",
+        "default": "Pashto",
+        "type": "text"
+      },
+      {
+        "label": "Russian",
+        "name": "lang_rus",
+        "default": "Russian",
+        "type": "text"
+      },
+      {
+        "label": "Northern Sami",
+        "name": "lang_sme",
+        "default": "Northern Sami",
+        "type": "text"
+      },
+      {
+        "label": "Somali",
+        "name": "lang_som",
+        "default": "Somali",
+        "type": "text"
+      },
+      {
+        "label": "Spanish",
+        "name": "lang_spa",
+        "default": "Spanish",
+        "type": "text"
+      },
+      {
+        "label": "Swedish",
+        "name": "lang_swe",
+        "default": "Swedish",
+        "type": "text"
+      },
+      {
+        "label": "Tagalog",
+        "name": "lang_tgl",
+        "default": "Tagalog",
+        "type": "text"
+      },
+      {
+        "label": "Thai",
+        "name": "lang_tha",
+        "default": "Thai",
+        "type": "text"
+      },
+      {
+        "label": "Tigrinya",
+        "name": "lang_tir",
+        "default": "Tigrinya",
+        "type": "text"
+      },
+      {
+        "label": "Ukrainian",
+        "name": "lang_ukr",
+        "default": "Ukrainian",
+        "type": "text"
+      },
+      {
+        "label": "Vietnamese",
+        "name": "lang_vie",
+        "default": "Vietnamese",
         "type": "text"
       }
     ]

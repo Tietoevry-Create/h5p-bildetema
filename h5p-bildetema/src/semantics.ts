@@ -1,4 +1,15 @@
-import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
+import type { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
+import { languages } from "./constants/languages";
+
+const lang = (
+  isoCode: typeof languages[number],
+  label: string,
+): H5PFieldText => ({
+  label,
+  name: `lang_${isoCode}`,
+  default: label,
+  type: "text",
+});
 
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
@@ -80,35 +91,35 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
-        label: "English",
-        name: "lang_eng",
-        default: "English",
-        type: "text",
-      },
-      {
-        label: "Norwegian bokmål",
-        name: "lang_nob",
-        default: "Norwegian bokmål",
-        type: "text",
-      },
-      {
-        label: "Norwegian nynorsk",
-        name: "lang_non",
-        default: "Norwegian nynorsk",
-        type: "text",
-      },
-      {
-        label: "Polish",
-        name: "lang_pol",
-        default: "Polish",
-        type: "text",
-      },
-      {
         label: "Copyright",
         name: "footerCopyright",
         default: "Copyright © 2022 · All Rights Reserved",
         type: "text",
       },
+      lang("ara", "Arabic"),
+      lang("ckb", "Sorani"),
+      lang("dan", "Danish"),
+      lang("eng", "English"),
+      lang("fas", "Persian"),
+      lang("fra", "French"),
+      lang("isl", "Icelandic"),
+      lang("kmr", "Kurmanji"),
+      lang("lit", "Lithuanian"),
+      lang("nno", "Norwegian (nynorsk)"),
+      lang("nob", "Norwegian (bokmål)"),
+      lang("pol", "Polish"),
+      lang("prs", "Dari"),
+      lang("pus", "Pashto"),
+      lang("rus", "Russian"),
+      lang("sme", "Northern Sami"),
+      lang("som", "Somali"),
+      lang("spa", "Spanish"),
+      lang("swe", "Swedish"),
+      lang("tgl", "Tagalog"),
+      lang("tha", "Thai"),
+      lang("tir", "Tigrinya"),
+      lang("ukr", "Ukrainian"),
+      lang("vie", "Vietnamese"),
     ],
   },
 ];
