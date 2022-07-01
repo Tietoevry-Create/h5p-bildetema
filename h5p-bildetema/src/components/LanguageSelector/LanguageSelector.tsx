@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./LanguageSelector.module.scss";
-import type { Language as LanguageType } from "../../../../common/types/types";
+import { Language } from "../../../../common/types/types";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language } from "..";
+import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 
 type LanguageSelectorProps = {
-  languages: LanguageType[];
+  languages: Language[];
   handleChange: (isFavorite: boolean, languageCode: LanguageCode) => void;
 };
 
@@ -22,7 +22,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       style={{ gridTemplateRows: `repeat(${getAmountOfRows()}, 2rem)` }}
     >
       {languages.map(language => (
-        <Language
+        <LanguageSelectorElement
           key={language.code}
           handleChange={handleChange}
           language={language}

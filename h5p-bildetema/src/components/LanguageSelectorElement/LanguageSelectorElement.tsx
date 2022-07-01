@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./Language.module.scss";
-import { Language as LanguageType } from "../../../../common/types/types";
+import styles from "./LanguageSelectorElement.module.scss";
+import { Language } from "../../../../common/types/types";
 import type { LanguageCode } from "../../../../common/types/LanguageCode";
 
 type LanguageProps = {
-  language: LanguageType;
+  language: Language;
   handleChange: (isFavorite: boolean, languageCode: LanguageCode) => void;
 };
 
-export const Language: React.FC<LanguageProps> = ({
+export const LanguageSelectorElement: React.FC<LanguageProps> = ({
   language: { label, code, rtl, isFavorite },
   handleChange,
 }) => {
