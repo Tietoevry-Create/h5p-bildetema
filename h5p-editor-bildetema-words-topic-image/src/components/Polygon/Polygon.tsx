@@ -1,12 +1,15 @@
 import React from "react";
 import type { Hotspot } from "../Svg/Svg";
+import styles from "./Polygon.module.scss";
 
 export type PolygonProps = {
   hotspot: Hotspot;
+  handleCircleClick: (point: Point) => void;
 };
 
 export const Polygon: React.FC<PolygonProps> = ({
   hotspot: { points, drawing },
+  handleCircleClick,
 }) => {
   const pointsToDAttribute = (): string => {
     const d = points
@@ -34,23 +37,27 @@ export const Polygon: React.FC<PolygonProps> = ({
       ) : (
         points.length && (
           <path
+            className={styles.path}
             d={pointsToDAttribute()}
-            fill="transparent"
+            // fill="transparent"
             strokeWidth="0.3"
             stroke="black"
           />
         )
       )}
       {drawing &&
-        points.map(({ x, y }) => (
+        points.map(({ x, y }, index) => (
           <circle
+            className={styles.point}
+            style={{ fill: `${index === 0 && "red"}` }}
+            onClick={e => {
+              e.stopPropagation();
+              handleCircleClick({ x, y });
+            }}
             key={`${x}${y}`}
             cx={x}
             cy={y}
-            r="0.5"
-            stroke="black"
-            fill="none"
-            strokeWidth="0.3"
+            r="1"
           />
         ))}
     </>

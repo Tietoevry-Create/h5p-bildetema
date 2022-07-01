@@ -1,0 +1,13 @@
+.button {
+  all: unset;
+  border: 1px solid black;
+  padding: 0.3rem;
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
+.isActive {
+  background-color: #a4afb8;
+  box-shadow: 0 0 0 1px #373737;
+  font-weight: bold;
+}
