@@ -3,7 +3,7 @@ import type { Image as ImageType } from "h5p-types";
 import { Word } from "../../../../common/types/types";
 import { Image } from "../Image/Image";
 import { Button } from "../Button/Button";
-import { Svg } from "../Svg/Svg";
+import { Point, Svg } from "../Svg/Svg";
 import type { Hotspot } from "../Svg/Svg";
 import styles from "./Editor.module.scss";
 
