@@ -6,6 +6,7 @@ import { Button } from "../Button/Button";
 import { Point, Svg } from "../Svg/Svg";
 import type { Hotspot } from "../Svg/Svg";
 import styles from "./Editor.module.scss";
+import { SetValueContext } from "../../contexts/SetValueContext";
 
 export type EditorProps = {
   image: ImageType | undefined;
@@ -13,12 +14,18 @@ export type EditorProps = {
 };
 export const Editor: React.FC<EditorProps> = ({ image, words }) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const setValue = React.useContext(SetValueContext);
 
   const [hotspots, setHotspots] = React.useState<Hotspot[]>([]);
 
   React.useEffect(() => {
     setHotspots(words.map(word => ({ points: [], drawing: false, word })));
   }, [words]);
+
+  React.useEffect(() => {
+    console.info("Editor useEffect setting value", hotspots);
+    setValue(hotspots);
+  }, [hotspots,setValue]);
 
   const handleMouseEvent = (e: React.MouseEvent<HTMLElement>): void => {
     if (ref?.current) {

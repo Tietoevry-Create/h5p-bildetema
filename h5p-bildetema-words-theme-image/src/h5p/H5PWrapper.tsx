@@ -1,5 +1,5 @@
 import type { IH5PContentType, Image } from "h5p-types";
-import { H5PContentType } from "h5p-utils";
+import { H5P, H5PContentType } from "h5p-utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
@@ -30,13 +30,14 @@ export class H5PWrapper
 
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema-topic-image-view");
-
+    
+    console.info("params", this.params);
     const root = createRoot(this.wrapper);
     root.render(
       <H5PContext.Provider value={this}>
         <L10nContext.Provider value={l10n}>
           <ContentIdContext.Provider value={this.contentId}>
-            <App params={this.params} />
+            <App imagePath={H5P.getPath( (this.params as any)["bildetema-words-topic-view"].themeImage.path, this.contentId)} params={this.params} />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
       </H5PContext.Provider>,
