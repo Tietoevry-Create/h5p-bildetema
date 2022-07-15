@@ -5,6 +5,7 @@ import { LanguageCode } from "../../common/types/LanguageCode";
 import { Word } from "../../common/types/types";
 import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
 import { Editor } from "./components/Editor/Editor";
+import { SetValueContext } from "./contexts/SetValueContext";
 
 export type AppProps = {
   image: Image | undefined;
@@ -12,7 +13,6 @@ export type AppProps = {
 };
 
 export const App: React.FC<AppProps> = ({ image, words }) => {
-
   return image ? (
     <Editor
       image={image} 
