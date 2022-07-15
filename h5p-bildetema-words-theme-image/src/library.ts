@@ -6,7 +6,7 @@ export const library: Library = {
   majorVersion: 1,
   minorVersion: 0,
   patchVersion: 0,
-  runnable: 0,
+  runnable: 1,
   preloadedJs: [
     {
       path: "dist/bundle.js",
@@ -17,4 +17,11 @@ export const library: Library = {
       path: "dist/main.css",
     },
   ],
+  editorDependencies: [
+    {
+      "machineName": "H5PEditor.BildetemaWordsTopicImage",
+      "majorVersion": 1,
+      "minorVersion": 0,
+    }
+  ]
 };

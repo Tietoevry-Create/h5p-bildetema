@@ -1,11 +1,11 @@
 import * as React from "react";
 
 export type AppProps = {
-  adjective: string;
+  params: any;
 };
 
-const App: React.FC<AppProps> = ({ adjective }) => {
-  return <h1>Hi, you&apos;re {adjective}</h1>;
+const App: React.FC<AppProps> = ({ params }) => {
+  return <h1> {JSON.stringify(params)}</h1>;
 };
 
 export default App;

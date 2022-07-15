@@ -36,7 +36,7 @@ export class H5PWrapper
       <H5PContext.Provider value={this}>
         <L10nContext.Provider value={l10n}>
           <ContentIdContext.Provider value={this.contentId}>
-            <App adjective="peachy" />
+            <App params={this.params} />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
       </H5PContext.Provider>,
