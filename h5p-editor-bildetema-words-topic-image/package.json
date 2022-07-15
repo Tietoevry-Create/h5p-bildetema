@@ -25,9 +25,11 @@
   "dependencies": {
     "h5p-utils": "2.0.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.1"
   },
   "devDependencies": {
+    "@mdx-js/react": "^2.1.2",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
     "@storybook/builder-vite": "^0.1.38",

@@ -1,0 +1,24 @@
+@use "../../../../common/abstracts" as *;
+
+.gridBig {
+  display: grid;
+  grid-gap: $spacing--16;
+
+  /* static elements */
+  // grid-template-columns: repeat(auto-fill, $topic-card-big-width);
+
+  /* dynamic elements */
+  grid-template-columns: repeat(auto-fit, minmax($topic-card-big-width, 1fr));
+}
+
+.gridCompact {
+  column-gap: $spacing--16;
+
+  @media screen and (min-width: 50rem) {
+    column-count: 2;
+  }
+
+  @media screen and (min-width: 75rem) {
+    column-count: 3;
+  }
+}
