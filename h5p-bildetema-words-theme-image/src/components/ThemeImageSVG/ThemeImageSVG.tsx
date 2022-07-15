@@ -36,9 +36,9 @@ export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
         <div dangerouslySetInnerHTML={{ __html: image }} />
       }
       {themeImageType === "nonVectorImageWithHotspots" &&
-        <img src={image} alt="" />
+        <img style={{width: "100%", height: "100%;"}} src={image} alt="" />
       }
-      <svg className={styles.overlays}>{overlayFields}</svg>
+      <svg className={styles.overlays} preserveAspectRatio="none" viewBox="0 0 100 100">{overlayFields}</svg>
     </div>
   );
 };
