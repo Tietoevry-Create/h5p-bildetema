@@ -39,7 +39,7 @@ const App: React.FC<AppProps> = ({ params, imagePath }) => {
   }, [topics]);
 
   React.useEffect(() => {
-    const paramHotspots = params["bildetema-words-topic-view"].hotspots;
+    const paramHotspots = params["bildetema-words-topic-view"].hotspots[0];
     console.info("paramHotspots", paramHotspots);
     const computedOverlays = paramHotspots
       .filter((hotspot:any) => hotspot && hotspot !== null && hotspot.points?.length > 0)
@@ -50,11 +50,14 @@ const App: React.FC<AppProps> = ({ params, imagePath }) => {
           outline: `<polygon points="${hotspot.points?.map((point:any) => `${point.x},${point.y}`).join(" ")}" style="fill:lime;stroke:purple;stroke-width:1"/>`,
         };
       });
+    console.info("computedOverlays", computedOverlays);
     setOverlays(computedOverlays);
+    
     const computedWords = paramHotspots
       .filter((hotspot:any) => hotspot && hotspot.points?.length > 0)
       .map((hotspot:any):Word => hotspot.word);
     setWords(computedWords);
+    console.info("computedWords", computedWords);
   }, [params]);
 
   return (<div>
