@@ -3,6 +3,6 @@ import { useContext } from "react";
 import { SetValueContext } from "../contexts/SetValueContext";
 import { Params } from "../h5p/H5PWrapper";
 
-export const useSetValue = (): H5PSetValue<Params> => {
+export const useSetValue = (): ((params:Params)=>void) => {
   return useContext(SetValueContext);
 };

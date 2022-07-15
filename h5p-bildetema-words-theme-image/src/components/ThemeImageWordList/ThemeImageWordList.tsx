@@ -13,7 +13,7 @@ export const ThemeImageWordList: React.FC<ThemeImageWordListProps> = ({
 }) => {
   return (
     <div className={styles.themeImageWordList}>
-      {words.map((word: Word) => (
+      {words?.map((word: Word) => (
         <div className="theme-image-word-list-item" key={word.id}>
           <div className={word.id === currentWordId ? styles.selected : ""}>
             {word.label}
