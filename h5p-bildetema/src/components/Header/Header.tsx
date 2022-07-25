@@ -1,18 +1,15 @@
 import React from "react";
 import { useContentId } from "use-h5p";
-import {
-  TopicGridSizes,
-  Language,
-  UserData,
-} from "../../../../common/types/types";
+import { TopicGridSizes, Language } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
-import { LanguageMenuArrowIcon } from "../Icons/Icons";
 import { Toggle } from "..";
+import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import styles from "./Header.module.scss";
+import { useUserData } from "../../hooks/useUserData";
 
 export type HeaderProps = {
   currentLanguage: Language;
@@ -23,8 +20,7 @@ export type HeaderProps = {
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
   changeCurrentLanguage: (newLanguage: Language) => void;
-  userData: UserData;
-  setUserData: (updatedUserData: UserData) => void;
+  languagesFromDB: Language[] | undefined;
 };
 
 export const Header: React.FC<HeaderProps> = ({
@@ -36,8 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
   toggleChecked,
   handleToggleChange,
   changeCurrentLanguage,
-  userData,
-  setUserData,
+  languagesFromDB,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -48,6 +43,15 @@ export const Header: React.FC<HeaderProps> = ({
   const toggleLabel = useL10n("showWrittenWordsLabel");
 
   const contentId = useContentId();
+
+  const [userData, setUserData] = useUserData();
+
+  const [langSelectorIsShown, setLangSelectorIsShown] =
+    React.useState<boolean>();
+
+  const handleSelectorVisibility = (): void => {
+    setLangSelectorIsShown(!langSelectorIsShown);
+  };
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
@@ -92,11 +96,12 @@ export const Header: React.FC<HeaderProps> = ({
               );
             })}
           </div>
-          {/* TODO: Replace with separate component */}
-          <button type="button" className={styles.languageMenuButton}>
-            {translations.selectLanguage}
-            <LanguageMenuArrowIcon />
-          </button>
+          <LanguageDropdown
+            handleSelectorVisibility={handleSelectorVisibility}
+            langSelectorIsShown={langSelectorIsShown}
+            languagesFromDB={languagesFromDB}
+            selectLanguageLabel={translations.selectLanguage}
+          />
         </div>
       </div>
       <div className={styles.bottom}>

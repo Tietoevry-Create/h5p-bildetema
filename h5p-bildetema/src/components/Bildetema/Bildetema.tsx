@@ -13,7 +13,7 @@ import {
   Topic,
   TopicGridSizes,
 } from "../../../../common/types/types";
-import { getTopics } from "../../../../common/utils/data.utils";
+import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
@@ -37,7 +37,7 @@ const selectedLanguages: Language[] = [
   },
   {
     label: "Norsk (Nynorsk)",
-    code: makeLanguageCode("non"),
+    code: makeLanguageCode("nno"),
     rtl: false,
     isFavorite: true,
   },
@@ -56,18 +56,17 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   currentLanguage: currentMetaLanguage,
 }) => {
-  // TODO: use the language array to generate the list of selectable languages
-  // const { isLoading: isLoadingLanguages, data: languages } = useQuery(
-  //   "languagesFromDB",
-  //   getLanguages,
-  // );
+  const { isLoading: isLoadingLanguages, data: languagesFromDB } = useQuery(
+    "languagesFromDB",
+    getLanguages,
+  );
   const { isLoading: isLoadingTopics, data: topics } = useQuery(
     "topicsFromDB",
     getTopics,
   );
 
   const loadingLabel = useL10n("pageIsLoading");
-  const [userData, setUserData] = useUserData();
+  const [userData] = useUserData();
 
   // TODO?: handle going back in history
   // (handle the case when user goes back after changing the language)
@@ -269,12 +268,11 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           selectedLanguages={selectedLanguages}
           currentLanguage={currentLanguage}
           changeCurrentLanguage={setCurrentLanguage}
-          userData={userData}
-          setUserData={setUserData}
+          languagesFromDB={languagesFromDB}
         />
         <div className={styles.body}>
           {routes}
-          {isLoadingTopics && <h1>{loadingLabel}</h1>}
+          {(isLoadingTopics || isLoadingLanguages) && <h1>{loadingLabel}</h1>}
         </div>
         <Footer />
       </div>

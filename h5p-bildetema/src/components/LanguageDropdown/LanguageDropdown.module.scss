@@ -1,0 +1,19 @@
+@use "../../../../common/abstracts" as *;
+
+.languageMenuButtonWrapper {
+  display: flex;
+  gap: $spacing--8;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.languageMenuButton {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-18;
+  display: flex;
+  gap: $spacing--8;
+  align-items: center;
+}

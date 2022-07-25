@@ -25,6 +25,7 @@ const languages: Language[] = [];
 const topics: Topic[] = [];
 
 export const getLanguages = async (): Promise<Language[]> => {
+  if (!languages.length) await fetchData();
   return languages;
 };
 

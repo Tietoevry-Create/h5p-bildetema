@@ -6,14 +6,18 @@ import type { LanguageCode } from "../../../../common/types/LanguageCode";
 type LanguageProps = {
   language: Language;
   handleChange: (isFavorite: boolean, languageCode: LanguageCode) => void;
+  middleElement: boolean;
 };
 
 export const LanguageSelectorElement: React.FC<LanguageProps> = ({
   language: { label, code, rtl, isFavorite },
   handleChange,
+  middleElement,
 }) => {
   return (
-    <div className={`${styles.language}`}>
+    <div
+      className={`${middleElement ? styles.languageMiddle : styles.language}`}
+    >
       <div className={styles.checkboxContainer}>
         <label htmlFor={code} className={styles.checkbox}>
           <input

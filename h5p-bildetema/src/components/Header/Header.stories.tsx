@@ -30,15 +30,26 @@ const Template = (isWordView: boolean): JSX.Element => {
       }}
       toggleChecked={checked}
       selectedLanguages={[]}
-      userData={{
-        currentLanguage: {
+      languagesFromDB={[
+        {
           label: "Norsk (Bokmål)",
           code: makeLanguageCode("nob"),
           rtl: false,
+          isFavorite: true,
+        },
+        {
+          label: "Norsk (Nynorsk)",
+          code: makeLanguageCode("nno"),
+          rtl: false,
           isFavorite: false,
         },
-      }}
-      setUserData={() => null}
+        {
+          label: "Polsk",
+          code: makeLanguageCode("pol"),
+          rtl: false,
+          isFavorite: true,
+        },
+      ]}
     />
   );
 };
