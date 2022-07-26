@@ -63,7 +63,6 @@
 
 .checkbox .checkmark:after {
   left: 4px;
-  top: 1px;
   width: 5px;
   height: 10px;
   border: solid $checkmark-color;
@@ -77,6 +76,8 @@
   display: flex;
   font-size: $font-size-20;
   cursor: pointer;
+  justify-content: space-between;
+  gap: $spacing--16;
 
   &:hover {
     text-decoration-line: underline;

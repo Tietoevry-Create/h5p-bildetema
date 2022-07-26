@@ -1,5 +1,5 @@
 import React from "react";
-import { Language } from "../../../../common/types/types";
+import { Language, UserData } from "../../../../common/types/types";
 import { LanguageMenuArrowIcon } from "../Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
@@ -9,6 +9,11 @@ type LanguageDropdownProps = {
   langSelectorIsShown: boolean | undefined;
   languagesFromDB: Language[] | undefined;
   selectLanguageLabel: string;
+  userData: UserData;
+  setUserData: (updatedUserData: UserData) => void;
+  favLanguages: Language[];
+  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
+  handleChangeLanguage: (newLanguage: Language) => void;
 };
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
@@ -16,6 +21,11 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   langSelectorIsShown,
   languagesFromDB,
   selectLanguageLabel,
+  userData,
+  setUserData,
+  favLanguages,
+  setFavLanguages,
+  handleChangeLanguage,
 }) => {
   return (
     <div className={styles.languageMenuButtonWrapper}>
@@ -36,8 +46,12 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
       </button>
       {langSelectorIsShown && (
         <LanguageSelector
-          handleChange={() => null}
           languages={languagesFromDB}
+          userData={userData}
+          setUserData={setUserData}
+          favLanguages={favLanguages}
+          setFavLanguages={setFavLanguages}
+          handleChangeLanguage={handleChangeLanguage}
         />
       )}
     </div>

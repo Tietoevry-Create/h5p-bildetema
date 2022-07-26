@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LanguageSelector } from "./LanguageSelector";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
@@ -17,9 +16,6 @@ const Template: ComponentStory<typeof LanguageSelector> = args => (
 export const Default = Template.bind({});
 
 Default.args = {
-  handleChange: (isFavorite: boolean, languageCode: LanguageCode) => {
-    console.info(isFavorite, languageCode);
-  },
   languages: [
     {
       label: "Norsk",

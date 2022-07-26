@@ -3,6 +3,7 @@ import { ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+import { useUserData } from "../../hooks/useUserData";
 
 export default {
   title: "Components/Header",
@@ -12,6 +13,7 @@ export default {
 const Template = (isWordView: boolean): JSX.Element => {
   const [checked, setChecked] = React.useState(true);
   const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
+  const [userData] = useUserData();
 
   return (
     <Header
@@ -29,7 +31,6 @@ const Template = (isWordView: boolean): JSX.Element => {
         setChecked(value);
       }}
       toggleChecked={checked}
-      selectedLanguages={[]}
       languagesFromDB={[
         {
           label: "Norsk (Bokmål)",
@@ -50,6 +51,10 @@ const Template = (isWordView: boolean): JSX.Element => {
           isFavorite: true,
         },
       ]}
+      userData={userData}
+      setUserData={() => null}
+      favLanguages={userData.favouriteLanguages}
+      setFavLanguages={() => null}
     />
   );
 };

@@ -26,26 +26,21 @@ type BildetemaProps = {
   currentLanguage?: Language;
 };
 
-// TODO: store selected and current language in localStorage
-// TODO: replace with selected languages from language menu
-const selectedLanguages: Language[] = [
+export const defaultFavouriteLanguages: Language[] = [
   {
     label: "Norsk (Bokmål)",
     code: makeLanguageCode("nob"),
     rtl: false,
-    isFavorite: true,
   },
   {
     label: "Norsk (Nynorsk)",
     code: makeLanguageCode("nno"),
     rtl: false,
-    isFavorite: true,
   },
   {
     label: "Polsk",
     code: makeLanguageCode("pol"),
     rtl: false,
-    isFavorite: true,
   },
 ];
 
@@ -66,7 +61,17 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   );
 
   const loadingLabel = useL10n("pageIsLoading");
-  const [userData] = useUserData();
+  const [userData, setUserData] = useUserData();
+
+  const [favLanguages, setFavLanguages] = React.useState(
+    userData.favouriteLanguages,
+  );
+
+  if (!favLanguages.length) {
+    userData.favouriteLanguages = defaultFavouriteLanguages;
+    setUserData(userData);
+    setFavLanguages(userData.favouriteLanguages);
+  }
 
   // TODO?: handle going back in history
   // (handle the case when user goes back after changing the language)
@@ -77,7 +82,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [isWordView, setIsWordView] = useState(false);
   const [showWrittenWords, setShowWrittenWords] = useState(true);
   const [currentLanguage, setCurrentLanguage] = useState(
-    userData.currentLanguage ?? selectedLanguages[0],
+    userData.currentLanguage ?? userData.favouriteLanguages[0],
   );
   const [currentTopic, setCurrentTopic] = useState<Topic>();
   const [currentSubTopic, setCurrentSubTopic] = useState<Topic>();
@@ -265,10 +270,13 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           isWordView={isWordView}
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
-          selectedLanguages={selectedLanguages}
           currentLanguage={currentLanguage}
           changeCurrentLanguage={setCurrentLanguage}
           languagesFromDB={languagesFromDB}
+          userData={userData}
+          setUserData={setUserData}
+          favLanguages={favLanguages}
+          setFavLanguages={setFavLanguages}
         />
         <div className={styles.body}>
           {routes}

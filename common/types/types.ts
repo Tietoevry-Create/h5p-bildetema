@@ -18,7 +18,7 @@ export type Language = {
   label: string;
   code: LanguageCode;
   rtl: boolean;
-  isFavorite: boolean;
+  isFavorite?: boolean;
 };
 
 export type Topic = {
@@ -37,4 +37,5 @@ export enum TopicGridSizes {
 
 export type UserData = {
   currentLanguage: Language;
+  favouriteLanguages: Language[];
 };
