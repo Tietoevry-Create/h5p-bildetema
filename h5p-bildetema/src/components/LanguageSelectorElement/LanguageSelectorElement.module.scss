@@ -2,14 +2,22 @@
 
 .language,
 .languageMiddle {
+  all: unset;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: $spacing--8;
-  padding: $spacing--8;
+  padding: 0 $spacing--8;
   border-bottom: 1px solid lightgrey;
+  transition-duration: 0.2s;
+
   &:last-child {
     border-bottom: none;
+  }
+
+  &:hover,
+  &:focus {
+    background: $beige;
   }
 }
 
@@ -19,7 +27,6 @@
 
 .checkbox {
   position: relative;
-  padding-left: $spacing--16;
   cursor: pointer;
   user-select: none;
 }
@@ -78,16 +85,10 @@
   cursor: pointer;
   justify-content: space-between;
   gap: $spacing--16;
+  height: 100%;
+  align-items: center;
 
   &:hover {
     text-decoration-line: underline;
   }
-
-  &:focus {
-    box-shadow: 0 0 0 2px $checkbox-shadow-color;
-  }
-}
-
-.rtl {
-  direction: rtl;
 }

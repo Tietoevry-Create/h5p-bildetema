@@ -79,8 +79,10 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   }, [language.code, userData.favouriteLanguages]);
 
   return (
-    <div
+    <button
       className={`${middleElement ? styles.languageMiddle : styles.language}`}
+      type="button"
+      onClick={handleChange}
     >
       <div className={styles.checkboxContainer}>
         <label htmlFor={language.code} className={styles.checkbox}>
@@ -89,21 +91,18 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
             type="checkbox"
             checked={isChecked}
             id={language.code}
+            tabIndex={-1}
             onChange={handleChange}
           />
           <span className={styles.checkmark} />
         </label>
       </div>
-      <button
-        type="button"
-        className={styles.languageLabel}
-        onClick={handleChange}
-      >
+      <div className={styles.languageLabel}>
         {/* TODO: replace with the translated language name as @ https://morsmal.no/
             i.e. "Spansk" should have "Español", "Polsk" - "Polski", etc. */}
         <span>{translations[`lang_${language.code as AllowedLanguage}`]}</span>
         <span>{language.label}</span>
-      </button>
-    </div>
+      </div>
+    </button>
   );
 };
