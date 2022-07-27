@@ -2,7 +2,7 @@ import React from "react";
 import { useL10ns } from "use-h5p";
 import { Language, UserData } from "../../../../common/types/types";
 import { defaultFavouriteLanguages } from "../Bildetema/Bildetema";
-import { languages } from "../../constants/languages";
+import { languages, languagesOriginal } from "../../constants/languages";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import styles from "./LanguageSelectorElement.module.scss";
 
@@ -98,10 +98,8 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
         </label>
       </div>
       <div className={styles.languageLabel}>
-        {/* TODO: replace with the translated language name as @ https://morsmal.no/
-            i.e. "Spansk" should have "Español", "Polsk" - "Polski", etc. */}
         <span>{translations[`lang_${language.code as AllowedLanguage}`]}</span>
-        <span>{language.label}</span>
+        <span>{languagesOriginal[language.code as AllowedLanguage]}</span>
       </div>
     </button>
   );
