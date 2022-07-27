@@ -54,11 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
   const contentId = useContentId();
 
   const [langSelectorIsShown, setLangSelectorIsShown] =
-    React.useState<boolean>();
-
-  const handleSelectorVisibility = (): void => {
-    setLangSelectorIsShown(!langSelectorIsShown);
-  };
+    React.useState<boolean>(false);
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
@@ -104,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </div>
           <LanguageDropdown
-            handleSelectorVisibility={handleSelectorVisibility}
+            handleSelectorVisibility={setLangSelectorIsShown}
             langSelectorIsShown={langSelectorIsShown}
             languagesFromDB={languagesFromDB}
             selectLanguageLabel={translations.selectLanguage}

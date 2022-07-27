@@ -1,11 +1,12 @@
 import React from "react";
+import { useDetectClickOutside } from "react-detect-click-outside";
 import { Language, UserData } from "../../../../common/types/types";
 import { LanguageMenuArrowIcon } from "../Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 
 type LanguageDropdownProps = {
-  handleSelectorVisibility: () => void;
+  handleSelectorVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   langSelectorIsShown: boolean | undefined;
   languagesFromDB: Language[] | undefined;
   selectLanguageLabel: string;
@@ -27,11 +28,15 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   setFavLanguages,
   handleChangeLanguage,
 }) => {
+  const dropdownRef = useDetectClickOutside({
+    onTriggered: () => handleSelectorVisibility(false),
+  });
+
   return (
-    <div className={styles.languageMenuButtonWrapper}>
+    <div className={styles.languageMenuButtonWrapper} ref={dropdownRef}>
       <button
         type="button"
-        onClick={handleSelectorVisibility}
+        onClick={() => handleSelectorVisibility(prevState => !prevState)}
         className={styles.languageMenuButton}
       >
         {selectLanguageLabel}
