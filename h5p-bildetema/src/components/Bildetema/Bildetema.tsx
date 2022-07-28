@@ -26,6 +26,9 @@ type BildetemaProps = {
   currentLanguage?: Language;
 };
 
+// TODO: handle or replace the list of default fav. languages
+// i.e. the list of languages that will appear in the header
+// when the page is visited for the first time or no fav. languages are selected
 export const defaultFavouriteLanguages: Language[] = [
   {
     label: "Norsk (Bokmål)",
@@ -38,8 +41,8 @@ export const defaultFavouriteLanguages: Language[] = [
     rtl: false,
   },
   {
-    label: "Polsk",
-    code: makeLanguageCode("pol"),
+    label: "Engelsk",
+    code: makeLanguageCode("eng"),
     rtl: false,
   },
 ];
