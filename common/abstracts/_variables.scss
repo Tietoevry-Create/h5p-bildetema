@@ -29,4 +29,6 @@ $toggle-focus-color: black;
 
 $topic-card-big-width: 18.75rem;
 
-$outline-z-index: 20;
+$default-z-index: 1;
+$fav-language-selector-z-index: calc($default-z-index + 1);
+$outline-z-index: calc($default-z-index + 1);

@@ -1,3 +1,5 @@
+@use "../../../../common/abstracts" as *;
+
 .languageSelector {
   display: grid;
   grid-auto-flow: column;
@@ -13,4 +15,5 @@
   color: black;
   position: absolute;
   margin-top: 2.5rem;
+  z-index: $fav-language-selector-z-index;
 }
