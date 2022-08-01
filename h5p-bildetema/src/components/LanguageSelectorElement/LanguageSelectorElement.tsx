@@ -36,7 +36,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   );
 
   const handleChange = (): void => {
-    const userDataSnapshot = userData;
+    const userDataSnapshot = structuredClone(userData);
 
     if (
       userDataSnapshot.favoriteLanguages.find(
