@@ -6,7 +6,10 @@
     "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-theme-image' 'npm install --prefix h5p-editor-bildetema-words-topic-image'",
     "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-words-grid-view' 'npm start --prefix h5p-bildetema-words-tree-view' 'npm start --prefix h5p-bildetema-words-theme-image' 'npm start --prefix h5p-editor-bildetema-words-topic-image'",
     "test": "concurrently 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-words-grid-view' 'npm test --prefix h5p-bildetema-words-tree-view' 'npm test --prefix h5p-bildetema-words-theme-image' 'npm test --prefix h5p-editor-bildetema-words-topic-image'",
-    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view' 'npm test:watch --prefix h5p-bildetema-words-tree-view' 'npm test:watch --prefix h5p-bildetema-words-theme-image' 'npm test:watch --prefix h5p-editor-bildetema-words-topic-image'"
+    "test:watch": "concurrently 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view' 'npm test:watch --prefix h5p-bildetema-words-tree-view' 'npm test:watch --prefix h5p-bildetema-words-theme-image' 'npm test:watch --prefix h5p-editor-bildetema-words-topic-image'",
+    "docker:build": "docker build -t h5p-bildetema .",
+    "docker:run": "./docker_run_with_all_local_libs_mounted.sh h5p-bildetema 8080",
+    "docker:run-no-logs": "npm run docker:run -- -d"
   },
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
