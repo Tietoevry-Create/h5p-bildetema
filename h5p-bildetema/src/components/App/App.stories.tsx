@@ -20,6 +20,5 @@ Default.args = {
     label: "Norsk Bokmål",
     code: makeLanguageCode("nob"),
     rtl: false,
-    isFavorite: false,
   },
 };

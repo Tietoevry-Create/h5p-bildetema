@@ -20,7 +20,6 @@ Default.args = {
     label: "Norsk",
     code: makeLanguageCode("no"),
     rtl: false,
-    isFavorite: false,
   },
 };
 
@@ -30,7 +29,6 @@ Favorite.args = {
     label: "Norsk",
     code: makeLanguageCode("no"),
     rtl: false,
-    isFavorite: true,
   },
 };
 
@@ -40,6 +38,5 @@ RTL.args = {
     label: "عربىge",
     code: makeLanguageCode("ar"),
     rtl: true,
-    isFavorite: true,
   },
 };

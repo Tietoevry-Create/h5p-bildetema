@@ -43,7 +43,6 @@ export class H5PWrapper
                   label: "Norsk Bokmål",
                   code: makeLanguageCode("nob"),
                   rtl: false,
-                  isFavorite: false,
                 }}
               />
             </ContentIdContext.Provider>

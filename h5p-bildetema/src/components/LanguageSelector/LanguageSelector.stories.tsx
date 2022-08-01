@@ -21,31 +21,26 @@ Default.args = {
       label: "Norsk",
       code: makeLanguageCode("no"),
       rtl: false,
-      isFavorite: true,
     },
     {
       label: "هذا نص منسوخ من جوجل",
       code: makeLanguageCode("longtest"),
       rtl: true,
-      isFavorite: true,
     },
     {
       label: "Engelsk",
       code: makeLanguageCode("en"),
       rtl: false,
-      isFavorite: false,
     },
     {
       label: "عربىge",
       code: makeLanguageCode("ar"),
       rtl: true,
-      isFavorite: true,
     },
     {
       label: "Dansk",
       code: makeLanguageCode("dk"),
       rtl: false,
-      isFavorite: false,
     },
   ],
 };

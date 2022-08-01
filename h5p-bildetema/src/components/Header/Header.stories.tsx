@@ -21,7 +21,6 @@ const Template = (isWordView: boolean): JSX.Element => {
         label: "Norsk (Bokmål)",
         code: makeLanguageCode("nob"),
         rtl: false,
-        isFavorite: false,
       }}
       changeCurrentLanguage={() => null}
       setTopicsSize={setTopicsSize}
@@ -36,19 +35,16 @@ const Template = (isWordView: boolean): JSX.Element => {
           label: "Norsk (Bokmål)",
           code: makeLanguageCode("nob"),
           rtl: false,
-          isFavorite: true,
         },
         {
           label: "Norsk (Nynorsk)",
           code: makeLanguageCode("nno"),
           rtl: false,
-          isFavorite: false,
         },
         {
           label: "Polsk",
           code: makeLanguageCode("pol"),
           rtl: false,
-          isFavorite: true,
         },
       ]}
       userData={userData}
