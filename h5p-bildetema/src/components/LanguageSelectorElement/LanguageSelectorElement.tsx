@@ -35,14 +35,13 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     !!favLanguages.find(favLang => favLang.code === language.code),
   );
 
-  const handleChange = (): void => {
-    const userDataSnapshot = structuredClone(userData);
+  const toggleFavorite = (userDataSnapshot: UserData): void => {
+    const languageIsFavorite = userDataSnapshot.favoriteLanguages.find(
+      favLang => favLang.code === language.code,
+    );
 
-    if (
-      userDataSnapshot.favoriteLanguages.find(
-        favLang => favLang.code === language.code,
-      )
-    ) {
+    if (languageIsFavorite) {
+      // eslint-disable-next-line no-param-reassign
       userDataSnapshot.favoriteLanguages =
         userDataSnapshot.favoriteLanguages.filter(
           favLang => favLang.code !== language.code,
@@ -51,27 +50,36 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     } else {
       userDataSnapshot.favoriteLanguages.push(language);
     }
+  };
 
-    if (!userDataSnapshot.favoriteLanguages.length) {
+  const handleChange = (): void => {
+    const userDataSnapshot = structuredClone(userData);
+
+    toggleFavorite(userDataSnapshot);
+
+    const userHasNoFavoriteLanguagesSet =
+      !userDataSnapshot.favoriteLanguages.length;
+    if (userHasNoFavoriteLanguagesSet) {
       userDataSnapshot.favoriteLanguages = defaultFavoriteLanguages;
     }
 
     setFavLanguages(userDataSnapshot.favoriteLanguages);
     setUserData(userDataSnapshot);
 
-    if (
+    const currentLanguageWasUnfavorited =
       !userDataSnapshot.favoriteLanguages.find(
         favLang => favLang.code === userDataSnapshot.currentLanguage.code,
-      )
-    ) {
+      );
+    if (currentLanguageWasUnfavorited) {
       handleChangeLanguage(userDataSnapshot.favoriteLanguages[0]);
     }
   };
 
   React.useEffect(() => {
-    if (
-      userData.favoriteLanguages.find(favLang => favLang.code === language.code)
-    ) {
+    const languageIsFavorite = userData.favoriteLanguages.find(
+      favLang => favLang.code === language.code,
+    );
+    if (languageIsFavorite) {
       setIsChecked(true);
     }
   }, [language.code, userData.favoriteLanguages]);
@@ -90,7 +98,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
             checked={isChecked}
             id={language.code}
             tabIndex={-1}
-            onChange={handleChange}
+            onClickCapture={handleChange}
           />
           <span className={styles.checkmark} />
         </label>
