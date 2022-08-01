@@ -35,43 +35,39 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     !!favLanguages.find(favLang => favLang.code === language.code),
   );
 
-  const toggleFavorite = (userDataSnapshot: UserData): void => {
-    const languageIsFavorite = userDataSnapshot.favoriteLanguages.find(
+  const toggleFavorite = (): void => {
+    const languageIsFavorite = userData.favoriteLanguages.find(
       favLang => favLang.code === language.code,
     );
 
     if (languageIsFavorite) {
       // eslint-disable-next-line no-param-reassign
-      userDataSnapshot.favoriteLanguages =
-        userDataSnapshot.favoriteLanguages.filter(
-          favLang => favLang.code !== language.code,
-        );
+      userData.favoriteLanguages = userData.favoriteLanguages.filter(
+        favLang => favLang.code !== language.code,
+      );
       setIsChecked(false);
     } else {
-      userDataSnapshot.favoriteLanguages.push(language);
+      userData.favoriteLanguages.push(language);
     }
   };
 
   const handleChange = (): void => {
-    const userDataSnapshot = structuredClone(userData);
+    toggleFavorite();
 
-    toggleFavorite(userDataSnapshot);
-
-    const userHasNoFavoriteLanguagesSet =
-      !userDataSnapshot.favoriteLanguages.length;
+    const userHasNoFavoriteLanguagesSet = !userData.favoriteLanguages.length;
     if (userHasNoFavoriteLanguagesSet) {
-      userDataSnapshot.favoriteLanguages = defaultFavoriteLanguages;
+      // eslint-disable-next-line no-param-reassign
+      userData.favoriteLanguages = defaultFavoriteLanguages;
     }
 
-    setFavLanguages(userDataSnapshot.favoriteLanguages);
-    setUserData(userDataSnapshot);
+    setFavLanguages(userData.favoriteLanguages);
+    setUserData(userData);
 
-    const currentLanguageWasUnfavorited =
-      !userDataSnapshot.favoriteLanguages.find(
-        favLang => favLang.code === userDataSnapshot.currentLanguage.code,
-      );
+    const currentLanguageWasUnfavorited = !userData.favoriteLanguages.find(
+      favLang => favLang.code === userData.currentLanguage.code,
+    );
     if (currentLanguageWasUnfavorited) {
-      handleChangeLanguage(userDataSnapshot.favoriteLanguages[0]);
+      handleChangeLanguage(userData.favoriteLanguages[0]);
     }
   };
 
@@ -98,7 +94,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
             checked={isChecked}
             id={language.code}
             tabIndex={-1}
-            onClickCapture={handleChange}
+            onChange={handleChange}
           />
           <span className={styles.checkmark} />
         </label>
