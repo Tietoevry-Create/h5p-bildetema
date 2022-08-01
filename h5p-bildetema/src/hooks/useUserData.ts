@@ -15,8 +15,8 @@ export const useUserData = (): [
   setUserData: (updatedUserData: UserData) => void,
 ] => {
   const userData = getUserData();
-  if (!("favouriteLanguages" in userData)) {
-    userData.favouriteLanguages = [];
+  if (!("favoriteLanguages" in userData)) {
+    userData.favoriteLanguages = [];
   }
   return [userData, setUserData];
 };

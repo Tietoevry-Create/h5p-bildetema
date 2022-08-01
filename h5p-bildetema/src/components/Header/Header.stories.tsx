@@ -53,7 +53,7 @@ const Template = (isWordView: boolean): JSX.Element => {
       ]}
       userData={userData}
       setUserData={() => null}
-      favLanguages={userData.favouriteLanguages}
+      favLanguages={userData.favoriteLanguages}
       setFavLanguages={() => null}
     />
   );

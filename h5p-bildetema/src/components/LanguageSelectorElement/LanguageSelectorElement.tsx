@@ -1,7 +1,7 @@
 import React from "react";
 import { useL10ns } from "use-h5p";
 import { Language, UserData } from "../../../../common/types/types";
-import { defaultFavouriteLanguages } from "../Bildetema/Bildetema";
+import { defaultFavoriteLanguages } from "../Bildetema/Bildetema";
 import { languages, languagesOriginal } from "../../constants/languages";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import styles from "./LanguageSelectorElement.module.scss";
@@ -39,44 +39,42 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     const userDataSnapshot = userData;
 
     if (
-      userDataSnapshot.favouriteLanguages.find(
+      userDataSnapshot.favoriteLanguages.find(
         favLang => favLang.code === language.code,
       )
     ) {
-      userDataSnapshot.favouriteLanguages =
-        userDataSnapshot.favouriteLanguages.filter(
+      userDataSnapshot.favoriteLanguages =
+        userDataSnapshot.favoriteLanguages.filter(
           favLang => favLang.code !== language.code,
         );
       setIsChecked(false);
     } else {
-      userDataSnapshot.favouriteLanguages.push(language);
+      userDataSnapshot.favoriteLanguages.push(language);
     }
 
-    if (!userDataSnapshot.favouriteLanguages.length) {
-      userDataSnapshot.favouriteLanguages = defaultFavouriteLanguages;
+    if (!userDataSnapshot.favoriteLanguages.length) {
+      userDataSnapshot.favoriteLanguages = defaultFavoriteLanguages;
     }
 
-    setFavLanguages(userDataSnapshot.favouriteLanguages);
+    setFavLanguages(userDataSnapshot.favoriteLanguages);
     setUserData(userDataSnapshot);
 
     if (
-      !userDataSnapshot.favouriteLanguages.find(
+      !userDataSnapshot.favoriteLanguages.find(
         favLang => favLang.code === userDataSnapshot.currentLanguage.code,
       )
     ) {
-      handleChangeLanguage(userDataSnapshot.favouriteLanguages[0]);
+      handleChangeLanguage(userDataSnapshot.favoriteLanguages[0]);
     }
   };
 
   React.useEffect(() => {
     if (
-      userData.favouriteLanguages.find(
-        favLang => favLang.code === language.code,
-      )
+      userData.favoriteLanguages.find(favLang => favLang.code === language.code)
     ) {
       setIsChecked(true);
     }
-  }, [language.code, userData.favouriteLanguages]);
+  }, [language.code, userData.favoriteLanguages]);
 
   return (
     <button

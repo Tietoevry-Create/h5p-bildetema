@@ -29,7 +29,7 @@ type BildetemaProps = {
 // TODO: handle or replace the list of default fav. languages
 // i.e. the list of languages that will appear in the header
 // when the page is visited for the first time or no fav. languages are selected
-export const defaultFavouriteLanguages: Language[] = [
+export const defaultFavoriteLanguages: Language[] = [
   {
     label: "Norsk (Bokmål)",
     code: makeLanguageCode("nob"),
@@ -67,13 +67,13 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [userData, setUserData] = useUserData();
 
   const [favLanguages, setFavLanguages] = React.useState(
-    userData.favouriteLanguages,
+    userData.favoriteLanguages,
   );
 
   if (!favLanguages.length) {
-    userData.favouriteLanguages = defaultFavouriteLanguages;
+    userData.favoriteLanguages = defaultFavoriteLanguages;
     setUserData(userData);
-    setFavLanguages(userData.favouriteLanguages);
+    setFavLanguages(userData.favoriteLanguages);
   }
 
   // TODO?: handle going back in history
@@ -85,7 +85,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [isWordView, setIsWordView] = useState(false);
   const [showWrittenWords, setShowWrittenWords] = useState(true);
   const [currentLanguage, setCurrentLanguage] = useState(
-    userData.currentLanguage ?? userData.favouriteLanguages[0],
+    userData.currentLanguage ?? userData.favoriteLanguages[0],
   );
   const [currentTopic, setCurrentTopic] = useState<Topic>();
   const [currentSubTopic, setCurrentSubTopic] = useState<Topic>();

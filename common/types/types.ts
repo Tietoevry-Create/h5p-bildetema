@@ -37,5 +37,5 @@ export enum TopicGridSizes {
 
 export type UserData = {
   currentLanguage: Language;
-  favouriteLanguages: Language[];
+  favoriteLanguages: Language[];
 };
