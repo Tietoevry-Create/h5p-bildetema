@@ -10,34 +10,38 @@ import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
-import { LanguageMenuArrowIcon } from "../Icons/Icons";
 import { Toggle } from "..";
+import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
   currentLanguage: Language;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
-  selectedLanguages: Language[];
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
   changeCurrentLanguage: (newLanguage: Language) => void;
+  languagesFromDB: Language[] | undefined;
   userData: UserData;
   setUserData: (updatedUserData: UserData) => void;
+  favLanguages: Language[];
+  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
 };
 
 export const Header: React.FC<HeaderProps> = ({
   currentLanguage,
   topicsSize,
   setTopicsSize,
-  selectedLanguages,
   isWordView,
   toggleChecked,
   handleToggleChange,
   changeCurrentLanguage,
+  languagesFromDB,
   userData,
   setUserData,
+  favLanguages,
+  setFavLanguages,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -48,6 +52,9 @@ export const Header: React.FC<HeaderProps> = ({
   const toggleLabel = useL10n("showWrittenWordsLabel");
 
   const contentId = useContentId();
+
+  const [langSelectorIsShown, setLangSelectorIsShown] =
+    React.useState<boolean>(false);
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
@@ -77,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className={styles.logo}>{/* TODO: Add logo as SVG */}</div>
         <div className={styles.language_container}>
           <div className={styles.languages}>
-            {selectedLanguages.map(language => {
+            {favLanguages.map(language => {
               return (
                 <button
                   key={language.code}
@@ -92,11 +99,17 @@ export const Header: React.FC<HeaderProps> = ({
               );
             })}
           </div>
-          {/* TODO: Replace with separate component */}
-          <button type="button" className={styles.languageMenuButton}>
-            {translations.selectLanguage}
-            <LanguageMenuArrowIcon />
-          </button>
+          <LanguageDropdown
+            handleSelectorVisibility={setLangSelectorIsShown}
+            langSelectorIsShown={langSelectorIsShown}
+            languagesFromDB={languagesFromDB}
+            selectLanguageLabel={translations.selectLanguage}
+            userData={userData}
+            setUserData={setUserData}
+            favLanguages={favLanguages}
+            setFavLanguages={setFavLanguages}
+            handleChangeLanguage={handleChangeLanguage}
+          />
         </div>
       </div>
       <div className={styles.bottom}>

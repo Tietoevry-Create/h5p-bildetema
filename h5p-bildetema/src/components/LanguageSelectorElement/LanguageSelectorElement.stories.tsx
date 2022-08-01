@@ -1,16 +1,16 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Language } from "./Language";
+import { LanguageSelectorElement } from "./LanguageSelectorElement";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
-  title: "Components/Language",
-  component: Language,
-} as ComponentMeta<typeof Language>;
+  title: "Components/LanguageSelectorElement",
+  component: LanguageSelectorElement,
+} as ComponentMeta<typeof LanguageSelectorElement>;
 
-const Template: ComponentStory<typeof Language> = args => (
+const Template: ComponentStory<typeof LanguageSelectorElement> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Language {...args} />
+  <LanguageSelectorElement {...args} />
 );
 
 export const Default = Template.bind({});
@@ -20,7 +20,6 @@ Default.args = {
     label: "Norsk",
     code: makeLanguageCode("no"),
     rtl: false,
-    isFavorite: false,
   },
 };
 
@@ -30,7 +29,6 @@ Favorite.args = {
     label: "Norsk",
     code: makeLanguageCode("no"),
     rtl: false,
-    isFavorite: true,
   },
 };
 
@@ -40,6 +38,5 @@ RTL.args = {
     label: "عربىge",
     code: makeLanguageCode("ar"),
     rtl: true,
-    isFavorite: true,
   },
 };

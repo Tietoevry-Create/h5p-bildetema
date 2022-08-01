@@ -13,7 +13,7 @@ import {
   Topic,
   TopicGridSizes,
 } from "../../../../common/types/types";
-import { getTopics } from "../../../../common/utils/data.utils";
+import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
@@ -26,26 +26,24 @@ type BildetemaProps = {
   currentLanguage?: Language;
 };
 
-// TODO: store selected and current language in localStorage
-// TODO: replace with selected languages from language menu
-const selectedLanguages: Language[] = [
+// TODO: handle or replace the list of default fav. languages
+// i.e. the list of languages that will appear in the header
+// when the page is visited for the first time or no fav. languages are selected
+export const defaultFavoriteLanguages: Language[] = [
   {
     label: "Norsk (Bokmål)",
     code: makeLanguageCode("nob"),
     rtl: false,
-    isFavorite: true,
   },
   {
     label: "Norsk (Nynorsk)",
-    code: makeLanguageCode("non"),
+    code: makeLanguageCode("nno"),
     rtl: false,
-    isFavorite: true,
   },
   {
-    label: "Polsk",
-    code: makeLanguageCode("pol"),
+    label: "Engelsk",
+    code: makeLanguageCode("eng"),
     rtl: false,
-    isFavorite: true,
   },
 ];
 
@@ -56,11 +54,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   currentLanguage: currentMetaLanguage,
 }) => {
-  // TODO: use the language array to generate the list of selectable languages
-  // const { isLoading: isLoadingLanguages, data: languages } = useQuery(
-  //   "languagesFromDB",
-  //   getLanguages,
-  // );
+  const { isLoading: isLoadingLanguages, data: languagesFromDB } = useQuery(
+    "languagesFromDB",
+    getLanguages,
+  );
   const { isLoading: isLoadingTopics, data: topics } = useQuery(
     "topicsFromDB",
     getTopics,
@@ -68,6 +65,16 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   const loadingLabel = useL10n("pageIsLoading");
   const [userData, setUserData] = useUserData();
+
+  const [favLanguages, setFavLanguages] = React.useState(
+    userData.favoriteLanguages,
+  );
+
+  if (!favLanguages.length) {
+    userData.favoriteLanguages = defaultFavoriteLanguages;
+    setUserData(userData);
+    setFavLanguages(userData.favoriteLanguages);
+  }
 
   // TODO?: handle going back in history
   // (handle the case when user goes back after changing the language)
@@ -78,7 +85,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [isWordView, setIsWordView] = useState(false);
   const [showWrittenWords, setShowWrittenWords] = useState(true);
   const [currentLanguage, setCurrentLanguage] = useState(
-    userData.currentLanguage ?? selectedLanguages[0],
+    userData.currentLanguage ?? userData.favoriteLanguages[0],
   );
   const [currentTopic, setCurrentTopic] = useState<Topic>();
   const [currentSubTopic, setCurrentSubTopic] = useState<Topic>();
@@ -266,15 +273,17 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           isWordView={isWordView}
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
-          selectedLanguages={selectedLanguages}
           currentLanguage={currentLanguage}
           changeCurrentLanguage={setCurrentLanguage}
+          languagesFromDB={languagesFromDB}
           userData={userData}
           setUserData={setUserData}
+          favLanguages={favLanguages}
+          setFavLanguages={setFavLanguages}
         />
         <div className={styles.body}>
           {routes}
-          {isLoadingTopics && <h1>{loadingLabel}</h1>}
+          {(isLoadingTopics || isLoadingLanguages) && <h1>{loadingLabel}</h1>}
         </div>
         <Footer />
       </div>

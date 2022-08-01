@@ -1,5 +1,19 @@
+@use "../../../../common/abstracts" as *;
+
 .languageSelector {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
+}
+
+.languageSelectorWrapper {
+  background-color: white;
+  box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+  overflow: auto;
+  padding: 25px;
+  color: black;
+  position: absolute;
+  margin-top: 2.5rem;
+  z-index: $fav-language-selector-z-index;
 }

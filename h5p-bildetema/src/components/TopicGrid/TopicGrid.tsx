@@ -60,7 +60,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             <TopicGridElement
               key={item.id}
               title={
-                item.labelTranslations.get(currentLanguage.code)?.label ??
+                item.labelTranslations.get(currentLanguage.code)?.label ||
                 item.id
               }
               index={items.indexOf(item)}

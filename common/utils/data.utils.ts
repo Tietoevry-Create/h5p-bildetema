@@ -25,6 +25,7 @@ const languages: Language[] = [];
 const topics: Topic[] = [];
 
 export const getLanguages = async (): Promise<Language[]> => {
+  if (!languages.length) await fetchData();
   return languages;
 };
 
@@ -201,7 +202,6 @@ const addLanguagesToArray = (input: InputWord) => {
         label: languageName,
         code: languageCode,
         rtl: rtl !== undefined,
-        isFavorite: false,
       });
     }
   });

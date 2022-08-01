@@ -3,6 +3,7 @@ import { ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+import { useUserData } from "../../hooks/useUserData";
 
 export default {
   title: "Components/Header",
@@ -12,6 +13,7 @@ export default {
 const Template = (isWordView: boolean): JSX.Element => {
   const [checked, setChecked] = React.useState(true);
   const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
+  const [userData] = useUserData();
 
   return (
     <Header
@@ -19,7 +21,6 @@ const Template = (isWordView: boolean): JSX.Element => {
         label: "Norsk (Bokmål)",
         code: makeLanguageCode("nob"),
         rtl: false,
-        isFavorite: false,
       }}
       changeCurrentLanguage={() => null}
       setTopicsSize={setTopicsSize}
@@ -29,16 +30,27 @@ const Template = (isWordView: boolean): JSX.Element => {
         setChecked(value);
       }}
       toggleChecked={checked}
-      selectedLanguages={[]}
-      userData={{
-        currentLanguage: {
+      languagesFromDB={[
+        {
           label: "Norsk (Bokmål)",
           code: makeLanguageCode("nob"),
           rtl: false,
-          isFavorite: false,
         },
-      }}
+        {
+          label: "Norsk (Nynorsk)",
+          code: makeLanguageCode("nno"),
+          rtl: false,
+        },
+        {
+          label: "Polsk",
+          code: makeLanguageCode("pol"),
+          rtl: false,
+        },
+      ]}
+      userData={userData}
       setUserData={() => null}
+      favLanguages={userData.favoriteLanguages}
+      setFavLanguages={() => null}
     />
   );
 };

@@ -28,7 +28,6 @@ export const TopicsList: React.FC<TopicsListProps> = props => {
         label: "Norsk (Bokmål)",
         code: makeLanguageCode("nob"),
         rtl: false,
-        isFavorite: false,
       }}
       setCurrentTopic={(): void => {
         throw new Error("Function not implemented.");

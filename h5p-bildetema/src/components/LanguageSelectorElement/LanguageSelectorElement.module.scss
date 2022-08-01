@@ -1,23 +1,44 @@
 @use "../../../../common/abstracts" as *;
 
-.language {
-  box-sizing: border-box;
+.language,
+.languageMiddle {
+  all: unset;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: $spacing--24;
-  padding: $spacing--8;
+  gap: $spacing--8;
+  padding: 0 $spacing--8;
+  border-bottom: 1px solid lightgrey;
+  transition-duration: 0.2s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover,
+  &:focus {
+    background: $beige;
+  }
+}
+
+.languageMiddle {
+  border-bottom: none;
 }
 
 .checkbox {
   position: relative;
-  padding-left: $spacing--16;
   cursor: pointer;
   user-select: none;
 }
 
 .checkbox input {
   @include visually-hidden;
+}
+
+.checkboxContainer,
+.checkmark {
+  width: 1rem;
+  height: 1rem;
 }
 
 .checkboxContainer:focus-within {
@@ -49,7 +70,6 @@
 
 .checkbox .checkmark:after {
   left: 4px;
-  top: 1px;
   width: 5px;
   height: 10px;
   border: solid $checkmark-color;
@@ -63,16 +83,12 @@
   display: flex;
   font-size: $font-size-20;
   cursor: pointer;
+  justify-content: space-between;
+  gap: $spacing--16;
+  height: 100%;
+  align-items: center;
 
   &:hover {
     text-decoration-line: underline;
   }
-
-  &:focus {
-    box-shadow: 0 0 0 2px $checkbox-shadow-color;
-  }
-}
-
-.rtl {
-  direction: rtl;
 }
