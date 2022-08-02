@@ -1,5 +1,6 @@
 import React from "react";
-import type { Hotspot, Point } from "../Svg/Svg";
+import { Hotspot } from "../../types/Hotspot";
+import { Point } from "../../types/Point";
 import styles from "./Polygon.module.scss";
 
 export type PolygonProps = {

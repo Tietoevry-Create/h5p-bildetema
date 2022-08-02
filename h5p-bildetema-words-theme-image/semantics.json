@@ -41,11 +41,6 @@
           "widget": "bildetemaWordsTopicImage",
           "fields": [
             {
-              "name": "id",
-              "label": "Id",
-              "type": "text"
-            },
-            {
               "label": "Points",
               "name": "points",
               "type": "list",
