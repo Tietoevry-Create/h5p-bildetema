@@ -43,12 +43,6 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
           widget: "bildetemaWordsTopicImage",
           fields: [
             {
-              name: "id",
-              label: "Id",
-              type: "text",
-              // widget: "uuid",
-            },
-            {
               label: "Points",
               name: "points",
               type: "list",

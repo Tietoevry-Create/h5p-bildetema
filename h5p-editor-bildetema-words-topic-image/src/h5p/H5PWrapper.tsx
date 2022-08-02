@@ -13,7 +13,7 @@ import { LanguageCode } from "../../../common/types/LanguageCode";
 import { Word } from "../../../common/types/types";
 import { getTopics } from "../../../common/utils/data.utils";
 import { App } from "../App";
-import { Hotspot } from "../components/Svg/Svg";
+import { Hotspot } from "../types/Hotspot";
 import { SetValueContext } from "../contexts/SetValueContext";
 import { Params as ChooseTopicParams } from "./ChooseTopicH5PWrapper";
 
@@ -100,7 +100,11 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
 
     this.root.render(
       <SetValueContext.Provider value={this.setValueForField}>
-        <App image={this.image} words={this.words} />
+        <App
+          image={this.image}
+          words={this.words}
+          initialHotspots={this.params?.filter(Boolean) ?? []}
+        />
       </SetValueContext.Provider>,
     );
   }
@@ -118,6 +122,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   }
 
   private setValueForField = (params: Params): void => {
-    this.setValue(this.field, params);
+    // @ts-expect-error The first element for some reason becomes an empty string. Therefore, we need to put something in front which will be substituted.
+    this.setValue(this.field, [false, ...params]);
   };
 }

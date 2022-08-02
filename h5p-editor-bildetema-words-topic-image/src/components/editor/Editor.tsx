@@ -1,26 +1,43 @@
-import React from "react";
 import type { Image as ImageType } from "h5p-types";
+import { H5P } from "h5p-utils";
+import React from "react";
 import { Word } from "../../../../common/types/types";
-import { Image } from "../Image/Image";
-import { Button } from "../Button/Button";
-import { Point, Svg } from "../Svg/Svg";
-import type { Hotspot } from "../Svg/Svg";
-import styles from "./Editor.module.scss";
 import { SetValueContext } from "../../contexts/SetValueContext";
+import { Hotspot } from "../../types/Hotspot";
+import { Point } from "../../types/Point";
+import { Button } from "../Button/Button";
+import { Image } from "../Image/Image";
+import { Svg } from "../Svg/Svg";
+import styles from "./Editor.module.scss";
 
 export type EditorProps = {
   image: ImageType | undefined;
   words: Word[];
+  initialHotspots: Array<Hotspot>;
 };
-export const Editor: React.FC<EditorProps> = ({ image, words }) => {
+export const Editor: React.FC<EditorProps> = ({
+  image,
+  words,
+  initialHotspots,
+}) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const setValue = React.useContext(SetValueContext);
 
-  const [hotspots, setHotspots] = React.useState<Hotspot[]>([]);
+  const [hotspots, setHotspots] = React.useState(initialHotspots);
 
   React.useEffect(() => {
-    setHotspots(words.map(word => ({ points: [], drawing: false, word })));
-  }, [words]);
+    const newHotspots = words.map(word => ({
+      points:
+        initialHotspots.find(hotspot => hotspot.word.id === word.id)?.points ??
+        [],
+      drawing: false,
+      word,
+      wordId: word.id,
+      id: H5P.createUUID(),
+    }));
+
+    setHotspots(newHotspots);
+  }, [initialHotspots, words]);
 
   React.useEffect(() => {
     setValue(hotspots);
@@ -46,11 +63,11 @@ export const Editor: React.FC<EditorProps> = ({ image, words }) => {
 
   const handleWordSelected = (id: string): void => {
     setHotspots(prev =>
-      prev.map(hotspot => {
-        return id === hotspot.word.id
+      prev.map(hotspot =>
+        id === hotspot.word.id
           ? { ...hotspot, drawing: true }
-          : { ...hotspot, drawing: false };
-      }),
+          : { ...hotspot, drawing: false },
+      ),
     );
   };
 
@@ -61,33 +78,36 @@ export const Editor: React.FC<EditorProps> = ({ image, words }) => {
   };
 
   const handleReset = (): void => {
-    setHotspots(prev => {
-      return prev.map(hotspot => {
-        return hotspot.drawing ? { ...hotspot, points: [] } : { ...hotspot };
-      });
-    });
+    setHotspots(prev =>
+      prev.map(hotspot =>
+        hotspot.drawing ? { ...hotspot, points: [] } : { ...hotspot },
+      ),
+    );
   };
 
   const handleCircleClick = (point: Point): void => {
     setHotspots(prev => {
       return prev.map(hotspot => {
-        if (hotspot.drawing) {
-          return hotspot.points[0].x === point.x &&
-            hotspot.points[0].y === point.y
-            ? { ...hotspot, drawing: false }
-            : {
-                ...hotspot,
-                points: hotspot.points.filter(
-                  el => el.x !== point.x && el.y !== point.y,
-                ),
-              };
+        if (!hotspot.drawing) {
+          return hotspot;
         }
-        return { ...hotspot };
+
+        return hotspot.points[0].x === point.x &&
+          hotspot.points[0].y === point.y
+          ? { ...hotspot, drawing: false }
+          : {
+              ...hotspot,
+              points: hotspot.points.filter(
+                el => el.x !== point.x && el.y !== point.y,
+              ),
+            };
       });
     });
   };
 
+  // TODO: Translate
   const finishedButtonLabel = "Finished";
+  // TODO: Translate
   const resetButtonLabel = "Reset";
 
   return (

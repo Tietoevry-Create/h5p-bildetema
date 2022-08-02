@@ -2,6 +2,7 @@ import type { IH5PContentType, Image } from "h5p-types";
 import { H5P, H5PContentType } from "h5p-utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import type { ThemeImageHotspot } from "../../../common/types/ThemeImageHotspot";
 import { App } from "../App";
@@ -10,7 +11,7 @@ import type { TranslationKey } from "../types/TranslationKey";
 export type Params = {
   "bildetema-words-topic-view": {
     topicImage: Image;
-    hotspots: Array<ThemeImageHotspot>;
+    hotspots: Array<Array<ThemeImageHotspot>>;
     selectedTopic: {
       topic: string;
       subTopic: string;
@@ -18,6 +19,8 @@ export type Params = {
   };
   l10n: Record<TranslationKey, string>;
 };
+
+const queryClient = new QueryClient();
 
 export class H5PWrapper
   extends H5PContentType<Params>
@@ -42,13 +45,15 @@ export class H5PWrapper
       <H5PContext.Provider value={this}>
         <L10nContext.Provider value={l10n}>
           <ContentIdContext.Provider value={this.contentId}>
-            <App
-              imagePath={H5P.getPath(
-                this.params["bildetema-words-topic-view"].topicImage.path,
-                this.contentId,
-              )}
-              params={this.params}
-            />
+            <QueryClientProvider client={queryClient}>
+              <App
+                imagePath={H5P.getPath(
+                  this.params["bildetema-words-topic-view"].topicImage.path,
+                  this.contentId,
+                )}
+                params={this.params}
+              />
+            </QueryClientProvider>
           </ContentIdContext.Provider>
         </L10nContext.Provider>
       </H5PContext.Provider>,
