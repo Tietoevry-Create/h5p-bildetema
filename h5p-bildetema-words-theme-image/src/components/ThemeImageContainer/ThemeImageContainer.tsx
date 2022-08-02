@@ -7,7 +7,7 @@ import { ThemeImageWordList } from "../ThemeImageWordList/ThemeImageWordList";
 import styles from "./ThemeImageContainer.module.scss";
 
 export type ThemeImageContainerProps = {
-  topic: Topic|undefined;
+  topic: Topic;
   themeImage: string;
   themeOverlays: OverlayType[];
   themeImageType: ThemeImageTypes;
@@ -21,18 +21,19 @@ export const ThemeImageContainer: React.FC<ThemeImageContainerProps> = ({
   themeImageType,
   words,
 }) => {
-  console.info("ThemeImageContainer", "themeImage", themeImage, "themeOverlays", themeOverlays, "themeImageType", themeImageType, "words", words);
   const [currentWord, setCurrentWord] = React.useState("");
 
   const selectWord = (word: string): void => {
     setCurrentWord(word);
   };
 
-  if (themeImageType === "vectorImageWithHotspots" || themeImageType === "nonVectorImageWithHotspots") {
+  if (
+    themeImageType === "vectorImageWithHotspots" ||
+    themeImageType === "nonVectorImageWithHotspots"
+  ) {
     return (
       <div className={styles.wrapper}>
         <ThemeImageSVG
-          words={words}
           image={themeImage}
           overlays={themeOverlays}
           selectWord={selectWord}

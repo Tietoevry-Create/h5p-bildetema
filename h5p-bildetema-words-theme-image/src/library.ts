@@ -19,9 +19,14 @@ export const library: Library = {
   ],
   editorDependencies: [
     {
-      "machineName": "H5PEditor.BildetemaWordsTopicImage",
-      "majorVersion": 1,
-      "minorVersion": 0,
-    }
-  ]
+      machineName: "H5PEditor.BildetemaWordsTopicImage",
+      majorVersion: 1,
+      minorVersion: 0,
+    },
+    // {
+    //   machineName: "H5PEditor.UUIDWidget",
+    //   majorVersion: 1,
+    //   minorVersion: 0,
+    // },
+  ],
 };

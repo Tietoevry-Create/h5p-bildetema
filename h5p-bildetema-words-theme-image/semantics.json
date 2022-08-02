@@ -7,12 +7,12 @@
     "fields": [
       {
         "label": "Image",
-        "name": "themeImage",
+        "name": "topicImage",
         "type": "image"
       },
       {
         "label": "Topic",
-        "name": "topics",
+        "name": "selectedTopic",
         "type": "group",
         "widget": "chooseTopicWidget",
         "fields": [
@@ -24,7 +24,8 @@
           {
             "label": "SubTopic",
             "name": "subTopic",
-            "type": "text"
+            "type": "text",
+            "optional": true
           }
         ]
       },
@@ -39,6 +40,11 @@
           "type": "group",
           "widget": "bildetemaWordsTopicImage",
           "fields": [
+            {
+              "name": "id",
+              "label": "Id",
+              "type": "text"
+            },
             {
               "label": "Points",
               "name": "points",

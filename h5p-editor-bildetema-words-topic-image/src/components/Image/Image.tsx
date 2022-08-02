@@ -11,7 +11,7 @@ export const Image: React.FC<ImageProps> = ({ image }) => {
     <img
       className={styles.image}
       src={image.path}
-      alt={image.alt}
+      alt={image.alt ?? ""}
       width={image.width}
       height={image.height}
     />

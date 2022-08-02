@@ -13,7 +13,6 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
   const contentId = useContentId();
 
   useEffect(() => {
-    console.log(words);
     if (ref.current) {
       if (ref.current.childElementCount > 0)
         ref.current.removeChild(ref.current.childNodes[0]);

@@ -1,5 +1,5 @@
 export type ThemeImageTypes =
   | "vectorImageWithHotspots"
   | "nonVectorImageWithHotspots"
-  | "3dSceneWithhotSpots"
+  | "3dSceneWithHotspots"
   | "panoramaSceneWithHotspots";

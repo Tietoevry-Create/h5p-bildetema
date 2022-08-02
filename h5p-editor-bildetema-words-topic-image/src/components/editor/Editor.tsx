@@ -23,9 +23,8 @@ export const Editor: React.FC<EditorProps> = ({ image, words }) => {
   }, [words]);
 
   React.useEffect(() => {
-    console.info("Editor useEffect setting value", hotspots);
     setValue(hotspots);
-  }, [hotspots,setValue]);
+  }, [hotspots, setValue]);
 
   const handleMouseEvent = (e: React.MouseEvent<HTMLElement>): void => {
     if (ref?.current) {
@@ -88,6 +87,9 @@ export const Editor: React.FC<EditorProps> = ({ image, words }) => {
     });
   };
 
+  const finishedButtonLabel = "Finished";
+  const resetButtonLabel = "Reset";
+
   return (
     <div className={styles.editor}>
       <div className={styles.controls}>
@@ -102,10 +104,10 @@ export const Editor: React.FC<EditorProps> = ({ image, words }) => {
           />
         ))}
         <button type="button" onClick={handleFinishedPressed}>
-          Finished
+          {finishedButtonLabel}
         </button>
         <button type="button" onClick={handleReset}>
-          Reset
+          {resetButtonLabel}
         </button>
       </div>
       <div
@@ -113,7 +115,6 @@ export const Editor: React.FC<EditorProps> = ({ image, words }) => {
         ref={ref}
         className={styles.canvas}
         onClick={handleMouseEvent}
-        // TODO eslint error?
         onKeyDown={() => null}
         role="button"
       >

@@ -1,13 +1,9 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import {
-  ThemeImageWordList,
-  ThemeImageWordListProps,
-} from "./ThemeImageWordList";
+import { ThemeImageWordList } from "./ThemeImageWordList";
 
 export default {
-  label: "Molecules/ToppicGrid",
+  label: "Molecules/Word list",
   component: ThemeImageWordList,
 } as ComponentMeta<typeof ThemeImageWordList>;
 
@@ -16,8 +12,8 @@ const Template: ComponentStory<typeof ThemeImageWordList> = args => (
   <ThemeImageWordList {...args} />
 );
 
-export const ImageContainer = Template.bind({});
-ImageContainer.args = {
+export const WordList = Template.bind({});
+WordList.args = {
   words: [
     {
       id: "1",

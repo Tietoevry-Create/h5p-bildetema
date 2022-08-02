@@ -2,19 +2,19 @@ import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
 
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
-    "label": "Bildetema Words Topic View",
-    "name": "bildetema-words-topic-view",
-    "type": "group",
-    "importance": "high",
-    "fields": [
+    label: "Bildetema Words Topic View",
+    name: "bildetema-words-topic-view",
+    type: "group",
+    importance: "high",
+    fields: [
       {
         label: "Image",
-        name: "themeImage",
+        name: "topicImage",
         type: "image",
       },
       {
         label: "Topic",
-        name: "topics",
+        name: "selectedTopic",
         type: "group",
         widget: "chooseTopicWidget",
         fields: [
@@ -27,23 +27,28 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
             label: "SubTopic",
             name: "subTopic",
             type: "text",
+            optional: true,
           },
-        ]
+        ],
       },
       {
         label: "Hotspots",
         name: "hotspots",
         type: "list",
         entity: "Hotspot",
-        
-        
         field: {
           label: "Hotspot",
           name: "hotspot",
           type: "group",
           widget: "bildetemaWordsTopicImage",
           fields: [
-            { 
+            {
+              name: "id",
+              label: "Id",
+              type: "text",
+              // widget: "uuid",
+            },
+            {
               label: "Points",
               name: "points",
               type: "list",
@@ -74,7 +79,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
           ],
         },
       },
-    ]
+    ],
   },
   {
     name: "behaviour",
