@@ -36,8 +36,3 @@ Landscape.args = {
     { audio: "", label: "Datter", id: "V0006", images: [] },
   ],
 };
-
-// export const EmptyBreadcrumb = Template.bind({});
-// EmptyBreadcrumb.args = {
-//   Editor: [],
-// };

@@ -5,8 +5,20 @@ import {
   ThemeImageContainer,
   ThemeImageContainerProps,
 } from "./ThemeImageContainer";
-import { ThemeImageTypes } from "../../types/ThemeImageTypes";
-import { Word } from "../../../../common/types/types";
+import { Topic, Word } from "../../../../common/types/types";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+
+const baseTopic: Topic = {
+  id: "id",
+  images: [],
+  label: "Label",
+  labelTranslations: new Map<LanguageCode, Word>([
+    [makeLanguageCode("nno"), { id: "id", images: [], label: "Label" }],
+  ]),
+  subTopics: new Map(),
+  words: new Map(),
+};
 
 const baseWord: Word = {
   id: "1",
@@ -17,13 +29,13 @@ const baseWord: Word = {
 
 describe(ThemeImageContainer.name, () => {
   const template = ({
-    theme,
+    topic,
     themeImageType,
     words,
   }: ThemeImageContainerProps): HTMLElement => {
     const { container } = render(
       <ThemeImageContainer
-        theme={theme}
+        topic={topic}
         themeImageType={themeImageType}
         words={words}
         themeImage="test"
@@ -35,7 +47,7 @@ describe(ThemeImageContainer.name, () => {
 
   it("Should render nothing if type != vectorImageWithHotspots", () => {
     const container = template({
-      theme: { ...baseWord },
+      topic: { ...baseTopic },
       themeImage: "test",
       themeOverlays: [],
       themeImageType: "nonVectorImageWithHotspots",
@@ -50,7 +62,7 @@ describe(ThemeImageContainer.name, () => {
     const container = template({
       themeImage: "test",
       themeOverlays: [],
-      theme: { ...baseWord },
+      topic: { ...baseTopic },
       themeImageType: "vectorImageWithHotspots",
       words: [],
     });

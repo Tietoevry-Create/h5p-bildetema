@@ -1,11 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { ThemeImageContainer } from "./ThemeImageContainer";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 
 export default {
-  label: "Molecules/ToppicGrid",
+  label: "Molecules/Image container",
   component: ThemeImageContainer,
 } as ComponentMeta<typeof ThemeImageContainer>;
 
@@ -16,11 +15,13 @@ const Template: ComponentStory<typeof ThemeImageContainer> = args => (
 
 export const ImageContainer = Template.bind({});
 ImageContainer.args = {
-  theme: {
+  topic: {
     id: "1",
     label: "Bildetema",
     images: [{ src: "" }],
-    audio: "",
+    labelTranslations: new Map(),
+    subTopics: new Map(),
+    words: new Map(),
   },
   themeImage: cat,
   themeOverlays: overlays,

@@ -49,7 +49,7 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "h5p-generate-configs": "^0.3.0",
-    "h5p-types": "^1.0.0",
+    "h5p-types": "^1.0.2",
     "happy-dom": "^6.0.4",
     "prettier": "^2.7.1",
     "sass": "^1.54.0",

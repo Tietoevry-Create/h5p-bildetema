@@ -1,21 +1,33 @@
-import type { H5PFieldGroup, IH5PWidget, Image } from "h5p-types";
+import type {
+  H5PFieldGroup,
+  H5PGroup,
+  IH5PEditorImageField,
+  IH5PFieldInstance,
+  IH5PWidget,
+  Image,
+} from "h5p-types";
 import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
 import * as React from "react";
-import { createRoot } from "react-dom/client";
-import { App } from "../App";
-import { SetValueContext } from "../contexts/SetValueContext";
-import { getTopics } from "../../../common/utils/data.utils";
+import { createRoot, Root } from "react-dom/client";
 import { LanguageCode } from "../../../common/types/LanguageCode";
 import { Word } from "../../../common/types/types";
+import { getTopics } from "../../../common/utils/data.utils";
+import { App } from "../App";
 import { Hotspot } from "../components/Svg/Svg";
+import { SetValueContext } from "../contexts/SetValueContext";
+import { Params as ChooseTopicParams } from "./ChooseTopicH5PWrapper";
 
 type Field = H5PFieldGroup;
 export type Params = Array<Hotspot>;
 
 export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
+  private image: Image | undefined;
+
+  private root: Root | undefined;
+
+  private words: Map<LanguageCode, Array<Word>> = new Map();
+
   appendTo($container: JQuery<HTMLElement>): void {
-    console.info("editor-bildetema-wors-topic-image", "appendTo");
-    console.info("params", this.params);
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(
@@ -24,71 +36,27 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
       return;
     }
 
-    
-    let words:Map<LanguageCode, Word[]> = new Map();
-
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-editor-bildetema-words-topic-image");
 
-    const topicsField = (H5PEditor as any).findField("../topics", this.parent);
+    const topicsField = this.findField<H5PGroup>("../selectedTopic");
+    const imageField = this.findField<IH5PEditorImageField>("../topicImage");
 
-    
-    const imageField = (H5PEditor as any).findField("../themeImage", this.parent);
-    
-    const fetchImage = (field:any):Image|undefined => {
-      if(field && field.params){
-        return {...field.params, path: H5P.getPath(field.params.path, H5PEditor.contentId) };
-      }
-      return undefined;
-    };
-
-    let image = fetchImage(imageField);
-
-    console.info("image", image);
-    const root = createRoot(this.wrapper);
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    const setValueForField = (params:Params):void => {
-      console.info("setValueForField", params, " on ", this.field);
-      this.setValue(this.field, params);
-    };
-    root.render(
-      <SetValueContext.Provider value={setValueForField}>
-        <App image={image} words={words}/>
-      </SetValueContext.Provider>,
-    );
-    
-    const fetchTopic = async (topicId:string, subTopicId:string|undefined):Promise<Map<LanguageCode, Word[]>> => {
-      const topics = await getTopics();
-      // const newTopics = (H5PEditor as any).findField("../topics", this.parent);
-      const topic = topics.find(t => t.id === topicId);
-      if(subTopicId){
-        return topic?.subTopics.get(subTopicId)?.words ?? new Map<LanguageCode, Word[]>();
-      }
-      return topic?.words ?? new Map<LanguageCode, Word[]>();
-    };
-    
     imageField.changes.push(() => {
-      image = fetchImage(imageField);
-      
-      root.render(
-        <SetValueContext.Provider value={setValueForField}>
-          <App image={image} words={words}/>
-        </SetValueContext.Provider>,
-      );
-      
+      this.image = H5PWrapper.fetchImage(imageField);
+      this.render();
     });
 
+    topicsField.on("change", async e => {
+      const { data } = e as { data: ChooseTopicParams };
+      const newWords = await H5PWrapper.fetchTopic(data.topic, data.subTopic);
 
-    topicsField.on("change", (e:any) => {
-      fetchTopic(e.data.topic, e.data.subTopic).then(newWords => {
-        words = newWords;
-        root.render(
-          <SetValueContext.Provider value={setValueForField}>
-            <App image={image} words={words}/>
-          </SetValueContext.Provider>,
-        );
-      });
+      this.words = newWords;
+      this.render();
     });
+
+    this.image = H5PWrapper.fetchImage(imageField);
+    this.render();
   }
 
   validate(): boolean {
@@ -98,4 +66,58 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   remove(): void {
     this.wrapper.parentElement?.removeChild(this.wrapper);
   }
+
+  private static fetchImage(field: IH5PEditorImageField): Image | undefined {
+    if (field && field.params) {
+      return {
+        ...field.params,
+        path: H5P.getPath(field.params.path, H5PEditor.contentId),
+      };
+    }
+    return undefined;
+  }
+
+  private static async fetchTopic(
+    topicId: string,
+    subTopicId: string | undefined,
+  ): Promise<Map<LanguageCode, Word[]>> {
+    const topics = await getTopics();
+    const topic = topics.find(t => t.id === topicId);
+
+    if (subTopicId) {
+      return (
+        topic?.subTopics.get(subTopicId)?.words ??
+        new Map<LanguageCode, Word[]>()
+      );
+    }
+    return topic?.words ?? new Map<LanguageCode, Word[]>();
+  }
+
+  private render(): void {
+    if (!this.root) {
+      this.root = createRoot(this.wrapper);
+    }
+
+    this.root.render(
+      <SetValueContext.Provider value={this.setValueForField}>
+        <App image={this.image} words={this.words} />
+      </SetValueContext.Provider>,
+    );
+  }
+
+  private findField<TField extends IH5PFieldInstance = IH5PFieldInstance>(
+    path: string,
+  ): TField {
+    const field = H5PEditor.findField<TField>(path, this.parent);
+
+    if (!field) {
+      throw new Error(`Could not find field with path \`${path}\``);
+    }
+
+    return field;
+  }
+
+  private setValueForField = (params: Params): void => {
+    this.setValue(this.field, params);
+  };
 }

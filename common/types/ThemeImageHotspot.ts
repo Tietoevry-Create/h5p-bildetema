@@ -1,6 +1,7 @@
 import { Point } from "./Point";
 
 export type ThemeImageHotspot = {
-  points: Point;
+  id: string;
+  points: Array<Point>;
   wordId: `V${string}`;
 };

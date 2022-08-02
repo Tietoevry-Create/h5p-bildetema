@@ -4,12 +4,18 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import type { ThemeImageHotspot } from "../../../common/types/ThemeImageHotspot";
-import App from "../App";
+import { App } from "../App";
 import type { TranslationKey } from "../types/TranslationKey";
 
-type Params = {
-  themeImage: Image;
-  hotspots: Array<ThemeImageHotspot>;
+export type Params = {
+  "bildetema-words-topic-view": {
+    topicImage: Image;
+    hotspots: Array<ThemeImageHotspot>;
+    selectedTopic: {
+      topic: string;
+      subTopic: string;
+    };
+  };
   l10n: Record<TranslationKey, string>;
 };
 
@@ -30,14 +36,19 @@ export class H5PWrapper
 
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema-topic-image-view");
-    
-    console.info("params", this.params);
+
     const root = createRoot(this.wrapper);
     root.render(
       <H5PContext.Provider value={this}>
         <L10nContext.Provider value={l10n}>
           <ContentIdContext.Provider value={this.contentId}>
-            <App imagePath={H5P.getPath( (this.params as any)["bildetema-words-topic-view"].themeImage.path, this.contentId)} params={this.params} />
+            <App
+              imagePath={H5P.getPath(
+                this.params["bildetema-words-topic-view"].topicImage.path,
+                this.contentId,
+              )}
+              params={this.params}
+            />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
       </H5PContext.Provider>,

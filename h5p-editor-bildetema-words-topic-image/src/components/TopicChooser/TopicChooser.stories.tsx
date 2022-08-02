@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Topic, TopicGridSizes, Word } from "../../../../common/types/types";
+import { Topic, Word } from "../../../../common/types/types";
 import { TopicChooser } from "./TopicChooser";
 
 export default {
@@ -22,7 +22,7 @@ const baseTopic: Topic = {
   ],
 };
 const subTopics = new Map<string, Topic>();
-subTopics.set("1", {...baseTopic, id: "1", label: "Subtopic 1.1"});
+subTopics.set("1", { ...baseTopic, id: "1", label: "Subtopic 1.1" });
 
 const Template: ComponentStory<typeof TopicChooser> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof TopicChooser> = args => (
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {
   items: [
-    { ...baseTopic, label: "test1", tema1: "test1", subTopics} as Topic,
+    { ...baseTopic, label: "test1", tema1: "test1", subTopics } as Topic,
     { ...baseTopic, label: "test2", tema1: "test2" } as Topic,
     { ...baseTopic, label: "test3", tema1: "test3" } as Topic,
     { ...baseTopic, label: "test4", tema1: "test4" } as Topic,
@@ -42,5 +42,5 @@ ThemesGrid.args = {
     { ...baseTopic, label: "test8", tema1: "test8" } as Topic,
     { ...baseTopic, label: "test9", tema1: "test9" } as Topic,
   ],
-  topic: { ...baseTopic, label: "test1", tema1: "test1", subTopics} as Topic,
+  topic: { ...baseTopic, label: "test1", tema1: "test1", subTopics } as Topic,
 };

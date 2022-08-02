@@ -24,7 +24,6 @@ export const Polygon: React.FC<PolygonProps> = ({
 
   return (
     <>
-      {/* {points.length && <path d={pointsToDAttribute()} fill="transparent" strokeWidth="0.3" stroke="black"/>} */}
       {points.length && points.length === 2 && !drawing ? (
         <circle
           cx={points[0].x}
@@ -39,7 +38,6 @@ export const Polygon: React.FC<PolygonProps> = ({
           <path
             className={styles.path}
             d={pointsToDAttribute()}
-            // fill="transparent"
             strokeWidth="0.3"
             stroke="black"
           />

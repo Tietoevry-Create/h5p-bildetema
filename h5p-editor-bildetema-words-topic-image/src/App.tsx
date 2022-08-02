@@ -1,11 +1,9 @@
 import type { Image } from "h5p-types";
-import { H5PEditor } from "h5p-utils";
 import * as React from "react";
 import { LanguageCode } from "../../common/types/LanguageCode";
 import { Word } from "../../common/types/types";
 import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
-import { Editor } from "./components/Editor/Editor";
-import { SetValueContext } from "./contexts/SetValueContext";
+import { Editor } from "./components/editor/Editor";
 
 export type AppProps = {
   image: Image | undefined;
@@ -13,9 +11,12 @@ export type AppProps = {
 };
 
 export const App: React.FC<AppProps> = ({ image, words }) => {
+  // TODO: Translate
+  const noImagePlaceholder = "Please start with uploading an image ✨";
+
   return image ? (
-    <Editor
-      image={image} 
-      words={words?.get(makeLanguageCode("nob")) ?? []}  />
-  ) : <p>hei</p>;
+    <Editor image={image} words={words?.get(makeLanguageCode("nob")) ?? []} />
+  ) : (
+    <p>{noImagePlaceholder}</p>
+  );
 };
