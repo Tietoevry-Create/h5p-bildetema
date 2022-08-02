@@ -43,12 +43,11 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
   }, [params, topics]);
 
   React.useEffect(() => {
-    const paramHotspots = params["bildetema-words-topic-view"].hotspots;
+    const paramHotspots = params["bildetema-words-topic-view"].hotspots[0];
 
     const computedOverlays = paramHotspots
       .filter(hotspot => hotspot != null && hotspot.points?.length > 0)
-      .map(({ id, wordId, points }) => ({
-        id,
+      .map(({ wordId, points }) => ({
         wordId,
         outline: `<polygon points="${points
           ?.map(point => `${point.x},${point.y}`)
@@ -64,22 +63,20 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
       .filter(hasValue);
 
     setWords(computedWords);
-  }, [params, words]);
 
-  return (
-    <>
-      {topic ? (
-        <ThemeImageContainer
-          topic={topic}
-          themeImage={imagePath}
-          themeImageType="nonVectorImageWithHotspots"
-          themeOverlays={overlays}
-          words={words}
-        />
-      ) : (
-        <p>{noTopicSelectedText}</p>
-      )}
-      <h1> {JSON.stringify(params)}</h1>
-    </>
+    // This effect should not depend on `words`, because it's set inside the effect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
+
+  return topic ? (
+    <ThemeImageContainer
+      topic={topic}
+      themeImage={imagePath}
+      themeImageType="nonVectorImageWithHotspots"
+      themeOverlays={overlays}
+      words={words}
+    />
+  ) : (
+    <p>{noTopicSelectedText}</p>
   );
 };

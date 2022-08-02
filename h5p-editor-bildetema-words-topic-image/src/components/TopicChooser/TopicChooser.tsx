@@ -50,7 +50,6 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
   if (items) {
     return (
       <div className={styles.topicChooser}>
-        <div>{JSON.stringify(topic)}</div>
         <select
           className={styles.gridCompact}
           onChange={onTopicSelected}

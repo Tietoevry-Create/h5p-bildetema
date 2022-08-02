@@ -1,18 +1,8 @@
 import React from "react";
+import { Hotspot } from "../../types/Hotspot";
+import { Point } from "../../types/Point";
 import { Polygon } from "../Polygon/Polygon";
-import { Word } from "../../../../common/types/types";
 import styles from "./Svg.module.scss";
-
-export type Point = {
-  x: number;
-  y: number;
-};
-
-export type Hotspot = {
-  points: Point[];
-  drawing: boolean;
-  word: Word;
-};
 
 export type SvgProps = {
   hotspots: Hotspot[];

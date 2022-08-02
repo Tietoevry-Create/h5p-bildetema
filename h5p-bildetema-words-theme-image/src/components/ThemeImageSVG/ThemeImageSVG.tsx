@@ -17,16 +17,14 @@ export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
   themeImageType,
   selectWord,
 }) => {
-  const overlayFields = overlays.map(overlay => {
-    return (
-      <g
-        key={overlay.wordId}
-        className={styles.overlay}
-        onClick={() => selectWord(overlay.wordId)}
-        dangerouslySetInnerHTML={{ __html: overlay.outline }}
-      />
-    );
-  });
+  const overlayFields = overlays.map(overlay => (
+    <g
+      key={overlay.wordId}
+      className={styles.overlay}
+      onClick={() => selectWord(overlay.wordId)}
+      dangerouslySetInnerHTML={{ __html: overlay.outline }}
+    />
+  ));
 
   return (
     <div className={styles.imageContainer}>
@@ -34,7 +32,7 @@ export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
         <div dangerouslySetInnerHTML={{ __html: image }} />
       )}
       {themeImageType === "nonVectorImageWithHotspots" && (
-        <img style={{ width: "100%", height: "100%;" }} src={image} alt="" />
+        <img style={{ width: "100%", height: "100%" }} src={image} alt="" />
       )}
       <svg
         className={styles.overlays}

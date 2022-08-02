@@ -39,7 +39,6 @@ export class ChooseTopicH5PWrapper
           subTopicId={this.params?.subTopic}
           setValue={(value: Params) => {
             this.setValue(this.field, value);
-
             const topicsField = H5PEditor.findField<H5PGroup<Params>>(
               "selectedTopic",
               this.parent,
