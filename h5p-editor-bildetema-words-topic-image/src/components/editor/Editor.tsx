@@ -33,7 +33,6 @@ export const Editor: React.FC<EditorProps> = ({
       drawing: false,
       word,
       wordId: word.id,
-      id: H5P.createUUID(),
     }));
 
     setHotspots(newHotspots);
@@ -72,9 +71,12 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleFinishedPressed = (): void => {
-    setHotspots(prev => [
-      ...prev.map(hotspot => ({ ...hotspot, drawing: false })),
-    ]);
+    const updatedHotspots = hotspots.map(hotspot => ({
+      ...hotspot,
+      drawing: false,
+    }));
+
+    setHotspots(updatedHotspots);
   };
 
   const handleReset = (): void => {
