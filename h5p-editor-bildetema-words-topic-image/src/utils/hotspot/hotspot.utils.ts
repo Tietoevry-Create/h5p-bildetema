@@ -26,7 +26,7 @@ export const finishDrawingHotspot = (hotspot: Hotspot): Hotspot => {
     drawing: false,
   };
 
-  const onlyOnePoint = hotspot.points.length === 1;
+  const onlyOnePoint = hotspot.points?.length === 1;
   if (onlyOnePoint) {
     // Each drawing needs at least two points. If there's only one, it will be removed.
     updatedHotspot = resetPoints(updatedHotspot);

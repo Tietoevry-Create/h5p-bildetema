@@ -13,9 +13,10 @@ export const Polygon: React.FC<PolygonProps> = ({
   handleCircleClick,
 }) => {
   const pointsToDAttribute = (): string => {
-    const d = points
-      .map(({ x, y }, index) => `${index === 0 ? "M" : "L"}${x} ${y}`)
-      .join(" ");
+    const d =
+      points
+        ?.map(({ x, y }, index) => `${index === 0 ? "M" : "L"}${x} ${y}`)
+        .join(" ") ?? "";
     return drawing ? d : `${d} Z`;
   };
 
@@ -25,7 +26,7 @@ export const Polygon: React.FC<PolygonProps> = ({
 
   return (
     <>
-      {points.length && points.length === 2 && !drawing ? (
+      {points?.length === 2 && !drawing ? (
         <circle
           cx={points[0].x}
           cy={points[0].y}
@@ -35,7 +36,7 @@ export const Polygon: React.FC<PolygonProps> = ({
           strokeWidth="0.3"
         />
       ) : (
-        points.length && (
+        points?.length && (
           <path
             className={styles.path}
             d={pointsToDAttribute()}
@@ -45,7 +46,7 @@ export const Polygon: React.FC<PolygonProps> = ({
         )
       )}
       {drawing &&
-        points.map(({ x, y }, index) => (
+        points?.map(({ x, y }, index) => (
           <circle
             className={styles.point}
             style={{ fill: `${index === 0 && "red"}` }}
