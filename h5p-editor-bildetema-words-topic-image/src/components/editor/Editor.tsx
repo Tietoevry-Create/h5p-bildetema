@@ -1,5 +1,4 @@
 import type { Image as ImageType } from "h5p-types";
-import { H5P } from "h5p-utils";
 import React from "react";
 import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
