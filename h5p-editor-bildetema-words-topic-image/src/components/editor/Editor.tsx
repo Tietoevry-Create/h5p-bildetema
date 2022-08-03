@@ -84,9 +84,9 @@ export const Editor: React.FC<EditorProps> = ({
     setHotspots(updatedHotspots);
   };
 
-  const handleWordSelected = (id: string): void => {
+  const handleWordSelected = (wordId: string): void => {
     const updatedHotspots = hotspots.map(hotspot =>
-      activateDrawingHotspot(hotspot, id),
+      activateDrawingHotspot(hotspot, wordId),
     );
 
     setHotspots(updatedHotspots);
@@ -170,6 +170,7 @@ export const Editor: React.FC<EditorProps> = ({
         <Svg
           hotspots={hotspots}
           handleCircleClick={handleCircleClick}
+          handleFigureClick={hotspot => handleWordSelected(hotspot.word.id)}
           aspectRatio={aspectRatio}
         />
       </div>
