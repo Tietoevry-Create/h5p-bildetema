@@ -4,6 +4,13 @@ import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
+import {
+  activateDrawingHotspot,
+  finishDrawingHotspot,
+  removePoint,
+  resetPoints,
+  resetPointsOfActiveHotspot,
+} from "../../utils/hotspot/hotspot.utils";
 import { Button } from "../Button/Button";
 import { Image } from "../Image/Image";
 import { Svg } from "../Svg/Svg";
@@ -60,30 +67,22 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleWordSelected = (id: string): void => {
-    setHotspots(prev =>
-      prev.map(hotspot =>
-        id === hotspot.word.id
-          ? { ...hotspot, drawing: true }
-          : { ...hotspot, drawing: false },
-      ),
+    const updatedHotspots = hotspots.map(hotspot =>
+      activateDrawingHotspot(hotspot, id),
     );
-  };
-
-  const handleFinishedPressed = (): void => {
-    const updatedHotspots = hotspots.map(hotspot => ({
-      ...hotspot,
-      drawing: false,
-    }));
 
     setHotspots(updatedHotspots);
   };
 
+  const handleFinishedPressed = (): void => {
+    const updatedHotspots = hotspots.map(finishDrawingHotspot);
+    setHotspots(updatedHotspots);
+  };
+
   const handleReset = (): void => {
-    setHotspots(prev =>
-      prev.map(hotspot =>
-        hotspot.drawing ? { ...hotspot, points: [] } : { ...hotspot },
-      ),
-    );
+    const updatedHotspots = hotspots.map(resetPointsOfActiveHotspot);
+
+    setHotspots(updatedHotspots);
   };
 
   const handleCircleClick = (point: Point): void => {
@@ -92,16 +91,14 @@ export const Editor: React.FC<EditorProps> = ({
         return hotspot;
       }
 
-      const clickedOnStartPoint =
-        hotspot.points[0].x === point.x && hotspot.points[0].y === point.y;
+      const { x: startX, y: startY } = hotspot.points[0];
+
+      const clickedOnStartPoint = startX === point.x && startY === point.y;
       const startPointIsTheOnlyPoint = hotspot.points.length === 1;
 
       if (clickedOnStartPoint) {
         if (startPointIsTheOnlyPoint) {
-          return {
-            ...hotspot,
-            points: [],
-          };
+          return resetPoints(hotspot);
         }
 
         // Finish the drawing without re-adding the current point (because it already exists as the start point)
@@ -111,9 +108,7 @@ export const Editor: React.FC<EditorProps> = ({
       // If a point other than the start point was clicked, remove it
       return {
         ...hotspot,
-        points: hotspot.points.filter(
-          ({ x, y }) => x !== point.x && y !== point.y,
-        ),
+        points: removePoint(point, hotspot.points),
       };
     });
 
