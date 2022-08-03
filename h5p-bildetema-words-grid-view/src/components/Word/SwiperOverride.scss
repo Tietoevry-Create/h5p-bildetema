@@ -1,0 +1,37 @@
+@use "../../../../common/abstracts" as *;
+
+:root {
+  --swiper-navigation-size: 1rem;
+  --swiper-theme-color: #403933;
+}
+
+.swiper {
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-color: #edebe9;
+    border: 1px solid #e3e0dd;
+    border-radius: 50%;
+    height: 1.875rem;
+    width: 1.875rem;
+
+    &:hover,
+    &:focus {
+      background-color: $burgundy;
+      border-color: $burgundy;
+      color: white;
+    }
+
+    &::after {
+      font-weight: bold;
+    }
+  }
+
+  /* Fix for better visual centering of the arrows */
+  .swiper-button-prev::after {
+    margin-right: 2px;
+  }
+
+  .swiper-button-next::after {
+    margin-left: 2px;
+  }
+}

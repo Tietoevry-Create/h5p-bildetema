@@ -10,6 +10,7 @@ import { Image } from "../Image/Image";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "./SwiperOverride.scss";
 import { WordAudio } from "../WordAudio/WordAudio";
 
 type WordProps = {
