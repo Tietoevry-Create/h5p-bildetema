@@ -13,6 +13,7 @@
     "docker:run-no-logs": "npm run docker:run -- -d"
   },
   "dependencies": {
+    "h5p-utils": "^2.1.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
   "devDependencies": {
