@@ -5,5 +5,4 @@ export type Hotspot = {
   points: Point[];
   drawing: boolean;
   word: Word;
-  wordId: string;
 };

@@ -236,7 +236,6 @@ WithInitialHotspots.args = {
         id: "V0002",
         images: [],
       },
-      wordId: "V0002",
     },
     {
       points: [],
@@ -247,7 +246,6 @@ WithInitialHotspots.args = {
         id: "V0003",
         images: [],
       },
-      wordId: "V0003",
     },
     {
       points: [],
@@ -258,7 +256,6 @@ WithInitialHotspots.args = {
         id: "V0005",
         images: [],
       },
-      wordId: "V0005",
     },
   ],
 };
