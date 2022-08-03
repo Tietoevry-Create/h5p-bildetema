@@ -29,12 +29,9 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
   });
 
   React.useEffect(() => {
-    const rootTopic = topics?.find(
-      t => t.id === params["bildetema-words-topic-view"].selectedTopic.topic,
-    );
-    const subTopic = rootTopic?.subTopics.get(
-      params["bildetema-words-topic-view"].selectedTopic.subTopic,
-    );
+    const rootTopic = topics?.find(t => t.id === params.selectedTopic.topicId);
+    const subTopic = rootTopic?.subTopics.get(params.selectedTopic.subTopicId);
+
     if (subTopic) {
       setTopic(subTopic);
     } else {
@@ -43,12 +40,12 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
   }, [params, topics]);
 
   React.useEffect(() => {
-    const paramHotspots = params["bildetema-words-topic-view"].hotspots[0];
+    const paramHotspots = params.hotspots;
 
     const computedOverlays = paramHotspots
       .filter(hotspot => hotspot != null && hotspot.points?.length > 0)
-      .map(({ wordId, points }) => ({
-        wordId,
+      .map(({ word, points }) => ({
+        wordId: word.id,
         outline: `<polygon points="${points
           ?.map(point => `${point.x},${point.y}`)
           .join(" ")}" style="fill:lime;stroke:purple;stroke-width:1"/>`,
@@ -58,7 +55,7 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
 
     const computedWords = paramHotspots
       .filter(hotspot => hotspot && hotspot.points?.length > 0)
-      .map(hotspot => hotspot.wordId)
+      .map(hotspot => hotspot.word.id)
       .map(wordId => words.find(word => word.id === wordId))
       .filter(hasValue);
 
@@ -67,6 +64,8 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
     // This effect should not depend on `words`, because it's set inside the effect
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
+
+  console.log({ params });
 
   return topic ? (
     <ThemeImageContainer

@@ -9,13 +9,11 @@ import { App } from "../App";
 import type { TranslationKey } from "../types/TranslationKey";
 
 export type Params = {
-  "bildetema-words-topic-view": {
-    topicImage: Image;
-    hotspots: Array<Array<ThemeImageHotspot>>;
-    selectedTopic: {
-      topic: string;
-      subTopic: string;
-    };
+  topicImage: Image;
+  hotspots: Array<ThemeImageHotspot>;
+  selectedTopic: {
+    topicId: string;
+    subTopicId: string;
   };
   l10n: Record<TranslationKey, string>;
 };
@@ -48,7 +46,7 @@ export class H5PWrapper
             <QueryClientProvider client={queryClient}>
               <App
                 imagePath={H5P.getPath(
-                  this.params["bildetema-words-topic-view"].topicImage.path,
+                  this.params.topicImage.path,
                   this.contentId,
                 )}
                 params={this.params}

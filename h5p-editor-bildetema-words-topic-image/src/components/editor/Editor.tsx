@@ -59,10 +59,22 @@ export const Editor: React.FC<EditorProps> = ({
         y: ((e.clientY - offsetY) / height) * 100,
       };
 
-      setHotspots(prev => {
-        prev.find(hotspot => hotspot.drawing)?.points.push(point);
-        return [...prev];
+      const updatedHotspots = hotspots.map(hotspot => {
+        if (!hotspot.drawing) {
+          return hotspot;
+        }
+
+        if (hotspot.points) {
+          return { ...hotspot, points: [...hotspot.points, point] };
+        }
+
+        return {
+          ...hotspot,
+          points: [point],
+        };
       });
+
+      setHotspots(updatedHotspots);
     }
   };
 
@@ -87,7 +99,7 @@ export const Editor: React.FC<EditorProps> = ({
 
   const handleCircleClick = (point: Point): void => {
     const updatedHotspots = hotspots.map(hotspot => {
-      if (!hotspot.drawing) {
+      if (!hotspot.drawing || !hotspot.points) {
         return hotspot;
       }
 
@@ -108,7 +120,7 @@ export const Editor: React.FC<EditorProps> = ({
       // If a point other than the start point was clicked, remove it
       return {
         ...hotspot,
-        points: removePoint(point, hotspot.points),
+        points: removePoint(point, hotspot?.points),
       };
     });
 
@@ -120,6 +132,8 @@ export const Editor: React.FC<EditorProps> = ({
   // TODO: Translate
   const resetButtonLabel = "Reset";
 
+  console.log({ hotspots });
+
   return (
     <div className={styles.editor}>
       <div className={styles.controls}>
@@ -127,7 +141,7 @@ export const Editor: React.FC<EditorProps> = ({
           <Button
             key={id}
             isActive={drawing}
-            color={points.length ? "#7FD1AE" : ""}
+            color={points?.length ? "#7FD1AE" : ""}
             label={label}
             id={id}
             clickHandler={() => handleWordSelected(id)}
