@@ -1,0 +1,94 @@
+name: "Build and validate: h5p-bildetema-words-theme-image"
+
+on:
+  pull_request:
+    paths:
+      - common/**
+      - h5p-bildetema-words-theme-image/**
+
+  workflow_dispatch: {}
+
+env:
+  working-directory: "./h5p-bildetema-words-theme-image"
+
+defaults:
+  run:
+    working-directory: "./h5p-bildetema-words-theme-image"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Install Node.js dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ${{env.working-directory}}
+
+      - name: Build
+        run: npm run build
+        working-directory: ${{env.working-directory}}
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Install Node.js dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ${{env.working-directory}}
+
+      - name: Lint
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Install Node.js dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ${{env.working-directory}}
+      - name: Test
+        run: npm run test
+        env:
+          CI: true
+
+  # Can´t use this yet
+
+  # chromatic-deployment:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0 # 👈 Required to retrieve git history
+
+  #    - name: Install root dependencies
+  #      uses: bahmutov/npm-install@v1
+
+  #     - name: Install Node.js dependencies
+  #       uses: bahmutov/npm-install@v1
+
+  #     - name: Publish to Chromatic
+  #       uses: chromaui/action@v1
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+  #         exitZeroOnChanges: true
+  #         ignoreLastBuildOnBranch: main

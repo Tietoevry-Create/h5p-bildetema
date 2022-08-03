@@ -1,4 +1,4 @@
-name: "Check H5P library version: h5p-bildetema-words-grid-view"
+name: "Check H5P library version: h5p-bildetema-words-theme-image"
 
 on:
   pull_request:
@@ -10,11 +10,11 @@ on:
 
     paths:
       - common/**
-      - h5p-bildetema-words-grid-view/**
+      - h5p-bildetema-words-theme-image/**
 
 env:
-  project-id: h5p-bildetema-words-grid-view
-  project-name: H5P.BildetemaWordsGridView
+  project-id: h5p-bildetema-words-theme-image
+  project-name: H5PEditor.BildetemaWordsTopicImage
 
 jobs:
   check-h5p-library-version:

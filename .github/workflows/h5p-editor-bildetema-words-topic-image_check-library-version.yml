@@ -13,7 +13,6 @@ on:
       - h5p-editor-bildetema-words-topic-image/**
 
 env:
-  working-directory: ./h5p-editor-bildetema-words-topic-image
   project-id: h5p-editor-bildetema-words-topic-image
   project-name: H5PEditor.BildetemaWordsTopicImage
 
@@ -25,7 +24,7 @@ jobs:
       - name: Check library version
         uses: boyum/comment-h5p-library-version-action@v2 # https://github.com/boyum/comment-h5p-library-version-action
         with:
-          working-directory: ${{env.working-directory}}
+          working-directory: ./${{env.project-id}}
           project-id: ${{env.project-id}}
           cancel-label: non-functional-${{env.project-id}}
           version-changed-message: |
