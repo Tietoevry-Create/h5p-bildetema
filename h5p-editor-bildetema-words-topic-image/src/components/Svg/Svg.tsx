@@ -24,14 +24,16 @@ export const Svg: React.FC<SvgProps> = ({
       viewBox={`0 0 100 ${100 / aspectRatio}`}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {hotspots.map(hotspot => (
-        <Polygon
-          key={hotspot.word.id}
-          hotspot={hotspot}
-          handleCircleClick={handleCircleClick}
-          handleFigureClick={handleFigureClick}
-        />
-      ))}
+      {hotspots.map(hotspot =>
+        hotspot.points && hotspot.points?.length > 0 ? (
+          <Polygon
+            key={hotspot.word.id}
+            hotspot={hotspot}
+            handleCircleClick={handleCircleClick}
+            handleFigureClick={handleFigureClick}
+          />
+        ) : null,
+      )}
     </svg>
   );
 };
