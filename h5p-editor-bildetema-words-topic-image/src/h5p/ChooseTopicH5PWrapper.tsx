@@ -8,8 +8,8 @@ import { AppChooseTopicWidget } from "../App_ChooseTopicWidget";
 type Field = H5PFieldGroup;
 
 export type Params = {
-  topic: string;
-  subTopic: string | undefined;
+  topicId: string;
+  subTopicId?: string;
 };
 
 const queryClient = new QueryClient();
@@ -35,8 +35,8 @@ export class ChooseTopicH5PWrapper
     root.render(
       <QueryClientProvider client={queryClient}>
         <AppChooseTopicWidget
-          topicId={this.params?.topic}
-          subTopicId={this.params?.subTopic}
+          topicId={this.params?.topicId}
+          subTopicId={this.params?.subTopicId}
           setValue={value => {
             this.setValue(this.field, value);
 

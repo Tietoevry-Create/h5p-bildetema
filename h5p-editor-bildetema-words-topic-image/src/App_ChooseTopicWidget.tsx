@@ -1,12 +1,13 @@
-import { useQuery } from "react-query";
 import * as React from "react";
+import { useQuery } from "react-query";
 import { Language, Topic } from "../../common/types/types";
-import { TopicChooser } from "./components/TopicChooser/TopicChooser";
-import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
 import { getTopics } from "../../common/utils/data.utils";
+import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
+import { TopicChooser } from "./components/TopicChooser/TopicChooser";
+import { Params as ChooseTopicWidgetParams } from "./h5p/ChooseTopicH5PWrapper";
 
 export type Params = {
-  setValue: (value: { topic: string; subTopic: string | undefined }) => void;
+  setValue: (value: ChooseTopicWidgetParams) => void;
   topicId: string | undefined;
   subTopicId: string | undefined;
 };
@@ -42,7 +43,7 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
 
   React.useEffect(() => {
     if (currentTopic) {
-      setValue({ topic: currentTopic.id, subTopic: currentSubTopic?.id });
+      setValue({ topicId: currentTopic.id, subTopicId: currentSubTopic?.id });
     }
   }, [currentTopic, setValue, currentSubTopic]);
 

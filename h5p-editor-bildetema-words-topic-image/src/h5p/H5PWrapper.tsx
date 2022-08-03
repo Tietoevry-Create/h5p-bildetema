@@ -49,7 +49,10 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
 
     selectedTopicField.on("change", async e => {
       const { data } = e as { data: ChooseTopicParams };
-      const newWords = await H5PWrapper.fetchTopic(data.topic, data.subTopic);
+      const newWords = await H5PWrapper.fetchTopic(
+        data.topicId,
+        data.subTopicId,
+      );
 
       this.words = newWords;
       this.render();
