@@ -39,7 +39,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-editor-bildetema-words-topic-image");
 
-    const topicsField = this.findField<H5PGroup>("../selectedTopic");
+    const selectedTopicField = this.findField<H5PGroup>("../selectedTopic");
     const imageField = this.findField<IH5PEditorImageField>("../topicImage");
 
     imageField.changes.push(() => {
@@ -47,7 +47,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
       this.render();
     });
 
-    topicsField.on("change", async e => {
+    selectedTopicField.on("change", async e => {
       const { data } = e as { data: ChooseTopicParams };
       const newWords = await H5PWrapper.fetchTopic(data.topic, data.subTopic);
 

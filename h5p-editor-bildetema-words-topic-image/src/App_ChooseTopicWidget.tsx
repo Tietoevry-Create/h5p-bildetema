@@ -10,7 +10,7 @@ export type Params = {
   topicId: string | undefined;
   subTopicId: string | undefined;
 };
-// eslint-disable-next-line no-empty-pattern
+
 export const AppChooseTopicWidget: React.FC<Params> = ({
   setValue,
   topicId,
@@ -31,7 +31,7 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
   });
 
   React.useEffect(() => {
-    if (topics) {
+    if (topics && topicId) {
       const newCurrentTopic = topics.find(topic => topic.id === topicId);
       setCurrentTopic(newCurrentTopic);
       if (subTopicId) {
