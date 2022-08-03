@@ -30,6 +30,7 @@ export const Editor: React.FC<EditorProps> = ({
   const setValue = React.useContext(SetValueContext);
 
   const [hotspots, setHotspots] = React.useState(initialHotspots);
+  const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
   React.useEffect(() => {
     const newHotspots = words.map(word => ({
@@ -48,34 +49,39 @@ export const Editor: React.FC<EditorProps> = ({
     setValue(hotspots);
   }, [hotspots, setValue]);
 
-  const handleMouseEvent = (e: React.MouseEvent<HTMLElement>): void => {
-    if (ref?.current) {
-      const rect = ref.current.getBoundingClientRect();
-      const offsetX = rect.x;
-      const offsetY = rect.y;
-      const { width, height } = rect;
-      const point = {
-        x: ((e.clientX - offsetX) / width) * 100,
-        y: ((e.clientY - offsetY) / height) * 100,
-      };
-
-      const updatedHotspots = hotspots.map(hotspot => {
-        if (!hotspot.drawing) {
-          return hotspot;
-        }
-
-        if (hotspot.points) {
-          return { ...hotspot, points: [...hotspot.points, point] };
-        }
-
-        return {
-          ...hotspot,
-          points: [point],
-        };
-      });
-
-      setHotspots(updatedHotspots);
+  const handleClick = ({
+    clientX,
+    clientY,
+  }: React.MouseEvent<HTMLElement>): void => {
+    if (!ref?.current) {
+      return;
     }
+
+    const rect = ref.current.getBoundingClientRect();
+    const offsetX = rect.x;
+    const offsetY = rect.y;
+    const { width, height } = rect;
+    const point = {
+      x: ((clientX - offsetX) / width) * 100,
+      y: (((clientY - offsetY) / height) * 100) / aspectRatio,
+    };
+
+    const updatedHotspots = hotspots.map(hotspot => {
+      if (!hotspot.drawing) {
+        return hotspot;
+      }
+
+      if (hotspot.points) {
+        return { ...hotspot, points: [...hotspot.points, point] };
+      }
+
+      return {
+        ...hotspot,
+        points: [point],
+      };
+    });
+
+    setHotspots(updatedHotspots);
   };
 
   const handleWordSelected = (id: string): void => {
@@ -156,12 +162,16 @@ export const Editor: React.FC<EditorProps> = ({
         tabIndex={0}
         ref={ref}
         className={styles.canvas}
-        onClick={handleMouseEvent}
+        onClick={handleClick}
         onKeyDown={() => null}
         role="button"
       >
         <Image image={image} />
-        <Svg hotspots={hotspots} handleCircleClick={handleCircleClick} />
+        <Svg
+          hotspots={hotspots}
+          handleCircleClick={handleCircleClick}
+          aspectRatio={aspectRatio}
+        />
       </div>
     </div>
   );

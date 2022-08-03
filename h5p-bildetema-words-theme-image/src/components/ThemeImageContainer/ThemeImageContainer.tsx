@@ -9,6 +9,7 @@ import styles from "./ThemeImageContainer.module.scss";
 export type ThemeImageContainerProps = {
   topic: Topic;
   themeImage: string;
+  aspectRatio: number;
   themeOverlays: OverlayType[];
   themeImageType: ThemeImageTypes;
   words: Word[];
@@ -17,6 +18,7 @@ export type ThemeImageContainerProps = {
 export const ThemeImageContainer: React.FC<ThemeImageContainerProps> = ({
   topic,
   themeImage,
+  aspectRatio,
   themeOverlays,
   themeImageType,
   words,
@@ -35,6 +37,7 @@ export const ThemeImageContainer: React.FC<ThemeImageContainerProps> = ({
       <div className={styles.wrapper}>
         <ThemeImageSVG
           image={themeImage}
+          aspectRatio={aspectRatio}
           overlays={themeOverlays}
           selectWord={selectWord}
           themeImageType={themeImageType}

@@ -5,15 +5,17 @@ import { ThemeImageContainer } from "./components/ThemeImageContainer/ThemeImage
 import { Topic, Word } from "../../common/types/types";
 import { OverlayType } from "./types/OverlayType";
 import { Params } from "./h5p/H5PWrapper";
+import { renderFigure } from "./utils/figure/figure.utils";
 
 export type AppProps = {
   params: Params;
   imagePath: string;
+  aspectRatio: number;
 };
 
 const hasValue = <T,>(obj: T | null | undefined): obj is T => !!obj;
 
-export const App: React.FC<AppProps> = ({ params, imagePath }) => {
+export const App: React.FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
   const [topics, setTopics] = React.useState<Topic[]>([]);
   const [topic, setTopic] = React.useState<Topic | undefined>();
   const [overlays, setOverlays] = React.useState<Array<OverlayType>>([]);
@@ -46,9 +48,7 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
       .filter(hotspot => hotspot != null && hotspot.points?.length > 0)
       .map(({ word, points }) => ({
         wordId: word.id,
-        outline: `<polygon points="${points
-          ?.map(point => `${point.x},${point.y}`)
-          .join(" ")}" style="fill:lime;stroke:purple;stroke-width:1"/>`,
+        outline: renderFigure(points),
       }));
 
     setOverlays(computedOverlays);
@@ -69,6 +69,7 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
     <ThemeImageContainer
       topic={topic}
       themeImage={imagePath}
+      aspectRatio={aspectRatio}
       themeImageType="nonVectorImageWithHotspots"
       themeOverlays={overlays}
       words={words}

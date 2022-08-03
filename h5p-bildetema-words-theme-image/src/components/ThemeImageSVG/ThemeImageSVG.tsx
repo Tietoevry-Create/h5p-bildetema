@@ -6,6 +6,7 @@ import styles from "./ThemeImageSVG.module.scss";
 
 export type ThemeImageSVGProps = {
   image: string;
+  aspectRatio: number;
   overlays: OverlayType[];
   themeImageType: ThemeImageTypes;
   selectWord: (word: string) => void;
@@ -13,6 +14,7 @@ export type ThemeImageSVGProps = {
 
 export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
   image,
+  aspectRatio,
   overlays,
   themeImageType,
   selectWord,
@@ -37,7 +39,7 @@ export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
       <svg
         className={styles.overlays}
         preserveAspectRatio="none"
-        viewBox="0 0 100 100"
+        viewBox={`0 0 100 ${100 / aspectRatio}`}
       >
         {overlayFields}
       </svg>

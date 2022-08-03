@@ -1,6 +1,7 @@
 import React from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
+import { findRadius } from "../../utils/polygon/polygon.utils";
 import styles from "./Polygon.module.scss";
 
 export type PolygonProps = {
@@ -20,13 +21,9 @@ export const Polygon: React.FC<PolygonProps> = ({
     return drawing ? d : `${d} Z`;
   };
 
-  const findRadius = (a: Point, b: Point): number => {
-    return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
-  };
-
   return (
     <>
-      {points?.length === 2 && !drawing ? (
+      {points?.length === 2 ? (
         <circle
           cx={points[0].x}
           cy={points[0].y}
@@ -34,6 +31,7 @@ export const Polygon: React.FC<PolygonProps> = ({
           stroke="black"
           fill="none"
           strokeWidth="0.3"
+          className={styles.circle}
         />
       ) : (
         points?.length && (
