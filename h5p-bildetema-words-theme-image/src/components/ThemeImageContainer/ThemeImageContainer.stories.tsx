@@ -23,6 +23,7 @@ ImageContainer.args = {
     subTopics: new Map(),
     words: new Map(),
   },
+  aspectRatio: 1,
   themeImage: cat,
   themeOverlays: overlays,
   themeImageType: "vectorImageWithHotspots",
