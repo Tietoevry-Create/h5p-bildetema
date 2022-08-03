@@ -132,8 +132,6 @@ export const Editor: React.FC<EditorProps> = ({
   // TODO: Translate
   const resetButtonLabel = "Reset";
 
-  console.log({ hotspots });
-
   return (
     <div className={styles.editor}>
       <div className={styles.controls}>

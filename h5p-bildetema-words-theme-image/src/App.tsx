@@ -65,8 +65,6 @@ export const App: React.FC<AppProps> = ({ params, imagePath }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
-  console.log({ params });
-
   return topic ? (
     <ThemeImageContainer
       topic={topic}
