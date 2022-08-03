@@ -20,11 +20,16 @@
 
 .path,
 .circle {
+  cursor: pointer;
   fill: #30735133;
   transition: fill 0.15s ease-in-out;
 
   &:hover,
   a:focus & {
     fill: #30735166;
+  }
+
+  &.isDrawing {
+    pointer-events: none;
   }
 }

@@ -44,13 +44,13 @@ export const Polygon: React.FC<PolygonProps> = ({
           stroke="black"
           fill="none"
           strokeWidth="0.3"
-          className={styles.circle}
+          className={`${styles.circle} ${drawing ? styles.isDrawing : ""}`}
           onClick={onFigureClick}
         />
       ) : (
         points?.length && (
           <path
-            className={styles.path}
+            className={`${styles.path} ${drawing ? styles.isDrawing : ""}`}
             d={pointsToDAttribute(!drawing, points)}
             strokeWidth="0.3"
             stroke="black"
