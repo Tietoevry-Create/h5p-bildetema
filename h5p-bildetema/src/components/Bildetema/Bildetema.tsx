@@ -32,7 +32,7 @@ type BildetemaProps = {
 export const defaultFavoriteLanguages: Language[] = [
   {
     label: "Norsk (Bokmål)",
-    code: makeLanguageCode("nob"),
+    code: makeLanguageCode("eng"),
     rtl: false,
   },
   {
@@ -84,9 +84,25 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
   const [isWordView, setIsWordView] = useState(false);
   const [showWrittenWords, setShowWrittenWords] = useState(true);
+  const test = ():Language => {
+    // console.info(userData.currentLanguage ?? userData.favoriteLanguages[0])
+    console.info(languagesFromDB)
+    const urlLangCode = location.pathname.split("/")[1]
+    // console.info(userData.currentLanguage.code === urlLangCode, "hi")
+    
+    // if(userData.currentLanguage.code === urlLangCode) return userData.currentLanguage
+
+    const languagesFromDBContainsUrlLanguage = languagesFromDB && languagesFromDB.find(lang => lang.code === urlLangCode)
+    console.info(languagesFromDBContainsUrlLanguage, "yoo")
+    if(languagesFromDBContainsUrlLanguage) return languagesFromDBContainsUrlLanguage
+
+    return userData.favoriteLanguages[0]
+  }
   const [currentLanguage, setCurrentLanguage] = useState(
+    // test()
     userData.currentLanguage ?? userData.favoriteLanguages[0],
   );
+
   const [currentTopic, setCurrentTopic] = useState<Topic>();
   const [currentSubTopic, setCurrentSubTopic] = useState<Topic>();
   const [routes, setRoutes] = useState<JSX.Element>();
@@ -115,6 +131,18 @@ export const Bildetema: React.FC<BildetemaProps> = ({
             />
           }
         />
+        <Route
+          path="/:langID/:topicId/:subTopicId"
+          element={
+            <>
+            <h1>heADSSDSAi</h1>
+            <h1>heADSSDSAi</h1>
+            <h1>heADSSDSAi</h1>
+            <h1>heADSSDSAi</h1>
+            <h1>heADSSDSAi</h1>
+            </>
+          }
+        />
         {topics?.map(topic => {
           const currTopicPath = topic.labelTranslations.get(
             currentLanguage.code,
@@ -127,7 +155,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                   .join("-") ?? "",
               )}`
             : `/${currentLanguage.code}/${topic.id}`;
-
           return topic.subTopics.size ? (
             Array.from(topic.subTopics.values()).map(subtopic => {
               const currSubtopicPath = subtopic.labelTranslations.get(
@@ -213,7 +240,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
       // process current path if this is a first visit
       // i.e. link is copy-pasted into the address bar
-      if (firstVisit) {
+      if (firstVisit && languagesFromDB) {
         const pathArray = location.pathname.split("/");
         const [topic, subTopic] = pathArray.slice(2).map(tempTopic => {
           return topics?.find(
@@ -226,11 +253,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({
               existingTopic.id.toLowerCase() === decodeURIComponent(tempTopic),
           );
         });
-
         setCurrentTopic(topic);
         setCurrentSubTopic(subTopic);
-        setFirstVisit(false);
-
+        setFirstVisit(true);
+        setCurrentLanguage(test())
         // build new path based on topic and subtopic
         // since currentTopic and currentSubTopic are still undefined at this point
         newPath = [
@@ -250,19 +276,19 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           .filter(Boolean)
           .join("/");
       }
-      dynamicRedirect.current = (
-        <Route
-          path="*"
-          element={<Navigate to={`/${currentLanguage.code}`} replace />}
-        />
-      );
-      navigate(newPath);
+      // dynamicRedirect.current = (
+      //   <Route
+      //     path="*"
+      //     element={<Navigate to={`/${currentLanguage.code}`} />}
+      //   />
+      // );
+      // navigate(newPath);
     }
     // this hook handles the navigation to updated path when changing current language
     // with current implementation it should only depend on currentLanguage and topics
     // topics are only updated once when the data is fetched from remote host
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentLanguage, topics]);
+  }, [currentLanguage, topics, languagesFromDB]);
 
   return (
     <div className={styles.wrapper}>

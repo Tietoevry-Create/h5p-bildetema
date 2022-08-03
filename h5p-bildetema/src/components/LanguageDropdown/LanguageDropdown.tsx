@@ -10,8 +10,8 @@ type LanguageDropdownProps = {
   langSelectorIsShown: boolean | undefined;
   languagesFromDB: Language[] | undefined;
   selectLanguageLabel: string;
-  userData: UserData;
-  setUserData: (updatedUserData: UserData) => void;
+  // userData: UserData;
+  // setUserData: (updatedUserData: UserData) => void;
   favLanguages: Language[];
   setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
   handleChangeLanguage: (newLanguage: Language) => void;
@@ -22,8 +22,8 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   langSelectorIsShown,
   languagesFromDB,
   selectLanguageLabel,
-  userData,
-  setUserData,
+  // userData,
+  // setUserData,
   favLanguages,
   setFavLanguages,
   handleChangeLanguage,
@@ -52,8 +52,8 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
       {langSelectorIsShown && (
         <LanguageSelector
           languages={languagesFromDB}
-          userData={userData}
-          setUserData={setUserData}
+          // userData={userData}
+          // setUserData={setUserData}
           favLanguages={favLanguages}
           setFavLanguages={setFavLanguages}
           handleChangeLanguage={handleChangeLanguage}

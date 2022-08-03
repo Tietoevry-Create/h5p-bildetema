@@ -9,8 +9,8 @@ import styles from "./LanguageSelectorElement.module.scss";
 type LanguageSelectorElement = {
   language: Language;
   middleElement: boolean;
-  userData: UserData;
-  setUserData: (updatedUserData: UserData) => void;
+  // userData: UserData;
+  // setUserData: (updatedUserData: UserData) => void;
   favLanguages: Language[];
   setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
   handleChangeLanguage: (newLanguage: Language) => void;
@@ -19,8 +19,8 @@ type LanguageSelectorElement = {
 export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   language,
   middleElement,
-  userData,
-  setUserData,
+  // userData,
+  // setUserData,
   favLanguages,
   setFavLanguages,
   handleChangeLanguage,
@@ -36,49 +36,77 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   );
 
   const toggleFavorite = (): void => {
-    const languageIsFavorite = userData.favoriteLanguages.find(
+    const languageIsFavorite = favLanguages.find(
       favLang => favLang.code === language.code,
     );
 
-    if (languageIsFavorite) {
-      // eslint-disable-next-line no-param-reassign
-      userData.favoriteLanguages = userData.favoriteLanguages.filter(
-        favLang => favLang.code !== language.code,
-      );
-      setIsChecked(false);
-    } else {
-      userData.favoriteLanguages.push(language);
+    setIsChecked(prev => !prev)
+
+    if(languageIsFavorite) {
+      setFavLanguages(lang => lang.filter(el => el.code !== language.code))
+    }else {
+      setFavLanguages(lang => [...lang, language])
     }
+    // if(isChecked){
+    //   setFavLanguages(prev => [...prev, language])
+    // }
+    // setFavLanguages(lang => [...lang, language])
+    // // const languageIsFavorite = userData.favoriteLanguages.find(
+    // //   favLang => favLang.code === language.code,
+    // // );
+
+    // if (languageIsFavorite) {
+    //   // eslint-disable-next-line no-param-reassign
+    //   setFavLanguages() = userData.favoriteLanguages.filter(
+    //     favLang => favLang.code !== language.code,
+    //   );
+    //   setIsChecked(false);
+    // } else {
+    //   userData.favoriteLanguages.push(language);
+    // }
   };
+
+    // React.useEffect(() => {
+    //   if(isChecked) {
+    //     setFavLanguages(lang => 
+    //       [...lang, language]
+    //     )
+    //   }else {
+    //     setFavLanguages(lang => lang.filter(el => el.code !== language.code))
+    //   }
+    // },[isChecked, language, setFavLanguages])
 
   const handleChange = (): void => {
     toggleFavorite();
 
-    const userHasNoFavoriteLanguagesSet = !userData.favoriteLanguages.length;
-    if (userHasNoFavoriteLanguagesSet) {
-      // eslint-disable-next-line no-param-reassign
-      userData.favoriteLanguages = defaultFavoriteLanguages;
-    }
+    // const userHasNoFavoriteLanguagesSet = !userData.favoriteLanguages.length;
+    // if (userHasNoFavoriteLanguagesSet) {
+    //   // eslint-disable-next-line no-param-reassign
+    //   // userData.favoriteLanguages = defaultFavoriteLanguages;
+    // }
 
-    setFavLanguages(userData.favoriteLanguages);
-    setUserData(userData);
+    // setFavLanguages(userData.favoriteLanguages);
+    // // setUserData(userData);
 
-    const currentLanguageWasUnfavorited = !userData.favoriteLanguages.find(
-      favLang => favLang.code === userData.currentLanguage.code,
-    );
-    if (currentLanguageWasUnfavorited) {
-      handleChangeLanguage(userData.favoriteLanguages[0]);
-    }
+    // const currentLanguageWasUnfavorited = !userData.favoriteLanguages.find(
+    //   favLang => favLang.code === userData.currentLanguage.code,
+    // );
+    // if (currentLanguageWasUnfavorited) {
+    //   handleChangeLanguage(userData.favoriteLanguages[0]);
+    // }
   };
 
-  React.useEffect(() => {
-    const languageIsFavorite = userData.favoriteLanguages.find(
-      favLang => favLang.code === language.code,
-    );
-    if (languageIsFavorite) {
-      setIsChecked(true);
-    }
-  }, [language.code, userData.favoriteLanguages]);
+  // React.useEffect(() => {
+  //   // const languageIsFavorite = userData.favoriteLanguages.find(
+  //   //   favLang => favLang.code === language.code,
+  //   // );
+  //   const languageIsFavorite = favLanguages.find(
+  //     favLang => favLang.code === language.code,
+  //   );
+  //   if (languageIsFavorite) {
+  //     setIsChecked(true);
+  //   }
+  // }, [favLanguages, language.code]);
 
   return (
     <button

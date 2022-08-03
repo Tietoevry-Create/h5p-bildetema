@@ -5,8 +5,8 @@ import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSele
 
 type LanguageSelectorProps = {
   languages: Language[] | undefined;
-  userData: UserData;
-  setUserData: (updatedUserData: UserData) => void;
+  // userData: UserData;
+  // setUserData: (updatedUserData: UserData) => void;
   favLanguages: Language[];
   setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
   handleChangeLanguage: (newLanguage: Language) => void;
@@ -14,8 +14,8 @@ type LanguageSelectorProps = {
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   languages,
-  userData,
-  setUserData,
+  // userData,
+  // setUserData,
   favLanguages,
   setFavLanguages,
   handleChangeLanguage,
@@ -37,8 +37,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             key={language.code}
             language={language}
             middleElement={index === Math.max(1, getAmountOfRows() - 1)}
-            userData={userData}
-            setUserData={setUserData}
+            // userData={userData}
+            // setUserData={setUserData}
             favLanguages={favLanguages}
             setFavLanguages={setFavLanguages}
             handleChangeLanguage={handleChangeLanguage}

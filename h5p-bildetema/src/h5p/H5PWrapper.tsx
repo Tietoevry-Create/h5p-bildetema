@@ -39,11 +39,11 @@ export class H5PWrapper
           <L10nContext.Provider value={l10n}>
             <ContentIdContext.Provider value={this.contentId}>
               <App
-                currentLanguage={{
-                  label: "Norsk Bokmål",
-                  code: makeLanguageCode("nob"),
-                  rtl: false,
-                }}
+                // currentLanguage={{
+                //   label: "Norsk Bokmål",
+                //   code: makeLanguageCode("nob"),
+                //   rtl: false,
+                // }}
               />
             </ContentIdContext.Provider>
           </L10nContext.Provider>
