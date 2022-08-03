@@ -13,19 +13,19 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "image",
       },
       {
-        label: "Topic",
+        label: "Selected topic",
         name: "selectedTopic",
         type: "group",
         widget: "chooseTopicWidget",
         fields: [
           {
-            label: "Topic",
-            name: "topic",
+            label: "Topic id",
+            name: "topicId",
             type: "text",
           },
           {
-            label: "SubTopic",
-            name: "subTopic",
+            label: "Sub topic id",
+            name: "subTopicId",
             type: "text",
             optional: true,
           },

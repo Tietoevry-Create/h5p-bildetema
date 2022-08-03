@@ -11,19 +11,19 @@
         "type": "image"
       },
       {
-        "label": "Topic",
+        "label": "Selected topic",
         "name": "selectedTopic",
         "type": "group",
         "widget": "chooseTopicWidget",
         "fields": [
           {
-            "label": "Topic",
-            "name": "topic",
+            "label": "Topic id",
+            "name": "topicId",
             "type": "text"
           },
           {
-            "label": "SubTopic",
-            "name": "subTopic",
+            "label": "Sub topic id",
+            "name": "subTopicId",
             "type": "text",
             "optional": true
           }
