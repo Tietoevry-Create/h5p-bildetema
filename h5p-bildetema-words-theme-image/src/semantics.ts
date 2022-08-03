@@ -66,9 +66,62 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
               },
             },
             {
-              label: "Word id",
-              name: "wordId",
-              type: "text",
+              label: "Word",
+              name: "word",
+              type: "group",
+              fields: [
+                {
+                  label: "Id",
+                  name: "id",
+                  type: "text",
+                },
+                {
+                  label: "Label",
+                  name: "label",
+                  type: "text",
+                },
+                {
+                  label: "Images",
+                  name: "images",
+                  type: "list",
+                  entity: "Image",
+                  field: {
+                    label: "Image",
+                    name: "image",
+                    type: "group",
+                    fields: [
+                      {
+                        label: "Src",
+                        name: "src",
+                        type: "text",
+                      },
+                      {
+                        label: "Src sets",
+                        name: "srcSets",
+                        type: "list",
+                        entity: "Src set",
+                        field: {
+                          label: "Src set",
+                          name: "srcSet",
+                          type: "group",
+                          fields: [
+                            {
+                              label: "Src",
+                              name: "src",
+                              type: "text",
+                            },
+                            {
+                              label: "Width",
+                              name: "width",
+                              type: "number",
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
           ],
         },
