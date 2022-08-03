@@ -7,12 +7,14 @@ import styles from "./Svg.module.scss";
 export type SvgProps = {
   hotspots: Hotspot[];
   handleCircleClick: (point: Point) => void;
+  handleFigureClick: (hotspot: Hotspot) => void;
   aspectRatio: number;
 };
 
 export const Svg: React.FC<SvgProps> = ({
   hotspots,
   handleCircleClick,
+  handleFigureClick,
   aspectRatio,
 }) => {
   return (
@@ -27,6 +29,7 @@ export const Svg: React.FC<SvgProps> = ({
           key={hotspot.word.id}
           hotspot={hotspot}
           handleCircleClick={handleCircleClick}
+          handleFigureClick={handleFigureClick}
         />
       ))}
     </svg>
