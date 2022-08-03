@@ -19,4 +19,4 @@ The application can be run in a Docker container. To do so, run these commands:
 
 ### Storybook
 
-Each project comes with [Storybook](https://storybook.js.org). Storybook provides hot module reloading and is the best option when editing React components where H5P is not involved. Whenever you're changing any code that depends on H5P, developing in the Docker environment is usually the best option.
+Each project comes with [Storybook](https://storybook.js.org). Storybook provides hot module reloading and is the best option when editing React components where H5P is not involved. Whenever you're changing any code that depends on H5P, developing in the Docker environment is usually the best option. To run Storybook, `cd` into the project you want to work with and run `npm run storybook`.
