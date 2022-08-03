@@ -154,7 +154,7 @@ describe(activateDrawingHotspot.name, () => {
 
     const actual = activateDrawingHotspot(hotspot, word.id);
 
-    expect(actual).toBe(expected);
+    expect(actual).toEqual(expected);
   });
 
   it("should deactivate the hotspot if it does not have the same word id as the given word id", () => {
@@ -173,6 +173,6 @@ describe(activateDrawingHotspot.name, () => {
 
     const actual = activateDrawingHotspot(hotspot, "B002");
 
-    expect(actual).toBe(expected);
+    expect(actual).toEqual(expected);
   });
 });
