@@ -87,23 +87,37 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleCircleClick = (point: Point): void => {
-    setHotspots(prev => {
-      return prev.map(hotspot => {
-        if (!hotspot.drawing) {
-          return hotspot;
+    const updatedHotspots = hotspots.map(hotspot => {
+      if (!hotspot.drawing) {
+        return hotspot;
+      }
+
+      const clickedOnStartPoint =
+        hotspot.points[0].x === point.x && hotspot.points[0].y === point.y;
+      const startPointIsTheOnlyPoint = hotspot.points.length === 1;
+
+      if (clickedOnStartPoint) {
+        if (startPointIsTheOnlyPoint) {
+          return {
+            ...hotspot,
+            points: [],
+          };
         }
 
-        return hotspot.points[0].x === point.x &&
-          hotspot.points[0].y === point.y
-          ? { ...hotspot, drawing: false }
-          : {
-              ...hotspot,
-              points: hotspot.points.filter(
-                el => el.x !== point.x && el.y !== point.y,
-              ),
-            };
-      });
+        // Finish the drawing without re-adding the current point (because it already exists as the start point)
+        return { ...hotspot, drawing: false };
+      }
+
+      // If a point other than the start point was clicked, remove it
+      return {
+        ...hotspot,
+        points: hotspot.points.filter(
+          ({ x, y }) => x !== point.x && y !== point.y,
+        ),
+      };
     });
+
+    setHotspots(updatedHotspots);
   };
 
   // TODO: Translate
