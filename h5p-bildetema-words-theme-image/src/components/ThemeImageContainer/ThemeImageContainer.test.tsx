@@ -35,6 +35,7 @@ describe(ThemeImageContainer.name, () => {
   }: ThemeImageContainerProps): HTMLElement => {
     const { container } = render(
       <ThemeImageContainer
+        aspectRatio={1}
         topic={topic}
         themeImageType={themeImageType}
         words={words}
@@ -47,6 +48,7 @@ describe(ThemeImageContainer.name, () => {
 
   it("Should render nothing if type != vectorImageWithHotspots", () => {
     const container = template({
+      aspectRatio: 1,
       topic: { ...baseTopic },
       themeImage: "test",
       themeOverlays: [],
@@ -60,6 +62,7 @@ describe(ThemeImageContainer.name, () => {
 
   it("Should only render if type == vectorImageWithHotspots", () => {
     const container = template({
+      aspectRatio: 1,
       themeImage: "test",
       themeOverlays: [],
       topic: { ...baseTopic },
