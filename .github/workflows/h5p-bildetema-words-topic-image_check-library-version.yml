@@ -14,7 +14,7 @@ on:
 
 env:
   project-id: h5p-bildetema-words-theme-image
-  project-name: H5PEditor.BildetemaWordsTopicImage
+  project-name: H5P.BildetemaWordsTopicImage
 
 jobs:
   check-h5p-library-version:
