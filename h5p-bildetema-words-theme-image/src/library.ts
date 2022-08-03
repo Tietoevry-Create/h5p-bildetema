@@ -23,10 +23,5 @@ export const library: Library = {
       majorVersion: 1,
       minorVersion: 0,
     },
-    // {
-    //   machineName: "H5PEditor.UUIDWidget",
-    //   majorVersion: 1,
-    //   minorVersion: 0,
-    // },
   ],
 };
