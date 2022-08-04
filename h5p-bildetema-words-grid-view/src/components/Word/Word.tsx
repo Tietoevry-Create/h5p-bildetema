@@ -48,11 +48,11 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           ))
         ) : (
           <SwiperSlide>
-            <div>
+            <div className={styles.image_placeholder}>
               <Image
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
-                width="250"
-                height="250"
+                width="220"
+                height="220"
               />
             </div>
           </SwiperSlide>
