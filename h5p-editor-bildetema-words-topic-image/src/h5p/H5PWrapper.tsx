@@ -13,8 +13,8 @@ import { LanguageCode } from "../../../common/types/LanguageCode";
 import { Word } from "../../../common/types/types";
 import { getTopics } from "../../../common/utils/data.utils";
 import { App } from "../App";
-import { Hotspot } from "../types/Hotspot";
 import { SetValueContext } from "../contexts/SetValueContext";
+import { Hotspot } from "../types/Hotspot";
 import { Params as ChooseTopicParams } from "./ChooseTopicH5PWrapper";
 
 type Field = H5PFieldGroup;
@@ -47,12 +47,12 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
       this.render();
     });
 
-    selectedTopicField.on("change", async e => {
-      const { data } = e as { data: ChooseTopicParams };
-      const newWords = await H5PWrapper.fetchTopic(
-        data.topicId,
-        data.subTopicId,
-      );
+    selectedTopicField.on("change", async event => {
+      const {
+        data: { topicId, subTopicId },
+      } = event as { data: ChooseTopicParams };
+
+      const newWords = await H5PWrapper.fetchTopic(topicId, subTopicId);
 
       this.words = newWords;
       this.render();
@@ -71,7 +71,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   }
 
   private static fetchImage(field: IH5PEditorImageField): Image | undefined {
-    if (field && field.params) {
+    if (field?.params) {
       return {
         ...field.params,
         path: H5P.getPath(field.params.path, H5PEditor.contentId),
