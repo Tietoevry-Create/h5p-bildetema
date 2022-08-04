@@ -4,6 +4,6 @@
   display: inline-grid;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: $spacing--16;
+  gap: $spacing--24;
   width: 100%;
 }
