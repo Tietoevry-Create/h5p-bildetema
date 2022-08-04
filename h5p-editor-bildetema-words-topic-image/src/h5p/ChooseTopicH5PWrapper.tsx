@@ -1,5 +1,5 @@
-import type { H5PFieldGroup, H5PGroup, IH5PWidget } from "h5p-types";
-import { H5PEditor, H5PWidget } from "h5p-utils";
+import type { H5PFieldGroup, IH5PWidget } from "h5p-types";
+import { H5PWidget } from "h5p-utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -18,6 +18,8 @@ export class ChooseTopicH5PWrapper
   extends H5PWidget<Field, Params>
   implements IH5PWidget
 {
+  changes: Array<() => void> = [];
+
   appendTo($container: JQuery<HTMLElement>): void {
     const containerElement = $container.get(0);
     if (!containerElement) {
@@ -39,15 +41,7 @@ export class ChooseTopicH5PWrapper
           subTopicId={this.params?.subTopicId}
           setValue={params => {
             this.setValue(this.field, params);
-
-            const topicsField = H5PEditor.findField<H5PGroup<Params>>(
-              "selectedTopic",
-              this.parent,
-            );
-
-            if (topicsField) {
-              topicsField.trigger("change", params);
-            }
+            this.trigger("change", params);
           }}
         />
       </QueryClientProvider>,
