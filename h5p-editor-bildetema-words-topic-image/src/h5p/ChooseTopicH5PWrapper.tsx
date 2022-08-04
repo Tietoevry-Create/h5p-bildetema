@@ -37,8 +37,8 @@ export class ChooseTopicH5PWrapper
         <AppChooseTopicWidget
           topicId={this.params?.topicId}
           subTopicId={this.params?.subTopicId}
-          setValue={value => {
-            this.setValue(this.field, value);
+          setValue={params => {
+            this.setValue(this.field, params);
 
             const topicsField = H5PEditor.findField<H5PGroup<Params>>(
               "selectedTopic",
@@ -46,7 +46,7 @@ export class ChooseTopicH5PWrapper
             );
 
             if (topicsField) {
-              topicsField.trigger("change", value);
+              topicsField.trigger("change", params);
             }
           }}
         />

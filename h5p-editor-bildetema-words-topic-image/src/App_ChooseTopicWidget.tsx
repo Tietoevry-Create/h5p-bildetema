@@ -35,11 +35,12 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
     if (topics && topicId) {
       const newCurrentTopic = topics.find(topic => topic.id === topicId);
       setCurrentTopic(newCurrentTopic);
+
       if (subTopicId) {
         setCurrentSubTopic(newCurrentTopic?.subTopics.get(subTopicId));
       }
     }
-  }, [topics, topicId, subTopicId, currentSubTopic]);
+  }, [topics, topicId, subTopicId]);
 
   React.useEffect(() => {
     if (currentTopic) {
