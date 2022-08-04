@@ -19,7 +19,7 @@ type WordProps = {
 };
 
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
-  const { label, images } = word;
+  const { images } = word;
 
   const renderImages = (): JSX.Element => {
     const multipleImages = images && images.length > 1;
@@ -64,11 +64,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   return (
     <div className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
-      <span className={styles.word_label}>
-        {textVisible && label}
-        {word.audio && <WordAudio word={word} />}
-        &nbsp;
-      </span>
+      {word.audio && <WordAudio word={word} textVisible={textVisible}/>}
     </div>
   );
 };

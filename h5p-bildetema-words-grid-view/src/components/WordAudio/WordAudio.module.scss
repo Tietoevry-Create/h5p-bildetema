@@ -1,18 +1,54 @@
 @use "../../../../common/abstracts" as *;
 
 .wordAudio {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: $font-size-32;
-  z-index: 1;
+  padding: 0.25rem 0;
 }
 
 .wordAudio button {
   all: unset;
+  align-items: center;
   cursor: pointer;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.word_label {
+  font-size: $font-size-24;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.audioIconSpan {
+  align-items: center;
+  display: flex;
+  height: 2.1rem; /* same as label height */
+}
+
+.audioIcon,
+.audioIconActive {
+  fill: none;
+  height: 1.5rem;
+
+  path {
+    stroke: #8f8f8f;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover,
+  &:focus {
+    path {
+      stroke: #333;
+    }
+  }
+}
+
+.audioIconActive {
+  path {
+    stroke: #333;
+  }
 }
 
 .visuallyHidden {
