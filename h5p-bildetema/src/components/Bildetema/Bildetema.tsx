@@ -34,7 +34,7 @@ export const defaultFavoriteLanguages: Language[] = [
   },
 ];
 
-export const Bildetema = (): JSX.Element => {
+export const Bildetema: React.FC = () => {
   const { isLoading: isLoadingLanguages, data: languagesFromDB } = useQuery(
     "languagesFromDB",
     getLanguages,
@@ -50,7 +50,7 @@ export const Bildetema = (): JSX.Element => {
   const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
   const [isWordView, setIsWordView] = useState(false);
   const [showWrittenWords, setShowWrittenWords] = useState(true);
-  const [favLanguages, setFavLanguages] = React.useState(
+  const [favLanguages, setFavLanguages] = useState(
     defaultFavoriteLanguages,
   );
 

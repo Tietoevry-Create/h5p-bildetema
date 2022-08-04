@@ -4,7 +4,7 @@ import { Bildetema } from "../Bildetema/Bildetema";
 
 const queryClient = new QueryClient();
 
-export const App = (): JSX.Element => {
+export const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Bildetema />
