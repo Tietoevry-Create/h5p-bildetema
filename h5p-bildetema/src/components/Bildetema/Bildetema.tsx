@@ -35,10 +35,10 @@ export const defaultFavoriteLanguages: Language[] = [
 ];
 
 export const Bildetema = (): JSX.Element => {
-  const {
-    isLoading: isLoadingLanguages,
-    data: languagesFromDB,
-  } = useQuery("languagesFromDB", getLanguages);
+  const { isLoading: isLoadingLanguages, data: languagesFromDB } = useQuery(
+    "languagesFromDB",
+    getLanguages,
+  );
   const { isLoading: isLoadingTopics, data: topicsFromDB } = useQuery(
     "topicsFromDB",
     getTopics,
