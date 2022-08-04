@@ -1,6 +1,6 @@
 import React from "react";
 import { useContentId } from "use-h5p";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   TopicGridSizes,
   Language,
@@ -57,7 +57,9 @@ export const Header: React.FC<HeaderProps> = ({
   const labelToUrlComponent = (label: string): string | undefined => {
     return label?.toLowerCase().split(" ").join("-");
   };
-
+  const {pathname} = useLocation()
+  const currentLanguageCode = pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob"
+  
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.toggle}>
@@ -143,7 +145,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       <div className={styles.bottom}>
-        <Breadcrumbs currentLanguageCode="nob" />
+        <Breadcrumbs currentLanguageCode={currentLanguageCode} />
         {renderLeftMenu()}
       </div>
     </div>
