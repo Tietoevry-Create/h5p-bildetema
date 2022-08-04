@@ -4,7 +4,6 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import { makeLanguageCode } from "../../../common/utils/LanguageCode.utils";
 import { App } from "../components/App/App";
 import { TranslationKey } from "../types/TranslationKey";
 
@@ -38,13 +37,7 @@ export class H5PWrapper
         <H5PContext.Provider value={this}>
           <L10nContext.Provider value={l10n}>
             <ContentIdContext.Provider value={this.contentId}>
-              <App
-                // currentLanguage={{
-                //   label: "Norsk Bokmål",
-                //   code: makeLanguageCode("nob"),
-                //   rtl: false,
-                // }}
-              />
+              <App />
             </ContentIdContext.Provider>
           </L10nContext.Provider>
         </H5PContext.Provider>

@@ -15,10 +15,6 @@ type TopicGridProps = {
   setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
   showWrittenWords: boolean;
   currentLanguage: Language;
-  // setCurrentTopic: React.Dispatch<React.SetStateAction<Topic | undefined>>;
-  // setCurrentSubTopic: React.Dispatch<React.SetStateAction<Topic | undefined>>;
-  // topic?: Topic;
-  // subTopic?: Topic;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -28,23 +24,10 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   setIsWordView,
   showWrittenWords,
   currentLanguage,
-  // setCurrentTopic,
-  // topic,
-  // setCurrentSubTopic,
-  // subTopic,
 }) => {
   React.useEffect(() => {
-    // setCurrentTopic(topic);
-    // setCurrentSubTopic(subTopic);
     setIsWordView(!!words);
-  }, [
-    // topic,
-    // subTopic,
-    // setCurrentTopic,
-    // setCurrentSubTopic,
-    words,
-    setIsWordView,
-  ]);
+  }, [words, setIsWordView]);
 
   if (topics) {
     return (

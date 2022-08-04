@@ -1,15 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import {
-  Topic,
-  Word,
-  TopicGridSizes,
-  ImageUrl,
-} from "../../../../common/types/types";
+import { TopicGridSizes, ImageUrl } from "../../../../common/types/types";
 import styles from "./TopicGridElement.module.scss";
 
 type TopicGridElementProps = {
-  item?: Topic | Word;
   index: number;
   title: string;
   images: ImageUrl[];
@@ -17,8 +11,6 @@ type TopicGridElementProps = {
 };
 
 export const TopicGridElement: React.FC<TopicGridElementProps> = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  item,
   title,
   index,
   images,

@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Language,
   Topic,
@@ -10,7 +8,7 @@ import {
 } from "../../../../common/types/types";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
-import type {TopicIds} from "../Bildetema/Bildetest";
+import type { TopicIds } from "../Bildetema/Bildetema";
 
 export type RouteControllerProps = {
   topicsFromDB?: Topic[];
@@ -37,9 +35,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
 }) => {
   const { langId, topicLabel, subTopicId } = useParams();
 
-  const labelToUrlComponent = (
-    label: string,
-  ): string | undefined => {
+  const labelToUrlComponent = (label: string): string | undefined => {
     return label?.toLowerCase().split(" ").join("-");
   };
 
@@ -62,37 +58,37 @@ export const RouteController: React.FC<RouteControllerProps> = ({
 
   const validRoute = (): TopicsAndWords => {
     if (!topicsFromDB || !langId) return {};
-    
+
     const langCode = makeLanguageCode(langId);
     const language = languagesFromDB?.find(el => el.code === langCode);
     if (!language) {
-      setTopicIds({})
+      setTopicIds({});
       return {};
     }
-    
+
     if (!topicLabel) {
-      setTopicIds({})
+      setTopicIds({});
       return { topics: topicsFromDB, language };
     }
-    
+
     const topic = findTopic(topicsFromDB, language, topicLabel);
     if (!topic) {
-      setTopicIds({})
+      setTopicIds({});
       return {};
     }
-    
+
     const subTopics = Array.from(topic.subTopics.values());
-    
+
     if (!subTopicId) {
-      setTopicIds({topicId: topic.id})
-      
+      setTopicIds({ topicId: topic.id });
+
       if (subTopics.length) return { topics: subTopics, language };
       return { words: topic.words.get(language.code), language };
     }
-    
+
     const subTopic = findTopic(subTopics, language, subTopicId);
-    
-    setTopicIds({topicId: topic.id, subTopicId: subTopic?.id})
+
+    setTopicIds({ topicId: topic.id, subTopicId: subTopic?.id });
     return { words: subTopic?.words.get(language.code), language };
   };
 
