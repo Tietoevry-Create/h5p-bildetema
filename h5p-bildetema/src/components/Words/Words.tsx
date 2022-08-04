@@ -11,7 +11,7 @@ type WordsProps = {
 export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const contentId = useContentId();
-
+  
   useEffect(() => {
     if (ref.current) {
       if (ref.current.childElementCount > 0)

@@ -38,7 +38,6 @@ export const Bildetema = (): JSX.Element => {
   const {
     isLoading: isLoadingLanguages,
     data: languagesFromDB,
-    isIdle,
   } = useQuery("languagesFromDB", getLanguages);
   const { isLoading: isLoadingTopics, data: topicsFromDB } = useQuery(
     "topicsFromDB",
