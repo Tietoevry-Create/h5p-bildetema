@@ -12,6 +12,7 @@ import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle } from "..";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
+import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
@@ -78,10 +79,20 @@ export const Header: React.FC<HeaderProps> = ({
     setUserData({ ...userData, currentLanguage: newLanguage });
   };
 
+  const titleLabel = "Bildetema"; /* TODO: translate */
+  const subTitleLabel = "Flerspråklig bildeordbok"; /* TODO: translate */
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <div className={styles.logo}>{/* TODO: Add logo as SVG */}</div>
+        <div className={styles.logos}>
+          <OsloMetLogo />
+          {/* TODO: Add Biletema logo when finished */}
+          <div className={styles.logo_labels}>
+            <span className={styles.logo_labels_title}>{titleLabel}</span>
+            <span>{subTitleLabel}</span>
+          </div>
+        </div>
         <div className={styles.language_container}>
           <div className={styles.languages}>
             {favLanguages.map(language => {

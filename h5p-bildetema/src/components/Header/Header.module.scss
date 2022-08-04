@@ -18,9 +18,24 @@
   font-size: $font-size-24;
 }
 
-.logo {
-  height: 2rem;
+.logos {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
 }
+
+.logo_labels {
+  display: flex;
+  flex-direction: column;
+  font-size: $font-size-16;
+  line-height: 1.4;
+
+  &_title {
+    font-size: $font-size-24;
+    font-weight: bold;
+  }
+}
+
 .logo img {
   height: 100%;
 }
