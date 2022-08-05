@@ -37,7 +37,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
     <Link className={topicCardClassName} to={`${linkTo}${search}`}>
       <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={gridElementClassName}>
-        {topicLabel} 
+        {topicLabel}
         <TopicGridElementAudio topicWord={item} />
       </span>
     </Link>

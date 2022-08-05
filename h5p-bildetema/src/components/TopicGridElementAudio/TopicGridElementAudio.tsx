@@ -1,6 +1,9 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Topic as TopicType, Word as WordType } from "../../../../common/types/types";
+import {
+  Topic as TopicType,
+  Word as WordType,
+} from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
 
@@ -8,11 +11,15 @@ type TopicGridElementAudioProps = {
   topicWord: TopicType | WordType | undefined;
 };
 
-export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({ topicWord }) => {
+export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
+  topicWord,
+}) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
   const [playing, setPlaying] = useState(false);
 
-  const topicAudio = topicWord?.audio ?? "https://prodbildetemabackend.blob.core.windows.net/audio/nob/V0684.wav";
+  const topicAudio =
+    topicWord?.audio ??
+    "https://prodbildetemabackend.blob.core.windows.net/audio/nob/V0684.wav";
 
   useEffect(() => {
     setAudio(new Audio(topicAudio));
