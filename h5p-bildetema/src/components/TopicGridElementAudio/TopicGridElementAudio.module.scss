@@ -1,0 +1,40 @@
+@use "../../../../common/abstracts" as *;
+
+.wordAudio {
+  height: 1.5rem;
+}
+
+.wordAudio button {
+  all: unset;
+  cursor: pointer;
+}
+
+.audioIcon,
+.audioIconActive {
+  fill: none;
+  height: 1.5rem;
+
+  path {
+    stroke: #8f8f8f;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover,
+  &:focus {
+    path {
+      stroke: #333;
+    }
+  }
+}
+
+.audioIconActive {
+  path {
+    stroke: #333;
+  }
+}
+
+.visuallyHidden {
+  @include visually-hidden;
+}

@@ -1,4 +1,5 @@
 import type { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
+import { H5PFieldType } from "../../common/types/H5PFieldType";
 import { languages } from "./constants/languages";
 
 const lang = (
@@ -29,6 +30,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         name: "showWrittenWordsLabel",
         default: "Show written words",
         type: "text",
+      },
+      {
+        label: "Play audio",
+        name: "playAudio",
+        default: "Play audio",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Pause audio",
+        name: "pauseAudio",
+        default: "Pause audio",
+        type: H5PFieldType.Text,
       },
       {
         label: "Footer contact info label",

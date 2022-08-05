@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import { TopicGridSizes, ImageUrl } from "../../../../common/types/types";
+import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
 import styles from "./TopicGridElement.module.scss";
 
 type TopicGridElementProps = {
@@ -35,7 +36,10 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   return (
     <Link className={topicCardClassName} to={`${linkTo}${search}`}>
       <img className={styles.topicImage} src={imageSrc} alt="" />
-      <span className={gridElementClassName}>{topicLabel}</span>
+      <span className={gridElementClassName}>
+        {topicLabel} 
+        <TopicGridElementAudio topicWord={item} />
+      </span>
     </Link>
   );
 };

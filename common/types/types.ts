@@ -27,6 +27,7 @@ export type Topic = {
   subTopics: Map<string, Topic>;
   words: Map<LanguageCode, Word[]>;
   images: ImageUrl[];
+  audio?: string;
 };
 
 export enum TopicGridSizes {

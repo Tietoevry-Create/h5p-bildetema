@@ -3,16 +3,19 @@
 .gridElementBig,
 .gridElementCompact {
   word-wrap: break-word;
-  padding: 0.75rem 0.75rem 0.75rem 1.75rem;
+  padding: 1rem 2rem;
   border-radius: 0;
   background-color: $beige;
   font-size: $font-size-18;
   font-weight: bold;
+  line-height: 1.4;
   border: 1.5px solid $dark-beige;
   color: black;
   width: 100%;
   transition-duration: 0.2s;
   box-sizing: border-box;
+  display: flex;
+  gap: 0.5rem;
 
   &.disabled {
     pointer-events: none;
@@ -28,6 +31,10 @@
 .topicCardBig,
 .topicCardCompact {
   text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 
   &:hover > * {
     background-color: $dark-beige;
