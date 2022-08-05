@@ -32,7 +32,9 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
     };
   }, [audio]);
 
-  const toggle = (): void => {
+  const toggle = (e: React.MouseEvent): void => {
+    e.preventDefault();
+
     if (playing) {
       audio?.pause();
     } else {
@@ -47,7 +49,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
 
   return (
     <div className={styles.wordAudio}>
-      <button type="button" onClick={toggle}>
+      <button type="button" onClick={e => toggle(e)}>
         <svg
           className={playing ? styles.audioIconActive : styles.audioIcon}
           viewBox="0 0 25 24"
