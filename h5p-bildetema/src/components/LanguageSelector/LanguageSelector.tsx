@@ -6,13 +6,13 @@ import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSele
 type LanguageSelectorProps = {
   languages: Language[] | undefined;
   favLanguages: Language[];
-  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
+  handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   languages,
   favLanguages,
-  setFavLanguages,
+  handleToggleFavoriteLanguage,
 }) => {
   const getAmountOfRows = (): number =>
     Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
@@ -32,7 +32,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             language={language}
             middleElement={index === Math.max(1, getAmountOfRows() - 1)}
             favLanguages={favLanguages}
-            setFavLanguages={setFavLanguages}
+            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
           />
         ))}
       </div>

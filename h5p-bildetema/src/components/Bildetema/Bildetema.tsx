@@ -8,6 +8,7 @@ import { Header } from "..";
 import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
 import { Footer } from "../Footer/Footer";
 import { useL10n } from "../../hooks/useL10n";
+import { useUserData } from "../../hooks/useUserData";
 
 import styles from "./Bildetema.module.scss";
 
@@ -50,15 +51,37 @@ export const Bildetema: React.FC = () => {
   const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
   const [isWordView, setIsWordView] = useState(false);
   const [showWrittenWords, setShowWrittenWords] = useState(true);
-  const [favLanguages, setFavLanguages] = useState(
-    defaultFavoriteLanguages,
-  );
+  const [userData, setUserData] = useUserData();
+  const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
 
+  if (!favLanguages.length) {
+    userData.favoriteLanguages = defaultFavoriteLanguages;
+    setUserData(userData);
+    setFavLanguages(userData.favoriteLanguages);
+  }
   const [routes, setRoutes] = useState<JSX.Element>();
 
   const handleToggleChange = (value: boolean): void => {
     setShowWrittenWords(value);
   };
+
+  const handleToggleFavoriteLanguage = (
+    language: Language,
+    favorite: boolean,
+  ): void => {
+    if (favorite) {
+      setFavLanguages(languages => [...languages, language]);
+      return;
+    }
+    setFavLanguages(languages =>
+      languages.filter(lang => lang.code !== language.code),
+    );
+  };
+
+  React.useEffect(() => {
+    userData.favoriteLanguages = favLanguages;
+    setUserData(userData);
+  }, [favLanguages, userData, setUserData]);
 
   useEffect(() => {
     const paths = [
@@ -108,6 +131,7 @@ export const Bildetema: React.FC = () => {
           favLanguages={favLanguages}
           setFavLanguages={setFavLanguages}
           topicsFromDB={topicsFromDB}
+          handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
         <div className={styles.body}>
           {isLoadingTopics || isLoadingLanguages ? (

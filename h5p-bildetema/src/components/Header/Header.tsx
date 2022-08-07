@@ -27,7 +27,7 @@ export type HeaderProps = {
   topicsFromDB?: Topic[];
   topicIds: TopicIds;
   favLanguages: Language[];
-  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
+  handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
@@ -38,9 +38,9 @@ export const Header: React.FC<HeaderProps> = ({
   handleToggleChange,
   languagesFromDB,
   favLanguages,
-  setFavLanguages,
   topicIds: { topicId, subTopicId },
   topicsFromDB,
+  handleToggleFavoriteLanguage,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -57,9 +57,10 @@ export const Header: React.FC<HeaderProps> = ({
   const labelToUrlComponent = (label: string): string | undefined => {
     return label?.toLowerCase().split(" ").join("-");
   };
-  const {pathname} = useLocation()
-  const currentLanguageCode = pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob"
-  
+  const { pathname } = useLocation();
+  const currentLanguageCode =
+    pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
+
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.toggle}>
@@ -140,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
             languagesFromDB={languagesFromDB}
             selectLanguageLabel={translations.selectLanguage}
             favLanguages={favLanguages}
-            setFavLanguages={setFavLanguages}
+            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
           />
         </div>
       </div>

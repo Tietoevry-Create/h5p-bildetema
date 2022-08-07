@@ -9,14 +9,14 @@ type LanguageSelectorElement = {
   language: Language;
   middleElement: boolean;
   favLanguages: Language[];
-  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
+  handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   language,
   middleElement,
   favLanguages,
-  setFavLanguages,
+  handleToggleFavoriteLanguage,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -29,18 +29,10 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   );
 
   const toggleFavorite = (): void => {
-    const languageIsFavorite = favLanguages.find(
-      favLang => favLang.code === language.code,
-    );
-
-    setIsChecked(prev => !prev);
-
-    if (languageIsFavorite) {
-      setFavLanguages(lang => lang.filter(el => el.code !== language.code));
-      return;
-    }
-
-    setFavLanguages(lang => [...lang, language]);
+    setIsChecked(prev => {
+      handleToggleFavoriteLanguage(language, !prev);
+      return !prev;
+    });
   };
 
   return (
@@ -57,6 +49,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
             checked={isChecked}
             id={language.code}
             tabIndex={-1}
+            onChange={toggleFavorite}
           />
           <span className={styles.checkmark} />
         </label>
