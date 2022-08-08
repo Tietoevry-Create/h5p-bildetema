@@ -1,3 +1,3 @@
 export const labelToUrlComponent = (label: string): string => {
-  return label?.toLowerCase().replace(" ", "-").replace("/", "%2F");
+  return label?.toLowerCase().replaceAll(" ", "-").replaceAll("/", "%2F");
 };

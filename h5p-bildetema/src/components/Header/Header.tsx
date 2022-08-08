@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [langSelectorIsShown, setLangSelectorIsShown] =
     React.useState<boolean>(false);
 
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const currentLanguageCode =
     pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
 
@@ -80,27 +80,27 @@ export const Header: React.FC<HeaderProps> = ({
   const subTitleLabel = "Flerspråklig bildeordbok"; /* TODO: translate */
 
   const getLanguagePath = (language: Language): string => {
-    if (!topicId) return `/${language.code}`;
+    if (!topicId) return `/${language.code}${search}`;
 
     const topic = topicsFromDB?.find(el => el.id === topicId);
     const topicWord = topic?.labelTranslations.get(language.code);
-    if (!topicWord) return `/${language.code}`;
+    if (!topicWord) return `/${language.code}${search}`;
 
     const topicPath =
       topicWord.label !== ""
         ? labelToUrlComponent(topicWord.label)
         : labelToUrlComponent(topicWord.id);
-    if (!subTopicId) return `/${language.code}/${topicPath}`;
+    if (!subTopicId) return `/${language.code}/${topicPath}${search}`;
 
     const subTopicWord = topic?.subTopics
       .get(subTopicId)
       ?.labelTranslations.get(language.code);
-    if (!subTopicWord) return `/${language.code}/${topicPath}`;
+    if (!subTopicWord) return `/${language.code}/${topicPath}${search}`;
     const subTopicPath =
       subTopicWord.label !== ""
         ? labelToUrlComponent(subTopicWord.label)
         : labelToUrlComponent(subTopicWord.id);
-    return `/${language.code}/${topicPath}/${subTopicPath}`;
+    return `/${language.code}/${topicPath}/${subTopicPath}${search}`;
   };
 
   return (
