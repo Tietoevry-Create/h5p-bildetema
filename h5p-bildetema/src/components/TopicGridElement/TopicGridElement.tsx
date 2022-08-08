@@ -2,7 +2,10 @@ import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import {
-  ImageUrl, Topic, TopicGridSizes, Word
+  ImageUrl,
+  Topic,
+  TopicGridSizes,
+  Word,
 } from "../../../../common/types/types";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
@@ -45,7 +48,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
       <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={gridElementClassName}>
         {topicLabel}
-        <TopicGridElementAudio topicId={item.id} languageCode={languageCode}/>
+        <TopicGridElementAudio topicId={item.id} languageCode={languageCode} />
       </span>
     </Link>
   );
