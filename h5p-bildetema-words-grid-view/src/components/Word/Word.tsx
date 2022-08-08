@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
@@ -12,6 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./SwiperOverride.scss";
 import { WordAudio } from "../WordAudio/WordAudio";
+import { gridImageSizes } from "../../utils/image/image.utils";
 
 type WordProps = {
   word: WordType;
@@ -40,6 +40,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
                 <Image
                   src={image.src}
                   srcSets={image.srcSets}
+                  sizes={gridImageSizes}
                   width="250"
                   height="250"
                 />
