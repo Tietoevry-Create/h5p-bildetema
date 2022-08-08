@@ -1,29 +1,26 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import {
-  Topic as TopicType,
-  Word as WordType,
-} from "../../../../common/types/types";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { getAudioURL } from "../../../../common/utils/data.utils";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
 
 type TopicGridElementAudioProps = {
-  topicWord: TopicType | WordType | undefined;
+  topicId: string;
+  languageCode: LanguageCode;
 };
 
 export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
-  topicWord,
+  topicId,
+  languageCode,
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
   const [playing, setPlaying] = useState(false);
 
-  const topicAudio =
-    topicWord?.audio ??
-    "https://prodbildetemabackend.blob.core.windows.net/audio/nob/V0684.wav";
-
   useEffect(() => {
+    const topicAudio = getAudioURL(languageCode, topicId);
     setAudio(new Audio(topicAudio));
-  }, [topicWord, topicAudio]);
+  }, [topicId, languageCode]);
 
   useEffect(() => {
     audio?.addEventListener("ended", () => setPlaying(false));

@@ -1,22 +1,29 @@
 import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
+import {
+  ImageUrl, Topic, TopicGridSizes, Word
+} from "../../../../common/types/types";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
-import { TopicGridSizes, ImageUrl } from "../../../../common/types/types";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
 import styles from "./TopicGridElement.module.scss";
 
 type TopicGridElementProps = {
+  item: Topic | Word;
   index: number;
   title: string;
   images: ImageUrl[];
   topicSize: TopicGridSizes;
+  languageCode: LanguageCode;
 };
 
 export const TopicGridElement: React.FC<TopicGridElementProps> = ({
+  item,
   title,
   index,
   images,
   topicSize,
+  languageCode,
 }) => {
   const topicCardClassName =
     topicSize === TopicGridSizes.Big
@@ -38,7 +45,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
       <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={gridElementClassName}>
         {topicLabel}
-        <TopicGridElementAudio topicWord={item} />
+        <TopicGridElementAudio topicId={item.id} languageCode={languageCode}/>
       </span>
     </Link>
   );
