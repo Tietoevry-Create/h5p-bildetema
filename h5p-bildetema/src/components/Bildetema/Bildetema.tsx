@@ -129,7 +129,6 @@ export const Bildetema: React.FC = () => {
           toggleChecked={showWrittenWords}
           languagesFromDB={languagesFromDB}
           favLanguages={favLanguages}
-          setFavLanguages={setFavLanguages}
           topicsFromDB={topicsFromDB}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />

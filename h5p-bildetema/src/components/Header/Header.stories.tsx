@@ -41,7 +41,7 @@ const Template = (isWordView: boolean): JSX.Element => {
       toggleChecked={checked}
       languagesFromDB={languages}
       favLanguages={languages}
-      setFavLanguages={() => null}
+      handleToggleFavoriteLanguage={() => null}
     />
   );
 };
