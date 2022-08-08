@@ -1,4 +1,5 @@
 import * as xlsx from "xlsx";
+import { LanguageCode } from "../types/LanguageCode";
 import { InputWord, Word, Topic, Language, ImageUrl } from "../types/types";
 import { makeLanguageCode } from "../utils/LanguageCode.utils";
 
@@ -23,6 +24,10 @@ const audioContainerURL =
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
+
+export const getAudioURL = (languageCode: LanguageCode, id: string) => {
+  return `${audioContainerURL}${languageCode}/${id}.wav`;
+};
 
 export const getLanguages = async (): Promise<Language[]> => {
   if (!languages.length) await fetchData();
@@ -159,7 +164,7 @@ const fillTopicsWithWords = (
       const [_, strLanguageCode] = key.split("_");
       const languageCode = makeLanguageCode(strLanguageCode);
       const word: Word = {
-        audio: `${audioContainerURL}${languageCode}/${inputWord.Title}.wav`,
+        audio: getAudioURL(languageCode, inputWord.Title),
         id: inputWord.Title,
         label: value,
         images: images,

@@ -38,7 +38,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             : styles.gridCompact
         }`}
       >
-        {topics?.map(item => {
+        {topics?.map((item, index) => {
           return (
             <TopicGridElement
               key={item.id}
@@ -46,9 +46,11 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
                 item.labelTranslations.get(currentLanguage.code)?.label ||
                 item.id
               }
-              index={topics.indexOf(item)}
+              index={index}
               images={item.images}
               topicSize={topicsSize}
+              languageCode={currentLanguage.code}
+              item={item}
             />
           );
         })}
