@@ -7,6 +7,8 @@ export default {
   component: Image,
 } as ComponentMeta<typeof Image>;
 
+const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+
 const Template: ComponentStory<typeof Image> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Image {...args} />
@@ -14,22 +16,22 @@ const Template: ComponentStory<typeof Image> = args => (
 
 export const Default = Template.bind({});
 Default.args = {
-  src: "https://prodbildetemabackend.blob.core.windows.net/images/large/V1037a.jpeg",
+  src: `${cdnURL}/images/large/V1037a.jpeg`,
   srcSets: [
     {
-      src: "https://prodbildetemabackend.blob.core.windows.net/images/small/V1037a.jpeg",
+      src: `${cdnURL}/images/small/V1037a.jpeg`,
       width: 200,
     },
     {
-      src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V1037a.jpeg",
+      src: `${cdnURL}/images/medium/V1037a.jpeg`,
       width: 350,
     },
     {
-      src: "https://prodbildetemabackend.blob.core.windows.net/images/large/V1037a.jpeg",
+      src: `${cdnURL}/images/large/V1037a.jpeg`,
       width: 600,
     },
     {
-      src: "https://prodbildetemabackend.blob.core.windows.net/images/xlarge/V1037a.jpeg",
+      src: `${cdnURL}/images/xlarge/V1037a.jpeg`,
       width: 1000,
     },
   ],

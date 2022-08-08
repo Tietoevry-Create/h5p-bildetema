@@ -15,12 +15,11 @@ const NON_LANGUAGE_FIELDS = [
   "Bokmål_nb_duplisert",
 ];
 
-const databaseURL =
-  "https://prodbildetemabackend.blob.core.windows.net/data/database.xlsx";
-const imageContainerURL =
-  "https://prodbildetemabackend.blob.core.windows.net/images/";
-const audioContainerURL =
-  "https://prodbildetemabackend.blob.core.windows.net/audio/";
+const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+
+const databaseURL = `${cdnURL}/data/database.xlsx`;
+const imageContainerURL = `${cdnURL}/images/`;
+const audioContainerURL = `${cdnURL}/audio/`;
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
@@ -44,6 +43,7 @@ export const getTopics = async (): Promise<Topic[]> => {
   if (!topics.length) await fetchData();
   return topics;
 };
+
 const setTopic = (topic: Topic, map: Map<string, Topic>) => {
   map.set(topic.label, topic);
   languages.forEach(language => {
@@ -108,11 +108,12 @@ const findTopics = (inputWords: InputWord[], topicMap: Map<string, Topic>) => {
   findSubTopics(inputWords, topicMap);
 };
 
-const findImages = (inputWord: InputWord) => {
+const findImages = (inputWord: InputWord): Array<ImageUrl> => {
   return Object.entries(inputWord)
     .filter(([key, imageUrl]) => key.includes("Bilde") && imageUrl !== "")
     .map(([, imageUrl]) => {
       const fileName = imageUrl.split("/").pop() || "";
+
       return {
         src: `${imageContainerURL}large/${fileName}`,
         srcSets: [
