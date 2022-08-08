@@ -10,6 +10,8 @@ export default {
   },
 } as ComponentMeta<typeof Editor>;
 
+const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+
 const Template: ComponentStory<typeof Editor> = args => (
   /* eslint-disable-next-line react/jsx-props-no-spreading */
   <Editor {...args} />
@@ -32,7 +34,7 @@ Portrait.args = {
 export const Landscape = Template.bind({});
 Landscape.args = {
   image: {
-    path: "https://prodbildetemabackend.blob.core.windows.net/images/xlarge/V0001a.jpeg",
+    path: `${cdnURL}/images/xlarge/V0001a.jpeg`,
   },
   words: [
     { audio: "", label: "Mor", id: "V0002", images: [] },

@@ -7,6 +7,8 @@ export default {
   component: Word,
 } as ComponentMeta<typeof Word>;
 
+const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+
 const Template: ComponentStory<typeof Word> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Word {...args} />
@@ -19,7 +21,7 @@ Default.args = {
     label: "Brettspill",
     images: [
       {
-        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+        src: `${cdnURL}/images/medium/V0575a.jpeg`,
       },
     ],
     audio: "https://www.w3schools.com/TAGS/horse.ogg",
@@ -34,10 +36,10 @@ MultipleImages.args = {
     label: "Puslespill",
     images: [
       {
-        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+        src: `${cdnURL}/images/medium/V0575a.jpeg`,
       },
       {
-        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575b.jpeg",
+        src: `${cdnURL}/images/medium/V0575b.jpeg`,
       },
     ],
     audio: "https://www.w3schools.com/TAGS/horse.ogg",
@@ -63,7 +65,7 @@ HiddenText.args = {
     label: "Elg",
     images: [
       {
-        src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+        src: `${cdnURL}/images/medium/V0575a.jpeg`,
       },
     ],
     audio: undefined,

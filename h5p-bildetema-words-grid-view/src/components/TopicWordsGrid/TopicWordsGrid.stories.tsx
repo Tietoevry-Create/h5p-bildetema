@@ -8,12 +8,14 @@ export default {
   component: TopicWordsGrid,
 } as ComponentMeta<typeof TopicWordsGrid>;
 
+const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+
 const baseWord: Word = {
   id: "V0599",
   label: "Puslespill",
   images: [
     {
-      src: "https://prodbildetemabackend.blob.core.windows.net/images/medium/V0575a.jpeg",
+      src: `${cdnURL}/images/medium/V0575a.jpeg`,
     },
   ],
   audio: "https://www.w3schools.com/TAGS/horse.ogg",
