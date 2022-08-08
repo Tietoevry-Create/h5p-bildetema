@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { RouteController } from "../RouteController/RouteController";
@@ -37,11 +37,11 @@ export const defaultFavoriteLanguages: Language[] = [
 
 export const Bildetema: React.FC = () => {
   const { isLoading: isLoadingLanguages, data: languagesFromDB } = useQuery(
-    "languagesFromDB",
+    ["languagesFromDB"],
     getLanguages,
   );
   const { isLoading: isLoadingTopics, data: topicsFromDB } = useQuery(
-    "topicsFromDB",
+    ["topicsFromDB"],
     getTopics,
   );
 

@@ -2,7 +2,7 @@ import type { IH5PContentType, Image } from "h5p-types";
 import { H5P, H5PContentType } from "h5p-utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import type { ThemeImageHotspot } from "../../../common/types/ThemeImageHotspot";
 import { App } from "../App";

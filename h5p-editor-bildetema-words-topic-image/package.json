@@ -23,10 +23,10 @@
     "generate-library": "h5p-generate-configs l --type-definition ./src/library.ts --out ./library.json"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.0.10",
     "h5p-utils": "2.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-query": "^3.39.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@mdx-js/react": "^2.1.2",
