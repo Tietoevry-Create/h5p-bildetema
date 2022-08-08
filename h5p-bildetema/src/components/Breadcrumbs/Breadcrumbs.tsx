@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { BreadcrumbsArrowIcon } from "../Icons/Icons";
@@ -20,13 +20,14 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   const topicLabel = useL10n("breadcrumbsTopic");
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const breadcrumbs = useBreadcrumbs(routes);
+  const { search } = useLocation();
 
   return !breadCrumbs ? (
     <div className={styles.breadcrumbs}>
       {breadcrumbs.slice(1).map(({ breadcrumb, key }, index) =>
         index !== breadcrumbs.length - 2 ? (
           <span key={key}>
-            <Link to={key} className={styles.link}>
+            <Link to={`${key}${search}`} className={styles.link}>
               {decodeURIComponent(
                 (breadcrumb as React.ReactPortal).props.children,
               )}

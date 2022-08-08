@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { RouteController } from "../RouteController/RouteController";
 import { Language, TopicGridSizes } from "../../../../common/types/types";
@@ -45,12 +45,18 @@ export const Bildetema: React.FC = () => {
     getTopics,
   );
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const wordsVisibleParam = "showWrittenWords";
   const loadingLabel = useL10n("pageIsLoading");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
 
   const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
   const [isWordView, setIsWordView] = useState(false);
-  const [showWrittenWords, setShowWrittenWords] = useState(true);
+  const [showWrittenWords, setShowWrittenWords] = useState(
+    searchParams.get(wordsVisibleParam) !== null
+      ? searchParams.get(wordsVisibleParam) === "true"
+      : true,
+  );
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
 
@@ -62,6 +68,7 @@ export const Bildetema: React.FC = () => {
   const [routes, setRoutes] = useState<JSX.Element>();
 
   const handleToggleChange = (value: boolean): void => {
+    setSearchParams(`${wordsVisibleParam}=${value}`);
     setShowWrittenWords(value);
   };
 
