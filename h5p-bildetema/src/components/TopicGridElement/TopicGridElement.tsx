@@ -25,7 +25,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
     topicSize === TopicGridSizes.Big
       ? styles.gridElementBig
       : styles.gridElementCompact;
-  const linkTo = labelToUrlComponent(title)
+  const linkTo = labelToUrlComponent(title);
   // TODO: remove hardcoded src url after getting access to the images
   const imageSrc =
     images.at(0)?.src ??

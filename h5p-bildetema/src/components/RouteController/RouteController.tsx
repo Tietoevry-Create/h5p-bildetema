@@ -36,7 +36,6 @@ export const RouteController: React.FC<RouteControllerProps> = ({
 }) => {
   const { langId, topicLabel, subTopicId } = useParams();
 
-
   const findTopic = (
     topics: Topic[],
     language: Language,

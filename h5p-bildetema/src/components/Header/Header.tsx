@@ -76,17 +76,12 @@ export const Header: React.FC<HeaderProps> = ({
     return element;
   };
 
-  const getLanguagePath = (language: Language): string => {
-    if (!topicId) return `/${language.code}`;
-
   const titleLabel = "Bildetema"; /* TODO: translate */
   const subTitleLabel = "Flerspråklig bildeordbok"; /* TODO: translate */
 
-    const subTopicWord = topic?.subTopics.get(subTopicId)?.labelTranslations.get(language.code)
-    if(!subTopicWord) return `/${language.code}/${topicPath}`
-    const subTopicPath = subTopicWord.label !== "" ? labelToUrlComponent(subTopicWord.label) : labelToUrlComponent(subTopicWord.id)
-    return `/${language.code}/${topicPath}/${subTopicPath}`
-  }
+  const getLanguagePath = (language: Language): string => {
+    if (!topicId) return `/${language.code}`;
+
     const topic = topicsFromDB?.find(el => el.id === topicId);
     const topicWord = topic?.labelTranslations.get(language.code);
     if (!topicWord) return `/${language.code}`;
