@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getTopics } from "../../common/utils/data.utils";
 import { ThemeImageContainer } from "./components/ThemeImageContainer/ThemeImageContainer";
 import { Topic, Word } from "../../common/types/types";
@@ -24,7 +24,7 @@ export const App: React.FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
   // TODO: Translate
   const noTopicSelectedText = "No topic selected."; // useL10n(...);
 
-  useQuery("topicsFromDB", getTopics, {
+  useQuery(["topicsFromDB"], getTopics, {
     onSuccess(fetchedTopics) {
       setTopics(fetchedTopics);
     },

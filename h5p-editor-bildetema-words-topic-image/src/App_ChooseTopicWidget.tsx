@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Language, Topic } from "../../common/types/types";
 import { getTopics } from "../../common/utils/data.utils";
 import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
@@ -17,7 +17,7 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
   topicId,
   subTopicId,
 }) => {
-  const { data: topics } = useQuery("topicsFromDB", getTopics);
+  const { data: topics } = useQuery(["topicsFromDB"], getTopics);
 
   const [currentTopic, setCurrentTopic] = React.useState<Topic | undefined>(
     undefined,
