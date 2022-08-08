@@ -29,7 +29,7 @@ const Template: ComponentStory<typeof TopicGrid> = args => (
 
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {
-  items: [
+  topics: [
     { ...baseTopic, label: "test1", tema1: "test1" } as Topic,
     { ...baseTopic, label: "test2", tema1: "test2" } as Topic,
     { ...baseTopic, label: "test3", tema1: "test3" } as Topic,

@@ -45,6 +45,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       )}
     </div>
   ) : (
+    // Only used in storybook at the moment, can probobly be removed
     <div className={styles.Breadcrumbs}>
       {breadCrumbs.map(({ label, path }, index) =>
         index !== breadCrumbs.length - 1 ? (

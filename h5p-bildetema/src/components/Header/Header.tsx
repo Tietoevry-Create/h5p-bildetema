@@ -1,9 +1,11 @@
 import React from "react";
 import { useContentId } from "use-h5p";
+import { Link, useLocation } from "react-router-dom";
+import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import {
   TopicGridSizes,
   Language,
-  UserData,
+  Topic,
 } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
@@ -13,41 +15,37 @@ import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle } from "..";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
+import type { TopicIds } from "../Bildetema/Bildetema";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
-  currentLanguage: Language;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
-  changeCurrentLanguage: (newLanguage: Language) => void;
   languagesFromDB: Language[] | undefined;
-  userData: UserData;
-  setUserData: (updatedUserData: UserData) => void;
+  topicsFromDB?: Topic[];
+  topicIds: TopicIds;
   favLanguages: Language[];
-  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
+  handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
-  currentLanguage,
   topicsSize,
   setTopicsSize,
   isWordView,
   toggleChecked,
   handleToggleChange,
-  changeCurrentLanguage,
   languagesFromDB,
-  userData,
-  setUserData,
   favLanguages,
-  setFavLanguages,
+  topicIds: { topicId, subTopicId },
+  topicsFromDB,
+  handleToggleFavoriteLanguage,
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
-
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
   const toggleLabel = useL10n("showWrittenWordsLabel");
@@ -56,6 +54,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   const [langSelectorIsShown, setLangSelectorIsShown] =
     React.useState<boolean>(false);
+
+  const { pathname } = useLocation();
+  const currentLanguageCode =
+    pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
@@ -74,13 +76,32 @@ export const Header: React.FC<HeaderProps> = ({
     return element;
   };
 
-  const handleChangeLanguage = (newLanguage: Language): void => {
-    changeCurrentLanguage(newLanguage);
-    setUserData({ ...userData, currentLanguage: newLanguage });
-  };
-
   const titleLabel = "Bildetema"; /* TODO: translate */
   const subTitleLabel = "Flerspråklig bildeordbok"; /* TODO: translate */
+
+  const getLanguagePath = (language: Language): string => {
+    if (!topicId) return `/${language.code}`;
+
+    const topic = topicsFromDB?.find(el => el.id === topicId);
+    const topicWord = topic?.labelTranslations.get(language.code);
+    if (!topicWord) return `/${language.code}`;
+
+    const topicPath =
+      topicWord.label !== ""
+        ? labelToUrlComponent(topicWord.label)
+        : labelToUrlComponent(topicWord.id);
+    if (!subTopicId) return `/${language.code}/${topicPath}`;
+
+    const subTopicWord = topic?.subTopics
+      .get(subTopicId)
+      ?.labelTranslations.get(language.code);
+    if (!subTopicWord) return `/${language.code}/${topicPath}`;
+    const subTopicPath =
+      subTopicWord.label !== ""
+        ? labelToUrlComponent(subTopicWord.label)
+        : labelToUrlComponent(subTopicWord.id);
+    return `/${language.code}/${topicPath}/${subTopicPath}`;
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -97,16 +118,13 @@ export const Header: React.FC<HeaderProps> = ({
           <div className={styles.languages}>
             {favLanguages.map(language => {
               return (
-                <button
+                <Link
                   key={language.code}
-                  onClick={() => handleChangeLanguage(language)}
-                  className={`${styles.languageButton} ${
-                    language.code === currentLanguage.code ? styles.active : ""
-                  }`}
-                  type="button"
+                  to={getLanguagePath(language)}
+                  className={`${styles.languageButton}`}
                 >
                   {translations[`lang_${language.code as AllowedLanguage}`]}
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -115,16 +133,13 @@ export const Header: React.FC<HeaderProps> = ({
             langSelectorIsShown={langSelectorIsShown}
             languagesFromDB={languagesFromDB}
             selectLanguageLabel={translations.selectLanguage}
-            userData={userData}
-            setUserData={setUserData}
             favLanguages={favLanguages}
-            setFavLanguages={setFavLanguages}
-            handleChangeLanguage={handleChangeLanguage}
+            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
           />
         </div>
       </div>
       <div className={styles.bottom}>
-        <Breadcrumbs currentLanguageCode={currentLanguage.code} />
+        <Breadcrumbs currentLanguageCode={currentLanguageCode} />
         {renderLeftMenu()}
       </div>
     </div>

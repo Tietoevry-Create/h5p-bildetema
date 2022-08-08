@@ -22,16 +22,20 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
   const contentId = useContentId();
 
   React.useEffect(() => {
-    document
-      .getElementById(`toggle-${contentId}`)
-      ?.addEventListener("change", handleChange);
-
+    // Hack: Navigating from topic -> words causes document.getElementById(`toggle-${contentId}`) to be null, if we not wait for one whole frame...
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document
+          .getElementById(`toggle-${contentId}`)
+          ?.addEventListener("change", handleChange);
+      });
+    });
     return () => {
       document
         .getElementById(`toggle-${contentId}`)
         ?.removeEventListener("change", handleChange);
     };
-  }, []);
+  }, [contentId]);
 
   return (
     <div className={styles.topicgrid}>

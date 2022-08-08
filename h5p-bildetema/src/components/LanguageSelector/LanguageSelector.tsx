@@ -1,24 +1,18 @@
 import React from "react";
 import styles from "./LanguageSelector.module.scss";
-import { Language, UserData } from "../../../../common/types/types";
+import { Language } from "../../../../common/types/types";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 
 type LanguageSelectorProps = {
   languages: Language[] | undefined;
-  userData: UserData;
-  setUserData: (updatedUserData: UserData) => void;
   favLanguages: Language[];
-  setFavLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
-  handleChangeLanguage: (newLanguage: Language) => void;
+  handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   languages,
-  userData,
-  setUserData,
   favLanguages,
-  setFavLanguages,
-  handleChangeLanguage,
+  handleToggleFavoriteLanguage,
 }) => {
   const getAmountOfRows = (): number =>
     Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
@@ -37,11 +31,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             key={language.code}
             language={language}
             middleElement={index === Math.max(1, getAmountOfRows() - 1)}
-            userData={userData}
-            setUserData={setUserData}
             favLanguages={favLanguages}
-            setFavLanguages={setFavLanguages}
-            handleChangeLanguage={handleChangeLanguage}
+            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
           />
         ))}
       </div>
