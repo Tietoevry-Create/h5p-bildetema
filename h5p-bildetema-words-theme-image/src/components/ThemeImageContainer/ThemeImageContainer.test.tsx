@@ -46,13 +46,13 @@ describe(ThemeImageContainer.name, () => {
     return container;
   };
 
-  it("Should render nothing if type != vectorImageWithHotspots", () => {
+  it("should render an empty div if type != vectorImageWithHotspots or nonVectorImageWithHotspots", () => {
     const container = template({
       aspectRatio: 1,
       topic: { ...baseTopic },
       themeImage: "test",
       themeOverlays: [],
-      themeImageType: "nonVectorImageWithHotspots",
+      themeImageType: "3dSceneWithHotspots",
       words: [{ ...baseWord }],
     });
 
@@ -60,13 +60,26 @@ describe(ThemeImageContainer.name, () => {
     expect(container.querySelector("div")?.children.length).toEqual(0);
   });
 
-  it("Should only render if type == vectorImageWithHotspots", () => {
+  it("should render if type == vectorImageWithHotspots", () => {
     const container = template({
       aspectRatio: 1,
       themeImage: "test",
       themeOverlays: [],
       topic: { ...baseTopic },
       themeImageType: "vectorImageWithHotspots",
+      words: [],
+    });
+    expect(container.querySelector("div")).toBeTruthy();
+    expect(container.querySelector("div")?.children.length).toBeGreaterThan(0);
+  });
+
+  it("should render if type == nonVectorImageWithHotspots", () => {
+    const container = template({
+      aspectRatio: 1,
+      themeImage: "test",
+      themeOverlays: [],
+      topic: { ...baseTopic },
+      themeImageType: "nonVectorImageWithHotspots",
       words: [],
     });
     expect(container.querySelector("div")).toBeTruthy();
