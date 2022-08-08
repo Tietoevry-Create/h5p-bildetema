@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import {
   Language,
   Topic,
@@ -35,9 +36,6 @@ export const RouteController: React.FC<RouteControllerProps> = ({
 }) => {
   const { langId, topicLabel, subTopicId } = useParams();
 
-  const labelToUrlComponent = (label: string): string | undefined => {
-    return label?.toLowerCase().split(" ").join("-");
-  };
 
   const findTopic = (
     topics: Topic[],

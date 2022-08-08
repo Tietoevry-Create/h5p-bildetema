@@ -1,6 +1,7 @@
 import React from "react";
 import { useContentId } from "use-h5p";
 import { Link, useLocation } from "react-router-dom";
+import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import {
   TopicGridSizes,
   Language,
@@ -54,9 +55,6 @@ export const Header: React.FC<HeaderProps> = ({
   const [langSelectorIsShown, setLangSelectorIsShown] =
     React.useState<boolean>(false);
 
-  const labelToUrlComponent = (label: string): string | undefined => {
-    return label?.toLowerCase().split(" ").join("-");
-  };
   const { pathname } = useLocation();
   const currentLanguageCode =
     pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";

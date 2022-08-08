@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import { TopicGridSizes, ImageUrl } from "../../../../common/types/types";
 import styles from "./TopicGridElement.module.scss";
 
@@ -24,9 +25,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
     topicSize === TopicGridSizes.Big
       ? styles.gridElementBig
       : styles.gridElementCompact;
-  const linkTo = `${encodeURIComponent(
-    title.toLowerCase().split(" ").join("-"),
-  )}`;
+  const linkTo = labelToUrlComponent(title)
   // TODO: remove hardcoded src url after getting access to the images
   const imageSrc =
     images.at(0)?.src ??
