@@ -45,13 +45,16 @@ const defaultArgs: LanguageSelectorProps = {
       rtl: false,
     },
   ],
-  favLanguages: [{
-    label: "Polsk",
-    code: makeLanguageCode("pol"),
-    rtl: false,
-  }],
-  handleToggleFavoriteLanguage: (lang: Language, fav: boolean):void  => {console.info(fav)}
-}
+  favLanguages: [
+    {
+      label: "Polsk",
+      code: makeLanguageCode("pol"),
+      rtl: false,
+    },
+  ],
+  handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
+    console.info(fav);
+  },
+};
 
-Default.args = defaultArgs
-
+Default.args = defaultArgs;

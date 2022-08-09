@@ -9,18 +9,31 @@ export default {
   component: LanguageSelectorElement,
 } as ComponentMeta<typeof LanguageSelectorElement>;
 
-const Template = (code: string, rtl: boolean, favorite: boolean): JSX.Element => {
+const Template = (
+  code: string,
+  rtl: boolean,
+  favorite: boolean,
+): JSX.Element => {
   const language: Language = {
     label: "",
     code: makeLanguageCode(code),
     rtl,
-  }
-  const favLanguages: Language[] = favorite ? [language] : []
-  const middleElement = true
-  const handleToggleFavoriteLanguage = (lang: Language, fav: boolean):void  => {console.info(fav)}
+  };
+  const favLanguages: Language[] = favorite ? [language] : [];
+  const middleElement = true;
+  const handleToggleFavoriteLanguage = (lang: Language, fav: boolean): void => {
+    console.info(fav);
+  };
 
-  return <LanguageSelectorElement handleToggleFavoriteLanguage={handleToggleFavoriteLanguage} language={language} middleElement={middleElement} favLanguages={favLanguages}  />
-}
+  return (
+    <LanguageSelectorElement
+      handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+      language={language}
+      middleElement={middleElement}
+      favLanguages={favLanguages}
+    />
+  );
+};
 
 export const Default = (): JSX.Element => {
   return Template("nob", false, false);

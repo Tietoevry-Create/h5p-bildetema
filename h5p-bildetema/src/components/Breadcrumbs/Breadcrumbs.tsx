@@ -21,29 +21,36 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const routeBreadCrumbs = useBreadcrumbs(routes);
   const { search } = useLocation();
-  
-  const breadCrumbsToRender = breadCrumbs ?? routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
-    return {path: `${key}${search}`, label:`${decodeURIComponent(((breadcrumb as React.ReactPortal).props.children))}`}
-  })
+
+  const breadCrumbsToRender =
+    breadCrumbs ??
+    routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
+      return {
+        path: `${key}${search}`,
+        label: `${decodeURIComponent(
+          (breadcrumb as React.ReactPortal).props.children,
+        )}`,
+      };
+    });
 
   return (
-  <div className={styles.breadcrumbs}>
-    {breadCrumbsToRender.map(({ label, path }, index) =>
-      index !== breadCrumbsToRender.length - 1 ? (
-        <span key={path}>
-          <Link to={path} className={styles.link}>
-            {label}
-          </Link>
-          <span className={styles.arrow}>
-            <BreadcrumbsArrowIcon />
+    <div className={styles.breadcrumbs}>
+      {breadCrumbsToRender.map(({ label, path }, index) =>
+        index !== breadCrumbsToRender.length - 1 ? (
+          <span key={path}>
+            <Link to={path} className={styles.link}>
+              {label}
+            </Link>
+            <span className={styles.arrow}>
+              <BreadcrumbsArrowIcon />
+            </span>
           </span>
-        </span>
-      ) : (
-        <span className={styles.currentPage} key={path}>
-          {label}
-        </span>
-      ),
-    )}
-  </div>
-  )
+        ) : (
+          <span className={styles.currentPage} key={path}>
+            {label}
+          </span>
+        ),
+      )}
+    </div>
+  );
 };
