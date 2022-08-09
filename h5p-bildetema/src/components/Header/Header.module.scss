@@ -28,6 +28,15 @@
   align-items: center;
   display: flex;
   gap: 1rem;
+
+  &_oslomet {
+    // ensure minimum free space around logo on smaller screens
+    margin: 0.5rem 1rem;
+
+    @media screen and (min-width: 90rem) {
+      margin: 0.5rem 1rem 0.5rem 0;
+    }
+  }
 }
 
 .logo_labels {

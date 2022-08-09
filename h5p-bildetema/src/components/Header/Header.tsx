@@ -108,7 +108,9 @@ export const Header: React.FC<HeaderProps> = ({
       <div className={styles.header}>
         <div className={styles.header_content}>
           <div className={styles.logos}>
-            <OsloMetLogo />
+            <div className={styles.logos_oslomet}>
+              <OsloMetLogo />
+            </div>
             {/* TODO: Add Bildetema logo when ready */}
             <div className={styles.logo_labels}>
               <span className={styles.logo_labels_title}>{titleLabel}</span>
