@@ -21,11 +21,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Pack .h5p file
-        uses: boyum/pack-h5p-action@0.0.6
-        id: release-h5p
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: |
+          cd ./${{env.project-id}}
+          npm run build
+
+      - name: Pack project
+        run: |
+          npm i -g h5p
+          h5p pack ${{env.project-id}} ${{env.project-id}}.h5p
+
+      - name: Upload packed file as artifact
+        uses: actions/upload-artifact@v3
         with:
-          working-directory: ./${{env.project-id}}
+          name: ${{env.project-id}}
+          path: ./${{env.project-id}}.h5p
 
       - name: Create release
         uses: marvinpinto/action-automatic-releases@latest # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
@@ -35,4 +48,4 @@ jobs:
           automatic_release_tag: ${{env.project-id}}_${{steps.release-h5p.outputs.version}}
           prerelease: false
           files: |
-            ${{steps.release-h5p.outputs.filePath}}
+            ./${{env.project-id}}.h5p
