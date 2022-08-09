@@ -46,7 +46,6 @@
     "@vitejs/plugin-react": "^2.0.0",
     "esbuild": "^0.14.51",
     "h5p-generate-configs": "^0.3.0",
-    "h5p-types": "^1.0.0",
     "happy-dom": "^6.0.4",
     "sass": "^1.54.0",
     "ts-node": "^10.9.1",

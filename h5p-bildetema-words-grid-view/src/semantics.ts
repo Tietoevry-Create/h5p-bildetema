@@ -4,7 +4,7 @@ import { H5PFieldType } from "../../common/types/H5PFieldType";
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
     label: "Bildetema Words Grid View Words",
-    name: "bildetema-words-grid-view-words",
+    name: "words",
     type: H5PFieldType.Group,
     importance: "high",
     fields: [
@@ -75,7 +75,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   },
   {
     label: "Show written words",
-    name: "bildetema-words-grid-view-show",
+    name: "showWrittenWords",
     type: H5PFieldType.Boolean,
     default: true,
     importance: "low",

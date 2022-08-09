@@ -18,6 +18,18 @@
         "type": "text"
       },
       {
+        "label": "Play audio",
+        "name": "playAudio",
+        "default": "Play audio",
+        "type": "text"
+      },
+      {
+        "label": "Pause audio",
+        "name": "pauseAudio",
+        "default": "Pause audio",
+        "type": "text"
+      },
+      {
         "label": "Footer contact info label",
         "name": "footerContactInfoLabel",
         "default": "Contact us",
