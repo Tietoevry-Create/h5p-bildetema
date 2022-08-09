@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "@types/puppeteer": "^5.4.6",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
     "concurrently": "^7.3.0",
     "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -29,14 +29,14 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-storybook": "^0.6.1",
-    "h5p-types": "^1.0.4",
+    "eslint-plugin-storybook": "^0.6.4",
+    "h5p-types": "^1.0.5",
     "prettier": "^2.7.1",
-    "puppeteer": "^15.5.0",
+    "puppeteer": "^16.1.0",
     "rollup": "^2.77.2",
     "ts-node": "^10.9.1",
     "type-fest": "^2.18.0",
-    "vite": "^3.0.4",
-    "vitest": "^0.20.3"
+    "vite": "^3.0.5",
+    "vitest": "^0.21.1"
   }
 }
