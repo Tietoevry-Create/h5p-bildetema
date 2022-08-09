@@ -18,6 +18,11 @@
   background-color: #479e3f;
   border-color: #11792e;
   color: white;
+
+  &:hover {
+    background-color: #11792e;
+    border-color: #11792e;
+  }
 }
 
 .isActive {
@@ -25,4 +30,9 @@
   background-color: #3d79c0;
   border-color: #3367a3;
   color: white;
+
+  &:hover {
+    background-color: #3367a3;
+    border-color: #3367a3;
+  }
 }

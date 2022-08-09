@@ -154,17 +154,19 @@ export const Editor: React.FC<EditorProps> = ({
         </div>
       </div>
       <div className={styles.editor_content}>
-        <div className={styles.controls}>
-          {hotspots.map(({ word: { label, id }, drawing, points }) => (
-            <Button
-              key={id}
-              isActive={drawing}
-              isFinished={!!points?.length}
-              label={label}
-              id={id}
-              clickHandler={() => handleWordSelected(id)}
-            />
-          ))}
+        <div>
+          <div className={styles.controls}>
+            {hotspots.map(({ word: { label, id }, drawing, points }) => (
+              <Button
+                key={id}
+                isActive={drawing}
+                isFinished={!!points?.length}
+                label={label}
+                id={id}
+                clickHandler={() => handleWordSelected(id)}
+              />
+            ))}
+          </div>
         </div>
         <div
           tabIndex={0}
