@@ -29,6 +29,7 @@ export const Editor: React.FC<EditorProps> = ({
   const ref = React.useRef<HTMLDivElement>(null);
   const setValue = React.useContext(SetValueContext);
 
+  const [selectedWord, setSelectedWord] = React.useState<string | null>(null);
   const [hotspots, setHotspots] = React.useState(initialHotspots);
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
@@ -85,6 +86,8 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleWordSelected = (wordId: string): void => {
+    setSelectedWord(wordId);
+
     const updatedHotspots = hotspots.map(hotspot =>
       activateDrawingHotspot(hotspot, wordId),
     );
@@ -93,6 +96,8 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleFinishedPressed = (): void => {
+    setSelectedWord(null);
+
     const updatedHotspots = hotspots.map(finishDrawingHotspot);
     setHotspots(updatedHotspots);
   };
@@ -133,25 +138,35 @@ export const Editor: React.FC<EditorProps> = ({
     setHotspots(updatedHotspots);
   };
 
+  const getSelectedWordLabel = (wordId: string): string => {
+    return hotspots.filter(hotspot => hotspot.word.id === wordId)[0].word.label;
+  };
+
   // TODO: Translate
   const finishedButtonLabel = "Finished";
   // TODO: Translate
   const resetButtonLabel = "Reset";
   // TODO: Translate
   const selectWordLabel = "Select a word below";
+  // TODO: Translate
+  const selectedWordLabel = "Selected word";
 
   return (
     <div className={styles.editor}>
       <div className={styles.toolbar}>
-        {selectWordLabel}
-        <div className={styles.toolbar_buttons}>
-          <button type="button" onClick={handleFinishedPressed}>
-            {finishedButtonLabel}
-          </button>
-          <button type="button" onClick={handleReset}>
-            {resetButtonLabel}
-          </button>
-        </div>
+        {selectedWord
+          ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWord)}`
+          : selectWordLabel}
+        {selectedWord && (
+          <div className={styles.toolbar_buttons}>
+            <button type="button" onClick={handleFinishedPressed}>
+              {finishedButtonLabel}
+            </button>
+            <button type="button" onClick={handleReset}>
+              {resetButtonLabel}
+            </button>
+          </div>
+        )}
       </div>
       <div className={styles.editor_content}>
         <div>

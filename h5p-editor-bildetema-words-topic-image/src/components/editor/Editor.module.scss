@@ -19,8 +19,9 @@
   background-color: #f5f5f5;
   border: 1px solid #d1d1d1;
   display: flex;
+  height: 3rem;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
 
   &_buttons {
     display: flex;
