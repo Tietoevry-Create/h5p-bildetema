@@ -19,11 +19,13 @@ Default.args = {
   handleSelectorVisibility: () => null,
   handleToggleFavoriteLanguage: () => null,
   langSelectorIsShown: true,
-  favLanguages: [    {
-    label: "Norsk (Bokmål)",
-    code: makeLanguageCode("nob"),
-    rtl: false,
-  },],
+  favLanguages: [
+    {
+      label: "Norsk (Bokmål)",
+      code: makeLanguageCode("nob"),
+      rtl: false,
+    },
+  ],
   languagesFromDB: [
     {
       label: "Norsk (Bokmål)",

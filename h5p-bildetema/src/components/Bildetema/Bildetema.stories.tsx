@@ -7,5 +7,4 @@ export default {
   component: Bildetema,
 } as ComponentMeta<typeof Bildetema>;
 
-export const Default = (
-): JSX.Element => <Bildetema />;
+export const Default = (): JSX.Element => <Bildetema />;
