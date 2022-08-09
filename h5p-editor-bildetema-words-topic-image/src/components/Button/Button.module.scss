@@ -1,13 +1,28 @@
 .button {
   all: unset;
-  border: 1px solid black;
-  padding: 0.3rem;
+  border: 1px solid #d0d0d1;
+  border-radius: 0.25em;
+  font-size: 0.875rem;
+  font-weight: normal;
+  padding: 0.3rem 1.2rem;
   cursor: pointer;
-  background-color: #e7e7e7;
+  background: linear-gradient(to bottom, #fff 0, #f2f2f2 100%);
+
+  &:hover {
+    border-color: grey;
+  }
+}
+
+.isFinished {
+  background: none;
+  background-color: #479e3f;
+  border-color: #11792e;
+  color: white;
 }
 
 .isActive {
-  background-color: #a4afb8;
-  box-shadow: 0 0 0 1px #373737;
-  font-weight: bold;
+  background: none;
+  background-color: #3d79c0;
+  border-color: #3367a3;
+  color: white;
 }

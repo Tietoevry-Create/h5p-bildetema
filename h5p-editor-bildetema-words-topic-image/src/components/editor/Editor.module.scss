@@ -1,8 +1,46 @@
 .editor {
-  align-items: flex-start;
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  flex-direction: column;
+  padding-top: 1.25rem;
+
+  &_content {
+    align-items: flex-start;
+    border: 1px solid #d1d1d1;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+    margin-top: -1px;
+  }
+}
+
+.toolbar {
+  align-items: center;
+  background-color: #f5f5f5;
+  border: 1px solid #d1d1d1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+
+  &_buttons {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      all: unset;
+      border: 1px solid #d0d0d1;
+      border-radius: 0.25em;
+      font-size: 0.875rem;
+      font-weight: normal;
+      padding: 0.3rem 1.2rem;
+      cursor: pointer;
+      background: linear-gradient(to bottom, #fff 0, #f2f2f2 100%);
+
+      &:hover {
+        border-color: grey;
+      }
+    }
+  }
 }
 
 .canvas {
