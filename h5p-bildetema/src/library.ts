@@ -23,5 +23,10 @@ export const library: Library = {
       majorVersion: 1,
       minorVersion: 0,
     },
+    {
+      machineName: "H5P.BildetemaTopicImageView",
+      majorVersion: 1,
+      minorVersion: 0,
+    },
   ],
 };

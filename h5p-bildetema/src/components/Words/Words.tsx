@@ -8,6 +8,7 @@ import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid
 
 type WordsProps = {
   words?: Word[];
+  topic?: TopicIdentifier;
   showWrittenWords: boolean;
 };
 

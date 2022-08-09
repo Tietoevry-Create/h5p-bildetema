@@ -32,9 +32,7 @@ export class H5PWrapper
       );
       return;
     }
-
     const { topicImage, l10n } = this.params;
-
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema-topic-image-view");
 
@@ -45,7 +43,7 @@ export class H5PWrapper
           <ContentIdContext.Provider value={this.contentId}>
             <QueryClientProvider client={queryClient}>
               <App
-                imagePath={H5P.getPath(topicImage.path, this.contentId)}
+                imagePath={H5P.getPath(topicImage.path.replace("#tmp",""), this.contentId)}
                 aspectRatio={(topicImage.width ?? 1) / (topicImage.height ?? 1)}
                 params={this.params}
               />
