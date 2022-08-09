@@ -8,7 +8,7 @@ import {
 import { TopicGridElement, Words } from "..";
 import styles from "./TopicGrid.module.scss";
 
-type TopicGridProps = {
+export type TopicGridProps = {
   topics?: Topic[];
   words?: Word[];
   topicsSize: TopicGridSizes;
@@ -38,19 +38,19 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             : styles.gridCompact
         }`}
       >
-        {topics?.map((item, index) => {
+        {topics?.map((topic, index) => {
           return (
             <TopicGridElement
-              key={item.id}
+              key={topic.id}
               title={
-                item.labelTranslations.get(currentLanguage.code)?.label ||
-                item.id
+                topic.labelTranslations.get(currentLanguage.code)?.label ||
+                topic.id
               }
               index={index}
-              images={item.images}
+              images={topic.images}
               topicSize={topicsSize}
               languageCode={currentLanguage.code}
-              item={item}
+              topic={topic}
             />
           );
         })}
