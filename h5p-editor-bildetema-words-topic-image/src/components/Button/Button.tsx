@@ -22,7 +22,9 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={() => {
         clickHandler(id);
       }}
-      className={`${styles.button} ${isActive && styles.isActive}  ${isFinished && styles.isFinished}`}
+      className={`${styles.button} ${isActive && styles.isActive}  ${
+        isFinished && styles.isFinished
+      }`}
     >
       {label}
     </button>
