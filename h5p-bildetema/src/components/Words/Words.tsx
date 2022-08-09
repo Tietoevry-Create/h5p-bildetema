@@ -1,7 +1,10 @@
+import type { IH5PContentType } from "h5p-types";
 import { H5P } from "h5p-utils";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useContentId } from "use-h5p";
 import { Word } from "../../../../common/types/types";
+// eslint-disable-next-line import/no-relative-packages
+import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid-view/src/library";
 
 type WordsProps = {
   words?: Word[];
@@ -9,27 +12,51 @@ type WordsProps = {
 };
 
 export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
 
   useEffect(() => {
-    if (ref.current) {
-      if (ref.current.childElementCount > 0)
-        ref.current.removeChild(ref.current.childNodes[0]);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const library = new (H5P as any).BildetemaWordsGridView(
+    if (!contentId) {
+      return;
+    }
+
+    if (!ref.current) {
+      return;
+    }
+
+    const gridViewIsInitialized = ref.current.childElementCount > 0;
+    if (gridViewIsInitialized) {
+      return;
+    }
+
+    setGridViewInstance(
+      H5P.newRunnable(
         {
-          "bildetema-words-grid-view-words": words,
-          "bildetema-words-grid-view-show": showWrittenWords,
+          library: `${gridViewLibrary.machineName} ${gridViewLibrary.majorVersion}.${gridViewLibrary.minorVersion}`,
+          params: {
+            words,
+            showWrittenWords,
+          },
         },
         contentId,
-      );
+        H5P.jQuery(ref.current),
+      ),
+    );
 
-      library.attach(H5P.jQuery(ref.current));
-    }
-    // Avoid updating when `showWrittenWords` changes, because all images are re-rendered (and blink) every time it changes
+    // Avoid updating when params changes, because we want to trigger changes in the useEffect below
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contentId, words]);
+  }, [contentId]);
+
+  useEffect(() => {
+    gridViewInstance?.trigger("change-params", {
+      words,
+      showWrittenWords,
+    });
+
+    // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [words, showWrittenWords]);
 
   return <div ref={ref} />;
 };
