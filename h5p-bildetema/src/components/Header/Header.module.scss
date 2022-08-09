@@ -1,13 +1,19 @@
 @use "../../../../common/abstracts" as *;
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: $spacing--32;
   background-color: $burgundy;
-  padding: $spacing--32;
-  color: white;
+  padding: $spacing--32 0;
+
+  &_content {
+    align-items: center;
+    color: white;
+    display: flex;
+    gap: $spacing--32;
+    justify-content: space-between;
+    margin: $main-content-margin;
+    max-width: $main-content-max-width;
+    width: $main-content-width;
+  }
 }
 
 .language_container {
@@ -22,6 +28,15 @@
   align-items: center;
   display: flex;
   gap: 1rem;
+
+  &_oslomet {
+    // ensure minimum free space around logo on smaller screens
+    margin: 0.5rem 1rem;
+
+    @media screen and (min-width: 90rem) {
+      margin: 0.5rem 1rem 0.5rem 0;
+    }
+  }
 }
 
 .logo_labels {
@@ -53,6 +68,9 @@
   flex-direction: row;
   justify-content: space-between;
   height: 2.5rem;
+  margin: $main-content-margin;
+  max-width: $main-content-max-width;
+  width: $main-content-width;
 }
 
 .wrapper {
