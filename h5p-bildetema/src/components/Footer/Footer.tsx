@@ -19,19 +19,21 @@ export const Footer = (): JSX.Element => {
 
   return (
     <div className={styles.footer}>
-      <p>
-        <a href={contactInfoHref}>{contactInfoLabel}</a>
-      </p>
-      <p>
-        <a href={link1Href}>{link1Label}</a>
-      </p>
-      <p>
-        <a href={link2Href}>{link2Label}</a>
-      </p>
-      <p>
-        <a href={link3Href}>{link3Label}</a>
-      </p>
-      <p>{copyrightLabel}</p>
+      <div className={styles.footer_content}>
+        <p>
+          <a href={contactInfoHref}>{contactInfoLabel}</a>
+        </p>
+        <p>
+          <a href={link1Href}>{link1Label}</a>
+        </p>
+        <p>
+          <a href={link2Href}>{link2Label}</a>
+        </p>
+        <p>
+          <a href={link3Href}>{link3Label}</a>
+        </p>
+        <p>{copyrightLabel}</p>
+      </div>
     </div>
   );
 };

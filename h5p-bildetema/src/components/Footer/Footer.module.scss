@@ -1,14 +1,20 @@
 @use "../../../../common/abstracts" as *;
 
 .footer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: $spacing--16;
   background-color: $burgundy;
-  padding: $spacing--32;
-  font-size: $font-size-18;
   margin-top: $spacing--32;
+  padding: $spacing--32 0;
+
+  &_content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: $font-size-18;
+    gap: $spacing--16;
+    margin: $main-content-margin;
+    max-width: $main-content-max-width;
+    width: $main-content-width;
+  }
 
   a,
   p {

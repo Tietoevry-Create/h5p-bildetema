@@ -106,36 +106,38 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <div className={styles.logos}>
-          <OsloMetLogo />
-          {/* TODO: Add Bildetema logo when ready */}
-          <div className={styles.logo_labels}>
-            <span className={styles.logo_labels_title}>{titleLabel}</span>
-            <span>{subTitleLabel}</span>
+        <div className={styles.header_content}>
+          <div className={styles.logos}>
+            <OsloMetLogo />
+            {/* TODO: Add Bildetema logo when ready */}
+            <div className={styles.logo_labels}>
+              <span className={styles.logo_labels_title}>{titleLabel}</span>
+              <span>{subTitleLabel}</span>
+            </div>
           </div>
-        </div>
-        <div className={styles.language_container}>
-          <div className={styles.languages}>
-            {favLanguages.map(language => {
-              return (
-                <Link
-                  key={language.code}
-                  to={getLanguagePath(language)}
-                  className={`${styles.languageButton}`}
-                >
-                  {translations[`lang_${language.code as AllowedLanguage}`]}
-                </Link>
-              );
-            })}
+          <div className={styles.language_container}>
+            <div className={styles.languages}>
+              {favLanguages.map(language => {
+                return (
+                  <Link
+                    key={language.code}
+                    to={getLanguagePath(language)}
+                    className={`${styles.languageButton}`}
+                  >
+                    {translations[`lang_${language.code as AllowedLanguage}`]}
+                  </Link>
+                );
+              })}
+            </div>
+            <LanguageDropdown
+              handleSelectorVisibility={setLangSelectorIsShown}
+              langSelectorIsShown={langSelectorIsShown}
+              languagesFromDB={languagesFromDB}
+              selectLanguageLabel={translations.selectLanguage}
+              favLanguages={favLanguages}
+              handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+            />
           </div>
-          <LanguageDropdown
-            handleSelectorVisibility={setLangSelectorIsShown}
-            langSelectorIsShown={langSelectorIsShown}
-            languagesFromDB={languagesFromDB}
-            selectLanguageLabel={translations.selectLanguage}
-            favLanguages={favLanguages}
-            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-          />
         </div>
       </div>
       <div className={styles.bottom}>

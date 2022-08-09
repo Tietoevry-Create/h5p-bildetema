@@ -21,4 +21,7 @@
 
 .body {
   flex-grow: 1;
+  margin: $main-content-margin;
+  max-width: $main-content-max-width;
+  width: $main-content-width;
 }
