@@ -71,7 +71,7 @@ export const App: React.FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       topicImage={imagePath}
       aspectRatio={aspectRatio}
       topicImageType="nonVectorImageWithHotspots"
-      themeOverlays={overlays}
+      topicOverlays={overlays}
       words={words}
     />
   ) : (
