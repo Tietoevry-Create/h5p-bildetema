@@ -1,16 +1,16 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { ThemeImageContainer } from "./ThemeImageContainer";
+import { TopicImageContainer } from "./TopicImageContainer";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 
 export default {
   label: "Molecules/Image container",
-  component: ThemeImageContainer,
-} as ComponentMeta<typeof ThemeImageContainer>;
+  component: TopicImageContainer,
+} as ComponentMeta<typeof TopicImageContainer>;
 
-const Template: ComponentStory<typeof ThemeImageContainer> = args => (
+const Template: ComponentStory<typeof TopicImageContainer> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <ThemeImageContainer {...args} />
+  <TopicImageContainer {...args} />
 );
 
 export const ImageContainer = Template.bind({});
@@ -24,9 +24,9 @@ ImageContainer.args = {
     words: new Map(),
   },
   aspectRatio: 1,
-  themeImage: cat,
+  topicImage: cat,
   themeOverlays: overlays,
-  themeImageType: "vectorImageWithHotspots",
+  topicImageType: "vectorImageWithHotspots",
   words: [
     {
       id: overlays[0].wordId,

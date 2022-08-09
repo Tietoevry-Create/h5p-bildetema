@@ -1,4 +1,4 @@
-name: "Pack and release content type: h5p-bildetema-words-theme-image"
+name: "Pack and release content type: h5p-bildetema-words-topic-image"
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - main
     paths:
       - common/**
-      - h5p-bildetema-words-theme-image/**
+      - h5p-bildetema-words-topic-image/**
 
   workflow_dispatch: {}
 
 env:
-  project-id: h5p-bildetema-words-theme-image
+  project-id: h5p-bildetema-words-topic-image
 
 jobs:
   pack-and-release:

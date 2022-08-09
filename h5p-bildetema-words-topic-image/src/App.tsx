@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getTopics } from "../../common/utils/data.utils";
-import { ThemeImageContainer } from "./components/ThemeImageContainer/ThemeImageContainer";
+import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Topic, Word } from "../../common/types/types";
 import { OverlayType } from "./types/OverlayType";
 import { Params } from "./h5p/H5PWrapper";
@@ -66,11 +66,11 @@ export const App: React.FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
   }, [params]);
 
   return topic ? (
-    <ThemeImageContainer
+    <TopicImageContainer
       topic={topic}
-      themeImage={imagePath}
+      topicImage={imagePath}
       aspectRatio={aspectRatio}
-      themeImageType="nonVectorImageWithHotspots"
+      topicImageType="nonVectorImageWithHotspots"
       themeOverlays={overlays}
       words={words}
     />

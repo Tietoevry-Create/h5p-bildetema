@@ -4,13 +4,13 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import type { ThemeImageHotspot } from "../../../common/types/ThemeImageHotspot";
+import type { TopicImageHotspot } from "../../../common/types/TopicImageHotspot";
 import { App } from "../App";
 import type { TranslationKey } from "../types/TranslationKey";
 
 export type Params = {
   topicImage: Image;
-  hotspots: Array<ThemeImageHotspot>;
+  hotspots: Array<TopicImageHotspot>;
   selectedTopic: {
     topicId: string;
     subTopicId: string;

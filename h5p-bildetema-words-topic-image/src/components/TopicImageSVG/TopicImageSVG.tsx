@@ -1,22 +1,22 @@
 /* eslint-disable react/no-danger */
 import React from "react";
 import { OverlayType } from "../../types/OverlayType";
-import { ThemeImageTypes } from "../../types/ThemeImageTypes";
-import styles from "./ThemeImageSVG.module.scss";
+import { TopicImageTypes } from "../../types/TopicImageTypes";
+import styles from "./TopicImageSVG.module.scss";
 
-export type ThemeImageSVGProps = {
+export type TopicImageSVGProps = {
   image: string;
   aspectRatio: number;
   overlays: OverlayType[];
-  themeImageType: ThemeImageTypes;
+  topicImageType: TopicImageTypes;
   selectWord: (word: string) => void;
 };
 
-export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
+export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
   image,
   aspectRatio,
   overlays,
-  themeImageType,
+  topicImageType,
   selectWord,
 }) => {
   const overlayFields = overlays.map(overlay => (
@@ -30,10 +30,10 @@ export const ThemeImageSVG: React.FC<ThemeImageSVGProps> = ({
 
   return (
     <div className={styles.imageContainer}>
-      {themeImageType === "vectorImageWithHotspots" && (
+      {topicImageType === "vectorImageWithHotspots" && (
         <div dangerouslySetInnerHTML={{ __html: image }} />
       )}
-      {themeImageType === "nonVectorImageWithHotspots" && (
+      {topicImageType === "nonVectorImageWithHotspots" && (
         <img style={{ width: "100%", height: "100%" }} src={image} alt="" />
       )}
       <svg

@@ -1,19 +1,19 @@
-name: "Build and validate: h5p-bildetema-words-theme-image"
+name: "Build and validate: h5p-bildetema-words-topic-image"
 
 on:
   pull_request:
     paths:
       - common/**
-      - h5p-bildetema-words-theme-image/**
+      - h5p-bildetema-words-topic-image/**
 
   workflow_dispatch: {}
 
 env:
-  working-directory: "./h5p-bildetema-words-theme-image"
+  working-directory: "./h5p-bildetema-words-topic-image"
 
 defaults:
   run:
-    working-directory: "./h5p-bildetema-words-theme-image"
+    working-directory: "./h5p-bildetema-words-topic-image"
 
 jobs:
   build:
