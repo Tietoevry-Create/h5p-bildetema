@@ -65,7 +65,9 @@ const findSubTopics = (
       inputWord.Title.includes("T") &&
       inputWord.Bokmål_nob.toLocaleLowerCase() !==
         inputWord.Tema1.toLocaleLowerCase();
+
     if (!isSubTopic) return;
+
     const topic: Topic = {
       id: inputWord.Title,
       label: inputWord.Bokmål_nob,
