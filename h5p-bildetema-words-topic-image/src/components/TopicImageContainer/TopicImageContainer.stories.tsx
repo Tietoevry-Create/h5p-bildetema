@@ -25,7 +25,7 @@ ImageContainer.args = {
   },
   aspectRatio: 1,
   topicImage: cat,
-  themeOverlays: overlays,
+  topicOverlays: overlays,
   topicImageType: "vectorImageWithHotspots",
   words: [
     {

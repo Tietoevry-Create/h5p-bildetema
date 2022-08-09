@@ -10,7 +10,7 @@ export type TopicImageContainerProps = {
   topic: Topic;
   topicImage: string;
   aspectRatio: number;
-  themeOverlays: OverlayType[];
+  topicOverlays: OverlayType[];
   topicImageType: TopicImageTypes;
   words: Word[];
 };
@@ -19,7 +19,7 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
   topic,
   topicImage,
   aspectRatio,
-  themeOverlays,
+  topicOverlays,
   topicImageType,
   words,
 }) => {
@@ -38,7 +38,7 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
         <TopicImageSVG
           image={topicImage}
           aspectRatio={aspectRatio}
-          overlays={themeOverlays}
+          overlays={topicOverlays}
           selectWord={selectWord}
           topicImageType={topicImageType}
         />

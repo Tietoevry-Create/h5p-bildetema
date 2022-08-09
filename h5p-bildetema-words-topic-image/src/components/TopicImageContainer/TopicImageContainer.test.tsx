@@ -40,7 +40,7 @@ describe(TopicImageContainer.name, () => {
         topicImageType={topicImageType}
         words={words}
         topicImage="test"
-        themeOverlays={[]}
+        topicOverlays={[]}
       />,
     );
     return container;
@@ -51,7 +51,7 @@ describe(TopicImageContainer.name, () => {
       aspectRatio: 1,
       topic: { ...baseTopic },
       topicImage: "test",
-      themeOverlays: [],
+      topicOverlays: [],
       topicImageType: "3dSceneWithHotspots",
       words: [{ ...baseWord }],
     });
@@ -64,7 +64,7 @@ describe(TopicImageContainer.name, () => {
     const container = template({
       aspectRatio: 1,
       topicImage: "test",
-      themeOverlays: [],
+      topicOverlays: [],
       topic: { ...baseTopic },
       topicImageType: "vectorImageWithHotspots",
       words: [],
@@ -77,7 +77,7 @@ describe(TopicImageContainer.name, () => {
     const container = template({
       aspectRatio: 1,
       topicImage: "test",
-      themeOverlays: [],
+      topicOverlays: [],
       topic: { ...baseTopic },
       topicImageType: "nonVectorImageWithHotspots",
       words: [],
