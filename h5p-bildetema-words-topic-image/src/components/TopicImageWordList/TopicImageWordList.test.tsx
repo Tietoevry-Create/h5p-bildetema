@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import * as React from "react";
 import {
-  ThemeImageWordList,
-  ThemeImageWordListProps,
-} from "./ThemeImageWordList";
-import { ThemeImageTypes } from "../../types/ThemeImageTypes";
+  TopicImageWordList,
+  TopicImageWordListProps,
+} from "./TopicImageWordList";
+import { TopicImageTypes } from "../../types/TopicImageTypes";
 
 const baseWord = {
   id: "1",
@@ -14,13 +14,13 @@ const baseWord = {
   audio: "",
 };
 
-describe(ThemeImageWordList.name, () => {
+describe(TopicImageWordList.name, () => {
   const template = ({
     words,
     currentWordId,
-  }: ThemeImageWordListProps): HTMLElement => {
+  }: TopicImageWordListProps): HTMLElement => {
     const { container } = render(
-      <ThemeImageWordList words={words} currentWordId={currentWordId} />,
+      <TopicImageWordList words={words} currentWordId={currentWordId} />,
     );
     return container;
   };

@@ -1,4 +1,4 @@
-export type ThemeImageTypes =
+export type TopicImageTypes =
   | "vectorImageWithHotspots"
   | "nonVectorImageWithHotspots"
   | "3dSceneWithHotspots"

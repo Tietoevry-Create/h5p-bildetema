@@ -1,15 +1,15 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { ThemeImageWordList } from "./ThemeImageWordList";
+import { TopicImageWordList } from "./TopicImageWordList";
 
 export default {
   label: "Molecules/Word list",
-  component: ThemeImageWordList,
-} as ComponentMeta<typeof ThemeImageWordList>;
+  component: TopicImageWordList,
+} as ComponentMeta<typeof TopicImageWordList>;
 
-const Template: ComponentStory<typeof ThemeImageWordList> = args => (
+const Template: ComponentStory<typeof TopicImageWordList> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <ThemeImageWordList {...args} />
+  <TopicImageWordList {...args} />
 );
 
 export const WordList = Template.bind({});

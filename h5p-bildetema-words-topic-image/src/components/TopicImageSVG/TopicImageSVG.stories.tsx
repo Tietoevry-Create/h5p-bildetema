@@ -1,16 +1,16 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { ThemeImageSVG } from "./ThemeImageSVG";
+import { TopicImageSVG } from "./TopicImageSVG";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 
 export default {
   label: "Molecules/Topic grid",
-  component: ThemeImageSVG,
-} as ComponentMeta<typeof ThemeImageSVG>;
+  component: TopicImageSVG,
+} as ComponentMeta<typeof TopicImageSVG>;
 
-const Template: ComponentStory<typeof ThemeImageSVG> = args => (
+const Template: ComponentStory<typeof TopicImageSVG> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <ThemeImageSVG {...args} />
+  <TopicImageSVG {...args} />
 );
 
 export const SvgComponent = Template.bind({});

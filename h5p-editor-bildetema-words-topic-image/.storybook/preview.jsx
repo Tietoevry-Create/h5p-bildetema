@@ -1,7 +1,7 @@
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "[react-query]";
 import "../../h5p-bildetema-words-grid-view/src";
-import "../../h5p-bildetema-words-theme-image/src";
+import "../../h5p-bildetema-words-topic-image/src";
 import "../../h5p-bildetema-words-tree-view/src";
 
 const queryClient = new QueryClient();

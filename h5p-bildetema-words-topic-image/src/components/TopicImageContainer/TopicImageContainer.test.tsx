@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import * as React from "react";
 import {
-  ThemeImageContainer,
-  ThemeImageContainerProps,
-} from "./ThemeImageContainer";
+  TopicImageContainer,
+  TopicImageContainerProps,
+} from "./TopicImageContainer";
 import { Topic, Word } from "../../../../common/types/types";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
@@ -27,19 +27,19 @@ const baseWord: Word = {
   audio: "",
 };
 
-describe(ThemeImageContainer.name, () => {
+describe(TopicImageContainer.name, () => {
   const template = ({
     topic,
-    themeImageType,
+    topicImageType,
     words,
-  }: ThemeImageContainerProps): HTMLElement => {
+  }: TopicImageContainerProps): HTMLElement => {
     const { container } = render(
-      <ThemeImageContainer
+      <TopicImageContainer
         aspectRatio={1}
         topic={topic}
-        themeImageType={themeImageType}
+        topicImageType={topicImageType}
         words={words}
-        themeImage="test"
+        topicImage="test"
         themeOverlays={[]}
       />,
     );
@@ -50,9 +50,9 @@ describe(ThemeImageContainer.name, () => {
     const container = template({
       aspectRatio: 1,
       topic: { ...baseTopic },
-      themeImage: "test",
+      topicImage: "test",
       themeOverlays: [],
-      themeImageType: "3dSceneWithHotspots",
+      topicImageType: "3dSceneWithHotspots",
       words: [{ ...baseWord }],
     });
 
@@ -63,10 +63,10 @@ describe(ThemeImageContainer.name, () => {
   it("should render if type == vectorImageWithHotspots", () => {
     const container = template({
       aspectRatio: 1,
-      themeImage: "test",
+      topicImage: "test",
       themeOverlays: [],
       topic: { ...baseTopic },
-      themeImageType: "vectorImageWithHotspots",
+      topicImageType: "vectorImageWithHotspots",
       words: [],
     });
     expect(container.querySelector("div")).toBeTruthy();
@@ -76,10 +76,10 @@ describe(ThemeImageContainer.name, () => {
   it("should render if type == nonVectorImageWithHotspots", () => {
     const container = template({
       aspectRatio: 1,
-      themeImage: "test",
+      topicImage: "test",
       themeOverlays: [],
       topic: { ...baseTopic },
-      themeImageType: "nonVectorImageWithHotspots",
+      topicImageType: "nonVectorImageWithHotspots",
       words: [],
     });
     expect(container.querySelector("div")).toBeTruthy();

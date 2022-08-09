@@ -1,20 +1,20 @@
 import React from "react";
 import { Word } from "../../../../common/types/types";
-import styles from "./ThemeImageWordList.module.scss";
+import styles from "./TopicImageWordList.module.scss";
 
-export type ThemeImageWordListProps = {
+export type TopicImageWordListProps = {
   words: Word[];
   currentWordId: string | undefined;
 };
 
-export const ThemeImageWordList: React.FC<ThemeImageWordListProps> = ({
+export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
   words,
   currentWordId,
 }) => {
   return (
-    <div className={styles.themeImageWordList}>
+    <div className={styles.topicImageWordList}>
       {words?.map((word: Word) => (
-        <div className="theme-image-word-list-item" key={word.id}>
+        <div className="topic-image-word-list-item" key={word.id}>
           <div className={word.id === currentWordId ? styles.selected : ""}>
             {word.label}
           </div>
