@@ -15,7 +15,7 @@ RUN cd h5p-bildetema                            && npm run build && rm -rf node_
 RUN cd h5p-bildetema-words-grid-view            && npm run build && rm -rf node_modules
 RUN cd h5p-bildetema-words-theme-image          && npm run build && rm -rf node_modules
 RUN cd h5p-bildetema-words-tree-view            && npm run build && rm -rf node_modules
-RUN cd editor-h5p-bildetema-words-topic-image   && npm run build && rm -rf node_modules
+RUN cd h5p-editor-bildetema-words-topic-image   && npm run build && rm -rf node_modules
 RUN rm -rf node_modules 
 
 FROM kentis123/drupal-h5p:drupal-7
