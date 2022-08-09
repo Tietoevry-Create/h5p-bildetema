@@ -1,11 +1,38 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { TopicGridSizes } from "../../../../common/types/types";
-import { TopicGridElement } from "./TopicGridElement";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { TopicGridSizes, Topic, Word } from "../../../../common/types/types";
+import { TopicGridElement, TopicGridElementProps } from "./TopicGridElement";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+
+const fallbackArgs: TopicGridElementProps = {
+  topic: {
+    id: "T001",
+    label: "",
+    subTopics: new Map<string, Topic>(),
+    words: new Map<LanguageCode, Word[]>(),
+    labelTranslations: new Map<LanguageCode, Word>(),
+    images: [
+      {
+        src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
+      },
+    ],
+  },
+  index: 1,
+  images: [
+    {
+      src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
+    },
+  ],
+  topicSize: TopicGridSizes.Big,
+  title: "Dyr",
+  languageCode: makeLanguageCode("nob"),
+};
 
 export default {
   title: "Atoms/Grid Element",
   component: TopicGridElement,
+  args: fallbackArgs,
 } as ComponentMeta<typeof TopicGridElement>;
 
 const Template: ComponentStory<typeof TopicGridElement> = args => (
@@ -13,14 +40,4 @@ const Template: ComponentStory<typeof TopicGridElement> = args => (
   <TopicGridElement {...args} />
 );
 
-export const ThemesGridElement = Template.bind({});
-ThemesGridElement.args = {
-  index: 0,
-  title: "test test test test test test test test test",
-  images: [
-    {
-      src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
-    },
-  ],
-  topicSize: TopicGridSizes.Big,
-};
+export const Default = Template.bind({});

@@ -5,14 +5,13 @@ import {
   ImageUrl,
   Topic,
   TopicGridSizes,
-  Word,
 } from "../../../../common/types/types";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
 import styles from "./TopicGridElement.module.scss";
 
-type TopicGridElementProps = {
-  item: Topic | Word;
+export type TopicGridElementProps = {
+  topic: Topic;
   index: number;
   title: string;
   images: ImageUrl[];
@@ -21,7 +20,7 @@ type TopicGridElementProps = {
 };
 
 export const TopicGridElement: React.FC<TopicGridElementProps> = ({
-  item,
+  topic,
   title,
   index,
   images,
@@ -48,7 +47,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
       <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={gridElementClassName}>
         {topicLabel}
-        <TopicGridElementAudio topicId={item.id} languageCode={languageCode} />
+        <TopicGridElementAudio topicId={topic.id} languageCode={languageCode} />
       </span>
     </Link>
   );

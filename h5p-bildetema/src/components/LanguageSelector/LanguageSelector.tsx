@@ -3,7 +3,7 @@ import styles from "./LanguageSelector.module.scss";
 import { Language } from "../../../../common/types/types";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 
-type LanguageSelectorProps = {
+export type LanguageSelectorProps = {
   languages: Language[] | undefined;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;

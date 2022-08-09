@@ -1,7 +1,8 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { LanguageSelector } from "./LanguageSelector";
+import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+import { Language } from "../../../../common/types/types";
 
 export default {
   title: "Components/LanguageSelector",
@@ -15,32 +16,42 @@ const Template: ComponentStory<typeof LanguageSelector> = args => (
 
 export const Default = Template.bind({});
 
-Default.args = {
+const defaultArgs: LanguageSelectorProps = {
   languages: [
     {
       label: "Norsk",
-      code: makeLanguageCode("no"),
+      code: makeLanguageCode("nob"),
       rtl: false,
     },
-    {
-      label: "هذا نص منسوخ من جوجل",
-      code: makeLanguageCode("longtest"),
-      rtl: true,
-    },
+
     {
       label: "Engelsk",
-      code: makeLanguageCode("en"),
+      code: makeLanguageCode("eng"),
       rtl: false,
     },
     {
       label: "عربىge",
-      code: makeLanguageCode("ar"),
+      code: makeLanguageCode("ara"),
       rtl: true,
     },
     {
       label: "Dansk",
-      code: makeLanguageCode("dk"),
+      code: makeLanguageCode("dan"),
+      rtl: false,
+    },
+    {
+      label: "Polsk",
+      code: makeLanguageCode("pol"),
       rtl: false,
     },
   ],
-};
+  favLanguages: [{
+    label: "Polsk",
+    code: makeLanguageCode("pol"),
+    rtl: false,
+  }],
+  handleToggleFavoriteLanguage: (lang: Language, fav: boolean):void  => {console.info(fav)}
+}
+
+Default.args = defaultArgs
+

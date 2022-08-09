@@ -22,7 +22,6 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   const routeBreadCrumbs = useBreadcrumbs(routes);
   const { search } = useLocation();
   
-
   const breadCrumbsToRender = breadCrumbs ?? routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
     return {path: `${key}${search}`, label:`${decodeURIComponent(((breadcrumb as React.ReactPortal).props.children))}`}
   })
