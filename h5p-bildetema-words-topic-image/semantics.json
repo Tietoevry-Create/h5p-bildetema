@@ -130,6 +130,13 @@
     "type": "group",
     "common": true,
     "label": "Localize",
-    "fields": []
+    "fields": [
+      {
+        "label": "No topic selected",
+        "name": "noTopicSelected",
+        "default": "No topic selected.",
+        "type": "text"
+      }
+    ]
   }
 ]

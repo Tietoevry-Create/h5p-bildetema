@@ -1,7 +1,6 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import { useContentId } from "use-h5p";
-import { useL10n, useL10ns } from "../../hooks/useL10n";
+import { Link, useLocation } from "react-router-dom";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import {
   TopicGridSizes,
@@ -10,6 +9,7 @@ import {
   TopicIds,
 } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
+import { useL10ns } from "../../hooks/useL10n";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
@@ -46,16 +46,25 @@ export const Header: React.FC<HeaderProps> = ({
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
-  const translations = useL10ns(...languageKeys, "selectLanguage");
 
-  const toggleLabel = useL10n("showWrittenWordsLabel");
+  const {
+    selectLanguage,
+    headerTitle,
+    headerSubtitle,
+    showWrittenWordsLabel,
+    ...langs
+  } = useL10ns(
+    "selectLanguage",
+    "headerTitle",
+    "headerSubtitle",
+    "showWrittenWordsLabel",
+    ...languageKeys,
+  );
 
   const contentId = useContentId();
-
-  const [langSelectorIsShown, setLangSelectorIsShown] =
-    React.useState<boolean>(false);
-
+  const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
+
   const currentLanguageCode =
     pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
 
@@ -63,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({
     const element = isWordView ? (
       <span className={styles.toggle}>
         <Toggle
-          label={toggleLabel}
+          label={showWrittenWordsLabel}
           checked={toggleChecked}
           handleChange={handleToggleChange}
           id={`toggle-${contentId}`}
@@ -76,8 +85,8 @@ export const Header: React.FC<HeaderProps> = ({
     return element;
   };
 
-  const titleLabel = "Bildetema"; /* TODO: translate */
-  const subTitleLabel = "Flerspråklig bildeordbok"; /* TODO: translate */
+  const titleLabel = headerTitle;
+  const subTitleLabel = headerSubtitle;
 
   const getLanguagePath = (language: Language): string => {
     if (!topicId) return `/${language.code}${search}`;
@@ -126,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
                     to={getLanguagePath(language)}
                     className={`${styles.languageButton}`}
                   >
-                    {translations[`lang_${language.code as AllowedLanguage}`]}
+                    {langs[`lang_${language.code as AllowedLanguage}`]}
                   </Link>
                 );
               })}
@@ -135,7 +144,7 @@ export const Header: React.FC<HeaderProps> = ({
               handleSelectorVisibility={setLangSelectorIsShown}
               langSelectorIsShown={langSelectorIsShown}
               languagesFromDB={languagesFromDB}
-              selectLanguageLabel={translations.selectLanguage}
+              selectLanguageLabel={selectLanguage}
               favLanguages={favLanguages}
               handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             />

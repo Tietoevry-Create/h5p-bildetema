@@ -96,6 +96,18 @@
         "type": "text"
       },
       {
+        "label": "Header title",
+        "name": "headerTitle",
+        "default": "Bildetema",
+        "type": "text"
+      },
+      {
+        "label": "Header subtitle",
+        "name": "headerSubtitle",
+        "default": "Multi-lingual image dictionary",
+        "type": "text"
+      },
+      {
         "label": "Arabic",
         "name": "lang_ara",
         "default": "Arabic",
