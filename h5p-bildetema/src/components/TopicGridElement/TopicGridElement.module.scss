@@ -45,10 +45,12 @@
 }
 
 .topicCardCompact {
+  background-color: $beige;
   display: inline-flex;
   flex-direction: row;
   margin-block-end: $spacing--24;
   inline-size: 100%;
+  word-break: break-word;
 }
 
 .topicCardBig,
@@ -65,7 +67,8 @@
   }
 
   .topicCardCompact & {
-    min-height: 4rem;
-    width: 7rem;
+    height: 5.5rem;
+    min-width: 8rem; // need this also for small images
+    width: 8rem;
   }
 }
