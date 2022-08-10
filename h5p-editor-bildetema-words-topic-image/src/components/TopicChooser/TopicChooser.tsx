@@ -41,6 +41,10 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
   };
 
   // TODO: Translate
+  const topicChooserLabel = "Topic";
+  // TODO: Translate
+  const topicChooserDescription = "Choose topic and sub topic to list words";
+  // TODO: Translate
   const chooseTopicLabel = "Please choose topic";
   // TODO: Translate
   const chooseSubTopicLabel = "Please choose sub topic";
@@ -48,36 +52,42 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
   if (items) {
     return (
       <div className={styles.topicChooser}>
-        <select
-          className={styles.gridCompact}
-          onChange={onTopicSelected}
-          value={topic?.id ?? "default"}
-        >
-          <option value="default" disabled>
-            {chooseTopicLabel}
-          </option>
-          {items?.map(item => (
-            <option key={item.id} value={item.id}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-        {topic && topic.subTopics && topic.subTopics.size > 0 && (
+        <span className={styles.topicChooserLabel}>{topicChooserLabel}</span>
+        <span className={styles.topicChooserDescription}>
+          {topicChooserDescription}
+        </span>
+        <div className={styles.selectGroup}>
           <select
             className={styles.gridCompact}
-            onChange={onSubTopicSelected}
-            value={subTopic?.id ?? "default"}
+            onChange={onTopicSelected}
+            value={topic?.id ?? "default"}
           >
             <option value="default" disabled>
-              {chooseSubTopicLabel}
+              {chooseTopicLabel}
             </option>
-            {Array.from(topic.subTopics?.values()).map(item => (
+            {items?.map(item => (
               <option key={item.id} value={item.id}>
                 {item.label}
               </option>
             ))}
           </select>
-        )}
+          {topic && topic.subTopics && topic.subTopics.size > 0 && (
+            <select
+              className={styles.gridCompact}
+              onChange={onSubTopicSelected}
+              value={subTopic?.id ?? "default"}
+            >
+              <option value="default" disabled>
+                {chooseSubTopicLabel}
+              </option>
+              {Array.from(topic.subTopics?.values()).map(item => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
       </div>
     );
   }
