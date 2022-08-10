@@ -1,21 +1,21 @@
 import React from "react";
-import { useContentId } from "use-h5p";
 import { Link, useLocation } from "react-router-dom";
+import { useContentId } from "use-h5p";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import {
   TopicGridSizes,
   Language,
   Topic,
+  TopicIds,
 } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
-import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
-import { Toggle } from "..";
+import { Toggle } from "../Toggle/Toggle";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
-import type { TopicIds } from "../Bildetema/Bildetema";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {

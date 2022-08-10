@@ -2,20 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
-import { RouteController } from "../RouteController/RouteController";
-import { Language, TopicGridSizes } from "../../../../common/types/types";
-import { Header } from "..";
+import { Language, TopicGridSizes, TopicIds } from "../../../../common/types/types";
 import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
+import { RouteController } from "../RouteController/RouteController";
+import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
-
 import styles from "./Bildetema.module.scss";
 
-export type TopicIds = {
-  topicId?: string;
-  subTopicId?: string;
-};
 
 export const defaultFavoriteLanguages: Language[] = [
   {
