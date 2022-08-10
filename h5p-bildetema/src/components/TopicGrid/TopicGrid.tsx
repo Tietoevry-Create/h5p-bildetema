@@ -3,6 +3,7 @@ import {
   Language,
   Topic,
   TopicGridSizes,
+  TopicIds,
   Word,
 } from "../../../../common/types/types";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
@@ -16,6 +17,7 @@ export type TopicGridProps = {
   setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
   showWrittenWords: boolean;
   currentLanguage: Language;
+  currentTopic?: TopicIds;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -25,6 +27,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   setIsWordView,
   showWrittenWords,
   currentLanguage,
+  currentTopic,
 }) => {
   React.useEffect(() => {
     setIsWordView(!!words);
@@ -60,7 +63,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   }
 
   if (words) {
-    return <Words words={words} topic={topic?{topicId: topic?.id, subTopicId: subTopic?.id}:undefined} showWrittenWords={showWrittenWords} />;
+    return <Words words={words} topic={currentTopic} showWrittenWords={showWrittenWords} />;
   }
 
   return <h1>No topics</h1>;

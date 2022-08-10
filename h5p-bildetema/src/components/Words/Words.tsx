@@ -2,16 +2,17 @@ import type { IH5PContentType } from "h5p-types";
 import { H5P } from "h5p-utils";
 import React, { useEffect, useRef, useState } from "react";
 import { useContentId } from "use-h5p";
-import { Word } from "../../../../common/types/types";
+import { TopicIds, Word } from "../../../../common/types/types";
 // eslint-disable-next-line import/no-relative-packages
 import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid-view/src/library";
 
 type WordsProps = {
   words?: Word[];
+  topic?: TopicIds;
   showWrittenWords: boolean;
 };
 
-export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
+export const Words: React.FC<WordsProps> = ({ words, topic, showWrittenWords }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
@@ -30,8 +31,29 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
       return;
     }
 
-    setGridViewInstance(
-      H5P.newRunnable(
+    const getViewInstance = ():IH5PContentType => {
+      const existingContent = (H5PAllContents as any).filter((c:any) => {
+        const params = JSON.parse(c.json_content);
+        
+        return topic && params.selectedTopic && params.selectedTopic.topicId === topic?.topicId && params.selectedTopic.subTopicId === topic?.subTopicId;
+      })
+      console.info(existingContent);
+      if (existingContent && existingContent.length > 0) {
+        const content = existingContent[0];
+        console.info("Found existing content", content);
+        const params = JSON.parse(content.json_content);
+        return H5P.newRunnable({
+          library: "H5P.BildetemaTopicImageView 1.0",
+          params,
+        },
+        content.content_id,
+        H5P.jQuery(ref.current),
+      );
+          
+      //    content.content_id, ref.current, params);
+      }
+      console.info("no existing content found, using default library",`${gridViewLibrary.machineName} ${gridViewLibrary.majorVersion}.${gridViewLibrary.minorVersion}`, words);
+      return H5P.newRunnable(
         {
           library: `${gridViewLibrary.machineName} ${gridViewLibrary.majorVersion}.${gridViewLibrary.minorVersion}`,
           params: {
@@ -41,7 +63,11 @@ export const Words: React.FC<WordsProps> = ({ words, showWrittenWords }) => {
         },
         contentId,
         H5P.jQuery(ref.current),
-      ),
+      );
+    };
+
+    setGridViewInstance(
+      getViewInstance(),
     );
 
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
