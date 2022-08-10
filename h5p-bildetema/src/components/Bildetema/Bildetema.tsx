@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
-import { Language, TopicGridSizes, TopicIds } from "../../../../common/types/types";
+import {
+  Language,
+  TopicGridSizes,
+  TopicIds,
+} from "../../../../common/types/types";
 import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
 import { RouteController } from "../RouteController/RouteController";
 import { Header } from "../Header/Header";
@@ -10,7 +14,6 @@ import { Footer } from "../Footer/Footer";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import styles from "./Bildetema.module.scss";
-
 
 export const defaultFavoriteLanguages: Language[] = [
   {

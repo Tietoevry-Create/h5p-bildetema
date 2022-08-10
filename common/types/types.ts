@@ -41,5 +41,5 @@ export type UserData = {
 
 export type TopicIds = {
   topicId?: string;
-  subTopicId?: string
-}
+  subTopicId?: string;
+};

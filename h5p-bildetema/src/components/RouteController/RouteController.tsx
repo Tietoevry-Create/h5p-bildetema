@@ -6,7 +6,7 @@ import {
   Topic,
   TopicGridSizes,
   Word,
-  TopicIds
+  TopicIds,
 } from "../../../../common/types/types";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
