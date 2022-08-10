@@ -125,6 +125,7 @@ export const Editor: React.FC<EditorProps> = ({
         }
 
         // Finish the drawing without re-adding the current point (because it already exists as the start point)
+        setSelectedWord(null);
         return { ...hotspot, drawing: false };
       }
 
