@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Language, Topic } from "../../common/types/types";
+import { Topic } from "../../common/types/types";
 import { getTopics } from "../../common/utils/data.utils";
-import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
 import { TopicChooser } from "./components/TopicChooser/TopicChooser";
 import { Params as ChooseTopicWidgetParams } from "./h5p/ChooseTopicH5PWrapper";
 
@@ -25,11 +24,6 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
   const [currentSubTopic, setCurrentSubTopic] = React.useState<
     Topic | undefined
   >(undefined);
-  const [currentLanguage, setCurrentLanguage] = React.useState<Language>({
-    label: "Norsk bokmål",
-    code: makeLanguageCode("nob"),
-    rtl: false,
-  });
 
   React.useEffect(() => {
     if (topics && topicId) {
@@ -56,7 +50,6 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
     <TopicChooser
       setCurrentTopic={onTopicChange}
       setCurrentSubTopic={setCurrentSubTopic}
-      currentLanguage={currentLanguage}
       topic={currentTopic}
       subTopic={currentSubTopic}
       items={topics}

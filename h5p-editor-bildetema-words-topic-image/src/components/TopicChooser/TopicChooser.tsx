@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Language, Topic } from "../../../../common/types/types";
+import { Topic } from "../../../../common/types/types";
 import styles from "./TopicChooser.module.scss";
 
 type TopicChooserProps = {
   items?: Topic[];
   setCurrentTopic: (topic: Topic) => void;
   setCurrentSubTopic: React.Dispatch<React.SetStateAction<Topic | undefined>>;
-  currentLanguage: Language;
   topic?: Topic;
   subTopic?: Topic;
 };
@@ -16,7 +15,6 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
   setCurrentTopic,
   setCurrentSubTopic,
   topic,
-  currentLanguage,
   subTopic,
 }) => {
   const onTopicSelected = (
