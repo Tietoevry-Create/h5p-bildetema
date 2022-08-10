@@ -4,6 +4,7 @@ import { LanguageCode } from "../../common/types/LanguageCode";
 import { Word } from "../../common/types/types";
 import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
 import { Editor } from "./components/editor/Editor";
+import { t } from "./h5p/H5P.util";
 import { Hotspot } from "./types/Hotspot";
 
 export type AppProps = {
@@ -13,8 +14,7 @@ export type AppProps = {
 };
 
 export const App: React.FC<AppProps> = ({ image, words, initialHotspots }) => {
-  // TODO: Translate
-  const noImagePlaceholder = "Please start with uploading an image ✨";
+  const noImagePlaceholder = t("noImagePlaceholder");
 
   return image ? (
     <Editor

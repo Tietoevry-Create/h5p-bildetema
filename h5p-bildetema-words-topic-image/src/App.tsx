@@ -1,10 +1,11 @@
-import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
+import * as React from "react";
+import { Topic, Word } from "../../common/types/types";
 import { getTopics } from "../../common/utils/data.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
-import { Topic, Word } from "../../common/types/types";
-import { OverlayType } from "./types/OverlayType";
 import { Params } from "./h5p/H5PWrapper";
+import { useL10n } from "./hooks/useL10n";
+import { OverlayType } from "./types/OverlayType";
 import { renderFigure } from "./utils/figure/figure.utils";
 
 export type AppProps = {
@@ -21,8 +22,7 @@ export const App: React.FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
   const [overlays, setOverlays] = React.useState<Array<OverlayType>>([]);
   const [words, setWords] = React.useState<Array<Word>>([]);
 
-  // TODO: Translate
-  const noTopicSelectedText = "No topic selected."; // useL10n(...);
+  const noTopicSelectedText = useL10n("noTopicSelected");
 
   useQuery(["topicsFromDB"], getTopics, {
     onSuccess(fetchedTopics) {

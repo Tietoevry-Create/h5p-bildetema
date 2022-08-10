@@ -109,6 +109,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "Copyright © 2022 · All Rights Reserved",
         type: "text",
       },
+      {
+        label: "Header title",
+        name: "headerTitle",
+        default: "Bildetema",
+        type: "text",
+      },
+      {
+        label: "Header subtitle",
+        name: "headerSubtitle",
+        default: "Multi-lingual image dictionary",
+        type: "text",
+      },
       lang("ara", "Arabic"),
       lang("ckb", "Sorani"),
       lang("dan", "Danish"),

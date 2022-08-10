@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Topic } from "../../../../common/types/types";
+import { t } from "../../h5p/H5P.util";
 import styles from "./TopicChooser.module.scss";
 
 type TopicChooserProps = {
@@ -40,14 +41,10 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
     }
   };
 
-  // TODO: Translate
-  const topicChooserLabel = "Topic";
-  // TODO: Translate
-  const topicChooserDescription = "Choose topic and sub topic to list words";
-  // TODO: Translate
-  const chooseTopicLabel = "Please choose topic";
-  // TODO: Translate
-  const chooseSubTopicLabel = "Please choose sub topic";
+  const topicChooserLabel = t("topicChooserLabel");
+  const topicChooserDescription = t("topicChooserDescription");
+  const chooseTopicLabel = t("chooseTopicLabel");
+  const chooseSubTopicLabel = t("chooseSubTopicLabel");
 
   if (items) {
     return (

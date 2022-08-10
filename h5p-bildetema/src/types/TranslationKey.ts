@@ -20,6 +20,8 @@ export type TranslationKey =
   | "breadcrumbsTopic"
   | "selectLanguage"
   | "footerCopyright"
+  | "headerTitle"
+  | "headerSubtitle"
   | "lang_ara"
   | "lang_ckb"
   | "lang_dan"

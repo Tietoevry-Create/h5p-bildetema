@@ -2,6 +2,7 @@ import type { Image as ImageType } from "h5p-types";
 import React from "react";
 import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
+import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import {
@@ -143,19 +144,12 @@ export const Editor: React.FC<EditorProps> = ({
     return hotspots.filter(hotspot => hotspot.word.id === wordId)[0].word.label;
   };
 
-  // TODO: Translate
-  const editorLabel = "Editor";
-  // TODO: Translate
-  const editorDescription =
-    "Click on the words and mark where they are on the picture";
-  // TODO: Translate
-  const finishedButtonLabel = "Finished";
-  // TODO: Translate
-  const resetButtonLabel = "Reset";
-  // TODO: Translate
-  const selectWordLabel = "Select a word below";
-  // TODO: Translate
-  const selectedWordLabel = "Selected word";
+  const editorLabel = t("editorLabel");
+  const editorDescription = t("editorDescription");
+  const finishedButtonLabel = t("finishedButtonLabel");
+  const resetButtonLabel = t("resetButtonLabel");
+  const selectWordLabel = t("selectWordLabel");
+  const selectedWordLabel = t("selectedWordLabel");
 
   return (
     <div className={styles.editor}>

@@ -132,6 +132,13 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     type: "group",
     common: true,
     label: "Localize",
-    fields: [],
+    fields: [
+      {
+        label: "No topic selected",
+        name: "noTopicSelected",
+        default: "No topic selected.",
+        type: "text",
+      },
+    ],
   },
 ];
