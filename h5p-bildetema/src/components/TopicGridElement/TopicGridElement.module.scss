@@ -9,7 +9,6 @@
   font-size: $font-size-18;
   font-weight: bold;
   line-height: 1.4;
-  border: 1.5px solid $dark-beige;
   color: black;
   width: 100%;
   transition-duration: 0.2s;
@@ -46,10 +45,17 @@
 }
 
 .topicCardCompact {
+  background-color: $beige;
   display: inline-flex;
   flex-direction: row;
   margin-block-end: $spacing--24;
   inline-size: 100%;
+  word-break: break-word;
+}
+
+.topicCardBig,
+.topicCardCompact {
+  border: 1.5px solid $dark-beige;
 }
 
 .topicImage {
@@ -61,6 +67,8 @@
   }
 
   .topicCardCompact & {
-    block-size: 4.375rem;
+    height: 5.5rem;
+    min-width: 8rem; // need this also for small images
+    width: 8rem;
   }
 }
