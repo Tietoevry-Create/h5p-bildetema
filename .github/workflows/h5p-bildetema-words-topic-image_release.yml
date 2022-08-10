@@ -41,17 +41,16 @@ jobs:
           path: ./${{env.project-id}}.h5p
 
       - name: Get library version
-        uses: boyum/is-h5p-library-updated-action@v1
+        uses: boyum/h5p-version-action@v1
         id: h5p-version-check
         with:
           working-directory: ./${{env.project-id}}
 
       - name: Create release
         uses: marvinpinto/action-automatic-releases@latest # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
-        if: ${{ github.ref == 'refs/heads/main' && steps.h5p-version-check.outputs.is-ahead }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{env.project-id}}_${{steps.h5p-version-check.outputs.current-version-formatted}}
+          automatic_release_tag: ${{env.project-id}}_${{steps.h5p-version-check.outputs.version-formatted}}
           prerelease: false
           files: |
             ./${{env.project-id}}.h5p
