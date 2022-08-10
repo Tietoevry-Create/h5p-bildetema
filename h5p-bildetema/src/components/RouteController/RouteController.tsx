@@ -6,10 +6,10 @@ import {
   Topic,
   TopicGridSizes,
   Word,
+  TopicIds,
 } from "../../../../common/types/types";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
-import type { TopicIds } from "../Bildetema/Bildetema";
 
 export type RouteControllerProps = {
   topicsFromDB?: Topic[];

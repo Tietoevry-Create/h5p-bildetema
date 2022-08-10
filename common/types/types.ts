@@ -38,3 +38,8 @@ export type UserData = {
   currentLanguage: Language;
   favoriteLanguages: Language[];
 };
+
+export type TopicIds = {
+  topicId?: string;
+  subTopicId?: string;
+};

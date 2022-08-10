@@ -5,7 +5,8 @@ import {
   TopicGridSizes,
   Word,
 } from "../../../../common/types/types";
-import { TopicGridElement, Words } from "..";
+import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
+import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
 
 export type TopicGridProps = {
