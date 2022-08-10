@@ -29,6 +29,7 @@ export const Editor: React.FC<EditorProps> = ({
   const ref = React.useRef<HTMLDivElement>(null);
   const setValue = React.useContext(SetValueContext);
 
+  const [selectedWord, setSelectedWord] = React.useState<string | null>(null);
   const [hotspots, setHotspots] = React.useState(initialHotspots);
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
@@ -85,6 +86,8 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleWordSelected = (wordId: string): void => {
+    setSelectedWord(wordId);
+
     const updatedHotspots = hotspots.map(hotspot =>
       activateDrawingHotspot(hotspot, wordId),
     );
@@ -93,6 +96,8 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleFinishedPressed = (): void => {
+    setSelectedWord(null);
+
     const updatedHotspots = hotspots.map(finishDrawingHotspot);
     setHotspots(updatedHotspots);
   };
@@ -133,46 +138,67 @@ export const Editor: React.FC<EditorProps> = ({
     setHotspots(updatedHotspots);
   };
 
+  const getSelectedWordLabel = (wordId: string): string => {
+    return hotspots.filter(hotspot => hotspot.word.id === wordId)[0].word.label;
+  };
+
   // TODO: Translate
   const finishedButtonLabel = "Finished";
   // TODO: Translate
   const resetButtonLabel = "Reset";
+  // TODO: Translate
+  const selectWordLabel = "Select a word below";
+  // TODO: Translate
+  const selectedWordLabel = "Selected word";
 
   return (
     <div className={styles.editor}>
-      <div className={styles.controls}>
-        {hotspots.map(({ word: { label, id }, drawing, points }) => (
-          <Button
-            key={id}
-            isActive={drawing}
-            color={points?.length ? "#7FD1AE" : ""}
-            label={label}
-            id={id}
-            clickHandler={() => handleWordSelected(id)}
-          />
-        ))}
-        <button type="button" onClick={handleFinishedPressed}>
-          {finishedButtonLabel}
-        </button>
-        <button type="button" onClick={handleReset}>
-          {resetButtonLabel}
-        </button>
+      <div className={styles.toolbar}>
+        {selectedWord
+          ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWord)}`
+          : selectWordLabel}
+        {selectedWord && (
+          <div className={styles.toolbar_buttons}>
+            <button type="button" onClick={handleFinishedPressed}>
+              {finishedButtonLabel}
+            </button>
+            <button type="button" onClick={handleReset}>
+              {resetButtonLabel}
+            </button>
+          </div>
+        )}
       </div>
-      <div
-        tabIndex={0}
-        ref={ref}
-        className={styles.canvas}
-        onClick={handleClick}
-        onKeyDown={() => null}
-        role="button"
-      >
-        <Image image={image} />
-        <Svg
-          hotspots={hotspots}
-          handleCircleClick={handleCircleClick}
-          handleFigureClick={hotspot => handleWordSelected(hotspot.word.id)}
-          aspectRatio={aspectRatio}
-        />
+      <div className={styles.editor_content}>
+        <div>
+          <div className={styles.controls}>
+            {hotspots.map(({ word: { label, id }, drawing, points }) => (
+              <Button
+                key={id}
+                isActive={drawing}
+                isFinished={!!points?.length}
+                label={label}
+                id={id}
+                clickHandler={() => handleWordSelected(id)}
+              />
+            ))}
+          </div>
+        </div>
+        <div
+          tabIndex={0}
+          ref={ref}
+          className={styles.canvas}
+          onClick={handleClick}
+          onKeyDown={() => null}
+          role="button"
+        >
+          <Image image={image} />
+          <Svg
+            hotspots={hotspots}
+            handleCircleClick={handleCircleClick}
+            handleFigureClick={hotspot => handleWordSelected(hotspot.word.id)}
+            aspectRatio={aspectRatio}
+          />
+        </div>
       </div>
     </div>
   );

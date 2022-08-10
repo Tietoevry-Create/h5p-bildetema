@@ -5,7 +5,7 @@ type ButtonProps = {
   id: string;
   label: string;
   isActive: boolean;
-  color?: string;
+  isFinished: boolean;
   clickHandler: (id: string) => void;
 };
 
@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
   id,
   label,
   clickHandler,
-  color,
+  isFinished,
   isActive,
 }) => {
   return (
@@ -22,8 +22,9 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={() => {
         clickHandler(id);
       }}
-      className={`${styles.button} ${isActive && styles.isActive}`}
-      style={{ backgroundColor: color }}
+      className={`${styles.button} ${isActive && styles.isActive}  ${
+        isFinished && styles.isFinished
+      }`}
     >
       {label}
     </button>
