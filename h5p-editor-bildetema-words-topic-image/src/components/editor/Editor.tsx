@@ -143,6 +143,11 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   // TODO: Translate
+  const editorLabel = "Editor";
+  // TODO: Translate
+  const editorDescription =
+    "Click on the words and mark where they are on the picture";
+  // TODO: Translate
   const finishedButtonLabel = "Finished";
   // TODO: Translate
   const resetButtonLabel = "Reset";
@@ -153,6 +158,8 @@ export const Editor: React.FC<EditorProps> = ({
 
   return (
     <div className={styles.editor}>
+      <span className={styles.editor_label}>{editorLabel}</span>
+      <span className={styles.editor_description}>{editorDescription}</span>
       <div className={styles.toolbar}>
         {selectedWord
           ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWord)}`

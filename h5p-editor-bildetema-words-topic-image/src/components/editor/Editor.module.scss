@@ -1,7 +1,7 @@
 .editor {
   display: flex;
   flex-direction: column;
-  padding-top: 1.25rem;
+  margin: 1.25rem 0;
 
   &_content {
     align-items: flex-start;
@@ -11,6 +11,24 @@
     gap: 1rem;
     padding: 1rem;
     margin-top: -1px;
+  }
+
+  &_label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #454347;
+  }
+
+  &_description {
+    font-size: 12px;
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+    font-weight: 500;
+    color: #434446;
+    line-height: 15px;
+    letter-spacing: 0.5px;
   }
 }
 
