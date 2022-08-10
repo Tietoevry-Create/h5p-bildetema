@@ -9,7 +9,6 @@
   font-size: $font-size-18;
   font-weight: bold;
   line-height: 1.4;
-  border: 1.5px solid $dark-beige;
   color: black;
   width: 100%;
   transition-duration: 0.2s;
@@ -52,6 +51,11 @@
   inline-size: 100%;
 }
 
+.topicCardBig,
+.topicCardCompact {
+  border: 1.5px solid $dark-beige;
+}
+
 .topicImage {
   object-fit: cover;
 
@@ -61,6 +65,7 @@
   }
 
   .topicCardCompact & {
+    min-height: 4rem;
     width: 6.5rem;
   }
 }
