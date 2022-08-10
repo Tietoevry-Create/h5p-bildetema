@@ -15,7 +15,7 @@
   "dependencies": {
     "h5p-types": "^1.0.5",
     "h5p-utils": "^2.1.0",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
+    "xlsx": "file:vendor/xlsx-0.18.10.tgz"
   },
   "devDependencies": {
     "@types/puppeteer": "^5.4.6",
