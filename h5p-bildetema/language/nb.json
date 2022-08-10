@@ -1,0 +1,173 @@
+{
+  "semantics": [
+    {
+      "label": "Oversettelser",
+      "fields": [
+        {
+          "label": "Siden laster",
+          "default": "Laster…"
+        },
+        {
+          "label": "Vis ord",
+          "default": "Vis ord"
+        },
+        {
+          "label": "Spill lyd",
+          "default": "Spill lyd"
+        },
+        {
+          "label": "Sett lyd på pause",
+          "default": "Sett lyd på pause"
+        },
+        {
+          "label": "Footer: Kontaktinfo-overskrift",
+          "default": "Kontakt oss"
+        },
+        {
+          "label": "Footer: Kontaktinfo-URL",
+          "default": "mailto:support@lexindrift.atlassian.net"
+        },
+        {
+          "label": "Footer: Tekst på første link",
+          "default": "NAFO - Nasjonalt senter for flerkulturell opplæring"
+        },
+        {
+          "label": "Footer: URL på første lenke",
+          "default": "https://nafo.oslomet.no/"
+        },
+        {
+          "label": "Footer: Tekst på andre lenke",
+          "default": "OsloMet"
+        },
+        {
+          "label": "Footer: URL på andre lenke",
+          "default": "https://oslomet.no/"
+        },
+        {
+          "label": "Footer: Tekst på tredje lenke",
+          "default": "LEXIN"
+        },
+        {
+          "label": "Footer: URL på tredje lenke",
+          "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Navn på første lenke i brødsmulestien",
+          "default": "Tema"
+        },
+        {
+          "label": "Navn på språkvelger-knapp",
+          "default": "Språk"
+        },
+        {
+          "label": "Kopibeskyttelse",
+          "default": "Kopibeskyttet © 2022 · Alle rettigheter"
+        },
+        {
+          "label": "Header: Tittel",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Header: Undertekst",
+          "default": "Flerspråklig bildeordbok"
+        },
+        {
+          "label": "Arabisk",
+          "default": "Arabisk"
+        },
+        {
+          "label": "Sorani",
+          "default": "Sorani"
+        },
+        {
+          "label": "Dansk",
+          "default": "Dansk"
+        },
+        {
+          "label": "Engelsk",
+          "default": "Engelsk"
+        },
+        {
+          "label": "Persisk",
+          "default": "Persisk"
+        },
+        {
+          "label": "Fransk",
+          "default": "Fransk"
+        },
+        {
+          "label": "Islandsk",
+          "default": "Islandsk"
+        },
+        {
+          "label": "Kurmanji",
+          "default": "Kurmanji"
+        },
+        {
+          "label": "Litauisk",
+          "default": "Litauisk"
+        },
+        {
+          "label": "Norsk (nynorsk)",
+          "default": "Norsk (nynorsk)"
+        },
+        {
+          "label": "Norsk (bokmål)",
+          "default": "Norsk (bokmål)"
+        },
+        {
+          "label": "Polsk",
+          "default": "Polsk"
+        },
+        {
+          "label": "Dari",
+          "default": "Dari"
+        },
+        {
+          "label": "Pashto",
+          "default": "Pashto"
+        },
+        {
+          "label": "Russisk",
+          "default": "Russisk"
+        },
+        {
+          "label": "Nordsamisk",
+          "default": "Nordsamisk"
+        },
+        {
+          "label": "Somalisk",
+          "default": "Somalisk"
+        },
+        {
+          "label": "Spansk",
+          "default": "Spansk"
+        },
+        {
+          "label": "Svensk",
+          "default": "Svensk"
+        },
+        {
+          "label": "Tagalog",
+          "default": "Tagalog"
+        },
+        {
+          "label": "Thai",
+          "default": "Thai"
+        },
+        {
+          "label": "Tigrinja",
+          "default": "Tigrinja"
+        },
+        {
+          "label": "Ukrainsk",
+          "default": "Ukrainsk"
+        },
+        {
+          "label": "Vietnamesisk",
+          "default": "Vietnamesisk"
+        }
+      ]
+    }
+  ]
+}

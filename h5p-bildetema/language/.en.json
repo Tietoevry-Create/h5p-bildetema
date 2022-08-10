@@ -1,0 +1,173 @@
+{
+  "semantics": [
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Page is loading",
+          "default": "Loading…"
+        },
+        {
+          "label": "Show written words label",
+          "default": "Show written words"
+        },
+        {
+          "label": "Play audio",
+          "default": "Play audio"
+        },
+        {
+          "label": "Pause audio",
+          "default": "Pause audio"
+        },
+        {
+          "label": "Footer contact info label",
+          "default": "Contact us"
+        },
+        {
+          "label": "Footer contact info URL",
+          "default": "mailto:support@lexindrift.atlassian.net"
+        },
+        {
+          "label": "Footer link 1 label",
+          "default": "NAFO - National Centre of Multicultural Education"
+        },
+        {
+          "label": "Footer link 1 URL",
+          "default": "https://nafo.oslomet.no/"
+        },
+        {
+          "label": "Footer link 2 label",
+          "default": "OsloMet"
+        },
+        {
+          "label": "Footer link 2 URL",
+          "default": "https://oslomet.no/"
+        },
+        {
+          "label": "Footer link 3 label",
+          "default": "LEXIN"
+        },
+        {
+          "label": "Footer link 3 URL",
+          "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Breadcrumbs 'Topic' label",
+          "default": "Topic"
+        },
+        {
+          "label": "Language selection label",
+          "default": "Language"
+        },
+        {
+          "label": "Copyright",
+          "default": "Copyright © 2022 · All Rights Reserved"
+        },
+        {
+          "label": "Header title",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Header subtitle",
+          "default": "Multi-lingual image dictionary"
+        },
+        {
+          "label": "Arabic",
+          "default": "Arabic"
+        },
+        {
+          "label": "Sorani",
+          "default": "Sorani"
+        },
+        {
+          "label": "Danish",
+          "default": "Danish"
+        },
+        {
+          "label": "English",
+          "default": "English"
+        },
+        {
+          "label": "Persian",
+          "default": "Persian"
+        },
+        {
+          "label": "French",
+          "default": "French"
+        },
+        {
+          "label": "Icelandic",
+          "default": "Icelandic"
+        },
+        {
+          "label": "Kurmanji",
+          "default": "Kurmanji"
+        },
+        {
+          "label": "Lithuanian",
+          "default": "Lithuanian"
+        },
+        {
+          "label": "Norwegian (nynorsk)",
+          "default": "Norwegian (nynorsk)"
+        },
+        {
+          "label": "Norwegian (bokmål)",
+          "default": "Norwegian (bokmål)"
+        },
+        {
+          "label": "Polish",
+          "default": "Polish"
+        },
+        {
+          "label": "Dari",
+          "default": "Dari"
+        },
+        {
+          "label": "Pashto",
+          "default": "Pashto"
+        },
+        {
+          "label": "Russian",
+          "default": "Russian"
+        },
+        {
+          "label": "Northern Sami",
+          "default": "Northern Sami"
+        },
+        {
+          "label": "Somali",
+          "default": "Somali"
+        },
+        {
+          "label": "Spanish",
+          "default": "Spanish"
+        },
+        {
+          "label": "Swedish",
+          "default": "Swedish"
+        },
+        {
+          "label": "Tagalog",
+          "default": "Tagalog"
+        },
+        {
+          "label": "Thai",
+          "default": "Thai"
+        },
+        {
+          "label": "Tigrinya",
+          "default": "Tigrinya"
+        },
+        {
+          "label": "Ukrainian",
+          "default": "Ukrainian"
+        },
+        {
+          "label": "Vietnamese",
+          "default": "Vietnamese"
+        }
+      ]
+    }
+  ]
+}
