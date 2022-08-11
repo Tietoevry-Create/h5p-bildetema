@@ -2,10 +2,10 @@
 
 .gridElementBig,
 .gridElementCompact {
+  align-items: center;
   word-wrap: break-word;
   padding: 1rem 2rem;
   border-radius: 0;
-  background-color: $beige;
   font-size: $font-size-18;
   font-weight: bold;
   line-height: 1.4;
@@ -21,20 +21,21 @@
   }
 }
 
+.gridElementBig {
+  height: 100%;
+}
+
 .gridElementCompact {
-  align-items: center;
   display: flex;
 }
 
 .topicCardBig,
 .topicCardCompact {
+  background-color: $beige;
   text-decoration: none;
 
   &:hover {
     text-decoration: none;
-  }
-
-  &:hover > * {
     background-color: $dark-beige;
   }
 }
@@ -45,7 +46,6 @@
 }
 
 .topicCardCompact {
-  background-color: $beige;
   display: inline-flex;
   flex-direction: row;
   margin-block-end: $spacing--24;
