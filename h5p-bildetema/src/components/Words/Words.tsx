@@ -1,4 +1,4 @@
-import type { IH5PContentType } from "h5p-types";
+import type { IH5PContentType, Library } from "h5p-types";
 import { H5P } from "h5p-utils";
 import React, { useEffect, useRef, useState } from "react";
 import { useContentId } from "use-h5p";
@@ -67,7 +67,11 @@ export const Words: React.FC<WordsProps> = ({
 
         return H5P.newRunnable(
           {
-            library: getLibraryName(topicViewLibrary),
+            library: getLibraryName({
+              machineName: content.machine_name,
+              majorVersion: content.major_version,
+              minorVersion: content.minor_version,
+            } as Library),
             params,
           },
           content.content_id,

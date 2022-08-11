@@ -1529,7 +1529,7 @@ function h5p_embed($nid = NULL) {
  */
 function h5p_preprocess_html(&$variables) {
   $integration = h5p_add_files_and_settings(NULL, NULL);
-  $res = db_query("SELECT h5p_nodes.*, h5p_libraries.library_id, h5p_libraries.machine_name  from h5p_nodes join h5p_libraries on h5p_nodes.main_library_id = h5p_libraries.library_id");
+  $res = db_query("SELECT h5p_nodes.*, h5p_libraries.library_id, h5p_libraries.machine_name, h5p_libraries.major_version, h5p_libraries.minor_version, h5p_libraries.title from h5p_nodes join h5p_libraries on h5p_nodes.main_library_id = h5p_libraries.library_id");
   $res = $res->fetchAll();
   if ($integration) {
     drupal_add_js('H5PIntegration = ' . json_encode($integration) . ';' , 'inline');
