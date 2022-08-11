@@ -43,7 +43,10 @@ export class H5PWrapper
           <ContentIdContext.Provider value={this.contentId}>
             <QueryClientProvider client={queryClient}>
               <App
-                imagePath={H5P.getPath(topicImage.path.replace("#tmp",""), this.contentId)}
+                imagePath={H5P.getPath(
+                  topicImage.path.replace("#tmp", ""),
+                  this.contentId,
+                )}
                 aspectRatio={(topicImage.width ?? 1) / (topicImage.height ?? 1)}
                 params={this.params}
               />

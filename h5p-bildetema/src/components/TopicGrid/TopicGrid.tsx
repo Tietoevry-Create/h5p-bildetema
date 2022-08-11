@@ -63,7 +63,13 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   }
 
   if (words) {
-    return <Words words={words} topic={currentTopic} showWrittenWords={showWrittenWords} />;
+    return (
+      <Words
+        words={words}
+        topic={currentTopic}
+        showWrittenWords={showWrittenWords}
+      />
+    );
   }
 
   return <h1>No topics</h1>;

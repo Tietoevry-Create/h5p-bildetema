@@ -87,7 +87,11 @@ export const RouteController: React.FC<RouteControllerProps> = ({
     const subTopic = findTopic(subTopics, language, subTopicId);
 
     setTopicIds({ topicId: topic.id, subTopicId: subTopic?.id });
-    return { words: subTopic?.words.get(language.code), language, currentTopic:{topicId: topic?.id, subTopicId: subTopic?.id} };
+    return {
+      words: subTopic?.words.get(language.code),
+      language,
+      currentTopic: { topicId: topic?.id, subTopicId: subTopic?.id },
+    };
   };
 
   const handleRoute = (): JSX.Element => {

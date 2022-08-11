@@ -12,7 +12,11 @@ type WordsProps = {
   showWrittenWords: boolean;
 };
 
-export const Words: React.FC<WordsProps> = ({ words, topic, showWrittenWords }) => {
+export const Words: React.FC<WordsProps> = ({
+  words,
+  topic,
+  showWrittenWords,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
@@ -31,25 +35,27 @@ export const Words: React.FC<WordsProps> = ({ words, topic, showWrittenWords }) 
       return;
     }
 
-    const getViewInstance = ():IH5PContentType => {
-      const existingContent = (H5PAllContents as any).filter((c:any) => {
-        const params = JSON.parse(c.json_content);
-        
+    const getViewInstance = (): IH5PContentType => {
+      const existingContent = (H5PAllContents as any).filter((c: any) => {
+        const params = JSON.parse(c.json_content);        
         return topic && params.selectedTopic && params.selectedTopic.topicId === topic?.topicId && params.selectedTopic.subTopicId === topic?.subTopicId;
       })
+
       if (existingContent && existingContent.length > 0) {
         const content = existingContent[0];
         const params = JSON.parse(content.json_content);
-        return H5P.newRunnable({
-          library: "H5P.BildetemaTopicImageView 1.0",
-          params,
-        },
-        content.content_id,
-        H5P.jQuery(ref.current),
-      );
-          
-      //    content.content_id, ref.current, params);
+        return H5P.newRunnable(
+          {
+            library: "H5P.BildetemaTopicImageView 1.0",
+            params,
+          },
+          content.content_id,
+          H5P.jQuery(ref.current),
+        );
+
+        //    content.content_id, ref.current, params);
       }
+
       return H5P.newRunnable(
         {
           library: `${gridViewLibrary.machineName} ${gridViewLibrary.majorVersion}.${gridViewLibrary.minorVersion}`,
@@ -63,9 +69,7 @@ export const Words: React.FC<WordsProps> = ({ words, topic, showWrittenWords }) 
       );
     };
 
-    setGridViewInstance(
-      getViewInstance(),
-    );
+    setGridViewInstance(getViewInstance());
 
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
     // eslint-disable-next-line react-hooks/exhaustive-deps
