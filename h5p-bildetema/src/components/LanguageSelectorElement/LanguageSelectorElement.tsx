@@ -28,6 +28,10 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     !!favLanguages.find(favLang => favLang.code === language.code),
   );
 
+  const [isDisabled, setDisabled] = React.useState(
+    favLanguages.length < 2 && isChecked,
+  );
+
   const toggleFavorite = (): void => {
     setIsChecked(prev => {
       handleToggleFavoriteLanguage(language, !prev);
@@ -35,11 +39,16 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     });
   };
 
+  React.useEffect(() => {
+    setDisabled(favLanguages.length < 2 && isChecked);
+  }, [isChecked, setDisabled, favLanguages]);
+
   return (
     <button
       className={`${middleElement ? styles.languageMiddle : styles.language}`}
       type="button"
       onClick={toggleFavorite}
+      disabled={isDisabled}
     >
       <div className={styles.checkboxContainer}>
         <label htmlFor={language.code} className={styles.checkbox}>
@@ -50,6 +59,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
             id={language.code}
             tabIndex={-1}
             onChange={toggleFavorite}
+            disabled={isDisabled}
           />
           <span className={styles.checkmark} />
         </label>

@@ -1,5 +1,4 @@
 @use "../../../../common/abstracts" as *;
-
 .language,
 .languageMiddle {
   all: unset;
@@ -18,6 +17,11 @@
   &:hover,
   &:focus {
     background: $beige;
+  }
+  &:disabled {
+    color: $checkbox-disabled-color;
+    pointer-events: none;
+    user-select: none;
   }
 }
 
@@ -52,20 +56,30 @@
   background-color: $checkmark-color;
   border-radius: 5px;
   box-shadow: 0 0 0 3px $checkbox-color inset;
+
+  .language:disabled &,
+  .languageMiddle:disabled & {
+    box-shadow: 0 0 0 3px $checkbox-disabled-color inset;
+  }
 }
 
 .checkbox input:checked ~ .checkmark {
   background-color: $checkbox-color;
+
+  &::after {
+    display: block;
+  }
+
+  .language:disabled &,
+  .languageMiddle:disabled & {
+    background-color: $checkbox-disabled-color;
+  }
 }
 
-.checkmark:after {
+.checkmark::after {
   content: "";
   position: absolute;
   display: none;
-}
-
-.checkbox input:checked ~ .checkmark:after {
-  display: block;
 }
 
 .checkbox .checkmark:after {
