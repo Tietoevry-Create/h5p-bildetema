@@ -1,5 +1,10 @@
-import type { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
-import { H5PFieldType } from "../../common/types/H5PFieldType";
+import {
+  H5PBehaviour,
+  H5PField,
+  H5PFieldText,
+  H5PL10n,
+  H5PFieldType,
+} from "h5p-types";
 import { languages } from "./constants/languages";
 
 const lang = (
