@@ -1,10 +1,4 @@
-import {
-  H5PBehaviour,
-  H5PField,
-  H5PFieldText,
-  H5PL10n,
-  H5PFieldType,
-} from "h5p-types";
+import { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
 import { languages } from "./constants/languages";
 
 const lang = (
@@ -40,13 +34,13 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Play audio",
         name: "playAudio",
         default: "Play audio",
-        type: H5PFieldType.Text,
+        type: "text",
       },
       {
         label: "Pause audio",
         name: "pauseAudio",
         default: "Pause audio",
-        type: H5PFieldType.Text,
+        type: "text",
       },
       {
         label: "Footer contact info label",

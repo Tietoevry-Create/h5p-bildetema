@@ -27,6 +27,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "h5p-types": "^1.0.5",
     "h5p-utils": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

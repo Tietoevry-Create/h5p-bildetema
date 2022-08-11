@@ -15,14 +15,6 @@ const Template: ComponentStory<typeof TopicImageContainer> = args => (
 
 export const ImageContainer = Template.bind({});
 ImageContainer.args = {
-  topic: {
-    id: "1",
-    label: "Bildetema",
-    images: [{ src: "" }],
-    labelTranslations: new Map(),
-    subTopics: new Map(),
-    words: new Map(),
-  },
   aspectRatio: 1,
   topicImage: cat,
   topicOverlays: overlays,

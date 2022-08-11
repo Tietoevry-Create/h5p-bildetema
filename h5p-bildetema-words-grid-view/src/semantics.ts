@@ -1,10 +1,10 @@
-import { H5PBehaviour, H5PField, H5PFieldType, H5PL10n } from "h5p-types";
+import { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
 
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
     label: "Words",
     name: "words",
-    type: H5PFieldType.List,
+    type: "list",
     entity: "Word",
     importance: "low",
     widget: "none",
@@ -12,28 +12,28 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       label: "Item",
       name: "wordItems",
       importance: "low",
-      type: H5PFieldType.Group,
+      type: "group",
       fields: [
         {
           label: "Word",
           name: "label",
-          type: H5PFieldType.Text,
+          type: "text",
         },
         {
           label: "Images",
           name: "images",
-          type: H5PFieldType.List,
+          type: "list",
           entity: "Image",
           field: {
             label: "Image URL",
             name: "imageUrl",
-            type: H5PFieldType.Text,
+            type: "text",
           },
         },
         {
           label: "Audio URL",
           name: "audio",
-          type: H5PFieldType.Text,
+          type: "text",
         },
       ],
     },
