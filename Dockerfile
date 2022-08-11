@@ -22,6 +22,7 @@ FROM kentis123/drupal-h5p:drupal-7
 
 COPY --from=builder /dev-h5p sites/default/files/h5p/development
 COPY --from=builder /dev-h5p/docker-php-entrypoint /usr/local/bin/docker-php-entrypoint
+COPY h5p-patches/h5p.module /var/www/html/sites/all/modules/h5p/h5p.module
 RUN chmod +x /usr/local/bin/docker-php-entrypoint
 
 RUN ./vendor/bin/drush vset theme_default seven
