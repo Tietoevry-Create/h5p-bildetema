@@ -36,7 +36,7 @@ export const Words: React.FC<WordsProps> = ({
     }
 
     const getViewInstance = (rootElement:HTMLDivElement): IH5PContentType => {
-      const existingContent = (H5PAllContents as any).filter((c: any) => {
+      const existingContent = ((window as any).H5PAllContents as any).filter((c: any) => {
         const params = JSON.parse(c.json_content);
         return (
           topic &&
@@ -74,9 +74,7 @@ export const Words: React.FC<WordsProps> = ({
       );
     };
 
-    if(ref.current) {
-      setGridViewInstance(getViewInstance(ref.current));
-    }
+    setGridViewInstance(getViewInstance(ref.current));
 
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,7 +88,7 @@ export const Words: React.FC<WordsProps> = ({
 
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [words, showWrittenWords]);
+  }, [words, showWrittenWords, gridViewInstance]);
 
   return <div ref={ref} />;
 };
