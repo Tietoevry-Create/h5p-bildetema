@@ -7,7 +7,7 @@ import { Word } from "../../../common/types/types";
 import App from "../App";
 import { TranslationKey } from "../types/TranslationKey";
 
-type Params = {
+export type Params = {
   words?: Word[];
   showWrittenWords?: boolean;
   l10n: Record<TranslationKey, string>;

@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.0.10",
-    "h5p-utils": "2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -49,7 +48,6 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "h5p-generate-configs": "^0.3.0",
-    "h5p-types": "^1.0.5",
     "happy-dom": "^6.0.4",
     "prettier": "^2.7.1",
     "sass": "^1.54.3",
