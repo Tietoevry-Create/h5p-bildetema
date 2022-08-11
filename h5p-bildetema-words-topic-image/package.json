@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.0.10",
+    "h5p-utils": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "use-h5p": "^1.1.2"
