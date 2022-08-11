@@ -37,9 +37,14 @@ export const Words: React.FC<WordsProps> = ({
 
     const getViewInstance = (): IH5PContentType => {
       const existingContent = (H5PAllContents as any).filter((c: any) => {
-        const params = JSON.parse(c.json_content);        
-        return topic && params.selectedTopic && params.selectedTopic.topicId === topic?.topicId && params.selectedTopic.subTopicId === topic?.subTopicId;
-      })
+        const params = JSON.parse(c.json_content);
+        return (
+          topic &&
+          params.selectedTopic &&
+          params.selectedTopic.topicId === topic?.topicId &&
+          params.selectedTopic.subTopicId === topic?.subTopicId
+        );
+      });
 
       if (existingContent && existingContent.length > 0) {
         const content = existingContent[0];
