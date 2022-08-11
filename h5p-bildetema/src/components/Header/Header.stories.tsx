@@ -39,7 +39,3 @@ const Template = (): JSX.Element => {
 export const Default = (): JSX.Element => {
   return Template();
 };
-
-export const isWordView = (): JSX.Element => {
-  return Template();
-};
