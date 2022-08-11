@@ -1,0 +1,52 @@
+{
+  "semantics": [
+    {
+      "label": "Bildetema Words Grid View Words",
+      "fields": [
+        {
+          "label": "Words",
+          "entity": "Word",
+          "field": {
+            "label": "Item",
+            "fields": [
+              {
+                "label": "Word"
+              },
+              {
+                "label": "Images",
+                "entity": "Image",
+                "field": {
+                  "label": "Image URL"
+                }
+              },
+              {
+                "label": "Audio URL"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Behavioral settings",
+      "fields": []
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Play audio",
+          "default": "Play audio"
+        },
+        {
+          "label": "Pause audio",
+          "default": "Pause audio"
+        }
+      ]
+    },
+    {
+      "label": "Show written words",
+      "default": true
+    }
+  ]
+}

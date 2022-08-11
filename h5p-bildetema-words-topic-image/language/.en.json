@@ -1,0 +1,94 @@
+{
+  "semantics": [
+    {
+      "label": "Image"
+    },
+    {
+      "label": "Selected topic",
+      "fields": [
+        {
+          "label": "Topic id"
+        },
+        {
+          "label": "Sub topic id"
+        }
+      ]
+    },
+    {
+      "label": "Hotspots",
+      "entity": "Hotspot",
+      "field": {
+        "label": "Hotspot",
+        "fields": [
+          {
+            "label": "Points",
+            "entity": "Point",
+            "field": {
+              "label": "Point",
+              "fields": [
+                {
+                  "label": "X"
+                },
+                {
+                  "label": "Y"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Word",
+            "fields": [
+              {
+                "label": "Id"
+              },
+              {
+                "label": "Label"
+              },
+              {
+                "label": "Images",
+                "entity": "Image",
+                "field": {
+                  "label": "Image",
+                  "fields": [
+                    {
+                      "label": "Src"
+                    },
+                    {
+                      "label": "Src sets",
+                      "entity": "Src set",
+                      "field": {
+                        "label": "Src set",
+                        "fields": [
+                          {
+                            "label": "Src"
+                          },
+                          {
+                            "label": "Width"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Behavioral settings",
+      "fields": []
+    },
+    {
+      "common": true,
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "No topic selected",
+          "default": "No topic selected."
+        }
+      ]
+    }
+  ]
+}
