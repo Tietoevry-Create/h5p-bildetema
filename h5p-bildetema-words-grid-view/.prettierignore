@@ -3,3 +3,4 @@ src/types/TranslationKey.ts
 storybook-static
 **/storybook-static
 coverage/tmp/*.json
+language
