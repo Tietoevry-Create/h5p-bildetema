@@ -35,7 +35,7 @@ export const Words: React.FC<WordsProps> = ({
       return;
     }
 
-    const getViewInstance = (): IH5PContentType => {
+    const getViewInstance = (rootElement:HTMLDivElement): IH5PContentType => {
       const existingContent = (H5PAllContents as any).filter((c: any) => {
         const params = JSON.parse(c.json_content);
         return (
@@ -55,7 +55,7 @@ export const Words: React.FC<WordsProps> = ({
             params,
           },
           content.content_id,
-          H5P.jQuery(ref.current),
+          H5P.jQuery(rootElement),
         );
 
         //    content.content_id, ref.current, params);
@@ -70,15 +70,17 @@ export const Words: React.FC<WordsProps> = ({
           },
         },
         contentId,
-        H5P.jQuery(ref.current),
+        H5P.jQuery(rootElement),
       );
     };
 
-    setGridViewInstance(getViewInstance());
+    if(ref.current) {
+      setGridViewInstance(getViewInstance(ref.current));
+    }
 
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contentId]);
+  }, [contentId, ref.current]);
 
   useEffect(() => {
     gridViewInstance?.trigger("change-params", {
