@@ -5,7 +5,6 @@ import {
   TopicImageWordList,
   TopicImageWordListProps,
 } from "./TopicImageWordList";
-import { TopicImageTypes } from "../../types/TopicImageTypes";
 
 const baseWord = {
   id: "1",
