@@ -24,6 +24,7 @@ export type TopicsAndWords = {
   topics?: Topic[];
   words?: Word[];
   language?: Language;
+  currentTopic?: TopicIds;
 };
 
 export const RouteController: React.FC<RouteControllerProps> = ({
@@ -86,11 +87,15 @@ export const RouteController: React.FC<RouteControllerProps> = ({
     const subTopic = findTopic(subTopics, language, subTopicId);
 
     setTopicIds({ topicId: topic.id, subTopicId: subTopic?.id });
-    return { words: subTopic?.words.get(language.code), language };
+    return {
+      words: subTopic?.words.get(language.code),
+      language,
+      currentTopic: { topicId: topic?.id, subTopicId: subTopic?.id },
+    };
   };
 
   const handleRoute = (): JSX.Element => {
-    const { words, topics, language } = validRoute();
+    const { words, topics, language, currentTopic } = validRoute();
     if ((words && language) || (topics && language)) {
       return (
         <TopicGrid
@@ -100,6 +105,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
           currentLanguage={language}
           showWrittenWords={showWrittenWords}
           setIsWordView={setIsWordView}
+          currentTopic={currentTopic}
         />
       );
     }

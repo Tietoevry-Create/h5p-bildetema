@@ -34,6 +34,11 @@ export enum TopicGridSizes {
   Compact,
 }
 
+export type TopicIdentifier = {
+  topicId: string;
+  subTopicId?: string;
+};
+
 export type UserData = {
   currentLanguage: Language;
   favoriteLanguages: Language[];
