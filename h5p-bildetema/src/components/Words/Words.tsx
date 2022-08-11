@@ -37,10 +37,8 @@ export const Words: React.FC<WordsProps> = ({ words, topic, showWrittenWords }) 
         
         return topic && params.selectedTopic && params.selectedTopic.topicId === topic?.topicId && params.selectedTopic.subTopicId === topic?.subTopicId;
       })
-      console.info(existingContent);
       if (existingContent && existingContent.length > 0) {
         const content = existingContent[0];
-        console.info("Found existing content", content);
         const params = JSON.parse(content.json_content);
         return H5P.newRunnable({
           library: "H5P.BildetemaTopicImageView 1.0",
@@ -52,7 +50,6 @@ export const Words: React.FC<WordsProps> = ({ words, topic, showWrittenWords }) 
           
       //    content.content_id, ref.current, params);
       }
-      console.info("no existing content found, using default library",`${gridViewLibrary.machineName} ${gridViewLibrary.majorVersion}.${gridViewLibrary.minorVersion}`, words);
       return H5P.newRunnable(
         {
           library: `${gridViewLibrary.machineName} ${gridViewLibrary.majorVersion}.${gridViewLibrary.minorVersion}`,
