@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
-import { TopicGridSizes } from "../../../../common/types/types";
 import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
@@ -9,9 +8,7 @@ export default {
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-const Template = (isWordView: boolean): JSX.Element => {
-  const [checked, setChecked] = React.useState(true);
-  const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
+const Template = (): JSX.Element => {
   const languages = [
     {
       label: "Norsk (Bokmål)",
@@ -32,13 +29,6 @@ const Template = (isWordView: boolean): JSX.Element => {
   return (
     <Header
       topicIds={{}}
-      setTopicsSize={setTopicsSize}
-      topicsSize={topicSize}
-      isWordView={isWordView}
-      handleToggleChange={(value: boolean) => {
-        setChecked(value);
-      }}
-      toggleChecked={checked}
       languagesFromDB={languages}
       favLanguages={languages}
       handleToggleFavoriteLanguage={() => null}
@@ -47,9 +37,9 @@ const Template = (isWordView: boolean): JSX.Element => {
 };
 
 export const Default = (): JSX.Element => {
-  return Template(false);
+  return Template();
 };
 
 export const isWordView = (): JSX.Element => {
-  return Template(true);
+  return Template();
 };
