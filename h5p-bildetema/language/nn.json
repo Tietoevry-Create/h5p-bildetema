@@ -5,7 +5,7 @@
       "fields": [
         {
           "label": "Page is loading",
-          "default": "Loading… KENT INGE 2"
+          "default": "Loading…"
         },
         {
           "label": "Show written words label",

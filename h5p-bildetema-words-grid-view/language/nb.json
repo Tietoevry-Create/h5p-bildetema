@@ -1,0 +1,52 @@
+{
+  "semantics": [
+    {
+      "label": "Bildetema - Bilder i rutenett",
+      "fields": [
+        {
+          "label": "Ord",
+          "entity": "Ord",
+          "field": {
+            "label": "Ord",
+            "fields": [
+              {
+                "label": "Ord"
+              },
+              {
+                "label": "Bilder",
+                "entity": "Bilde",
+                "field": {
+                  "label": "Bilde-URL"
+                }
+              },
+              {
+                "label": "Lyd-URL"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Innstillinger for oppførsel",
+      "fields": []
+    },
+    {
+      "label": "Oversettelser",
+      "fields": [
+        {
+          "label": "Spill av lyd",
+          "default": "Spill av lyd"
+        },
+        {
+          "label": "Sett lyd på pause",
+          "default": "Sett lyd på pause"
+        }
+      ]
+    },
+    {
+      "label": "Vis ord",
+      "default": true
+    }
+  ]
+}

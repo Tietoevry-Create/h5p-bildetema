@@ -2,7 +2,6 @@
 **/storybook-static
 **/dist
 TranslationKey.ts
-language
 semantics.json
 library.json
 storybook-static

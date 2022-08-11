@@ -1,0 +1,94 @@
+{
+  "semantics": [
+    {
+      "label": "Bilde"
+    },
+    {
+      "label": "Valgt tema",
+      "fields": [
+        {
+          "label": "Tema-id"
+        },
+        {
+          "label": "Undertema-id"
+        }
+      ]
+    },
+    {
+      "label": "Aktive felt",
+      "entity": "Aktivt felt",
+      "field": {
+        "label": "Aktivt felt",
+        "fields": [
+          {
+            "label": "Punkter",
+            "entity": "Punkt",
+            "field": {
+              "label": "Punkt",
+              "fields": [
+                {
+                  "label": "X-koordinat"
+                },
+                {
+                  "label": "Y-koordinat"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Ord",
+            "fields": [
+              {
+                "label": "Id"
+              },
+              {
+                "label": "Ord"
+              },
+              {
+                "label": "Bilder",
+                "entity": "Bilde",
+                "field": {
+                  "label": "Bilde",
+                  "fields": [
+                    {
+                      "label": "URL"
+                    },
+                    {
+                      "label": "URL-sett",
+                      "entity": "URL-sett",
+                      "field": {
+                        "label": "URL-sett",
+                        "fields": [
+                          {
+                            "label": "URL"
+                          },
+                          {
+                            "label": "Bredde"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Innstillinger for oppførsel",
+      "fields": []
+    },
+    {
+      "common": true,
+      "label": "Oversettelser",
+      "fields": [
+        {
+          "label": "Ingen tema er valgt",
+          "default": "Ingen tema er valgt."
+        }
+      ]
+    }
+  ]
+}
