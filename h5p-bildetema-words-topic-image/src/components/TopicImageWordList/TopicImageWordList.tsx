@@ -5,17 +5,25 @@ import styles from "./TopicImageWordList.module.scss";
 export type TopicImageWordListProps = {
   words: Word[];
   currentWordId: string | undefined;
+  hoveredWord: (word: string) => void;
 };
 
 export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
   words,
   currentWordId,
+  hoveredWord,
 }) => {
   return (
     <div className={styles.topicImageWordList}>
       {words?.map((word: Word) => (
         <div className="topic-image-word-list-item" key={word.id}>
-          <div className={word.id === currentWordId ? styles.selected : ""}>
+          <div
+            className={`${styles.label} ${
+              word.id === currentWordId ? styles.selected : ""
+            }`}
+            onMouseEnter={() => hoveredWord(word.id)}
+            onMouseLeave={() => hoveredWord("")}
+          >
             {word.label}
           </div>
         </div>
