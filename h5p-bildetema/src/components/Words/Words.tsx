@@ -36,7 +36,7 @@ export const Words: React.FC<WordsProps> = ({
     }
 
     const getViewInstance = (rootElement: HTMLDivElement): IH5PContentType => {
-      const existingContent = ((window as any).H5PAllContents as any).filter(
+      const existingContent = ((window as any).H5PAllContents as any)?.filter(
         (c: any) => {
           const params = JSON.parse(c.json_content);
           return (
