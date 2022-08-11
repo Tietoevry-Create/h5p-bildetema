@@ -1,47 +1,40 @@
 [
   {
-    "label": "Bildetema Words Grid View Words",
+    "label": "Words",
     "name": "words",
-    "type": "group",
-    "importance": "high",
-    "fields": [
-      {
-        "label": "Words",
-        "name": "words",
-        "type": "list",
-        "entity": "Word",
-        "importance": "low",
-        "field": {
-          "label": "Item",
-          "name": "wordItems",
-          "importance": "low",
-          "type": "group",
-          "fields": [
-            {
-              "label": "Word",
-              "name": "label",
-              "type": "text"
-            },
-            {
-              "label": "Images",
-              "name": "images",
-              "type": "list",
-              "entity": "Image",
-              "field": {
-                "label": "Image URL",
-                "name": "imageUrl",
-                "type": "text"
-              }
-            },
-            {
-              "label": "Audio URL",
-              "name": "audio",
-              "type": "text"
-            }
-          ]
+    "type": "list",
+    "entity": "Word",
+    "importance": "low",
+    "widget": "none",
+    "field": {
+      "label": "Item",
+      "name": "wordItems",
+      "importance": "low",
+      "type": "group",
+      "fields": [
+        {
+          "label": "Word",
+          "name": "label",
+          "type": "text"
+        },
+        {
+          "label": "Images",
+          "name": "images",
+          "type": "list",
+          "entity": "Image",
+          "field": {
+            "label": "Image URL",
+            "name": "imageUrl",
+            "type": "text"
+          }
+        },
+        {
+          "label": "Audio URL",
+          "name": "audio",
+          "type": "text"
         }
-      }
-    ]
+      ]
+    }
   },
   {
     "name": "behaviour",
