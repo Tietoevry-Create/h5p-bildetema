@@ -14,6 +14,7 @@ import { Footer } from "../Footer/Footer";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import styles from "./Bildetema.module.scss";
+import { SubHeader } from "../SubHeader/SubHeader";
 
 export const defaultFavoriteLanguages: Language[] = [
   {
@@ -127,15 +128,17 @@ export const Bildetema: React.FC = () => {
       <div className={styles.container}>
         <Header
           topicIds={topicIds}
+          languagesFromDB={languagesFromDB}
+          favLanguages={favLanguages}
+          topicsFromDB={topicsFromDB}
+          handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+        />
+        <SubHeader
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
           isWordView={isWordView}
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
-          languagesFromDB={languagesFromDB}
-          favLanguages={favLanguages}
-          topicsFromDB={topicsFromDB}
-          handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
         <div className={styles.body}>
           {isLoadingTopics || isLoadingLanguages ? (

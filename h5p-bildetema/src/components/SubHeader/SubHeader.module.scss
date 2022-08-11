@@ -1,0 +1,15 @@
+@use "../../../../common/abstracts" as *;
+
+.subHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 2.5rem;
+  margin: $main-content-margin;
+  max-width: $main-content-max-width;
+  width: $main-content-width;
+}
+
+.toggle {
+  font-size: 1.2rem;
+}
