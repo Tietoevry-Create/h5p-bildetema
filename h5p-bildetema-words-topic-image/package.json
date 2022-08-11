@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.0.10",
-    "h5p-utils": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "use-h5p": "^1.1.2"
@@ -46,7 +45,6 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
     "h5p-generate-configs": "^0.3.0",
-    "h5p-types": "^1.0.5",
     "happy-dom": "^6.0.4",
     "sass": "^1.54.3",
     "ts-node": "^10.9.1",

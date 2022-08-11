@@ -68,6 +68,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
         words={words}
         topic={currentTopic}
         showWrittenWords={showWrittenWords}
+        currentLanguage={currentLanguage.code}
       />
     );
   }

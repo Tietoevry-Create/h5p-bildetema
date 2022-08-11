@@ -13,6 +13,7 @@
     "docker:run-no-logs": "npm run docker:run -- -d"
   },
   "dependencies": {
+    "h5p-types": "^1.0.5",
     "h5p-utils": "^2.1.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.7/xlsx-0.18.7.tgz"
   },
@@ -30,7 +31,6 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.4",
-    "h5p-types": "^1.0.5",
     "prettier": "^2.7.1",
     "puppeteer": "^16.1.0",
     "rollup": "^2.77.2",
