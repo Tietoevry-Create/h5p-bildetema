@@ -109,6 +109,8 @@ export const Bildetema: React.FC = () => {
                 topicsSize={topicsSize}
                 showWrittenWords={showWrittenWords}
                 setTopicIds={setTopicIds}
+                addFavoriteLanguage={handleToggleFavoriteLanguage}
+                favLanguages={favLanguages}
               />
             }
           />
