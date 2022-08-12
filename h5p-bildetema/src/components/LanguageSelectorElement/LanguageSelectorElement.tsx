@@ -24,10 +24,15 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
 
-  const isDisabled = currentLanguageCode === language.code;
   const isChecked = !!favLanguages.find(
     favLang => favLang.code === language.code,
   );
+
+  // Disable if currentLanguage.
+  // Disable if it is the last element in favLanguages. This occurs when the currentLangaugeCode does not exist.
+  const isDisabled =
+    currentLanguageCode === language.code ||
+    (isChecked && favLanguages.length < 2);
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
 

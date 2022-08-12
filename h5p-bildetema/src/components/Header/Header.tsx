@@ -63,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
               return (
                 <Link
                   key={language.code}
-                  to={getLanguagePath(topicsFromDB, language, topicIds, search)}
+                  to={getLanguagePath(language, topicIds, search, topicsFromDB)}
                   className={`${styles.languageButton} ${
                     currentLanguageCode === language.code
                       ? styles.languageButton_active

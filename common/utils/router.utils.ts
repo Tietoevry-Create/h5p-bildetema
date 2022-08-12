@@ -2,10 +2,10 @@ import { Language, Topic, TopicIds } from "../types/types";
 import { labelToUrlComponent } from "./string.utils";
 
 export const getLanguagePath = (
-  topicsFromDB?: Topic[],
   language: Language,
   { topicId, subTopicId }: TopicIds,
   search: string,
+  topicsFromDB?: Topic[],
 ): string => {
   if (!topicId) return `/${language.code}${search}`;
 
