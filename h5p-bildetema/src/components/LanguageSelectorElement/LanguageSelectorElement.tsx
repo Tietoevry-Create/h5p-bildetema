@@ -29,7 +29,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   );
 
   // Disable if currentLanguage.
-  // Disable if it is the last element in favLanguages. This occurs when the currentLangaugeCode does not exist.
+  // Disable if it is the last element in favLanguages. This occurs when the currentLangaugeCode does not exist, for instance if the user tries to change the language code in the URL themselves.
   const isDisabled =
     currentLanguageCode === language.code ||
     (isChecked && favLanguages.length < 2);
