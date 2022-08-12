@@ -22,9 +22,14 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
   words,
 }) => {
   const [currentWord, setCurrentWord] = React.useState("");
+  const [hoveredWord, setHoveredWord] = React.useState("");
 
   const selectWord = (word: string): void => {
     setCurrentWord(word);
+  };
+
+  const selectHoveredWord = (word: string): void => {
+    setHoveredWord(word);
   };
 
   if (
@@ -33,14 +38,19 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
   ) {
     return (
       <div className={styles.wrapper}>
+        <TopicImageWordList
+          words={words}
+          currentWordId={currentWord}
+          hoveredWord={selectHoveredWord}
+        />
         <TopicImageSVG
           image={topicImage}
           aspectRatio={aspectRatio}
           overlays={topicOverlays}
           selectWord={selectWord}
           topicImageType={topicImageType}
+          hoveredWord={hoveredWord}
         />
-        <TopicImageWordList words={words} currentWordId={currentWord} />
       </div>
     );
   }

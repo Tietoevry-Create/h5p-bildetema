@@ -19,7 +19,11 @@ describe(TopicImageWordList.name, () => {
     currentWordId,
   }: TopicImageWordListProps): HTMLElement => {
     const { container } = render(
-      <TopicImageWordList words={words} currentWordId={currentWordId} />,
+      <TopicImageWordList
+        words={words}
+        currentWordId={currentWordId}
+        hoveredWord={() => ""}
+      />,
     );
     return container;
   };
@@ -28,6 +32,7 @@ describe(TopicImageWordList.name, () => {
     const container = template({
       currentWordId: undefined,
       words: [],
+      hoveredWord: () => "",
     });
 
     expect(container.querySelector("div")).toBeTruthy();
@@ -38,6 +43,7 @@ describe(TopicImageWordList.name, () => {
     const container = template({
       currentWordId: undefined,
       words: [{ ...baseWord }],
+      hoveredWord: () => "",
     });
     expect(container.querySelector("div")).toBeTruthy();
     expect(container.querySelector("div")?.children.length).toEqual(1);

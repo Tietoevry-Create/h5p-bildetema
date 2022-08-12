@@ -1,3 +1,5 @@
+@use "../../../../common/abstracts" as *;
+
 .overlays {
   position: absolute;
   top: 0;
@@ -8,6 +10,27 @@
 
 .overlay {
   pointer-events: all;
+
+  polygon,
+  circle {
+    cursor: pointer;
+    fill: none;
+    stroke: none;
+  }
+
+  circle {
+    stroke-width: 0.3;
+  }
+
+  polygon:hover,
+  polygon:focus,
+  circle:hover,
+  circle:focus,
+  &_active polygon,
+  &_active circle {
+    fill: $orange-overlay !important;
+    stroke: $orange !important;
+  }
 }
 
 .imageContainer {
