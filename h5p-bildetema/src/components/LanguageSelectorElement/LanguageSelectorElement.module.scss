@@ -18,10 +18,15 @@
   &:focus {
     background: $beige;
   }
-  &:disabled {
+  &.disabled {
     color: $checkbox-disabled-color;
     pointer-events: none;
     user-select: none;
+  }
+
+  &:focus-within {
+    background: $beige;
+    text-decoration-line: underline;
   }
 }
 
@@ -57,8 +62,8 @@
   border-radius: 5px;
   box-shadow: 0 0 0 3px $checkbox-color inset;
 
-  .language:disabled &,
-  .languageMiddle:disabled & {
+  .language.disabled &,
+  .languageMiddle.disabled & {
     box-shadow: 0 0 0 3px $checkbox-disabled-color inset;
   }
 }
@@ -70,8 +75,8 @@
     display: block;
   }
 
-  .language:disabled &,
-  .languageMiddle:disabled & {
+  .language.disabled &,
+  .languageMiddle.disabled & {
     background-color: $checkbox-disabled-color;
   }
 }

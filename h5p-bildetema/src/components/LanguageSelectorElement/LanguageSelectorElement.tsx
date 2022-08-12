@@ -7,6 +7,7 @@ import styles from "./LanguageSelectorElement.module.scss";
 
 type LanguageSelectorElement = {
   language: Language;
+  currentLanguageCode: string;
   middleElement: boolean;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
@@ -14,6 +15,7 @@ type LanguageSelectorElement = {
 
 export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   language,
+  currentLanguageCode,
   middleElement,
   favLanguages,
   handleToggleFavoriteLanguage,
@@ -22,52 +24,46 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
 
+  const isChecked = !!favLanguages.find(
+    favLang => favLang.code === language.code,
+  );
+
+  // Disable if currentLanguage.
+  // Disable if it is the last element in favLanguages. This occurs when the currentLangaugeCode does not exist, for instance if the user tries to change the language code in the URL themselves.
+  const isDisabled =
+    currentLanguageCode === language.code ||
+    (isChecked && favLanguages.length < 2);
+
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
-  const [isChecked, setIsChecked] = React.useState(
-    !!favLanguages.find(favLang => favLang.code === language.code),
-  );
-
-  const [isDisabled, setDisabled] = React.useState(
-    favLanguages.length < 2 && isChecked,
-  );
-
   const toggleFavorite = (): void => {
-    setIsChecked(prev => {
-      handleToggleFavoriteLanguage(language, !prev);
-      return !prev;
-    });
+    handleToggleFavoriteLanguage(language, !isChecked);
   };
 
-  React.useEffect(() => {
-    setDisabled(favLanguages.length < 2 && isChecked);
-  }, [isChecked, setDisabled, favLanguages]);
-
   return (
-    <button
-      className={`${middleElement ? styles.languageMiddle : styles.language}`}
-      type="button"
-      onClick={toggleFavorite}
-      disabled={isDisabled}
+    <label
+      htmlFor={language.code}
+      className={`${middleElement ? styles.languageMiddle : styles.language} ${
+        isDisabled ? styles.disabled : ""
+      }`}
     >
       <div className={styles.checkboxContainer}>
-        <label htmlFor={language.code} className={styles.checkbox}>
+        <div className={styles.checkbox}>
           <input
             className={styles.visuallyHidden}
             type="checkbox"
-            checked={isChecked}
+            defaultChecked={isChecked}
             id={language.code}
-            tabIndex={-1}
-            onChange={toggleFavorite}
+            onClick={toggleFavorite}
             disabled={isDisabled}
           />
           <span className={styles.checkmark} />
-        </label>
+        </div>
       </div>
       <div className={styles.languageLabel}>
         <span>{translations[`lang_${language.code as AllowedLanguage}`]}</span>
         <span>{languagesOriginal[language.code as AllowedLanguage]}</span>
       </div>
-    </button>
+    </label>
   );
 };

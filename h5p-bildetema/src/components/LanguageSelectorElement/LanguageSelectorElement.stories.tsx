@@ -29,6 +29,7 @@ const Template = (
     <LanguageSelectorElement
       handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
       language={language}
+      currentLanguageCode=""
       middleElement={middleElement}
       favLanguages={favLanguages}
     />

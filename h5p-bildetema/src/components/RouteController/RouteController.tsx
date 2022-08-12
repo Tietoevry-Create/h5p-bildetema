@@ -18,6 +18,8 @@ export type RouteControllerProps = {
   setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
   setTopicIds: React.Dispatch<React.SetStateAction<TopicIds>>;
   topicsSize: TopicGridSizes;
+  favLanguages: Language[];
+  addFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export type TopicsAndWords = {
@@ -34,6 +36,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   setIsWordView,
   topicsSize,
   setTopicIds,
+  addFavoriteLanguage,
+  favLanguages,
 }) => {
   const { langId, topicLabel, subTopicId } = useParams();
 
@@ -63,6 +67,11 @@ export const RouteController: React.FC<RouteControllerProps> = ({
       setTopicIds({});
       return {};
     }
+    const languageIsAlreadyFavorited = favLanguages.find(
+      el => language.code === el.code,
+    );
+
+    if (!languageIsAlreadyFavorited) addFavoriteLanguage(language, true);
 
     if (!topicLabel) {
       setTopicIds({});

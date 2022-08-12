@@ -52,6 +52,7 @@ const defaultArgs: LanguageSelectorProps = {
       rtl: false,
     },
   ],
+  currentLanguageCode: "nob",
   handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
     console.info(fav);
   },
