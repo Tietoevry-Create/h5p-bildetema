@@ -28,7 +28,10 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   const handleAudioEnded = React.useCallback(() => {
     setPlaying(false);
     unSelectWord("");
-  });
+
+    // Do not want or need to trigger unSelectWord each time a word is selected
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     audio?.addEventListener("ended", handleAudioEnded);
@@ -36,9 +39,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
     return () => {
       audio?.removeEventListener("ended", handleAudioEnded);
     };
-    // Do not want or need to trigger unSelectWord each time a word is selected
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audio]);
+  }, [audio, handleAudioEnded]);
 
   useEffect(() => {
     if (currentWordId === word.id && !playing) {
