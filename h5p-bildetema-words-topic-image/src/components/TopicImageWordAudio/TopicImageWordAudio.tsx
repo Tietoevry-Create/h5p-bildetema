@@ -25,15 +25,16 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
     setAudio(new Audio(word.audio));
   }, [word, word.audio]);
 
+  const handleAudioEnded = React.useCallback(() => {
+    setPlaying(false);
+    unSelectWord("");
+  });
+
   useEffect(() => {
-    audio?.addEventListener("ended", () => {
-      setPlaying(false);
-      unSelectWord("");
-    });
+    audio?.addEventListener("ended", handleAudioEnded);
+
     return () => {
-      audio?.removeEventListener("ended", () => {
-        setPlaying(false);
-      });
+      audio?.removeEventListener("ended", handleAudioEnded);
     };
     // Do not want or need to trigger unSelectWord each time a word is selected
     // eslint-disable-next-line react-hooks/exhaustive-deps
