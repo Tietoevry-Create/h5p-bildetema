@@ -35,6 +35,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         setPlaying(false);
       });
     };
+    // Do not want or need to trigger unSelectWord each time a word is selected
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audio]);
 
