@@ -52,7 +52,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
       if (!word) return false;
 
       const { label, id } = word;
-      if (label !== "") return labelToUrlComponent(label) === labelToUrlComponent(topicValue);
+      if (label !== "")
+        return labelToUrlComponent(label) === labelToUrlComponent(topicValue);
 
       return labelToUrlComponent(id) === topicValue;
     });
