@@ -23,6 +23,7 @@ describe(TopicImageWordList.name, () => {
         words={words}
         currentWordId={currentWordId}
         hoveredWord={() => ""}
+        selectWord={() => ""}
       />,
     );
     return container;
@@ -33,6 +34,7 @@ describe(TopicImageWordList.name, () => {
       currentWordId: undefined,
       words: [],
       hoveredWord: () => "",
+      selectWord: () => "",
     });
 
     expect(container.querySelector("div")).toBeTruthy();
@@ -44,6 +46,7 @@ describe(TopicImageWordList.name, () => {
       currentWordId: undefined,
       words: [{ ...baseWord }],
       hoveredWord: () => "",
+      selectWord: () => "",
     });
     expect(container.querySelector("div")).toBeTruthy();
     expect(container.querySelector("div")?.children.length).toEqual(1);
