@@ -23,6 +23,7 @@ export const renderFigure = (points: Array<Point>): string => {
   if (isPolygon) {
     const pointsAttr = points?.map(({ x, y }) => `${x},${y}`).join(" ");
 
+// TODO: Move inline styling to CSS
     return html`<polygon
       points="${pointsAttr}"
       style="fill:none;stroke:none;stroke-width:0.3"
