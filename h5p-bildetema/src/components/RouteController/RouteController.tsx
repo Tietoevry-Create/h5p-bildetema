@@ -67,9 +67,11 @@ export const RouteController: React.FC<RouteControllerProps> = ({
       setTopicIds({});
       return {};
     }
+    const wordIsAlreadyFavorited = favLanguages.find(
+      el => language.code === el.code,
+    );
 
-    if (!favLanguages.find(el => language.code === el.code))
-      addFavoriteLanguage(language, true);
+    if (!wordIsAlreadyFavorited) addFavoriteLanguage(language, true);
 
     if (!topicLabel) {
       setTopicIds({});

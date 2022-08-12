@@ -7,6 +7,7 @@ import styles from "./LanguageSelectorElement.module.scss";
 
 type LanguageSelectorElement = {
   language: Language;
+  currentLanguageCode: string;
   middleElement: boolean;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
@@ -14,6 +15,7 @@ type LanguageSelectorElement = {
 
 export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   language,
+  currentLanguageCode,
   middleElement,
   favLanguages,
   handleToggleFavoriteLanguage,
@@ -22,26 +24,16 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     lang => `lang_${lang}`,
   ) as Array<`lang_${AllowedLanguage}`>;
 
+  const isDisabled = currentLanguageCode === language.code;
+  const isChecked = !!favLanguages.find(
+    favLang => favLang.code === language.code,
+  );
+
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
-  const [isChecked, setIsChecked] = React.useState(
-    !!favLanguages.find(favLang => favLang.code === language.code),
-  );
-
-  const [isDisabled, setDisabled] = React.useState(
-    favLanguages.length < 2 && isChecked,
-  );
-
   const toggleFavorite = (): void => {
-    setIsChecked(prev => {
-      handleToggleFavoriteLanguage(language, !prev);
-      return !prev;
-    });
+    handleToggleFavoriteLanguage(language, !isChecked);
   };
-
-  React.useEffect(() => {
-    setDisabled(favLanguages.length < 2 && isChecked);
-  }, [isChecked, setDisabled, favLanguages]);
 
   return (
     <button
@@ -58,8 +50,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
             checked={isChecked}
             id={language.code}
             tabIndex={-1}
-            onChange={toggleFavorite}
-            disabled={isDisabled}
+            disabled
           />
           <span className={styles.checkmark} />
         </label>

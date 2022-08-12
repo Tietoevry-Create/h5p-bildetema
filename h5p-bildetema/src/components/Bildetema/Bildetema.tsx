@@ -124,6 +124,7 @@ export const Bildetema: React.FC = () => {
     languagesFromDB,
     showWrittenWords,
     topicsSize,
+    favLanguages,
   ]);
   return (
     <div className={styles.wrapper}>

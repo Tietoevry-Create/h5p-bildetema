@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
+import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { Language, Topic, TopicIds } from "../../../../common/types/types";
 import { languages } from "../../constants/languages";
 import { useL10ns } from "../../hooks/useL10n";
@@ -20,7 +20,7 @@ export type HeaderProps = {
 export const Header: React.FC<HeaderProps> = ({
   languagesFromDB,
   favLanguages,
-  topicIds: { topicId, subTopicId },
+  topicIds,
   topicsFromDB,
   handleToggleFavoriteLanguage,
 }) => {
@@ -44,30 +44,6 @@ export const Header: React.FC<HeaderProps> = ({
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
 
-  const getLanguagePath = (language: Language): string => {
-    if (!topicId) return `/${language.code}${search}`;
-
-    const topic = topicsFromDB?.find(el => el.id === topicId);
-    const topicWord = topic?.labelTranslations.get(language.code);
-    if (!topicWord) return `/${language.code}${search}`;
-
-    const topicPath =
-      topicWord.label !== ""
-        ? labelToUrlComponent(topicWord.label)
-        : labelToUrlComponent(topicWord.id);
-    if (!subTopicId) return `/${language.code}/${topicPath}${search}`;
-
-    const subTopicWord = topic?.subTopics
-      .get(subTopicId)
-      ?.labelTranslations.get(language.code);
-    if (!subTopicWord) return `/${language.code}/${topicPath}${search}`;
-    const subTopicPath =
-      subTopicWord.label !== ""
-        ? labelToUrlComponent(subTopicWord.label)
-        : labelToUrlComponent(subTopicWord.id);
-    return `/${language.code}/${topicPath}/${subTopicPath}${search}`;
-  };
-
   return (
     <div className={styles.header}>
       <div className={styles.header_content}>
@@ -87,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
               return (
                 <Link
                   key={language.code}
-                  to={getLanguagePath(language)}
+                  to={getLanguagePath(topicsFromDB, language, topicIds, search)}
                   className={`${styles.languageButton} ${
                     currentLanguageCode === language.code
                       ? styles.languageButton_active
@@ -106,6 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
             selectLanguageLabel={selectLanguage}
             favLanguages={favLanguages}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+            currentLanguageCode={currentLanguageCode}
           />
         </div>
       </div>
