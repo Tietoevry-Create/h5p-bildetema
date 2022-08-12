@@ -42,6 +42,7 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
           words={words}
           currentWordId={currentWord}
           hoveredWord={selectHoveredWord}
+          selectWord={selectWord}
         />
         <TopicImageSVG
           image={topicImage}

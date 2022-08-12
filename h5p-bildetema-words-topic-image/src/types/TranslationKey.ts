@@ -5,4 +5,6 @@
 // -----------------------------------
 
 export type TranslationKey =
-  | "noTopicSelected";
+  | "noTopicSelected"
+  | "playAudio"
+  | "pauseAudio";

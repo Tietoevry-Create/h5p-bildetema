@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), wrapIIFE()],
   build: getBuildConfig(),
   test: {
-    environment: "happy-dom",
+    environment: "jsdom",
   },
 });
