@@ -17,6 +17,9 @@ describe("labelToUrlComponent", () => {
       "something%2Fsomething%2Felse",
     );
   });
+  it("Should replace questionmark with an empty string", () => {
+    expect(labelToUrlComponent("what time is it??")).toBe("what-time-is-it");
+  });
   it("Should return the same string if there are no special characters", () => {
     expect(labelToUrlComponent("return-this(string)")).toBe(
       "return-this(string)",
