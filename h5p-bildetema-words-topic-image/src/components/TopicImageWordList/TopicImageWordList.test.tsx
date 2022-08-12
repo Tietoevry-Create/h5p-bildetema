@@ -10,7 +10,7 @@ const baseWord = {
   id: "1",
   label: "Bildetema",
   images: [{ src: "" }],
-  audio: "",
+  audio: "https://cdn-prodbildetema.azureedge.net/audio/nob/V0888.wav",
 };
 
 describe(TopicImageWordList.name, () => {
