@@ -41,29 +41,29 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   };
 
   return (
-    <button
-      className={`${middleElement ? styles.languageMiddle : styles.language}`}
-      type="button"
-      onClick={toggleFavorite}
-      disabled={isDisabled}
+    <label
+      htmlFor={language.code}
+      className={`${middleElement ? styles.languageMiddle : styles.language} ${
+        isDisabled ? styles.disabled : ""
+      }`}
     >
       <div className={styles.checkboxContainer}>
-        <label htmlFor={language.code} className={styles.checkbox}>
+        <div className={styles.checkbox}>
           <input
             className={styles.visuallyHidden}
             type="checkbox"
-            checked={isChecked}
+            defaultChecked={isChecked}
             id={language.code}
-            tabIndex={-1}
-            disabled
+            onClick={toggleFavorite}
+            disabled={isDisabled}
           />
           <span className={styles.checkmark} />
-        </label>
+        </div>
       </div>
       <div className={styles.languageLabel}>
         <span>{translations[`lang_${language.code as AllowedLanguage}`]}</span>
         <span>{languagesOriginal[language.code as AllowedLanguage]}</span>
       </div>
-    </button>
+    </label>
   );
 };
