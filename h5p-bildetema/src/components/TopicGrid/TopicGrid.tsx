@@ -36,13 +36,15 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   }, [words, setIsWordView]);
 
   React.useEffect(() => {
-    // TODO: Should not be used when changing topicsSize, showWrittenWords or favLanguages
+    // TODO: Should not be used when changing topicsSize
 
     // Scroll to top of container
     if (scrollToTop != null) {
       scrollToTop();
     }
-  }, [scrollToTop]);
+    // Only use scrollToTop when topics have changed
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topics]);
 
   if (topics) {
     return (
