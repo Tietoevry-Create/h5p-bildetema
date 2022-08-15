@@ -58,6 +58,7 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
             className={styles.gridCompact}
             onChange={onTopicSelected}
             value={topic?.id ?? "default"}
+            data-test-id="topic-select"
           >
             <option value="default" disabled>
               {chooseTopicLabel}
@@ -73,6 +74,7 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
               className={styles.gridCompact}
               onChange={onSubTopicSelected}
               value={subTopic?.id ?? "default"}
+              data-test-id="subtopic-select"
             >
               <option value="default" disabled>
                 {chooseSubTopicLabel}

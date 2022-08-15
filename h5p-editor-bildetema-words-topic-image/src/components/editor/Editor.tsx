@@ -152,7 +152,7 @@ export const Editor: React.FC<EditorProps> = ({
   const selectedWordLabel = t("selectedWordLabel");
 
   return (
-    <div className={styles.editor}>
+    <div className={styles.editor} data-test-id="editor">
       <span className={styles.editor_label}>{editorLabel}</span>
       <span className={styles.editor_description}>{editorDescription}</span>
       <div className={styles.toolbar}>
