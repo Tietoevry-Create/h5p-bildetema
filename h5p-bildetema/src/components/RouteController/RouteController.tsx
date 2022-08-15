@@ -20,6 +20,7 @@ export type RouteControllerProps = {
   topicsSize: TopicGridSizes;
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
+  scrollToTop: () => void;
 };
 
 export type TopicsAndWords = {
@@ -38,6 +39,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   setTopicIds,
   addFavoriteLanguage,
   favLanguages,
+  scrollToTop,
 }) => {
   const { langId, topicLabel, subTopicId } = useParams();
 
@@ -116,6 +118,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
           showWrittenWords={showWrittenWords}
           setIsWordView={setIsWordView}
           currentTopic={currentTopic}
+          scrollToTop={scrollToTop}
         />
       );
     }

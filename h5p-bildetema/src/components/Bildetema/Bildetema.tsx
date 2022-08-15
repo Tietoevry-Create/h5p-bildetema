@@ -44,6 +44,7 @@ export const Bildetema: React.FC = () => {
     getTopics,
   );
 
+  const topRef = React.useRef<HTMLDivElement>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
   const loadingLabel = useL10n("pageIsLoading");
@@ -111,6 +112,7 @@ export const Bildetema: React.FC = () => {
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
+                scrollToTop={() => topRef?.current?.scrollIntoView()}
               />
             }
           />
@@ -128,7 +130,7 @@ export const Bildetema: React.FC = () => {
   ]);
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div ref={topRef} className={styles.container}>
         <Header
           topicIds={topicIds}
           languagesFromDB={languagesFromDB}
