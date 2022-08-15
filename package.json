@@ -2,6 +2,7 @@
   "scripts": {
     "setup-drupal": "ts-node puppeteer/setup-drupal.ts",
     "bump-library": "ts-node bumpLibrary.ts",
+    "bump-and-build": "npm run bump-library && npm run build",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-topic-image' 'npm install --prefix h5p-editor-bildetema-words-topic-image'",
