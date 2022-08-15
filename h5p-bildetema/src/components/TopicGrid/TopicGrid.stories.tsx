@@ -33,6 +33,7 @@ const defaultArgs: TopicGridProps = {
   setIsWordView: () => null,
   showWrittenWords: false,
   currentLanguage: { label: "nob", code: makeLanguageCode("nob"), rtl: false },
+  scrollToTop: () => null,
 };
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {

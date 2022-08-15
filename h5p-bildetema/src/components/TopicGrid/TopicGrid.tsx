@@ -37,7 +37,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
 
   React.useEffect(() => {
     // TODO: Should not be used when changing topicsSize, showWrittenWords or favLanguages
-    
+
     // Scroll to top of container
     if (scrollToTop != null) {
       scrollToTop();
