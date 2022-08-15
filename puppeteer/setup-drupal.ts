@@ -2,11 +2,7 @@ import puppeteer from "puppeteer";
 
 const { log } = console;
 
-async function openPage(page: puppeteer.Page) {
-  const url = process.env.DRUPAL_URL
-    ? process.env.DRUPAL_URL
-    : "http://localhost:8080/";
-
+async function openPage(page: puppeteer.Page, url: string) {
   await page.goto(`${url}`, {
     waitUntil: "networkidle2",
   });
@@ -24,9 +20,12 @@ async function logInIfNotAuthenticated(page: puppeteer.Page): Promise<void> {
   }
 }
 
-async function openH5PAdminTool(page: puppeteer.Page): Promise<void> {
+async function openH5PAdminTool(
+  page: puppeteer.Page,
+  url: string,
+): Promise<void> {
   await page.waitForSelector("a[href='/node/add']");
-  await page.goto(`http://localhost:8080/node#overlay=node/add/h5p-content`, {
+  await page.goto(`${url}/node#overlay=node/add/h5p-content`, {
     waitUntil: "networkidle2",
   });
 
@@ -58,11 +57,12 @@ async function saveH5PContentType(
 async function startEditingH5PContentType(
   page: puppeteer.Page,
   contentType: string,
+  url: string,
 ): Promise<puppeteer.Frame> {
-  await openPage(page);
+  await openPage(page, url);
   await logInIfNotAuthenticated(page);
 
-  await openH5PAdminTool(page);
+  await openH5PAdminTool(page, url);
 
   const h5pEditorIframe = await getEditorIframe(page);
 
@@ -74,10 +74,12 @@ async function startEditingH5PContentType(
 async function createBildetemaInstance(
   title: string,
   page: puppeteer.Page,
+  url: string,
 ): Promise<void> {
   const h5pEditorIframe = await startEditingH5PContentType(
     page,
     "h5p-bildetema",
+    url,
   );
 
   log("Set title to", title);
@@ -89,12 +91,14 @@ async function createBildetemaInstance(
 async function createTopicImageInstance(
   title: string,
   page: puppeteer.Page,
+  url: string,
   topicId: string,
   subtopicId?: string,
 ) {
   const h5pEditorIframe = await startEditingH5PContentType(
     page,
     "h5p-bildetematopicimageview",
+    url,
   );
 
   const editorFrame = h5pEditorIframe.childFrames()[0];
@@ -168,6 +172,9 @@ async function createTopicImageInstance(
 
 (async () => {
   const title = process.env.TITLE ? process.env.TITLE : "some title";
+  const url = process.env.DRUPAL_URL
+    ? process.env.DRUPAL_URL
+    : "http://localhost:8080/";
 
   // debug settings:
   // const browser = await puppeteer.launch({
@@ -178,8 +185,8 @@ async function createTopicImageInstance(
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await createBildetemaInstance(title, page);
-  await createTopicImageInstance("Dyr i vann", page, "T001", "T003");
+  await createBildetemaInstance(title, page, url);
+  await createTopicImageInstance("Dyr i vann", page, url, "T001", "T003");
 
   await browser.close();
 })();
