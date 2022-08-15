@@ -1,6 +1,8 @@
 {
   "scripts": {
     "setup-drupal": "ts-node puppeteer/setup-drupal.ts",
+    "bump-library": "ts-node bumpLibrary.ts",
+    "bump-and-build": "npm run bump-library && npm run build",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-tree-view' 'npm install --prefix h5p-bildetema-words-topic-image' 'npm install --prefix h5p-editor-bildetema-words-topic-image'",
@@ -13,6 +15,7 @@
     "docker:run-no-logs": "npm run docker:run -- -d"
   },
   "dependencies": {
+    "@types/cli-interact": "^0.1.1",
     "h5p-types": "^1.0.5",
     "h5p-utils": "^2.1.0",
     "xlsx": "file:vendor/xlsx-0.18.10.tgz"
@@ -21,6 +24,7 @@
     "@types/puppeteer": "^5.4.6",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
+    "cli-interact": "^0.1.9",
     "concurrently": "^7.3.0",
     "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
