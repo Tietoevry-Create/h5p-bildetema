@@ -185,8 +185,11 @@ async function createTopicImageInstance(
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await createBildetemaInstance(title, page, url);
+  // Create topic images
   await createTopicImageInstance("Dyr i vann", page, url, "T001", "T003");
+
+  // Create bildetema (we do this last, because it should be in the top of the dev/test environments and items are sorted by date)
+  await createBildetemaInstance(title, page, url);
 
   await browser.close();
 })();
