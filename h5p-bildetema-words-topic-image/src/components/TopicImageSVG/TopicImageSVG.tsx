@@ -32,16 +32,24 @@ export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
     />
   ));
 
+  const isVertical = aspectRatio < 1;
+
   return (
     <div className={styles.imageContainer}>
       {topicImageType === "vectorImageWithHotspots" && (
         <div dangerouslySetInnerHTML={{ __html: image }} />
       )}
       {topicImageType === "nonVectorImageWithHotspots" && (
-        <img style={{ width: "100%", height: "100%" }} src={image} alt="" />
+        <img
+          className={isVertical ? styles.imageVertical : styles.imageHorizontal}
+          src={image}
+          alt=""
+        />
       )}
       <svg
-        className={styles.overlays}
+        className={`${styles.overlays} ${
+          isVertical ? styles.overlaysVertical : ""
+        }`}
         preserveAspectRatio="none"
         viewBox={`0 0 100 ${100 / aspectRatio}`}
       >
