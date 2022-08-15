@@ -139,6 +139,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "No topic selected.",
         type: "text",
       },
+      {
+        label: "Play audio",
+        name: "playAudio",
+        default: "Play audio",
+        type: "text",
+      },
+      {
+        label: "Pause audio",
+        name: "pauseAudio",
+        default: "Pause audio",
+        type: "text",
+      },
     ],
   },
 ];

@@ -87,6 +87,14 @@
         {
           "label": "No topic selected",
           "default": "No topic selected."
+        },
+        {
+          "label": "Play audio",
+          "default": "Play audio"
+        },
+        {
+          "label": "Pause audio",
+          "default": "Pause audio"
         }
       ]
     }

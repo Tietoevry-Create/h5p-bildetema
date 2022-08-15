@@ -87,6 +87,14 @@
         {
           "label": "Ingen tema er valgt",
           "default": "Ingen tema er valgt."
+        },
+        {
+          "label": "Spill av lyd",
+          "default": "Spill av lyd"
+        },
+        {
+          "label": "Sett lyd på pause",
+          "default": "Sett lyd på pause"
         }
       ]
     }
