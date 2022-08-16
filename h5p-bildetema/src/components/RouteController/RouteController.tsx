@@ -38,6 +38,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const { langId, topicLabel, subTopicId } = useParams();
+
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
 
@@ -74,11 +75,14 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   }, [langId, languagesFromDB]);
 
   useEffect(() => {
+    // Scroll into view if topic and/or sub topic changes (or are reset - i.e. the user visits the frontpage)
+
     if (!topicsFromDB || !currentLanguage) {
       return;
     }
 
     const isFrontpage = !topicLabel;
+    const previousPageWasFrontpage = !currentTopicId && !currentSubTopicId;
 
     let newTopicId: string | undefined;
     let topicHasChanged = false;
@@ -105,7 +109,14 @@ export const RouteController: React.FC<RouteControllerProps> = ({
 
     subTopicHasChanged = newSubTopicId !== currentSubTopicId;
 
-    if (isFrontpage || topicHasChanged || subTopicHasChanged) {
+    // If the previous page was the frontpage AND the new page is the frontpage,
+    // then we shouldn't trigger scroll into view, because it means that something
+    // other than the topic or sub topic was changed (language or search params).
+    const shouldScrollIntoView =
+      (isFrontpage && !previousPageWasFrontpage) ||
+      topicHasChanged ||
+      subTopicHasChanged;
+    if (shouldScrollIntoView) {
       h5pInstance?.getWrapper().scrollIntoView();
     }
 
