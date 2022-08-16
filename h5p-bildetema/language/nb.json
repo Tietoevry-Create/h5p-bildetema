@@ -53,7 +53,7 @@
         },
         {
           "label": "Navn på første lenke i brødsmulestien",
-          "default": "Tema"
+          "default": "Velg et tema"
         },
         {
           "label": "Navn på språkvelger-knapp",

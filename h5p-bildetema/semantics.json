@@ -80,7 +80,7 @@
       {
         "label": "Breadcrumbs 'Topic' label",
         "name": "breadcrumbsTopic",
-        "default": "Topic",
+        "default": "Choose a topic",
         "type": "text"
       },
       {
