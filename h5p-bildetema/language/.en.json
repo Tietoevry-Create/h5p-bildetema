@@ -53,7 +53,7 @@
         },
         {
           "label": "Breadcrumbs 'Topic' label",
-          "default": "Topic"
+          "default": "Choose a topic"
         },
         {
           "label": "Language selection label",
