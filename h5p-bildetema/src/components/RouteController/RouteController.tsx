@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
+import { useH5PInstance } from "use-h5p";
 import {
   Language,
   Topic,
   TopicGridSizes,
-  Word,
   TopicIds,
 } from "../../../../common/types/types";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+import { H5PWrapper } from "../../h5p/H5PWrapper";
+import {
+  findTopic,
+  langIdToLanguage,
+  validRoute,
+} from "../../utils/router/router.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 
 export type RouteControllerProps = {
@@ -20,14 +24,6 @@ export type RouteControllerProps = {
   topicsSize: TopicGridSizes;
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
-  scrollToTop: () => void;
-};
-
-export type TopicsAndWords = {
-  topics?: Topic[];
-  words?: Word[];
-  language?: Language;
-  currentTopic?: TopicIds;
 };
 
 export const RouteController: React.FC<RouteControllerProps> = ({
@@ -39,90 +35,100 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   setTopicIds,
   addFavoriteLanguage,
   favLanguages,
-  scrollToTop,
 }) => {
+  const h5pInstance = useH5PInstance<H5PWrapper>();
   const { langId, topicLabel, subTopicId } = useParams();
+  const [currentTopicId, setCurrentTopicId] = useState<string>();
+  const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
 
-  const findTopic = (
-    topics: Topic[],
-    language: Language,
-    topicValue: string,
-  ): Topic | undefined => {
-    const langCode = language.code;
-    return topics?.find(el => {
-      const word = el.labelTranslations.get(langCode);
-      if (!word) return false;
+  const { words, topics, language, currentTopic } = useMemo(
+    () =>
+      validRoute(
+        topicsFromDB,
+        languagesFromDB,
+        favLanguages,
+        setTopicIds,
+        langId,
+        topicLabel,
+        subTopicId,
+        addFavoriteLanguage,
+      ),
+    [
+      addFavoriteLanguage,
+      favLanguages,
+      langId,
+      languagesFromDB,
+      setTopicIds,
+      subTopicId,
+      topicLabel,
+      topicsFromDB,
+    ],
+  );
 
-      const { label, id } = word;
-      if (label !== "")
-        return labelToUrlComponent(label) === labelToUrlComponent(topicValue);
-
-      return labelToUrlComponent(id) === topicValue;
-    });
-  };
-
-  const validRoute = (): TopicsAndWords => {
-    if (!topicsFromDB || !langId) return {};
-
-    const langCode = makeLanguageCode(langId);
-    const language = languagesFromDB?.find(el => el.code === langCode);
-    if (!language) {
-      setTopicIds({});
-      return {};
+  const currentLanguage = useMemo(() => {
+    if (!langId || !languagesFromDB) {
+      return undefined;
     }
-    const languageIsAlreadyFavorited = favLanguages.find(
-      el => language.code === el.code,
+
+    return langIdToLanguage(langId, languagesFromDB);
+  }, [langId, languagesFromDB]);
+
+  useEffect(() => {
+    if (!topicsFromDB || !currentLanguage) {
+      return;
+    }
+
+    const isFrontpage = !topicLabel;
+
+    let newTopicId: string | undefined;
+    let topicHasChanged = false;
+
+    let newSubTopicId: string | undefined;
+    let subTopicHasChanged = false;
+
+    if (!isFrontpage) {
+      const topic = findTopic(topicsFromDB, currentLanguage, topicLabel);
+      newTopicId = topic?.id;
+
+      topicHasChanged = newTopicId !== currentTopicId;
+
+      const topicHasSubTopics = !!topic?.subTopics;
+      const subTopicIsSetInUrl = !!subTopicId;
+
+      if (topicHasSubTopics && subTopicIsSetInUrl) {
+        const subTopics = Array.from(topic.subTopics.values());
+
+        const subTopic = findTopic(subTopics, currentLanguage, subTopicId);
+        newSubTopicId = subTopic?.id;
+      }
+    }
+
+    subTopicHasChanged = newSubTopicId !== currentSubTopicId;
+
+    if (isFrontpage || topicHasChanged || subTopicHasChanged) {
+      h5pInstance?.getWrapper().scrollIntoView();
+    }
+
+    setCurrentTopicId(newTopicId);
+    setCurrentSubTopicId(newSubTopicId);
+
+    // Avoid depending on `currentTopicId` and `currentSubTopicId` as they are set by the effect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLanguage, h5pInstance, subTopicId, topicLabel, topics]);
+
+  if ((words && language) || (topics && language)) {
+    return (
+      <TopicGrid
+        topics={topics}
+        words={words}
+        topicsSize={topicsSize}
+        currentLanguage={language}
+        showWrittenWords={showWrittenWords}
+        setIsWordView={setIsWordView}
+        currentTopic={currentTopic}
+      />
     );
+  }
 
-    if (!languageIsAlreadyFavorited) addFavoriteLanguage(language, true);
-
-    if (!topicLabel) {
-      setTopicIds({});
-      return { topics: topicsFromDB, language };
-    }
-
-    const topic = findTopic(topicsFromDB, language, topicLabel);
-    if (!topic) {
-      setTopicIds({});
-      return {};
-    }
-
-    const subTopics = Array.from(topic.subTopics.values());
-
-    if (!subTopicId) {
-      setTopicIds({ topicId: topic.id });
-
-      if (subTopics.length) return { topics: subTopics, language };
-      return { words: topic.words.get(language.code), language };
-    }
-
-    const subTopic = findTopic(subTopics, language, subTopicId);
-
-    setTopicIds({ topicId: topic.id, subTopicId: subTopic?.id });
-    return {
-      words: subTopic?.words.get(language.code),
-      language,
-      currentTopic: { topicId: topic?.id, subTopicId: subTopic?.id },
-    };
-  };
-
-  const handleRoute = (): JSX.Element => {
-    const { words, topics, language, currentTopic } = validRoute();
-    if ((words && language) || (topics && language)) {
-      return (
-        <TopicGrid
-          topics={topics}
-          words={words}
-          topicsSize={topicsSize}
-          currentLanguage={language}
-          showWrittenWords={showWrittenWords}
-          setIsWordView={setIsWordView}
-          currentTopic={currentTopic}
-          scrollToTop={scrollToTop}
-        />
-      );
-    }
-    return <div>Page does not exist</div>;
-  };
-  return handleRoute();
+  return <div>Page does not exist</div>;
 };

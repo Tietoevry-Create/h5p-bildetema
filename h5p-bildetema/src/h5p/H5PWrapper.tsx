@@ -8,7 +8,6 @@ import { App } from "../components/App/App";
 import { TranslationKey } from "../types/TranslationKey";
 
 type Params = {
-  region: string;
   l10n: Record<TranslationKey, string>;
 };
 
@@ -25,8 +24,7 @@ export class H5PWrapper
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { l10n, region } = this.params;
+    const { l10n } = this.params;
 
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema");
@@ -43,5 +41,9 @@ export class H5PWrapper
         </H5PContext.Provider>
       </HashRouter>,
     );
+  }
+
+  public getWrapper(): HTMLElement {
+    return this.wrapper;
   }
 }
