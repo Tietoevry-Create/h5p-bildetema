@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import {
   Language,
   TopicGridSizes,
   TopicIds,
 } from "../../../../common/types/types";
 import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
-import { RouteController } from "../RouteController/RouteController";
-import { Header } from "../Header/Header";
-import { Footer } from "../Footer/Footer";
+import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
-import styles from "./Bildetema.module.scss";
+import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
+import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
+import styles from "./Bildetema.module.scss";
 
 export const defaultFavoriteLanguages: Language[] = [
   {
@@ -44,7 +44,6 @@ export const Bildetema: React.FC = () => {
     getTopics,
   );
 
-  const topRef = React.useRef<HTMLDivElement>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
   const loadingLabel = useL10n("pageIsLoading");
@@ -112,7 +111,6 @@ export const Bildetema: React.FC = () => {
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
-                scrollToTop={() => topRef?.current?.scrollIntoView()}
               />
             }
           />
@@ -130,7 +128,7 @@ export const Bildetema: React.FC = () => {
   ]);
   return (
     <div className={styles.wrapper}>
-      <div ref={topRef} className={styles.container}>
+      <div className={styles.container}>
         <Header
           topicIds={topicIds}
           languagesFromDB={languagesFromDB}

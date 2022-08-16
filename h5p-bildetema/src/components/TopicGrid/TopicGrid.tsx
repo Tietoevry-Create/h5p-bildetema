@@ -18,7 +18,6 @@ export type TopicGridProps = {
   showWrittenWords: boolean;
   currentLanguage: Language;
   currentTopic?: TopicIds;
-  scrollToTop: () => void;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -29,22 +28,10 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   showWrittenWords,
   currentLanguage,
   currentTopic,
-  scrollToTop,
 }) => {
   React.useEffect(() => {
     setIsWordView(!!words);
   }, [words, setIsWordView]);
-
-  React.useEffect(() => {
-    // TODO: Should not be used when changing topicsSize
-
-    // Scroll to top of container
-    if (scrollToTop != null) {
-      scrollToTop();
-    }
-    // Only use scrollToTop when topics have changed
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topics]);
 
   if (topics) {
     return (
