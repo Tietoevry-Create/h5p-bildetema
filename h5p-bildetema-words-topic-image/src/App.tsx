@@ -50,8 +50,8 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       return;
     }
 
-    if (params.activeLanguage) {
-      const languageCode = makeLanguageCode(params.activeLanguage);
+    if (params.currentLanguage) {
+      const languageCode = makeLanguageCode(params.currentLanguage);
       setCurrentLanguageWords(topic.words.get(languageCode) ?? []);
     } else {
       // TODO: Add language selector to `h5p-bildetema-words-topic-image`
@@ -59,7 +59,7 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       const fallbackLanguage = makeLanguageCode("nob");
       setCurrentLanguageWords(topic.words.get(fallbackLanguage) ?? []);
     }
-  }, [params.activeLanguage, topic]);
+  }, [params.currentLanguage, topic]);
 
   useEffect(() => {
     const paramHotspots = params.hotspots;
