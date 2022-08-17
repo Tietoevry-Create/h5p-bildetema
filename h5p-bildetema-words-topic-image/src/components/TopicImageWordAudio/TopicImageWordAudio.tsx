@@ -72,6 +72,8 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         onClick={toggle}
         onMouseEnter={() => hoveredWord(word.id)}
         onMouseLeave={() => hoveredWord("")}
+        onFocus={() => hoveredWord(word.id)}
+        onBlur={() => hoveredWord("")}
       >
         <span className={styles.word_label}>
           {label}
