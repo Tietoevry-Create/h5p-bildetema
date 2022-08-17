@@ -102,11 +102,12 @@ export const Words: React.FC<WordsProps> = ({
     topicViewInstance?.trigger("change-params", {
       words,
       showWrittenWords,
+      currentLanguage,
     });
 
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [words, showWrittenWords, topicViewInstance]);
+  }, [words, showWrittenWords, topicViewInstance, currentLanguage]);
 
   return <div ref={ref} />;
 };

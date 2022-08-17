@@ -27,6 +27,21 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
 
   const noTopicSelectedText = useL10n("noTopicSelected");
 
+  const setComputedWords = React.useCallback(
+    (words: Word[] | undefined): void => {
+      const paramHotspots = params.hotspots;
+
+      const computedWords = paramHotspots
+        .filter(hotspot => hotspot && hotspot.points?.length > 0)
+        .map(hotspot => hotspot.word.id)
+        .map(wordId => words?.find(word => word.id === wordId))
+        .filter(hasValue);
+
+      setCurrentLanguageWords(computedWords ?? []);
+    },
+    [params.hotspots],
+  );
+
   useQuery(["topicsFromDB"], getTopics, {
     onSuccess(fetchedTopics) {
       const rootTopic = fetchedTopics?.find(
@@ -52,14 +67,18 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
 
     if (params.currentLanguage) {
       const languageCode = makeLanguageCode(params.currentLanguage);
-      setCurrentLanguageWords(topic.words.get(languageCode) ?? []);
+      const topicWords = topic.words.get(languageCode);
+      // Only show words that have hotspots
+      setComputedWords(topicWords);
     } else {
       // TODO: Add language selector to `h5p-bildetema-words-topic-image`
 
       const fallbackLanguage = makeLanguageCode("nob");
-      setCurrentLanguageWords(topic.words.get(fallbackLanguage) ?? []);
+      const fallbackWords = topic.words.get(fallbackLanguage);
+      // Only show words that have hotspots
+      setComputedWords(fallbackWords);
     }
-  }, [params.currentLanguage, topic]);
+  }, [params.currentLanguage, setComputedWords, topic]);
 
   useEffect(() => {
     const paramHotspots = params.hotspots;
@@ -72,17 +91,6 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       }));
 
     setOverlays(computedOverlays);
-
-    const computedWords = paramHotspots
-      .filter(hotspot => hotspot && hotspot.points?.length > 0)
-      .map(hotspot => hotspot.word.id)
-      .map(wordId => currentLanguageWords.find(word => word.id === wordId))
-      .filter(hasValue);
-
-    setCurrentLanguageWords(computedWords);
-
-    // This effect should not depend on `words`, because it's set inside the effect
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
   return topic ? (
