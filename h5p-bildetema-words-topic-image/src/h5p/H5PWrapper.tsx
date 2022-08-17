@@ -17,7 +17,7 @@ export type Params = {
     subTopicId: string;
   };
   l10n: Record<TranslationKey, string>;
-  activeLanguage?: LanguageCode;
+  currentLanguage?: LanguageCode;
 };
 
 const queryClient = new QueryClient();
