@@ -11,5 +11,5 @@ export const library: Library = {
     {
       path: "dist/bundle.js",
     },
-  ]
+  ],
 };
