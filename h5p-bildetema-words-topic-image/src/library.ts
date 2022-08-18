@@ -12,11 +12,6 @@ export const library: Library = {
       path: "dist/bundle.js",
     },
   ],
-  preloadedCss: [
-    {
-      path: "dist/main.css",
-    },
-  ],
   editorDependencies: [
     {
       machineName: "H5PEditor.BildetemaWordsTopicImage",
