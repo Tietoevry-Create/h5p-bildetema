@@ -25,3 +25,9 @@
   max-width: $main-content-max-width;
   width: $main-content-width;
 }
+
+// Overrides for WordPress below
+a:hover,
+a:focus {
+  text-decoration-style: solid;
+}
