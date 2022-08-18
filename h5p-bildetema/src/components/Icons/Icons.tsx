@@ -60,7 +60,6 @@ export const BigTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
     viewBox="0 0 32 32"
     fill="transparent"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ verticalAlign: "middle", marginLeft: "-4px" }}
   >
     <path
       d="M12.8888 6.66699H7.70355C7.1308 6.66699 6.6665 7.13129 6.6665 7.70404V12.8893C6.6665 13.462 7.1308 13.9263 7.70355 13.9263H12.8888C13.4615 13.9263 13.9258 13.462 13.9258 12.8893V7.70404C13.9258 7.13129 13.4615 6.66699 12.8888 6.66699Z"
@@ -104,7 +103,6 @@ export const CompactTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
     viewBox="0 0 32 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ verticalAlign: "middle", marginLeft: "-4px" }}
   >
     <path
       d="M5.33325 8H7.99992V10.6667H5.33325V8ZM5.33325 14.6667H7.99992V17.3333H5.33325V14.6667ZM5.33325 21.3333H7.99992V24H5.33325V21.3333ZM26.6666 10.6667V8H10.6973V10.6667H25.0666H26.6666ZM10.6666 14.6667H26.6666V17.3333H10.6666V14.6667ZM10.6666 21.3333H26.6666V24H10.6666V21.3333Z"
