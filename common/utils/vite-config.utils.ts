@@ -30,15 +30,6 @@ export const getBuildConfig = (): BuildOptions => ({
     output: {
       file: "dist/bundle.js",
       dir: undefined,
-      inlineDynamicImports: true,
-      manualChunks: undefined,
-      assetFileNames: assetInfo => {
-        if (assetInfo.name === "index.css") {
-          return "main.css";
-        }
-
-        return assetInfo.name ?? "";
-      },
       esModule: false,
       format: "iife",
     },
