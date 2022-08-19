@@ -5,12 +5,11 @@ export const library: Library = {
   machineName: "H5PEditor.BildetemaWordsTopicImage",
   majorVersion: 1,
   minorVersion: 0,
-  patchVersion: 12,
+  patchVersion: 13,
   runnable: 0,
   preloadedJs: [
     {
       path: "dist/bundle.js",
     },
   ],
-  preloadedDependencies: [],
 };
