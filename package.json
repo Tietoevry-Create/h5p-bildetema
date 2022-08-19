@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "update-wordpress": "tsx puppeteer/update-wordpress.ts",
+    "h5p-pack:all": "h5p pack h5p-bildetema h5p-bildetema-words-grid-view/ h5p-bildetema-words-topic-image/ h5p-editor-bildetema-words-topic-image/ all.h5p",
     "setup-drupal": "tsx puppeteer/setup-drupal.ts",
     "bump-library": "tsx bumpLibrary.ts",
     "bump-and-build": "npm run bump-library && npm run build",
