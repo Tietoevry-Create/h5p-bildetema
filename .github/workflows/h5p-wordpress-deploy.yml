@@ -1,0 +1,41 @@
+name: "Pack and deploy h5p wordpress"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - h5p-bildetema/library.json
+      - h5p-bildetema-words-grid-view/library.json
+      - h5p-bildetema-words-topic-image/library.json
+      - h5p-editor-bildetema-words-topic-image/library.json
+
+  workflow_dispatch: {}
+
+jobs:
+  pack-and-deploy-h5p-wordpress:
+    environment: test-wordpress
+    env:
+      WORDPRESS_URL: "${{secrets.WORDPRESS_URL}}"
+      WORDPRESS_USER: ${{secrets.WORDPRESS_USER}}
+      WORDPRESS_PASSWORD: ${{secrets.WORDPRESS_PASSWORD}}
+    runs-on: ubuntu-latest
+    name: Pack and release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Pack project
+        run: |
+          npm i -g h5p
+          npm run h5p-pack:all
+          ls -la
+      
+      - name: Update wordpress libraries
+        run: npm run update-wordpress
