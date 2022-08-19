@@ -36,6 +36,6 @@ jobs:
           npm i -g h5p
           npm run h5p-pack:all
           ls -la
-      
+
       - name: Update wordpress libraries
         run: npm run update-wordpress
