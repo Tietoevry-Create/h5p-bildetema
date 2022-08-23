@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { Word as WordType } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
@@ -11,25 +11,23 @@ type WordAudioProps = {
 
 export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
   const { label } = word;
-  const [audio, setAudio] = useState<HTMLAudioElement>();
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
 
-  useEffect(() => {
-    setAudio(new Audio(word.audio));
-  }, [word, word.audio]);
+  const handleAudioEnded = (): void => {
+    setPlaying(false);
+  };
 
-  useEffect(() => {
-    audio?.addEventListener("ended", () => setPlaying(false));
-    return () => {
-      audio?.removeEventListener("ended", () => setPlaying(false));
-    };
-  }, [audio]);
+  const toggleAudio = (): void => {
+    const audioElement = audioRef.current;
+    if (!audioElement) {
+      return;
+    }
 
-  const toggle = (): void => {
     if (playing) {
-      audio?.pause();
+      audioElement.pause();
     } else {
-      audio?.play();
+      audioElement.play();
     }
 
     setPlaying(!playing);
@@ -40,7 +38,13 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
 
   return (
     <div className={styles.wordAudio}>
-      <button type="button" onClick={toggle}>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio ref={audioRef} onEnded={handleAudioEnded}>
+        {word.audioFiles?.map(file => (
+          <source src={file.url} type={file.mimeType} />
+        ))}
+      </audio>
+      <button type="button" onClick={toggleAudio}>
         {textVisible && (
           <span className={styles.word_label}>
             {label}
