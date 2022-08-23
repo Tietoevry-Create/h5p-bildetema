@@ -44,6 +44,23 @@ export const removePoint = (
   );
 };
 
+export const movePoint = (
+  movedPoint: Point,
+  newPosition: Point,
+  points: Array<Point>,
+): Array<Point> => {
+
+  return points.map(point => {
+    if (point.x === movedPoint.x && point.y === movedPoint.y) {
+      return {
+        x: newPosition.x,
+        y: newPosition.y,
+      };
+    }
+    return point;
+  });
+};
+
 export const activateDrawingHotspot = (
   hotspot: Hotspot,
   wordId: string,

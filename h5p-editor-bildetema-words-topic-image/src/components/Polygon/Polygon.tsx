@@ -2,19 +2,28 @@ import React from "react";
 import { findDistance } from "../../../../common/utils/figure/figure.utils";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
+import { PointUpdate } from "../../types/PointUpdate";
 import { pointsToDAttribute } from "../../utils/figure/figure.utils";
 import styles from "./Polygon.module.scss";
 
 export type PolygonProps = {
   hotspot: Hotspot;
   handleCircleClick: (point: Point) => void;
+  handleCircleDrag: (point: PointUpdate) => void;
   handleFigureClick: (hotspot: Hotspot) => void;
+  startDragging: (startPoint:Point)=>void;
+  endDragging: (point: PointUpdate) => void;
+  isDragging: boolean;
 };
 
 export const Polygon: React.FC<PolygonProps> = ({
   hotspot,
   handleCircleClick,
+  handleCircleDrag,
   handleFigureClick,
+  startDragging,
+  endDragging,
+  isDragging,
 }) => {
   const { points, drawing } = hotspot;
 
@@ -61,18 +70,32 @@ export const Polygon: React.FC<PolygonProps> = ({
 
       {drawing &&
         points?.map(({ x, y }, index) => (
-          <circle
-            className={styles.point}
-            style={{ fill: `${index === 0 && "red"}` }}
-            onClick={e => {
-              e.stopPropagation();
-              handleCircleClick({ x, y });
-            }}
-            key={`${x}${y}`}
-            cx={x}
-            cy={y}
-            r="1"
-          />
+            <circle
+              className={styles.point}
+              style={{ fill: `${index === 0 && "red"}` }}
+              onClick={e => {
+                  console.info("onClick", e);
+                  e.stopPropagation();
+                  handleCircleClick({ x, y }); 
+              }}
+              onMouseDown={e => {
+                if(!isDragging) {
+                  e.stopPropagation();
+                  startDragging({x,y});
+                }
+              }}
+              onMouseUp={e => {
+                if(isDragging) {
+                  e.stopPropagation();
+                  endDragging({ from: {x, y}, to: {x: e.clientX, y: e.clientY} });
+                }
+              }
+              }
+              key={`${x}${y}`}
+              cx={x}
+              cy={y}
+              r="1"
+            />
         ))}
     </>
   );

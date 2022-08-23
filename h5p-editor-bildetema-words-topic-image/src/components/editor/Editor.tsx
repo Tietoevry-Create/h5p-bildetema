@@ -5,9 +5,11 @@ import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
+import { PointUpdate } from "../../types/PointUpdate";
 import {
   activateDrawingHotspot,
   finishDrawingHotspot,
+  movePoint,
   removePoint,
   resetPoints,
   resetPointsOfActiveHotspot,
@@ -59,6 +61,8 @@ export const Editor: React.FC<EditorProps> = ({
       return;
     }
 
+    console.info("handleClick editor", { clientX, clientY });
+
     const rect = ref.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
@@ -107,6 +111,37 @@ export const Editor: React.FC<EditorProps> = ({
     const updatedHotspots = hotspots.map(resetPointsOfActiveHotspot);
 
     setHotspots(updatedHotspots);
+  };
+
+
+  const handleCircleDrag = (pointUpdate: PointUpdate): Point => {
+    if(!ref.current){
+      return pointUpdate.from;
+    }
+
+    const rect = ref.current.getBoundingClientRect();
+    const offsetX = rect.x;
+    const offsetY = rect.y;
+    const { width, height } = rect;
+
+    const toPoint = {
+      x: ((pointUpdate.to.x - offsetX) / width) * 100,
+      y: (((pointUpdate.to.y - offsetY) / height) * 100) / aspectRatio,
+    };
+    const updatedHotspots = hotspots.map(hotspot => {
+      if (!hotspot.drawing || !hotspot.points) {
+        return hotspot;
+      }
+
+      
+      return {
+        ...hotspot,
+        points: movePoint(pointUpdate.from, toPoint, hotspot.points),
+      };
+    });
+
+    setHotspots(updatedHotspots);
+    return toPoint;
   };
 
   const handleCircleClick = (point: Point): void => {
@@ -197,6 +232,7 @@ export const Editor: React.FC<EditorProps> = ({
           <Svg
             hotspots={hotspots}
             handleCircleClick={handleCircleClick}
+            handleCircleDrag={handleCircleDrag}
             handleFigureClick={hotspot => handleWordSelected(hotspot.word.id)}
             aspectRatio={aspectRatio}
           />
