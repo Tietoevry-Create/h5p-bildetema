@@ -50,7 +50,8 @@ export const movePoint = (
   points: Array<Point>,
 ): Array<Point> => {
   return points.map(point => {
-    if (point.x === movedPoint.x && point.y === movedPoint.y) {
+    const isTheMovedPoint = point.x === movedPoint.x && point.y === movedPoint.y;
+    if (isTheMovedPoint) {
       return {
         x: newPosition.x,
         y: newPosition.y,

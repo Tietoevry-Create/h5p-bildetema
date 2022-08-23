@@ -41,7 +41,6 @@ export const Svg: React.FC<SvgProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       onMouseMove={e => {
         if (isDragging && dragStart) {
-          console.info("onDragMove IN SVG", e);
           e.stopPropagation();
 
           setDragStart(

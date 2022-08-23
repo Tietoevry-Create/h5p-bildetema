@@ -61,8 +61,6 @@ export const Editor: React.FC<EditorProps> = ({
       return;
     }
 
-    console.info("handleClick editor", { clientX, clientY });
-
     const rect = ref.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
