@@ -1,8 +1,11 @@
 import React from "react";
 import { useL10ns } from "use-h5p";
+import {
+  languages,
+  languagesOriginal,
+} from "../../../../common/constants/languages";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language } from "../../../../common/types/types";
-import { languages, languagesOriginal } from "../../constants/languages";
-import { AllowedLanguage } from "../../types/AllowedLanguage";
 import styles from "./LanguageSelectorElement.module.scss";
 
 type LanguageSelectorElement = {
@@ -22,7 +25,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${AllowedLanguage}`>;
+  ) as Array<`lang_${LanguageCode}`>;
 
   const isChecked = !!favLanguages.find(
     favLang => favLang.code === language.code,
@@ -61,8 +64,8 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
         </div>
       </div>
       <div className={styles.languageLabel}>
-        <span>{translations[`lang_${language.code as AllowedLanguage}`]}</span>
-        <span>{languagesOriginal[language.code as AllowedLanguage]}</span>
+        <span>{translations[`lang_${language.code}`]}</span>
+        <span>{languagesOriginal[language.code]}</span>
       </div>
     </label>
   );
