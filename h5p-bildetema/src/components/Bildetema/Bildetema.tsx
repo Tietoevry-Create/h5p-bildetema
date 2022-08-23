@@ -7,7 +7,6 @@ import {
   TopicIds,
 } from "../../../../common/types/types";
 import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -19,17 +18,17 @@ import styles from "./Bildetema.module.scss";
 export const defaultFavoriteLanguages: Language[] = [
   {
     label: "Norsk (Bokmål)",
-    code: makeLanguageCode("nob"),
+    code: "nob",
     rtl: false,
   },
   {
     label: "Norsk (Nynorsk)",
-    code: makeLanguageCode("nno"),
+    code: "nno",
     rtl: false,
   },
   {
     label: "Engelsk",
-    code: makeLanguageCode("eng"),
+    code: "eng",
     rtl: false,
   },
 ];
