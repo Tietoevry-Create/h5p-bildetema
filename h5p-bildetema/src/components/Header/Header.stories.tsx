@@ -1,7 +1,8 @@
 import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+import { Language } from "../../../../common/types/types";
 
 export default {
   title: "Components/Header",
@@ -9,20 +10,20 @@ export default {
 } as ComponentMeta<typeof Header>;
 
 const Template = (): JSX.Element => {
-  const languages = [
+  const languages: Array<Language> = [
     {
       label: "Norsk (Bokmål)",
-      code: makeLanguageCode("nob"),
+      code: "nob",
       rtl: false,
     },
     {
       label: "Norsk (Nynorsk)",
-      code: makeLanguageCode("nno"),
+      code: "nno",
       rtl: false,
     },
     {
       label: "Polsk",
-      code: makeLanguageCode("pol"),
+      code: "pol",
       rtl: false,
     },
   ];

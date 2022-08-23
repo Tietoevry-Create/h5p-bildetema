@@ -3,7 +3,6 @@ import * as React from "react";
 import { FC, useEffect, useState } from "react";
 import { Topic, Word } from "../../common/types/types";
 import { getTopics } from "../../common/utils/data.utils";
-import { makeLanguageCode } from "../../common/utils/LanguageCode.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Params } from "./h5p/H5PWrapper";
 import { useL10n } from "./hooks/useL10n";
@@ -66,14 +65,14 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
     }
 
     if (params.currentLanguage) {
-      const languageCode = makeLanguageCode(params.currentLanguage);
+      const languageCode = params.currentLanguage;
       const topicWords = topic.words.get(languageCode);
       // Only show words that have hotspots
       setComputedWords(topicWords);
     } else {
       // TODO: Add language selector to `h5p-bildetema-words-topic-image`
 
-      const fallbackLanguage = makeLanguageCode("nob");
+      const fallbackLanguage = "nob";
       const fallbackWords = topic.words.get(fallbackLanguage);
       // Only show words that have hotspots
       setComputedWords(fallbackWords);

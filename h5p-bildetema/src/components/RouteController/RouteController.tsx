@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 import {
   Language,
   Topic,
@@ -49,7 +50,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
         languagesFromDB,
         favLanguages,
         setTopicIds,
-        langId,
+        langId as LanguageCode,
         topicLabel,
         subTopicId,
         addFavoriteLanguage,
@@ -71,7 +72,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
       return undefined;
     }
 
-    return langIdToLanguage(langId, languagesFromDB);
+    return langIdToLanguage(langId as LanguageCode, languagesFromDB);
   }, [langId, languagesFromDB]);
 
   useEffect(() => {

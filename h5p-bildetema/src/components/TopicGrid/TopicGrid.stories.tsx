@@ -1,9 +1,9 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Topic, TopicGridSizes, Word } from "../../../../common/types/types";
 import { TopicGrid, TopicGridProps } from "./TopicGrid";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
   label: "Molecules/ToppicGrid",
@@ -32,7 +32,7 @@ const defaultArgs: TopicGridProps = {
   topicsSize: TopicGridSizes.Big,
   setIsWordView: () => null,
   showWrittenWords: false,
-  currentLanguage: { label: "nob", code: makeLanguageCode("nob"), rtl: false },
+  currentLanguage: { label: "nob", code: "nob", rtl: false },
 };
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {

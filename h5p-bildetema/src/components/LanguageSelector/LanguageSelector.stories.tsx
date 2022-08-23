@@ -1,7 +1,7 @@
 import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { Language } from "../../../../common/types/types";
 
 export default {
@@ -20,35 +20,35 @@ const defaultArgs: LanguageSelectorProps = {
   languages: [
     {
       label: "Norsk",
-      code: makeLanguageCode("nob"),
+      code: "nob",
       rtl: false,
     },
 
     {
       label: "Engelsk",
-      code: makeLanguageCode("eng"),
+      code: "eng",
       rtl: false,
     },
     {
       label: "عربىge",
-      code: makeLanguageCode("ara"),
+      code: "ara",
       rtl: true,
     },
     {
       label: "Dansk",
-      code: makeLanguageCode("dan"),
+      code: "dan",
       rtl: false,
     },
     {
       label: "Polsk",
-      code: makeLanguageCode("pol"),
+      code: "pol",
       rtl: false,
     },
   ],
   favLanguages: [
     {
       label: "Polsk",
-      code: makeLanguageCode("pol"),
+      code: "pol",
       rtl: false,
     },
   ],

@@ -1,7 +1,7 @@
 import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LanguageDropdown } from "./LanguageDropdown";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 export default {
   title: "Components/LanguageDropdown",
@@ -22,24 +22,24 @@ Default.args = {
   favLanguages: [
     {
       label: "Norsk (Bokmål)",
-      code: makeLanguageCode("nob"),
+      code: "nob",
       rtl: false,
     },
   ],
   languagesFromDB: [
     {
       label: "Norsk (Bokmål)",
-      code: makeLanguageCode("nob"),
+      code: "nob",
       rtl: false,
     },
     {
       label: "Norsk (Nynorsk)",
-      code: makeLanguageCode("nno"),
+      code: "nno",
       rtl: false,
     },
     {
       label: "Polsk",
-      code: makeLanguageCode("pol"),
+      code: "pol",
       rtl: false,
     },
   ],
