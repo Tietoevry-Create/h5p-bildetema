@@ -74,7 +74,6 @@ export const Polygon: React.FC<PolygonProps> = ({
             className={styles.point}
             style={{ fill: `${index === 0 && "red"}` }}
             onClick={e => {
-              console.info("onClick", e);
               e.stopPropagation();
               handleCircleClick({ x, y });
             }}
