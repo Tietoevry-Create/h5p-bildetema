@@ -41,13 +41,17 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
     setPlaying(!playing);
   };
 
+  const handleAudioEnded = (): void => {
+    setPlaying(false);
+  };
+
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
 
   return (
     <div className={styles.wordAudio}>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioRef} onEnded={() => setPlaying(false)}>
+      <audio ref={audioRef} onEnded={handleAudioEnded}>
         {audioFiles.map(file => (
           <source src={file.url} type={file.mimeType} />
         ))}
