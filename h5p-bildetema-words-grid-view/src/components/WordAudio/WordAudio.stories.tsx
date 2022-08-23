@@ -1,7 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { WordAudio } from "./WordAudio";
-import { Word as WordType } from "../../../../common/types/types";
 
 export default {
   title: "Atoms/WordAudio",
@@ -23,6 +23,11 @@ Default.args = {
         src: "https://images.unsplash.com/photo-1549471013-3364d7220b75?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750",
       },
     ],
-    audio: "https://www.w3schools.com/TAGS/horse.ogg",
+    audioFiles: [
+      {
+        url: "https://www.w3schools.com/TAGS/horse.ogg",
+        mimeType: "audio/ogg" as "audio/mp3",
+      },
+    ],
   },
 };
