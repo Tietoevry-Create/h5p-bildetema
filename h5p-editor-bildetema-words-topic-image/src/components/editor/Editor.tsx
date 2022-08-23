@@ -61,6 +61,7 @@ export const Editor: React.FC<EditorProps> = ({
       return;
     }
 
+    // TODO: fix performance
     const rect = ref.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
@@ -116,6 +117,7 @@ export const Editor: React.FC<EditorProps> = ({
       return pointUpdate.from;
     }
 
+    // TODO: fix performance
     const rect = ref.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
