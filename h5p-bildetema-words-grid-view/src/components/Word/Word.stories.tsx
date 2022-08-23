@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Word } from "./Word";
@@ -24,7 +25,12 @@ Default.args = {
         src: `${cdnURL}/images/medium/V0575a.jpeg`,
       },
     ],
-    audio: "https://www.w3schools.com/TAGS/horse.ogg",
+    audioFiles: [
+      {
+        url: "https://www.w3schools.com/TAGS/horse.ogg",
+        mimeType: "audio/ogg" as "audio/mp3",
+      },
+    ],
   },
   textVisible: true,
 };
@@ -42,7 +48,12 @@ MultipleImages.args = {
         src: `${cdnURL}/images/medium/V0575b.jpeg`,
       },
     ],
-    audio: "https://www.w3schools.com/TAGS/horse.ogg",
+    audioFiles: [
+      {
+        url: "https://www.w3schools.com/TAGS/horse.ogg",
+        mimeType: "audio/ogg" as "audio/mp3",
+      },
+    ],
   },
   textVisible: true,
 };
@@ -53,7 +64,7 @@ NoImages.args = {
     id: "V0889",
     label: "Elg",
     images: [],
-    audio: undefined,
+    audioFiles: [],
   },
   textVisible: true,
 };
@@ -68,7 +79,7 @@ HiddenText.args = {
         src: `${cdnURL}/images/medium/V0575a.jpeg`,
       },
     ],
-    audio: undefined,
+    audioFiles: [],
   },
   textVisible: false,
 };

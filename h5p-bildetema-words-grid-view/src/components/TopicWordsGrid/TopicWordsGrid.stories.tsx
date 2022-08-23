@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Word } from "../../../../common/types/types";
@@ -18,7 +19,12 @@ const baseWord: Word = {
       src: `${cdnURL}/images/medium/V0575a.jpeg`,
     },
   ],
-  audio: "https://www.w3schools.com/TAGS/horse.ogg",
+  audioFiles: [
+    {
+      url: "https://www.w3schools.com/TAGS/horse.ogg",
+      mimeType: "audio/ogg" as "audio/mp3",
+    },
+  ],
 };
 
 const Template: ComponentStory<typeof TopicWordsGrid> = args => (

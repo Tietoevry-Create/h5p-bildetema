@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Editor } from "./Editor";
@@ -24,9 +25,9 @@ Portrait.args = {
     path: "https://images.unsplash.com/photo-1617051571090-85766fa13621?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
   },
   words: [
-    { audio: "", label: "Mor", id: "V0002", images: [] },
-    { audio: "", label: "Far", id: "V0003", images: [] },
-    { audio: "", label: "Sønn", id: "V0005", images: [] },
+    { audioFiles: [], label: "Mor", id: "V0002", images: [] },
+    { audioFiles: [], label: "Far", id: "V0003", images: [] },
+    { audioFiles: [], label: "Sønn", id: "V0005", images: [] },
   ],
   initialHotspots: [],
 };
@@ -37,10 +38,10 @@ Landscape.args = {
     path: `${cdnURL}/images/xlarge/V0001a.jpeg`,
   },
   words: [
-    { audio: "", label: "Mor", id: "V0002", images: [] },
-    { audio: "", label: "Far", id: "V0003", images: [] },
-    { audio: "", label: "Sønn", id: "V0005", images: [] },
-    { audio: "", label: "Datter", id: "V0006", images: [] },
+    { audioFiles: [], label: "Mor", id: "V0002", images: [] },
+    { audioFiles: [], label: "Far", id: "V0003", images: [] },
+    { audioFiles: [], label: "Sønn", id: "V0005", images: [] },
+    { audioFiles: [], label: "Datter", id: "V0006", images: [] },
   ],
   initialHotspots: [],
 };
@@ -51,9 +52,9 @@ WithInitialHotspots.args = {
     path: "https://images.unsplash.com/photo-1617051571090-85766fa13621?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
   },
   words: [
-    { audio: "", label: "Mor", id: "V0002", images: [] },
-    { audio: "", label: "Far", id: "V0003", images: [] },
-    { audio: "", label: "Sønn", id: "V0005", images: [] },
+    { audioFiles: [], label: "Mor", id: "V0002", images: [] },
+    { audioFiles: [], label: "Far", id: "V0003", images: [] },
+    { audioFiles: [], label: "Sønn", id: "V0005", images: [] },
   ],
   initialHotspots: [
     {
@@ -233,7 +234,7 @@ WithInitialHotspots.args = {
       ],
       drawing: false,
       word: {
-        audio: "",
+        audioFiles: [],
         label: "Mor",
         id: "V0002",
         images: [],
@@ -243,7 +244,7 @@ WithInitialHotspots.args = {
       points: [],
       drawing: false,
       word: {
-        audio: "",
+        audioFiles: [],
         label: "Far",
         id: "V0003",
         images: [],
@@ -253,7 +254,7 @@ WithInitialHotspots.args = {
       points: [],
       drawing: false,
       word: {
-        audio: "",
+        audioFiles: [],
         label: "Sønn",
         id: "V0005",
         images: [],
