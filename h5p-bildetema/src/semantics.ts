@@ -1,5 +1,5 @@
 import { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
-import { languages } from "./constants/languages";
+import { languages } from "../../common/constants/languages";
 
 const lang = (
   isoCode: typeof languages[number],
