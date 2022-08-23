@@ -1,3 +1,4 @@
+import { AudioFile } from "./AudioFile";
 import { LanguageCode } from "./LanguageCode";
 
 export type InputWord = Record<string, string>;
@@ -6,7 +7,7 @@ export type Word = {
   id: string;
   label: string;
   images: ImageUrl[];
-  audio?: string;
+  audioFiles?: Array<AudioFile>;
 };
 
 export type ImageUrl = {

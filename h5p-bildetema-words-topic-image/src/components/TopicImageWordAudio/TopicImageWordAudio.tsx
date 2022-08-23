@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Word as WordType } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicImageWordAudio.module.scss";
@@ -18,12 +18,8 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   unSelectWord,
 }) => {
   const { label } = word;
-  const [audio, setAudio] = useState<HTMLAudioElement>();
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    setAudio(new Audio(word.audio));
-  }, [word, word.audio]);
 
   const handleAudioEnded = React.useCallback(() => {
     setPlaying(false);
@@ -34,25 +30,31 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   }, []);
 
   useEffect(() => {
-    audio?.addEventListener("ended", handleAudioEnded);
+    const audioElement = audioRef.current;
+    if (!audioElement) {
+      return;
+    }
 
-    return () => {
-      audio?.removeEventListener("ended", handleAudioEnded);
-    };
-  }, [audio, handleAudioEnded]);
-
-  useEffect(() => {
-    if (currentWordId === word.id && !playing) {
-      audio?.play();
+    const wordWasClickedInTopicImage = currentWordId === word.id && !playing;
+    if (wordWasClickedInTopicImage) {
+      // TODO: Fix
+      // Effects can't trigger `HTMLAudioElement#play` in Safari.
+      // Only direct user triggers (click, touch) can start audio and video
+      audioElement.play();
       setPlaying(playing);
     }
-  }, [audio, currentWordId, playing, word.id]);
+  }, [currentWordId, playing, word.id]);
 
   const toggle = (): void => {
+    const audioElement = audioRef.current;
+    if (!audioElement) {
+      return;
+    }
+
     if (playing) {
-      audio?.pause();
+      audioElement.pause();
     } else {
-      audio?.play();
+      audioElement.play();
     }
 
     setPlaying(!playing);
@@ -67,6 +69,8 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         word.id === currentWordId ? styles.selected : ""
       }`}
     >
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio ref={audioRef} onEnded={handleAudioEnded} />
       <button
         type="button"
         onClick={toggle}

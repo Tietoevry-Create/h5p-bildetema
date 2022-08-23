@@ -1,6 +1,12 @@
 import * as xlsx from "xlsx";
+import {
+  audioContainerURL,
+  databaseURL,
+  imageContainerURL,
+} from "../constants/urls";
 import { LanguageCode } from "../types/LanguageCode";
-import { InputWord, Word, Topic, Language, ImageUrl } from "../types/types";
+import { ImageUrl, InputWord, Language, Topic, Word } from "../types/types";
+import { getAudioURLs } from "./audio/audio.utils";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -14,18 +20,8 @@ const NON_LANGUAGE_FIELDS = [
   "Bokmål_nb_duplisert",
 ];
 
-const cdnURL = "https://cdn-prodbildetema.azureedge.net";
-
-const databaseURL = `${cdnURL}/data/database.xlsx`;
-const imageContainerURL = `${cdnURL}/images/`;
-const audioContainerURL = `${cdnURL}/audio/`;
-
 const languages: Language[] = [];
 const topics: Topic[] = [];
-
-export const getAudioURL = (languageCode: LanguageCode, id: string) => {
-  return `${audioContainerURL}${languageCode}/${id}.wav`;
-};
 
 export const getLanguages = async (): Promise<Language[]> => {
   if (!languages.length) await fetchData();
@@ -140,7 +136,7 @@ const fillTopicsWithWords = (
         const [_, strLanguageCode] = key.split("_");
         const languageCode = strLanguageCode as LanguageCode;
         const word: Word = {
-          audio: "",
+          audioFiles: [],
           id: inputWord.Title,
           label: value,
           images: images,
@@ -166,7 +162,11 @@ const fillTopicsWithWords = (
       const [_, strLanguageCode] = key.split("_");
       const languageCode = strLanguageCode as LanguageCode;
       const word: Word = {
-        audio: getAudioURL(languageCode, inputWord.Title),
+        audioFiles: getAudioURLs(
+          audioContainerURL,
+          languageCode,
+          inputWord.Title,
+        ),
         id: inputWord.Title,
         label: value,
         images: images,

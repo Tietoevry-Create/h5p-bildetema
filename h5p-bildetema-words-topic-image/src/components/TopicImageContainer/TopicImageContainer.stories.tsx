@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { TopicImageContainer } from "./TopicImageContainer";
@@ -24,13 +25,13 @@ ImageContainer.args = {
       id: overlays[0].wordId,
       label: "Øre",
       images: [{ src: "" }],
-      audio: "",
+      audioFiles: [],
     },
     {
       id: overlays[1].wordId,
       label: "Pote",
       images: [{ src: "" }],
-      audio: "",
+      audioFiles: [],
     },
   ],
 };

@@ -1,7 +1,8 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { audioContainerURL } from "../../../../common/constants/urls";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { getAudioURL } from "../../../../common/utils/data.utils";
+import { getAudioURLs } from "../../../../common/utils/audio/audio.utils";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
 
@@ -14,28 +15,27 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   topicId,
   languageCode,
 }) => {
-  const [audio, setAudio] = useState<HTMLAudioElement>();
   const [playing, setPlaying] = useState(false);
 
-  useEffect(() => {
-    const topicAudio = getAudioURL(languageCode, topicId);
-    setAudio(new Audio(topicAudio));
-  }, [topicId, languageCode]);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  useEffect(() => {
-    audio?.addEventListener("ended", () => setPlaying(false));
-    return () => {
-      audio?.removeEventListener("ended", () => setPlaying(false));
-    };
-  }, [audio]);
+  const audioFiles = useMemo(
+    () => getAudioURLs(audioContainerURL, languageCode, topicId),
+    [languageCode, topicId],
+  );
 
-  const toggle = (e: React.MouseEvent): void => {
-    e.preventDefault();
+  const toggleAudio = (event: React.MouseEvent): void => {
+    event.preventDefault();
+
+    const audioElement = audioRef.current;
+    if (!audioElement) {
+      return;
+    }
 
     if (playing) {
-      audio?.pause();
+      audioElement.pause();
     } else {
-      audio?.play();
+      audioElement.play();
     }
 
     setPlaying(!playing);
@@ -46,7 +46,13 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
 
   return (
     <div className={styles.wordAudio}>
-      <button type="button" onClick={e => toggle(e)}>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio ref={audioRef} onEnded={() => setPlaying(false)}>
+        {audioFiles.map(file => (
+          <source src={file.url} type={file.mimeType} />
+        ))}
+      </audio>
+      <button type="button" onClick={toggleAudio}>
         <svg
           className={playing ? styles.audioIconActive : styles.audioIcon}
           viewBox="0 0 25 24"
