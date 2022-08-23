@@ -1,9 +1,9 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { TopicGridSizes, Topic, Word } from "../../../../common/types/types";
 import { TopicGridElement, TopicGridElementProps } from "./TopicGridElement";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 
 const fallbackArgs: TopicGridElementProps = {
   topic: {
@@ -26,7 +26,7 @@ const fallbackArgs: TopicGridElementProps = {
   ],
   topicSize: TopicGridSizes.Big,
   title: "Dyr",
-  languageCode: makeLanguageCode("nob"),
+  languageCode: "nob",
 };
 
 export default {

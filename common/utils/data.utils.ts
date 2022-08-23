@@ -1,7 +1,6 @@
 import * as xlsx from "xlsx";
 import { LanguageCode } from "../types/LanguageCode";
 import { InputWord, Word, Topic, Language, ImageUrl } from "../types/types";
-import { makeLanguageCode } from "../utils/LanguageCode.utils";
 
 const NON_LANGUAGE_FIELDS = [
   "Bane",
@@ -139,7 +138,7 @@ const fillTopicsWithWords = (
       Object.entries(inputWord).forEach(([key, value]) => {
         if (NON_LANGUAGE_FIELDS.includes(key)) return;
         const [_, strLanguageCode] = key.split("_");
-        const languageCode = makeLanguageCode(strLanguageCode);
+        const languageCode = strLanguageCode as LanguageCode;
         const word: Word = {
           audio: "",
           id: inputWord.Title,
@@ -165,7 +164,7 @@ const fillTopicsWithWords = (
     Object.entries(inputWord).forEach(([key, value]) => {
       if (NON_LANGUAGE_FIELDS.includes(key)) return;
       const [_, strLanguageCode] = key.split("_");
-      const languageCode = makeLanguageCode(strLanguageCode);
+      const languageCode = strLanguageCode as LanguageCode;
       const word: Word = {
         audio: getAudioURL(languageCode, inputWord.Title),
         id: inputWord.Title,
@@ -205,7 +204,7 @@ const addLanguagesToArray = (input: InputWord) => {
   Object.keys(input).forEach(language => {
     if (!NON_LANGUAGE_FIELDS.includes(language)) {
       const [languageName, strLanguageCode, rtl] = language.split("_");
-      const languageCode = makeLanguageCode(strLanguageCode);
+      const languageCode = strLanguageCode as LanguageCode;
       languages.push({
         label: languageName,
         code: languageCode,

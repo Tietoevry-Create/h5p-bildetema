@@ -1,8 +1,9 @@
 import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from "@storybook/react";
-import { LanguageSelectorElement } from "./LanguageSelectorElement";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language } from "../../../../common/types/types";
+import { LanguageSelectorElement } from "./LanguageSelectorElement";
 
 export default {
   title: "Components/LanguageSelectorElement",
@@ -10,13 +11,13 @@ export default {
 } as ComponentMeta<typeof LanguageSelectorElement>;
 
 const Template = (
-  code: string,
+  code: LanguageCode,
   rtl: boolean,
   favorite: boolean,
 ): JSX.Element => {
   const language: Language = {
     label: "",
-    code: makeLanguageCode(code),
+    code,
     rtl,
   };
   const favLanguages: Language[] = favorite ? [language] : [];

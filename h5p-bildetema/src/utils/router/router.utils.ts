@@ -1,6 +1,5 @@
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language, Topic, TopicIds } from "../../../../common/types/types";
-import { makeLanguageCode } from "../../../../common/utils/LanguageCode.utils";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import { TopicsAndWords } from "../../types/TopicsAndWords";
 
@@ -38,10 +37,9 @@ export const findTopic = (
 };
 
 export const langIdToLanguage = (
-  languageId: string,
+  langCode: LanguageCode,
   languagesFromDB: Array<Language>,
 ): Language | undefined => {
-  const langCode = makeLanguageCode(languageId);
   const language = languagesFromDB.find(el => el.code === langCode);
 
   return language;
@@ -52,7 +50,7 @@ export const validRoute = (
   languagesFromDB: Array<Language> | undefined,
   favLanguages: Array<Language>,
   setTopicIds: (topicIds: TopicIds) => void,
-  langId: string | undefined,
+  langId: LanguageCode | undefined,
   topicLabel: string | undefined,
   subTopicId: string | undefined,
   addFavoriteLanguage: (language: Language, favorite: boolean) => void,
