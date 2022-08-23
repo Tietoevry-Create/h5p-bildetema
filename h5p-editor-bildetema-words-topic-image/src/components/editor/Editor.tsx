@@ -113,9 +113,8 @@ export const Editor: React.FC<EditorProps> = ({
     setHotspots(updatedHotspots);
   };
 
-
   const handleCircleDrag = (pointUpdate: PointUpdate): Point => {
-    if(!ref.current){
+    if (!ref.current) {
       return pointUpdate.from;
     }
 
@@ -133,7 +132,6 @@ export const Editor: React.FC<EditorProps> = ({
         return hotspot;
       }
 
-      
       return {
         ...hotspot,
         points: movePoint(pointUpdate.from, toPoint, hotspot.points),

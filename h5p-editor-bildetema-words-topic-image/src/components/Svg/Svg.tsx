@@ -23,15 +23,15 @@ export const Svg: React.FC<SvgProps> = ({
   const [isDragging, setIsDragging] = React.useState(false);
   const [dragStart, setDragStart] = React.useState<Point | null>(null);
 
-  const startDragging = (startPoint:Point):void => {
+  const startDragging = (startPoint: Point): void => {
     setIsDragging(true);
     setDragStart(startPoint);
-  }
+  };
 
-  const endDragging = (pointUpdate:PointUpdate):void => {
+  const endDragging = (pointUpdate: PointUpdate): void => {
     setIsDragging(false);
     setDragStart(null);
-  }
+  };
 
   return (
     <svg
@@ -43,8 +43,13 @@ export const Svg: React.FC<SvgProps> = ({
         if (isDragging && dragStart) {
           console.info("onDragMove IN SVG", e);
           e.stopPropagation();
-        
-          setDragStart(handleCircleDrag({ from: dragStart, to: {x: e.clientX, y: e.clientY} }));
+
+          setDragStart(
+            handleCircleDrag({
+              from: dragStart,
+              to: { x: e.clientX, y: e.clientY },
+            }),
+          );
         }
       }}
     >
