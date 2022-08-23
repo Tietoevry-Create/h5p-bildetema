@@ -21,11 +21,11 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
   topicImageType,
   words,
 }) => {
-  const [currentWord, setCurrentWord] = React.useState("");
+  const [currentWordId, setCurrentWordId] = React.useState("");
   const [hoveredWord, setHoveredWord] = React.useState("");
 
   const selectWord = (word: string): void => {
-    setCurrentWord(word);
+    setCurrentWordId(word);
   };
 
   const selectHoveredWord = (word: string): void => {
@@ -40,7 +40,7 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
       <div className={styles.wrapper}>
         <TopicImageWordList
           words={words}
-          currentWordId={currentWord}
+          currentWordId={currentWordId}
           hoveredWord={selectHoveredWord}
           selectWord={selectWord}
         />

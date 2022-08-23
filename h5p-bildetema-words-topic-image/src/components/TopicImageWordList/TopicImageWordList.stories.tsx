@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { TopicImageWordList } from "./TopicImageWordList";
@@ -19,13 +20,13 @@ WordList.args = {
       id: "1",
       label: "Bildetema",
       images: [{ src: "" }],
-      audio: "",
+      audioFiles: [],
     },
     {
       id: "2",
       label: "Temabilde",
       images: [{ src: "" }],
-      audio: "",
+      audioFiles: [],
     },
   ],
 };
