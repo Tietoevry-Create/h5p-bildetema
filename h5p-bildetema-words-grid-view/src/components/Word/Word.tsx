@@ -62,10 +62,12 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
     );
   };
 
+  const hasAudio = word.audioFiles && word.audioFiles.length > 0;
+
   return (
     <div className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
-      {word.audio && <WordAudio word={word} textVisible={textVisible} />}
+      {hasAudio && <WordAudio word={word} textVisible={textVisible} />}
     </div>
   );
 };
