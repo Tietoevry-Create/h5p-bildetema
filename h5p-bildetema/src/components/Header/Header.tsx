@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getLanguagePath } from "../../../../common/utils/router.utils";
+import { languages } from "../../../../common/constants/languages";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language, Topic, TopicIds } from "../../../../common/types/types";
-import { languages } from "../../constants/languages";
+import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { useL10ns } from "../../hooks/useL10n";
-import { AllowedLanguage } from "../../types/AllowedLanguage";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -26,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${AllowedLanguage}`>;
+  ) as Array<`lang_${LanguageCode}`>;
 
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
@@ -38,8 +38,10 @@ export const Header: React.FC<HeaderProps> = ({
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
 
-  const currentLanguageCode =
-    pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
+  const currentLanguageCode: LanguageCode =
+    pathname.split("/").length >= 2
+      ? (pathname.split("/")[1] as LanguageCode)
+      : "nob";
 
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
@@ -70,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({
                       : ""
                   }`}
                 >
-                  {langs[`lang_${language.code as AllowedLanguage}`]}
+                  {langs[`lang_${language.code}`]}
                 </Link>
               );
             })}

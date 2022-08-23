@@ -1,3 +1,3 @@
-import type { Opaque } from "type-fest";
+import type { languages } from "../constants/languages";
 
-export type LanguageCode = Opaque<string, "LanguageCode">;
+export type LanguageCode = typeof languages[number];
