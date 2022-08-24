@@ -1,6 +1,7 @@
 import * as React from "react";
 import { TopicGridSizes } from "../../../../common/types/types";
 import { BigTopicsIcon, CompactTopicsIcon } from "../Icons/Icons";
+import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicSizeButtons.module.scss";
 
 export type TopicSizeButtonsProps = {
@@ -21,6 +22,9 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
     }
   };
 
+  const bigTopicsLabel = useL10n("bigTopics");
+  const compactTopicsLabel = useL10n("compactTopics");
+
   return (
     <div className={styles.buttons}>
       <button
@@ -32,6 +36,7 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         tabIndex={topicsSize === TopicGridSizes.Big ? -1 : 0}
       >
         <BigTopicsIcon />
+        <span className={styles.visuallyHidden}>{bigTopicsLabel}</span>
       </button>
       <button
         type="button"
@@ -42,6 +47,7 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         tabIndex={topicsSize === TopicGridSizes.Compact ? -1 : 0}
       >
         <CompactTopicsIcon />
+        <span className={styles.visuallyHidden}>{compactTopicsLabel}</span>
       </button>
     </div>
   );

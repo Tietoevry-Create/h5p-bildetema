@@ -97,6 +97,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Breadcrumbs 'Home' label",
+        name: "breadcrumbsHome",
+        default: "Home page",
+        type: "text",
+      },
+      {
         label: "Language selection label",
         name: "selectLanguage",
         default: "Language",
@@ -118,6 +124,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Header subtitle",
         name: "headerSubtitle",
         default: "Multi-lingual image dictionary",
+        type: "text",
+      },
+      {
+        label: "Topic size big",
+        name: "bigTopics",
+        default: "Show topics in grid",
+        type: "text",
+      },
+      {
+        label: "Topic size compact",
+        name: "compactTopics",
+        default: "Show topics in list",
         type: "text",
       },
       lang("ara", "Arabic"),

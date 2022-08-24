@@ -18,6 +18,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   currentLanguageCode,
 }) => {
   const topicLabel = useL10n("breadcrumbsTopic");
+  const homeLabel = useL10n("breadcrumbsHome");
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const routeBreadCrumbs = useBreadcrumbs(routes);
   const { search } = useLocation();
@@ -45,6 +46,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
               {homePageBreadCrumb ? (
                 <span className={styles.homeIcon}>
                   <HomeIcon />
+                  <span className={styles.visuallyHidden}>{homeLabel}</span>
                 </span>
               ) : (
                 label
