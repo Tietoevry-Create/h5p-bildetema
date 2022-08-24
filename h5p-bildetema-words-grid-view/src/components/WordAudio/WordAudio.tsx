@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Word as WordType } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
@@ -32,6 +32,11 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
 
     setPlaying(!playing);
   };
+
+  useEffect(() => {
+    // Reload sources whenever the language changes
+    audioRef.current?.load();
+  }, [word]);
 
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");

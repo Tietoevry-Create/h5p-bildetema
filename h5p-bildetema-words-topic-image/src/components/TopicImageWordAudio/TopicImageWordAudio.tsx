@@ -60,6 +60,11 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
     setPlaying(!playing);
   };
 
+  useEffect(() => {
+    // Reload sources whenever the language changes
+    audioRef.current?.load();
+  }, [word]);
+
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
 

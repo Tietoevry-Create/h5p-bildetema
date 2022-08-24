@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { audioContainerURL } from "../../../../common/constants/urls";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { getAudioURLs } from "../../../../common/utils/audio/audio.utils";
@@ -44,6 +44,11 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   const handleAudioEnded = (): void => {
     setPlaying(false);
   };
+
+  useEffect(() => {
+    // Reload sources whenever the language changes
+    audioRef.current?.load();
+  }, [languageCode]);
 
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
