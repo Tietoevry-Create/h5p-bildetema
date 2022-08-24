@@ -129,13 +129,13 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Topic size big",
         name: "bigTopics",
-        default: "Show topics in grid",
+        default: "Show topics in grid view",
         type: "text",
       },
       {
         label: "Topic size compact",
         name: "compactTopics",
-        default: "Show topics in list",
+        default: "Show topics in list view",
         type: "text",
       },
       lang("ara", "Arabic"),

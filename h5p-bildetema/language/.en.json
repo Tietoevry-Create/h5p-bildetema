@@ -76,6 +76,14 @@
           "default": "Multi-lingual image dictionary"
         },
         {
+          "label": "Topic size big",
+          "default": "Show topics in grid view"
+        },
+        {
+          "label": "Topic size compact",
+          "default": "Show topics in list view"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

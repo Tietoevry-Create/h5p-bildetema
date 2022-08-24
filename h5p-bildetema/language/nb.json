@@ -76,6 +76,14 @@
           "default": "Flerspråklig bildeordbok"
         },
         {
+          "label": "Temastørrelse stor",
+          "default": "Temavisning i rutenett"
+        },
+        {
+          "label": "Temastørrelse kompakt",
+          "default": "Temavisning i liste"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },
