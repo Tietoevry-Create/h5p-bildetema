@@ -27,6 +27,10 @@
       stroke: #333;
     }
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .audioIconActive {
