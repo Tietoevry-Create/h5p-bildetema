@@ -1,2 +1,7 @@
 @use "../../common/abstracts";
 @use "../../common/base";
+
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
