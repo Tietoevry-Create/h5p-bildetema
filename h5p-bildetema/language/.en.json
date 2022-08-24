@@ -56,6 +56,10 @@
           "default": "Choose a topic"
         },
         {
+          "label": "Breadcrumbs 'Home' label",
+          "default": "Home"
+        },
+        {
           "label": "Language selection label",
           "default": "Language"
         },

@@ -86,7 +86,7 @@
       {
         "label": "Breadcrumbs 'Home' label",
         "name": "breadcrumbsHome",
-        "default": "Home page",
+        "default": "Home",
         "type": "text"
       },
       {

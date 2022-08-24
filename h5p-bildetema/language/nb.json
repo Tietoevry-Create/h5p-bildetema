@@ -56,6 +56,10 @@
           "default": "Velg et tema"
         },
         {
+          "label": "Navn på hjemsiden i brødsmulestien",
+          "default": "Hjem"
+        },
+        {
           "label": "Navn på språkvelger-knapp",
           "default": "Språk"
         },
