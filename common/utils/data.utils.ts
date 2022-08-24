@@ -203,6 +203,7 @@ const addTopicsToArray = (topicMap: Map<string, Topic>) => {
 const addLanguagesToArray = (input: InputWord) => {
   Object.keys(input).forEach(language => {
     if (!NON_LANGUAGE_FIELDS.includes(language)) {
+      if (input[language] === "") return;
       const [languageName, strLanguageCode, rtl] = language.split("_");
       const languageCode = strLanguageCode as LanguageCode;
       languages.push({

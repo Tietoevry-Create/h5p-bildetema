@@ -21,16 +21,6 @@ export const defaultFavoriteLanguages: Language[] = [
     code: "nob",
     rtl: false,
   },
-  {
-    label: "Norsk (Nynorsk)",
-    code: "nno",
-    rtl: false,
-  },
-  {
-    label: "Engelsk",
-    code: "eng",
-    rtl: false,
-  },
 ];
 
 export const Bildetema: React.FC = () => {
