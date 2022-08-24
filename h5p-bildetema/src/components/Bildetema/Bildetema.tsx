@@ -47,6 +47,7 @@ export const Bildetema: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
   const loadingLabel = useL10n("pageIsLoading");
+  const pageTitle = useL10n("headerTitle");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
 
   const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
@@ -88,6 +89,12 @@ export const Bildetema: React.FC = () => {
     userData.favoriteLanguages = favLanguages;
     setUserData(userData);
   }, [favLanguages, userData, setUserData]);
+
+  useEffect(() => {
+    if (document.title !== pageTitle) {
+      document.title = pageTitle;
+    }
+  });
 
   useEffect(() => {
     const paths = [
