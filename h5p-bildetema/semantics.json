@@ -84,6 +84,12 @@
         "type": "text"
       },
       {
+        "label": "Breadcrumbs 'Home' label",
+        "name": "breadcrumbsHome",
+        "default": "Home",
+        "type": "text"
+      },
+      {
         "label": "Language selection label",
         "name": "selectLanguage",
         "default": "Language",
@@ -105,6 +111,18 @@
         "label": "Header subtitle",
         "name": "headerSubtitle",
         "default": "Multi-lingual image dictionary",
+        "type": "text"
+      },
+      {
+        "label": "Topic size big",
+        "name": "bigTopics",
+        "default": "Show topics in grid view",
+        "type": "text"
+      },
+      {
+        "label": "Topic size compact",
+        "name": "compactTopics",
+        "default": "Show topics in list view",
         "type": "text"
       },
       {

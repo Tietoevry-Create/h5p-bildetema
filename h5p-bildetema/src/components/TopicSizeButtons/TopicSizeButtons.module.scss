@@ -23,6 +23,7 @@
   border-color: transparent;
 
   &.active {
+    color: white;
     pointer-events: none;
     background-color: $burgundy;
 
@@ -35,4 +36,8 @@
       outline: none;
     }
   }
+}
+
+.visuallyHidden {
+  @include visually-hidden;
 }

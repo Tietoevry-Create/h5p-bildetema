@@ -49,7 +49,7 @@ describe(Breadcrumbs.name, () => {
       ],
       currentLanguageCode: "nob",
     });
-    expect(container.textContent).toEqual("Dyr,");
+    expect(container.textContent).toContain("Dyr,");
     expect(container.querySelector("span")).toBeTruthy();
     expect(container.querySelector("a")).toBeTruthy();
     expect(container.querySelector("svg")).toBeTruthy();

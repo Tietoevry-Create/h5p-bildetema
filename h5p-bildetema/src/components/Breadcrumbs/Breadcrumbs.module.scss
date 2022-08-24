@@ -46,3 +46,7 @@
 .currentPage {
   font-weight: bold;
 }
+
+.visuallyHidden {
+  @include visually-hidden;
+}
