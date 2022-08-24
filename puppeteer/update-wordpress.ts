@@ -26,6 +26,7 @@ async function logInIfNotAuthenticated(page: puppeteer.Page): Promise<void> {
     await page.type("#user_login", user);
     await page.type("#user_pass", password);
     await page.click("#wp-submit");
+    await page.waitForSelector("#welcome-panel");
   }
 }
 
