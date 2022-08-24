@@ -27,6 +27,10 @@
   align-items: center;
   display: flex;
   height: 2.1em; /* same as label height */
+
+  @media print {
+    display: none;
+  }
 }
 
 .audioIcon,
