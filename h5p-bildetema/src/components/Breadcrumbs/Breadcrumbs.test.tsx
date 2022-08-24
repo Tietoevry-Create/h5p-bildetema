@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
 import * as React from "react";
-import { useL10n } from "use-h5p";
 import { Breadcrumbs, BreadcrumbsProps } from "./Breadcrumbs";
 
 describe(Breadcrumbs.name, () => {
@@ -50,8 +49,7 @@ describe(Breadcrumbs.name, () => {
       ],
       currentLanguageCode: "nob",
     });
-    const homeLabel = useL10n("breadcrumbsHome");
-    expect(container.textContent).toEqual(`${homeLabel}Dyr,`);
+    expect(container.textContent).toContain("Dyr,");
     expect(container.querySelector("span")).toBeTruthy();
     expect(container.querySelector("a")).toBeTruthy();
     expect(container.querySelector("svg")).toBeTruthy();
