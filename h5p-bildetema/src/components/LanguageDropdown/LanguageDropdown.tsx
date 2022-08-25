@@ -13,7 +13,7 @@ type LanguageDropdownProps = {
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   currentLanguageCode: string;
-  isMobile: boolean;
+  isMobile: boolean | null;
 };
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({

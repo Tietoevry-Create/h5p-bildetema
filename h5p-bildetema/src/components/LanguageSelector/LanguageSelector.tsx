@@ -8,7 +8,7 @@ export type LanguageSelectorProps = {
   currentLanguageCode: string;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
-  isMobile: boolean;
+  isMobile: boolean | null;
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({

@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
     ...languageKeys,
   );
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
 
@@ -48,9 +48,10 @@ export const Header: React.FC<HeaderProps> = ({
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
 
-  const handleChange = useCallback((): void => {
+  const handleIsMobile = useCallback((): void => {
     const mobileWidth = 768;
     const deviceWidth = headerRef.current?.clientWidth;
+
     if (!isMobile && deviceWidth && deviceWidth < mobileWidth) {
       setIsMobile(true);
     }
@@ -60,13 +61,21 @@ export const Header: React.FC<HeaderProps> = ({
   }, [headerRef, isMobile]);
 
   useEffect(() => {
+    // handle isMobile when page has loaded
+    if (isMobile === null) {
+      handleIsMobile();
+    }
+  });
+
+  useEffect(() => {
+    // handle isMobile when window size changes
     requestAnimationFrame(() => {
-      window.addEventListener("resize", handleChange);
+      window.addEventListener("resize", handleIsMobile);
     });
     return () => {
-      window.removeEventListener("resize", handleChange);
+      window.removeEventListener("resize", handleIsMobile);
     };
-  }, [handleChange]);
+  }, [handleIsMobile]);
 
   return (
     <div ref={headerRef} className={styles.header}>
