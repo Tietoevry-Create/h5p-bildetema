@@ -20,7 +20,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 }) => {
   const getAmountOfRows = (): number => {
     if (isMobile) {
-      return Math.max(1, Math.ceil(languages ? languages.length : 0));
+      return Math.max(1, languages ? languages.length : 0);
     }
     return Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
   };
