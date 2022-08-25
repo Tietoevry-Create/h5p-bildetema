@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
@@ -24,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   topicsFromDB,
   handleToggleFavoriteLanguage,
 }) => {
+  const headerRef = React.createRef<HTMLDivElement>();
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
@@ -35,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
     ...languageKeys,
   );
 
+  const [isMobile, setIsMobile] = useState(false);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
 
@@ -46,8 +48,28 @@ export const Header: React.FC<HeaderProps> = ({
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
 
+  const handleChange = useCallback((): void => {
+    const mobileWidth = 768;
+    const deviceWidth = headerRef.current?.clientWidth;
+    if (!isMobile && deviceWidth && deviceWidth < mobileWidth) {
+      setIsMobile(true);
+    }
+    if (isMobile && deviceWidth && deviceWidth > mobileWidth) {
+      setIsMobile(false);
+    }
+  }, [headerRef, isMobile]);
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      window.addEventListener("resize", handleChange);
+    });
+    return () => {
+      window.removeEventListener("resize", handleChange);
+    };
+  }, [handleChange]);
+
   return (
-    <div className={styles.header}>
+    <div ref={headerRef} className={styles.header}>
       <div className={styles.header_content}>
         <div className={styles.logos}>
           <div className={styles.logos_oslomet}>
@@ -85,6 +107,7 @@ export const Header: React.FC<HeaderProps> = ({
             favLanguages={favLanguages}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             currentLanguageCode={currentLanguageCode}
+            isMobile={isMobile}
           />
         </div>
       </div>

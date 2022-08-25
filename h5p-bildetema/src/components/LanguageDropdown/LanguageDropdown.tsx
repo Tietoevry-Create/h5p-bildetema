@@ -13,6 +13,7 @@ type LanguageDropdownProps = {
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   currentLanguageCode: string;
+  isMobile: boolean;
 };
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
@@ -23,6 +24,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   favLanguages,
   handleToggleFavoriteLanguage,
   currentLanguageCode,
+  isMobile,
 }) => {
   const dropdownRef = useDetectClickOutside({
     onTriggered: () => handleSelectorVisibility(false),
@@ -51,6 +53,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
           languages={languagesFromDB}
           favLanguages={favLanguages}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+          isMobile={isMobile}
         />
       )}
     </div>
