@@ -15,12 +15,16 @@ on:
 jobs:
   pack-and-deploy-h5p-wordpress:
     environment: test-wordpress
+
     env:
       WORDPRESS_URL: "${{secrets.WORDPRESS_URL}}"
       WORDPRESS_USER: ${{secrets.WORDPRESS_USER}}
       WORDPRESS_PASSWORD: ${{secrets.WORDPRESS_PASSWORD}}
+
     runs-on: ubuntu-latest
+
     name: Pack and release
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,9 +35,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Pack project
+      - name: Pack projects
         run: |
-          npm i -g h5p
           npm run h5p-pack:all
           ls -la
 

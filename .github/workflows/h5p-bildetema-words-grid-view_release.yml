@@ -29,10 +29,9 @@ jobs:
           cd ./${{env.project-id}}
           npm run build
 
-      - name: Pack project
+      - name: Pack projects
         run: |
-          npm i -g h5p
-          h5p pack ${{env.project-id}} ${{env.project-id}}.h5p
+          npm run h5p-pack:all
 
       - name: Upload packed file as artifact
         uses: actions/upload-artifact@v3
