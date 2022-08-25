@@ -9,7 +9,7 @@ export const resetPoints = (hotspot: Hotspot): Hotspot => {
 };
 
 export const resetPointsOfActiveHotspot = (hotspot: Hotspot): Hotspot => {
-  if (!hotspot.drawing) {
+  if (!hotspot.isDrawingThisPolygon) {
     return hotspot;
   }
 
@@ -17,13 +17,13 @@ export const resetPointsOfActiveHotspot = (hotspot: Hotspot): Hotspot => {
 };
 
 export const finishDrawingHotspot = (hotspot: Hotspot): Hotspot => {
-  if (!hotspot.drawing) {
+  if (!hotspot.isDrawingThisPolygon) {
     return hotspot;
   }
 
   let updatedHotspot = {
     ...hotspot,
-    drawing: false,
+    isDrawingThisPolygon: false,
   };
 
   const onlyOnePoint = hotspot.points?.length === 1;
@@ -66,11 +66,11 @@ export const activateDrawingHotspot = (
 ): Hotspot => {
   const isCorrectWord = hotspot.word.id === wordId;
   if (isCorrectWord) {
-    return { ...hotspot, drawing: true };
+    return { ...hotspot, isDrawingThisPolygon: true };
   }
 
   return {
     ...hotspot,
-    drawing: false,
+    isDrawingThisPolygon: false,
   };
 };

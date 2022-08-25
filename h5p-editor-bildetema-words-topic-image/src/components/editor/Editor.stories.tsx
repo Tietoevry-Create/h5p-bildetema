@@ -232,7 +232,7 @@ WithInitialHotspots.args = {
           y: 49.74471188913202,
         },
       ],
-      drawing: false,
+      isDrawingThisPolygon: false,
       word: {
         audioFiles: [],
         label: "Mor",
@@ -242,7 +242,7 @@ WithInitialHotspots.args = {
     },
     {
       points: [],
-      drawing: false,
+      isDrawingThisPolygon: false,
       word: {
         audioFiles: [],
         label: "Far",
@@ -252,7 +252,7 @@ WithInitialHotspots.args = {
     },
     {
       points: [],
-      drawing: false,
+      isDrawingThisPolygon: false,
       word: {
         audioFiles: [],
         label: "Sønn",

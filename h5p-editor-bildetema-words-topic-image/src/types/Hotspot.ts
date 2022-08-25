@@ -3,6 +3,6 @@ import type { Point } from "./Point";
 
 export type Hotspot = {
   points?: Point[];
-  drawing: boolean;
+  isDrawingThisPolygon: boolean;
   word: Word;
 };

@@ -36,14 +36,14 @@ export const Svg: React.FC<SvgProps> = ({
   };
 
   const findSomeDrawing = React.useCallback((): boolean => {
-    return !!hotspots.find(hotspot => hotspot.drawing);
+    return !!hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
   }, [hotspots]);
 
-  const [someDrawing, setSomeDrawing] = React.useState(findSomeDrawing());
+  const [isDrawing, setIsDrawing] = React.useState(findSomeDrawing());
 
   React.useEffect(() => {
-    setSomeDrawing(findSomeDrawing());
-  }, [setSomeDrawing, findSomeDrawing]);
+    setIsDrawing(findSomeDrawing());
+  }, [setIsDrawing, findSomeDrawing]);
 
   return (
     <svg
@@ -68,7 +68,7 @@ export const Svg: React.FC<SvgProps> = ({
       {hotspots.map(hotspot =>
         hotspot.points && hotspot.points?.length > 0 ? (
           <Polygon
-            someDrawing={someDrawing}
+            isDrawing={isDrawing}
             key={hotspot.word.id}
             hotspot={hotspot}
             handleCircleClick={handleCircleClick}
