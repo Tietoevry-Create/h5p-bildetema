@@ -48,6 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
 
+  // TODO: Add better method to find screen width
   const handleIsMobile = useCallback((): void => {
     const mobileWidth = 768;
     const deviceWidth = headerRef.current?.clientWidth;
