@@ -47,6 +47,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
+  
+  React.useEffect(() => {
+    setLangSelectorIsShown(false)
+  },[pathname])
 
   // TODO: Add better method to find screen width
   const handleIsMobile = useCallback((): void => {
@@ -115,6 +119,9 @@ export const Header: React.FC<HeaderProps> = ({
             languagesFromDB={languagesFromDB}
             selectLanguageLabel={selectLanguage}
             favLanguages={favLanguages}
+            topicsFromDB={topicsFromDB}
+            topicIds={topicIds}
+            search={search}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             currentLanguageCode={currentLanguageCode}
             isMobile={isMobile}

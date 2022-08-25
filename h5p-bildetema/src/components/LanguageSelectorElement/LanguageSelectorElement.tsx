@@ -1,5 +1,6 @@
 import React from "react";
 import { useL10ns } from "use-h5p";
+import { Link } from "react-router-dom";
 import {
   languages,
   languagesOriginal,
@@ -9,6 +10,7 @@ import { Language } from "../../../../common/types/types";
 import styles from "./LanguageSelectorElement.module.scss";
 
 type LanguageSelectorElement = {
+  path: string;
   language: Language;
   currentLanguageCode: string;
   middleElement: boolean;
@@ -17,6 +19,7 @@ type LanguageSelectorElement = {
 };
 
 export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
+  path,
   language,
   currentLanguageCode,
   middleElement,
@@ -63,10 +66,10 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
           <span className={styles.checkmark} />
         </div>
       </div>
-      <div className={styles.languageLabel}>
+      <Link className={styles.languageLabel} to={path}>
         <span>{translations[`lang_${language.code}`]}</span>
         <span>{languagesOriginal[language.code]}</span>
-      </div>
+      </Link>
     </label>
   );
 };

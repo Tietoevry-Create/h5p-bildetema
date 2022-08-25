@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./LanguageSelector.module.scss";
-import { Language } from "../../../../common/types/types";
+import { Language, Topic, TopicIds} from "../../../../common/types/types";
+import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 
 export type LanguageSelectorProps = {
@@ -9,6 +10,9 @@ export type LanguageSelectorProps = {
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   isMobile: boolean | null;
+  topicsFromDB?: Topic[];
+  search: string;
+  topicIds: TopicIds;
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
@@ -17,6 +21,9 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   currentLanguageCode,
   handleToggleFavoriteLanguage,
   isMobile,
+  topicsFromDB,
+  search,
+  topicIds,
 }) => {
   const getAmountOfRows = (): number => {
     if (isMobile) {
@@ -36,6 +43,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       >
         {languages?.map((language, index) => (
           <LanguageSelectorElement
+            path={getLanguagePath(language, topicIds, search, topicsFromDB)}
             key={language.code}
             language={language}
             middleElement={index === Math.max(1, getAmountOfRows() - 1)}

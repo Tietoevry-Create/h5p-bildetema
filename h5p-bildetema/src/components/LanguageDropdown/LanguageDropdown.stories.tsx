@@ -1,7 +1,7 @@
 import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { LanguageDropdown } from "./LanguageDropdown";
+import { LanguageDropdown, LanguageDropdownProps } from "./LanguageDropdown";
 
 export default {
   title: "Components/LanguageDropdown",
@@ -15,7 +15,10 @@ const Template: ComponentStory<typeof LanguageDropdown> = args => (
 
 export const Default = Template.bind({});
 
-Default.args = {
+const defaultArgs: LanguageDropdownProps = {
+  search: "",
+  currentLanguageCode: "nob",
+  topicIds: {},
   handleSelectorVisibility: () => null,
   handleToggleFavoriteLanguage: () => null,
   langSelectorIsShown: true,
@@ -44,4 +47,37 @@ Default.args = {
     },
   ],
   selectLanguageLabel: "Select language",
-};
+}
+
+Default.args= defaultArgs
+
+// Default.args = {
+//   handleSelectorVisibility: () => null,
+//   handleToggleFavoriteLanguage: () => null,
+//   langSelectorIsShown: true,
+//   favLanguages: [
+//     {
+//       label: "Norsk (Bokmål)",
+//       code: "nob",
+//       rtl: false,
+//     },
+//   ],
+//   languagesFromDB: [
+//     {
+//       label: "Norsk (Bokmål)",
+//       code: "nob",
+//       rtl: false,
+//     },
+//     {
+//       label: "Norsk (Nynorsk)",
+//       code: "nno",
+//       rtl: false,
+//     },
+//     {
+//       label: "Polsk",
+//       code: "pol",
+//       rtl: false,
+//     },
+//   ],
+//   selectLanguageLabel: "Select language",
+// };
