@@ -47,7 +47,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
         {word.audioFiles?.map(file => (
-          <source src={file.url} type={file.mimeType} />
+          <source key={file.mimeType} src={file.url} type={file.mimeType} />
         ))}
       </audio>
       <button type="button" onClick={toggleAudio}>
