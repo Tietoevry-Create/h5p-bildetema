@@ -11,7 +11,7 @@ export type PolygonProps = {
   handleCircleClick: (point: Point) => void;
   handleCircleDrag: (point: PointUpdate) => void;
   handleFigureClick: (hotspot: Hotspot) => void;
-  startDragging: (startPoint: Point) => void;
+  startDragging: (startPoint: Point, index: number) => void;
   endDragging: (point: PointUpdate) => void;
   isDragging: boolean;
 };
@@ -80,19 +80,19 @@ export const Polygon: React.FC<PolygonProps> = ({
             onMouseDown={e => {
               if (!isDragging) {
                 e.stopPropagation();
-                startDragging({ x, y });
+                startDragging({ x, y }, index);
               }
             }}
             onMouseUp={e => {
               if (isDragging) {
                 e.stopPropagation();
                 endDragging({
-                  from: { x, y },
+                  from: { x, y, index },
                   to: { x: e.clientX, y: e.clientY },
                 });
               }
             }}
-            key={`${x}${y}`}
+            key={`${x}${y}${x + y + index}`}
             cx={x}
             cy={y}
             r="1"
