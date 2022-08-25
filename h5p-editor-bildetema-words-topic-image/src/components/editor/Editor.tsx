@@ -134,7 +134,7 @@ export const Editor: React.FC<EditorProps> = ({
 
       return {
         ...hotspot,
-        points: movePoint(pointUpdate.from, toPoint, hotspot.points),
+        points: movePoint(pointUpdate.from.index, toPoint, hotspot.points),
       };
     });
 

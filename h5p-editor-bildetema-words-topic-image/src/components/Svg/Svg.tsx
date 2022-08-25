@@ -21,11 +21,13 @@ export const Svg: React.FC<SvgProps> = ({
   aspectRatio,
 }) => {
   const [isDragging, setIsDragging] = React.useState(false);
-  const [dragStart, setDragStart] = React.useState<Point | null>(null);
+  const [dragStart, setDragStart] = React.useState<
+    (Point & { index: number }) | null
+  >(null);
 
-  const startDragging = (startPoint: Point): void => {
+  const startDragging = (startPoint: Point, index: number): void => {
     setIsDragging(true);
-    setDragStart(startPoint);
+    setDragStart({ ...startPoint, index });
   };
 
   const endDragging = (pointUpdate: PointUpdate): void => {
@@ -43,12 +45,13 @@ export const Svg: React.FC<SvgProps> = ({
         if (isDragging && dragStart) {
           e.stopPropagation();
 
-          setDragStart(
-            handleCircleDrag({
+          setDragStart({
+            ...handleCircleDrag({
               from: dragStart,
               to: { x: e.clientX, y: e.clientY },
             }),
-          );
+            index: dragStart.index,
+          });
         }
       }}
     >

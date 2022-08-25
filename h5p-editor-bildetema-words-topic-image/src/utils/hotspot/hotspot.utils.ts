@@ -45,14 +45,12 @@ export const removePoint = (
 };
 
 export const movePoint = (
-  movedPoint: Point,
+  movedPoint: number,
   newPosition: Point,
   points: Array<Point>,
 ): Array<Point> => {
-  return points.map(point => {
-    const isTheMovedPoint =
-      point.x === movedPoint.x && point.y === movedPoint.y;
-    if (isTheMovedPoint) {
+  return points.map((point, index) => {
+    if (movedPoint === index) {
       return {
         x: newPosition.x,
         y: newPosition.y,
