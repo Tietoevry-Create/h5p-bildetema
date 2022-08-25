@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof LanguageDropdown> = args => (
 export const Default = Template.bind({});
 
 const defaultArgs: LanguageDropdownProps = {
+  isMobile: false,
   search: "",
   currentLanguageCode: "nob",
   topicIds: {},
@@ -50,34 +51,3 @@ const defaultArgs: LanguageDropdownProps = {
 };
 
 Default.args = defaultArgs;
-
-// Default.args = {
-//   handleSelectorVisibility: () => null,
-//   handleToggleFavoriteLanguage: () => null,
-//   langSelectorIsShown: true,
-//   favLanguages: [
-//     {
-//       label: "Norsk (Bokmål)",
-//       code: "nob",
-//       rtl: false,
-//     },
-//   ],
-//   languagesFromDB: [
-//     {
-//       label: "Norsk (Bokmål)",
-//       code: "nob",
-//       rtl: false,
-//     },
-//     {
-//       label: "Norsk (Nynorsk)",
-//       code: "nno",
-//       rtl: false,
-//     },
-//     {
-//       label: "Polsk",
-//       code: "pol",
-//       rtl: false,
-//     },
-//   ],
-//   selectLanguageLabel: "Select language",
-// };
