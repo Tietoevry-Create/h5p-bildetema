@@ -39,7 +39,7 @@ jobs:
 
       - name: Update wordpress libraries
         run: npm run update-wordpress
-  
+
   pack-and-deploy-h5p-wordpress-prod:
     environment: prod-wordpress
     needs: [pack-and-deploy-h5p-wordpress-test]
