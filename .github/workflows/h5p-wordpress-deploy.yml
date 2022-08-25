@@ -13,8 +13,36 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  pack-and-deploy-h5p-wordpress:
+  pack-and-deploy-h5p-wordpress-test:
     environment: test-wordpress
+    env:
+      WORDPRESS_URL: "${{secrets.WORDPRESS_URL}}"
+      WORDPRESS_USER: ${{secrets.WORDPRESS_USER}}
+      WORDPRESS_PASSWORD: ${{secrets.WORDPRESS_PASSWORD}}
+    runs-on: ubuntu-latest
+    name: Pack and release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Pack project
+        run: |
+          npm i -g h5p
+          npm run h5p-pack:all
+          ls -la
+
+      - name: Update wordpress libraries
+        run: npm run update-wordpress
+  
+  pack-and-deploy-h5p-wordpress-prod:
+    environment: prod-wordpress
+    needs: [pack-and-deploy-h5p-wordpress-test]
     env:
       WORDPRESS_URL: "${{secrets.WORDPRESS_URL}}"
       WORDPRESS_USER: ${{secrets.WORDPRESS_USER}}
