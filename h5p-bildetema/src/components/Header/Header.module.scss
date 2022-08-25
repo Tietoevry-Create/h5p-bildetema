@@ -2,10 +2,18 @@
 
 .header {
   background-color: $burgundy;
-  padding: $spacing--32 0;
-  position: sticky;
+  padding: $spacing--32 0 0;
+  position: relative;
   top: 0;
   z-index: $header-z-index;
+  margin-bottom: -2rem;
+
+  @media screen and (min-width: 48rem) {
+    display: block;
+    margin-bottom: 0;
+    padding: $spacing--32 0;
+    position: sticky;
+  }
 
   &_content {
     align-items: center;
@@ -33,8 +41,13 @@
   gap: 1rem;
 
   &_oslomet {
+    display: none;
     // ensure minimum free space around logo on smaller screens
     margin: 0.5rem 1rem;
+
+    @media screen and (min-width: 48rem) {
+      display: block;
+    }
 
     @media screen and (min-width: 90rem) {
       margin: 0.5rem 1rem 0.5rem 0;
@@ -52,6 +65,14 @@
     font-size: $font-size-24;
     font-weight: bold;
   }
+
+  &_subtitle {
+    display: none;
+
+    @media screen and (min-width: 48rem) {
+      display: block;
+    }
+  }
 }
 
 .logo img {
@@ -61,9 +82,13 @@
 .languages {
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: none;
   gap: $spacing--16;
   flex-wrap: wrap;
+
+  @media screen and (min-width: 48rem) {
+    display: flex;
+  }
 }
 
 .languageButton,

@@ -11,6 +11,7 @@ import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
 import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
@@ -131,6 +132,11 @@ export const Bildetema: React.FC = () => {
           favLanguages={favLanguages}
           topicsFromDB={topicsFromDB}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+        />
+        <LanguageFavorites
+          topicIds={topicIds}
+          favLanguages={favLanguages}
+          topicsFromDB={topicsFromDB}
         />
         <SubHeader
           topicsSize={topicsSize}
