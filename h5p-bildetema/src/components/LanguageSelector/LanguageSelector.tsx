@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./LanguageSelector.module.scss";
-import { Language, Topic, TopicIds} from "../../../../common/types/types";
+import { Language, Topic, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 

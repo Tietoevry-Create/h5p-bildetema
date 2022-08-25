@@ -47,9 +47,9 @@ const defaultArgs: LanguageDropdownProps = {
     },
   ],
   selectLanguageLabel: "Select language",
-}
+};
 
-Default.args= defaultArgs
+Default.args = defaultArgs;
 
 // Default.args = {
 //   handleSelectorVisibility: () => null,

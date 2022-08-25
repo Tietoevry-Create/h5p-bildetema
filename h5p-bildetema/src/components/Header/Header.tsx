@@ -47,10 +47,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
-  
+
   React.useEffect(() => {
-    setLangSelectorIsShown(false)
-  },[pathname])
+    setLangSelectorIsShown(false);
+  }, [pathname]);
 
   // TODO: Add better method to find screen width
   const handleIsMobile = useCallback((): void => {
