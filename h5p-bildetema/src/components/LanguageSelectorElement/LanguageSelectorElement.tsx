@@ -5,6 +5,7 @@ import {
   languages,
   languagesOriginal,
 } from "../../../../common/constants/languages";
+import { Checkbox } from "../Checkbox/Checkbox";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language } from "../../../../common/types/types";
 import styles from "./LanguageSelectorElement.module.scss";
@@ -47,29 +48,20 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   };
 
   return (
-    <label
-      htmlFor={language.code}
+    <div
       className={`${middleElement ? styles.languageMiddle : styles.language} ${
         isDisabled ? styles.disabled : ""
       }`}
-    >
-      <div className={styles.checkboxContainer}>
-        <div className={styles.checkbox}>
-          <input
-            className={styles.visuallyHidden}
-            type="checkbox"
-            defaultChecked={isChecked}
-            id={language.code}
-            onClick={toggleFavorite}
-            disabled={isDisabled}
-          />
-          <span className={styles.checkmark} />
-        </div>
-      </div>
-      <Link className={styles.languageLabel} to={path}>
+      >
+        <span className={styles.wrapper}>
+          <Checkbox id={language.code} isChecked={isChecked} isDisabled={isDisabled} handleClick={()=>{
+            toggleFavorite()
+          }} />
+        </span>
+      <Link className={styles.languageLabel} to={path} tabIndex={isDisabled ? -1 : 0}>
         <span>{translations[`lang_${language.code}`]}</span>
         <span>{languagesOriginal[language.code]}</span>
       </Link>
-    </label>
+    </div>
   );
 };
