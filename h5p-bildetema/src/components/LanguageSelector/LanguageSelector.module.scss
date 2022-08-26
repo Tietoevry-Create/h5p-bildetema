@@ -20,6 +20,6 @@
   position: absolute;
   margin-top: 2.5rem;
   max-height: calc(100vh - 11rem);
-  overflow-x: auto;
+  overflow-y: auto;
   z-index: $fav-language-selector-z-index;
 }
