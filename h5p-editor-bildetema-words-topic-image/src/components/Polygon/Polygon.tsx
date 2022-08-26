@@ -68,6 +68,10 @@ export const Polygon: React.FC<PolygonProps> = ({
             isDrawingThisPolygon || isDrawing ? styles.isDrawing : ""
           }`}
           onClick={onFigureClick}
+          onMouseDown={onFigureStartDrag}
+          onMouseUp={event => {
+            return endFigureDraging(event);
+          }}
         />
       ) : (
         points?.length && (
