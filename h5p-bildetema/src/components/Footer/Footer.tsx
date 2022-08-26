@@ -20,7 +20,7 @@ export const Footer = (): JSX.Element => {
   return (
     <div className={styles.footer}>
       <div className={styles.footer_content}>
-        <p>
+        <p className={styles.hide_from_print}>
           <a href={contactInfoHref}>{contactInfoLabel}</a>
         </p>
         <p>
@@ -29,7 +29,7 @@ export const Footer = (): JSX.Element => {
         <p>
           <a href={link2Href}>{link2Label}</a>
         </p>
-        <p>
+        <p className={styles.hide_from_print}>
           <a href={link3Href}>{link3Label}</a>
         </p>
         <p>{copyrightLabel}</p>
