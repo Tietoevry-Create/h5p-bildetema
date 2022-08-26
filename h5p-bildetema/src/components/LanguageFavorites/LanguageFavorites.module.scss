@@ -1,0 +1,57 @@
+@use "../../../../common/abstracts" as *;
+
+.languageWrapper {
+  background-color: $burgundy;
+  overflow-y: auto;
+  padding: $spacing--32 0;
+  position: sticky;
+  top: 0;
+  z-index: $fav-language-selector-z-index;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  @media screen and (min-width: 48rem) {
+    display: none;
+    position: relative;
+  }
+}
+
+.languages {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  gap: $spacing--16;
+  flex-wrap: nowrap;
+  width: max-content;
+  padding: 0 $spacing--16;
+}
+
+.languageButton {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-18;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.languageButton {
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &_active,
+  &.active {
+    text-decoration: underline;
+    &:focus {
+      outline: none;
+    }
+  }
+}

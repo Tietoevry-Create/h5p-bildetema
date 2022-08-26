@@ -8,6 +8,7 @@ export type LanguageSelectorProps = {
   currentLanguageCode: string;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
+  isMobile: boolean | null;
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
@@ -15,9 +16,14 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   favLanguages,
   currentLanguageCode,
   handleToggleFavoriteLanguage,
+  isMobile,
 }) => {
-  const getAmountOfRows = (): number =>
-    Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
+  const getAmountOfRows = (): number => {
+    if (isMobile) {
+      return Math.max(1, languages ? languages.length : 0);
+    }
+    return Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
+  };
 
   return (
     <div className={styles.languageSelectorWrapper}>

@@ -3,7 +3,11 @@
 .languageSelector {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+
+  @media screen and (min-width: 48rem) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .languageSelectorWrapper {
