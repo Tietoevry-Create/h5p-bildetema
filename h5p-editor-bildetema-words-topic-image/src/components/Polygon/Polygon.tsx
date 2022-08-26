@@ -14,6 +14,7 @@ export type PolygonProps = {
   startDragging: (startPoint: Point, index: number) => void;
   endDragging: (point: PointUpdate) => void;
   isDragging: boolean;
+  isDrawing: boolean;
 };
 
 export const Polygon: React.FC<PolygonProps> = ({
@@ -24,17 +25,17 @@ export const Polygon: React.FC<PolygonProps> = ({
   startDragging,
   endDragging,
   isDragging,
+  isDrawing,
 }) => {
-  const { points, drawing } = hotspot;
+  const { points, isDrawingThisPolygon } = hotspot;
 
   if (!points) {
     return null;
   }
 
   const isCircle = points.length === 2;
-
   const onFigureClick = (event: React.MouseEvent): void => {
-    if (drawing) {
+    if (isDrawingThisPolygon || isDrawing) {
       return;
     }
 
@@ -53,14 +54,18 @@ export const Polygon: React.FC<PolygonProps> = ({
           stroke="black"
           fill="none"
           strokeWidth="0.3"
-          className={`${styles.circle} ${drawing ? styles.isDrawing : ""}`}
+          className={`${styles.circle} ${
+            isDrawingThisPolygon || isDrawing ? styles.isDrawing : ""
+          }`}
           onClick={onFigureClick}
         />
       ) : (
         points?.length && (
           <path
-            className={`${styles.path} ${drawing ? styles.isDrawing : ""}`}
-            d={pointsToDAttribute(!drawing, points)}
+            className={`${styles.path} ${
+              isDrawingThisPolygon || isDrawing ? styles.isDrawing : ""
+            }`}
+            d={pointsToDAttribute(!isDrawingThisPolygon, points)}
             strokeWidth="0.3"
             stroke="black"
             onClick={onFigureClick}
@@ -68,7 +73,7 @@ export const Polygon: React.FC<PolygonProps> = ({
         )
       )}
 
-      {drawing &&
+      {isDrawingThisPolygon &&
         points?.map(({ x, y }, index) => (
           <circle
             className={styles.point}

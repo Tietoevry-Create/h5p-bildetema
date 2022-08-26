@@ -18,7 +18,7 @@ export const Default = Template.bind({});
 Default.args = {
   hotspots: [
     {
-      drawing: false,
+      isDrawingThisPolygon: false,
       word: {
         id: "1",
         label: "hello",

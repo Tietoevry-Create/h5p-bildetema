@@ -41,7 +41,7 @@ export const Editor: React.FC<EditorProps> = ({
       points:
         initialHotspots.find(hotspot => hotspot.word.id === word.id)?.points ??
         [],
-      drawing: false,
+      isDrawingThisPolygon: false,
       word,
       wordId: word.id,
     }));
@@ -72,7 +72,7 @@ export const Editor: React.FC<EditorProps> = ({
     };
 
     const updatedHotspots = hotspots.map(hotspot => {
-      if (!hotspot.drawing) {
+      if (!hotspot.isDrawingThisPolygon) {
         return hotspot;
       }
 
@@ -128,7 +128,7 @@ export const Editor: React.FC<EditorProps> = ({
       y: (((pointUpdate.to.y - offsetY) / height) * 100) / aspectRatio,
     };
     const updatedHotspots = hotspots.map(hotspot => {
-      if (!hotspot.drawing || !hotspot.points) {
+      if (!hotspot.isDrawingThisPolygon || !hotspot.points) {
         return hotspot;
       }
 
@@ -144,7 +144,7 @@ export const Editor: React.FC<EditorProps> = ({
 
   const handleCircleClick = (point: Point): void => {
     const updatedHotspots = hotspots.map(hotspot => {
-      if (!hotspot.drawing || !hotspot.points) {
+      if (!hotspot.isDrawingThisPolygon || !hotspot.points) {
         return hotspot;
       }
 
@@ -160,7 +160,7 @@ export const Editor: React.FC<EditorProps> = ({
 
         // Finish the drawing without re-adding the current point (because it already exists as the start point)
         setSelectedWord(null);
-        return { ...hotspot, drawing: false };
+        return { ...hotspot, isDrawingThisPolygon: false };
       }
 
       // If a point other than the start point was clicked, remove it
@@ -206,16 +206,18 @@ export const Editor: React.FC<EditorProps> = ({
       <div className={styles.editor_content}>
         <div>
           <div className={styles.controls}>
-            {hotspots.map(({ word: { label, id }, drawing, points }) => (
-              <Button
-                key={id}
-                isActive={drawing}
-                isFinished={!!points?.length}
-                label={label}
-                id={id}
-                clickHandler={() => handleWordSelected(id)}
-              />
-            ))}
+            {hotspots.map(
+              ({ word: { label, id }, isDrawingThisPolygon, points }) => (
+                <Button
+                  key={id}
+                  isActive={isDrawingThisPolygon}
+                  isFinished={!!points?.length}
+                  label={label}
+                  id={id}
+                  clickHandler={() => handleWordSelected(id)}
+                />
+              ),
+            )}
           </div>
         </div>
         <div
