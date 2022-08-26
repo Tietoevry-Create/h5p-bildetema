@@ -17,6 +17,8 @@ const Template: ComponentStory<typeof LanguageSelector> = args => (
 export const Default = Template.bind({});
 
 const defaultArgs: LanguageSelectorProps = {
+  topicIds: {},
+  search: "",
   languages: [
     {
       label: "Norsk",

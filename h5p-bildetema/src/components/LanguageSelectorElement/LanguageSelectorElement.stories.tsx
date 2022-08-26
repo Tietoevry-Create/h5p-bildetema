@@ -28,6 +28,7 @@ const Template = (
 
   return (
     <LanguageSelectorElement
+      path=""
       handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
       language={language}
       currentLanguageCode=""

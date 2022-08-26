@@ -1,7 +1,7 @@
 import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { LanguageDropdown } from "./LanguageDropdown";
+import { LanguageDropdown, LanguageDropdownProps } from "./LanguageDropdown";
 
 export default {
   title: "Components/LanguageDropdown",
@@ -15,7 +15,11 @@ const Template: ComponentStory<typeof LanguageDropdown> = args => (
 
 export const Default = Template.bind({});
 
-Default.args = {
+const defaultArgs: LanguageDropdownProps = {
+  isMobile: false,
+  search: "",
+  currentLanguageCode: "nob",
+  topicIds: {},
   handleSelectorVisibility: () => null,
   handleToggleFavoriteLanguage: () => null,
   langSelectorIsShown: true,
@@ -45,3 +49,5 @@ Default.args = {
   ],
   selectLanguageLabel: "Select language",
 };
+
+Default.args = defaultArgs;

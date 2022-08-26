@@ -1,11 +1,11 @@
 import React from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { Language } from "../../../../common/types/types";
+import { Language, Topic, TopicIds } from "../../../../common/types/types";
 import { LanguageMenuArrowIcon } from "../Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 
-type LanguageDropdownProps = {
+export type LanguageDropdownProps = {
   handleSelectorVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   langSelectorIsShown: boolean | undefined;
   languagesFromDB: Language[] | undefined;
@@ -14,6 +14,9 @@ type LanguageDropdownProps = {
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   currentLanguageCode: string;
   isMobile: boolean | null;
+  topicsFromDB?: Topic[];
+  search: string;
+  topicIds: TopicIds;
 };
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
@@ -25,6 +28,9 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   handleToggleFavoriteLanguage,
   currentLanguageCode,
   isMobile,
+  topicsFromDB,
+  search,
+  topicIds,
 }) => {
   const dropdownRef = useDetectClickOutside({
     onTriggered: () => handleSelectorVisibility(false),
@@ -49,6 +55,9 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
       </button>
       {langSelectorIsShown && (
         <LanguageSelector
+          topicIds={topicIds}
+          search={search}
+          topicsFromDB={topicsFromDB}
           currentLanguageCode={currentLanguageCode}
           languages={languagesFromDB}
           favLanguages={favLanguages}
