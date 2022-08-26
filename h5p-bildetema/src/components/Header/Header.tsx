@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   topicsFromDB,
   handleToggleFavoriteLanguage,
 }) => {
-  const headerRef = React.createRef<HTMLDivElement>();
+  const headerRef = React.useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
