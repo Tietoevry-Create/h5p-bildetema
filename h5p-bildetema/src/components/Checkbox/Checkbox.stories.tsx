@@ -1,8 +1,6 @@
 import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from "@storybook/react";
-// import { LanguageCode } from "../../../../common/types/LanguageCode";
-// import { Language } from "../../../../common/types/types";
 import { Checkbox } from "./Checkbox";
 
 export default {
@@ -10,38 +8,23 @@ export default {
   component: Checkbox,
 } as ComponentMeta<typeof Checkbox>;
 
-const Template = (): JSX.Element=> {
-  const [test, setTest] = React.useState(true)
-//   code: LanguageCode,
-//   rtl: boolean,
-//   favorite: boolean,
-// ): JSX.Element => {
-//   const language: Language = {
-//     label: "",
-//     code,
-//     rtl,
-//   };
-//   const favLanguages: Language[] = favorite ? [language] : [];
-//   const middleElement = true;
-//   const handleToggleFavoriteLanguage = (lang: Language, fav: boolean): void => {
-//     console.info(fav);
-//   };
+const Template = (disabled: boolean): JSX.Element => {
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (value: boolean): void => {
+    setChecked(value);
+  };
 
   return (
     <Checkbox
-
+      id="small"
+      checked={checked}
+      disabled={disabled}
+      handleChange={handleChange}
     />
   );
 };
 
 export const Default = (): JSX.Element => {
-  return Template();
+  return Template(false);
 };
-
-// export const Favorite = (): JSX.Element => {
-//   return Template("nob", false, true);
-// };
-
-// export const RTL = (): JSX.Element => {
-//   return Template("ara", true, false);
-// };

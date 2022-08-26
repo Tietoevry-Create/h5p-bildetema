@@ -52,13 +52,22 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
       className={`${middleElement ? styles.languageMiddle : styles.language} ${
         isDisabled ? styles.disabled : ""
       }`}
+    >
+      <span className={styles.wrapper}>
+        <Checkbox
+          id={language.code}
+          checked={isChecked}
+          disabled={isDisabled}
+          handleChange={() => {
+            toggleFavorite();
+          }}
+        />
+      </span>
+      <Link
+        className={styles.languageLabel}
+        to={path}
+        tabIndex={isDisabled ? -1 : 0}
       >
-        <span className={styles.wrapper}>
-          <Checkbox id={language.code} isChecked={isChecked} isDisabled={isDisabled} handleClick={()=>{
-            toggleFavorite()
-          }} />
-        </span>
-      <Link className={styles.languageLabel} to={path} tabIndex={isDisabled ? -1 : 0}>
         <span>{translations[`lang_${language.code}`]}</span>
         <span>{languagesOriginal[language.code]}</span>
       </Link>
