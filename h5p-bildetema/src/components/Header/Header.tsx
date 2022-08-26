@@ -47,6 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
+  const HomeLinkPath = `/${currentLanguageCode}`;
 
   React.useEffect(() => {
     setLangSelectorIsShown(false);
@@ -90,10 +91,14 @@ export const Header: React.FC<HeaderProps> = ({
             <OsloMetLogo />
           </div>
           {/* TODO: Add Bildetema logo when ready */}
-          <div className={styles.logo_labels}>
+          <Link
+            key={HomeLinkPath}
+            to={HomeLinkPath}
+            className={styles.logo_labels}
+          >
             <span className={styles.logo_labels_title}>{titleLabel}</span>
             <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
-          </div>
+          </Link>
         </div>
         <div className={styles.language_container}>
           <div className={styles.languages}>

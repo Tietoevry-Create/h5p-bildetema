@@ -56,10 +56,15 @@
 }
 
 .logo_labels {
+  color: white;
   display: flex;
   flex-direction: column;
   font-size: $font-size-16;
   line-height: 1.4;
+
+  &:hover {
+    text-decoration: none;
+  }
 
   &_title {
     font-size: $font-size-24;
