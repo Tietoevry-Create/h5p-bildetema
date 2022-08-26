@@ -54,4 +54,10 @@
       outline: none;
     }
   }
+
+  &:not(.languageButton_active) {
+    @media print {
+      display: none;
+    }
+  }
 }

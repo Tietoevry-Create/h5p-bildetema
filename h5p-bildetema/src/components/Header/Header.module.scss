@@ -33,6 +33,10 @@
   align-items: center;
   gap: $spacing--40;
   font-size: $font-size-24;
+
+  @media print {
+    display: none;
+  }
 }
 
 .logos {

@@ -2,6 +2,13 @@
 
 .wordAudio {
   padding: 0.25rem 0;
+
+  &HideForPrint {
+    // Hide whole component on print
+    @media print {
+      display: none;
+    }
+  }
 }
 
 .wordAudio button {
