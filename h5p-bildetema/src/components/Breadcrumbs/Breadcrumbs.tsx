@@ -57,9 +57,9 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             </span>
           </span>
         ) : (
-          <span className={styles.currentPage} key={path}>
+          <h1 className={styles.currentPage} key={path}>
             {label}
-          </span>
+          </h1>
         );
       })}
     </div>

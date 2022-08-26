@@ -30,13 +30,13 @@ describe(Breadcrumbs.name, () => {
     expect(container.querySelector("span")).toBeFalsy();
   });
 
-  it("Should only render a span if there are only one link", () => {
+  it("Should only render a h1 if there are only one link", () => {
     const container = template({
       breadCrumbs: [{ label: "Tema", path: "/tema" }],
       currentLanguageCode: "nob",
     });
     expect(container.textContent).toEqual("Tema,");
-    expect(container.querySelector("span")).toBeTruthy();
+    expect(container.querySelector("h1")).toBeTruthy();
     expect(container.querySelector("a")).toBeFalsy();
     expect(container.querySelector("svg")).toBeFalsy();
   });
