@@ -150,7 +150,7 @@ export const Editor: React.FC<EditorProps> = ({
       ...hotspots.slice(0, figureDrag.hotspotIndex),
       {
         ...hotspots[figureDrag.hotspotIndex],
-        drawing: false,
+        isDrawingThisPolygon: false,
         points: movedPoints,
       },
       ...hotspots.slice(figureDrag.hotspotIndex + 1),
