@@ -1,5 +1,6 @@
 import React from "react";
 import { Hotspot } from "../../types/Hotspot";
+import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
 import { Polygon } from "../Polygon/Polygon";
@@ -10,6 +11,7 @@ export type SvgProps = {
   handleCircleClick: (point: Point) => void;
   handleCircleDrag: (point: PointUpdate) => Point;
   handleFigureClick: (hotspot: Hotspot) => void;
+  handleFigureDrag: (figureUpdate: HotspotUpdate, newPosition: Point) => void;
   aspectRatio: number;
 };
 
@@ -18,12 +20,34 @@ export const Svg: React.FC<SvgProps> = ({
   handleCircleClick,
   handleCircleDrag,
   handleFigureClick,
+  handleFigureDrag,
   aspectRatio,
 }) => {
   const [isDragging, setIsDragging] = React.useState(false);
   const [dragStart, setDragStart] = React.useState<
     (Point & { index: number }) | null
   >(null);
+
+  const [figureDrag, setFigureDrag] = React.useState<HotspotUpdate | null>(
+    null,
+  );
+
+  const endFigureDragging = (event: React.MouseEvent): boolean => {
+    if (isDragging && figureDrag) {
+      event.stopPropagation();
+      setIsDragging(false);
+      setFigureDrag(null);
+      return false;
+    }
+    return true;
+  };
+
+  const startFigureDragging = (index: number) => {
+    return (hotspot: Hotspot, startPoint: Point) => {
+      setIsDragging(true);
+      setFigureDrag({ from: startPoint, hotspotIndex: index, hotspot });
+    };
+  };
 
   const startDragging = (startPoint: Point, index: number): void => {
     setIsDragging(true);
@@ -62,10 +86,13 @@ export const Svg: React.FC<SvgProps> = ({
             }),
             index: dragStart.index,
           });
+        } else if (isDragging && figureDrag) {
+          e.stopPropagation();
+          handleFigureDrag(figureDrag, { x: e.clientX, y: e.clientY });
         }
       }}
     >
-      {hotspots.map(hotspot =>
+      {hotspots.map((hotspot, index) =>
         hotspot.points && hotspot.points?.length > 0 ? (
           <Polygon
             isDrawing={isDrawing}
@@ -75,6 +102,8 @@ export const Svg: React.FC<SvgProps> = ({
             handleCircleDrag={handleCircleDrag}
             handleFigureClick={handleFigureClick}
             startDragging={startDragging}
+            startFigureDragging={startFigureDragging(index)}
+            endFigureDraging={endFigureDragging}
             isDragging={isDragging}
             endDragging={endDragging}
           />

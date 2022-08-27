@@ -4,6 +4,7 @@ import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
+import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
 import {
@@ -110,6 +111,50 @@ export const Editor: React.FC<EditorProps> = ({
     const updatedHotspots = hotspots.map(resetPointsOfActiveHotspot);
 
     setHotspots(updatedHotspots);
+  };
+
+  const handleFigureDrag = (
+    figureDrag: HotspotUpdate,
+    newPosition: Point,
+  ): void => {
+    if (!ref.current) {
+      return;
+    }
+
+    // TODO: fix performance
+    const rect = ref.current.getBoundingClientRect();
+    const offsetX = rect.x;
+    const offsetY = rect.y;
+    const { width, height } = rect;
+
+    const startPoint = {
+      x: ((figureDrag.from.x - offsetX) / width) * 100,
+      y: (((figureDrag.from.y - offsetY) / height) * 100) / aspectRatio,
+    };
+
+    const currentPoint = {
+      x: ((newPosition.x - offsetX) / width) * 100,
+      y: (((newPosition.y - offsetY) / height) * 100) / aspectRatio,
+    };
+
+    const motionDelta = {
+      x: startPoint.x - currentPoint.x,
+      y: startPoint.y - currentPoint.y,
+    };
+
+    const movedPoints = figureDrag.hotspot.points?.map(point => {
+      return { x: point.x - motionDelta.x, y: point.y - motionDelta.y };
+    });
+    // hotspots[figureDrag.hotspotIndex] = {...hotspots[figureDrag.hotspotIndex], points: movedPoints};
+    setHotspots([
+      ...hotspots.slice(0, figureDrag.hotspotIndex),
+      {
+        ...hotspots[figureDrag.hotspotIndex],
+        isDrawingThisPolygon: false,
+        points: movedPoints,
+      },
+      ...hotspots.slice(figureDrag.hotspotIndex + 1),
+    ]);
   };
 
   const handleCircleDrag = (pointUpdate: PointUpdate): Point => {
@@ -234,6 +279,7 @@ export const Editor: React.FC<EditorProps> = ({
             handleCircleClick={handleCircleClick}
             handleCircleDrag={handleCircleDrag}
             handleFigureClick={hotspot => handleWordSelected(hotspot.word.id)}
+            handleFigureDrag={handleFigureDrag}
             aspectRatio={aspectRatio}
           />
         </div>

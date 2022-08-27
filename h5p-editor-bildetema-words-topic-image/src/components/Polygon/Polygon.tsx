@@ -1,6 +1,7 @@
 import React from "react";
 import { findDistance } from "../../../../common/utils/figure/figure.utils";
 import { Hotspot } from "../../types/Hotspot";
+import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
 import { pointsToDAttribute } from "../../utils/figure/figure.utils";
@@ -13,6 +14,8 @@ export type PolygonProps = {
   handleFigureClick: (hotspot: Hotspot) => void;
   startDragging: (startPoint: Point, index: number) => void;
   endDragging: (point: PointUpdate) => void;
+  endFigureDraging: (event: React.MouseEvent) => boolean;
+  startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
   isDragging: boolean;
   isDrawing: boolean;
 };
@@ -24,6 +27,8 @@ export const Polygon: React.FC<PolygonProps> = ({
   handleFigureClick,
   startDragging,
   endDragging,
+  startFigureDragging,
+  endFigureDraging,
   isDragging,
   isDrawing,
 }) => {
@@ -44,6 +49,11 @@ export const Polygon: React.FC<PolygonProps> = ({
     handleFigureClick(hotspot);
   };
 
+  const onFigureStartDrag = (event: React.MouseEvent): void => {
+    event.stopPropagation();
+    startFigureDragging(hotspot, { x: event.clientX, y: event.clientY });
+  };
+
   return (
     <>
       {isCircle ? (
@@ -58,6 +68,10 @@ export const Polygon: React.FC<PolygonProps> = ({
             isDrawingThisPolygon || isDrawing ? styles.isDrawing : ""
           }`}
           onClick={onFigureClick}
+          onMouseDown={onFigureStartDrag}
+          onMouseUp={event => {
+            return endFigureDraging(event);
+          }}
         />
       ) : (
         points?.length && (
@@ -69,6 +83,10 @@ export const Polygon: React.FC<PolygonProps> = ({
             strokeWidth="0.3"
             stroke="black"
             onClick={onFigureClick}
+            onMouseDown={onFigureStartDrag}
+            onMouseUp={event => {
+              return endFigureDraging(event);
+            }}
           />
         )
       )}
