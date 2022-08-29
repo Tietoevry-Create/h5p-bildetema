@@ -54,6 +54,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
 
     if (playing) {
       audioElement.pause();
+      audioElement.currentTime = 0;
     } else {
       audioElement.play();
     }
