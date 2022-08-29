@@ -34,6 +34,14 @@
   flex-wrap: nowrap;
   width: max-content;
   padding: 0 $spacing--16;
+
+  @media print {
+    // Allow many languages and stil be scrollable on mobile when not print
+    // but use margins for instances where print is scaled down
+    margin: $main-content-margin;
+    max-width: $main-content-max-width;
+    width: $main-content-width;
+  }
 }
 
 .languageButton {
