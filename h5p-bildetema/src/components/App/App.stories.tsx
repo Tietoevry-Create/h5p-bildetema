@@ -7,6 +7,8 @@ export default {
   component: App,
 } as ComponentMeta<typeof App>;
 
-const Template: ComponentStory<typeof App> = () => <App />;
+const Template: ComponentStory<typeof App> = () => (
+  <App defaultLanguages={["nob"]} />
+);
 
 export const Default = Template.bind({});
