@@ -34,66 +34,8 @@
   border-bottom: none;
 }
 
-.checkbox {
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
 .checkbox input {
   @include visually-hidden;
-}
-
-.checkboxContainer,
-.checkmark {
-  width: 1rem;
-  height: 1rem;
-}
-
-.checkboxContainer:focus-within {
-  box-shadow: 0 0 0 2px $checkbox-shadow-color;
-  border-radius: 5px;
-}
-
-.checkmark {
-  position: absolute;
-  inset: 0;
-  background-color: $checkmark-color;
-  border-radius: 5px;
-  box-shadow: 0 0 0 3px $checkbox-color inset;
-
-  .language.disabled &,
-  .languageMiddle.disabled & {
-    box-shadow: 0 0 0 3px $checkbox-disabled-color inset;
-  }
-}
-
-.checkbox input:checked ~ .checkmark {
-  background-color: $checkbox-color;
-
-  &::after {
-    display: block;
-  }
-
-  .language.disabled &,
-  .languageMiddle.disabled & {
-    background-color: $checkbox-disabled-color;
-  }
-}
-
-.checkmark::after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkbox .checkmark:after {
-  left: 4px;
-  width: 5px;
-  height: 10px;
-  border: solid $checkmark-color;
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
 }
 
 .languageLabel {
