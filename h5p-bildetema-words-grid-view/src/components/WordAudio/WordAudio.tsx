@@ -27,6 +27,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
 
     if (playing) {
       audioElement.pause();
+      audioElement.currentTime = 0;
     } else {
       audioElement.play();
     }

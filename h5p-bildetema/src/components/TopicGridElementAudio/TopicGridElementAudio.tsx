@@ -35,6 +35,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
 
     if (playing) {
       audioElement.pause();
+      audioElement.currentTime = 0;
     } else {
       audioElement.play();
     }
