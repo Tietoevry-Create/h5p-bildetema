@@ -4,10 +4,14 @@ import { Bildetema } from "../Bildetema/Bildetema";
 
 const queryClient = new QueryClient();
 
-export const App: React.FC = () => {
+type appProps = {
+  defaultLanguages: string[];
+};
+
+export const App: React.FC<appProps> = ({ defaultLanguages }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Bildetema />
+      <Bildetema defaultLanguages={defaultLanguages} />
     </QueryClientProvider>
   );
 };

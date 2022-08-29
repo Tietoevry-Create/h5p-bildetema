@@ -16,15 +16,11 @@ import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
 
-export const defaultFavoriteLanguages: Language[] = [
-  {
-    label: "Norsk (Bokmål)",
-    code: "nob",
-    rtl: false,
-  },
-];
+type bildetemaProps = {
+  defaultLanguages: string[];
+};
 
-export const Bildetema: React.FC = () => {
+export const Bildetema: React.FC<bildetemaProps> = ({ defaultLanguages }) => {
   const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], getData);
 
   const topicsFromDB = data?.topics;
@@ -46,11 +42,15 @@ export const Bildetema: React.FC = () => {
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
 
-  if (!favLanguages.length) {
-    userData.favoriteLanguages = defaultFavoriteLanguages;
-    setUserData(userData);
-    setFavLanguages(userData.favoriteLanguages);
+  if (!favLanguages.length && languagesFromDB) {
+    const languages: Language[] = [];
+    defaultLanguages.forEach(code => {
+      const lang = languagesFromDB.find(el => el.code === code);
+      if (lang) languages.push(lang);
+    });
+    setFavLanguages([...languages]);
   }
+
   const [routes, setRoutes] = useState<JSX.Element>();
 
   const handleToggleChange = (value: boolean): void => {
@@ -58,18 +58,20 @@ export const Bildetema: React.FC = () => {
     setShowWrittenWords(value);
   };
 
-  const handleToggleFavoriteLanguage = (
-    language: Language,
-    favorite: boolean,
-  ): void => {
-    if (favorite) {
-      setFavLanguages(languages => [...languages, language]);
-      return;
-    }
-    setFavLanguages(languages =>
-      languages.filter(lang => lang.code !== language.code),
-    );
-  };
+  const handleToggleFavoriteLanguage = React.useCallback(
+    (language: Language, favorite: boolean): void => {
+      if (favorite) {
+        // When favLanguages is 0 it means that this is the first visit, and favLanguages should be added from defaultLanguages.
+        if (favLanguages.length === 0) return;
+        setFavLanguages([...favLanguages, language]);
+        return;
+      }
+      setFavLanguages(languages =>
+        languages.filter(lang => lang.code !== language.code),
+      );
+    },
+    [favLanguages, setFavLanguages],
+  );
 
   React.useEffect(() => {
     userData.favoriteLanguages = favLanguages;
@@ -108,7 +110,7 @@ export const Bildetema: React.FC = () => {
             }
           />
         ))}
-        <Route path="*" element={<Navigate to="/nob" />} />
+        <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>,
     );
   }, [
@@ -118,6 +120,8 @@ export const Bildetema: React.FC = () => {
     showWrittenWords,
     topicsSize,
     favLanguages,
+    defaultLanguages,
+    handleToggleFavoriteLanguage,
   ]);
   return (
     <div className={styles.wrapper}>

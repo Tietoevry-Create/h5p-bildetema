@@ -9,6 +9,7 @@ import { TranslationKey } from "../types/TranslationKey";
 
 type Params = {
   l10n: Record<TranslationKey, string>;
+  defaultLanguages: string[];
 };
 
 export class H5PWrapper
@@ -24,7 +25,7 @@ export class H5PWrapper
       return;
     }
 
-    const { l10n } = this.params;
+    const { l10n, defaultLanguages } = this.params;
 
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema");
@@ -35,7 +36,7 @@ export class H5PWrapper
         <H5PContext.Provider value={this}>
           <L10nContext.Provider value={l10n}>
             <ContentIdContext.Provider value={this.contentId}>
-              <App />
+              <App defaultLanguages={defaultLanguages} />
             </ContentIdContext.Provider>
           </L10nContext.Provider>
         </H5PContext.Provider>
