@@ -142,5 +142,9 @@ export const RouteController: React.FC<RouteControllerProps> = ({
     );
   }
 
-  return <div>Page does not exist</div>;
+  return (
+    <div>
+      <p>Page does not exist</p>
+    </div>
+  );
 };
