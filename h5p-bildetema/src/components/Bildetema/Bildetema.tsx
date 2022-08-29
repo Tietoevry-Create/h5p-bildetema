@@ -147,7 +147,7 @@ export const Bildetema: React.FC = () => {
         />
         <div className={styles.body}>
           {isLoadingTopics || isLoadingLanguages ? (
-            <h1>{loadingLabel}</h1>
+            <p>{loadingLabel}</p>
           ) : (
             routes
           )}
