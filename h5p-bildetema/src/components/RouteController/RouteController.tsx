@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
+import { useL10n } from "../../hooks/useL10n";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import {
   Language,
@@ -38,12 +39,13 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   favLanguages,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
+  const loadingLabel = useL10n("pageIsLoading");
   const { langId, topicLabel, subTopicId } = useParams();
 
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
 
-  const { words, topics, language, currentTopic } = useMemo(
+  const { words, topics, language, currentTopic, loading } = useMemo(
     () =>
       validRoute(
         topicsFromDB,
@@ -127,6 +129,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
     // Avoid depending on `currentTopicId` and `currentSubTopicId` as they are set by the effect
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage, h5pInstance, subTopicId, topicLabel, topics]);
+
+  if (loading) return <p>{loadingLabel}</p>
 
   if ((words && language) || (topics && language)) {
     return (

@@ -5,4 +5,5 @@ export type TopicsAndWords = {
   words?: Word[];
   language?: Language;
   currentTopic?: TopicIds;
+  loading: boolean;
 };
