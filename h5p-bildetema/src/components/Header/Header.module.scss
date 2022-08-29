@@ -69,6 +69,7 @@
   flex-direction: column;
   font-size: $font-size-16;
   line-height: 1.4;
+  text-decoration: none; // Overrides WordPress's default styling
 
   &:hover {
     text-decoration: none;
