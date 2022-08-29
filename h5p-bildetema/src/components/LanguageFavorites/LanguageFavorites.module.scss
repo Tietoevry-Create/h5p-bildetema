@@ -16,7 +16,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
-  @media screen and (min-width: 48rem) {
+  @include breakpoint-min($small) {
     display: none;
     position: relative;
   }
