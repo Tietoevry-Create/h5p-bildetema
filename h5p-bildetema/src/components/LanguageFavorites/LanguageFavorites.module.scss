@@ -20,6 +20,10 @@
     display: none;
     position: relative;
   }
+
+  @media print {
+    position: relative;
+  }
 }
 
 .languages {
@@ -52,6 +56,12 @@
     text-decoration: underline;
     &:focus {
       outline: none;
+    }
+  }
+
+  &:not(.languageButton_active) {
+    @media print {
+      display: none;
     }
   }
 }

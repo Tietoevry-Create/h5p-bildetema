@@ -43,7 +43,11 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
   const pauseAudioLabel = useL10n("pauseAudio");
 
   return (
-    <div className={styles.wordAudio}>
+    <div
+      className={`${styles.wordAudio} ${
+        textVisible ? "" : styles.wordAudioHideForPrint
+      }`}
+    >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
         {word.audioFiles?.map(file => (

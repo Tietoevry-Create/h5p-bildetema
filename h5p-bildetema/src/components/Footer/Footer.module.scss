@@ -41,3 +41,9 @@
     padding-right: none;
   }
 }
+
+.hide_from_print {
+  @media print {
+    display: none;
+  }
+}
