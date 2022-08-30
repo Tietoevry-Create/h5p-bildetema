@@ -10,3 +10,9 @@
   clip-path: inset(50%);
   margin: -1px;
 }
+
+@mixin breakpoint-min($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}

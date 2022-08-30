@@ -4,7 +4,7 @@
 .gridElementCompact {
   align-items: center;
   word-wrap: break-word;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: 0;
   font-size: $font-size-18;
   font-weight: bold;
@@ -15,6 +15,10 @@
   box-sizing: border-box;
   display: flex;
   gap: 0.5rem;
+
+  @include breakpoint-min($medium) {
+    padding: 1rem 2rem;
+  }
 
   &.disabled {
     pointer-events: none;
@@ -67,8 +71,14 @@
   }
 
   .topicCardCompact & {
-    height: 5.5rem;
-    min-width: 8rem; // need this also for small images
-    width: 8rem;
+    height: 4.5rem;
+    min-width: 6rem; // need this also for small images
+    width: 6rem;
+
+    @include breakpoint-min($x-small) {
+      height: 5.5rem;
+      min-width: 8rem; // need this also for small images
+      width: 8rem;
+    }
   }
 }

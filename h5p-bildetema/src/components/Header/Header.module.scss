@@ -8,7 +8,7 @@
   z-index: $header-z-index;
   margin-bottom: -2rem;
 
-  @media screen and (min-width: 48rem) {
+  @include breakpoint-min($small) {
     display: block;
     margin-bottom: 0;
     padding: $spacing--32 0;
@@ -53,11 +53,11 @@
     // ensure minimum free space around logo on smaller screens
     margin: 0.5rem 1rem;
 
-    @media screen and (min-width: 48rem) {
+    @include breakpoint-min($small) {
       display: block;
     }
 
-    @media screen and (min-width: 90rem) {
+    @include breakpoint-min($x-large) {
       margin: 0.5rem 1rem 0.5rem 0;
     }
   }
@@ -83,7 +83,7 @@
   &_subtitle {
     display: none;
 
-    @media screen and (min-width: 48rem) {
+    @include breakpoint-min($small) {
       display: block;
     }
   }
@@ -100,7 +100,7 @@
   gap: $spacing--16;
   flex-wrap: wrap;
 
-  @media screen and (min-width: 48rem) {
+  @include breakpoint-min($small) {
     display: flex;
   }
 }

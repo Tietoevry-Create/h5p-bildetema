@@ -14,11 +14,11 @@
 .gridCompact {
   column-gap: $spacing--16;
 
-  @media screen and (min-width: 50rem) {
+  @include breakpoint-min(50rem) {
     column-count: 2;
   }
 
-  @media screen and (min-width: 75rem) {
+  @include breakpoint-min($large) {
     column-count: 3;
   }
 }
