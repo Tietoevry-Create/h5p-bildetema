@@ -16,6 +16,8 @@
   }
 
   @media print {
+    margin-bottom: 0;
+    padding: $spacing--32 0;
     position: relative;
   }
 
@@ -37,12 +39,6 @@
   align-items: center;
   gap: $spacing--40;
   font-size: $font-size-24;
-
-  @include breakpoint-max($small) {
-    @media print {
-      display: none;
-    }
-  }
 }
 
 .logos {
@@ -103,6 +99,10 @@
   flex-wrap: wrap;
 
   @include breakpoint-min($small) {
+    display: flex;
+  }
+
+  @media print {
     display: flex;
   }
 }
