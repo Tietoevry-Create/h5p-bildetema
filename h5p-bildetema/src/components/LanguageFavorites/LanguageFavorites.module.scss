@@ -22,7 +22,7 @@
   }
 
   @media print {
-    position: relative;
+    display: none; // Show favorites in header component instead
   }
 }
 

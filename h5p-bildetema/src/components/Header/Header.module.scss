@@ -16,6 +16,8 @@
   }
 
   @media print {
+    margin-bottom: 0;
+    padding: $spacing--32 0;
     position: relative;
   }
 
@@ -97,6 +99,10 @@
   flex-wrap: wrap;
 
   @include breakpoint-min($small) {
+    display: flex;
+  }
+
+  @media print {
     display: flex;
   }
 }
