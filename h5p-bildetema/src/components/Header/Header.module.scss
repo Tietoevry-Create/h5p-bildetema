@@ -37,6 +37,12 @@
   align-items: center;
   gap: $spacing--40;
   font-size: $font-size-24;
+
+  @include breakpoint-max($small) {
+    @media print {
+      display: none;
+    }
+  }
 }
 
 .logos {
