@@ -33,15 +33,15 @@ export type Topic = {
 export type JSONData = {
   topics: JSONTopic[];
   languages: Language[];
-}
+};
 export type JSONTopic = {
   id: string;
   label: string;
   labelTranslations: Record<string, Word>;
   subTopics: Record<string, JSONTopic>;
   words: Record<string, Word[]>;
-  images: ImageUrl[]
-}
+  images: ImageUrl[];
+};
 
 export enum TopicGridSizes {
   Big,

@@ -51,7 +51,6 @@ export const getData = async (): Promise<{
   return { topics, languages };
 };
 
-
 const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
   const t: Topic[] = [];
   jsonTopic.forEach(topic => {
@@ -109,7 +108,6 @@ const fetchJson = async () => {
 };
 
 // Can be removed when verified that the above is working
-
 
 // const setTopic = (topic: Topic, map: Map<string, Topic>) => {
 //   map.set(topic.label, topic);
