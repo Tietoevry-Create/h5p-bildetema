@@ -33,13 +33,6 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
     setIsWordView(!!words);
   }, [words, setIsWordView]);
 
-  // Use placeholder(s) to make TopicGridElements the same size in Big grid
-  const usePlaceholders =
-    topicsSize === TopicGridSizes.Big && topics && topics?.length < 4;
-  const numberOfPlaceholders = usePlaceholders
-    ? 4 - Math.floor(topics?.length)
-    : 0;
-
   if (topics) {
     return (
       <div
@@ -65,11 +58,11 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             />
           );
         })}
-        {usePlaceholders &&
-          [...Array(numberOfPlaceholders)].map((_item, index) => {
-            // eslint-disable-next-line react/no-array-index-key
-            return <div key={`placeholder-${index}`} />;
-          })}
+
+        <div className={styles.placeholder} />
+        <div className={styles.placeholder} />
+        <div className={styles.placeholder} />
+        <div className={styles.placeholder} />
       </div>
     );
   }
