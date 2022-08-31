@@ -56,18 +56,18 @@ export const validRoute = (
   addFavoriteLanguage: (language: Language, favorite: boolean) => void,
 ): TopicsAndWords => {
   if (!topicsFromDB || !langId) {
-    return {};
+    return { loading: true };
   }
 
   if (!languagesFromDB) {
     setTopicIds({});
-    return {};
+    return { loading: true };
   }
 
   const language = langIdToLanguage(langId, languagesFromDB);
   if (!language) {
     setTopicIds({});
-    return {};
+    return { loading: false };
   }
 
   const languageIsAlreadyFavorited = favLanguages.find(
@@ -80,13 +80,13 @@ export const validRoute = (
 
   if (!topicLabel) {
     setTopicIds({});
-    return { topics: topicsFromDB, language };
+    return { topics: topicsFromDB, language, loading: false };
   }
 
   const topic = findTopic(topicsFromDB, language, topicLabel);
   if (!topic) {
     setTopicIds({});
-    return {};
+    return { loading: false };
   }
 
   const subTopics = Array.from(topic.subTopics.values());
@@ -94,8 +94,9 @@ export const validRoute = (
   if (!subTopicId) {
     setTopicIds({ topicId: topic.id });
 
-    if (subTopics.length) return { topics: subTopics, language };
-    return { words: topic.words.get(language.code), language };
+    if (subTopics.length)
+      return { topics: subTopics, language, loading: false };
+    return { words: topic.words.get(language.code), language, loading: false };
   }
 
   const subTopic = findTopic(subTopics, language, subTopicId);
@@ -105,5 +106,6 @@ export const validRoute = (
     words: subTopic?.words.get(language.code),
     language,
     currentTopic: { topicId: topic?.id, subTopicId: subTopic?.id },
+    loading: false,
   };
 };
