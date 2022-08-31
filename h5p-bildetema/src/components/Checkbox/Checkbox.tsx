@@ -1,4 +1,5 @@
 import React from "react";
+import { StarFilledIcon, StarOutlineIcon } from "../Icons/Icons";
 import styles from "./Checkbox.module.scss";
 
 type CheckboxProps = {
@@ -24,7 +25,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           onChange={e => handleChange(e.target.checked)}
           disabled={disabled}
         />
-        <span className={styles.star} />
+        {checked ? <StarFilledIcon /> : <StarOutlineIcon />}
       </span>
     </label>
   );
