@@ -4,29 +4,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0.2em;
+  padding: 0.4em;
 }
 
 .wrapper {
   position: relative;
   display: inline-block;
-  width: 1.2em;
-  height: 1.2em;
 
   /* Hide default HTML checkbox */
   & input {
     @include visually-hidden;
   }
-}
-
-.star:before {
-  position: absolute;
-  content: "\2606";
-  text-align: center;
-  line-height: 1.2em;
-  inset: 0;
-}
-
-input:checked + .star:before {
-  content: "\2605";
 }
