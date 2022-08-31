@@ -49,6 +49,10 @@
   height: 100%;
   align-items: center;
 
+  @include breakpoint-min($small) {
+    width: max-content;
+  }
+
   &:hover {
     text-decoration-line: underline;
   }
