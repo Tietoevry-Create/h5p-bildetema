@@ -6,7 +6,7 @@ import {
   TopicGridSizes,
   TopicIds,
 } from "../../../../common/types/types";
-import { getLanguages, getTopics } from "../../../../common/utils/data.utils";
+import { getData } from "../../../../common/utils/data.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -25,14 +25,13 @@ export const defaultFavoriteLanguages: Language[] = [
 ];
 
 export const Bildetema: React.FC = () => {
-  const { isLoading: isLoadingLanguages, data: languagesFromDB } = useQuery(
-    ["languagesFromDB"],
-    getLanguages,
+  const { isLoading: isLoadingData, data, } = useQuery(
+    ["dataFromDB"],
+    getData,
   );
-  const { isLoading: isLoadingTopics, data: topicsFromDB } = useQuery(
-    ["topicsFromDB"],
-    getTopics,
-  );
+  
+  const topicsFromDB = data?.topics
+  const languagesFromDB = data?.languages
 
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
@@ -117,7 +116,7 @@ export const Bildetema: React.FC = () => {
     );
   }, [
     topicsFromDB,
-    isLoadingTopics,
+    isLoadingData,
     languagesFromDB,
     showWrittenWords,
     topicsSize,
@@ -146,7 +145,7 @@ export const Bildetema: React.FC = () => {
           toggleChecked={showWrittenWords}
         />
         <div className={styles.body}>
-          {isLoadingTopics || isLoadingLanguages ? (
+          {isLoadingData ? (
             <p>{loadingLabel}</p>
           ) : (
             routes
