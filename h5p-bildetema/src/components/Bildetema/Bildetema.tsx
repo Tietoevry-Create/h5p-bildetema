@@ -25,13 +25,10 @@ export const defaultFavoriteLanguages: Language[] = [
 ];
 
 export const Bildetema: React.FC = () => {
-  const { isLoading: isLoadingData, data, } = useQuery(
-    ["dataFromDB"],
-    getData,
-  );
-  
-  const topicsFromDB = data?.topics
-  const languagesFromDB = data?.languages
+  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], getData);
+
+  const topicsFromDB = data?.topics;
+  const languagesFromDB = data?.languages;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
@@ -145,11 +142,7 @@ export const Bildetema: React.FC = () => {
           toggleChecked={showWrittenWords}
         />
         <div className={styles.body}>
-          {isLoadingData ? (
-            <p>{loadingLabel}</p>
-          ) : (
-            routes
-          )}
+          {isLoadingData ? <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />
       </div>
