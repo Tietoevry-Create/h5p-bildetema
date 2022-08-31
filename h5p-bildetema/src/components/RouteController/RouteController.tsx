@@ -130,7 +130,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage, h5pInstance, subTopicId, topicLabel, topics]);
 
-  if (loading) return <p>{loadingLabel}</p>
+  if (loading) return <p>{loadingLabel}</p>;
 
   if ((words && language) || (topics && language)) {
     return (
