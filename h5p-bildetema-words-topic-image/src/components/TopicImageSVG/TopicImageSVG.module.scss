@@ -41,8 +41,12 @@
 
 .imageContainer {
   position: relative;
-  max-height: calc(100vh - 2rem);
+  max-height: calc(100vh - 5rem); // Compensate for mobile header height
   width: 80%;
+
+  @include breakpoint-min($small) {
+    max-height: calc(100vh - 11rem); // Compensate for header height
+  }
 }
 
 .imageVertical,
