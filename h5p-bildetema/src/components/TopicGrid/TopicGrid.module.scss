@@ -22,3 +22,11 @@
     column-count: 3;
   }
 }
+
+.placeholder {
+  display: none;
+
+  &:nth-child(-n + 4) {
+    display: block;
+  }
+}
