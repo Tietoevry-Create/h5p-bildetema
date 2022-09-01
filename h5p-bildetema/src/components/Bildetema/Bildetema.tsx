@@ -16,11 +16,11 @@ import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
 
-type bildetemaProps = {
+type BildetemaProps = {
   defaultLanguages: string[];
 };
 
-export const Bildetema: React.FC<bildetemaProps> = ({ defaultLanguages }) => {
+export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
   const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], getData);
 
   const topicsFromDB = data?.topics;
