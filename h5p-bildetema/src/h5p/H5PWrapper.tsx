@@ -9,7 +9,7 @@ import { TranslationKey } from "../types/TranslationKey";
 
 type Params = {
   l10n: Record<TranslationKey, string>;
-  defaultLanguages: string[];
+  defaultLanguages?: string[];
 };
 
 export class H5PWrapper
@@ -36,7 +36,7 @@ export class H5PWrapper
         <H5PContext.Provider value={this}>
           <L10nContext.Provider value={l10n}>
             <ContentIdContext.Provider value={this.contentId}>
-              <App defaultLanguages={defaultLanguages} />
+              <App defaultLanguages={defaultLanguages ?? []} />
             </ContentIdContext.Provider>
           </L10nContext.Provider>
         </H5PContext.Provider>
