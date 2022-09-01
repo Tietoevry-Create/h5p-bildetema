@@ -278,8 +278,7 @@
     "type": "list",
     "entity": "Language",
     "field": {
-      "description": "Language code should be on <a href=https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>ISO-639-3</a> format",
-      "label": "Language Code",
+      "label": "Language",
       "name": "languageCode",
       "type": "select",
       "default": "eng",
