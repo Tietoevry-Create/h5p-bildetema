@@ -26,7 +26,7 @@ export const HomeIcon: React.FC<IconProps & IconSizeProps> = ({
     viewBox="0 0 24 24"
     width="24px"
     fill="currentcolor"
-    transform="scale(1.5)"
+    style={{ transform: "scale(1.5)" }}
   >
     <path d="M0 0h24v24H0V0z" fill="none" />
     <path

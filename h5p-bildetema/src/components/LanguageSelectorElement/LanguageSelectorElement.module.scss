@@ -48,6 +48,7 @@
   gap: $spacing--16;
   height: 100%;
   align-items: center;
+  line-height: 1;
 
   @include breakpoint-min($small) {
     width: max-content;

@@ -10,6 +10,8 @@
 .wrapper {
   position: relative;
   display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
 
   /* Hide default HTML checkbox */
   & input {
