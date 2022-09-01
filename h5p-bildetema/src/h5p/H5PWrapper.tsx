@@ -4,12 +4,13 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
+import { LanguageCode } from "../../../common/types/LanguageCode";
 import { App } from "../components/App/App";
 import { TranslationKey } from "../types/TranslationKey";
 
 type Params = {
   l10n: Record<TranslationKey, string>;
-  defaultLanguages?: string[];
+  defaultLanguages?: Array<LanguageCode>;
 };
 
 export class H5PWrapper
@@ -27,6 +28,8 @@ export class H5PWrapper
 
     const { l10n, defaultLanguages } = this.params;
 
+    const uniqueDefaultLanguages = [...new Set(defaultLanguages)];
+
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema");
 
@@ -36,7 +39,7 @@ export class H5PWrapper
         <H5PContext.Provider value={this}>
           <L10nContext.Provider value={l10n}>
             <ContentIdContext.Provider value={this.contentId}>
-              <App defaultLanguages={defaultLanguages ?? []} />
+              <App defaultLanguages={uniqueDefaultLanguages ?? []} />
             </ContentIdContext.Provider>
           </L10nContext.Provider>
         </H5PContext.Provider>
