@@ -16,7 +16,7 @@ const langOption = (
   label: string,
 ): { label: string; value: string } => ({
   label,
-  value : isoCode,
+  value: isoCode,
 });
 
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
@@ -180,9 +180,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     type: "list",
     entity: "Language",
     field: {
-      description:
-        "Language code should be on <a href=https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>ISO-639-3</a> format",
-      label: "Language Code",
+      label: "Language",
       name: "languageCode",
       type: "select",
       default: "eng",
