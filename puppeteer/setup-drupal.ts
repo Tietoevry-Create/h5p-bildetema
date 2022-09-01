@@ -1,5 +1,8 @@
 import puppeteer from "puppeteer";
 
+const sleep = async (ms: number): Promise<void> =>
+  new Promise(resolve => setTimeout(resolve, ms));
+
 const { log } = console;
 
 async function openPage(page: puppeteer.Page, url: string) {
@@ -29,7 +32,7 @@ async function openH5PAdminTool(
     waitUntil: "networkidle2",
   });
 
-  await page.waitForTimeout(5000);
+  await sleep(5000);
 }
 
 async function getEditorIframe(page: puppeteer.Page): Promise<puppeteer.Frame> {
@@ -41,9 +44,9 @@ async function openH5PContentTypeEditor(
   contentType: string,
   editorIframe: puppeteer.Frame,
 ): Promise<void> {
-  await page.waitForTimeout(5000);
+  await sleep(5000);
   await editorIframe.childFrames()[0].click(`#${contentType}`);
-  await page.waitForTimeout(5000);
+  await sleep(5000);
 }
 
 async function saveH5PContentType(
@@ -51,7 +54,7 @@ async function saveH5PContentType(
   editorIframe: puppeteer.Frame,
 ): Promise<void> {
   await editorIframe.click("#edit-submit");
-  await page.waitForTimeout(5000);
+  await sleep(5000);
 }
 
 async function startEditingH5PContentType(
@@ -84,7 +87,7 @@ async function createBildetemaInstance(
 
   log("Set title to", title);
   await h5pEditorIframe.childFrames()[0].type("#field-extratitle--1", title);
-
+  
   await saveH5PContentType(page, h5pEditorIframe);
 }
 
@@ -114,7 +117,7 @@ async function createTopicImageInstance(
 
   log("Upload file");
   await fileChooser.accept(["./puppeteer/jellyfish-1.jpeg"]);
-  await page.waitForTimeout(5000);
+  await sleep(5000);
 
   log("Set topic");
   await editorFrame.select("[data-test-id=topic-select]", topicId);
