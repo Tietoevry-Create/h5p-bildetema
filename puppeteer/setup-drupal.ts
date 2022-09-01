@@ -87,7 +87,7 @@ async function createBildetemaInstance(
 
   log("Set title to", title);
   await h5pEditorIframe.childFrames()[0].type("#field-extratitle--1", title);
-  
+
   await saveH5PContentType(page, h5pEditorIframe);
 }
 
