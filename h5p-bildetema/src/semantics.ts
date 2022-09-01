@@ -11,6 +11,14 @@ const lang = (
   type: "text",
 });
 
+const langOption = (
+  isoCode: typeof languages[number],
+  label: string,
+): { label: string; value: string } => ({
+  label,
+  value : isoCode,
+});
+
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
     name: "l10n",
@@ -166,6 +174,8 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   },
   {
     label: "Default languages",
+    description:
+      "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
     name: "defaultLanguages",
     type: "list",
     entity: "Language",
@@ -174,7 +184,34 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         "Language code should be on <a href=https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>ISO-639-3</a> format",
       label: "Language Code",
       name: "languageCode",
-      type: "text",
+      type: "select",
+      default: "eng",
+      options: [
+        langOption("ara", "Arabic"),
+        langOption("ckb", "Sorani"),
+        langOption("dan", "Danish"),
+        langOption("eng", "English"),
+        langOption("fas", "Persian"),
+        langOption("fra", "French"),
+        langOption("isl", "Icelandic"),
+        langOption("kmr", "Kurmanji"),
+        langOption("lit", "Lithuanian"),
+        langOption("nno", "Norwegian (nynorsk)"),
+        langOption("nob", "Norwegian (bokmål)"),
+        langOption("pol", "Polish"),
+        langOption("prs", "Dari"),
+        langOption("pus", "Pashto"),
+        langOption("rus", "Russian"),
+        langOption("sme", "Northern Sami"),
+        langOption("som", "Somali"),
+        langOption("spa", "Spanish"),
+        langOption("swe", "Swedish"),
+        langOption("tgl", "Tagalog"),
+        langOption("tha", "Thai"),
+        langOption("tir", "Tigrinya"),
+        langOption("ukr", "Ukrainian"),
+        langOption("vie", "Vietnamese"),
+      ],
     },
   },
 ];

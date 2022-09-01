@@ -273,6 +273,7 @@
   },
   {
     "label": "Default languages",
+    "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
     "name": "defaultLanguages",
     "type": "list",
     "entity": "Language",
@@ -280,7 +281,106 @@
       "description": "Language code should be on <a href=https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>ISO-639-3</a> format",
       "label": "Language Code",
       "name": "languageCode",
-      "type": "text"
+      "type": "select",
+      "default": "eng",
+      "options": [
+        {
+          "label": "Arabic",
+          "value": "ara"
+        },
+        {
+          "label": "Sorani",
+          "value": "ckb"
+        },
+        {
+          "label": "Danish",
+          "value": "dan"
+        },
+        {
+          "label": "English",
+          "value": "eng"
+        },
+        {
+          "label": "Persian",
+          "value": "fas"
+        },
+        {
+          "label": "French",
+          "value": "fra"
+        },
+        {
+          "label": "Icelandic",
+          "value": "isl"
+        },
+        {
+          "label": "Kurmanji",
+          "value": "kmr"
+        },
+        {
+          "label": "Lithuanian",
+          "value": "lit"
+        },
+        {
+          "label": "Norwegian (nynorsk)",
+          "value": "nno"
+        },
+        {
+          "label": "Norwegian (bokmål)",
+          "value": "nob"
+        },
+        {
+          "label": "Polish",
+          "value": "pol"
+        },
+        {
+          "label": "Dari",
+          "value": "prs"
+        },
+        {
+          "label": "Pashto",
+          "value": "pus"
+        },
+        {
+          "label": "Russian",
+          "value": "rus"
+        },
+        {
+          "label": "Northern Sami",
+          "value": "sme"
+        },
+        {
+          "label": "Somali",
+          "value": "som"
+        },
+        {
+          "label": "Spanish",
+          "value": "spa"
+        },
+        {
+          "label": "Swedish",
+          "value": "swe"
+        },
+        {
+          "label": "Tagalog",
+          "value": "tgl"
+        },
+        {
+          "label": "Thai",
+          "value": "tha"
+        },
+        {
+          "label": "Tigrinya",
+          "value": "tir"
+        },
+        {
+          "label": "Ukrainian",
+          "value": "ukr"
+        },
+        {
+          "label": "Vietnamese",
+          "value": "vie"
+        }
+      ]
     }
   }
 ]
