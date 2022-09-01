@@ -42,7 +42,7 @@ async function updateLibrary(
   await fileChooser.accept([filePath]);
   await page.click("[name=submit]");
   log("Waiting 5s");
-  page.waitForTimeout(5000);
+  await page.waitForTimeout(5000);
 }
 
 (async () => {
