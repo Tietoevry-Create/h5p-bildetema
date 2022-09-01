@@ -22,6 +22,13 @@ type BildetemaProps = {
 
 export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
   const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], getData);
+  const [showLoadingLabel, setShowLoadingLabel] = useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setShowLoadingLabel(true);
+    }, 300);
+  }, []);
 
   const topicsFromDB = data?.topics;
   const languagesFromDB = data?.languages;
@@ -50,8 +57,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
     });
     setFavLanguages([...languages]);
   }
-
-  const [routes, setRoutes] = useState<JSX.Element>();
 
   const handleToggleChange = (value: boolean): void => {
     setSearchParams(`${wordsVisibleParam}=${value}`);
@@ -84,13 +89,13 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
     }
   });
 
-  useEffect(() => {
+  const routes = (): JSX.Element => {
     const paths = [
       "/:langId",
       "/:langId/:topicLabel",
       "/:langId/:topicLabel/:subTopicId",
     ];
-    setRoutes(
+    return (
       <Routes>
         {paths.map(path => (
           <Route
@@ -111,18 +116,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
           />
         ))}
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
-      </Routes>,
+      </Routes>
     );
-  }, [
-    topicsFromDB,
-    isLoadingData,
-    languagesFromDB,
-    showWrittenWords,
-    topicsSize,
-    favLanguages,
-    defaultLanguages,
-    handleToggleFavoriteLanguage,
-  ]);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -146,7 +143,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
           toggleChecked={showWrittenWords}
         />
         <div className={styles.body}>
-          {isLoadingData ? <p>{loadingLabel}</p> : routes}
+          {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes()}
         </div>
         <Footer />
       </div>
