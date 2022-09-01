@@ -31,7 +31,7 @@
     "@types/puppeteer": "^5.4.6",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.33.1",
     "cli-interact": "^0.1.9",
     "concurrently": "^7.3.0",
@@ -47,7 +47,7 @@
     "happy-dom": "^6.0.4",
     "jsdom": "^20.0.0",
     "prettier": "^2.7.1",
-    "puppeteer": "^16.1.1",
+    "puppeteer": "^17.0.0",
     "rollup": "^2.78.0",
     "tsx": "^3.8.2",
     "vite": "^3.0.8"
