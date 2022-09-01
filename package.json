@@ -47,7 +47,7 @@
     "happy-dom": "^6.0.4",
     "jsdom": "^20.0.0",
     "prettier": "^2.7.1",
-    "puppeteer": "^16.1.1",
+    "puppeteer": "^17.0.0",
     "rollup": "^2.78.0",
     "tsx": "^3.8.2",
     "vite": "^3.0.8"
