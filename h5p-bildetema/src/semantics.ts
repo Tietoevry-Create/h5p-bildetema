@@ -183,7 +183,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       label: "Language",
       name: "languageCode",
       type: "select",
-      default: "eng",
+      default: "nob",
       options: [
         langOption("ara", "Arabic"),
         langOption("ckb", "Sorani"),
