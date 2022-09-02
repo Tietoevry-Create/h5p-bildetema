@@ -91,7 +91,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
     }
   });
 
-  const routes = (): JSX.Element => {
+  const routes = React.useMemo(() => {
     const paths = [
       "/:langId",
       "/:langId/:topicLabel",
@@ -120,7 +120,15 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
-  };
+  }, [
+    defaultLanguages,
+    favLanguages,
+    handleToggleFavoriteLanguage,
+    languagesFromDB,
+    showWrittenWords,
+    topicsFromDB,
+    topicsSize,
+  ]);
 
   return (
     <div className={styles.wrapper}>
@@ -145,7 +153,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
           toggleChecked={showWrittenWords}
         />
         <div className={styles.body}>
-          {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes()}
+          {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />
       </div>
