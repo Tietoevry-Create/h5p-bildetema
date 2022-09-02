@@ -14,10 +14,11 @@
 }
 
 .tools {
+  column-gap: 2rem;
   display: flex;
   flex-wrap: wrap;
   font-size: $font-size-18;
-  gap: 2rem;
+  row-gap: 1rem;
 
   @media print {
     display: none;
