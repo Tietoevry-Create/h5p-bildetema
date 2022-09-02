@@ -50,7 +50,7 @@ export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
         className={`${styles.overlays} ${
           isVertical ? styles.overlaysVertical : ""
         }`}
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMinYMin"
         viewBox={`0 0 100 ${100 / aspectRatio}`}
       >
         {overlayFields}
