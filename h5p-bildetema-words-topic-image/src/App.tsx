@@ -23,6 +23,8 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
   const [currentLanguageWords, setCurrentLanguageWords] = useState<Array<Word>>(
     [],
   );
+  const [showNoTopicsSelectedText, setShowNoTopicsSelectedText] =
+    useState(false);
 
   const noTopicSelectedText = useL10n("noTopicSelected");
 
@@ -58,6 +60,16 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       }
     },
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (!topic) {
+        setShowNoTopicsSelectedText(true);
+      }
+    }, 300);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!topic) {
@@ -101,6 +113,6 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       words={currentLanguageWords}
     />
   ) : (
-    <p>{noTopicSelectedText}</p>
+    <p>{showNoTopicsSelectedText && noTopicSelectedText}</p>
   );
 };

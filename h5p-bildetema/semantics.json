@@ -281,7 +281,7 @@
       "label": "Language",
       "name": "languageCode",
       "type": "select",
-      "default": "eng",
+      "default": "nob",
       "options": [
         {
           "label": "Arabic",
