@@ -1,12 +1,11 @@
 import React from "react";
 import { PrintIcon } from "../Icons/Icons";
+import { useL10ns } from "../../hooks/useL10n";
 import styles from "./PrintButton.module.scss";
 
-type PrintButtonProps = {
-  label: string;
-};
+export const PrintButton: React.FC = () => {
+  const { printLabel } = useL10ns("printLabel");
 
-export const PrintButton: React.FC<PrintButtonProps> = ({ label }) => {
   return (
     <button
       type="button"
@@ -14,7 +13,7 @@ export const PrintButton: React.FC<PrintButtonProps> = ({ label }) => {
       onClick={() => window.print()}
     >
       <span className={styles.printButtonWrapper}>
-        {label && <span>{label}</span>}
+        {printLabel && <span>{printLabel}</span>}
         <PrintIcon />
       </span>
     </button>

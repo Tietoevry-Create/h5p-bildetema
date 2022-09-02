@@ -25,7 +25,6 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   handleToggleChange,
 }) => {
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
-  const { printLabel } = useL10ns("printLabel");
 
   const contentId = useContentId();
   const { pathname } = useLocation();
@@ -36,7 +35,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.tools}>
-        <PrintButton label={printLabel} />
+        <PrintButton />
         <Toggle
           label={showWrittenWordsLabel}
           checked={toggleChecked}
