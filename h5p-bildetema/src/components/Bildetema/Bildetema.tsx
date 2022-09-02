@@ -30,6 +30,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
         setShowLoadingLabel(true);
       }
     }, 300);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const topicsFromDB = data?.topics;
