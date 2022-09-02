@@ -26,7 +26,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
 
   React.useEffect(() => {
     setTimeout(() => {
-      setShowLoadingLabel(true);
+      if (isLoadingData) {
+        setShowLoadingLabel(true);
+      }
     }, 300);
   }, []);
 
