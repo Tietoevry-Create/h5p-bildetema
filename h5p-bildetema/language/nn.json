@@ -12,6 +12,10 @@
           "default": "Show written words"
         },
         {
+          "label": "Print label",
+          "default": "Print"
+        },
+        {
           "label": "Play audio",
           "default": "Play audio"
         },

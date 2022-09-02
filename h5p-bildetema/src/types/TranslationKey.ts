@@ -7,6 +7,7 @@
 export type TranslationKey =
   | "pageIsLoading"
   | "showWrittenWordsLabel"
+  | "printLabel"
   | "playAudio"
   | "pauseAudio"
   | "footerContactInfoLabel"

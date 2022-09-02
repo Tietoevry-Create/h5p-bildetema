@@ -12,6 +12,10 @@
           "default": "Vis ord"
         },
         {
+          "label": "Skriv ut",
+          "default": "Skriv ut"
+        },
+        {
           "label": "Spill lyd",
           "default": "Spill lyd"
         },

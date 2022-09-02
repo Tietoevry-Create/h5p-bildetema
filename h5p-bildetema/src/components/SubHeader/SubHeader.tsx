@@ -7,6 +7,7 @@ import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle } from "../Toggle/Toggle";
 import styles from "./SubHeader.module.scss";
+import { PrintButton } from "../PrintButton/PrintButton";
 
 export type SubHeaderProps = {
   topicsSize: TopicGridSizes;
@@ -24,6 +25,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   handleToggleChange,
 }) => {
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
+  const { printLabel } = useL10ns("printLabel");
 
   const contentId = useContentId();
   const { pathname } = useLocation();
@@ -33,7 +35,8 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
-      <span className={styles.toggle}>
+      <span className={styles.tools}>
+        <PrintButton label={printLabel} />
         <Toggle
           label={showWrittenWordsLabel}
           checked={toggleChecked}
