@@ -13,8 +13,12 @@
   width: $main-content-width;
 }
 
-.toggle {
-  font-size: 1.2rem;
+.tools {
+  column-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: $font-size-18;
+  row-gap: 1rem;
 
   @media print {
     display: none;
