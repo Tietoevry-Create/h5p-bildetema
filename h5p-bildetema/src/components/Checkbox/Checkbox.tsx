@@ -15,6 +15,12 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   disabled,
 }) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === "Enter") {
+      handleChange(!!checked);
+    }
+  };
+
   return (
     <label className={styles.container} htmlFor={id}>
       <span className={styles.wrapper}>
@@ -23,6 +29,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           type="checkbox"
           checked={checked}
           onChange={e => handleChange(e.target.checked)}
+          onKeyDown={e => handleKeyDown(e)}
           disabled={disabled}
         />
         {checked ? <StarFilledIcon /> : <StarOutlineIcon />}

@@ -15,6 +15,9 @@
 
   /* Hide default HTML checkbox */
   & input {
-    @include visually-hidden;
+    all: unset;
+    position: absolute;
+    height: 1.2em;
+    width: 1.2em;
   }
 }
