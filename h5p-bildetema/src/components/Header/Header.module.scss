@@ -21,6 +21,10 @@
     position: relative;
   }
 
+  @include breakpoint-min($x-large) {
+    padding: $spacing--40 0;
+  }
+
   &_content {
     align-items: center;
     color: white;
@@ -49,14 +53,14 @@
   &_oslomet {
     display: none;
     // ensure minimum free space around logo on smaller screens
-    margin: 0.5rem 1rem;
+    margin: 0 1rem;
 
     @include breakpoint-min($small) {
-      display: block;
+      display: flex;
     }
 
     @include breakpoint-min($x-large) {
-      margin: 0.5rem 1rem 0.5rem 0;
+      margin: 0 1rem 0 0;
     }
   }
 }
