@@ -1,9 +1,14 @@
 @use "../../../../common/abstracts" as *;
 
-.container {
+.container,
+.containerFocused {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+}
+
+.containerFocused {
+  outline: 3px solid $orange;
 }
 
 .label {
