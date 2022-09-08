@@ -218,4 +218,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       ],
     },
   },
+  {
+    label: "Backend Url",
+    description: "The Url to the json database",
+    default:
+      "https://devbildetemabackend.blob.core.windows.net/data/database.json",
+    name: "backendUrl",
+    type: "text",
+  },
 ];

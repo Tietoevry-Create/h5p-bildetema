@@ -1,10 +1,10 @@
 // import * as xlsx from "xlsx";
-import {
-  // audioContainerURL,
-  // databaseURL,
-  // imageContainerURL,
-  JSONURL,
-} from "../constants/urls";
+// import {
+//   // audioContainerURL,
+//   // databaseURL,
+//   // imageContainerURL,
+//   JSONURL,
+// } from "../constants/urls";
 import { LanguageCode } from "../types/LanguageCode";
 import {
   // ImageUrl,
@@ -31,6 +31,7 @@ const NON_LANGUAGE_FIELDS = [
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
+let backendURL = "https://cdn-prodbildetema.azureedge.net/data/database.json";
 
 export const getTopics = async (): Promise<Topic[]> => {
   if (!topics.length) {
@@ -40,10 +41,15 @@ export const getTopics = async (): Promise<Topic[]> => {
   return topics;
 };
 
-export const getData = async (): Promise<{
+export const getData = async (
+  databaseUrl: string,
+): Promise<{
   topics: Topic[];
   languages: Language[];
 }> => {
+  console.log(databaseUrl);
+  if (databaseUrl !== "") backendURL = databaseUrl;
+
   if (!topics.length || languages.length) {
     await fetchJson();
     // await fetchData();
@@ -94,7 +100,7 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
 };
 
 const fetchJson = async () => {
-  const data = await fetch(JSONURL);
+  const data = await fetch(backendURL);
 
   const jsonData: JSONData = await data.json();
   const jsonTopic: JSONTopic[] = jsonData.topics;

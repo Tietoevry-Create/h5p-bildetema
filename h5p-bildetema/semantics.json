@@ -387,5 +387,12 @@
         }
       ]
     }
+  },
+  {
+    "label": "Backend Url",
+    "description": "The Url to the backend storage account",
+    "default": "https://devbildetemabackend.blob.core.windows.net/data/database.json",
+    "name": "backendUrl",
+    "type": "text"
   }
 ]
