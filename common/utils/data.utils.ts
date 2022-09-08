@@ -47,7 +47,6 @@ export const getData = async (
   topics: Topic[];
   languages: Language[];
 }> => {
-  console.log(databaseUrl);
   if (databaseUrl !== "") backendURL = databaseUrl;
 
   if (!topics.length || languages.length) {
