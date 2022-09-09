@@ -6,12 +6,13 @@ const queryClient = new QueryClient();
 
 type appProps = {
   defaultLanguages: string[];
+  backendUrl: string;
 };
 
-export const App: React.FC<appProps> = ({ defaultLanguages }) => {
+export const App: React.FC<appProps> = ({ defaultLanguages, backendUrl }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Bildetema defaultLanguages={defaultLanguages} />
+      <Bildetema defaultLanguages={defaultLanguages} backendUrl={backendUrl} />
     </QueryClientProvider>
   );
 };

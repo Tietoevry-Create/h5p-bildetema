@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof App>;
 
 const Template: ComponentStory<typeof App> = () => (
-  <App defaultLanguages={["nob"]} />
+  <App defaultLanguages={["nob"]} backendUrl="" />
 );
 
 export const Default = Template.bind({});

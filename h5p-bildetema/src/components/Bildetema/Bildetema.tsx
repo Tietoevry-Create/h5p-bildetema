@@ -18,10 +18,16 @@ import styles from "./Bildetema.module.scss";
 
 type BildetemaProps = {
   defaultLanguages: string[];
+  backendUrl: string;
 };
 
-export const Bildetema: React.FC<BildetemaProps> = ({ defaultLanguages }) => {
-  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], getData);
+export const Bildetema: React.FC<BildetemaProps> = ({
+  defaultLanguages,
+  backendUrl,
+}) => {
+  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
+    getData(backendUrl),
+  );
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
   React.useEffect(() => {
