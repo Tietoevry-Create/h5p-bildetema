@@ -30,7 +30,7 @@ export const Editor: React.FC<EditorProps> = ({
   words,
   initialHotspots,
 }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const canvasRef = React.useRef<HTMLDivElement>(null);
   const setValue = React.useContext(SetValueContext);
 
   const [selectedWord, setSelectedWord] = React.useState<string | null>(null);
@@ -58,12 +58,12 @@ export const Editor: React.FC<EditorProps> = ({
     clientX,
     clientY,
   }: React.MouseEvent<HTMLElement>): void => {
-    if (!ref?.current) {
+    if (!canvasRef?.current) {
       return;
     }
 
     // TODO: fix performance
-    const rect = ref.current.getBoundingClientRect();
+    const rect = canvasRef.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
     const { width, height } = rect;
@@ -117,12 +117,12 @@ export const Editor: React.FC<EditorProps> = ({
     figureDrag: HotspotUpdate,
     newPosition: Point,
   ): void => {
-    if (!ref.current) {
+    if (!canvasRef.current) {
       return;
     }
 
     // TODO: fix performance
-    const rect = ref.current.getBoundingClientRect();
+    const rect = canvasRef.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
     const { width, height } = rect;
@@ -158,12 +158,12 @@ export const Editor: React.FC<EditorProps> = ({
   };
 
   const handleCircleDrag = (pointUpdate: PointUpdate): Point => {
-    if (!ref.current) {
+    if (!canvasRef.current) {
       return pointUpdate.from;
     }
 
     // TODO: fix performance
-    const rect = ref.current.getBoundingClientRect();
+    const rect = canvasRef.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
     const { width, height } = rect;
@@ -267,7 +267,7 @@ export const Editor: React.FC<EditorProps> = ({
         </div>
         <div
           tabIndex={0}
-          ref={ref}
+          ref={canvasRef}
           className={styles.canvas}
           onClick={handleClick}
           onKeyDown={() => null}
