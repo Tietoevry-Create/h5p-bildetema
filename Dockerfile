@@ -7,6 +7,10 @@ WORKDIR /dev-h5p
 ADD . .
 ADD ./docker-php-entrypoint docker-php-entrypoint
 
+# Install Chromium separately instead of installing via npm, as that doesn't work on M1 CPUs
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+RUN apt-get install chromium -y
+
 # Install packages in main projects and all sub projects
 RUN npm install 
 
