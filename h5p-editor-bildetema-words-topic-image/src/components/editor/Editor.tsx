@@ -266,7 +266,7 @@ export const Editor: React.FC<EditorProps> = ({
             hotspots={hotspots}
             handleCircleClick={handleCircleClick}
             handleCircleDrag={handleCircleDrag}
-            handleFigureClick={hotspot => handleWordSelected(hotspot.word.id)}
+            handleFigureClick={hotspotId => handleWordSelected(hotspotId)}
             handleFigureDrag={handleFigureDrag}
             aspectRatio={aspectRatio}
           />

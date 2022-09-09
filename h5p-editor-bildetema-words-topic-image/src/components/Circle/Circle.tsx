@@ -7,9 +7,10 @@ import styles from "./Circle.module.scss";
 
 type CircleProps = {
   hotspot: Omit<Hotspot, "points"> & { points?: [Point, Point] };
-  handleFigureClick: (hotspot: Hotspot) => void;
+  handleFigureClick: (wordId: string) => void;
   startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
   endFigureDraging: (event: React.MouseEvent) => boolean;
+  isDrawing: boolean;
 };
 
 export const Circle: FC<CircleProps> = ({
@@ -17,6 +18,7 @@ export const Circle: FC<CircleProps> = ({
   handleFigureClick,
   startFigureDragging,
   endFigureDraging,
+  isDrawing,
 }) => {
   const [center, tangentPoint] = hotspot.points ?? [];
 
@@ -33,7 +35,15 @@ export const Circle: FC<CircleProps> = ({
       fill="none"
       strokeWidth="0.3"
       className={styles.circle}
-      onClick={() => handleFigureClick(hotspot)}
+      onClick={event => {
+        if (isDrawing) {
+          return;
+        }
+
+        event.stopPropagation();
+
+        handleFigureClick(hotspot.word.id);
+      }}
       onMouseDown={({ clientX: x, clientY: y }) =>
         startFigureDragging(hotspot, { x, y })
       }
