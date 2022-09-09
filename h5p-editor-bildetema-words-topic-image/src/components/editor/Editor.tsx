@@ -7,6 +7,7 @@ import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
+import { calculatePoint, getDelta } from "../../utils/figure/figure.utils";
 import {
   activateDrawingHotspot,
   finishDrawingHotspot,
@@ -62,7 +63,7 @@ export const Editor: React.FC<EditorProps> = ({
       return;
     }
 
-    // TODO: fix performance
+    // TODO: Fix performance by caching canvas' bounding box. Must be updated when scrolling/zooming
     const rect = canvasRef.current.getBoundingClientRect();
     const offsetX = rect.x;
     const offsetY = rect.y;
@@ -121,31 +122,18 @@ export const Editor: React.FC<EditorProps> = ({
       return;
     }
 
-    // TODO: fix performance
+    // TODO: Fix performance by caching canvas' bounding box. Must be updated when scrolling/zooming
     const rect = canvasRef.current.getBoundingClientRect();
-    const offsetX = rect.x;
-    const offsetY = rect.y;
-    const { width, height } = rect;
 
-    const startPoint = {
-      x: ((figureDrag.from.x - offsetX) / width) * 100,
-      y: (((figureDrag.from.y - offsetY) / height) * 100) / aspectRatio,
-    };
+    const startPoint = calculatePoint(figureDrag.from, rect, aspectRatio);
+    const currentPoint = calculatePoint(newPosition, rect, aspectRatio);
 
-    const currentPoint = {
-      x: ((newPosition.x - offsetX) / width) * 100,
-      y: (((newPosition.y - offsetY) / height) * 100) / aspectRatio,
-    };
+    const motionDelta = getDelta(startPoint, currentPoint);
 
-    const motionDelta = {
-      x: startPoint.x - currentPoint.x,
-      y: startPoint.y - currentPoint.y,
-    };
+    const movedPoints = figureDrag.hotspot.points?.map(point =>
+      getDelta(point, motionDelta),
+    );
 
-    const movedPoints = figureDrag.hotspot.points?.map(point => {
-      return { x: point.x - motionDelta.x, y: point.y - motionDelta.y };
-    });
-    // hotspots[figureDrag.hotspotIndex] = {...hotspots[figureDrag.hotspotIndex], points: movedPoints};
     setHotspots([
       ...hotspots.slice(0, figureDrag.hotspotIndex),
       {

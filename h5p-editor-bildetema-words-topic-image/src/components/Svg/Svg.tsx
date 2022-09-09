@@ -1,9 +1,11 @@
-import React from "react";
+import * as React from "react";
+import { FC, MouseEvent, useCallback, useEffect, useState } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
 import { Polygon } from "../Polygon/Polygon";
+import { Shape } from "../Shape/Shape";
 import styles from "./Svg.module.scss";
 
 export type SvgProps = {
@@ -15,7 +17,7 @@ export type SvgProps = {
   aspectRatio: number;
 };
 
-export const Svg: React.FC<SvgProps> = ({
+export const Svg: FC<SvgProps> = ({
   hotspots,
   handleCircleClick,
   handleCircleDrag,
@@ -23,16 +25,14 @@ export const Svg: React.FC<SvgProps> = ({
   handleFigureDrag,
   aspectRatio,
 }) => {
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [dragStart, setDragStart] = React.useState<
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState<
     (Point & { index: number }) | null
   >(null);
 
-  const [figureDrag, setFigureDrag] = React.useState<HotspotUpdate | null>(
-    null,
-  );
+  const [figureDrag, setFigureDrag] = useState<HotspotUpdate | null>(null);
 
-  const endFigureDragging = (event: React.MouseEvent): boolean => {
+  const endFigureDragging = (event: MouseEvent): boolean => {
     if (isDragging && figureDrag) {
       event.stopPropagation();
       setIsDragging(false);
@@ -54,18 +54,18 @@ export const Svg: React.FC<SvgProps> = ({
     setDragStart({ ...startPoint, index });
   };
 
-  const endDragging = (pointUpdate: PointUpdate): void => {
+  const endDragging = (): void => {
     setIsDragging(false);
     setDragStart(null);
   };
 
-  const findSomeDrawing = React.useCallback((): boolean => {
+  const findSomeDrawing = useCallback((): boolean => {
     return !!hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
   }, [hotspots]);
 
-  const [isDrawing, setIsDrawing] = React.useState(findSomeDrawing());
+  const [isDrawing, setIsDrawing] = useState(findSomeDrawing());
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsDrawing(findSomeDrawing());
   }, [setIsDrawing, findSomeDrawing]);
 
@@ -94,12 +94,11 @@ export const Svg: React.FC<SvgProps> = ({
     >
       {hotspots.map((hotspot, index) =>
         hotspot.points && hotspot.points?.length > 0 ? (
-          <Polygon
+          <Shape
             isDrawing={isDrawing}
             key={hotspot.word.id}
             hotspot={hotspot}
             handleCircleClick={handleCircleClick}
-            handleCircleDrag={handleCircleDrag}
             handleFigureClick={handleFigureClick}
             startDragging={startDragging}
             startFigureDragging={startFigureDragging(index)}
