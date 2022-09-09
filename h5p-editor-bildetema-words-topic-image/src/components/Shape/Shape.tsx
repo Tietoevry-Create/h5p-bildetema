@@ -3,7 +3,7 @@ import { FC, MouseEvent } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
-import { Circle } from "../Circle/Circle";
+import { Oval } from "../Oval/Oval";
 import { Polygon } from "../Polygon/Polygon";
 import styles from "./Shape.module.scss";
 
@@ -19,7 +19,7 @@ type ShapeProps = {
   isDrawing: boolean;
 };
 
-type CircleHotspot = Omit<Hotspot, "points"> & { points?: [Point, Point] };
+type CircleHotspot = Omit<Hotspot, "points"> & { points: [Point, Point] };
 const isCircle = (
   hotspot: Hotspot | CircleHotspot,
 ): hotspot is CircleHotspot => {
@@ -46,7 +46,7 @@ export const Shape: FC<ShapeProps> = ({
   return (
     <>
       {isCircle(hotspot) ? (
-        <Circle
+        <Oval
           hotspot={hotspot}
           handleFigureClick={handleFigureClick}
           startFigureDragging={startFigureDragging}
