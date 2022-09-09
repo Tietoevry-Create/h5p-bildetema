@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
 import "../../h5p-bildetema-words-tree-view/src";
+import englishTranslations from "../language/en.json";
 
 const queryClient = new QueryClient();
 
@@ -23,3 +24,5 @@ export const decorators = [
     </QueryClientProvider>
   ),
 ];
+
+H5PEditor.language["H5PEditor.BildetemaWordsTopicImage"] = englishTranslations;

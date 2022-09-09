@@ -13,6 +13,19 @@ export default {
 
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
+const portraitImage = {
+  // path: "https://images.unsplash.com/photo-1537017206014-37e7e84d84c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
+  path: "https://images.unsplash.com/photo-1617051571090-85766fa13621?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+  width: 1000,
+  height: 1250,
+};
+
+const landscapeImage = {
+  path: `${cdnURL}/images/xlarge/V0001a.jpeg`,
+  width: 1000,
+  height: 667,
+};
+
 const Template: ComponentStory<typeof Editor> = args => (
   /* eslint-disable-next-line react/jsx-props-no-spreading */
   <Editor {...args} />
@@ -20,10 +33,7 @@ const Template: ComponentStory<typeof Editor> = args => (
 
 export const Portrait = Template.bind({});
 Portrait.args = {
-  image: {
-    // path: "https://images.unsplash.com/photo-1537017206014-37e7e84d84c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
-    path: "https://images.unsplash.com/photo-1617051571090-85766fa13621?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-  },
+  image: portraitImage,
   words: [
     { audioFiles: [], label: "Mor", id: "V0002", images: [] },
     { audioFiles: [], label: "Far", id: "V0003", images: [] },
@@ -34,9 +44,7 @@ Portrait.args = {
 
 export const Landscape = Template.bind({});
 Landscape.args = {
-  image: {
-    path: `${cdnURL}/images/xlarge/V0001a.jpeg`,
-  },
+  image: landscapeImage,
   words: [
     { audioFiles: [], label: "Mor", id: "V0002", images: [] },
     { audioFiles: [], label: "Far", id: "V0003", images: [] },
@@ -48,9 +56,7 @@ Landscape.args = {
 
 export const WithInitialHotspots = Template.bind({});
 WithInitialHotspots.args = {
-  image: {
-    path: "https://images.unsplash.com/photo-1617051571090-85766fa13621?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-  },
+  image: portraitImage,
   words: [
     { audioFiles: [], label: "Mor", id: "V0002", images: [] },
     { audioFiles: [], label: "Far", id: "V0003", images: [] },

@@ -11,3 +11,17 @@ export const pointsToDAttribute = (
 
   return connectLastPointToStart ? `${d} Z` : d;
 };
+
+export const calculatePoint = (
+  { x, y }: Point,
+  { width, height, x: offsetX, y: offsetY }: DOMRect,
+  aspectRatio: number,
+): Point => ({
+  x: ((x - offsetX) / width) * 100,
+  y: (((y - offsetY) / height) * 100) / aspectRatio,
+});
+
+export const getDelta = (pointA: Point, pointB: Point): Point => ({
+  x: pointA.x - pointB.x,
+  y: pointA.y - pointB.y,
+});
