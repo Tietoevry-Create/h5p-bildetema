@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { findDistance } from "../../../../common/utils/figure/figure.utils";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
@@ -21,14 +21,22 @@ export const Oval: FC<OvalProps> = ({
   endFigureDraging,
   isDrawing,
 }) => {
-  const [center, tangentPoint] = hotspot.points;
-  const centerTangentDelta = getDelta(center, tangentPoint);
-  const [ovalPoint, setOvalPoint] = useState({
-    x: centerTangentDelta.y + center.x,
-    y: centerTangentDelta.x + center.y,
-  });
+  const [center, radiusPoint] = hotspot.points;
 
-  if (!center || !tangentPoint) {
+  const centerRadiusDelta = useMemo(
+    () => getDelta(center, radiusPoint),
+    [center, radiusPoint],
+  );
+
+  const ovalPoint = useMemo(
+    (): Point => ({
+      x: center.x - centerRadiusDelta.y,
+      y: center.y + centerRadiusDelta.x,
+    }),
+    [center.x, center.y, centerRadiusDelta.x, centerRadiusDelta.y],
+  );
+
+  if (!center || !radiusPoint) {
     return null;
   }
 
@@ -44,7 +52,7 @@ export const Oval: FC<OvalProps> = ({
       <circle
         cx={center.x}
         cy={center.y}
-        r={findDistance(center, tangentPoint)}
+        r={findDistance(center, radiusPoint)}
         stroke="black"
         fill="none"
         strokeWidth="0.3"
