@@ -1,12 +1,12 @@
 import * as React from "react";
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import { findDistance } from "../../../../common/utils/figure/figure.utils";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { getDelta } from "../../utils/figure/figure.utils";
-import styles from "./Oval.module.scss";
+import styles from "./Ellipse.module.scss";
 
-type OvalProps = {
+type EllipseProps = {
   hotspot: Omit<Hotspot, "points"> & { points: [Point, Point] };
   handleFigureClick: (wordId: string) => void;
   startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
@@ -14,7 +14,7 @@ type OvalProps = {
   isDrawing: boolean;
 };
 
-export const Oval: FC<OvalProps> = ({
+export const Ellipse: FC<EllipseProps> = ({
   hotspot,
   handleFigureClick,
   startFigureDragging,
@@ -28,7 +28,7 @@ export const Oval: FC<OvalProps> = ({
     [center, radiusPoint],
   );
 
-  const ovalPoint = useMemo(
+  const ellipsePoint = useMemo(
     (): Point => ({
       x: center.x - centerRadiusDelta.y,
       y: center.y + centerRadiusDelta.x,
@@ -43,8 +43,8 @@ export const Oval: FC<OvalProps> = ({
   return (
     <>
       <circle
-        cx={ovalPoint.x}
-        cy={ovalPoint.y}
+        cx={ellipsePoint.x}
+        cy={ellipsePoint.y}
         r={4}
         fill="none"
         stroke="black"
@@ -56,7 +56,7 @@ export const Oval: FC<OvalProps> = ({
         stroke="black"
         fill="none"
         strokeWidth="0.3"
-        className={styles.circle}
+        className={styles.ellipse}
         onClick={event => {
           if (isDrawing) {
             return;

@@ -3,7 +3,7 @@ import { FC, MouseEvent } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
-import { Oval } from "../Oval/Oval";
+import { Ellipse } from "../Ellipse/Ellipse";
 import { Polygon } from "../Polygon/Polygon";
 import styles from "./Shape.module.scss";
 
@@ -46,7 +46,7 @@ export const Shape: FC<ShapeProps> = ({
   return (
     <>
       {isCircle(hotspot) ? (
-        <Oval
+        <Ellipse
           hotspot={hotspot}
           handleFigureClick={handleFigureClick}
           startFigureDragging={startFigureDragging}
