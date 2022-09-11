@@ -17,6 +17,7 @@ type ShapeProps = {
   startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
   isDragging: boolean;
   isDrawing: boolean;
+  ellipseRotation: number;
 };
 
 type CircleHotspot = Omit<Hotspot, "points"> & { points: [Point, Point] };
@@ -36,6 +37,7 @@ export const Shape: FC<ShapeProps> = ({
   endFigureDraging,
   isDragging,
   isDrawing,
+  ellipseRotation,
 }) => {
   const { points, isDrawingThisPolygon } = hotspot;
 
@@ -52,6 +54,7 @@ export const Shape: FC<ShapeProps> = ({
           startFigureDragging={startFigureDragging}
           endFigureDraging={endFigureDraging}
           isDrawing={isDrawing}
+          rotation={ellipseRotation}
         />
       ) : (
         points?.length > 0 && (

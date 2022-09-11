@@ -4,6 +4,7 @@ import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
+import { getDelta } from "../../utils/figure/figure.utils";
 import { Shape } from "../Shape/Shape";
 import styles from "./Svg.module.scss";
 
@@ -28,6 +29,7 @@ export const Svg: FC<SvgProps> = ({
   const [dragStart, setDragStart] = useState<
     (Point & { index: number }) | null
   >(null);
+  const [ellipseRotation, setEllipseRotation] = useState(0);
 
   const [figureDrag, setFigureDrag] = useState<HotspotUpdate | null>(null);
 
@@ -58,7 +60,33 @@ export const Svg: FC<SvgProps> = ({
     setDragStart(null);
   };
 
-  const isDrawingSomething = useCallback((): boolean => {
+  const onCircleDrag = (point: PointUpdate): Point => {
+    const startPoint = point.from;
+
+    const drawnHotspot = hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
+
+    const isEllipse = drawnHotspot?.points?.length === 2;
+
+    const ellipseRadiusPoint = drawnHotspot?.points?.[1];
+    const isEllipseRadiusPoint =
+      isEllipse &&
+      ellipseRadiusPoint?.x === startPoint.x &&
+      ellipseRadiusPoint.y === startPoint.y;
+
+    if (isEllipseRadiusPoint) {
+      const centerPoint = drawnHotspot.points?.[0];
+
+      // @ts-expect-error `centerPoint` is defined
+      const radiusPointDelta = getDelta(centerPoint, ellipseRadiusPoint);
+
+      const rotation = Math.atan2(radiusPointDelta.y, radiusPointDelta.x);
+      setEllipseRotation(rotation);
+    }
+
+    return handleCircleDrag(point);
+  };
+
+  const findSomeDrawing = useCallback((): boolean => {
     return !!hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
   }, [hotspots]);
 
@@ -79,7 +107,7 @@ export const Svg: FC<SvgProps> = ({
           e.stopPropagation();
 
           setDragStart({
-            ...handleCircleDrag({
+            ...onCircleDrag({
               from: dragStart,
               to: { x: e.clientX, y: e.clientY },
             }),
@@ -104,6 +132,7 @@ export const Svg: FC<SvgProps> = ({
             endFigureDraging={endFigureDragging}
             isDragging={isDragging}
             endDragging={endDragging}
+            ellipseRotation={ellipseRotation}
           />
         ) : null,
       )}

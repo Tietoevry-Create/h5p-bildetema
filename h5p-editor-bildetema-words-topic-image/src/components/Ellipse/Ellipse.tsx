@@ -12,6 +12,7 @@ type EllipseProps = {
   startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
   endFigureDraging: (event: React.MouseEvent) => boolean;
   isDrawing: boolean;
+  rotation: number;
 };
 
 export const Ellipse: FC<EllipseProps> = ({
@@ -20,6 +21,7 @@ export const Ellipse: FC<EllipseProps> = ({
   startFigureDragging,
   endFigureDraging,
   isDrawing,
+  rotation,
 }) => {
   const [center, radiusPoint] = hotspot.points;
 
@@ -53,6 +55,9 @@ export const Ellipse: FC<EllipseProps> = ({
         cx={center.x}
         cy={center.y}
         r={findDistance(center, radiusPoint)}
+        transform={`rotate(${rotation * (180 / Math.PI)} ${center.x} ${
+          center.y
+        })`}
         stroke="black"
         fill="none"
         strokeWidth="0.3"
