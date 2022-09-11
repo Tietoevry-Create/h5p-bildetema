@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, RefObject } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
@@ -18,6 +18,7 @@ type ShapeProps = {
   isDragging: boolean;
   isDrawing: boolean;
   ellipseRotation: number;
+  canvasRef: RefObject<HTMLElement>;
 };
 
 type CircleHotspot = Omit<Hotspot, "points"> & { points: [Point, Point] };
@@ -38,6 +39,7 @@ export const Shape: FC<ShapeProps> = ({
   isDragging,
   isDrawing,
   ellipseRotation,
+  canvasRef,
 }) => {
   const { points, isDrawingThisPolygon } = hotspot;
 
@@ -55,6 +57,7 @@ export const Shape: FC<ShapeProps> = ({
           endFigureDraging={endFigureDraging}
           isDrawing={isDrawing}
           rotation={ellipseRotation}
+          canvasRef={canvasRef}
         />
       ) : (
         points?.length > 0 && (

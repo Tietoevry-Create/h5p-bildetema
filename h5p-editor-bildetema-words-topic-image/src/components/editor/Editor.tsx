@@ -269,6 +269,7 @@ export const Editor: React.FC<EditorProps> = ({
             handleFigureClick={hotspotId => handleWordSelected(hotspotId)}
             handleFigureDrag={handleFigureDrag}
             aspectRatio={aspectRatio}
+            canvasRef={canvasRef}
           />
         </div>
       </div>

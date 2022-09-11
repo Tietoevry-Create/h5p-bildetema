@@ -1,5 +1,12 @@
 import * as React from "react";
-import { FC, MouseEvent, useCallback, useEffect, useState } from "react";
+import {
+  FC,
+  MouseEvent,
+  RefObject,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
@@ -15,6 +22,7 @@ export type SvgProps = {
   handleFigureClick: (wordId: string) => void;
   handleFigureDrag: (figureUpdate: HotspotUpdate, newPosition: Point) => void;
   aspectRatio: number;
+  canvasRef: RefObject<HTMLElement>;
 };
 
 export const Svg: FC<SvgProps> = ({
@@ -24,6 +32,7 @@ export const Svg: FC<SvgProps> = ({
   handleFigureClick,
   handleFigureDrag,
   aspectRatio,
+  canvasRef,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<
@@ -133,6 +142,7 @@ export const Svg: FC<SvgProps> = ({
             isDragging={isDragging}
             endDragging={endDragging}
             ellipseRotation={ellipseRotation}
+            canvasRef={canvasRef}
           />
         ) : null,
       )}
