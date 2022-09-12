@@ -33,6 +33,7 @@ export type Topic = {
 export type JSONData = {
   topics: JSONTopic[];
   languages: Language[];
+  translations: Translations;
 };
 export type JSONTopic = {
   id: string;
@@ -62,3 +63,19 @@ export type TopicIds = {
   topicId?: string;
   subTopicId?: string;
 };
+
+export type Data =
+  | {
+      topics: Topic[];
+      languages: Language[];
+      translations: Translations;
+    }
+  | undefined;
+
+export type Translation = {
+  id: string;
+  label: string;
+  audioFiles: Array<AudioFile>;
+};
+
+export type Translations = Record<string, Record<string, Translation>>;
