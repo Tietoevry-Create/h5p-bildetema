@@ -8,7 +8,10 @@ export default {
   component: SubHeader,
 } as ComponentMeta<typeof SubHeader>;
 
-const Template = (isWordView: boolean): JSX.Element => {
+const Template = (
+  isWordView: boolean,
+  isTopicImageView: boolean,
+): JSX.Element => {
   const [checked, setChecked] = React.useState(true);
   const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
 
@@ -21,14 +24,18 @@ const Template = (isWordView: boolean): JSX.Element => {
         setChecked(value);
       }}
       toggleChecked={checked}
+      isTopicImageView={isTopicImageView}
     />
   );
 };
 
 export const Default = (): JSX.Element => {
-  return Template(false);
+  return Template(false, false);
 };
 
 export const isWordView = (): JSX.Element => {
-  return Template(true);
+  return Template(true, false);
+};
+export const isTopicImageView = (): JSX.Element => {
+  return Template(true, true);
 };

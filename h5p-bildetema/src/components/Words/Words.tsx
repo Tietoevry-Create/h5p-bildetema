@@ -15,6 +15,7 @@ type WordsProps = {
   topic?: TopicIds;
   showWrittenWords: boolean;
   currentLanguage: LanguageCode;
+  setIsTopicImageView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const Words: React.FC<WordsProps> = ({
@@ -22,6 +23,7 @@ export const Words: React.FC<WordsProps> = ({
   topic,
   showWrittenWords,
   currentLanguage,
+  setIsTopicImageView,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [topicViewInstance, setTopicViewInstance] = useState<IH5PContentType>();
@@ -59,6 +61,8 @@ export const Words: React.FC<WordsProps> = ({
         existingContent && existingContent.length > 0;
 
       if (currentTopicHasTopicImage) {
+        setIsTopicImageView(true);
+
         const content = existingContent[0];
         const params = {
           ...JSON.parse(content.json_content),
@@ -78,6 +82,8 @@ export const Words: React.FC<WordsProps> = ({
           H5P.jQuery(rootElement),
         );
       }
+
+      setIsTopicImageView(false);
 
       return H5P.newRunnable(
         {
