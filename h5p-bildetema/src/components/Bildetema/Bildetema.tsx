@@ -50,6 +50,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
   const [isWordView, setIsWordView] = useState(false);
+  const [isTopicImageView, setIsTopicImageView] = useState(false);
+
   const [showWrittenWords, setShowWrittenWords] = useState(
     searchParams.get(wordsVisibleParam) !== null
       ? searchParams.get(wordsVisibleParam) === "true"
@@ -120,6 +122,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
+                setIsTopicImageView={setIsTopicImageView}
               />
             }
           />
@@ -158,6 +161,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           isWordView={isWordView}
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
+          isTopicImageView={isTopicImageView}
         />
         <div className={styles.body}>
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}

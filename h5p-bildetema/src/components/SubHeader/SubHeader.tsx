@@ -15,6 +15,7 @@ export type SubHeaderProps = {
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
+  isTopicImageView: boolean;
 };
 
 export const SubHeader: React.FC<SubHeaderProps> = ({
@@ -23,6 +24,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   isWordView,
   toggleChecked,
   handleToggleChange,
+  isTopicImageView,
 }) => {
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
 
@@ -36,12 +38,14 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
     const element = isWordView ? (
       <span className={styles.tools}>
         <PrintButton />
-        <Toggle
-          label={showWrittenWordsLabel}
-          checked={toggleChecked}
-          handleChange={handleToggleChange}
-          id={`toggle-${contentId}`}
-        />
+        {!isTopicImageView && (
+          <Toggle
+            label={showWrittenWordsLabel}
+            checked={toggleChecked}
+            handleChange={handleToggleChange}
+            id={`toggle-${contentId}`}
+          />
+        )}
       </span>
     ) : (
       <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
