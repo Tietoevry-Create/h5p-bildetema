@@ -8,5 +8,5 @@ export default {
 } as ComponentMeta<typeof Bildetema>;
 
 export const Default = (): JSX.Element => (
-  <Bildetema defaultLanguages={["nob"]} backendUrl="" />
+  <Bildetema defaultLanguages={["nob"]} isLoadingData />
 );
