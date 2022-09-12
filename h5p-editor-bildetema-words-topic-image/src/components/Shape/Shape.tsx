@@ -10,7 +10,7 @@ import styles from "./Shape.module.scss";
 type ShapeProps = {
   hotspot: Hotspot;
   handleCircleClick: (point: Point) => void;
-  handleFigureClick: (hotspot: Hotspot) => void;
+  handleFigureClick: (wordId: string) => void;
   startDragging: (startPoint: Point, index: number) => void;
   endDragging: (point: PointUpdate) => void;
   endFigureDraging: (event: MouseEvent) => boolean;
@@ -51,6 +51,7 @@ export const Shape: FC<ShapeProps> = ({
           handleFigureClick={handleFigureClick}
           startFigureDragging={startFigureDragging}
           endFigureDraging={endFigureDraging}
+          isDrawing={isDrawing}
         />
       ) : (
         points?.length > 0 && (

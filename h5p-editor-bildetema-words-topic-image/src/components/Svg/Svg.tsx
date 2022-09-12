@@ -4,7 +4,6 @@ import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
-import { Polygon } from "../Polygon/Polygon";
 import { Shape } from "../Shape/Shape";
 import styles from "./Svg.module.scss";
 
@@ -12,7 +11,7 @@ export type SvgProps = {
   hotspots: Hotspot[];
   handleCircleClick: (point: Point) => void;
   handleCircleDrag: (point: PointUpdate) => Point;
-  handleFigureClick: (hotspot: Hotspot) => void;
+  handleFigureClick: (wordId: string) => void;
   handleFigureDrag: (figureUpdate: HotspotUpdate, newPosition: Point) => void;
   aspectRatio: number;
 };
@@ -59,15 +58,15 @@ export const Svg: FC<SvgProps> = ({
     setDragStart(null);
   };
 
-  const findSomeDrawing = useCallback((): boolean => {
+  const isDrawingSomething = useCallback((): boolean => {
     return !!hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
   }, [hotspots]);
 
-  const [isDrawing, setIsDrawing] = useState(findSomeDrawing());
+  const [isDrawing, setIsDrawing] = useState(isDrawingSomething());
 
   useEffect(() => {
-    setIsDrawing(findSomeDrawing());
-  }, [setIsDrawing, findSomeDrawing]);
+    setIsDrawing(isDrawingSomething());
+  }, [setIsDrawing, isDrawingSomething]);
 
   return (
     <svg

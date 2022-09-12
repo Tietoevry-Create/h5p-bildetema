@@ -6,7 +6,7 @@ import styles from "./Polygon.module.scss";
 
 export type PolygonProps = {
   hotspot: Hotspot;
-  handleFigureClick: (hotspot: Hotspot) => void;
+  handleFigureClick: (wordId: string) => void;
   startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
   endFigureDraging: (event: React.MouseEvent) => boolean;
   isDrawing: boolean;
@@ -31,7 +31,7 @@ export const Polygon: React.FC<PolygonProps> = ({
     }
 
     event.stopPropagation();
-    handleFigureClick(hotspot);
+    handleFigureClick(hotspot.word.id);
   };
 
   const onFigureStartDrag = (event: React.MouseEvent): void => {
