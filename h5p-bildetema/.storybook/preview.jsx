@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
