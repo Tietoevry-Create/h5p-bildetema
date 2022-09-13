@@ -26,6 +26,9 @@ $burgundy: #920029;
 $orange: hsla(39, 100%, 50%, 1);
 $orange-overlay: hsla(39, 100%, 50%, 0.25);
 
+$outline-focus-on-dark-background: 3px solid $orange;
+$outline-focus-on-light-background: 3px solid $burgundy;
+
 $checkbox-color: black;
 $checkbox-disabled-color: #9c9c99;
 $checkbox-shadow-color: $orange;

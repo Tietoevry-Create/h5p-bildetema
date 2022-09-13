@@ -107,8 +107,7 @@
   }
 }
 
-.languageButton,
-.languageMenuButton {
+.languageButton {
   background-color: transparent;
   color: white;
   border: none;
@@ -134,5 +133,12 @@
     @media print {
       display: none;
     }
+  }
+}
+
+.logos,
+.languages {
+  :focus {
+    outline: $outline-focus-on-dark-background !important;
   }
 }
