@@ -5,7 +5,7 @@ export const library: Library = {
   machineName: "H5PEditor.BildetemaWordsTopicImage",
   majorVersion: 1,
   minorVersion: 0,
-  patchVersion: 22,
+  patchVersion: 23,
   runnable: 0,
   preloadedJs: [
     {
