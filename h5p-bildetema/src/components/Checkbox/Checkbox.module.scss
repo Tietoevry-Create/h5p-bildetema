@@ -4,20 +4,22 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0.4em 0.4em 0.4em 0;
+  padding: 0.4em 0.4em;
 }
 
 .wrapper {
-  position: relative;
   display: inline-block;
-  height: 1.2em;
-  width: 1.2em;
+  height: 100%;
+  width: 100%;
 
   /* Hide default HTML checkbox */
   & input {
     all: unset;
     position: absolute;
-    height: 1.2em;
-    width: 1.2em;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
