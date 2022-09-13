@@ -27,7 +27,7 @@ const NON_LANGUAGE_FIELDS = [
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
-let translations: Translations = {};
+let translations: Translations = {} as Translations;
 let backendURL = "https://cdn-prodbildetema.azureedge.net/data/database.json";
 
 export const getTopics = async (): Promise<Topic[]> => {

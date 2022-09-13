@@ -78,4 +78,4 @@ export type Translation = {
   audioFiles: Array<AudioFile>;
 };
 
-export type Translations = Record<string, Record<string, Translation>>;
+export type Translations = Record<LanguageCode, Record<string, Translation>>;
