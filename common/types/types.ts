@@ -65,12 +65,11 @@ export type TopicIds = {
 };
 
 export type Data =
-  | {
-      topics: Topic[];
-      languages: Language[];
-      translations: Translations;
-    }
-  | undefined;
+  {
+    topics: Topic[];
+    languages: Language[];
+    translations: Translations;
+  }
 
 export type Translation = {
   id: string;

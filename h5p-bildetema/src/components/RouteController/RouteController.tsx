@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { useDbContext } from "../../hooks/useDbContext";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import {
   Language,
   TopicGridSizes,
@@ -39,8 +39,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   const { langId, topicLabel, subTopicId } = useParams();
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
-  const { topics: topicsFromDB, languages: languagesFromDB} =
-  useDbContext() || {};
+  const { topics: topicsFromDB, languages: languagesFromDB } =
+    useDBContext() || {};
   const { words, topics, language, currentTopic } = useMemo(
     () =>
       validRoute(

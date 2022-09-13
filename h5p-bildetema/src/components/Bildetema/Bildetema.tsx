@@ -6,7 +6,7 @@ import {
   TopicIds,
 } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
-import { useDbContext } from "../../hooks/useDbContext";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
@@ -24,8 +24,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
-  const {languages: languagesFromDB} =
-    useDbContext() || {};
+  const { languages: languagesFromDB } = useDBContext() || {};
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -140,10 +139,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           favLanguages={favLanguages}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
-        <LanguageFavorites
-          topicIds={topicIds}
-          favLanguages={favLanguages}
-        />
+        <LanguageFavorites topicIds={topicIds} favLanguages={favLanguages} />
         <SubHeader
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}

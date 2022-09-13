@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./LanguageSelector.module.scss";
 import { Language, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useDbContext } from "../../hooks/useDbContext";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 
 export type LanguageSelectorProps = {
@@ -22,8 +22,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   search,
   topicIds,
 }) => {
-  const { topics: topicsFromDB, languages} =
-  useDbContext() || {};
+  const { topics: topicsFromDB, languages } = useDBContext() || {};
 
   const getAmountOfRows = (): number => {
     if (isMobile) {

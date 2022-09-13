@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language, TopicIds } from "../../../../common/types/types";
-import { useDbContext } from "../../hooks/useDbContext";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { useL10ns } from "../../hooks/useL10n";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
@@ -21,14 +21,12 @@ export const Header: React.FC<HeaderProps> = ({
   topicIds,
   handleToggleFavoriteLanguage,
 }) => {
-  
   const headerRef = React.useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
-  
-  const { topics: topicsFromDB} =
-  useDbContext() || {};
+
+  const { topics: topicsFromDB } = useDBContext() || {};
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
     "headerTitle",
