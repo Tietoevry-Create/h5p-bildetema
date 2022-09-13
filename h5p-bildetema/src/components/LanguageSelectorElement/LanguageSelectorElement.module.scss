@@ -5,8 +5,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: $spacing--8;
-  padding: 0 $spacing--8;
   border-bottom: 1px solid lightgrey;
   transition-duration: 0.2s;
 
@@ -34,8 +32,8 @@
   border-bottom: none;
 }
 
-.checkbox input {
-  @include visually-hidden;
+.checkboxWrapper {
+  position: relative;
 }
 
 .languageLabel {
@@ -49,6 +47,7 @@
   height: 100%;
   align-items: center;
   line-height: 1;
+  padding: 0 $spacing--8;
 
   @include breakpoint-min($small) {
     width: max-content;

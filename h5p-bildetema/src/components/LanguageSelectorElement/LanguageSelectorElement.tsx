@@ -53,7 +53,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
         isDisabled ? styles.disabled : ""
       }`}
     >
-      <span className={styles.wrapper}>
+      <span className={styles.checkboxWrapper}>
         <Checkbox
           id={language.code}
           checked={isChecked}
