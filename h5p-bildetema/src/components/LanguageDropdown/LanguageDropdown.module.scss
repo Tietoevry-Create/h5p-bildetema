@@ -21,4 +21,8 @@
   display: flex;
   gap: $spacing--8;
   align-items: center;
+
+  &:focus {
+    outline: $outline-on-dark-background !important;
+  }
 }

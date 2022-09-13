@@ -40,6 +40,10 @@
     border-right: none;
     padding-right: none;
   }
+
+  :focus {
+    outline: $outline-on-dark-background !important;
+  }
 }
 
 .hide_from_print {

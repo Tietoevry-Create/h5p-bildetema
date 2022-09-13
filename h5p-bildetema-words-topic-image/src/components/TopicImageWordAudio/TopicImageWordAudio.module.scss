@@ -4,7 +4,7 @@
   padding: 0.25rem 0;
 
   &.selected button {
-    outline: 3px solid $orange;
+    outline: $outline-on-light-background;
   }
 }
 
