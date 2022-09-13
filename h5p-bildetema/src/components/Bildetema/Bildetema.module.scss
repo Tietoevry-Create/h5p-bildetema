@@ -7,7 +7,7 @@
   width: 100%;
 
   :focus {
-    outline: $outline-focus-on-light-background;
+    outline: $outline-on-light-background;
     z-index: $outline-z-index; // prevent adjacent elements from overlapping the outline
   }
 }
