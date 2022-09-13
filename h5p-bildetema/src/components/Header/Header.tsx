@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language, Topic, TopicIds } from "../../../../common/types/types";
+import { Language, TopicIds } from "../../../../common/types/types";
+import { useDbContext } from "../../hooks/useDbContext";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { useL10ns } from "../../hooks/useL10n";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
@@ -10,25 +11,24 @@ import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
 
 export type HeaderProps = {
-  languagesFromDB: Language[] | undefined;
-  topicsFromDB?: Topic[];
   topicIds: TopicIds;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
-  languagesFromDB,
   favLanguages,
   topicIds,
-  topicsFromDB,
   handleToggleFavoriteLanguage,
 }) => {
+  
   const headerRef = React.useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
-
+  
+  const { topics: topicsFromDB} =
+  useDbContext() || {};
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
     "headerTitle",
@@ -121,10 +121,8 @@ export const Header: React.FC<HeaderProps> = ({
           <LanguageDropdown
             handleSelectorVisibility={setLangSelectorIsShown}
             langSelectorIsShown={langSelectorIsShown}
-            languagesFromDB={languagesFromDB}
             selectLanguageLabel={selectLanguage}
             favLanguages={favLanguages}
-            topicsFromDB={topicsFromDB}
             topicIds={topicIds}
             search={search}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}

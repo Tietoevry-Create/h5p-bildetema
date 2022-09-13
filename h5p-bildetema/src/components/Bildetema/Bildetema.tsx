@@ -24,7 +24,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
-  const { topics: topicsFromDB, languages: languagesFromDB } =
+  const {languages: languagesFromDB} =
     useDbContext() || {};
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
@@ -110,8 +110,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
             path={path}
             element={
               <RouteController
-                topicsFromDB={topicsFromDB}
-                languagesFromDB={languagesFromDB}
                 setIsWordView={setIsWordView}
                 topicsSize={topicsSize}
                 showWrittenWords={showWrittenWords}
@@ -130,9 +128,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     defaultLanguages,
     favLanguages,
     handleToggleFavoriteLanguage,
-    languagesFromDB,
     showWrittenWords,
-    topicsFromDB,
     topicsSize,
   ]);
 
@@ -141,15 +137,12 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       <div className={styles.container}>
         <Header
           topicIds={topicIds}
-          languagesFromDB={languagesFromDB}
           favLanguages={favLanguages}
-          topicsFromDB={topicsFromDB}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
         <LanguageFavorites
           topicIds={topicIds}
           favLanguages={favLanguages}
-          topicsFromDB={topicsFromDB}
         />
         <SubHeader
           topicsSize={topicsSize}
