@@ -2,14 +2,13 @@ import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
-import { DBContext } from "../../../../common/context/DBContext"
+import { DBContext } from "../../../../common/context/DBContext";
 import { Language, Data } from "../../../../common/types/types";
 
 export default {
   title: "Components/LanguageSelector",
   component: LanguageSelector,
 } as ComponentMeta<typeof LanguageSelector>;
-
 
 const langs: Language[] = [
   {
@@ -39,17 +38,16 @@ const langs: Language[] = [
     rtl: false,
   },
 ];
-const data = {languages: langs} as Data
+const data = { languages: langs } as Data;
 
 const Template: ComponentStory<typeof LanguageSelector> = args => (
   <DBContext.Provider value={data}>
-  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <LanguageSelector {...args} />
-  </DBContext.Provider> 
+  </DBContext.Provider>
 );
 
 export const Default = Template.bind({});
-
 
 const defaultArgs: LanguageSelectorProps = {
   topicIds: {},

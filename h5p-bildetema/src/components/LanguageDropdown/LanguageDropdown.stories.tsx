@@ -2,7 +2,7 @@ import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LanguageDropdown, LanguageDropdownProps } from "./LanguageDropdown";
-import { DBContext } from "../../../../common/context/DBContext"
+import { DBContext } from "../../../../common/context/DBContext";
 import { Language, Data } from "../../../../common/types/types";
 
 export default {
@@ -39,14 +39,14 @@ const langs: Language[] = [
   },
 ];
 
-const data = {languages: langs} as Data
+const data = { languages: langs } as Data;
 
 const Template: ComponentStory<typeof LanguageDropdown> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <DBContext.Provider value={data}>
-  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <LanguageDropdown {...args} />
-  </DBContext.Provider> 
+  </DBContext.Provider>
 );
 
 export const Default = Template.bind({});
