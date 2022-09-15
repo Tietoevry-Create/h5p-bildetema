@@ -1,30 +1,29 @@
 import React from "react";
 import styles from "./LanguageSelector.module.scss";
-import { Language, Topic, TopicIds } from "../../../../common/types/types";
+import { Language, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 
 export type LanguageSelectorProps = {
-  languages: Language[] | undefined;
   currentLanguageCode: string;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   isMobile: boolean | null;
-  topicsFromDB?: Topic[];
   search: string;
   topicIds: TopicIds;
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
-  languages,
   favLanguages,
   currentLanguageCode,
   handleToggleFavoriteLanguage,
   isMobile,
-  topicsFromDB,
   search,
   topicIds,
 }) => {
+  const { topics: topicsFromDB, languages } = useDBContext() || {};
+
   const getAmountOfRows = (): number => {
     if (isMobile) {
       return Math.max(1, languages ? languages.length : 0);

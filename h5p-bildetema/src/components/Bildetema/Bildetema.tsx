@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import {
@@ -6,8 +5,8 @@ import {
   TopicGridSizes,
   TopicIds,
 } from "../../../../common/types/types";
-import { getData } from "../../../../common/utils/data.utils";
 import { useL10n } from "../../hooks/useL10n";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
@@ -18,16 +17,15 @@ import styles from "./Bildetema.module.scss";
 
 type BildetemaProps = {
   defaultLanguages: string[];
-  backendUrl: string;
+  isLoadingData: boolean;
 };
 
 export const Bildetema: React.FC<BildetemaProps> = ({
   defaultLanguages,
-  backendUrl,
+  isLoadingData,
 }) => {
-  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
-    getData(backendUrl),
-  );
+  const { languages: languagesFromDB } = useDBContext() || {};
+
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
   React.useEffect(() => {
@@ -38,9 +36,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     }, 300);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const topicsFromDB = data?.topics;
-  const languagesFromDB = data?.languages;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
@@ -114,8 +109,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
             path={path}
             element={
               <RouteController
-                topicsFromDB={topicsFromDB}
-                languagesFromDB={languagesFromDB}
                 setIsWordView={setIsWordView}
                 topicsSize={topicsSize}
                 showWrittenWords={showWrittenWords}
@@ -134,9 +127,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     defaultLanguages,
     favLanguages,
     handleToggleFavoriteLanguage,
-    languagesFromDB,
     showWrittenWords,
-    topicsFromDB,
     topicsSize,
   ]);
 
@@ -145,16 +136,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       <div className={styles.container}>
         <Header
           topicIds={topicIds}
-          languagesFromDB={languagesFromDB}
           favLanguages={favLanguages}
-          topicsFromDB={topicsFromDB}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
-        <LanguageFavorites
-          topicIds={topicIds}
-          favLanguages={favLanguages}
-          topicsFromDB={topicsFromDB}
-        />
+        <LanguageFavorites topicIds={topicIds} favLanguages={favLanguages} />
         <SubHeader
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}

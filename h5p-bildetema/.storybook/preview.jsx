@@ -7,6 +7,8 @@ import { semantics } from "../src/semantics";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
 import "../../h5p-bildetema-words-tree-view/src";
+import { getData } from "../../common/utils/data.utils";
+import { DBContext } from "../../common/context/DBContext";
 
 const queryClient = new QueryClient();
 
@@ -30,17 +32,27 @@ export const parameters = {
 };
 
 export const decorators = [
-  (/** @type {React.FC} */ Story) => (
-    <QueryClientProvider client={queryClient}>
-      <HashRouter>
-        <H5PContext.Provider value={h5pInstance}>
-          <L10nContext.Provider value={l10n}>
-            <ContentIdContext.Provider value="content-id">
-              <Story />
-            </ContentIdContext.Provider>
-          </L10nContext.Provider>
-        </H5PContext.Provider>
-      </HashRouter>
-    </QueryClientProvider>
-  ),
+  (/** @type {React.FC} */ Story) => {
+    const [data, setData] = React.useState();
+
+    React.useEffect(() => {
+      queryClient.fetchQuery(["dataFromDB"], () => getData("")).then(setData);
+    }, []);
+
+    return (
+      <QueryClientProvider client={queryClient}>
+        <DBContext.Provider value={data}>
+          <HashRouter>
+            <H5PContext.Provider value={h5pInstance}>
+              <L10nContext.Provider value={l10n}>
+                <ContentIdContext.Provider value="content-id">
+                  <Story />
+                </ContentIdContext.Provider>
+              </L10nContext.Provider>
+            </H5PContext.Provider>
+          </HashRouter>
+        </DBContext.Provider>
+      </QueryClientProvider>
+    );
+  },
 ];

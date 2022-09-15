@@ -1,8 +1,8 @@
 import * as React from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { getData } from "../../../../common/utils/data.utils";
 import { Bildetema } from "../Bildetema/Bildetema";
-
-const queryClient = new QueryClient();
+import { DBContext } from "../../../../common/context/DBContext";
 
 type appProps = {
   defaultLanguages: string[];
@@ -10,9 +10,16 @@ type appProps = {
 };
 
 export const App: React.FC<appProps> = ({ defaultLanguages, backendUrl }) => {
+  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
+    getData(backendUrl),
+  );
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Bildetema defaultLanguages={defaultLanguages} backendUrl={backendUrl} />
-    </QueryClientProvider>
+    <DBContext.Provider value={data}>
+      <Bildetema
+        defaultLanguages={defaultLanguages}
+        isLoadingData={isLoadingData}
+      />
+    </DBContext.Provider>
   );
 };

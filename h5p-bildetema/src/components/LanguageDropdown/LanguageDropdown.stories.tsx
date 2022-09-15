@@ -30,23 +30,6 @@ const defaultArgs: LanguageDropdownProps = {
       rtl: false,
     },
   ],
-  languagesFromDB: [
-    {
-      label: "Norsk (Bokmål)",
-      code: "nob",
-      rtl: false,
-    },
-    {
-      label: "Norsk (Nynorsk)",
-      code: "nno",
-      rtl: false,
-    },
-    {
-      label: "Polsk",
-      code: "pol",
-      rtl: false,
-    },
-  ],
   selectLanguageLabel: "Select language",
 };
 

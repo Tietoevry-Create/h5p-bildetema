@@ -30,7 +30,6 @@ const Template = (): JSX.Element => {
   return (
     <Header
       topicIds={{}}
-      languagesFromDB={languages}
       favLanguages={languages}
       handleToggleFavoriteLanguage={() => null}
     />

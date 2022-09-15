@@ -2,9 +2,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import {
   Language,
-  Topic,
   TopicGridSizes,
   TopicIds,
 } from "../../../../common/types/types";
@@ -17,8 +17,6 @@ import {
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 
 export type RouteControllerProps = {
-  topicsFromDB?: Topic[];
-  languagesFromDB?: Language[];
   showWrittenWords: boolean;
   setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
   setTopicIds: React.Dispatch<React.SetStateAction<TopicIds>>;
@@ -29,8 +27,6 @@ export type RouteControllerProps = {
 };
 
 export const RouteController: React.FC<RouteControllerProps> = ({
-  topicsFromDB,
-  languagesFromDB,
   showWrittenWords,
   setIsWordView,
   topicsSize,
@@ -43,7 +39,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   const { langId, topicLabel, subTopicId } = useParams();
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
-
+  const { topics: topicsFromDB, languages: languagesFromDB } =
+    useDBContext() || {};
   const { words, topics, language, currentTopic } = useMemo(
     () =>
       validRoute(

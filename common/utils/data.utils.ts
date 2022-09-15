@@ -8,6 +8,8 @@ import {
   Word,
   JSONTopic,
   JSONData,
+  Data,
+  Translations,
 } from "../types/types";
 // import { getAudioURLs } from "./audio/audio.utils";
 
@@ -25,6 +27,7 @@ const NON_LANGUAGE_FIELDS = [
 
 const languages: Language[] = [];
 const topics: Topic[] = [];
+let translations: Translations = {} as Translations;
 let backendURL = "https://cdn-prodbildetema.azureedge.net/data/database.json";
 
 export const getTopics = async (): Promise<Topic[]> => {
@@ -35,19 +38,14 @@ export const getTopics = async (): Promise<Topic[]> => {
   return topics;
 };
 
-export const getData = async (
-  databaseUrl: string,
-): Promise<{
-  topics: Topic[];
-  languages: Language[];
-}> => {
+export const getData = async (databaseUrl: string): Promise<Data> => {
   if (databaseUrl !== "") backendURL = databaseUrl;
 
   if (!topics.length || languages.length) {
     await fetchJson();
     // await fetchData();
   }
-  return { topics, languages };
+  return { topics, languages, translations };
 };
 
 const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
@@ -104,6 +102,7 @@ const fetchJson = async () => {
   const langs: Language[] = jsonData.languages;
   languages.push(...langs);
   topics.push(...convertJsonToTopicsArray(jsonTopic));
+  translations = jsonData.translations;
 };
 
 // Can be removed when verified that the above is working

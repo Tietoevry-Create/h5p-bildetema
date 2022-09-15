@@ -19,34 +19,6 @@ export const Default = Template.bind({});
 const defaultArgs: LanguageSelectorProps = {
   topicIds: {},
   search: "",
-  languages: [
-    {
-      label: "Norsk",
-      code: "nob",
-      rtl: false,
-    },
-
-    {
-      label: "Engelsk",
-      code: "eng",
-      rtl: false,
-    },
-    {
-      label: "عربىge",
-      code: "ara",
-      rtl: true,
-    },
-    {
-      label: "Dansk",
-      code: "dan",
-      rtl: false,
-    },
-    {
-      label: "Polsk",
-      code: "pol",
-      rtl: false,
-    },
-  ],
   favLanguages: [
     {
       label: "Polsk",
