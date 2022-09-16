@@ -298,6 +298,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           <Image image={image} />
           <Svg
             hotspots={hotspots}
+            setHotspots={setHotspots}
             handlePointClick={handlePointClick}
             handlePointDrag={handlePointDrag}
             handleShapeClick={hotspotId => handleWordSelected(hotspotId)}

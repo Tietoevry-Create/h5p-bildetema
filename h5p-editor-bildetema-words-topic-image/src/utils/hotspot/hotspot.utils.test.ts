@@ -19,6 +19,7 @@ describe(finishDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -26,6 +27,7 @@ describe(finishDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -39,6 +41,7 @@ describe(finishDrawingHotspot.name, () => {
       points: [{ x: 0, y: 0, index: 0 }],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -46,6 +49,7 @@ describe(finishDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -62,6 +66,7 @@ describe(finishDrawingHotspot.name, () => {
       ],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -72,6 +77,7 @@ describe(finishDrawingHotspot.name, () => {
       ],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -92,6 +98,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       ],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -99,6 +106,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = resetPointsOfActiveHotspot(hotspot);
@@ -115,6 +123,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       ],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -125,6 +134,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       ],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = resetPointsOfActiveHotspot(hotspot);
@@ -156,6 +166,7 @@ describe(activateDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -163,6 +174,7 @@ describe(activateDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = activateDrawingHotspot(hotspot, word.id);
@@ -177,6 +189,7 @@ describe(activateDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const expected: Hotspot = {
@@ -184,6 +197,7 @@ describe(activateDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
+      ellipseRadius: 0,
     };
 
     const actual = activateDrawingHotspot(hotspot, "B002");

@@ -10,7 +10,8 @@ import { Shape } from "../Shape/Shape";
 import styles from "./Svg.module.scss";
 
 export type SvgProps = {
-  hotspots: Hotspot[];
+  hotspots: Array<Hotspot>;
+  setHotspots: (hotspots: Array<Hotspot>) => void;
   handlePointClick: (point: PointWithIndex) => void;
   handlePointDrag: (point: PointUpdate) => Point;
   handleShapeClick: (wordId: string) => void;
@@ -23,6 +24,7 @@ export type SvgProps = {
 
 export const Svg: FC<SvgProps> = ({
   hotspots,
+  setHotspots,
   handlePointClick,
   handlePointDrag,
   handleShapeClick,
@@ -136,6 +138,13 @@ export const Svg: FC<SvgProps> = ({
             key={hotspot.word.id}
             isDrawing={isDrawingSomething}
             hotspot={hotspot}
+            setHotspot={updatedHotspot =>
+              setHotspots(
+                hotspots.map(hs =>
+                  hs.word.id === updatedHotspot.word.id ? updatedHotspot : hs,
+                ),
+              )
+            }
             handlePointClick={handlePointClick}
             handleShapeClick={handleShapeClick}
             startShapeDragging={startShapeDragging(index)}

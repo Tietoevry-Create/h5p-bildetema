@@ -6,4 +6,5 @@ export type Hotspot = {
   isDrawingThisPolygon: boolean;
   word: Word;
   rotation: number;
+  ellipseRadius?: number;
 };

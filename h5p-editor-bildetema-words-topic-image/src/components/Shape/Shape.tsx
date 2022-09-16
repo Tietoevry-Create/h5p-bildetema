@@ -10,6 +10,7 @@ import styles from "./Shape.module.scss";
 
 type ShapeProps = {
   hotspot: Hotspot;
+  setHotspot: (hotspot: Hotspot) => void;
   handlePointClick: (point: PointWithIndex) => void;
   handleShapeClick: (wordId: string) => void;
   startPointDragging: (startPoint: PointWithIndex) => void;
@@ -19,7 +20,7 @@ type ShapeProps = {
   isDragging: boolean;
   isDrawing: boolean;
   canvasRef: RefObject<HTMLElement>;
-  isDraggingEllipsePoint: boolean
+  isDraggingEllipsePoint: boolean;
   setIsDraggingEllipsePoint: (isDragging: boolean) => void;
 };
 
@@ -34,6 +35,7 @@ const isEllipse = (
 
 export const Shape: FC<ShapeProps> = ({
   hotspot,
+  setHotspot,
   handlePointClick,
   handleShapeClick,
   startPointDragging,
@@ -56,13 +58,14 @@ export const Shape: FC<ShapeProps> = ({
     <>
       {isEllipse(hotspot) ? (
         <Ellipse
-        isDraggingEllipsePoint={isDraggingEllipsePoint}
+          setHotspot={setHotspot}
+          isDraggingEllipsePoint={isDraggingEllipsePoint}
           setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
           hotspot={hotspot}
           handleShapeClick={handleShapeClick}
           startShapeDragging={startShapeDragging}
           endShapeDragging={endShapeDragging}
-          isDrawing={isDrawing}
+          isDrawingThisEllipse={isDrawingThisPolygon}
           canvasRef={canvasRef}
         />
       ) : (

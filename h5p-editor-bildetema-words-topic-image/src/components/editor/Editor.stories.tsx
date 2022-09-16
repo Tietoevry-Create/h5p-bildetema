@@ -246,6 +246,7 @@ WithInitialHotspots.args = {
         images: [],
       },
       rotation: 0,
+      ellipseRadius: 0,
     },
     {
       points: [],
@@ -257,6 +258,7 @@ WithInitialHotspots.args = {
         images: [],
       },
       rotation: 0,
+      ellipseRadius: 0,
     },
     {
       points: [],
@@ -268,6 +270,7 @@ WithInitialHotspots.args = {
         images: [],
       },
       rotation: 0,
+      ellipseRadius: 0,
     },
   ],
 };

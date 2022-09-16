@@ -31,6 +31,7 @@ Default.args = {
         { x: 10, y: 20, index: 2 },
       ],
       rotation: 0,
+      ellipseRadius: 0,
     },
   ],
   handlePointClick: () => {},

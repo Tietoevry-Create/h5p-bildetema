@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, RefObject, useEffect, useMemo, useState } from "react";
+import { FC, RefObject, useEffect, useMemo } from "react";
 import { findDistance } from "../../../../common/utils/figure/figure.utils";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
@@ -7,15 +7,17 @@ import { getDelta } from "../../utils/figure/figure.utils";
 import styles from "./Ellipse.module.scss";
 
 type PointWithIndex = Point & { index: number };
+type EllipseHotspot = Omit<Hotspot, "points"> & {
+  points: [PointWithIndex, PointWithIndex];
+};
 
 type EllipseProps = {
-  hotspot: Omit<Hotspot, "points"> & {
-    points: [PointWithIndex, PointWithIndex];
-  };
+  hotspot: EllipseHotspot;
+  setHotspot: (hotspot: Hotspot) => void;
   handleShapeClick: (wordId: string) => void;
   startShapeDragging: (hotspot: Hotspot, startPoint: Point) => void;
   endShapeDragging: (event: React.MouseEvent) => boolean;
-  isDrawing: boolean;
+  isDrawingThisEllipse: boolean;
   canvasRef: RefObject<HTMLElement>;
   isDraggingEllipsePoint: boolean;
   setIsDraggingEllipsePoint: (isDragging: boolean) => void;
@@ -23,18 +25,18 @@ type EllipseProps = {
 
 export const Ellipse: FC<EllipseProps> = ({
   hotspot,
+  setHotspot,
   handleShapeClick,
   startShapeDragging,
   endShapeDragging: endFigureDraging,
-  isDrawing,
+  isDrawingThisEllipse,
   canvasRef,
   isDraggingEllipsePoint,
   setIsDraggingEllipsePoint,
 }) => {
   const [center, radiusPoint] = hotspot.points;
   const radiusX = findDistance(center, radiusPoint);
-
-  const [radiusY, setRadiusY] = useState(radiusX);
+  const radiusY = hotspot.ellipseRadius ?? radiusX;
 
   const radiusRatio = radiusX / radiusY;
 
@@ -54,7 +56,11 @@ export const Ellipse: FC<EllipseProps> = ({
 
   useEffect(() => {
     const onMouseMove = ({ clientX, clientY }: MouseEvent): void => {
-      if (!isDraggingEllipsePoint || !canvasRef?.current) {
+      if (
+        !isDrawingThisEllipse ||
+        !isDraggingEllipsePoint ||
+        !canvasRef?.current
+      ) {
         return;
       }
 
@@ -79,7 +85,10 @@ export const Ellipse: FC<EllipseProps> = ({
         y: yPercentage,
       });
 
-      setRadiusY(Math.max(minimalRadius, distanceFromCenter));
+      setHotspot({
+        ...hotspot,
+        ellipseRadius: Math.max(minimalRadius, distanceFromCenter),
+      });
     };
 
     window.addEventListener("mousemove", onMouseMove);
@@ -87,7 +96,7 @@ export const Ellipse: FC<EllipseProps> = ({
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
     };
-  }, [canvasRef, center, isDraggingEllipsePoint]);
+  }, [canvasRef, center, hotspot, isDraggingEllipsePoint, setHotspot]);
 
   if (!center || !radiusPoint) {
     return null;
@@ -108,7 +117,7 @@ export const Ellipse: FC<EllipseProps> = ({
         strokeWidth="0.3"
         className={styles.ellipse}
         onClick={event => {
-          if (isDrawing) {
+          if (isDrawingThisEllipse) {
             return;
           }
 
@@ -123,7 +132,9 @@ export const Ellipse: FC<EllipseProps> = ({
       />
 
       <circle
-        className={styles.ellipsePoint}
+        className={`${styles.ellipsePoint} ${
+          isDrawingThisEllipse ? styles.show : ""
+        }`}
         cx={ellipsePoint.x}
         cy={ellipsePoint.y}
         r={1}
