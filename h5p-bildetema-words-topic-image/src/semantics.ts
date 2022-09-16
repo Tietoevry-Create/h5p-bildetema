@@ -56,8 +56,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
                 name: "y",
                 type: "number",
               },
+              {
+                label: "Index",
+                name: "index",
+                type: "number",
+              },
             ],
           },
+        },
+        {
+          label: "Rotation",
+          name: "rotation",
+          type: "number",
         },
         {
           label: "Word",

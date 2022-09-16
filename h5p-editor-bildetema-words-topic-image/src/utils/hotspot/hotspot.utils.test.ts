@@ -1,7 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from "vitest";
 import { Word } from "../../../../common/types/types";
 import { Hotspot } from "../../types/Hotspot";
-import { Point } from "../../types/Point";
+import { PointWithIndex } from "../../types/PointWithIndex";
 import {
   activateDrawingHotspot,
   finishDrawingHotspot,
@@ -17,12 +18,14 @@ describe(finishDrawingHotspot.name, () => {
       isDrawingThisPolygon: true,
       points: [],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: false,
       points: [],
       word,
+      rotation: 0,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -33,14 +36,16 @@ describe(finishDrawingHotspot.name, () => {
   it("should reset the hotspot's points if there is only one point", () => {
     const hotspot: Hotspot = {
       isDrawingThisPolygon: true,
-      points: [{ x: 0, y: 0 }],
+      points: [{ x: 0, y: 0, index: 0 }],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: false,
       points: [],
       word,
+      rotation: 0,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -52,19 +57,21 @@ describe(finishDrawingHotspot.name, () => {
     const hotspot: Hotspot = {
       isDrawingThisPolygon: true,
       points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 1 },
+        { x: 0, y: 0, index: 0 },
+        { x: 1, y: 1, index: 1 },
       ],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: false,
       points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 1 },
+        { x: 0, y: 0, index: 0 },
+        { x: 1, y: 1, index: 1 },
       ],
       word,
+      rotation: 0,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -80,16 +87,18 @@ describe(resetPointsOfActiveHotspot.name, () => {
     const hotspot: Hotspot = {
       isDrawingThisPolygon: true,
       points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 1 },
+        { x: 0, y: 0, index: 0 },
+        { x: 1, y: 1, index: 1 },
       ],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: true,
       points: [],
       word,
+      rotation: 0,
     };
 
     const actual = resetPointsOfActiveHotspot(hotspot);
@@ -101,19 +110,21 @@ describe(resetPointsOfActiveHotspot.name, () => {
     const hotspot: Hotspot = {
       isDrawingThisPolygon: false,
       points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 1 },
+        { x: 0, y: 0, index: 0 },
+        { x: 1, y: 1, index: 1 },
       ],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: false,
       points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 1 },
+        { x: 0, y: 0, index: 0 },
+        { x: 1, y: 1, index: 1 },
       ],
       word,
+      rotation: 0,
     };
 
     const actual = resetPointsOfActiveHotspot(hotspot);
@@ -124,14 +135,14 @@ describe(resetPointsOfActiveHotspot.name, () => {
 
 describe(removePoint.name, () => {
   it("should remove the given point from a list of points", () => {
-    const point: Point = { x: 1, y: 2 };
-    const points: Array<Point> = [
-      { x: 1, y: 2 },
-      { x: 10, y: 20 },
+    const removedPoint: PointWithIndex = { x: 0, y: 0, index: 0 };
+    const points: Array<PointWithIndex> = [
+      { x: 0, y: 0, index: 0 },
+      { x: 1, y: 1, index: 1 },
     ];
 
-    const expected = [{ x: 10, y: 20 }];
-    const actual = removePoint(point, points);
+    const expected: Array<PointWithIndex> = [{ x: 1, y: 1, index: 1 }];
+    const actual = removePoint(removedPoint, points);
 
     expect(actual).toEqual(expected);
   });
@@ -144,12 +155,14 @@ describe(activateDrawingHotspot.name, () => {
       isDrawingThisPolygon: false,
       points: [],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: true,
       points: [],
       word,
+      rotation: 0,
     };
 
     const actual = activateDrawingHotspot(hotspot, word.id);
@@ -163,12 +176,14 @@ describe(activateDrawingHotspot.name, () => {
       isDrawingThisPolygon: true,
       points: [],
       word,
+      rotation: 0,
     };
 
     const expected: Hotspot = {
       isDrawingThisPolygon: false,
       points: [],
       word,
+      rotation: 0,
     };
 
     const actual = activateDrawingHotspot(hotspot, "B002");

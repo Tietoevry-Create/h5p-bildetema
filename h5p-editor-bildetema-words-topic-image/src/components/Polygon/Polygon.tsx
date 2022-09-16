@@ -6,17 +6,17 @@ import styles from "./Polygon.module.scss";
 
 export type PolygonProps = {
   hotspot: Hotspot;
-  handleFigureClick: (wordId: string) => void;
-  startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
-  endFigureDraging: (event: React.MouseEvent) => boolean;
+  handleShapeClick: (wordId: string) => void;
+  startShapeDragging: (hotspot: Hotspot, startPoint: Point) => void;
+  endShapeDragging: (event: React.MouseEvent) => boolean;
   isDrawing: boolean;
 };
 
 export const Polygon: React.FC<PolygonProps> = ({
   hotspot,
-  handleFigureClick,
-  startFigureDragging,
-  endFigureDraging,
+  handleShapeClick,
+  startShapeDragging,
+  endShapeDragging,
   isDrawing,
 }) => {
   const { points, isDrawingThisPolygon } = hotspot;
@@ -31,14 +31,14 @@ export const Polygon: React.FC<PolygonProps> = ({
     }
 
     event.stopPropagation();
-    handleFigureClick(hotspot.word.id);
+    handleShapeClick(hotspot.word.id);
   };
 
-  const onFigureStartDrag = (event: React.MouseEvent): void => {
+  const onShapeStartDrag = (event: React.MouseEvent): void => {
     event.stopPropagation();
 
     const { clientX: x, clientY: y } = event;
-    startFigureDragging(hotspot, { x, y });
+    startShapeDragging(hotspot, { x, y });
   };
 
   return points?.length > 0 ? (
@@ -48,8 +48,8 @@ export const Polygon: React.FC<PolygonProps> = ({
       strokeWidth="0.3"
       stroke="black"
       onClick={onFigureClick}
-      onMouseDown={onFigureStartDrag}
-      onMouseUp={event => endFigureDraging(event)}
+      onMouseDown={onShapeStartDrag}
+      onMouseUp={endShapeDragging}
     />
   ) : null;
 };

@@ -1,5 +1,12 @@
 import type { Image as ImageType } from "h5p-types";
-import React from "react";
+import React, {
+  FC,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
@@ -7,6 +14,7 @@ import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
+import { PointWithIndex } from "../../types/PointWithIndex";
 import { calculatePoint, getDelta } from "../../utils/figure/figure.utils";
 import {
   activateDrawingHotspot,
@@ -26,40 +34,44 @@ export type EditorProps = {
   words: Word[];
   initialHotspots: Array<Hotspot>;
 };
-export const Editor: React.FC<EditorProps> = ({
-  image,
-  words,
-  initialHotspots,
-}) => {
-  const canvasRef = React.useRef<HTMLDivElement>(null);
-  const setValue = React.useContext(SetValueContext);
+export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const setValue = useContext(SetValueContext);
 
-  const [selectedWord, setSelectedWord] = React.useState<string | null>(null);
-  const [hotspots, setHotspots] = React.useState(initialHotspots);
+  const [selectedWordId, setSelectedWord] = useState<string | null>(null);
+  const [hotspots, setHotspots] = useState(initialHotspots);
+  const [isDraggingEllipsePoint, setIsDraggingEllipsePoint] = useState(false);
+
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
-  React.useEffect(() => {
-    const newHotspots = words.map(word => ({
+  useEffect(() => {
+    const newHotspots: Array<Hotspot> = words.map(word => ({
       points:
         initialHotspots.find(hotspot => hotspot.word.id === word.id)?.points ??
         [],
       isDrawingThisPolygon: false,
       word,
       wordId: word.id,
+      rotation: 0,
     }));
 
     setHotspots(newHotspots);
   }, [initialHotspots, words]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(hotspots);
   }, [hotspots, setValue]);
+
+  const selectedHotspot = useMemo(
+    () => hotspots.find(hotspot => hotspot.word.id === selectedWordId),
+    [hotspots, selectedWordId],
+  );
 
   const handleClick = ({
     clientX,
     clientY,
   }: React.MouseEvent<HTMLElement>): void => {
-    if (!canvasRef?.current) {
+    if (!canvasRef?.current || !selectedHotspot || isDraggingEllipsePoint) {
       return;
     }
 
@@ -68,9 +80,10 @@ export const Editor: React.FC<EditorProps> = ({
     const offsetX = rect.x;
     const offsetY = rect.y;
     const { width, height } = rect;
-    const point = {
+    const point: PointWithIndex = {
       x: ((clientX - offsetX) / width) * 100,
       y: (((clientY - offsetY) / height) * 100) / aspectRatio,
+      index: selectedHotspot.points?.length ?? 0,
     };
 
     const updatedHotspots = hotspots.map(hotspot => {
@@ -78,13 +91,19 @@ export const Editor: React.FC<EditorProps> = ({
         return hotspot;
       }
 
-      if (hotspot.points) {
-        return { ...hotspot, points: [...hotspot.points, point] };
+      const points = hotspot.points ? [...hotspot.points, point] : [point];
+      const isEllipse = points.length === 2;
+
+      let { rotation } = hotspot;
+      if (isEllipse) {
+        const radiusPointDelta = getDelta(points[0], points[1]);
+        rotation = Math.atan2(radiusPointDelta.y, radiusPointDelta.x);
       }
 
       return {
         ...hotspot,
-        points: [point],
+        points,
+        rotation,
       };
     });
 
@@ -114,7 +133,7 @@ export const Editor: React.FC<EditorProps> = ({
     setHotspots(updatedHotspots);
   };
 
-  const handleFigureDrag = (
+  const handleShapeDrag = (
     figureDrag: HotspotUpdate,
     newPosition: Point,
   ): void => {
@@ -130,9 +149,11 @@ export const Editor: React.FC<EditorProps> = ({
 
     const motionDelta = getDelta(startPoint, currentPoint);
 
-    const movedPoints = figureDrag.hotspot.points?.map(point =>
-      getDelta(point, motionDelta),
-    );
+    const movedPoints: Array<PointWithIndex> | undefined =
+      figureDrag.hotspot.points?.map(point => ({
+        ...point,
+        ...getDelta(point, motionDelta),
+      }));
 
     setHotspots([
       ...hotspots.slice(0, figureDrag.hotspotIndex),
@@ -145,7 +166,7 @@ export const Editor: React.FC<EditorProps> = ({
     ]);
   };
 
-  const handleCircleDrag = (pointUpdate: PointUpdate): Point => {
+  const handlePointDrag = (pointUpdate: PointUpdate): Point => {
     if (!canvasRef.current) {
       return pointUpdate.from;
     }
@@ -156,18 +177,21 @@ export const Editor: React.FC<EditorProps> = ({
     const offsetY = rect.y;
     const { width, height } = rect;
 
-    const toPoint = {
+    const { index } = pointUpdate.from;
+
+    const toPoint: PointWithIndex = {
+      index,
       x: ((pointUpdate.to.x - offsetX) / width) * 100,
       y: (((pointUpdate.to.y - offsetY) / height) * 100) / aspectRatio,
     };
-    const updatedHotspots = hotspots.map(hotspot => {
+    const updatedHotspots: Array<Hotspot> = hotspots.map(hotspot => {
       if (!hotspot.isDrawingThisPolygon || !hotspot.points) {
         return hotspot;
       }
 
       return {
         ...hotspot,
-        points: movePoint(pointUpdate.from.index, toPoint, hotspot.points),
+        points: movePoint(index, toPoint, hotspot.points),
       };
     });
 
@@ -175,15 +199,15 @@ export const Editor: React.FC<EditorProps> = ({
     return toPoint;
   };
 
-  const handleCircleClick = (point: Point): void => {
+  const handlePointClick = (point: PointWithIndex): void => {
     const updatedHotspots = hotspots.map(hotspot => {
       if (!hotspot.isDrawingThisPolygon || !hotspot.points) {
         return hotspot;
       }
 
-      const { x: startX, y: startY } = hotspot.points[0];
+      const { index } = point;
 
-      const clickedOnStartPoint = startX === point.x && startY === point.y;
+      const clickedOnStartPoint = index === 0;
       const startPointIsTheOnlyPoint = hotspot.points.length === 1;
 
       if (clickedOnStartPoint) {
@@ -210,6 +234,16 @@ export const Editor: React.FC<EditorProps> = ({
     return hotspots.filter(hotspot => hotspot.word.id === wordId)[0].word.label;
   };
 
+  useEffect(() => {
+    const stopDraggingEllipsePoint = (): void => {
+      requestAnimationFrame(() => setIsDraggingEllipsePoint(false));
+    };
+
+    window.addEventListener("mouseup", stopDraggingEllipsePoint);
+    return () =>
+      window.removeEventListener("mouseup", stopDraggingEllipsePoint);
+  }, []);
+
   const editorLabel = t("editorLabel");
   const editorDescription = t("editorDescription");
   const finishedButtonLabel = t("finishedButtonLabel");
@@ -222,10 +256,10 @@ export const Editor: React.FC<EditorProps> = ({
       <span className={styles.editor_label}>{editorLabel}</span>
       <span className={styles.editor_description}>{editorDescription}</span>
       <div className={styles.toolbar}>
-        {selectedWord
-          ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWord)}`
+        {selectedWordId
+          ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWordId)}`
           : selectWordLabel}
-        {selectedWord && (
+        {selectedWordId && (
           <div className={styles.toolbar_buttons}>
             <button type="button" onClick={handleFinishedPressed}>
               {finishedButtonLabel}
@@ -264,12 +298,14 @@ export const Editor: React.FC<EditorProps> = ({
           <Image image={image} />
           <Svg
             hotspots={hotspots}
-            handleCircleClick={handleCircleClick}
-            handleCircleDrag={handleCircleDrag}
-            handleFigureClick={hotspotId => handleWordSelected(hotspotId)}
-            handleFigureDrag={handleFigureDrag}
+            handlePointClick={handlePointClick}
+            handlePointDrag={handlePointDrag}
+            handleShapeClick={hotspotId => handleWordSelected(hotspotId)}
+            handleShapeDrag={handleShapeDrag}
             aspectRatio={aspectRatio}
             canvasRef={canvasRef}
+            isDraggingEllipsePoint={isDraggingEllipsePoint}
+            setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
           />
         </div>
       </div>

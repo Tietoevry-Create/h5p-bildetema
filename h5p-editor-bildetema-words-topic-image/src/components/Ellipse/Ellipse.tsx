@@ -6,29 +6,34 @@ import { Point } from "../../types/Point";
 import { getDelta } from "../../utils/figure/figure.utils";
 import styles from "./Ellipse.module.scss";
 
+type PointWithIndex = Point & { index: number };
+
 type EllipseProps = {
-  hotspot: Omit<Hotspot, "points"> & { points: [Point, Point] };
-  handleFigureClick: (wordId: string) => void;
-  startFigureDragging: (hotspot: Hotspot, startPoint: Point) => void;
-  endFigureDraging: (event: React.MouseEvent) => boolean;
+  hotspot: Omit<Hotspot, "points"> & {
+    points: [PointWithIndex, PointWithIndex];
+  };
+  handleShapeClick: (wordId: string) => void;
+  startShapeDragging: (hotspot: Hotspot, startPoint: Point) => void;
+  endShapeDragging: (event: React.MouseEvent) => boolean;
   isDrawing: boolean;
-  rotation: number;
   canvasRef: RefObject<HTMLElement>;
+  isDraggingEllipsePoint: boolean;
+  setIsDraggingEllipsePoint: (isDragging: boolean) => void;
 };
 
 export const Ellipse: FC<EllipseProps> = ({
   hotspot,
-  handleFigureClick,
-  startFigureDragging,
-  endFigureDraging,
+  handleShapeClick,
+  startShapeDragging,
+  endShapeDragging: endFigureDraging,
   isDrawing,
-  rotation,
   canvasRef,
+  isDraggingEllipsePoint,
+  setIsDraggingEllipsePoint,
 }) => {
   const [center, radiusPoint] = hotspot.points;
   const radiusX = findDistance(center, radiusPoint);
 
-  const [isDrawingEllipsePoint, setIsDrawingEllipsePoint] = useState(false);
   const [radiusY, setRadiusY] = useState(radiusX);
 
   const radiusRatio = radiusX / radiusY;
@@ -49,7 +54,7 @@ export const Ellipse: FC<EllipseProps> = ({
 
   useEffect(() => {
     const onMouseMove = ({ clientX, clientY }: MouseEvent): void => {
-      if (!isDrawingEllipsePoint || !canvasRef?.current) {
+      if (!isDraggingEllipsePoint || !canvasRef?.current) {
         return;
       }
 
@@ -60,10 +65,18 @@ export const Ellipse: FC<EllipseProps> = ({
         width,
       } = canvasRef.current.getBoundingClientRect();
 
+      const x = clientX - offsetX;
+      const y = clientY - offsetY;
+
+      const aspectRatio = width / height;
+
+      const xPercentage = (x * 100) / width;
+      const yPercentage = (y * (100 / aspectRatio)) / height;
+
       const minimalRadius = 1;
       const distanceFromCenter = findDistance(center, {
-        x: ((clientX - offsetX) / width) * 100,
-        y: ((clientY - offsetY) / height) * 100,
+        x: xPercentage,
+        y: yPercentage,
       });
 
       setRadiusY(Math.max(minimalRadius, distanceFromCenter));
@@ -74,7 +87,7 @@ export const Ellipse: FC<EllipseProps> = ({
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
     };
-  }, [canvasRef, center, isDrawingEllipsePoint]);
+  }, [canvasRef, center, isDraggingEllipsePoint]);
 
   if (!center || !radiusPoint) {
     return null;
@@ -87,7 +100,7 @@ export const Ellipse: FC<EllipseProps> = ({
         cy={center.y}
         rx={radiusX}
         ry={radiusY}
-        transform={`rotate(${rotation * (180 / Math.PI)} ${center.x} ${
+        transform={`rotate(${hotspot.rotation * (180 / Math.PI)} ${center.x} ${
           center.y
         })`}
         stroke="black"
@@ -101,22 +114,29 @@ export const Ellipse: FC<EllipseProps> = ({
 
           event.stopPropagation();
 
-          handleFigureClick(hotspot.word.id);
+          handleShapeClick(hotspot.word.id);
         }}
         onMouseDown={({ clientX: x, clientY: y }) =>
-          startFigureDragging(hotspot, { x, y })
+          startShapeDragging(hotspot, { x, y })
         }
         onMouseUp={event => endFigureDraging(event)}
       />
 
       <circle
+        className={styles.ellipsePoint}
         cx={ellipsePoint.x}
         cy={ellipsePoint.y}
-        r={4}
+        r={1}
         fill="red"
         stroke="black"
-        onMouseDown={() => setIsDrawingEllipsePoint(true)}
-        onMouseUp={() => setIsDrawingEllipsePoint(false)}
+        onMouseDown={() => {
+          setIsDraggingEllipsePoint(true);
+          setIsDraggingEllipsePoint(true);
+        }}
+        onMouseUp={() => {
+          setIsDraggingEllipsePoint(false);
+          setIsDraggingEllipsePoint(false);
+        }}
         onClick={event => event.stopPropagation()}
       />
     </>

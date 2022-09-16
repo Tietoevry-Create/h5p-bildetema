@@ -1,75 +1,78 @@
 import * as React from "react";
-import {
-  FC,
-  MouseEvent,
-  RefObject,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { FC, MouseEvent, RefObject, useMemo, useState } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
+import { PointWithIndex } from "../../types/PointWithIndex";
 import { getDelta } from "../../utils/figure/figure.utils";
 import { Shape } from "../Shape/Shape";
 import styles from "./Svg.module.scss";
 
 export type SvgProps = {
   hotspots: Hotspot[];
-  handleCircleClick: (point: Point) => void;
-  handleCircleDrag: (point: PointUpdate) => Point;
-  handleFigureClick: (wordId: string) => void;
-  handleFigureDrag: (figureUpdate: HotspotUpdate, newPosition: Point) => void;
+  handlePointClick: (point: PointWithIndex) => void;
+  handlePointDrag: (point: PointUpdate) => Point;
+  handleShapeClick: (wordId: string) => void;
+  handleShapeDrag: (hotspotUpdate: HotspotUpdate, newPosition: Point) => void;
   aspectRatio: number;
   canvasRef: RefObject<HTMLElement>;
+  isDraggingEllipsePoint: boolean;
+  setIsDraggingEllipsePoint: (isDragging: boolean) => void;
 };
 
 export const Svg: FC<SvgProps> = ({
   hotspots,
-  handleCircleClick,
-  handleCircleDrag,
-  handleFigureClick,
-  handleFigureDrag,
+  handlePointClick,
+  handlePointDrag,
+  handleShapeClick,
+  handleShapeDrag,
   aspectRatio,
   canvasRef,
+  isDraggingEllipsePoint,
+  setIsDraggingEllipsePoint,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<
     (Point & { index: number }) | null
   >(null);
-  const [ellipseRotation, setEllipseRotation] = useState(0);
+  const [shapeDrag, setShapeDrag] = useState<HotspotUpdate | null>(null);
 
-  const [figureDrag, setFigureDrag] = useState<HotspotUpdate | null>(null);
+  const currentDrawnShape = useMemo((): Hotspot | undefined => {
+    return hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
+  }, [hotspots]);
 
-  const endFigureDragging = (event: MouseEvent): boolean => {
-    if (isDragging && figureDrag) {
+  const isDrawingSomething = useMemo((): boolean => {
+    return !!currentDrawnShape;
+  }, [currentDrawnShape]);
+
+  const endShapeDragging = (event: MouseEvent): boolean => {
+    if (isDragging && shapeDrag) {
       event.stopPropagation();
       setIsDragging(false);
-      setFigureDrag(null);
+      setShapeDrag(null);
       return false;
     }
     return true;
   };
 
-  const startFigureDragging = (index: number) => {
-    return (hotspot: Hotspot, startPoint: Point) => {
+  const startShapeDragging =
+    (index: number) => (hotspot: Hotspot, startPoint: Point) => {
       setIsDragging(true);
-      setFigureDrag({ from: startPoint, hotspotIndex: index, hotspot });
+      setShapeDrag({ from: startPoint, hotspotIndex: index, hotspot });
     };
-  };
 
-  const startDragging = (startPoint: Point, index: number): void => {
+  const startPointDragging = (startPoint: PointWithIndex): void => {
     setIsDragging(true);
-    setDragStart({ ...startPoint, index });
+    setDragStart(startPoint);
   };
 
-  const endDragging = (): void => {
+  const endPointDragging = (): void => {
     setIsDragging(false);
     setDragStart(null);
   };
 
-  const onCircleDrag = (point: PointUpdate): Point => {
+  const onPointDrag = (point: PointUpdate): Point => {
     const startPoint = point.from;
 
     const drawnHotspot = hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
@@ -82,67 +85,67 @@ export const Svg: FC<SvgProps> = ({
       ellipseRadiusPoint?.x === startPoint.x &&
       ellipseRadiusPoint.y === startPoint.y;
 
-    if (isEllipseRadiusPoint) {
+    if (isEllipseRadiusPoint && currentDrawnShape) {
       const centerPoint = drawnHotspot.points?.[0];
 
       // @ts-expect-error `centerPoint` is defined
       const radiusPointDelta = getDelta(centerPoint, ellipseRadiusPoint);
 
       const rotation = Math.atan2(radiusPointDelta.y, radiusPointDelta.x);
-      setEllipseRotation(rotation);
+      currentDrawnShape.rotation = rotation;
     }
 
-    return handleCircleDrag(point);
+    return handlePointDrag(point);
   };
 
-  const findSomeDrawing = useCallback((): boolean => {
-    return !!hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
-  }, [hotspots]);
+  const onMouseMove = (event: MouseEvent): void => {
+    const isDraggingPoint = isDragging && dragStart;
+    const isDraggingShape = isDragging && shapeDrag;
 
-  const [isDrawing, setIsDrawing] = useState(isDrawingSomething());
+    if (isDraggingPoint) {
+      event.stopPropagation();
 
-  useEffect(() => {
-    setIsDrawing(isDrawingSomething());
-  }, [setIsDrawing, isDrawingSomething]);
+      setDragStart({
+        ...onPointDrag({
+          from: dragStart,
+          to: {
+            ...dragStart,
+            x: event.clientX,
+            y: event.clientY,
+          },
+        }),
+        index: dragStart.index,
+      });
+    } else if (isDraggingShape) {
+      event.stopPropagation();
 
+      handleShapeDrag(shapeDrag, { x: event.clientX, y: event.clientY });
+    }
+  };
   return (
     <svg
       className={styles.svg}
       preserveAspectRatio="none"
       viewBox={`0 0 100 ${100 / aspectRatio}`}
       xmlns="http://www.w3.org/2000/svg"
-      onMouseMove={e => {
-        if (isDragging && dragStart) {
-          e.stopPropagation();
-
-          setDragStart({
-            ...onCircleDrag({
-              from: dragStart,
-              to: { x: e.clientX, y: e.clientY },
-            }),
-            index: dragStart.index,
-          });
-        } else if (isDragging && figureDrag) {
-          e.stopPropagation();
-          handleFigureDrag(figureDrag, { x: e.clientX, y: e.clientY });
-        }
-      }}
+      onMouseMove={onMouseMove}
     >
       {hotspots.map((hotspot, index) =>
         hotspot.points && hotspot.points?.length > 0 ? (
           <Shape
-            isDrawing={isDrawing}
             key={hotspot.word.id}
+            isDrawing={isDrawingSomething}
             hotspot={hotspot}
-            handleCircleClick={handleCircleClick}
-            handleFigureClick={handleFigureClick}
-            startDragging={startDragging}
-            startFigureDragging={startFigureDragging(index)}
-            endFigureDraging={endFigureDragging}
+            handlePointClick={handlePointClick}
+            handleShapeClick={handleShapeClick}
+            startShapeDragging={startShapeDragging(index)}
+            endShapeDragging={endShapeDragging}
+            startPointDragging={startPointDragging}
             isDragging={isDragging}
-            endDragging={endDragging}
-            ellipseRotation={ellipseRotation}
+            endPointDragging={endPointDragging}
             canvasRef={canvasRef}
+            isDraggingEllipsePoint={isDraggingEllipsePoint}
+            setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
           />
         ) : null,
       )}
