@@ -1,7 +1,18 @@
-import type { H5PFieldGroup, IH5PWidget } from "h5p-types";
-import { H5PWidget } from "h5p-utils";
+// import type { H5PFieldGroup, IH5PWidget } from "h5p-types";
+import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
+import type {
+  H5PFieldGroup,
+  H5PFieldText,
+  H5PGroup,
+  IH5PEditorImageField,
+  IH5PFieldInstance,
+  IH5PWidget,
+  H5PField,
+  Image,
+} from "h5p-types";
+// import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
 import * as React from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, Root } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppChooseTopicWidget } from "../App_ChooseTopicWidget";
 
@@ -20,7 +31,28 @@ export class ChooseTopicH5PWrapper
 {
   changes: Array<() => void> = [];
 
+  private backendUrl = "";
+
+  private root: Root | undefined;
+
   appendTo($container: JQuery<HTMLElement>): void {
+    const backendUrlField = this.findField<H5PGroup<string>>(
+      "backendUrl",
+    ) as unknown as H5PField & { $group: JQuery };
+    this.backendUrl = (backendUrlField as any).params ?? "";
+
+    backendUrlField.$group
+      .get(0)
+      ?.querySelector("input")
+      ?.addEventListener("change", e => {
+        this.backendUrl = (e.target as HTMLInputElement).value;
+        this.trigger("backend-url-changed", this.backendUrl);
+      });
+
+    this.on("backend-url-changed", e => {
+      this.render((e.data as string) ?? "");
+    });
+
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(
@@ -32,11 +64,48 @@ export class ChooseTopicH5PWrapper
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-editor-bildetema-words-topic-chooser");
 
-    const root = createRoot(this.wrapper);
+    this.root = createRoot(this.wrapper);
+    this.render(this.backendUrl);
 
-    root.render(
+    // root.render(
+    //   <QueryClientProvider client={queryClient}>
+    //     <AppChooseTopicWidget
+    //       topicId={this.params?.topicId}
+    //       subTopicId={this.params?.subTopicId}
+    //       setValue={params => {
+    //         this.setValue(this.field, params);
+    //         this.trigger("change", params);
+    //       }}
+    //     />
+    //   </QueryClientProvider>,
+    // );
+  }
+
+  validate(): boolean {
+    return true;
+  }
+
+  remove(): void {
+    this.wrapper.parentElement?.removeChild(this.wrapper);
+  }
+
+  private findField<TField extends IH5PFieldInstance = IH5PFieldInstance>(
+    path: string,
+  ): TField {
+    const field = H5PEditor.findField<TField>(path, this.parent);
+
+    if (!field) {
+      throw new Error(`Could not find field with path \`${path}\``);
+    }
+
+    return field;
+  }
+
+  private render(backendUrl: string): void {
+    this.root?.render(
       <QueryClientProvider client={queryClient}>
         <AppChooseTopicWidget
+          backendUrl={backendUrl}
           topicId={this.params?.topicId}
           subTopicId={this.params?.subTopicId}
           setValue={params => {
@@ -46,13 +115,5 @@ export class ChooseTopicH5PWrapper
         />
       </QueryClientProvider>,
     );
-  }
-
-  validate(): boolean {
-    return true;
-  }
-
-  remove(): void {
-    this.wrapper.parentElement?.removeChild(this.wrapper);
   }
 }

@@ -7,6 +7,21 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     type: "image",
   },
   {
+    label: "Advanced options",
+    name: "backendUrl",
+    type: "group",
+    expanded: false,
+    fields: [
+      {
+        label: "Backend Url",
+        description: "The Url to the json database",
+        default: "https://cdn-devbildetema.azureedge.net/data/database.json",
+        name: "backendUrl",
+        type: "text",
+      },
+    ],
+  },
+  {
     label: "Selected topic",
     name: "selectedTopic",
     type: "group",
