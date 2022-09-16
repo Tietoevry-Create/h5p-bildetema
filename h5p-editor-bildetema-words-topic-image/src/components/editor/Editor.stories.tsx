@@ -237,7 +237,7 @@ WithInitialHotspots.args = {
           x: 36.40138606489304,
           y: 49.74471188913202,
         },
-      ],
+      ].map((point, index) => ({ ...point, index })),
       isDrawingThisPolygon: false,
       word: {
         audioFiles: [],
@@ -245,6 +245,8 @@ WithInitialHotspots.args = {
         id: "V0002",
         images: [],
       },
+      rotation: 0,
+      ellipseRadius: 0,
     },
     {
       points: [],
@@ -255,6 +257,8 @@ WithInitialHotspots.args = {
         id: "V0003",
         images: [],
       },
+      rotation: 0,
+      ellipseRadius: 0,
     },
     {
       points: [],
@@ -265,6 +269,8 @@ WithInitialHotspots.args = {
         id: "V0005",
         images: [],
       },
+      rotation: 0,
+      ellipseRadius: 0,
     },
   ],
 };

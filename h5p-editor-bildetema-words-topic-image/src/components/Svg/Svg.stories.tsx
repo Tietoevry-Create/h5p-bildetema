@@ -26,11 +26,13 @@ Default.args = {
         audioFiles: [],
       },
       points: [
-        { x: 10, y: 10 },
-        { x: 20, y: 20 },
-        { x: 10, y: 20 },
+        { x: 10, y: 10, index: 0 },
+        { x: 20, y: 20, index: 1 },
+        { x: 10, y: 20, index: 2 },
       ],
+      rotation: 0,
+      ellipseRadius: 0,
     },
   ],
-  handleCircleClick: () => {},
+  handlePointClick: () => {},
 };

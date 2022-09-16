@@ -1,5 +1,5 @@
 import { Hotspot } from "../../types/Hotspot";
-import { Point } from "../../types/Point";
+import { PointWithIndex } from "../../types/PointWithIndex";
 
 export const resetPoints = (hotspot: Hotspot): Hotspot => {
   return {
@@ -36,22 +36,21 @@ export const finishDrawingHotspot = (hotspot: Hotspot): Hotspot => {
 };
 
 export const removePoint = (
-  removedPoint: Point,
-  points: Array<Point>,
-): Array<Point> => {
-  return points.filter(
-    ({ x, y }) => x !== removedPoint.x && y !== removedPoint.y,
-  );
+  removedPoint: PointWithIndex,
+  points: Array<PointWithIndex>,
+): Array<PointWithIndex> => {
+  return points.filter(({ index }) => removedPoint.index !== index);
 };
 
 export const movePoint = (
-  movedPoint: number,
-  newPosition: Point,
-  points: Array<Point>,
-): Array<Point> => {
+  movedPointIndex: number,
+  newPosition: PointWithIndex,
+  points: Array<PointWithIndex>,
+): Array<PointWithIndex> => {
   return points.map((point, index) => {
-    if (movedPoint === index) {
+    if (movedPointIndex === index) {
       return {
+        ...point,
         x: newPosition.x,
         y: newPosition.y,
       };
