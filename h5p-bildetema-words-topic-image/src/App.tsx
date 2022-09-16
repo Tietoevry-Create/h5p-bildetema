@@ -50,23 +50,27 @@ export const App: FC<AppProps> = ({
     [params.hotspots],
   );
 
-  const {isLoading: isLoadingData} = useQuery(["topicsFromDB"], () => getData(backendUrl), {
-    onSuccess({topics: fetchedTopics}) {
-      const rootTopic = fetchedTopics?.find(
-        t => t.id === params.selectedTopic.topicId,
-      );
+  const { isLoading: isLoadingData } = useQuery(
+    ["topicsFromDB"],
+    () => getData(backendUrl),
+    {
+      onSuccess({ topics: fetchedTopics }) {
+        const rootTopic = fetchedTopics?.find(
+          t => t.id === params.selectedTopic.topicId,
+        );
 
-      const subTopic = rootTopic?.subTopics.get(
-        params.selectedTopic.subTopicId,
-      );
+        const subTopic = rootTopic?.subTopics.get(
+          params.selectedTopic.subTopicId,
+        );
 
-      if (subTopic) {
-        setTopic(subTopic);
-      } else {
-        setTopic(rootTopic);
-      }
+        if (subTopic) {
+          setTopic(subTopic);
+        } else {
+          setTopic(rootTopic);
+        }
+      },
     },
-  });
+  );
 
   useEffect(() => {
     setTimeout(() => {
