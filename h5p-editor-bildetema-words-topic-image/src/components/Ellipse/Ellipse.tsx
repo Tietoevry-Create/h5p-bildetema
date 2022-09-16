@@ -96,7 +96,14 @@ export const Ellipse: FC<EllipseProps> = ({
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
     };
-  }, [canvasRef, center, hotspot, isDraggingEllipsePoint, setHotspot]);
+  }, [
+    canvasRef,
+    center,
+    hotspot,
+    isDraggingEllipsePoint,
+    isDrawingThisEllipse,
+    setHotspot,
+  ]);
 
   if (!center || !radiusPoint) {
     return null;
