@@ -58,6 +58,11 @@
                 "label": "Index",
                 "name": "index",
                 "type": "number"
+              },
+              {
+                "label": "Ellipse radius",
+                "name": "ellipseRadius",
+                "type": "number"
               }
             ]
           }

@@ -65,7 +65,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
                 label: "Ellipse radius",
                 name: "ellipseRadius",
                 type: "number",
-              }
+              },
             ],
           },
         },
