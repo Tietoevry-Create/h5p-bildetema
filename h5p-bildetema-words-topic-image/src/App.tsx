@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
 import { Topic, Word } from "../../common/types/types";
-// import { getTopics } from "../../common/utils/data.utils";
 import { getData } from "../../common/utils/data.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Params } from "./h5p/H5PWrapper";
@@ -50,24 +49,24 @@ export const App: FC<AppProps> = ({
     },
     [params.hotspots],
   );
-  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
-    getData(backendUrl),
-  );
 
-  React.useEffect(() => {
-    const fetchedTopics = data?.topics;
-    const rootTopic = fetchedTopics?.find(
-      t => t.id === params.selectedTopic.topicId,
-    );
+  const {isLoading: isLoadingData} = useQuery(["topicsFromDB"], () => getData(backendUrl), {
+    onSuccess({topics: fetchedTopics}) {
+      const rootTopic = fetchedTopics?.find(
+        t => t.id === params.selectedTopic.topicId,
+      );
 
-    const subTopic = rootTopic?.subTopics.get(params.selectedTopic.subTopicId);
+      const subTopic = rootTopic?.subTopics.get(
+        params.selectedTopic.subTopicId,
+      );
 
-    if (subTopic) {
-      setTopic(subTopic);
-    } else {
-      setTopic(rootTopic);
-    }
-  }, [data, params.selectedTopic.subTopicId, params.selectedTopic.topicId]);
+      if (subTopic) {
+        setTopic(subTopic);
+      } else {
+        setTopic(rootTopic);
+      }
+    },
+  });
 
   useEffect(() => {
     setTimeout(() => {

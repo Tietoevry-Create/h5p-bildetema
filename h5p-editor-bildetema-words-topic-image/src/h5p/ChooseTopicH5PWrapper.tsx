@@ -1,16 +1,11 @@
-// import type { H5PFieldGroup, IH5PWidget } from "h5p-types";
-import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
+import { H5PEditor, H5PWidget } from "h5p-utils";
 import type {
   H5PFieldGroup,
-  H5PFieldText,
   H5PGroup,
-  IH5PEditorImageField,
   IH5PFieldInstance,
   IH5PWidget,
   H5PField,
-  Image,
 } from "h5p-types";
-// import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
 import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -66,19 +61,6 @@ export class ChooseTopicH5PWrapper
 
     this.root = createRoot(this.wrapper);
     this.render(this.backendUrl);
-
-    // root.render(
-    //   <QueryClientProvider client={queryClient}>
-    //     <AppChooseTopicWidget
-    //       topicId={this.params?.topicId}
-    //       subTopicId={this.params?.subTopicId}
-    //       setValue={params => {
-    //         this.setValue(this.field, params);
-    //         this.trigger("change", params);
-    //       }}
-    //     />
-    //   </QueryClientProvider>,
-    // );
   }
 
   validate(): boolean {

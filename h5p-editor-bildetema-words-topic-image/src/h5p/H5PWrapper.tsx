@@ -1,6 +1,5 @@
 import type {
   H5PFieldGroup,
-  H5PFieldText,
   H5PGroup,
   IH5PEditorImageField,
   IH5PFieldInstance,
@@ -13,7 +12,7 @@ import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
 import { LanguageCode } from "../../../common/types/LanguageCode";
 import { Word } from "../../../common/types/types";
-import { getTopics, getData } from "../../../common/utils/data.utils";
+import { getData } from "../../../common/utils/data.utils";
 import { App } from "../App";
 import { SetValueContext } from "../contexts/SetValueContext";
 import { Hotspot } from "../types/Hotspot";
@@ -111,7 +110,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     subTopicId: string | undefined,
     backendUrl: string,
   ): Promise<Map<LanguageCode, Word[]>> {
-    // const topics = await getTopics();
     const { topics } = await getData(backendUrl);
     const topic = topics.find(t => t.id === topicId);
 
