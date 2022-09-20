@@ -18,6 +18,8 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
   topicIds,
   topicsFromDB,
 }) => {
+  const wrapper = React.useRef<HTMLDivElement>(null);
+
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
@@ -31,8 +33,32 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
       ? (pathname.split("/")[1] as LanguageCode)
       : "nob";
 
+  const scrollHorizontal = (e: {
+    deltaY: number;
+    preventDefault: () => void;
+  }): void => {
+    if (!wrapper.current) {
+      return;
+    }
+    wrapper.current.scrollLeft += e.deltaY;
+  };
+
+  const handleOnMouseEnter = (): void => {
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleOnMouseLeave = (): void => {
+    document.body.style.overflow = "visible";
+  };
+
   return (
-    <div className={styles.languageWrapper}>
+    <div
+      ref={wrapper}
+      className={styles.languageWrapper}
+      onWheel={e => scrollHorizontal(e)}
+      onMouseEnter={() => handleOnMouseEnter()}
+      onMouseLeave={() => handleOnMouseLeave()}
+    >
       <div className={styles.languages}>
         {favLanguages.map(language => {
           return (
