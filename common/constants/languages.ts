@@ -48,6 +48,6 @@ export const languagesOriginal = {
   tgl: "Tagalog",
   tha: "ไทย",
   tir: "ትግርኛ",
-  ukr: "Украї́нський",
+  ukr: "Українська",
   vie: "Việt",
 } as const;
