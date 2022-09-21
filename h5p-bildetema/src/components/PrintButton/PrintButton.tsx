@@ -27,8 +27,8 @@ export const PrintButton: React.FC<PrintProps> = ({
       <button
         type="button"
         className={styles.printButton}
-        onClick={handlePrint}
-        // onClick={() => window.print()}
+        // onClick={handlePrint}
+        onClick={() => window.print()}
       >
         <span className={styles.printButtonWrapper}>
           {printLabel && <span>{printLabel}</span>}
@@ -36,11 +36,11 @@ export const PrintButton: React.FC<PrintProps> = ({
         </span>
       </button>
       <div className={styles.printWordsWrapper}>
-        <PrintWords
+        {/* <PrintWords
           ref={printRef}
           topicIds={topicIds}
           showWrittenWords={showWrittenWords}
-        />
+        /> */}
       </div>
     </>
   );
