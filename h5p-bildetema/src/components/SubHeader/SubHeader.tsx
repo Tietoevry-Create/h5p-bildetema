@@ -1,7 +1,7 @@
 import React from "react";
 import { useContentId } from "use-h5p";
 import { useLocation } from "react-router-dom";
-import { TopicGridSizes } from "../../../../common/types/types";
+import { TopicGridSizes, TopicIds } from "../../../../common/types/types";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
@@ -10,6 +10,7 @@ import styles from "./SubHeader.module.scss";
 import { PrintButton } from "../PrintButton/PrintButton";
 
 export type SubHeaderProps = {
+  topicIds: TopicIds;
   topicsSize: TopicGridSizes;
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
   isWordView: boolean;
@@ -19,6 +20,7 @@ export type SubHeaderProps = {
 };
 
 export const SubHeader: React.FC<SubHeaderProps> = ({
+  topicIds,
   topicsSize,
   setTopicsSize,
   isWordView,
@@ -37,7 +39,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.tools}>
-        <PrintButton />
+        <PrintButton topicIds={topicIds} showWrittenWords={toggleChecked} />
         {!isTopicImageView && (
           <Toggle
             label={showWrittenWordsLabel}

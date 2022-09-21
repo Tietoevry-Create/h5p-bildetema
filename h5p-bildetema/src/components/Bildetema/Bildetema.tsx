@@ -143,6 +143,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
         />
         <LanguageFavorites topicIds={topicIds} favLanguages={favLanguages} />
         <SubHeader
+          topicIds={topicIds}
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
           isWordView={isWordView}
