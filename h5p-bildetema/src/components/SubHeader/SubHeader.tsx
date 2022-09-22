@@ -57,8 +57,13 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   };
 
   return (
-    <div className={isWordView ? styles.subHeaderWords : styles.subHeaderThemes}>
-      <Breadcrumbs currentLanguageCode={currentLanguageCode} isMobile={isMobile}/>
+    <div
+      className={isWordView ? styles.subHeaderWords : styles.subHeaderThemes}
+    >
+      <Breadcrumbs
+        currentLanguageCode={currentLanguageCode}
+        isMobile={isMobile}
+      />
       {renderLeftMenu()}
     </div>
   );
