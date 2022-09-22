@@ -28,7 +28,7 @@ export const Ellipse: FC<EllipseProps> = ({
   setHotspot,
   handleShapeClick,
   startShapeDragging,
-  endShapeDragging: endFigureDraging,
+  endShapeDragging,
   isDrawingThisEllipse,
   canvasRef,
   isDraggingEllipsePoint,
@@ -132,10 +132,10 @@ export const Ellipse: FC<EllipseProps> = ({
 
           handleShapeClick(hotspot.word.id);
         }}
-        onMouseDown={({ clientX: x, clientY: y }) =>
-          startShapeDragging(hotspot, { x, y })
-        }
-        onMouseUp={event => endFigureDraging(event)}
+        onMouseDown={({ clientX: x, clientY: y }) => {
+          return startShapeDragging(hotspot, { x, y });
+        }}
+        onMouseUp={event => endShapeDragging(event)}
       />
 
       <circle
