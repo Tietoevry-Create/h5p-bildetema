@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
@@ -12,6 +12,7 @@ import styles from "./Header.module.scss";
 
 export type HeaderProps = {
   topicIds: TopicIds;
+  isMobile: boolean | null;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
@@ -19,9 +20,9 @@ export type HeaderProps = {
 export const Header: React.FC<HeaderProps> = ({
   favLanguages,
   topicIds,
+  isMobile,
   handleToggleFavoriteLanguage,
 }) => {
-  const headerRef = React.useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
@@ -34,7 +35,6 @@ export const Header: React.FC<HeaderProps> = ({
     ...languageKeys,
   );
 
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
 
@@ -51,38 +51,8 @@ export const Header: React.FC<HeaderProps> = ({
     setLangSelectorIsShown(false);
   }, [pathname]);
 
-  // TODO: Add better method to find screen width
-  const handleIsMobile = useCallback((): void => {
-    const mobileWidth = 768;
-    const deviceWidth = headerRef.current?.clientWidth;
-
-    if (!isMobile && deviceWidth && deviceWidth < mobileWidth) {
-      setIsMobile(true);
-    }
-    if (isMobile && deviceWidth && deviceWidth > mobileWidth) {
-      setIsMobile(false);
-    }
-  }, [headerRef, isMobile]);
-
-  useEffect(() => {
-    // handle isMobile when page has loaded
-    if (isMobile === null) {
-      handleIsMobile();
-    }
-  });
-
-  useEffect(() => {
-    // handle isMobile when window size changes
-    requestAnimationFrame(() => {
-      window.addEventListener("resize", handleIsMobile);
-    });
-    return () => {
-      window.removeEventListener("resize", handleIsMobile);
-    };
-  }, [handleIsMobile]);
-
   return (
-    <div ref={headerRef} className={styles.header}>
+    <div className={styles.header}>
       <div className={styles.header_content}>
         <div className={styles.logos}>
           <div className={styles.logos_oslomet}>

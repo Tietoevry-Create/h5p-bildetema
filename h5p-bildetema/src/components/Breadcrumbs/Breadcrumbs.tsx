@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
-import { BreadcrumbsArrowIcon, HomeIcon } from "../Icons/Icons";
+import { BreadcrumbsArrowIcon, BreadcrumbsArrowLeftIcon, HomeIcon } from "../Icons/Icons";
 import styles from "./Breadcrumbs.module.scss";
 
 export type BreadcrumbsProps = {
@@ -11,11 +11,13 @@ export type BreadcrumbsProps = {
     path: string;
   }[];
   currentLanguageCode: string;
+  isMobile: boolean | null;
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
+  isMobile,
 }) => {
   const topicLabel = useL10n("breadcrumbsTopic");
   const homeLabel = useL10n("breadcrumbsHome");
@@ -39,6 +41,32 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       {breadCrumbsToRender.map(({ label, path }, index) => {
         const notLastBreadCrumb = index !== breadCrumbsToRender.length - 1;
         const homePageBreadCrumb = index === 0;
+        const moreThanThreeItems = breadCrumbsToRender.length > 2;
+
+        if (isMobile) {
+          if (homePageBreadCrumb && moreThanThreeItems) {
+            return null;
+          }
+          return notLastBreadCrumb ? (
+            <span key={path}>
+              <Link to={path} className={styles.linkMobile}>
+                <BreadcrumbsArrowLeftIcon />
+                {homePageBreadCrumb ? (
+                <span className={styles.homeIcon}>
+                <HomeIcon />
+                <span className={styles.visuallyHidden}>{homeLabel}</span>
+              </span>
+                ) : (
+                  label
+                )}
+              </Link>
+            </span>
+          ) : (
+            <h1 className={styles.currentPage} key={path}>
+              {label}
+            </h1>
+          );
+        }
 
         return notLastBreadCrumb ? (
           <span key={path}>

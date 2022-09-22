@@ -7,12 +7,17 @@
 .breadcrumbs {
   font-size: 1.5rem;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 
-  &::after {
-    $nbsp: \00a0;
-    content: "#{$nbsp}"; /* {1} */
+  @include breakpoint-min($small) {
+    align-items: center;
+    flex-direction: row;
+
+    &::after {
+      $nbsp: \00a0;
+      content: "#{$nbsp}"; /* {1} */
+    }
   }
 
   span {
@@ -31,6 +36,21 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
+  &Mobile {
+    all: unset;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: $font-size-18;
+    gap: 0.5rem;
+    height: 1.5rem;
+    margin: 0 0 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .arrow {
@@ -45,12 +65,21 @@
   &:hover {
     border-color: #333;
   }
+
+  @include breakpoint-max($small) {
+    padding-bottom: 0;
+
+    svg {
+      transform: scale(1.2) !important;
+    }
+  }
 }
 
 .currentPage {
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1;
+  word-break: break-all;
 }
 
 .visuallyHidden {
