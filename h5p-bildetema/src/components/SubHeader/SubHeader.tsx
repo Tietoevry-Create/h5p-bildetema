@@ -16,7 +16,6 @@ export type SubHeaderProps = {
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
   isTopicImageView: boolean;
-  isMobile: boolean | null;
 };
 
 export const SubHeader: React.FC<SubHeaderProps> = ({
@@ -26,7 +25,6 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   toggleChecked,
   handleToggleChange,
   isTopicImageView,
-  isMobile,
 }) => {
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
 
@@ -60,10 +58,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
     <div
       className={isWordView ? styles.subHeaderWords : styles.subHeaderThemes}
     >
-      <Breadcrumbs
-        currentLanguageCode={currentLanguageCode}
-        isMobile={isMobile}
-      />
+      <Breadcrumbs currentLanguageCode={currentLanguageCode} />
       {renderLeftMenu()}
     </div>
   );

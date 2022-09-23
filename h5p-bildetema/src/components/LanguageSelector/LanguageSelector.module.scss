@@ -1,11 +1,12 @@
 @use "../../../../common/abstracts" as *;
 
 .languageSelector {
-  display: grid;
+  display: none;
   grid-auto-flow: column;
   grid-template-columns: 1fr;
 
   @include breakpoint-min($small) {
+    display: grid;
     grid-template-columns: 1fr 1fr;
   }
 }

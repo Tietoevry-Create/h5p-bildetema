@@ -15,13 +15,11 @@ export type BreadcrumbsProps = {
     path: string;
   }[];
   currentLanguageCode: string;
-  isMobile: boolean | null;
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
-  isMobile,
 }) => {
   const topicLabel = useL10n("breadcrumbsTopic");
   const homeLabel = useL10n("breadcrumbsHome");
@@ -47,34 +45,19 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         const homePageBreadCrumb = index === 0;
         const moreThanThreeItems = breadCrumbsToRender.length > 2;
 
-        if (isMobile) {
-          if (homePageBreadCrumb && moreThanThreeItems) {
-            return null;
-          }
-          return notLastBreadCrumb ? (
-            <span key={path}>
-              <Link to={path} className={styles.linkMobile}>
-                <BreadcrumbsArrowLeftIcon />
-                {homePageBreadCrumb ? (
-                  <span className={styles.homeIcon}>
-                    <HomeIcon />
-                    <span className={styles.visuallyHidden}>{homeLabel}</span>
-                  </span>
-                ) : (
-                  label
-                )}
-              </Link>
-            </span>
-          ) : (
-            <h1 className={styles.currentPage} key={path}>
-              {label}
-            </h1>
-          );
-        }
-
         return notLastBreadCrumb ? (
-          <span key={path}>
+          <span
+            key={path}
+            className={
+              homePageBreadCrumb && moreThanThreeItems
+                ? styles.wrapperHide
+                : styles.wrapper
+            }
+          >
             <Link to={path} className={styles.link}>
+              <span className={styles.arrowLeft}>
+                <BreadcrumbsArrowLeftIcon />
+              </span>
               {homePageBreadCrumb ? (
                 <span className={styles.homeIcon}>
                   <HomeIcon />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import {
   Language,
@@ -25,9 +25,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   isLoadingData,
 }) => {
   const { languages: languagesFromDB } = useDBContext() || {};
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -98,36 +95,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     }
   });
 
-  // TODO: Add better method to find screen width
-  const handleIsMobile = React.useCallback((): void => {
-    const mobileWidth = 768;
-    const deviceWidth = containerRef.current?.clientWidth;
-
-    if (!isMobile && deviceWidth && deviceWidth < mobileWidth) {
-      setIsMobile(true);
-    }
-    if (isMobile && deviceWidth && deviceWidth > mobileWidth) {
-      setIsMobile(false);
-    }
-  }, [containerRef, isMobile]);
-
-  useEffect(() => {
-    // handle isMobile when page has loaded
-    if (isMobile === null) {
-      handleIsMobile();
-    }
-  });
-
-  useEffect(() => {
-    // handle isMobile when window size changes
-    requestAnimationFrame(() => {
-      window.addEventListener("resize", handleIsMobile);
-    });
-    return () => {
-      window.removeEventListener("resize", handleIsMobile);
-    };
-  }, [handleIsMobile]);
-
   const routes = React.useMemo(() => {
     const paths = [
       "/:langId",
@@ -166,10 +133,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   return (
     <div className={styles.wrapper}>
-      <div ref={containerRef} className={styles.container}>
+      <div className={styles.container}>
         <Header
           topicIds={topicIds}
-          isMobile={isMobile}
           favLanguages={favLanguages}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
@@ -181,7 +147,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
           isTopicImageView={isTopicImageView}
-          isMobile={isMobile}
         />
         <div className={styles.body}>
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
