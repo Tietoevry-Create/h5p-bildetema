@@ -2,13 +2,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language, Topic, TopicIds } from "../../../../common/types/types";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
+import { Language, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
 export type LanguageFavoritesProps = {
-  topicsFromDB?: Topic[];
   topicIds: TopicIds;
   favLanguages: Language[];
 };
@@ -16,8 +16,8 @@ export type LanguageFavoritesProps = {
 export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
   favLanguages,
   topicIds,
-  topicsFromDB,
 }) => {
+  const { topics: topicsFromDB } = useDBContext() || {};
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
