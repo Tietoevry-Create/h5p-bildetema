@@ -75,7 +75,6 @@ export const Shape: FC<ShapeProps> = ({
             handleShapeClick={handleShapeClick}
             startShapeDragging={startShapeDragging}
             endShapeDragging={endShapeDragging}
-            isDrawing={isDrawing}
           />
         )
       )}

@@ -123,15 +123,16 @@ export const Ellipse: FC<EllipseProps> = ({
         fill="none"
         strokeWidth="0.3"
         className={styles.ellipse}
-        onClick={event => {
-          if (isDrawingThisEllipse) {
-            return;
-          }
+        // onClick={event => {
+        //   if (isDrawingThisEllipse) {
+        //     return;
+        //   }
 
-          event.stopPropagation();
+        //   event.stopPropagation();
 
-          handleShapeClick(hotspot.word.id);
-        }}
+        //   handleShapeClick(hotspot.word.id);
+        // }}
+        onDoubleClick={()=>handleShapeClick(hotspot.word.id)}
         onMouseDown={({ clientX: x, clientY: y }) =>
           startShapeDragging(hotspot, { x, y })
         }

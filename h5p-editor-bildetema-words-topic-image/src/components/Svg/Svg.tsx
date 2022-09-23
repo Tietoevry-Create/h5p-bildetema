@@ -60,6 +60,7 @@ export const Svg: FC<SvgProps> = ({
 
   const startShapeDragging =
     (index: number) => (hotspot: Hotspot, startPoint: Point) => {
+      if(!hotspot.isDrawingThisPolygon && hotspots.some(hp=>hp.isDrawingThisPolygon)) return
       setIsDragging(true);
       setShapeDrag({ from: startPoint, hotspotIndex: index, hotspot });
     };
