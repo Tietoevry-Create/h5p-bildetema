@@ -37,6 +37,7 @@ export type EditorProps = {
 export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const setValue = useContext(SetValueContext);
+  const [isDraggingShape, setIsDraggingShape] = useState(false) 
 
   const [selectedWordId, setSelectedWord] = useState<string | null>(null);
   const [hotspots, setHotspots] = useState(initialHotspots);
@@ -297,6 +298,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
         >
           <Image image={image} />
           <Svg
+            isDraggingShape={isDraggingShape}
             hotspots={hotspots}
             setHotspots={setHotspots}
             handlePointClick={handlePointClick}

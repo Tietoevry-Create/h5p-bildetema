@@ -12,6 +12,7 @@ type EllipseHotspot = Omit<Hotspot, "points"> & {
 };
 
 type EllipseProps = {
+  isDragging: boolean;
   hotspot: EllipseHotspot;
   setHotspot: (hotspot: Hotspot) => void;
   handleShapeClick: (wordId: string) => void;
@@ -24,6 +25,7 @@ type EllipseProps = {
 };
 
 export const Ellipse: FC<EllipseProps> = ({
+  isDragging,
   hotspot,
   setHotspot,
   handleShapeClick,
@@ -123,8 +125,8 @@ export const Ellipse: FC<EllipseProps> = ({
         fill="none"
         strokeWidth="0.3"
         className={styles.ellipse}
-        onClick={event => {
-          if (isDrawingThisEllipse) {
+        onDoubleClick={event => {
+          if (isDrawingThisEllipse && isDragging) {
             return;
           }
 

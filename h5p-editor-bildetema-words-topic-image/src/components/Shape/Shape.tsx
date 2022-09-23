@@ -58,6 +58,7 @@ export const Shape: FC<ShapeProps> = ({
     <>
       {isEllipse(hotspot) ? (
         <Ellipse
+          isDragging={isDragging}
           setHotspot={setHotspot}
           isDraggingEllipsePoint={isDraggingEllipsePoint}
           setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
@@ -71,6 +72,7 @@ export const Shape: FC<ShapeProps> = ({
       ) : (
         points?.length > 0 && (
           <Polygon
+            isDragging={isDragging}
             hotspot={hotspot}
             handleShapeClick={handleShapeClick}
             startShapeDragging={startShapeDragging}

@@ -10,6 +10,7 @@ import { Shape } from "../Shape/Shape";
 import styles from "./Svg.module.scss";
 
 export type SvgProps = {
+  isDraggingShape: boolean
   hotspots: Array<Hotspot>;
   setHotspots: (hotspots: Array<Hotspot>) => void;
   handlePointClick: (point: PointWithIndex) => void;
@@ -23,6 +24,7 @@ export type SvgProps = {
 };
 
 export const Svg: FC<SvgProps> = ({
+  isDraggingShape: t ,
   hotspots,
   setHotspots,
   handlePointClick,
