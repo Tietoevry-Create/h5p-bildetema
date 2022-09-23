@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
@@ -19,6 +19,7 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
 }) => {
   const { topics: topicsFromDB } = useDBContext() || {};
   const wrapper = React.useRef<HTMLDivElement>(null);
+  const [prevDeltaY, setPrevDeltaY] = useState<number>(0);
 
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -37,7 +38,10 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
     if (!wrapper.current) {
       return;
     }
-    wrapper.current.scrollLeft += e.deltaY;
+    if (e.deltaY !== prevDeltaY) {
+      wrapper.current.scrollLeft += e.deltaY;
+      setPrevDeltaY(e.deltaY);
+    }
   };
 
   const handleOnMouseEnter = (): void => {
