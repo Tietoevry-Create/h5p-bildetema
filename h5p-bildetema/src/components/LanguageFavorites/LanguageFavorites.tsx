@@ -33,10 +33,7 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
       ? (pathname.split("/")[1] as LanguageCode)
       : "nob";
 
-  const scrollHorizontal = (e: {
-    deltaY: number;
-    preventDefault: () => void;
-  }): void => {
+  const scrollHorizontal = (e: React.WheelEvent): void => {
     if (!wrapper.current) {
       return;
     }
@@ -55,9 +52,9 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
     <div
       ref={wrapper}
       className={styles.languageWrapper}
-      onWheel={e => scrollHorizontal(e)}
-      onMouseEnter={() => handleOnMouseEnter()}
-      onMouseLeave={() => handleOnMouseLeave()}
+      onWheel={scrollHorizontal}
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
     >
       <div className={styles.languages}>
         {favLanguages.map(language => {
