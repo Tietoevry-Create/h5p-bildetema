@@ -44,10 +44,6 @@ export const Svg: FC<SvgProps> = ({
     return hotspots.find(hotspot => hotspot.isDrawingThisPolygon);
   }, [hotspots]);
 
-  const isDrawingSomething = useMemo((): boolean => {
-    return !!currentDrawnShape;
-  }, [currentDrawnShape]);
-
   const endShapeDragging = (event: MouseEvent): boolean => {
     if (isDragging && shapeDrag) {
       event.stopPropagation();
@@ -137,7 +133,6 @@ export const Svg: FC<SvgProps> = ({
         hotspot.points && hotspot.points?.length > 0 ? (
           <Shape
             key={hotspot.word.id}
-            isDrawing={isDrawingSomething}
             hotspot={hotspot}
             setHotspot={updatedHotspot =>
               setHotspots(
@@ -146,19 +141,43 @@ export const Svg: FC<SvgProps> = ({
                 ),
               )
             }
-            handlePointClick={handlePointClick}
             handleShapeClick={handleShapeClick}
             startShapeDragging={startShapeDragging(index)}
             endShapeDragging={endShapeDragging}
-            startPointDragging={startPointDragging}
-            isDragging={isDragging}
-            endPointDragging={endPointDragging}
             canvasRef={canvasRef}
             isDraggingEllipsePoint={isDraggingEllipsePoint}
             setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
           />
         ) : null,
       )}
+      {currentDrawnShape && currentDrawnShape?.points?.map(({x,y, index}) => (
+        <circle
+        className={`${styles.point} 
+        ${index === 0 && currentDrawnShape?.points?.length === 2 && styles.ellipseStartPoint}
+        `
+      }
+        style={{ fill: `${index === 0 && "red"}` }}
+        onDoubleClick={() => handlePointClick({ x, y, index })}
+        onMouseDown={e => {
+          if (!isDragging) {
+            e.stopPropagation();
+
+            const startPoint: PointWithIndex = { x, y, index };
+            startPointDragging(startPoint);
+          }
+        }}
+        onMouseUp={e => {
+          if (isDragging) {
+            e.stopPropagation();
+            endPointDragging()
+          }
+        }}
+        key={`${x}${y}${x + y + index}`}
+        cx={x}
+        cy={y}
+        r="1"
+      />
+      ))}
     </svg>
   );
 };
