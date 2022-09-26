@@ -5,7 +5,6 @@ import { Point } from "../../types/Point";
 import { PointWithIndex } from "../../types/PointWithIndex";
 import { Ellipse } from "../Ellipse/Ellipse";
 import { Polygon } from "../Polygon/Polygon";
-// import styles from "./Shape.module.scss";
 
 type ShapeProps = {
   hotspot: Hotspot;
