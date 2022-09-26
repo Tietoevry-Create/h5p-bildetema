@@ -86,10 +86,7 @@ export const Shape: FC<ShapeProps> = ({
               index === 0 && isEllipse(hotspot) ? styles.ellipseStartPoint : ""
             }`}
             style={{ fill: `${index === 0 && "red"}` }}
-            onClick={e => {
-              e.stopPropagation();
-              handlePointClick({ x, y, index });
-            }}
+            onDoubleClick={() => handlePointClick({ x, y, index })}
             onMouseDown={e => {
               if (!isDragging) {
                 e.stopPropagation();
