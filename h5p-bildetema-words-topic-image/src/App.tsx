@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
 import { Topic, Word } from "../../common/types/types";
-import { getTopics } from "../../common/utils/data.utils";
+import { getData } from "../../common/utils/data.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Params } from "./h5p/H5PWrapper";
 import { useL10n } from "./hooks/useL10n";
@@ -13,16 +13,23 @@ export type AppProps = {
   params: Params;
   imagePath: string;
   aspectRatio: number;
+  backendUrl: string;
 };
 
 const hasValue = <T,>(obj: T | null | undefined): obj is T => !!obj;
 
-export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
+export const App: FC<AppProps> = ({
+  params,
+  imagePath,
+  aspectRatio,
+  backendUrl,
+}) => {
   const [topic, setTopic] = useState<Topic | undefined>();
   const [overlays, setOverlays] = useState<Array<OverlayType>>([]);
   const [currentLanguageWords, setCurrentLanguageWords] = useState<Array<Word>>(
     [],
   );
+
   const [showNoTopicsSelectedText, setShowNoTopicsSelectedText] =
     useState(false);
 
@@ -43,23 +50,27 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
     [params.hotspots],
   );
 
-  useQuery(["topicsFromDB"], getTopics, {
-    onSuccess(fetchedTopics) {
-      const rootTopic = fetchedTopics?.find(
-        t => t.id === params.selectedTopic.topicId,
-      );
+  const { isLoading: isLoadingData } = useQuery(
+    ["topicsFromDB"],
+    () => getData(backendUrl),
+    {
+      onSuccess({ topics: fetchedTopics }) {
+        const rootTopic = fetchedTopics?.find(
+          t => t.id === params.selectedTopic.topicId,
+        );
 
-      const subTopic = rootTopic?.subTopics.get(
-        params.selectedTopic.subTopicId,
-      );
+        const subTopic = rootTopic?.subTopics.get(
+          params.selectedTopic.subTopicId,
+        );
 
-      if (subTopic) {
-        setTopic(subTopic);
-      } else {
-        setTopic(rootTopic);
-      }
+        if (subTopic) {
+          setTopic(subTopic);
+        } else {
+          setTopic(rootTopic);
+        }
+      },
     },
-  });
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -113,6 +124,6 @@ export const App: FC<AppProps> = ({ params, imagePath, aspectRatio }) => {
       words={currentLanguageWords}
     />
   ) : (
-    <p>{showNoTopicsSelectedText && noTopicSelectedText}</p>
+    <p>{showNoTopicsSelectedText && !isLoadingData && noTopicSelectedText}</p>
   );
 };

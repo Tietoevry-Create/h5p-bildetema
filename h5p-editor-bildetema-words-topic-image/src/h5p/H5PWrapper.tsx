@@ -4,6 +4,7 @@ import type {
   IH5PEditorImageField,
   IH5PFieldInstance,
   IH5PWidget,
+  H5PField,
   Image,
 } from "h5p-types";
 import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
@@ -11,7 +12,7 @@ import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
 import { LanguageCode } from "../../../common/types/LanguageCode";
 import { Word } from "../../../common/types/types";
-import { getTopics } from "../../../common/utils/data.utils";
+import { getData } from "../../../common/utils/data.utils";
 import { App } from "../App";
 import { SetValueContext } from "../contexts/SetValueContext";
 import { Hotspot } from "../types/Hotspot";
@@ -25,9 +26,29 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
 
   private root: Root | undefined;
 
+  private backendUrl = "";
+
   private words: Map<LanguageCode, Array<Word>> = new Map();
 
   appendTo($container: JQuery<HTMLElement>): void {
+    const backendUrlField = this.findField<H5PGroup<string>>(
+      "backendUrl",
+    ) as unknown as H5PField & { $group: JQuery };
+
+    const titleElement = document.querySelector<HTMLElement>(
+      ".field-name-backendUrl .title",
+    );
+    if (titleElement) {
+      titleElement.innerText = backendUrlField.label ?? "Advanced options";
+    }
+
+    backendUrlField.$group
+      .get(0)
+      ?.querySelector("input")
+      ?.addEventListener("change", e => {
+        this.backendUrl = (e.target as HTMLInputElement).value;
+      });
+
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(
@@ -52,7 +73,11 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
         data: { topicId, subTopicId },
       } = event as { data: ChooseTopicParams };
 
-      const newWords = await H5PWrapper.fetchTopic(topicId, subTopicId);
+      const newWords = await H5PWrapper.fetchTopic(
+        topicId,
+        subTopicId,
+        this.backendUrl,
+      );
 
       this.words = newWords;
       this.render();
@@ -83,8 +108,9 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   private static async fetchTopic(
     topicId: string,
     subTopicId: string | undefined,
+    backendUrl: string,
   ): Promise<Map<LanguageCode, Word[]>> {
-    const topics = await getTopics();
+    const { topics } = await getData(backendUrl);
     const topic = topics.find(t => t.id === topicId);
 
     if (subTopicId) {
@@ -100,7 +126,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     if (!this.root) {
       this.root = createRoot(this.wrapper);
     }
-
     this.root.render(
       <SetValueContext.Provider value={this.setValueForField}>
         <App

@@ -18,6 +18,7 @@ export type Params = {
   };
   l10n: Record<TranslationKey, string>;
   currentLanguage?: LanguageCode;
+  backendUrl?: string;
 };
 
 const queryClient = new QueryClient();
@@ -59,7 +60,10 @@ export class H5PWrapper
       ...overrideParams,
     };
 
-    const { topicImage, l10n } = params;
+    const { topicImage, l10n, backendUrl } = params;
+    const backendUrlWithoutTrailingSlash = backendUrl?.endsWith("/")
+      ? backendUrl.slice(0, -1)
+      : backendUrl;
 
     this.root?.render(
       <H5PContext.Provider value={this}>
@@ -73,6 +77,7 @@ export class H5PWrapper
                 )}
                 aspectRatio={(topicImage.width ?? 1) / (topicImage.height ?? 1)}
                 params={params}
+                backendUrl={backendUrlWithoutTrailingSlash ?? ""}
               />
             </QueryClientProvider>
           </ContentIdContext.Provider>

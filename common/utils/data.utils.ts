@@ -30,14 +30,6 @@ const topics: Topic[] = [];
 let translations: Translations = {} as Translations;
 let backendURL = "https://cdn-prodbildetema.azureedge.net/data/database.json";
 
-export const getTopics = async (): Promise<Topic[]> => {
-  if (!topics.length) {
-    await fetchJson();
-    // await fetchData();
-  }
-  return topics;
-};
-
 export const getData = async (databaseUrl: string): Promise<Data> => {
   if (databaseUrl !== "") backendURL = databaseUrl;
 
