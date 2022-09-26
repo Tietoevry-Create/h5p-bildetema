@@ -1,19 +1,34 @@
 import type { Point } from "../../../../common/types/Point";
-import { findDistance } from "../../../../common/utils/figure/figure.utils";
+import styles from "./figure.module.scss";
 
-export const renderFigure = (points: Array<Point>): string => {
+export const renderFigure = (
+  points: Array<Point>,
+  rotation: number,
+  ellipseRadius: number,
+): string => {
   const html = String.raw;
 
   const isCircle = points.length === 2;
   const isPolygon = points.length > 2;
 
-  if (isCircle) {
-    const [centerPoint, circleEdgePoint] = points;
+  const findDistance = (a: Point, b: Point): number => {
+    return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+  };
 
-    return html`<circle
+  if (isCircle) {
+    const [centerPoint, radiusPoint] = points;
+    const radiusX = findDistance(centerPoint, radiusPoint);
+    const radiusY = ellipseRadius ?? radiusX;
+
+    return html`<ellipse
       cx="${centerPoint.x}"
       cy="${centerPoint.y}"
-      r="${findDistance(centerPoint, circleEdgePoint)}"
+      rx="${radiusX}"
+      ry="${radiusY}"
+      r="${findDistance(centerPoint, radiusPoint)}"
+      transform="${`rotate(${rotation * (180 / Math.PI)} ${centerPoint.x} ${
+        centerPoint.y
+      })`}"
       stroke="black"
       fill="none"
       strokeWidth="0.3"
