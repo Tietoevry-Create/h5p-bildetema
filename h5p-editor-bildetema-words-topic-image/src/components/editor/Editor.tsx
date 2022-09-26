@@ -34,9 +34,18 @@ export type EditorProps = {
   words: Word[];
   initialHotspots: Array<Hotspot>;
 };
+
+enum Click {
+  SINGLE,
+  DOUBLE,
+}
+
 export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const setValue = useContext(SetValueContext);
+
+  const timer = useRef<NodeJS.Timeout>();
+  const click = useRef<Click>(Click.SINGLE);
 
   const [selectedWordId, setSelectedWord] = useState<string | null>(null);
   const [hotspots, setHotspots] = useState(initialHotspots);
@@ -291,7 +300,19 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           tabIndex={0}
           ref={canvasRef}
           className={styles.canvas}
-          onClick={handleClick}
+          onClick={e => {
+            timer.current = setTimeout(() => {
+              if (click.current === Click.DOUBLE) {
+                click.current = Click.SINGLE;
+                return;
+              }
+              handleClick(e);
+            }, 200);
+          }}
+          onDoubleClick={() => {
+            click.current = Click.DOUBLE;
+            clearTimeout(timer.current);
+          }}
           onKeyDown={() => null}
           role="button"
         >

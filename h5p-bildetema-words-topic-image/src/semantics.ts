@@ -61,13 +61,13 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
                 name: "index",
                 type: "number",
               },
-              {
-                label: "Ellipse radius",
-                name: "ellipseRadius",
-                type: "number",
-              },
             ],
           },
+        },
+        {
+          label: "Ellipse radius",
+          name: "ellipseRadius",
+          type: "number",
         },
         {
           label: "Rotation",

@@ -9,7 +9,6 @@ export type PolygonProps = {
   handleShapeClick: (wordId: string) => void;
   startShapeDragging: (hotspot: Hotspot, startPoint: Point) => void;
   endShapeDragging: (event: React.MouseEvent) => boolean;
-  isDrawing: boolean;
 };
 
 export const Polygon: React.FC<PolygonProps> = ({
@@ -17,7 +16,6 @@ export const Polygon: React.FC<PolygonProps> = ({
   handleShapeClick,
   startShapeDragging,
   endShapeDragging,
-  isDrawing,
 }) => {
   const { points, isDrawingThisPolygon } = hotspot;
 
@@ -25,12 +23,7 @@ export const Polygon: React.FC<PolygonProps> = ({
     return null;
   }
 
-  const onFigureClick = (event: React.MouseEvent): void => {
-    if (isDrawingThisPolygon || isDrawing) {
-      return;
-    }
-
-    event.stopPropagation();
+  const onFigureClick = (): void => {
     handleShapeClick(hotspot.word.id);
   };
 
@@ -47,7 +40,7 @@ export const Polygon: React.FC<PolygonProps> = ({
       d={pointsToDAttribute(!isDrawingThisPolygon, points)}
       strokeWidth="0.3"
       stroke="black"
-      onClick={onFigureClick}
+      onDoubleClick={onFigureClick}
       onMouseDown={onShapeStartDrag}
       onMouseUp={endShapeDragging}
     />
