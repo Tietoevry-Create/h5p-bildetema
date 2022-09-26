@@ -56,7 +56,11 @@ export const Svg: FC<SvgProps> = ({
 
   const startShapeDragging =
     (index: number) => (hotspot: Hotspot, startPoint: Point) => {
-      if(!hotspot.isDrawingThisPolygon && hotspots.some(hp=>hp.isDrawingThisPolygon)) return
+      if (
+        !hotspot.isDrawingThisPolygon &&
+        hotspots.some(hp => hp.isDrawingThisPolygon)
+      )
+        return;
       setIsDragging(true);
       setShapeDrag({ from: startPoint, hotspotIndex: index, hotspot });
     };
@@ -150,34 +154,38 @@ export const Svg: FC<SvgProps> = ({
           />
         ) : null,
       )}
-      {currentDrawnShape && currentDrawnShape?.points?.map(({x,y, index}) => (
-        <circle
-        className={`${styles.point} 
-        ${index === 0 && currentDrawnShape?.points?.length === 2 && styles.ellipseStartPoint}
-        `
-      }
-        style={{ fill: `${index === 0 && "red"}` }}
-        onDoubleClick={() => handlePointClick({ x, y, index })}
-        onMouseDown={e => {
-          if (!isDragging) {
-            e.stopPropagation();
+      {currentDrawnShape &&
+        currentDrawnShape?.points?.map(({ x, y, index }) => (
+          <circle
+            className={`${styles.point} 
+        ${
+          index === 0 &&
+          currentDrawnShape?.points?.length === 2 &&
+          styles.ellipseStartPoint
+        }
+        `}
+            style={{ fill: `${index === 0 && "red"}` }}
+            onDoubleClick={() => handlePointClick({ x, y, index })}
+            onMouseDown={e => {
+              if (!isDragging) {
+                e.stopPropagation();
 
-            const startPoint: PointWithIndex = { x, y, index };
-            startPointDragging(startPoint);
-          }
-        }}
-        onMouseUp={e => {
-          if (isDragging) {
-            e.stopPropagation();
-            endPointDragging()
-          }
-        }}
-        key={`${x}${y}${x + y + index}`}
-        cx={x}
-        cy={y}
-        r="1"
-      />
-      ))}
+                const startPoint: PointWithIndex = { x, y, index };
+                startPointDragging(startPoint);
+              }
+            }}
+            onMouseUp={e => {
+              if (isDragging) {
+                e.stopPropagation();
+                endPointDragging();
+              }
+            }}
+            key={`${x}${y}${x + y + index}`}
+            cx={x}
+            cy={y}
+            r="1"
+          />
+        ))}
     </svg>
   );
 };
