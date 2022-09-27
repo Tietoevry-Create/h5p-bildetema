@@ -18,22 +18,22 @@
   pointer-events: all;
 
   polygon,
-  circle {
+  ellipse {
     cursor: pointer;
     fill: none;
     stroke: none;
   }
 
-  circle {
+  ellipse {
     stroke-width: 0.3;
   }
 
   polygon:hover,
   polygon:focus,
-  circle:hover,
-  circle:focus,
+  ellipse:hover,
+  ellipse:focus,
   &_active polygon,
-  &_active circle {
+  &_active ellipse {
     fill: $orange-overlay !important;
     stroke: $orange !important;
   }
