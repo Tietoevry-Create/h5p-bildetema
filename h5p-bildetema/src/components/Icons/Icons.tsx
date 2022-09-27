@@ -59,7 +59,7 @@ export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
       d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
       fill="currentcolor"
       transform="rotate(180)"
-      transform-origin="50% 50%"
+      transform-origin="center center"
     />
   </svg>
 );
