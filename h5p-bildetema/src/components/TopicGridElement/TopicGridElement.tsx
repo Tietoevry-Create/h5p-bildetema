@@ -12,7 +12,6 @@ import styles from "./TopicGridElement.module.scss";
 
 export type TopicGridElementProps = {
   topic: Topic;
-  index: number;
   title: string;
   images: ImageUrl[];
   topicSize: TopicGridSizes;
@@ -22,7 +21,6 @@ export type TopicGridElementProps = {
 export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   topic,
   title,
-  index,
   images,
   topicSize,
   languageCode,
@@ -40,13 +38,12 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   const imageSrc =
     images.at(0)?.src ??
     "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb";
-  const topicLabel = `${index + 1}. ${title}`;
   const { search } = useLocation();
   return (
     <Link className={topicCardClassName} to={`${linkTo}${search}`}>
       <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={gridElementClassName}>
-        {topicLabel}
+        {title}
         <TopicGridElementAudio topicId={topic.id} languageCode={languageCode} />
       </span>
     </Link>
