@@ -3,7 +3,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: $spacing--16;
+  position: relative;
   width: 100%;
 
   :focus {

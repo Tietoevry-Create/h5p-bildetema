@@ -14,6 +14,7 @@ import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
 import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
+import { MainContentLink } from "../MainContentLink/MainContentLink";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -100,6 +101,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       "/:langId",
       "/:langId/:topicLabel",
       "/:langId/:topicLabel/:subTopicId",
+      "/:langId/#bildetemaMain",
+      "/:langId/:topicLabel/#bildetemaMain",
+      "/:langId/:topicLabel/:subTopicId/#bildetemaMain",
     ];
     return (
       <Routes>
@@ -133,6 +137,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   return (
     <div className={styles.wrapper}>
+      <MainContentLink />
       <div className={styles.container}>
         <Header
           topicIds={topicIds}
@@ -148,7 +153,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           toggleChecked={showWrittenWords}
           isTopicImageView={isTopicImageView}
         />
-        <div className={styles.body}>
+        <div id="bildetemaMain" className={styles.body}>
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />

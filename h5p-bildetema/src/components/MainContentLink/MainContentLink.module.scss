@@ -1,0 +1,22 @@
+@use "../../../../common/abstracts" as *;
+
+.link,
+.linkFocused {
+  all: unset;
+  background-color: white;
+  cursor: pointer;
+  font-size: $font-size-24;
+  font-weight: bold;
+  left: 0;
+  padding: 1.5rem;
+  position: fixed;
+  text-decoration: underline;
+  top: -20rem;
+  width: 100%;
+  z-index: 999 !important;
+}
+
+.linkFocused {
+  top: 0;
+  outline: $outline-on-dark-background !important;
+}
