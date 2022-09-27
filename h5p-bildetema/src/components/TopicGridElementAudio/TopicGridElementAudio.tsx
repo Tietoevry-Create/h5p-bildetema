@@ -1,29 +1,20 @@
 import * as React from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
-import { audioContainerURL } from "../../../../common/constants/urls";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { getAudioURLs } from "../../../../common/utils/audio/audio.utils";
+import { AudioFile } from "../../../../common/types/AudioFile";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
 
 type TopicGridElementAudioProps = {
-  topicId: string;
-  languageCode: LanguageCode;
+  audioFiles?: AudioFile[];
 };
 
 export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
-  topicId,
-  languageCode,
+  audioFiles,
 }) => {
   const [playing, setPlaying] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const audioFiles = useMemo(
-    () => getAudioURLs(audioContainerURL, languageCode, topicId),
-    [languageCode, topicId],
-  );
 
   const toggleAudio = (event: React.MouseEvent): void => {
     event.preventDefault();
@@ -48,9 +39,9 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   };
 
   useEffect(() => {
-    // Reload sources whenever the language changes
+    // Reload sources whenever we get new audiofiles
     audioRef.current?.load();
-  }, [languageCode]);
+  }, [audioFiles]);
 
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
@@ -59,7 +50,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
     <div className={styles.wordAudio}>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
-        {audioFiles.map(file => (
+        {audioFiles?.map(file => (
           <source key={file.mimeType} src={file.url} type={file.mimeType} />
         ))}
       </audio>
