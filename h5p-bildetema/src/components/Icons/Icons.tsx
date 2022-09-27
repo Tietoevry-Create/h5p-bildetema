@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
-import { rootCertificates } from "tls";
 
 export type IconProps = {
   iconColor?: string;
