@@ -90,11 +90,6 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
           type: "number",
         },
         {
-          label: "Ellipse radius",
-          name: "ellipseRadius",
-          type: "number",
-        },
-        {
           label: "Word",
           name: "word",
           type: "group",
