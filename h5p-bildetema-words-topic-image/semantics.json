@@ -88,11 +88,6 @@
           "type": "number"
         },
         {
-          "label": "Ellipse radius",
-          "name": "ellipseRadius",
-          "type": "number"
-        },
-        {
           "label": "Word",
           "name": "word",
           "type": "group",

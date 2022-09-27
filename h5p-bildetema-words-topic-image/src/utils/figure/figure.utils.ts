@@ -1,5 +1,4 @@
 import type { Point } from "../../../../common/types/Point";
-import styles from "./figure.module.scss";
 
 export const renderFigure = (
   points: Array<Point>,
