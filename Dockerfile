@@ -21,7 +21,7 @@ RUN npm install
 RUN cd h5p-bildetema                            && npm run build && rm -rf node_modules
 RUN cd h5p-bildetema-words-grid-view            && npm run build && rm -rf node_modules
 RUN cd h5p-bildetema-words-topic-image          && npm run build && rm -rf node_modules
-RUN cd h5p-bildetema-words-tree-view            && npm run build && rm -rf node_modules
+# RUN cd h5p-bildetema-words-tree-view            && npm run build && rm -rf node_modules
 RUN cd h5p-editor-bildetema-words-topic-image   && npm run build && rm -rf node_modules
 RUN rm -rf node_modules 
 
