@@ -125,6 +125,7 @@ export const LanguageMenuArrowIcon: React.FC<
       d="M8 9.49974L0 1.49974L1.43333 0.0664062L8 6.66641L14.5667 0.0997391L16 1.53307L8 9.49974Z"
       fill="white"
       transform={transform}
+      // eslint-disable-next-line react/no-unknown-property
       transform-origin={transformOrigin}
     />
   </svg>
