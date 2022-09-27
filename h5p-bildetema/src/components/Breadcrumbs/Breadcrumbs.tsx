@@ -2,7 +2,11 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
-import { BreadcrumbsArrowIcon, HomeIcon } from "../Icons/Icons";
+import {
+  BreadcrumbsArrowIcon,
+  BreadcrumbsArrowLeftIcon,
+  HomeIcon,
+} from "../Icons/Icons";
 import styles from "./Breadcrumbs.module.scss";
 
 export type BreadcrumbsProps = {
@@ -39,10 +43,21 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       {breadCrumbsToRender.map(({ label, path }, index) => {
         const notLastBreadCrumb = index !== breadCrumbsToRender.length - 1;
         const homePageBreadCrumb = index === 0;
+        const moreThanThreeItems = breadCrumbsToRender.length > 2;
 
         return notLastBreadCrumb ? (
-          <span key={path}>
+          <span
+            key={path}
+            className={
+              homePageBreadCrumb && moreThanThreeItems
+                ? styles.wrapperHide
+                : styles.wrapper
+            }
+          >
             <Link to={path} className={styles.link}>
+              <span className={styles.arrowLeft}>
+                <BreadcrumbsArrowLeftIcon />
+              </span>
               {homePageBreadCrumb ? (
                 <span className={styles.homeIcon}>
                   <HomeIcon />

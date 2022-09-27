@@ -49,6 +49,22 @@ export const BreadcrumbsArrowIcon: React.FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
+export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
+  iconColor,
+  width,
+  height,
+}) => (
+  <svg width="10" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
+      fill="currentcolor"
+      transform="rotate(180)"
+      // eslint-disable-next-line react/no-unknown-property
+      transform-origin="center center"
+    />
+  </svg>
+);
+
 export const BigTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,

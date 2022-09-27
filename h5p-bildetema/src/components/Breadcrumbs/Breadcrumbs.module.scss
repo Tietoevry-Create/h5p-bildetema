@@ -5,23 +5,39 @@
  *     element to the line-height. This prevents layout shifting.
  */
 .breadcrumbs {
-  font-size: 1.5rem;
+  align-items: flex-start;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  gap: $spacing--24;
 
-  &::after {
-    $nbsp: \00a0;
-    content: "#{$nbsp}"; /* {1} */
+  @include breakpoint-min($small) {
+    align-items: center;
+    flex-direction: row;
+    gap: unset;
+
+    &::after {
+      $nbsp: \00a0;
+      content: "#{$nbsp}"; /* {1} */
+    }
   }
 
   span {
-    display: flex;
-    align-items: center;
-
     @media print {
       display: none;
     }
+  }
+}
+
+.wrapper,
+.wrapperHide {
+  display: flex;
+  align-items: center;
+}
+
+.wrapperHide {
+  @include breakpoint-max($small) {
+    display: none;
   }
 }
 
@@ -31,19 +47,52 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
+  @include breakpoint-max($small) {
+    align-items: center;
+    display: flex;
+    font-size: $font-size-18;
+    gap: 0.5rem;
+    height: 1.5rem;
+  }
 }
 
 .arrow {
   margin: 0.8rem;
+  display: none;
+
+  @include breakpoint-min($small) {
+    display: flex;
+    align-items: center;
+  }
+
+  &Left {
+    display: flex;
+    align-items: center;
+
+    @include breakpoint-min($small) {
+      display: none;
+    }
+  }
 }
 
 .homeIcon {
   border-bottom: 2px solid transparent;
   margin-right: 0.25rem;
   padding-bottom: 0.1rem;
+  display: flex;
+  align-items: center;
 
   &:hover {
     border-color: #333;
+  }
+
+  @include breakpoint-max($small) {
+    padding-bottom: 0;
+
+    svg {
+      transform: scale(1.2) !important;
+    }
   }
 }
 
@@ -51,6 +100,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1;
+  margin: 0.5rem 0;
+  word-break: break-all;
 }
 
 .visuallyHidden {

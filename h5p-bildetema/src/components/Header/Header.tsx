@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   topicIds,
   handleToggleFavoriteLanguage,
 }) => {
-  const headerRef = React.useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<`lang_${LanguageCode}`>;
