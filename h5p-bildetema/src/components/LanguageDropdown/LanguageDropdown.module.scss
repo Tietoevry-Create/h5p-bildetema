@@ -14,6 +14,12 @@ $outline-hover: 2px solid #fff;
   }
 }
 
+.languageLabel {
+  @include breakpoint-max($x-small) {
+    display: none;
+  }
+}
+
 .languageMenuButton,
 .languageMenuButtonActive {
   align-items: center;

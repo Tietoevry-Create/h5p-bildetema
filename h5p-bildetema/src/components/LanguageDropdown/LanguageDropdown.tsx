@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import { Language, TopicIds } from "../../../../common/types/types";
-import { LanguageIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
+import {
+  LanguageIcon,
+  LanguageIcon2,
+  LanguageMenuArrowIcon,
+} from "../Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 
@@ -54,7 +58,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
         }
       >
         <LanguageIcon />
-        {selectLanguageLabel}
+        <span className={styles.languageLabel}>{selectLanguageLabel}</span>
         {langSelectorIsShown ? (
           <LanguageMenuArrowIcon
             transform="rotate(180)"
