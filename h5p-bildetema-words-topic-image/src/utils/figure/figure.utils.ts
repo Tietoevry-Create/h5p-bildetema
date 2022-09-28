@@ -7,14 +7,14 @@ export const renderFigure = (
 ): string => {
   const html = String.raw;
 
-  const isCircle = points.length === 2;
+  const isEllipse = points.length === 2;
   const isPolygon = points.length > 2;
 
   const findDistance = (a: Point, b: Point): number => {
     return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
   };
 
-  if (isCircle) {
+  if (isEllipse) {
     const [centerPoint, radiusPoint] = points;
     const radiusX = findDistance(centerPoint, radiusPoint);
     const radiusY = ellipseRadius ?? radiusX;
