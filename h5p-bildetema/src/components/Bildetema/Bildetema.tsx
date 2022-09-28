@@ -101,9 +101,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       "/:langId",
       "/:langId/:topicLabel",
       "/:langId/:topicLabel/:subTopicId",
-      "/:langId/#bildetemaMain",
-      "/:langId/:topicLabel/#bildetemaMain",
-      "/:langId/:topicLabel/:subTopicId/#bildetemaMain",
     ];
     return (
       <Routes>

@@ -24,6 +24,9 @@
   margin: $main-content-margin;
   max-width: $main-content-max-width;
   width: $main-content-width;
+
+  // TODO: calculate scroll margin from header height?
+  scroll-margin-top: 10rem;
 }
 
 // Overrides for WordPress below
