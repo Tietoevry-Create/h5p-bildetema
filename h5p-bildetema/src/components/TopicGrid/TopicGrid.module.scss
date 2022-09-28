@@ -1,25 +1,26 @@
 @use "../../../../common/abstracts" as *;
 
-.gridBig {
+.gridBig,
+.gridCompact {
   display: grid;
   grid-gap: $spacing--24;
 
-  /* static elements */
-  // grid-template-columns: repeat(auto-fill, $topic-card-big-width);
+  /* only use 1fr for mobile so content is not cut off if device width < min-width */
+  grid-template-columns: repeat(auto-fit, 1fr);
+}
 
-  /* dynamic elements */
-  grid-template-columns: repeat(auto-fit, minmax($topic-card-big-width, 1fr));
+.gridBig {
+  @include breakpoint-min($x-small) {
+    grid-template-columns: repeat(auto-fit, minmax($topic-card-big-width, 1fr));
+  }
 }
 
 .gridCompact {
-  column-gap: $spacing--24;
-
-  @include breakpoint-min(50rem) {
-    column-count: 2;
-  }
-
-  @include breakpoint-min($large) {
-    column-count: 3;
+  @include breakpoint-min($x-small) {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax($topic-card-compact-width, 1fr)
+    );
   }
 }
 
