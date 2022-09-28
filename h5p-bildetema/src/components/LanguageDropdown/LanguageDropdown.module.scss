@@ -3,10 +3,10 @@
 $outline-hover: 2px solid #fff;
 
 .languageMenuButtonWrapper {
-  display: flex;
-  gap: $spacing--8;
-  flex-direction: column;
   align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing--8;
   position: relative;
 
   @media print {
@@ -16,15 +16,16 @@ $outline-hover: 2px solid #fff;
 
 .languageMenuButton,
 .languageMenuButtonActive {
+  align-items: center;
   background-color: transparent;
+  border: $outline-hover;
   border-radius: 0.5rem;
   color: white;
-  border: $outline-hover;
   cursor: pointer;
-  font-size: $font-size-18;
   display: flex;
+  font-size: $font-size-18;
   gap: $spacing--8;
-  align-items: center;
+  outline-offset: -0.5px; //avoid small gap between border and outline
   padding: 0.5rem 1rem;
 
   &:hover {
