@@ -9,7 +9,10 @@ export default {
 } as ComponentMeta<typeof App>;
 
 const Template: ComponentStory<typeof App> = () => (
-  <App defaultLanguages={["nob"]} backendUrl="" />
+  <App
+    defaultLanguages={["nob"]}
+    backendUrl="https://cdn-devbildetema.azureedge.net/data/database.json"
+  />
 );
 
 export const Default = Template.bind({});
