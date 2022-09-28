@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import { Language, TopicIds } from "../../../../common/types/types";
-import { LanguageMenuArrowIcon } from "../Icons/Icons";
+import { LanguageIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 
@@ -28,17 +28,32 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   search,
   topicIds,
 }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleOnClickOutside = (): void => {
+    handleSelectorVisibility(false);
+    setIsActive(false);
+  };
+
   const dropdownRef = useDetectClickOutside({
-    onTriggered: () => handleSelectorVisibility(false),
+    onTriggered: handleOnClickOutside,
   });
+
+  const handleOnClick = (): void => {
+    handleSelectorVisibility(prevState => !prevState);
+    setIsActive(!isActive);
+  };
 
   return (
     <div className={styles.languageMenuButtonWrapper} ref={dropdownRef}>
       <button
         type="button"
-        onClick={() => handleSelectorVisibility(prevState => !prevState)}
-        className={styles.languageMenuButton}
+        onClick={handleOnClick}
+        className={
+          isActive ? styles.languageMenuButtonActive : styles.languageMenuButton
+        }
       >
+        <LanguageIcon />
         {selectLanguageLabel}
         {langSelectorIsShown ? (
           <LanguageMenuArrowIcon

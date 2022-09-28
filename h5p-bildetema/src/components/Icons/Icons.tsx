@@ -134,7 +134,7 @@ export const LanguageMenuArrowIcon: React.FC<
   >
     <path
       d="M8 9.49974L0 1.49974L1.43333 0.0664062L8 6.66641L14.5667 0.0997391L16 1.53307L8 9.49974Z"
-      fill="white"
+      fill="currentColor"
       transform={transform}
       // eslint-disable-next-line react/no-unknown-property
       transform-origin={transformOrigin}
@@ -189,6 +189,22 @@ export const PrintIcon: React.FC<
   >
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+  </svg>
+);
+
+export const LanguageIcon: React.FC<
+  IconProps & IconSizeProps & IconTransformProps
+> = ({ iconColor, width, height, transform, transformOrigin }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    width="24"
+    fill="currentColor"
+  >
+    <path
+      d="m23.75 44 9.05-24h4.1l9.3 24h-4.35l-2.05-6.3h-9.6L27.85 44Zm7.55-9.8h7.1l-3.5-9.7h-.1ZM8 38l-2.75-2.75 10.2-10.2q-1.9-2.2-3.375-4.425Q10.6 18.4 9.5 16h4.35q.85 1.65 1.875 3.125t2.325 3.025q2.25-2.35 3.75-4.875T24.35 12H2V8h14V4h4v4h14v4h-5.65q-1.1 3.45-2.925 6.775Q23.6 22.1 20.95 25.1l4.9 4.95-1.5 4.05L18 28Z"
+      style={{ transform: "scale(0.5)" }}
+    />
   </svg>
 );
 
