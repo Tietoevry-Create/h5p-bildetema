@@ -58,6 +58,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
               topicSize={topicsSize}
               languageCode={currentLanguage.code}
               topic={topic}
+              rtl={currentLanguage.rtl}
             />
           );
         })}
