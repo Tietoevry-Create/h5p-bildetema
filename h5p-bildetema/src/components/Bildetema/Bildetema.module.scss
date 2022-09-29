@@ -27,6 +27,10 @@
 
   // TODO: calculate scroll margin from header height?
   scroll-margin-top: 10rem;
+
+  &:focus {
+    outline: none !important;
+  }
 }
 
 // Overrides for WordPress below

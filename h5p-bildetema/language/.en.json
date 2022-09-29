@@ -8,6 +8,10 @@
           "default": "Loading…"
         },
         {
+          "label": "Skip to main content label",
+          "default": "Skip to main content"
+        },
+        {
           "label": "Show written words label",
           "default": "Show written words"
         },
