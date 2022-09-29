@@ -1,7 +1,6 @@
 @use "../../../../common/abstracts" as *;
 
-.link,
-.linkFocused {
+.button {
   all: unset;
   background-color: white;
   cursor: pointer;
@@ -14,9 +13,9 @@
   top: -20rem;
   width: 100%;
   z-index: 999 !important;
-}
 
-.linkFocused {
-  outline: $outline-on-dark-background !important;
-  top: 0;
+  &:focus {
+    outline: $outline-on-dark-background !important;
+    top: 0;
+  }
 }
