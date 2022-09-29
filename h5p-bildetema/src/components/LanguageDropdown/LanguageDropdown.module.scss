@@ -1,7 +1,5 @@
 @use "../../../../common/abstracts" as *;
 
-$outline-hover: 2px solid #fff;
-
 .languageMenuButtonWrapper {
   align-items: flex-end;
   display: flex;
@@ -24,18 +22,18 @@ $outline-hover: 2px solid #fff;
 .languageMenuButtonActive {
   align-items: center;
   background-color: transparent;
-  border: $outline-hover;
+  border: 2px solid #fff;
   border-radius: 0.5rem;
   color: white;
   cursor: pointer;
   display: flex;
   font-size: $font-size-18;
   gap: $spacing--8;
-  outline-offset: -0.5px; //avoid small gap between border and outline
   padding: 0.5rem 1rem;
 
   &:hover {
     background-color: $light-burgundy;
+    box-shadow: 0 0 0 2px #fff;
   }
 
   &:focus {
@@ -50,19 +48,5 @@ $outline-hover: 2px solid #fff;
   &:hover {
     background-color: #fff;
     color: $burgundy;
-  }
-}
-
-/* we need to increase specificity to override H5P's outline styling */
-.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton.languageMenuButton {
-  &:hover {
-    outline: $outline-hover !important;
-  }
-}
-
-/* we need to increase specificity to override H5P's outline styling */
-.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive.languageMenuButtonActive:focus {
-  &:hover {
-    outline: $outline-hover !important;
   }
 }
