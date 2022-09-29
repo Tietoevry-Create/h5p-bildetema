@@ -5,6 +5,8 @@ import styles from "./MainContentLink.module.scss";
 export const MainContentLink: React.FC = () => {
   const { mainContentLink } = useL10ns("mainContentLink");
 
+  // Hand craft `<a href="#bildetemaMain">` because we're using HashRouter
+  // and can't use the builtin functionality.
   const handleOnClick = (): void => {
     const main: HTMLElement | null = document.querySelector("#bildetemaMain");
 
