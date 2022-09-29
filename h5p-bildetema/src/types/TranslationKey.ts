@@ -6,6 +6,7 @@
 
 export type TranslationKey =
   | "pageIsLoading"
+  | "mainContentLink"
   | "showWrittenWordsLabel"
   | "printLabel"
   | "playAudio"

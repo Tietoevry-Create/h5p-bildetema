@@ -3,7 +3,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: $spacing--16;
+  position: relative;
   width: 100%;
 
   :focus {
@@ -24,6 +24,13 @@
   margin: $main-content-margin;
   max-width: $main-content-max-width;
   width: $main-content-width;
+
+  // TODO: calculate scroll margin from header height?
+  scroll-margin-top: 10rem;
+
+  &:focus {
+    outline: none !important;
+  }
 }
 
 // Overrides for WordPress below

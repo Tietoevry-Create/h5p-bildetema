@@ -1,0 +1,21 @@
+@use "../../../../common/abstracts" as *;
+
+.button {
+  all: unset;
+  background-color: white;
+  cursor: pointer;
+  font-size: $font-size-24;
+  font-weight: bold;
+  left: 0;
+  padding: 1.5rem;
+  position: fixed;
+  text-decoration: underline;
+  top: -20rem;
+  width: 100%;
+  z-index: 999 !important;
+
+  &:focus {
+    outline: $outline-on-dark-background !important;
+    top: 0;
+  }
+}

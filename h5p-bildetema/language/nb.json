@@ -8,6 +8,10 @@
           "default": "Laster…"
         },
         {
+          "label": "Hopp til hovedinnhold",
+          "default": "Hopp til hovedinnhold"
+        },
+        {
           "label": "Vis ord",
           "default": "Vis ord"
         },

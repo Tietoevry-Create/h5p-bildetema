@@ -33,6 +33,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Skip to main content label",
+        name: "mainContentLink",
+        default: "Skip to main content",
+        type: "text",
+      },
+      {
         label: "Show written words label",
         name: "showWrittenWordsLabel",
         default: "Show written words",
