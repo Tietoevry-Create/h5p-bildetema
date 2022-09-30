@@ -38,3 +38,8 @@ a:hover,
 a:focus {
   text-decoration-style: solid;
 }
+
+a.skip-link,
+a.skip-link:focus {
+  display: none; // hide Wordpress skip to content link
+}
