@@ -8,20 +8,19 @@ import styles from "./PrintWords.module.scss";
 type PrintWordsProps = {
   topicIds: TopicIds;
   showWrittenWords: boolean;
+  imagesPrRow: number;
 };
 
 export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
-  ({ topicIds: { topicId, subTopicId }, showWrittenWords }, ref) => {
+  ({ topicIds: { topicId, subTopicId }, showWrittenWords, imagesPrRow}, ref) => {
     const { topics } = useDBContext() || {};
     const { pathname } = useLocation();
-
     const currentLanguageCode =
       pathname.split("/").length >= 2
         ? (pathname.split("/")[1] as LanguageCode)
         : ("nob" as LanguageCode);
 
     const renderTable = (): JSX.Element[] => {
-      const imagesPrRow = 5;
 
       const words = subTopicId
         ? topics
@@ -38,15 +37,17 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
       }
       const missingItemsInLastRow =
         imagesPrRow - (chunksOfWords.at(-1)?.length ?? imagesPrRow);
-
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
+            const img = word.images?.at(0)?.src
             return (
               <td key={word.id}>
                 <div className={styles.imgWrapper}>
-                  <img src={word.images[0].src} alt="" />
-                  {showWrittenWords && (
+                  {img &&
+                   <img src={img} alt="" />
+                  }
+                  {showWrittenWords &&  img &&(
                     <div className={styles.label}>{word.label}</div>
                   )}
                 </div>
