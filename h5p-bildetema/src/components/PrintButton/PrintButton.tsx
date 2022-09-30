@@ -34,14 +34,14 @@ export const PrintButton: React.FC<PrintProps> = ({
 
   const handleDropDownClicked = (): void => {
     setViewPrintDropDown(prev => !prev);
-    setRenderPrintWords(true)
+    setRenderPrintWords(true);
   };
 
   React.useEffect(() => {
     if (printClicked) {
       setPrintClicked(false);
       handlePrint();
-      setRenderPrintWords(false)
+      setRenderPrintWords(false);
     }
   }, [printClicked, setPrintClicked, handlePrint]);
 
@@ -67,25 +67,31 @@ export const PrintButton: React.FC<PrintProps> = ({
         >
           {printDropdownOptions.map(el => (
             <div className={styles.printDropdownElementWrapper}>
-              <button type="button" className={styles.printDropdownElement} onClick={()=>{
-                setImagesPrRow(el)
-                setPrintClicked(true)
-                setViewPrintDropDown(false)
-              }}>
+              <button
+                type="button"
+                className={styles.printDropdownElement}
+                onClick={() => {
+                  setImagesPrRow(el);
+                  setPrintClicked(true);
+                  setViewPrintDropDown(false);
+                }}
+              >
                 {el}
               </button>
             </div>
           ))}
         </div>
       </div>
-      {renderPrintWords && <div className={styles.printWordsWrapper}>
-        <PrintWords
-          ref={printRef}
-          topicIds={topicIds}
-          showWrittenWords={showWrittenWords}
-          imagesPrRow={imagesPrRow}
-        />
-      </div>}
+      {renderPrintWords && (
+        <div className={styles.printWordsWrapper}>
+          <PrintWords
+            ref={printRef}
+            topicIds={topicIds}
+            showWrittenWords={showWrittenWords}
+            imagesPrRow={imagesPrRow}
+          />
+        </div>
+      )}
     </>
   );
 };

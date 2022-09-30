@@ -12,7 +12,10 @@ type PrintWordsProps = {
 };
 
 export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
-  ({ topicIds: { topicId, subTopicId }, showWrittenWords, imagesPrRow}, ref) => {
+  (
+    { topicIds: { topicId, subTopicId }, showWrittenWords, imagesPrRow },
+    ref,
+  ) => {
     const { topics } = useDBContext() || {};
     const { pathname } = useLocation();
     const currentLanguageCode =
@@ -21,7 +24,6 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
         : ("nob" as LanguageCode);
 
     const renderTable = (): JSX.Element[] => {
-
       const words = subTopicId
         ? topics
             ?.find(t => t.id === topicId)
@@ -40,14 +42,12 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
-            const img = word.images?.at(0)?.src
+            const img = word.images?.at(0)?.src;
             return (
               <td key={word.id}>
                 <div className={styles.imgWrapper}>
-                  {img &&
-                   <img src={img} alt="" />
-                  }
-                  {showWrittenWords &&  img &&(
+                  {img && <img src={img} alt="" />}
+                  {showWrittenWords && img && (
                     <div className={styles.label}>{word.label}</div>
                   )}
                 </div>
@@ -65,9 +65,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
 
     return (
       <div ref={ref} className="wrapper">
-        <div className={styles.printHeader}>
-          TODO overskrift/logo her
-        </div>
+        <div className={styles.printHeader}>TODO overskrift/logo her</div>
         <table>
           <tbody>{renderTable()}</tbody>
         </table>

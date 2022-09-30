@@ -24,7 +24,7 @@
   display: none;
 }
 
-.printDropdownContent{
+.printDropdownContent {
   display: none;
   position: absolute;
   flex-direction: column;
@@ -32,7 +32,7 @@
   background-color: white;
   min-width: 3rem;
   box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px,
-  hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+    hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   z-index: $fav-language-selector-z-index;
   padding: 25px;
   color: black;
@@ -42,7 +42,7 @@
   display: flex;
 }
 
-.printDropdownElementWrapper{
+.printDropdownElementWrapper {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -50,13 +50,13 @@
   align-items: center;
   border-bottom: 1px solid lightgrey;
   transition-duration: 0.2s;
-  
+
   &:hover {
     background: $beige;
   }
 }
 
-.printDropdownElement{
+.printDropdownElement {
   all: unset;
   font-size: $font-size-20;
   gap: $spacing--16;
