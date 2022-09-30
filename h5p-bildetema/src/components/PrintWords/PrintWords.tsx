@@ -65,6 +65,9 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
 
     return (
       <div ref={ref} className="wrapper">
+        <div className={styles.printHeader}>
+          TODO overskrift/logo her
+        </div>
         <table>
           <tbody>{renderTable()}</tbody>
         </table>
