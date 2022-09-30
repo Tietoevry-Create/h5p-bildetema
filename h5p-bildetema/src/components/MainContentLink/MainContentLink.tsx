@@ -13,7 +13,6 @@ export const MainContentLink: React.FC = () => {
     if (main) {
       main.tabIndex = -1;
       main.focus();
-      setTimeout(() => main.removeAttribute("tabindex"), 1000);
     }
   };
 
