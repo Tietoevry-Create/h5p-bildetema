@@ -59,7 +59,6 @@ export class H5PWrapper
       ...this.params,
       ...overrideParams,
     };
-
     const { topicImage, l10n, backendUrl } = params;
     const backendUrlWithoutTrailingSlash = backendUrl?.endsWith("/")
       ? backendUrl.slice(0, -1)

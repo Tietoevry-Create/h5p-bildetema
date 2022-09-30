@@ -54,16 +54,19 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
   useEffect(() => {
-    const newHotspots: Array<Hotspot> = words.map(word => ({
-      points:
-        initialHotspots.find(hotspot => hotspot.word.id === word.id)?.points ??
-        [],
-      isDrawingThisPolygon: false,
-      word,
-      wordId: word.id,
-      rotation: 0,
-    }));
-
+    const newHotspots: Array<Hotspot> = words.map(word => {
+      const hotspotFromH5P = initialHotspots.find(
+        hotspot => hotspot.word.id === word.id,
+      );
+      return {
+        points: hotspotFromH5P?.points ?? [],
+        isDrawingThisPolygon: false,
+        word,
+        wordId: word.id,
+        rotation: hotspotFromH5P?.rotation ?? 0,
+        ellipseRadius: hotspotFromH5P?.ellipseRadius,
+      };
+    });
     setHotspots(newHotspots);
   }, [initialHotspots, words]);
 
