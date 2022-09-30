@@ -6,16 +6,4 @@
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: $spacing--24;
   width: 100%;
-
-  @media print {
-    display: none;
-  }
-}
-
-.printWordsWrapper{
-  display: none;
-
-  @media print {
-    display: block;
-  }
 }
