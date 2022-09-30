@@ -19,6 +19,7 @@ export const PrintButton: React.FC<PrintProps> = ({
   const [imagesPrRow, setImagesPrRow] = React.useState(3);
   const [printClicked, setPrintClicked] = React.useState(false);
   const [viewPrintDropDown, setViewPrintDropDown] = React.useState(false);
+  const [renderPrintWords, setRenderPrintWords] = React.useState(false);
 
   const dropdownRef = useDetectClickOutside({
     onTriggered: () => setViewPrintDropDown(false),
@@ -33,12 +34,14 @@ export const PrintButton: React.FC<PrintProps> = ({
 
   const handleDropDownClicked = (): void => {
     setViewPrintDropDown(prev => !prev);
+    setRenderPrintWords(true)
   };
 
   React.useEffect(() => {
     if (printClicked) {
       setPrintClicked(false);
       handlePrint();
+      setRenderPrintWords(false)
     }
   }, [printClicked, setPrintClicked, handlePrint]);
 
@@ -75,14 +78,14 @@ export const PrintButton: React.FC<PrintProps> = ({
           ))}
         </div>
       </div>
-      <div className={styles.printWordsWrapper}>
+      {renderPrintWords && <div className={styles.printWordsWrapper}>
         <PrintWords
           ref={printRef}
           topicIds={topicIds}
           showWrittenWords={showWrittenWords}
           imagesPrRow={imagesPrRow}
         />
-      </div>
+      </div>}
     </>
   );
 };
