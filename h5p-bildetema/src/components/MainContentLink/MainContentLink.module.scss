@@ -18,4 +18,8 @@
     outline: $outline-on-dark-background !important;
     top: 0;
   }
+
+  @media print {
+    display: none;
+  }
 }
