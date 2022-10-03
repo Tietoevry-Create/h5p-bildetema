@@ -30,6 +30,7 @@ export const PrintButton: React.FC<PrintProps> = ({
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
+    pageStyle: "",
   });
 
   const handleDropDownClicked = (): void => {
