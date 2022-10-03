@@ -17,6 +17,7 @@ const Template = (
 
   return (
     <SubHeader
+      topicIds={{}}
       setTopicsSize={setTopicsSize}
       topicsSize={topicSize}
       isWordView={isWordView}
