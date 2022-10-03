@@ -8,6 +8,10 @@ tr {
   break-inside: avoid;
 }
 
+tr td:last-child {
+  border: none;
+}
+
 .imgWrapper img {
   object-fit: contain;
   object-position: bottom center;
@@ -18,10 +22,6 @@ tr {
 
 .label {
   text-align: center;
-}
-
-* {
-  border: none;
 }
 
 .printHeader {
