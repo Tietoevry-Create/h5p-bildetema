@@ -67,7 +67,7 @@ export const PrintButton: React.FC<PrintProps> = ({
           }`}
         >
           {printDropdownOptions.map(el => (
-            <div className={styles.printDropdownElementWrapper}>
+            <div key={el} className={styles.printDropdownElementWrapper}>
               <button
                 type="button"
                 className={styles.printDropdownElement}
