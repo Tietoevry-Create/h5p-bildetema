@@ -8,8 +8,8 @@
 .swiper {
   .swiper-button-next,
   .swiper-button-prev {
-    background-color: #edebe9;
-    border: 1px solid #e3e0dd;
+    background-color: $grey;
+    border: none;
     border-radius: 50%;
     height: 1.875rem;
     width: 1.875rem;
@@ -17,7 +17,6 @@
     &:hover,
     &:focus {
       background-color: $burgundy;
-      border-color: $burgundy;
       color: white;
     }
 

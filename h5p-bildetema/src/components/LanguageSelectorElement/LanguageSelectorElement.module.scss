@@ -14,7 +14,7 @@
 
   &:hover,
   &:focus {
-    background: $beige;
+    background: $grey;
   }
   &.disabled {
     color: $checkbox-disabled-color;
@@ -23,7 +23,7 @@
   }
 
   &:focus-within {
-    background: $beige;
+    background: $grey;
     text-decoration-line: underline;
   }
 }
