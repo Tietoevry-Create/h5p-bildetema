@@ -48,7 +48,9 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid lightgrey;
+  &:not(:last-child) {
+    border-bottom: 1px solid lightgrey;
+  }
   transition-duration: 0.2s;
 
   &:hover {
