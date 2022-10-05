@@ -24,6 +24,8 @@ export type RouteControllerProps = {
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
   setIsTopicImageView: React.Dispatch<React.SetStateAction<boolean>>;
+  showTopicImageView: boolean;
+  handleTopicViewToggle: (value: boolean) => void;
 };
 
 export const RouteController: React.FC<RouteControllerProps> = ({
@@ -34,6 +36,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   addFavoriteLanguage,
   favLanguages,
   setIsTopicImageView,
+  showTopicImageView,
+  handleTopicViewToggle,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const { langId, topicLabel, subTopicId } = useParams();
@@ -137,6 +141,8 @@ export const RouteController: React.FC<RouteControllerProps> = ({
         setIsWordView={setIsWordView}
         currentTopic={currentTopic}
         setIsTopicImageView={setIsTopicImageView}
+        showTopicImageView={showTopicImageView}
+        handleTopicViewToggle={handleTopicViewToggle}
       />
     );
   }
