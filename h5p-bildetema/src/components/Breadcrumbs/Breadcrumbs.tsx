@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import {
+  BackIcon,
   BreadcrumbsArrowIcon,
   BreadcrumbsArrowLeftIcon,
   HomeIcon,
@@ -59,12 +60,19 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
                 <BreadcrumbsArrowLeftIcon />
               </span>
               {homePageBreadCrumb ? (
-                <span className={styles.homeIcon}>
-                  <HomeIcon />
+                <span className={styles.homeButton}>
+                  <span className={styles.homeIcon}>
+                    <HomeIcon />
+                  </span>
                   <span className={styles.visuallyHidden}>{homeLabel}</span>
                 </span>
               ) : (
-                label
+                <span className={styles.backButton}>
+                  <span className={styles.backIcon}>
+                    <BackIcon />
+                  </span>
+                  {label}
+                </span>
               )}
             </Link>
             <span className={styles.arrow}>
