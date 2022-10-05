@@ -19,6 +19,8 @@ export type TopicGridProps = {
   currentLanguage: Language;
   currentTopic?: TopicIds;
   setIsTopicImageView: React.Dispatch<React.SetStateAction<boolean>>;
+  showTopicImageView: boolean;
+  handleTopicViewToggle: (value: boolean) => void;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -30,6 +32,8 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   currentLanguage,
   currentTopic,
   setIsTopicImageView,
+  showTopicImageView,
+  handleTopicViewToggle,
 }) => {
   React.useEffect(() => {
     setIsWordView(!!words);
@@ -76,6 +80,8 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
         showWrittenWords={showWrittenWords}
         currentLanguage={currentLanguage.code}
         setIsTopicImageView={setIsTopicImageView}
+        showTopicImageView={showTopicImageView}
+        handleTopicViewToggle={handleTopicViewToggle}
       />
     );
   }
