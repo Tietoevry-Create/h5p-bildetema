@@ -23,16 +23,11 @@ export const HomeIcon: React.FC<IconProps & IconSizeProps> = ({
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24px"
-    viewBox="0 0 24 24"
     width="24px"
-    fill="currentcolor"
-    style={{ transform: "scale(1.5)" }}
+    fill="currentColor"
   >
-    <path d="M0 0h24v24H0V0z" fill="none" />
-    <path
-      d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"
-      fill="currentcolor"
-    />
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
   </svg>
 );
 
@@ -194,5 +189,18 @@ export const PrintIcon: React.FC<
   >
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+  </svg>
+);
+
+export const BackIcon: React.FC<
+  IconProps & IconSizeProps & IconTransformProps
+> = ({ iconColor, width, height, transform, transformOrigin }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    width="24"
+    fill="currentColor"
+  >
+    <path d="M19 19v-4q0-1.25-.875-2.125T16 12H6.8l3.6 3.6L9 17l-6-6 6-6 1.4 1.4L6.8 10H16q2.075 0 3.538 1.462Q21 12.925 21 15v4Z" />
   </svg>
 );
