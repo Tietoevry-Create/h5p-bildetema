@@ -38,6 +38,7 @@
 
   &:focus {
     outline: $outline-on-dark-background !important;
+    outline-offset: 2px;
   }
 }
 

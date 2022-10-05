@@ -23,13 +23,15 @@ $beige: #f6f5f4;
 $dark-beige: #ebeae8;
 $burgundy: #99002b;
 $dark-burgundy: #7a0023;
-$light-burgundy: #b80034;
+$light-burgundy: #cc003a;
 $blue-magenta: #000064;
 $orange: hsla(39, 100%, 50%, 1);
 $orange-overlay: hsla(39, 100%, 50%, 0.25);
 
 $outline-on-dark-background: 3px solid $orange;
 $outline-on-light-background: 3px solid $burgundy;
+
+$transition: 0.1s ease-in-out;
 
 $checkbox-color: black;
 $checkbox-disabled-color: #9c9c99;
