@@ -36,7 +36,7 @@
   background-color: $toggle-off-color;
   transition: 0.4s;
   border-radius: 1.3em;
-  outline: 0.2em solid $toggle-on-color;
+  outline: 2px solid $toggle-on-color;
 }
 
 .slider:before {
