@@ -1,22 +1,42 @@
 @use "../../../../common/abstracts" as *;
 
-.printButton {
+.printButton,
+.printButtonActive {
   all: unset;
-  background-color: transparent;
-  border-color: transparent;
+  background-color: $grey;
+  border: 2px solid transparent;
+  border-radius: 1rem;
   cursor: pointer;
   font-size: $font-size-18;
   font-weight: normal;
   line-height: 1;
+  padding: 0.375rem 0.75rem 0.375rem 1rem;
+
+  &:hover {
+    background-color: #fff;
+    border-color: $burgundy;
+    color: $burgundy;
+  }
+
+  &:focus {
+    &:hover {
+      outline: none;
+    }
+  }
 
   &Wrapper {
     align-items: center;
     display: flex;
     gap: 0.5rem;
   }
+}
 
-  &:hover {
-    text-decoration: underline;
+.printButtonActive {
+  &,
+  &:focus {
+    background-color: $burgundy;
+    border-color: $burgundy;
+    color: #fff;
   }
 }
 

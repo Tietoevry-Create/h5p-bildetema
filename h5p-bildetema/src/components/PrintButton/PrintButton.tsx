@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactToPrint } from "react-to-print";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { PrintIcon } from "../Icons/Icons";
+import { PrintIcon, DropdownArrowIcon } from "../Icons/Icons";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./PrintButton.module.scss";
 import { TopicIds } from "../../../../common/types/types";
@@ -53,12 +53,22 @@ export const PrintButton: React.FC<PrintProps> = ({
       <div className={styles.printDropdown} ref={dropdownRef}>
         <button
           type="button"
-          className={styles.printButton}
+          className={
+            viewPrintDropDown ? styles.printButtonActive : styles.printButton
+          }
           onClick={handleDropDownClicked}
         >
           <span className={styles.printButtonWrapper}>
-            {printLabel && <span>{printLabel}</span>}
             <PrintIcon />
+            {printLabel && <span>{printLabel}</span>}
+            {viewPrintDropDown ? (
+              <DropdownArrowIcon
+                transform="rotate(180)"
+                transformOrigin="50% 50%"
+              />
+            ) : (
+              <DropdownArrowIcon />
+            )}
           </span>
         </button>
         <div

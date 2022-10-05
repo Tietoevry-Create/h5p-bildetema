@@ -142,6 +142,24 @@ export const LanguageMenuArrowIcon: React.FC<
   </svg>
 );
 
+export const DropdownArrowIcon: React.FC<
+  IconProps & IconSizeProps & IconTransformProps
+> = ({ iconColor, width, height, transform, transformOrigin }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    width="24"
+    fill="currentColor"
+  >
+    <path
+      d="m12 15.375-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4Z"
+      transform={transform}
+      // eslint-disable-next-line react/no-unknown-property
+      transform-origin={transformOrigin}
+    />
+  </svg>
+);
+
 export const StarFilledIcon: React.FC<
   IconProps & IconSizeProps & IconTransformProps
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
