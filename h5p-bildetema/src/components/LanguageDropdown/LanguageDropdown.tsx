@@ -44,6 +44,10 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
     setIsActive(!isActive);
   };
 
+  React.useEffect(() => {
+    setIsActive(false);
+  }, [currentLanguageCode]);
+
   return (
     <div className={styles.languageMenuButtonWrapper} ref={dropdownRef}>
       <button
