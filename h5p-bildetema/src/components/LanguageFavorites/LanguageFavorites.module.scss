@@ -60,6 +60,11 @@
     text-decoration: none;
   }
 
+  &:focus {
+    outline: $outline-on-dark-background !important;
+    outline-offset: 2px;
+  }
+
   &_active,
   &.active {
     background-color: #fff;
@@ -71,7 +76,7 @@
     text-decoration: none;
 
     &:focus {
-      outline: none;
+      outline: $outline-on-dark-background !important;
     }
 
     @media print {
