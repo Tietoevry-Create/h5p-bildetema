@@ -5,7 +5,7 @@ export const library: Library = {
   machineName: "H5P.BildetemaTopicImageView",
   majorVersion: 1,
   minorVersion: 0,
-  patchVersion: 35,
+  patchVersion: 36,
   runnable: 1,
   preloadedJs: [
     {
