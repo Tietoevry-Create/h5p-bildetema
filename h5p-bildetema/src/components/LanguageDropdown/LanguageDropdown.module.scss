@@ -1,10 +1,10 @@
 @use "../../../../common/abstracts" as *;
 
 .languageMenuButtonWrapper {
-  display: flex;
-  gap: $spacing--8;
-  flex-direction: column;
   align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing--8;
   position: relative;
 
   @media print {
@@ -12,17 +12,41 @@
   }
 }
 
-.languageMenuButton {
-  background-color: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: $font-size-18;
-  display: flex;
-  gap: $spacing--8;
+.languageLabel {
+  @include breakpoint-max($x-small) {
+    display: none;
+  }
+}
+
+.languageMenuButton,
+.languageMenuButtonActive {
   align-items: center;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: $font-size-18;
+  gap: $spacing--8;
+  padding: 0.5rem 1rem;
+
+  &:hover {
+    box-shadow: 0 0 0 2px #fff;
+  }
 
   &:focus {
     outline: $outline-on-dark-background !important;
+    outline-offset: 2px;
+  }
+}
+
+.languageMenuButtonActive {
+  background-color: #fff;
+  color: #000;
+
+  &:hover {
+    background-color: #fff;
+    color: $burgundy;
   }
 }
