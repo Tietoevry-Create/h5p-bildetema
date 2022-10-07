@@ -2,13 +2,13 @@
 
 .header {
   background-color: $burgundy;
-  padding: $spacing--32 0 0;
+  padding: $spacing--32 0 $spacing--24;
   position: relative;
   top: 0;
   z-index: $header-z-index;
   margin-bottom: -2rem;
 
-  @include breakpoint-min($small) {
+  @include breakpoint-min($medium) {
     display: block;
     margin-bottom: 0;
     padding: $spacing--32 0;
@@ -26,42 +26,55 @@
   }
 
   &_content {
-    align-items: center;
+    align-items: flex-start;
     color: white;
     display: flex;
-    gap: $spacing--32;
-    justify-content: space-between;
+    gap: $spacing--16;
+    justify-content: flex-start;
     margin: $main-content-margin;
     max-width: $main-content-max-width;
     width: $main-content-width;
+    flex-wrap: wrap;
+
+    @include breakpoint-min($x-small) {
+      align-items: center;
+      flex-wrap: nowrap;
+    }
   }
 }
 
 .language_container {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  gap: $spacing--40;
+  display: flex;
+  flex-grow: 1;
   font-size: $font-size-24;
+  gap: $spacing--40;
+  justify-content: flex-end;
 }
 
-.logos {
-  align-items: center;
+.logo_oslomet {
   display: flex;
-  gap: 1rem;
+  justify-self: flex-start;
+  margin: 0;
 
-  &_oslomet {
-    display: none;
-    // ensure minimum free space around logo on smaller screens
-    margin: 0 1rem;
+  svg {
+    width: 60px;
+  }
 
-    @include breakpoint-min($small) {
-      display: flex;
+  @include breakpoint-min($small) {
+    display: flex;
+    justify-self: center;
+    margin: 0 0.5rem; // ensure minimum free space around logo on smaller screens
+  }
+
+  @include breakpoint-min($medium) {
+    svg {
+      width: 80px;
     }
+  }
 
-    @include breakpoint-min($x-large) {
-      margin: 0 1rem 0 0;
-    }
+  @include breakpoint-min($x-large) {
+    margin: 0 1rem 0 0;
   }
 }
 
@@ -70,8 +83,16 @@
   display: flex;
   flex-direction: column;
   font-size: $font-size-16;
+  justify-self: flex-start;
   line-height: 1.4;
+  order: 3;
   text-decoration: none; // Overrides WordPress's default styling
+  width: 100%;
+
+  @include breakpoint-min($x-small) {
+    order: 0;
+    width: auto;
+  }
 
   &:hover {
     text-decoration: none;
@@ -83,11 +104,8 @@
   }
 
   &_subtitle {
-    display: none;
-
-    @include breakpoint-min($small) {
-      display: block;
-    }
+    display: block;
+    white-space: nowrap;
   }
 }
 
@@ -102,7 +120,7 @@
   gap: $spacing--8;
   flex-wrap: wrap;
 
-  @include breakpoint-min($small) {
+  @include breakpoint-min($medium) {
     display: flex;
   }
 

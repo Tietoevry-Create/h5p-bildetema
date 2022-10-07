@@ -3,7 +3,7 @@
 .languageWrapper {
   background-color: $burgundy;
   overflow-x: auto;
-  padding: $spacing--32 0;
+  padding: $spacing--16 0;
   position: sticky;
   top: 0;
   z-index: $language-favorites-z-index;
@@ -16,7 +16,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
-  @include breakpoint-min($small) {
+  @include breakpoint-min($medium) {
     display: none;
     position: relative;
   }
@@ -49,7 +49,7 @@
   border-bottom: 0.1rem solid #fff;
   color: white;
   cursor: pointer;
-  font-size: $font-size-18;
+  font-size: $font-size-16;
   margin: 0.35rem 0.5rem 0.25rem;
   padding: 0;
   text-decoration: none;
@@ -72,7 +72,7 @@
     border-radius: 0.5rem;
     color: $burgundy;
     margin: 0;
-    padding: 0.35rem 0.5rem 0.25rem;
+    padding: 0.25rem 0.5rem 0.15rem;
     text-decoration: none;
 
     &:focus {
@@ -82,6 +82,10 @@
     @media print {
       background-color: transparent;
       color: #fff;
+    }
+
+    @include breakpoint-min($medium) {
+      padding: 0.35rem 0.5rem 0.25rem;
     }
   }
 

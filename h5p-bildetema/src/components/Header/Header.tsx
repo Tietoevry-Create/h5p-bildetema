@@ -84,8 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div ref={headerRef} className={styles.header}>
       <div className={styles.header_content}>
-        <div className={styles.logos}>
-          <div className={styles.logos_oslomet}>
+          <div className={styles.logo_oslomet}>
             <OsloMetLogo />
           </div>
           {/* TODO: Add Bildetema logo when ready */}
@@ -97,7 +96,6 @@ export const Header: React.FC<HeaderProps> = ({
             <span className={styles.logo_labels_title}>{titleLabel}</span>
             <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
           </Link>
-        </div>
         <div className={styles.language_container}>
           <div className={styles.languages}>
             {favLanguages.map(language => {
