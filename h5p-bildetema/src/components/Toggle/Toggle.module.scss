@@ -36,6 +36,7 @@
   background-color: $toggle-off-color;
   transition: 0.4s;
   border-radius: 1.3em;
+  outline: 2px solid $toggle-on-color;
 }
 
 .slider:before {
@@ -45,13 +46,18 @@
   width: 0.9em;
   left: 0.15em;
   bottom: 0.15em;
-  background-color: $toggle-slider-color;
+  background-color: $toggle-slider-off-color;
   transition: 0.4s;
   border-radius: 0.9em;
 }
 
 input:checked + .slider {
   background-color: $toggle-on-color;
+  outline: none;
+}
+
+input:checked + .slider:before {
+  background-color: $toggle-slider-on-color;
 }
 
 input:focus + .slider {
