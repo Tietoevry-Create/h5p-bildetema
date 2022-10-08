@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 import {
   BackIcon,
   BreadcrumbsArrowIcon,
@@ -22,7 +24,13 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
 }) => {
-  const topicLabel = useL10n("breadcrumbsTopic");
+  const { translations } = useDBContext() || {};
+  const transLabel =
+    translations?.[currentLanguageCode as LanguageCode]?.F001.label;
+  const topicLabel =
+    transLabel && transLabel.length > 0
+      ? transLabel
+      : useL10n("breadcrumbsTopic");
   const homeLabel = useL10n("breadcrumbsHome");
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const routeBreadCrumbs = useBreadcrumbs(routes);
