@@ -31,7 +31,7 @@
     "h5p-utils": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swiper": "^8.4.2",
+    "swiper": "^8.4.3",
     "use-h5p": "^1.1.3"
   },
   "devDependencies": {
