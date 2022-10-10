@@ -44,7 +44,10 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const pageTitle = useL10n("headerTitle");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
 
-  const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
+  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+  const [topicsSize, setTopicsSize] = useState(
+    smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
+  );
   const [isWordView, setIsWordView] = useState(false);
   const [isTopicImageView, setIsTopicImageView] = useState(false);
 
