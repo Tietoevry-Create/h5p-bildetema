@@ -2,19 +2,36 @@
 
 .languageWrapper {
   background-color: $burgundy;
-  overflow-x: auto;
-  padding: $spacing--16 0;
+  overflow-x: scroll;
+  padding: $spacing--16 0 $spacing--8;
   position: sticky;
   top: 0;
   z-index: $language-favorites-z-index;
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
-    display: none;
+    -webkit-appearance: none;
   }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar:horizontal {
+    height: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $burgundy;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid $burgundy; // should match background, can't be transparent
+    border-radius: 0.5rem;
+  }
+
+  /* Styling for Firefox */
+  scrollbar-width: 0.75rem;
+  scrollbar-color: rgba(255, 255, 255, 0.6);
+  @-moz-document url-prefix() {
+    padding: $spacing--16 0;
+  }
 
   @include breakpoint-min($medium) {
     display: none;
