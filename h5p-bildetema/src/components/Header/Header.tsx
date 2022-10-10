@@ -84,20 +84,18 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div ref={headerRef} className={styles.header}>
       <div className={styles.header_content}>
-        <div className={styles.logos}>
-          <div className={styles.logos_oslomet}>
-            <OsloMetLogo />
-          </div>
-          {/* TODO: Add Bildetema logo when ready */}
-          <Link
-            key={HomeLinkPath}
-            to={HomeLinkPath}
-            className={styles.logo_labels}
-          >
-            <span className={styles.logo_labels_title}>{titleLabel}</span>
-            <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
-          </Link>
+        <div className={styles.logo_oslomet}>
+          <OsloMetLogo />
         </div>
+        {/* TODO: Add Bildetema logo when ready */}
+        <Link
+          key={HomeLinkPath}
+          to={HomeLinkPath}
+          className={styles.logo_labels}
+        >
+          <span className={styles.logo_labels_title}>{titleLabel}</span>
+          <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
+        </Link>
         <div className={styles.language_container}>
           <div className={styles.languages}>
             {favLanguages.map(language => {
