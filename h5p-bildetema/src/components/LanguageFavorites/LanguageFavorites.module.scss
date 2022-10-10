@@ -26,6 +26,11 @@
     border-radius: 0.5rem;
   }
 
+  /* Styling for iOS devices */
+  @supports (-webkit-touch-callout: none) {
+    padding: $spacing--16 0;
+  }
+
   /* Styling for Firefox */
   scrollbar-width: 0.75rem;
   scrollbar-color: rgba(255, 255, 255, 0.6);
