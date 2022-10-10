@@ -1,0 +1,8 @@
+@use "../../../../common/abstracts" as *;
+
+.toggle {
+  display: flex;
+  justify-content: flex-end;
+  font-size: $font-size-18;
+  margin-bottom: 1rem;
+}

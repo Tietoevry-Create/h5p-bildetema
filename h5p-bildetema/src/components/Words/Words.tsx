@@ -5,6 +5,8 @@ import { useContentId } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { TopicIds, Word } from "../../../../common/types/types";
 import { getLibraryName } from "../../../../common/utils/library/library.utils";
+import { Toggle } from "../Toggle/Toggle";
+import styles from "./Words.module.scss";
 // eslint-disable-next-line import/no-relative-packages
 import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid-view/src/library";
 
@@ -13,9 +15,8 @@ type WordsProps = {
   topic?: TopicIds;
   showWrittenWords: boolean;
   currentLanguage: LanguageCode;
-  setIsTopicImageView: React.Dispatch<React.SetStateAction<boolean>>;
   showTopicImageView: boolean;
-  handleTopicViewToggle: (value: boolean) => void;
+  toggleShowTopicImageView: (value: boolean) => void;
 };
 
 export const Words: React.FC<WordsProps> = ({
@@ -23,37 +24,36 @@ export const Words: React.FC<WordsProps> = ({
   topic,
   showWrittenWords,
   currentLanguage,
-  setIsTopicImageView,
   showTopicImageView,
-  handleTopicViewToggle,
+  toggleShowTopicImageView,
 }) => {
   const topicViewRef = useRef<HTMLDivElement>(null);
   const gridViewRef = useRef<HTMLDivElement>(null);
   const [topicViewInstance, setTopicViewInstance] = useState<IH5PContentType>();
   const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
+  const [isTopicImageView, setIsTopicImageView] = useState(false);
 
   useEffect(() => {
-      (()=>{
-      
+    (() => {
       if (!contentId) {
         return;
       }
-  
+
       if (!topicViewRef.current || !gridViewRef.current) {
         return;
       }
-  
+
       const viewIsInitialized =
         topicViewRef.current.childElementCount > 0 &&
         gridViewRef.current.childElementCount > 0;
       if (viewIsInitialized) {
         return;
       }
-  
+
       topicViewRef.current.innerHTML = "";
       gridViewRef.current.innerHTML = "";
-  
+
       const setViewInstances = (
         topicRootElement: HTMLDivElement,
         gridRootElement: HTMLDivElement,
@@ -61,7 +61,7 @@ export const Words: React.FC<WordsProps> = ({
         const existingContent = (window as any).H5PAllContents?.filter(
           (h5pContent: any) => {
             const params = JSON.parse(h5pContent.json_content);
-  
+
             return (
               topic &&
               params.selectedTopic &&
@@ -70,19 +70,19 @@ export const Words: React.FC<WordsProps> = ({
             );
           },
         );
-  
+
         const currentTopicHasTopicImage =
           existingContent && existingContent.length > 0;
-  
+
         if (currentTopicHasTopicImage) {
           setIsTopicImageView(true);
-  
+
           const content = existingContent[0];
           const params = {
             ...JSON.parse(content.json_content),
             currentLanguage,
           };
-  
+
           const topicView = H5P.newRunnable(
             {
               library: getLibraryName({
@@ -98,9 +98,9 @@ export const Words: React.FC<WordsProps> = ({
           setTopicViewInstance(topicView);
         } else {
           setIsTopicImageView(false);
-          handleTopicViewToggle(false)
+          toggleShowTopicImageView(false);
         }
-  
+
         const gridView = H5P.newRunnable(
           {
             library: getLibraryName(gridViewLibrary),
@@ -114,14 +114,13 @@ export const Words: React.FC<WordsProps> = ({
         );
         setGridViewInstance(gridView);
       };
-  
+
       setViewInstances(topicViewRef.current, gridViewRef.current);
-    })()
-    return ()=>{
-      handleTopicViewToggle(true)
-    }
-  
-    
+    })();
+    return () => {
+      toggleShowTopicImageView(true);
+    };
+
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentId, topicViewRef, gridViewRef]);
@@ -149,6 +148,16 @@ export const Words: React.FC<WordsProps> = ({
 
   return (
     <>
+      <div className={styles.toggle}>
+        {isTopicImageView && (
+          <Toggle
+            label="Topic view"
+            checked={showTopicImageView}
+            handleChange={toggleShowTopicImageView}
+            id={`topic-view-toggle-${contentId}`}
+          />
+        )}
+      </div>
       <div
         ref={topicViewRef}
         style={!showTopicImageView ? { display: "none" } : {}}
