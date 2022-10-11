@@ -2,11 +2,15 @@
 
 .header {
   background-color: $burgundy;
-  padding: $spacing--32 0 $spacing--24;
+  padding: $spacing--16 0 $spacing--8;
   position: relative;
   top: 0;
   z-index: $header-z-index;
   margin-bottom: -2rem;
+
+  @include breakpoint-min($x-small) {
+    padding: $spacing--24 0 $spacing--16;
+  }
 
   @include breakpoint-min($medium) {
     display: block;
