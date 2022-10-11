@@ -49,7 +49,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
   );
   const [isWordView, setIsWordView] = useState(false);
-  const [isTopicImageView, setIsTopicImageView] = useState(false);
+  const [showTopicImageView, setShowTopicImageView] = useState(true);
 
   const [showWrittenWords, setShowWrittenWords] = useState(
     searchParams.get(wordsVisibleParam) !== null
@@ -105,6 +105,11 @@ export const Bildetema: React.FC<BildetemaProps> = ({
       "/:langId/:topicLabel",
       "/:langId/:topicLabel/:subTopicId",
     ];
+
+    const toggleShowTopicImageView = (value: boolean): void => {
+      setShowTopicImageView(value);
+    };
+
     return (
       <Routes>
         {paths.map(path => (
@@ -119,7 +124,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
-                setIsTopicImageView={setIsTopicImageView}
+                showTopicImageView={showTopicImageView}
+                toggleShowTopicImageView={toggleShowTopicImageView}
               />
             }
           />
@@ -133,6 +139,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     handleToggleFavoriteLanguage,
     showWrittenWords,
     topicsSize,
+    showTopicImageView,
   ]);
 
   return (
@@ -152,7 +159,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           isWordView={isWordView}
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
-          isTopicImageView={isTopicImageView}
+          showTopicImageView={showTopicImageView}
         />
         <div id="bildetemaMain" className={styles.body}>
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}

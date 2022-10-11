@@ -31,9 +31,10 @@ const Template: ComponentStory<typeof TopicGrid> = args => (
 const defaultArgs: TopicGridProps = {
   topicsSize: TopicGridSizes.Big,
   setIsWordView: () => null,
-  setIsTopicImageView: () => null,
+  toggleShowTopicImageView: () => null,
   showWrittenWords: false,
   currentLanguage: { label: "nob", code: "nob", rtl: false },
+  showTopicImageView: true,
 };
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {
