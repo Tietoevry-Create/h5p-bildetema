@@ -2,8 +2,9 @@
 
 .languageWrapper {
   background-color: $burgundy;
-  overflow-x: scroll;
-  padding: $spacing--16 0 $spacing--8;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: $spacing--16 0;
   position: sticky;
   top: 0;
   z-index: $language-favorites-z-index;
@@ -26,17 +27,9 @@
     border-radius: 0.5rem;
   }
 
-  /* Styling for iOS devices */
-  @supports (-webkit-touch-callout: none) {
-    padding: $spacing--16 0;
-  }
-
   /* Styling for Firefox */
   scrollbar-width: 0.75rem;
   scrollbar-color: rgba(255, 255, 255, 0.6);
-  @-moz-document url-prefix() {
-    padding: $spacing--16 0;
-  }
 
   @include breakpoint-min($medium) {
     display: none;
