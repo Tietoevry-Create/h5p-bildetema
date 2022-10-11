@@ -6,15 +6,17 @@ import styles from "./TopicImageWordList.module.scss";
 export type TopicImageWordListProps = {
   words: Word[];
   currentWordId: string | undefined;
-  hoveredWord: (word: string) => void;
+  selectHoveredWord: (word: string) => void;
   selectWord: (word: string) => void;
+  hoveredSVG: string | undefined;
 };
 
 export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
   words,
   currentWordId,
-  hoveredWord,
+  selectHoveredWord,
   selectWord,
+  hoveredSVG,
 }) => {
   return (
     <div className={styles.topicImageWordList}>
@@ -23,8 +25,9 @@ export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
           <TopicImageWordAudio
             word={word}
             currentWordId={currentWordId}
-            hoveredWord={hoveredWord}
+            selectHoveredWord={selectHoveredWord}
             unSelectWord={selectWord}
+            hoveredSVG={hoveredSVG}
           />
         </div>
       ))}
