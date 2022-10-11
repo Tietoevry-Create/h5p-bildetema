@@ -75,7 +75,6 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
           currentLanguageCode={currentLanguageCode}
           favLanguages={favLanguages}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-          isMobile={isMobile}
         />
       )}
     </div>

@@ -30,7 +30,6 @@ const defaultArgs: LanguageSelectorProps = {
   handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
     console.info(fav);
   },
-  isMobile: false,
 };
 
 Default.args = defaultArgs;

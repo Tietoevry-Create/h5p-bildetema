@@ -1,10 +1,15 @@
 @use "../../../../common/abstracts" as *;
+
 .container {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0.4em 0.4em;
+  padding: 0.25em;
+
+  @include breakpoint-min($medium) {
+    padding: 0.4em;
+  }
 }
 
 .wrapper {

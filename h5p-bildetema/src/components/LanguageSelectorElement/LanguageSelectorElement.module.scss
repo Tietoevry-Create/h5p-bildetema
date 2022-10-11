@@ -2,14 +2,15 @@
 .language,
 .languageMiddle {
   all: unset;
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid lightgrey;
   transition-duration: 0.2s;
+  width: 100%;
 
   &:last-child {
-    border-bottom: none;
+    border-bottom-color: transparent;
   }
 
   &:hover,
@@ -29,7 +30,9 @@
 }
 
 .languageMiddle {
-  border-bottom: none;
+  @include breakpoint-min($medium) {
+    border-bottom-color: transparent;
+  }
 }
 
 .checkboxWrapper {
@@ -40,17 +43,22 @@
   all: unset;
   flex: 1;
   display: flex;
-  font-size: $font-size-20;
+  font-size: $font-size-18;
   cursor: pointer;
   justify-content: space-between;
   gap: $spacing--16;
   height: 100%;
   align-items: center;
-  line-height: 1;
-  padding: 0 $spacing--8;
+  line-height: 1.2;
+  padding: $spacing--8;
 
   @include breakpoint-min($small) {
     width: max-content;
+  }
+
+  @include breakpoint-min($medium) {
+    font-size: $font-size-20;
+    padding: 0.75rem $spacing--8;
   }
 
   &:hover {
