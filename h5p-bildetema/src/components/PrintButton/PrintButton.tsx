@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactToPrint } from "react-to-print";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { PrintIcon } from "../Icons/Icons";
+import { PrintIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./PrintButton.module.scss";
 import { TopicIds } from "../../../../common/types/types";
@@ -27,6 +27,7 @@ export const PrintButton: React.FC<PrintProps> = ({
   const printRef = React.useRef(null);
 
   const { printLabel } = useL10ns("printLabel");
+  const { printImgLabel } = useL10ns("printImgLabel");
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
@@ -53,12 +54,25 @@ export const PrintButton: React.FC<PrintProps> = ({
       <div className={styles.printDropdown} ref={dropdownRef}>
         <button
           type="button"
-          className={styles.printButton}
+          className={
+            viewPrintDropDown ? styles.printButtonActive : styles.printButton
+          }
           onClick={handleDropDownClicked}
         >
           <span className={styles.printButtonWrapper}>
-            {printLabel && <span>{printLabel}</span>}
             <PrintIcon />
+            {printLabel && <span>{printLabel}</span>}
+            {viewPrintDropDown ? (
+              <LanguageMenuArrowIcon
+                transform="scale(0.9) rotate(180)"
+                transformOrigin="50% 50%"
+              />
+            ) : (
+              <LanguageMenuArrowIcon
+                transform="scale(0.9)"
+                transformOrigin="50% 50%"
+              />
+            )}
           </span>
         </button>
         <div
@@ -77,7 +91,7 @@ export const PrintButton: React.FC<PrintProps> = ({
                   setViewPrintDropDown(false);
                 }}
               >
-                {el}
+                {`${el} ${printImgLabel}`}
               </button>
             </div>
           ))}

@@ -12,6 +12,9 @@
 
 .buttonBig,
 .buttonCompact {
+  background-color: #eee;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
   color: #000;
   cursor: pointer;
   line-height: 50%;
@@ -22,22 +25,30 @@
   overflow: hidden;
   padding: 0;
   text-align: center;
-  background-color: transparent;
-  border-radius: 8px;
-  border-color: transparent;
+
+  &:hover {
+    background-color: #fff;
+    border-color: $burgundy;
+    color: $burgundy;
+  }
+
+  &:focus {
+    background-color: #fff;
+    color: $burgundy;
+
+    &:hover {
+      outline: none;
+    }
+  }
 
   &.active {
     color: white;
-    pointer-events: none;
     background-color: $burgundy;
+    pointer-events: none;
 
     path {
       fill: white;
       stroke: white;
-    }
-
-    &:focus {
-      outline: none;
     }
   }
 }

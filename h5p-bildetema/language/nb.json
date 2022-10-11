@@ -20,6 +20,10 @@
           "default": "Skriv ut"
         },
         {
+          "label": "Skriv ut bilde",
+          "default": "bilder i bredden"
+        },
+        {
           "label": "Spill lyd",
           "default": "Spill lyd"
         },

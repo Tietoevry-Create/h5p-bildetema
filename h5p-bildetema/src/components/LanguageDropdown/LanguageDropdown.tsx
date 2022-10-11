@@ -61,11 +61,14 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
         <span className={styles.languageLabel}>{selectLanguageLabel}</span>
         {langSelectorIsShown ? (
           <LanguageMenuArrowIcon
-            transform="rotate(180)"
+            transform="scale(0.9) rotate(180)"
             transformOrigin="50% 50%"
           />
         ) : (
-          <LanguageMenuArrowIcon />
+          <LanguageMenuArrowIcon
+            transform="scale(0.9)"
+            transformOrigin="50% 50%"
+          />
         )}
       </button>
       {langSelectorIsShown && (
