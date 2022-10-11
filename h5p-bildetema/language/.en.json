@@ -20,6 +20,10 @@
           "default": "Print"
         },
         {
+          "label": "Print img label",
+          "default": "images in width"
+        },
+        {
           "label": "Play audio",
           "default": "Play audio"
         },

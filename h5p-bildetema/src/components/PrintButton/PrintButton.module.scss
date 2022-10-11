@@ -45,16 +45,18 @@
 }
 
 .printDropdownContent {
+  border: none;
+  border-radius: 0.5rem;
   display: none;
   position: absolute;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   background-color: white;
   min-width: 3rem;
   box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   z-index: $fav-language-selector-z-index;
-  padding: 25px;
+  padding: 1.25rem;
   color: black;
 }
 
@@ -80,10 +82,14 @@
 
 .printDropdownElement {
   all: unset;
-  font-size: $font-size-20;
+  font-size: $font-size-18;
   gap: $spacing--16;
   height: 100%;
   align-items: center;
   line-height: 1;
   padding: 1rem $spacing--8;
+
+  @include breakpoint-min($medium) {
+    font-size: $font-size-20;
+  }
 }

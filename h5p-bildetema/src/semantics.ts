@@ -51,6 +51,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Print img label",
+        name: "printImgLabel",
+        default: "images in width",
+        type: "text",
+      },
+      {
         label: "Play audio",
         name: "playAudio",
         default: "Play audio",
