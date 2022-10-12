@@ -20,9 +20,15 @@ export const PrintButton: React.FC<PrintProps> = ({
   const [printClicked, setPrintClicked] = React.useState(false);
   const [viewPrintDropDown, setViewPrintDropDown] = React.useState(false);
   const [renderPrintWords, setRenderPrintWords] = React.useState(false);
+  const [isActive, setIsActive] = React.useState(false);
+
+  const handleOnClickOutside = (): void => {
+    setViewPrintDropDown(false);
+    setIsActive(false);
+  };
 
   const dropdownRef = useDetectClickOutside({
-    onTriggered: () => setViewPrintDropDown(false),
+    onTriggered: handleOnClickOutside,
   });
   const printRef = React.useRef(null);
 
@@ -37,6 +43,7 @@ export const PrintButton: React.FC<PrintProps> = ({
   const handleDropDownClicked = (): void => {
     setViewPrintDropDown(prev => !prev);
     setRenderPrintWords(true);
+    setIsActive(!isActive);
   };
 
   React.useEffect(() => {
@@ -44,6 +51,7 @@ export const PrintButton: React.FC<PrintProps> = ({
       setPrintClicked(false);
       handlePrint();
       setRenderPrintWords(false);
+      setIsActive(false);
     }
   }, [printClicked, setPrintClicked, handlePrint]);
 
@@ -54,9 +62,7 @@ export const PrintButton: React.FC<PrintProps> = ({
       <div className={styles.printDropdown} ref={dropdownRef}>
         <button
           type="button"
-          className={
-            viewPrintDropDown ? styles.printButtonActive : styles.printButton
-          }
+          className={isActive ? styles.printButtonActive : styles.printButton}
           onClick={handleDropDownClicked}
         >
           <span className={styles.printButtonWrapper}>
