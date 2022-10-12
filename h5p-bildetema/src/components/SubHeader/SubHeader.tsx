@@ -44,7 +44,12 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       <span className={styles.tools}>
-        <PrintButton topicIds={topicIds} showWrittenWords={toggleChecked} isWordView={isWordView} showTopicImageView={showTopicImageView}/>
+        <PrintButton
+          topicIds={topicIds}
+          showWrittenWords={toggleChecked}
+          isWordView={isWordView}
+          showTopicImageView={showTopicImageView}
+        />
         {!showTopicImageView && (
           <Toggle
             label={showWrittenWordsLabel}
