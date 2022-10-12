@@ -5,6 +5,10 @@
   justify-content: flex-start;
   font-size: $font-size-18;
   margin-bottom: 1rem;
+
+  @media print {
+    display:none;
+  }
 }
 
 .displayNone {

@@ -10,11 +10,15 @@ import { PrintWords } from "../PrintWords/PrintWords";
 type PrintProps = {
   topicIds: TopicIds;
   showWrittenWords: boolean;
+  showTopicImageView: boolean;
+  isWordView: boolean;
 };
 
 export const PrintButton: React.FC<PrintProps> = ({
   topicIds,
   showWrittenWords,
+  isWordView,
+  showTopicImageView,
 }) => {
   const [imagesPrRow, setImagesPrRow] = React.useState(3);
   const [printClicked, setPrintClicked] = React.useState(false);
@@ -63,22 +67,29 @@ export const PrintButton: React.FC<PrintProps> = ({
         <button
           type="button"
           className={isActive ? styles.printButtonActive : styles.printButton}
-          onClick={handleDropDownClicked}
+          onClick={() => {
+            if (!showTopicImageView) {
+              handleDropDownClicked();
+              return;
+            }
+            window.print();
+          }}
         >
           <span className={styles.printButtonWrapper}>
             <PrintIcon />
             {printLabel && <span>{printLabel}</span>}
-            {viewPrintDropDown ? (
-              <LanguageMenuArrowIcon
-                transform="scale(0.9) rotate(180)"
-                transformOrigin="50% 50%"
-              />
-            ) : (
-              <LanguageMenuArrowIcon
-                transform="scale(0.9)"
-                transformOrigin="50% 50%"
-              />
-            )}
+            {!showTopicImageView &&
+              (viewPrintDropDown ? (
+                <LanguageMenuArrowIcon
+                  transform="scale(0.9) rotate(180)"
+                  transformOrigin="50% 50%"
+                />
+              ) : (
+                <LanguageMenuArrowIcon
+                  transform="scale(0.9)"
+                  transformOrigin="50% 50%"
+                />
+              ))}
           </span>
         </button>
         <div

@@ -17,6 +17,10 @@
   flex-direction: column;
   gap: $spacing--32;
   min-height: 100vh;
+
+  @media print {
+    gap: 0;
+  }
 }
 
 .body {
