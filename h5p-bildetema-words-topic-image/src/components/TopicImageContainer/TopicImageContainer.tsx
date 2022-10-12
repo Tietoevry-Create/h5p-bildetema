@@ -23,6 +23,7 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
 }) => {
   const [currentWordId, setCurrentWordId] = React.useState("");
   const [hoveredWord, setHoveredWord] = React.useState("");
+  const [hoveredSVG, setHoveredSVG] = React.useState("");
 
   const selectWord = (word: string): void => {
     setCurrentWordId(word);
@@ -30,6 +31,10 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
 
   const selectHoveredWord = (word: string): void => {
     setHoveredWord(word);
+  };
+
+  const selectHoveredSVG = (word: string): void => {
+    setHoveredSVG(word);
   };
 
   if (
@@ -41,8 +46,9 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
         <TopicImageWordList
           words={words}
           currentWordId={currentWordId}
-          hoveredWord={selectHoveredWord}
+          selectHoveredWord={selectHoveredWord}
           selectWord={selectWord}
+          hoveredSVG={hoveredSVG}
         />
         <TopicImageSVG
           image={topicImage}
@@ -51,6 +57,7 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
           selectWord={selectWord}
           topicImageType={topicImageType}
           hoveredWord={hoveredWord}
+          selectHoveredSVG={selectHoveredSVG}
         />
       </div>
     );

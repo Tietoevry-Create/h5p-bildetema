@@ -11,6 +11,7 @@ export type TopicImageSVGProps = {
   topicImageType: TopicImageTypes;
   selectWord: (word: string) => void;
   hoveredWord: string;
+  selectHoveredSVG: (word: string) => void;
 };
 
 export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
@@ -20,6 +21,7 @@ export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
   topicImageType,
   selectWord,
   hoveredWord,
+  selectHoveredSVG,
 }) => {
   const overlayFields = overlays.map(overlay => (
     <g
@@ -28,6 +30,10 @@ export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
         hoveredWord === overlay.wordId ? styles.overlay_active : ""
       }`}
       onClick={() => selectWord(overlay.wordId)}
+      onMouseEnter={() => selectHoveredSVG(overlay.wordId)}
+      onMouseLeave={() => selectHoveredSVG("")}
+      onFocus={() => selectHoveredSVG(overlay.wordId)}
+      onBlur={() => selectHoveredSVG("")}
       dangerouslySetInnerHTML={{ __html: overlay.outline }}
     />
   ));

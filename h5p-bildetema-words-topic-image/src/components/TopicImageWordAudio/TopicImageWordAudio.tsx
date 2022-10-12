@@ -8,15 +8,17 @@ import styles from "./TopicImageWordAudio.module.scss";
 type TopicImageWordAudioProps = {
   word: WordType;
   currentWordId: string | undefined;
-  hoveredWord: (word: string) => void;
+  selectHoveredWord: (word: string) => void;
   unSelectWord: (word: string) => void;
+  hoveredSVG: string | undefined;
 };
 
 export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   word,
   currentWordId,
-  hoveredWord,
+  selectHoveredWord,
   unSelectWord,
+  hoveredSVG,
 }) => {
   const { label } = word;
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -70,11 +72,11 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
 
+  const showAsSelected = word.id === currentWordId || word.id === hoveredSVG;
+
   return (
     <div
-      className={`${styles.wordAudio} ${
-        word.id === currentWordId ? styles.selected : ""
-      }`}
+      className={`${styles.wordAudio} ${showAsSelected ? styles.selected : ""}`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
@@ -85,10 +87,10 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
       <button
         type="button"
         onClick={toggle}
-        onMouseEnter={() => hoveredWord(word.id)}
-        onMouseLeave={() => hoveredWord("")}
-        onFocus={() => hoveredWord(word.id)}
-        onBlur={() => hoveredWord("")}
+        onMouseEnter={() => selectHoveredWord(word.id)}
+        onMouseLeave={() => selectHoveredWord("")}
+        onFocus={() => selectHoveredWord(word.id)}
+        onBlur={() => selectHoveredWord("")}
       >
         <span className={styles.word_label}>
           {label}
