@@ -5,3 +5,8 @@
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
+
+.skip-link,
+.skip-link:focus {
+  display: none !important; // hide Wordpress skip to content link
+}
