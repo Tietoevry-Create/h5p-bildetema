@@ -18,7 +18,7 @@ export type BreadcrumbsProps = {
     label: string;
     path: string;
   }[];
-  currentLanguageCode: string;
+  currentLanguageCode: LanguageCode;
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
@@ -27,7 +27,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
 }) => {
   const { translations } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
-    translations?.[currentLanguageCode as LanguageCode],
+    translations?.[currentLanguageCode],
   );
   const l10nLabel = useL10n("breakcrumbsTopic");
   const topicLabel = labelFromDb.length > 0 ? labelFromDb : l10nLabel;
