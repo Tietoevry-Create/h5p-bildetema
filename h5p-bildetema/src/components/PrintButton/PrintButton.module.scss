@@ -32,10 +32,7 @@
 }
 
 .printButtonActive {
-  background-color: $burgundy;
-  border-color: $burgundy;
-  color: #fff;
-
+  &,
   &:focus,
   &:hover {
     background-color: $burgundy;
