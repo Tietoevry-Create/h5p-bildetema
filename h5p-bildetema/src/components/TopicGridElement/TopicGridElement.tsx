@@ -47,7 +47,7 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
       <img className={styles.topicImage} src={imageSrc} alt="" />
       <span className={`${gridElementClassName} ${rtl ? styles.rtl : ""}`}>
         {title}
-        <TopicGridElementAudio audioFiles={audioFiles} />
+        <TopicGridElementAudio audioFiles={audioFiles} rtl={rtl} />
       </span>
     </Link>
   );
