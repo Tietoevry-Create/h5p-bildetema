@@ -1,11 +1,4 @@
-import type { OutputAsset, OutputChunk } from "rollup";
 import { BuildOptions, PluginOption } from "vite";
-
-const isOutputChunk = (
-  chunkOrAsset: OutputChunk | OutputAsset,
-): chunkOrAsset is OutputChunk => {
-  return "code" in chunkOrAsset;
-};
 
 export const wrapIIFE = (): PluginOption => ({
   name: "wrap-iife",
@@ -14,7 +7,8 @@ export const wrapIIFE = (): PluginOption => ({
 
     for (let i = 0; i < chunks.length; i += 1) {
       const chunk = chunks[i];
-      if (isOutputChunk(chunk)) {
+      const isOutputChunk =  "code" in chunk;
+      if (isOutputChunk) {
         // eslint-disable-next-line no-param-reassign
         chunk.code = `(function(){${chunk.code}})()`;
       }
