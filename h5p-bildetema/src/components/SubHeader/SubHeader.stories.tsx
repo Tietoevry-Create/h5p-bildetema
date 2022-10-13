@@ -23,6 +23,7 @@ const Template = (isWordView: boolean): JSX.Element => {
       }}
       toggleChecked={checked}
       showTopicImageView={false}
+      rtl={false}
     />
   );
 };
