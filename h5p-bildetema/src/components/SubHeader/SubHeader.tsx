@@ -72,7 +72,10 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
         isWordView ? styles.subHeaderWords : styles.subHeaderThemes
       } ${rtl ? styles.rtl : ""}`}
     >
-      <Breadcrumbs currentLanguageCode={currentLanguageCode as LanguageCode} rtl={rtl} />
+      <Breadcrumbs
+        currentLanguageCode={currentLanguageCode as LanguageCode}
+        rtl={rtl}
+      />
       {renderLeftMenu()}
     </div>
   );
