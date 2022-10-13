@@ -7,7 +7,7 @@ export const wrapIIFE = (): PluginOption => ({
 
     for (let i = 0; i < chunks.length; i += 1) {
       const chunk = chunks[i];
-      const isOutputChunk =  "code" in chunk;
+      const isOutputChunk = "code" in chunk;
       if (isOutputChunk) {
         // eslint-disable-next-line no-param-reassign
         chunk.code = `(function(){${chunk.code}})()`;
