@@ -1,13 +1,18 @@
 import React from "react";
 import { useContentId } from "use-h5p";
 import { useLocation } from "react-router-dom";
-import { TopicGridSizes, TopicIds } from "../../../../common/types/types";
+import {
+  Language,
+  TopicGridSizes,
+  TopicIds,
+} from "../../../../common/types/types";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle } from "../Toggle/Toggle";
 import styles from "./SubHeader.module.scss";
 import { PrintButton } from "../PrintButton/PrintButton";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 
 export type SubHeaderProps = {
   topicIds: TopicIds;
@@ -60,7 +65,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
     <div
       className={isWordView ? styles.subHeaderWords : styles.subHeaderThemes}
     >
-      <Breadcrumbs currentLanguageCode={currentLanguageCode} />
+      <Breadcrumbs currentLanguageCode={currentLanguageCode as LanguageCode} />
       {renderLeftMenu()}
     </div>
   );
