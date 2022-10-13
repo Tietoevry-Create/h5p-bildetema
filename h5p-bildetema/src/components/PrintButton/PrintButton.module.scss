@@ -91,6 +91,7 @@
 
 .printDropdownElement {
   all: unset;
+  direction: ltr;
   font-size: $font-size-18;
   gap: $spacing--16;
   height: 100%;

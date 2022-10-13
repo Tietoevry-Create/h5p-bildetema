@@ -43,12 +43,9 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
     "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb";
   const { search } = useLocation();
   return (
-    <Link
-      className={`${topicCardClassName} ${rtl ? styles.rtl : ""}`}
-      to={`${linkTo}${search}`}
-    >
+    <Link className={topicCardClassName} to={`${linkTo}${search}`}>
       <img className={styles.topicImage} src={imageSrc} alt="" />
-      <span className={gridElementClassName}>
+      <span className={`${gridElementClassName} ${rtl ? styles.rtl : ""}`}>
         {title}
         <TopicGridElementAudio audioFiles={audioFiles} />
       </span>

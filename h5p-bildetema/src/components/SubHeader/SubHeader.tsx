@@ -18,6 +18,7 @@ export type SubHeaderProps = {
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
   showTopicImageView: boolean;
+  rtl: boolean;
 };
 
 export const SubHeader: React.FC<SubHeaderProps> = ({
@@ -28,6 +29,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   toggleChecked,
   handleToggleChange,
   showTopicImageView,
+  rtl,
 }) => {
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
 
@@ -66,9 +68,11 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
 
   return (
     <div
-      className={isWordView ? styles.subHeaderWords : styles.subHeaderThemes}
+      className={`${
+        isWordView ? styles.subHeaderWords : styles.subHeaderThemes
+      } ${rtl ? styles.rtl : ""}`}
     >
-      <Breadcrumbs currentLanguageCode={currentLanguageCode as LanguageCode} />
+      <Breadcrumbs currentLanguageCode={currentLanguageCode as LanguageCode} rtl={rtl} />
       {renderLeftMenu()}
     </div>
   );

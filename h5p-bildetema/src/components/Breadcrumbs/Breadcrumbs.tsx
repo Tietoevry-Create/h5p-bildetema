@@ -19,11 +19,13 @@ export type BreadcrumbsProps = {
     path: string;
   }[];
   currentLanguageCode: LanguageCode;
+  rtl: boolean;
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
+  rtl,
 }) => {
   const { translations } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
@@ -65,7 +67,9 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           >
             <Link to={path} className={styles.link}>
               <span className={styles.arrowLeft}>
-                <BreadcrumbsArrowLeftIcon />
+                <BreadcrumbsArrowLeftIcon
+                  transform={rtl ? "" : "rotate(180)"}
+                />
               </span>
               {homePageBreadCrumb ? (
                 <span className={styles.homeButton}>
@@ -77,14 +81,14 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
               ) : (
                 <span className={styles.backButton}>
                   <span className={styles.backIcon}>
-                    <BackIcon />
+                    <BackIcon transform={rtl ? "scale(-1,1)" : ""} />
                   </span>
                   {label}
                 </span>
               )}
             </Link>
             <span className={styles.arrow}>
-              <BreadcrumbsArrowIcon />
+              <BreadcrumbsArrowIcon transform={rtl ? "rotate(180)" : ""} />
             </span>
           </span>
         ) : (
