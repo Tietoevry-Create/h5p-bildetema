@@ -2,18 +2,24 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicIds } from "../../../../common/types/types";
+import { TopicIds, Topic, Word } from "../../../../common/types/types";
 import styles from "./PrintWords.module.scss";
 
 type PrintWordsProps = {
   topicIds: TopicIds;
   showWrittenWords: boolean;
   imagesPrRow: number;
+  isWordView: boolean;
 };
 
 export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
   (
-    { topicIds: { topicId, subTopicId }, showWrittenWords, imagesPrRow },
+    {
+      topicIds: { topicId, subTopicId },
+      showWrittenWords,
+      imagesPrRow,
+      isWordView,
+    },
     ref,
   ) => {
     const { topics } = useDBContext() || {};
@@ -23,13 +29,39 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
         ? (pathname.split("/")[1] as LanguageCode)
         : ("nob" as LanguageCode);
 
+    const topicsToWords = (
+      inputTopics: Topic[] | undefined,
+    ): Word[] | undefined => {
+      return inputTopics?.map(
+        t => t.labelTranslations.get(currentLanguageCode) ?? ({} as Word),
+      );
+    };
+
     const renderTable = (): JSX.Element[] => {
-      const words = subTopicId
-        ? topics
-            ?.find(t => t.id === topicId)
-            ?.subTopics?.get(subTopicId)
-            ?.words?.get(currentLanguageCode)
-        : topics?.find(t => t.id === topicId)?.words?.get(currentLanguageCode);
+      const findWords = (): Word[] | undefined => {
+        if (isWordView) {
+          return subTopicId
+            ? topics
+                ?.find(t => t.id === topicId)
+                ?.subTopics?.get(subTopicId)
+                ?.words?.get(currentLanguageCode)
+            : topics
+                ?.find(t => t.id === topicId)
+                ?.words?.get(currentLanguageCode);
+        }
+
+        if (!topicId) {
+          return topicsToWords(topics);
+        }
+
+        const subTopics = topics?.find(t => t.id === topicId)?.subTopics;
+        if (subTopics) {
+          return topicsToWords(Array.from(subTopics.values()));
+        }
+
+        return undefined;
+      };
+      const words = findWords();
 
       const wordsCopy = [...(words ?? [])];
       const chunksOfWords = [];

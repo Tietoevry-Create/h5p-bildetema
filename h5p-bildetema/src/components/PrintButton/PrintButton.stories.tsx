@@ -11,7 +11,14 @@ export default {
 const Template = (): JSX.Element => {
   const topicIds = {};
 
-  return <PrintButton topicIds={topicIds} showWrittenWords isWordView={false} showTopicImageView/>;
+  return (
+    <PrintButton
+      topicIds={topicIds}
+      showWrittenWords
+      isWordView={false}
+      showTopicImageView
+    />
+  );
 };
 
 export const Default = (): JSX.Element => {
