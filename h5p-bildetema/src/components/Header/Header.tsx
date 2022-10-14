@@ -39,6 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
+  const [firstTimeVisit, setFirstTimeVisit] = useState(true);
 
   const currentLanguageCode: LanguageCode =
     pathname.split("/").length >= 2
@@ -50,7 +51,12 @@ export const Header: React.FC<HeaderProps> = ({
   const HomeLinkPath = `/${currentLanguageCode}`;
 
   React.useEffect(() => {
-    setLangSelectorIsShown(firstTime);
+    if (firstTime === true && firstTimeVisit === true) {
+      setLangSelectorIsShown(true);
+      setFirstTimeVisit(false);
+    } else {
+      setLangSelectorIsShown(false);
+    }
   }, [pathname]);
 
   // TODO: Add better method to find screen width

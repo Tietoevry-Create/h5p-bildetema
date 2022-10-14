@@ -31,6 +31,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   topicIds,
 }) => {
   const [isActive, setIsActive] = useState(false);
+  const [firstTimeVisit, setFirstTimeVisit] = useState(true);
 
   const handleOnClickOutside = (): void => {
     handleSelectorVisibility(false);
@@ -47,7 +48,12 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   };
 
   React.useEffect(() => {
-    setIsActive(firstTime);
+    if (firstTimeVisit === true && firstTime === true) {
+      setIsActive(true);
+      setFirstTimeVisit(false);
+    } else {
+      setIsActive(false);
+    }
   }, [currentLanguageCode]);
 
   return (
