@@ -29,7 +29,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
   );
-  const l10nLabel = useL10n("breakcrumbsTopic");
+  const l10nLabel = useL10n("breadcrumbsTopic");
   const topicLabel = labelFromDb.length > 0 ? labelFromDb : l10nLabel;
   const homeLabel = useL10n("breadcrumbsHome");
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
