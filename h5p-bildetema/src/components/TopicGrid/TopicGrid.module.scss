@@ -1,34 +1,49 @@
 @use "../../../../common/abstracts" as *;
 
+$gap: $spacing--24;
+
 .gridBig,
 .gridCompact {
   direction: ltr;
-  display: grid;
-  grid-gap: $spacing--24;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $gap;
 
-  /* only use 1fr for mobile so content is not cut off if device width < min-width */
-  grid-template-columns: repeat(auto-fit, 1fr);
+  [class*="rtl"] & {
+    justify-content: flex-end;
+  }
+
+  & > a {
+    box-sizing: border-box;
+    width: 100%;
+  }
 }
 
 .gridBig {
-  @include breakpoint-min($x-small) {
-    grid-template-columns: repeat(auto-fit, minmax($topic-card-big-width, 1fr));
+  & > a {
+    @include breakpoint-min(650px) {
+      width: calc((100% - #{$gap}) / 2);
+    }
+
+    @include breakpoint-min(980px) {
+      width: calc((100% - (#{$gap} * 2)) / 3);
+    }
+
+    @include breakpoint-min(1300px) {
+      width: calc((100% - (#{$gap} * 3)) / 4);
+    }
   }
 }
 
 .gridCompact {
-  @include breakpoint-min($x-small) {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax($topic-card-compact-width, 1fr)
-    );
-  }
-}
+  & > a {
+    @include breakpoint-min(800px) {
+      width: calc((100% - #{$gap}) / 2);
+    }
 
-.placeholder {
-  display: none;
-
-  &:nth-child(-n + 4) {
-    display: block;
+    @include breakpoint-min(1200px) {
+      width: calc((100% - (#{$gap} * 2)) / 3);
+    }
   }
 }

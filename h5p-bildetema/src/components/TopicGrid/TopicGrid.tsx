@@ -61,11 +61,6 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             />
           );
         })}
-
-        <div className={styles.placeholder} />
-        <div className={styles.placeholder} />
-        <div className={styles.placeholder} />
-        <div className={styles.placeholder} />
       </div>
     );
   }
