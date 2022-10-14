@@ -66,7 +66,7 @@ export const PrintButton: React.FC<PrintProps> = ({
       <div className={styles.printDropdown} ref={dropdownRef}>
         <button
           type="button"
-          className={isActive ? styles.printButtonActive : styles.printButton}
+          className={`${isActive ? styles.printButtonActive : styles.printButton} ${(!showTopicImageView || !isWordView) ? styles.printGridButton : ""}`}
           onClick={() => {
             if (!showTopicImageView || !isWordView) {
               handleDropDownClicked();
