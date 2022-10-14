@@ -3,14 +3,12 @@ import { FC } from "react";
 
 export type SpeakerIconProps = {
   className?: string;
-  transform?: string;
 };
 export const SpeakerIcon: FC<SpeakerIconProps> = ({ className }) => (
   <svg
     className={className}
     viewBox="0 0 25 24"
     xmlns="http://www.w3.org/2000/svg"
-    direction="inherit"
   >
     <g>
       <path d="M16.8999 8.5C18.2329 10.278 18.2329 13.722 16.8999 15.5" />
