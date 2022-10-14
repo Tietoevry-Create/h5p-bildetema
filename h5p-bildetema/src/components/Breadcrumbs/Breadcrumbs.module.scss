@@ -100,6 +100,10 @@
     display: flex;
     align-items: center;
 
+    [class*="rtl"] & svg path {
+      transform: scale(1, 1);
+    }
+
     @include breakpoint-min($small) {
       display: none;
     }
