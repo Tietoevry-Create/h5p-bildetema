@@ -5,7 +5,7 @@ export const library: Library = {
   machineName: "H5P.Bildetema",
   majorVersion: 1,
   minorVersion: 0,
-  patchVersion: 103,
+  patchVersion: 104,
   runnable: 1,
   preloadedJs: [
     {
