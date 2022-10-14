@@ -13,12 +13,14 @@ import styles from "./Header.module.scss";
 export type HeaderProps = {
   topicIds: TopicIds;
   favLanguages: Language[];
+  firstTime: boolean;
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
   favLanguages,
   topicIds,
+  firstTime,
   handleToggleFavoriteLanguage,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   const HomeLinkPath = `/${currentLanguageCode}`;
 
   React.useEffect(() => {
-    setLangSelectorIsShown(false);
+    setLangSelectorIsShown(firstTime);
   }, [pathname]);
 
   // TODO: Add better method to find screen width
