@@ -15,6 +15,7 @@ export type LanguageDropdownProps = {
   isMobile: boolean | null;
   search: string;
   topicIds: TopicIds;
+  firstTime: boolean;
 };
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
@@ -26,6 +27,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   currentLanguageCode,
   isMobile,
   search,
+  firstTime,
   topicIds,
 }) => {
   const [isActive, setIsActive] = useState(false);
@@ -45,7 +47,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   };
 
   React.useEffect(() => {
-    setIsActive(false);
+    setIsActive(firstTime);
   }, [currentLanguageCode]);
 
   return (

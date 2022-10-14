@@ -126,6 +126,7 @@ export const Header: React.FC<HeaderProps> = ({
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             currentLanguageCode={currentLanguageCode}
             isMobile={isMobile}
+            firstTime={firstTime}
           />
         </div>
       </div>
