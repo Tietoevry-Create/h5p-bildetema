@@ -76,7 +76,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     setFavLanguages([...languages]);
   }
 
-  const currentLanguageDirection: boolean = React.useMemo(() => {
+  const directionRtl: boolean = React.useMemo(() => {
     const currentLanguageCode: LanguageCode =
       pathname.split("/").length >= 2
         ? (pathname.split("/")[1] as LanguageCode)
@@ -183,9 +183,12 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
           showTopicImageView={showTopicImageView}
-          rtl={currentLanguageDirection}
+          rtl={directionRtl}
         />
-        <div id="bildetemaMain" className={styles.body}>
+        <div
+          id="bildetemaMain"
+          className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
+        >
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />

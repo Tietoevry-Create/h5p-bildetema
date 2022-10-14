@@ -24,6 +24,10 @@
   &.disabled {
     pointer-events: none;
   }
+
+  [class*="rtl"] & {
+    direction: rtl;
+  }
 }
 
 .gridElementBig {

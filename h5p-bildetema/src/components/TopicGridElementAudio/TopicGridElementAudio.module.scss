@@ -2,6 +2,11 @@
 
 .wordAudio {
   height: 1.5rem;
+
+  [class*="rtl"] & svg g {
+    transform: scale(-1, 1);
+    transform-origin: center center;
+  }
 }
 
 .wordAudio button {

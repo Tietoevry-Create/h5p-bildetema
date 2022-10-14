@@ -10,6 +10,11 @@
   @media print {
     padding: 0;
   }
+
+  [class*="rtl"] & svg g {
+    transform: scale(-1, 1);
+    transform-origin: center center;
+  }
 }
 
 .wordAudio button {

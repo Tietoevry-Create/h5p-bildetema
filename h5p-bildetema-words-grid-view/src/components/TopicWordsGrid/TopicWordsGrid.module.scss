@@ -1,6 +1,7 @@
 @use "../../../../common/abstracts" as *;
 
 .topicgrid {
+  direction: ltr;
   display: inline-grid;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));

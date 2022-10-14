@@ -7,12 +7,10 @@ import styles from "./TopicGridElementAudio.module.scss";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
-  rtl: boolean;
 };
 
 export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   audioFiles,
-  rtl,
 }) => {
   const [playing, setPlaying] = useState(false);
 
@@ -59,7 +57,6 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
       <button type="button" onClick={toggleAudio}>
         <SpeakerIcon
           className={playing ? styles.audioIconActive : styles.audioIcon}
-          transform={rtl ? "scale(-1,1)" : ""}
         />
         <span className={styles.visuallyHidden}>
           {playing ? pauseAudioLabel : playAudioLabel}

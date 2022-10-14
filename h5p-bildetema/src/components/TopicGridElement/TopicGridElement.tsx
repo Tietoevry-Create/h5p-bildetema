@@ -16,7 +16,6 @@ export type TopicGridElementProps = {
   images: ImageUrl[];
   topicSize: TopicGridSizes;
   languageCode: LanguageCode;
-  rtl: boolean;
 };
 
 export const TopicGridElement: React.FC<TopicGridElementProps> = ({
@@ -25,7 +24,6 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   images,
   topicSize,
   languageCode,
-  rtl,
 }) => {
   const audioFiles = topic.labelTranslations.get(languageCode)?.audioFiles;
   const topicCardClassName =
@@ -45,9 +43,9 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   return (
     <Link className={topicCardClassName} to={`${linkTo}${search}`}>
       <img className={styles.topicImage} src={imageSrc} alt="" />
-      <span className={`${gridElementClassName} ${rtl ? styles.rtl : ""}`}>
+      <span className={`${gridElementClassName}`}>
         {title}
-        <TopicGridElementAudio audioFiles={audioFiles} rtl={rtl} />
+        <TopicGridElementAudio audioFiles={audioFiles} />
       </span>
     </Link>
   );

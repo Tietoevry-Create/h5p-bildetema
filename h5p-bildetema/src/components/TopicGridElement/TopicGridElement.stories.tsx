@@ -26,7 +26,6 @@ const fallbackArgs: TopicGridElementProps = {
   topicSize: TopicGridSizes.Big,
   title: "Dyr",
   languageCode: "nob",
-  rtl: false,
 };
 
 export default {

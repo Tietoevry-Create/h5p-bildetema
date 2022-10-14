@@ -2,6 +2,7 @@
 
 .gridBig,
 .gridCompact {
+  direction: ltr;
   display: grid;
   grid-gap: $spacing--24;
 

@@ -14,7 +14,6 @@ describe(Breadcrumbs.name, () => {
         <Breadcrumbs
           breadCrumbs={breadCrumbs}
           currentLanguageCode={currentLanguageCode}
-          rtl={false}
         />
         ,
       </HashRouter>,
@@ -26,7 +25,6 @@ describe(Breadcrumbs.name, () => {
     const container = template({
       breadCrumbs: [],
       currentLanguageCode: "nob",
-      rtl: false,
     });
 
     expect(container.textContent).toEqual(",");
@@ -39,7 +37,6 @@ describe(Breadcrumbs.name, () => {
     const container = template({
       breadCrumbs: [{ label: "Tema", path: "/tema" }],
       currentLanguageCode: "nob",
-      rtl: false,
     });
     expect(container.textContent).toEqual("Tema,");
     expect(container.querySelector("h1")).toBeTruthy();
@@ -54,7 +51,6 @@ describe(Breadcrumbs.name, () => {
         { label: "Dyr", path: "/tema/dyr" },
       ],
       currentLanguageCode: "nob",
-      rtl: false,
     });
     expect(container.textContent).toContain("Dyr,");
     expect(container.querySelector("span")).toBeTruthy();
