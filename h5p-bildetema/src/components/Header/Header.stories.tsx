@@ -31,6 +31,7 @@ const Template = (): JSX.Element => {
     <Header
       topicIds={{}}
       favLanguages={languages}
+      firstTime={false}
       handleToggleFavoriteLanguage={() => null}
     />
   );

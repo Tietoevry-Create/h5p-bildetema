@@ -23,6 +23,7 @@ const defaultArgs: LanguageDropdownProps = {
   handleSelectorVisibility: () => null,
   handleToggleFavoriteLanguage: () => null,
   langSelectorIsShown: true,
+  firstTime: true,
   favLanguages: [
     {
       label: "Norsk (Bokmål)",
