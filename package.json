@@ -25,11 +25,10 @@
     "h5p-utils": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vitest": "^0.24.1",
     "xlsx": "file:vendor/xlsx-0.18.10.tgz"
   },
   "devDependencies": {
-    "@types/puppeteer": "^5.4.6",
+    "@types/puppeteer": "^5.4.7",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
@@ -46,12 +45,13 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.6",
-    "happy-dom": "^7.5.7",
+    "happy-dom": "^7.5.10",
     "jsdom": "^20.0.1",
-    "postcss": "^8.4.17",
+    "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "puppeteer": "^18.2.1",
     "tsx": "^3.10.1",
-    "vite": "^3.0.8"
+    "vite": "^3.1.8",
+    "vitest": "^0.24.1"
   }
 }
