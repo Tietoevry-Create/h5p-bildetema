@@ -1,11 +1,7 @@
 import React from "react";
 import { useContentId } from "use-h5p";
 import { useLocation } from "react-router-dom";
-import {
-  Language,
-  TopicGridSizes,
-  TopicIds,
-} from "../../../../common/types/types";
+import { TopicGridSizes, TopicIds } from "../../../../common/types/types";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
@@ -43,22 +39,29 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
-      <span className={styles.tools}>
-        <PrintButton topicIds={topicIds} showWrittenWords={toggleChecked} />
-        {!showTopicImageView && (
-          <Toggle
-            label={showWrittenWordsLabel}
-            checked={toggleChecked}
-            handleChange={handleToggleChange}
-            id={`toggle-${contentId}`}
-          />
-        )}
-      </span>
+      !showTopicImageView && (
+        <Toggle
+          label={showWrittenWordsLabel}
+          checked={toggleChecked}
+          handleChange={handleToggleChange}
+          id={`toggle-${contentId}`}
+        />
+      )
     ) : (
       <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
     );
 
-    return element;
+    return (
+      <span className={styles.tools}>
+        <PrintButton
+          topicIds={topicIds}
+          showWrittenWords={toggleChecked}
+          isWordView={isWordView}
+          showTopicImageView={showTopicImageView}
+        />
+        {element}
+      </span>
+    );
   };
 
   return (

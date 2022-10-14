@@ -6,6 +6,10 @@
   &.selected button {
     outline: $outline-on-light-background;
   }
+
+  @media print {
+    padding: 0;
+  }
 }
 
 .wordAudio button {
@@ -15,12 +19,21 @@
   display: flex;
   gap: 0.25rem;
   padding: 0.25rem 0.5rem;
+
+  @media print {
+    padding: 0;
+  }
 }
 
 .word_label {
   font-size: $font-size-24;
   line-height: 1.4;
   text-align: left;
+
+  @media print {
+    line-height: 1.2;
+    font-size: $font-size-18;
+  }
 }
 
 .audioIconSpan {

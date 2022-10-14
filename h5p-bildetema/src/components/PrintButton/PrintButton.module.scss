@@ -10,7 +10,7 @@
   font-size: $font-size-18;
   font-weight: normal;
   line-height: 1;
-  padding: 0.375rem 0.75rem 0.375rem 1rem;
+  padding: 0.375rem 1rem;
 
   &:hover {
     background-color: #fff;
@@ -29,6 +29,10 @@
     display: flex;
     gap: 0.5rem;
   }
+}
+
+.printGridButton {
+  padding: 0.375rem 0.75rem 0.375rem 1rem;
 }
 
 .printButtonActive {

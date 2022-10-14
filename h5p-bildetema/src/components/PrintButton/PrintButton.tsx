@@ -10,11 +10,15 @@ import { PrintWords } from "../PrintWords/PrintWords";
 type PrintProps = {
   topicIds: TopicIds;
   showWrittenWords: boolean;
+  showTopicImageView: boolean;
+  isWordView: boolean;
 };
 
 export const PrintButton: React.FC<PrintProps> = ({
   topicIds,
   showWrittenWords,
+  isWordView,
+  showTopicImageView,
 }) => {
   const [imagesPrRow, setImagesPrRow] = React.useState(3);
   const [printClicked, setPrintClicked] = React.useState(false);
@@ -62,23 +66,34 @@ export const PrintButton: React.FC<PrintProps> = ({
       <div className={styles.printDropdown} ref={dropdownRef}>
         <button
           type="button"
-          className={isActive ? styles.printButtonActive : styles.printButton}
-          onClick={handleDropDownClicked}
+          className={`${
+            isActive ? styles.printButtonActive : styles.printButton
+          } ${
+            !showTopicImageView || !isWordView ? styles.printGridButton : ""
+          }`}
+          onClick={() => {
+            if (!showTopicImageView || !isWordView) {
+              handleDropDownClicked();
+              return;
+            }
+            window.print();
+          }}
         >
           <span className={styles.printButtonWrapper}>
             <PrintIcon />
             {printLabel && <span>{printLabel}</span>}
-            {viewPrintDropDown ? (
-              <LanguageMenuArrowIcon
-                transform="scale(0.9) rotate(180)"
-                transformOrigin="50% 50%"
-              />
-            ) : (
-              <LanguageMenuArrowIcon
-                transform="scale(0.9)"
-                transformOrigin="50% 50%"
-              />
-            )}
+            {(!showTopicImageView || !isWordView) &&
+              (viewPrintDropDown ? (
+                <LanguageMenuArrowIcon
+                  transform="scale(0.9) rotate(180)"
+                  transformOrigin="50% 50%"
+                />
+              ) : (
+                <LanguageMenuArrowIcon
+                  transform="scale(0.9)"
+                  transformOrigin="50% 50%"
+                />
+              ))}
           </span>
         </button>
         <div
@@ -110,6 +125,7 @@ export const PrintButton: React.FC<PrintProps> = ({
             topicIds={topicIds}
             showWrittenWords={showWrittenWords}
             imagesPrRow={imagesPrRow}
+            isWordView={isWordView}
           />
         </div>
       )}
