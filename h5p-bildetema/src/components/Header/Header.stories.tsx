@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
@@ -10,6 +10,7 @@ export default {
 } as ComponentMeta<typeof Header>;
 
 const Template = (): JSX.Element => {
+  const [firstTime, setFirstTime] = useState(false);
   const languages: Array<Language> = [
     {
       label: "Norsk (Bokmål)",
@@ -31,7 +32,8 @@ const Template = (): JSX.Element => {
     <Header
       topicIds={{}}
       favLanguages={languages}
-      firstTime={false}
+      firstTime={firstTime}
+      setFirstTime={setFirstTime}
       handleToggleFavoriteLanguage={() => null}
     />
   );

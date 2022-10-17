@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
@@ -14,6 +21,7 @@ export type HeaderProps = {
   topicIds: TopicIds;
   favLanguages: Language[];
   firstTime: boolean;
+  setFirstTime: Dispatch<SetStateAction<boolean>>;
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
@@ -21,6 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
   favLanguages,
   topicIds,
   firstTime,
+  setFirstTime,
   handleToggleFavoriteLanguage,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -39,7 +48,6 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
-  const [firstTimeVisit, setFirstTimeVisit] = useState(true);
 
   const currentLanguageCode: LanguageCode =
     pathname.split("/").length >= 2
@@ -51,9 +59,9 @@ export const Header: React.FC<HeaderProps> = ({
   const HomeLinkPath = `/${currentLanguageCode}`;
 
   React.useEffect(() => {
-    if (firstTime === true && firstTimeVisit === true) {
+    if (firstTime === true) {
       setLangSelectorIsShown(true);
-      setFirstTimeVisit(false);
+      setFirstTime(false);
     } else {
       setLangSelectorIsShown(false);
     }

@@ -51,7 +51,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const loadingLabel = useL10n("pageIsLoading");
   const pageTitle = useL10n("headerTitle");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
-  const [firstTime, setFirstTIme] = useState(false);
+  const [firstTime, setFirstTime] = useState(false);
 
   const smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const [topicsSize, setTopicsSize] = useState(
@@ -70,7 +70,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   if (!favLanguages.length && languagesFromDB) {
     const languages: Language[] = [];
-    setFirstTIme(true);
+    setFirstTime(true);
     defaultLanguages.forEach(code => {
       const lang = languagesFromDB.find(el => el.code === code);
       if (lang) languages.push(lang);
@@ -173,6 +173,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           topicIds={topicIds}
           favLanguages={favLanguages}
           firstTime={firstTime}
+          setFirstTime={setFirstTime}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
         <LanguageFavorites topicIds={topicIds} favLanguages={favLanguages} />
