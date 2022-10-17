@@ -85,10 +85,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     const currentLanguage: Language | undefined = favLanguages.find(
       language => language.code === currentLanguageCode,
     );
-    if (currentLanguage?.rtl) {
-      return true;
-    }
-    return false;
+
+    return !!currentLanguage?.rtl;
   }, [favLanguages, pathname]);
 
   const handleToggleChange = (value: boolean): void => {
