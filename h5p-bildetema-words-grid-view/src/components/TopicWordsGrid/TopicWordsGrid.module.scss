@@ -1,9 +1,34 @@
 @use "../../../../common/abstracts" as *;
 
+$gap: $spacing--24;
+
 .topicgrid {
-  display: inline-grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: $spacing--24;
+  direction: ltr;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $gap;
   width: 100%;
+
+  [class*="rtl"] & {
+    justify-content: flex-end;
+  }
+
+  & > div {
+    box-sizing: border-box;
+    width: 100%;
+
+    @include breakpoint-min(700px) {
+      width: calc((100% - #{$gap}) / 2);
+    }
+
+    @include breakpoint-min(1040px) {
+      width: calc((100% - (#{$gap} * 2)) / 3);
+    }
+
+    @include breakpoint-min(1390px) {
+      width: calc((100% - (#{$gap} * 3)) / 4);
+    }
+  }
 }

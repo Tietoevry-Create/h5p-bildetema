@@ -5,6 +5,7 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  gap: 0.75em;
 }
 
 .containerFocused {
@@ -14,7 +15,6 @@
 .label {
   font-weight: normal;
   line-height: 1;
-  margin-right: 0.75em;
 }
 
 .toggle {

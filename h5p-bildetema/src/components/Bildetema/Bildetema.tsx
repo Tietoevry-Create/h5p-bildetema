@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 import {
   Language,
   TopicGridSizes,
@@ -15,6 +21,7 @@ import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -26,6 +33,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   isLoadingData,
 }) => {
   const { languages: languagesFromDB } = useDBContext() || {};
+  const { pathname } = useLocation();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -67,6 +75,19 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     });
     setFavLanguages([...languages]);
   }
+
+  const directionRtl: boolean = React.useMemo(() => {
+    const currentLanguageCode: LanguageCode =
+      pathname.split("/").length >= 2
+        ? (pathname.split("/")[1] as LanguageCode)
+        : "nob";
+
+    const currentLanguage: Language | undefined = favLanguages.find(
+      language => language.code === currentLanguageCode,
+    );
+
+    return !!currentLanguage?.rtl;
+  }, [favLanguages, pathname]);
 
   const handleToggleChange = (value: boolean): void => {
     setSearchParams(`${wordsVisibleParam}=${value}`);
@@ -160,8 +181,12 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           handleToggleChange={handleToggleChange}
           toggleChecked={showWrittenWords}
           showTopicImageView={showTopicImageView}
+          rtl={directionRtl}
         />
-        <div id="bildetemaMain" className={styles.body}>
+        <div
+          id="bildetemaMain"
+          className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
+        >
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />

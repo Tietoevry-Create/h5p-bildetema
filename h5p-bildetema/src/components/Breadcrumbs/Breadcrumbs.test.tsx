@@ -22,7 +22,10 @@ describe(Breadcrumbs.name, () => {
   };
 
   it("Should render nothing if there are no links", () => {
-    const container = template({ breadCrumbs: [], currentLanguageCode: "nob" });
+    const container = template({
+      breadCrumbs: [],
+      currentLanguageCode: "nob",
+    });
 
     expect(container.textContent).toEqual(",");
     expect(container.querySelector("div")).toBeTruthy();
