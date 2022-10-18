@@ -9,6 +9,11 @@
   height: auto;
   width: auto;
 
+  [class*="rtl"] & {
+    left: auto;
+    right: 0;
+  }
+
   &Vertical {
     height: 100%;
   }
