@@ -15,13 +15,14 @@
     "test:watch": "concurrently 'vitest' 'npm run test:watch --prefix h5p-bildetema' 'npm run test:watch --prefix h5p-bildetema-words-grid-view' 'npm test:watch --prefix h5p-bildetema-words-topic-image' 'npm test:watch --prefix h5p-editor-bildetema-words-topic-image'",
     "docker:build": "docker build -t h5p-bildetema .",
     "docker:run": "./docker_run_with_all_local_libs_mounted.sh h5p-bildetema 8080",
-    "docker:run-no-logs": "npm run docker:run -- -d"
+    "docker:run-no-logs": "npm run docker:run -- -d",
+    "license-checker": "npx license-checker --summary --production --excludePackages 'h5p-bildetema' --onlyAllow 'MIT;ISC;Apache-2.0;Apache 2.0;Apache*;BSD;WTFPL;Artistic-2.0;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Unlicense;Public Domain;'"
   },
   "dependencies": {
     "@types/cli-interact": "^0.1.1",
     "@vitejs/plugin-react": "^2.1.0",
     "core-js": "^3.25.5",
-    "h5p-types": "^1.1.0",
+    "h5p-types": "^1.1.1",
     "h5p-utils": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -47,6 +48,7 @@
     "eslint-plugin-storybook": "^0.6.6",
     "happy-dom": "^7.5.10",
     "jsdom": "^20.0.1",
+    "license-checker": "^25.0.1",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "puppeteer": "^18.2.1",
