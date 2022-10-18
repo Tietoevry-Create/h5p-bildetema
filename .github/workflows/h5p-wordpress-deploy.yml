@@ -13,8 +13,8 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  pack-and-deploy-h5p-wordpress-test:
-    environment: test-wordpress
+  pack-and-deploy-h5p-wordpress-dev:
+    environment: dev-wordpress
     env:
       WORDPRESS_URL: "${{secrets.WORDPRESS_URL}}"
       WORDPRESS_USER: ${{secrets.WORDPRESS_USER}}
@@ -42,7 +42,7 @@ jobs:
 
   pack-and-deploy-h5p-wordpress-prod:
     environment: prod-wordpress
-    needs: [pack-and-deploy-h5p-wordpress-test]
+    needs: [pack-and-deploy-h5p-wordpress-dev]
     env:
       WORDPRESS_URL: "${{secrets.WORDPRESS_URL}}"
       WORDPRESS_USER: ${{secrets.WORDPRESS_USER}}
