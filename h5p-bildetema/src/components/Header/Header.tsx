@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
@@ -13,12 +20,16 @@ import styles from "./Header.module.scss";
 export type HeaderProps = {
   topicIds: TopicIds;
   favLanguages: Language[];
+  firstTime: boolean;
+  setFirstTime: Dispatch<SetStateAction<boolean>>;
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
   favLanguages,
   topicIds,
+  firstTime,
+  setFirstTime,
   handleToggleFavoriteLanguage,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +59,12 @@ export const Header: React.FC<HeaderProps> = ({
   const HomeLinkPath = `/${currentLanguageCode}`;
 
   React.useEffect(() => {
-    setLangSelectorIsShown(false);
+    if (firstTime === true) {
+      setLangSelectorIsShown(true);
+      setFirstTime(false);
+    } else {
+      setLangSelectorIsShown(false);
+    }
   }, [pathname]);
 
   // TODO: Add better method to find screen width
@@ -124,6 +140,7 @@ export const Header: React.FC<HeaderProps> = ({
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             currentLanguageCode={currentLanguageCode}
             isMobile={isMobile}
+            firstTime={firstTime}
           />
         </div>
       </div>
