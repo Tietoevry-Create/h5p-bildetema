@@ -31,7 +31,8 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
         }}
         navigation={multipleImages}
         modules={multipleImages ? [Pagination, Navigation] : []}
-        loop={multipleImages}
+        // loop={multipleImages}
+        loop={false}
         spaceBetween={10}
       >
         {images.length !== 0 ? (
