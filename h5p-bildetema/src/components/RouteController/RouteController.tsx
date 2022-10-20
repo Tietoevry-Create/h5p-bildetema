@@ -101,7 +101,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
       const subTopicIsSetInUrl = !!subTopicId;
 
       if (topicHasSubTopics && subTopicIsSetInUrl) {
-        const subTopics = Array.from(topic.subTopics.values());
+        const { subTopics } = topic;
 
         const subTopic = findTopic(subTopics, currentLanguage, subTopicId);
         newSubTopicId = subTopic?.id;

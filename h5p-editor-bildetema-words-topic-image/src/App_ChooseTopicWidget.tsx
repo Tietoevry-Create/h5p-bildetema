@@ -36,7 +36,9 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
       setCurrentTopic(newCurrentTopic);
 
       if (subTopicId) {
-        setCurrentSubTopic(newCurrentTopic?.subTopics.get(subTopicId));
+        setCurrentSubTopic(
+          newCurrentTopic?.subTopics.find(s => s.id === subTopicId),
+        );
       }
     }
   }, [topics, topicId, subTopicId]);

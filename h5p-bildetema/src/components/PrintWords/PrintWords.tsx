@@ -43,7 +43,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
           return subTopicId
             ? topics
                 ?.find(t => t.id === topicId)
-                ?.subTopics?.get(subTopicId)
+                ?.subTopics?.find(s => s.id === subTopicId)
                 ?.words?.get(currentLanguageCode)
             : topics
                 ?.find(t => t.id === topicId)
@@ -56,7 +56,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
 
         const subTopics = topics?.find(t => t.id === topicId)?.subTopics;
         if (subTopics) {
-          return topicsToWords(Array.from(subTopics.values()));
+          return topicsToWords(subTopics);
         }
 
         return undefined;

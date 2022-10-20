@@ -20,7 +20,7 @@ export const getLanguagePath = (
   if (!subTopicId) return `/${language.code}/${topicPath}${search}`;
 
   const subTopicWord = topic?.subTopics
-    .get(subTopicId)
+    .find(sTopic => sTopic.id === subTopicId)
     ?.labelTranslations.get(language.code);
   if (!subTopicWord) return `/${language.code}/${topicPath}${search}`;
   const subTopicPath =

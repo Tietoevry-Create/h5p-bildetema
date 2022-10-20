@@ -12,7 +12,7 @@ export default {
 const baseTopic: Topic = {
   id: "1",
   label: "",
-  subTopics: new Map<string, Topic>(),
+  subTopics: [],
   words: new Map<LanguageCode, Word[]>(),
   labelTranslations: new Map<LanguageCode, Word>(),
   images: [
@@ -21,8 +21,8 @@ const baseTopic: Topic = {
     },
   ],
 };
-const subTopics = new Map<string, Topic>();
-subTopics.set("1", { ...baseTopic, id: "1", label: "Subtopic 1.1" });
+const subTopics: Topic[] = [];
+subTopics.push({ ...baseTopic, id: "1", label: "Subtopic 1.1" });
 
 const Template: ComponentStory<typeof TopicChooser> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading

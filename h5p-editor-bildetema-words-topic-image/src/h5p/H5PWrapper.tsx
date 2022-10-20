@@ -115,7 +115,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
 
     if (subTopicId) {
       return (
-        topic?.subTopics.get(subTopicId)?.words ??
+        topic?.subTopics.find(s => s.id === subTopicId)?.words ??
         new Map<LanguageCode, Word[]>()
       );
     }

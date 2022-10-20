@@ -89,7 +89,7 @@ export const validRoute = (
     return { loading: false };
   }
 
-  const subTopics = Array.from(topic.subTopics.values());
+  const { subTopics } = topic;
 
   if (!subTopicId) {
     setTopicIds({ topicId: topic.id });
