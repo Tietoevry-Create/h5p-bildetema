@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { AudioFile } from "../../../../common/types/AudioFile";
 import { useL10n } from "../../hooks/useL10n";
@@ -15,6 +16,8 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   const [playing, setPlaying] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const location = useLocation();
 
   const toggleAudio = (event: React.MouseEvent): void => {
     event.preventDefault();
@@ -37,6 +40,10 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   const handleAudioEnded = (): void => {
     setPlaying(false);
   };
+
+  React.useEffect(() => {
+    handleAudioEnded();
+  }, [location]);
 
   useEffect(() => {
     // Reload sources whenever we get new audiofiles
