@@ -32,8 +32,8 @@
     "@types/puppeteer": "^5.4.7",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.40.0",
-    "@typescript-eslint/parser": "^5.40.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
     "autoprefixer": "^10.4.12",
     "cli-interact": "^0.1.9",
     "concurrently": "^7.4.0",
@@ -46,14 +46,14 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.6",
-    "happy-dom": "^7.5.10",
+    "happy-dom": "^7.6.0",
     "jsdom": "^20.0.1",
     "license-checker": "^25.0.1",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
-    "puppeteer": "^18.2.1",
-    "tsx": "^3.10.1",
+    "puppeteer": "^19.0.0",
+    "tsx": "^3.10.4",
     "vite": "^3.1.8",
-    "vitest": "^0.24.1"
+    "vitest": "^0.24.3"
   }
 }
