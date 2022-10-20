@@ -59,8 +59,8 @@ export const App: FC<AppProps> = ({
           t => t.id === params.selectedTopic.topicId,
         );
 
-        const subTopic = rootTopic?.subTopics.get(
-          params.selectedTopic.subTopicId,
+        const subTopic = rootTopic?.subTopics.find(
+          s => s.id === params.selectedTopic.subTopicId,
         );
 
         if (subTopic) {

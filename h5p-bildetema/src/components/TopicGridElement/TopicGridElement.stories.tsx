@@ -2,14 +2,14 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicGridSizes, Topic, Word } from "../../../../common/types/types";
+import { TopicGridSizes, Word } from "../../../../common/types/types";
 import { TopicGridElement, TopicGridElementProps } from "./TopicGridElement";
 
 const fallbackArgs: TopicGridElementProps = {
   topic: {
     id: "T001",
     label: "",
-    subTopics: new Map<string, Topic>(),
+    subTopics: [],
     words: new Map<LanguageCode, Word[]>(),
     labelTranslations: new Map<LanguageCode, Word>(),
     images: [

@@ -13,7 +13,7 @@ export default {
 const baseTopic: Topic = {
   id: "1",
   label: "",
-  subTopics: new Map<string, Topic>(),
+  subTopics: [],
   words: new Map<LanguageCode, Word[]>(),
   labelTranslations: new Map<LanguageCode, Word>(),
   images: [

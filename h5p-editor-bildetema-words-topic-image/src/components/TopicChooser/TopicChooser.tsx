@@ -34,7 +34,9 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
     event: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
     if (setCurrentSubTopic) {
-      const selectedSubTopic = topic?.subTopics.get(event.target.value);
+      const selectedSubTopic = topic?.subTopics.find(
+        s => s.id === event.target.value,
+      );
       if (selectedSubTopic) {
         setCurrentSubTopic(selectedSubTopic);
       }
@@ -69,7 +71,7 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
               </option>
             ))}
           </select>
-          {topic && topic.subTopics && topic.subTopics.size > 0 && (
+          {topic && topic.subTopics && topic.subTopics.length > 0 && (
             <select
               className={styles.gridCompact}
               onChange={onSubTopicSelected}
@@ -79,7 +81,7 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
               <option value="default" disabled>
                 {chooseSubTopicLabel}
               </option>
-              {Array.from(topic.subTopics?.values()).map(item => (
+              {topic.subTopics.map(item => (
                 <option key={item.id} value={item.id}>
                   {item.label}
                 </option>

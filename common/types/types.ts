@@ -25,7 +25,7 @@ export type Topic = {
   id: string;
   label: string;
   labelTranslations: Map<LanguageCode, Word>;
-  subTopics: Map<string, Topic>;
+  subTopics: Topic[];
   words: Map<LanguageCode, Word[]>;
   images: ImageUrl[];
 };
