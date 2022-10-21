@@ -5,7 +5,7 @@ export const library: Library = {
   machineName: "H5P.BildetemaWordsGridView",
   majorVersion: 1,
   minorVersion: 0,
-  patchVersion: 43,
+  patchVersion: 44,
   runnable: 1,
   preloadedJs: [
     {
