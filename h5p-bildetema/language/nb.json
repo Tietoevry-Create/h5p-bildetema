@@ -4,6 +4,12 @@
       "label": "Oversettelser",
       "fields": [
         {
+          "label": "Språkkode",
+          "description":
+            "Språkkoden skal være skrevet med to tegn (engelsk: en, norsk bokmål: nb)",
+          "default": "nb"
+        },
+        {
           "label": "Siden laster",
           "default": "Laster…"
         },
@@ -196,6 +202,118 @@
           "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
         }
       ]
+    },
+    {
+      "label": "Default languages",
+      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
+      "entity": "Språk",
+      "field": {
+        "label": "Språk",
+        "default": "nob",
+        "options": [
+          {
+            "label": "Arabisk",
+            "value": "ara"
+          },
+          {
+            "label": "Sorani",
+            "value": "ckb"
+          },
+          {
+            "label": "Dansk",
+            "value": "dan"
+          },
+          {
+            "label": "Engelsk",
+            "value": "eng"
+          },
+          {
+            "label": "Persisk",
+            "value": "fas"
+          },
+          {
+            "label": "Fransk",
+            "value": "fra"
+          },
+          {
+            "label": "Islandsk",
+            "value": "isl"
+          },
+          {
+            "label": "Kurmanji",
+            "value": "kmr"
+          },
+          {
+            "label": "Litauisk",
+            "value": "lit"
+          },
+          {
+            "label": "Norsk (nynorsk)",
+            "value": "nno"
+          },
+          {
+            "label": "Norsk (bokmål)",
+            "value": "nob"
+          },
+          {
+            "label": "Polsk",
+            "value": "pol"
+          },
+          {
+            "label": "Dari",
+            "value": "prs"
+          },
+          {
+            "label": "Pashto",
+            "value": "pus"
+          },
+          {
+            "label": "Russisk",
+            "value": "rus"
+          },
+          {
+            "label": "Nordsamisk",
+            "value": "sme"
+          },
+          {
+            "label": "Somalisk",
+            "value": "som"
+          },
+          {
+            "label": "Spansk",
+            "value": "spa"
+          },
+          {
+            "label": "Svensk",
+            "value": "swe"
+          },
+          {
+            "label": "Tagalog",
+            "value": "tgl"
+          },
+          {
+            "label": "Thai",
+            "value": "tha"
+          },
+          {
+            "label": "Tigrinja",
+            "value": "tir"
+          },
+          {
+            "label": "Ukrainsk",
+            "value": "ukr"
+          },
+          {
+            "label": "Vietnamesisk",
+            "value": "vie"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Backend-url",
+      "description": "The Url to the json database",
+      "default": "https://cdn-devbildetema.azureedge.net/data/database.json"
     }
   ]
 }
