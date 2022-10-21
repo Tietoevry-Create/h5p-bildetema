@@ -5,7 +5,7 @@
 // -----------------------------------
 
 export type TranslationKey =
-  | "languageCode"
+  | "htmlLanguageCode"
   | "pageIsLoading"
   | "mainContentLink"
   | "showWrittenWordsLabel"
