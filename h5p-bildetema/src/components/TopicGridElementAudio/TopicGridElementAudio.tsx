@@ -17,8 +17,6 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const location = useLocation();
-
   const toggleAudio = (event: React.MouseEvent): void => {
     event.preventDefault();
 
@@ -41,13 +39,10 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
     setPlaying(false);
   };
 
-  React.useEffect(() => {
-    handleAudioEnded();
-  }, [location]);
-
   useEffect(() => {
     // Reload sources whenever we get new audiofiles
     audioRef.current?.load();
+    handleAudioEnded();
   }, [audioFiles]);
 
   const playAudioLabel = useL10n("playAudio");
