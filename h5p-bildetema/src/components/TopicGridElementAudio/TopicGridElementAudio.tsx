@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { AudioFile } from "../../../../common/types/AudioFile";
 import { useL10n } from "../../hooks/useL10n";
@@ -41,6 +42,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   useEffect(() => {
     // Reload sources whenever we get new audiofiles
     audioRef.current?.load();
+    handleAudioEnded();
   }, [audioFiles]);
 
   const playAudioLabel = useL10n("playAudio");

@@ -38,6 +38,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
   useEffect(() => {
     // Reload sources whenever the language changes
     audioRef.current?.load();
+    setPlaying(false);
   }, [word]);
 
   const playAudioLabel = useL10n("playAudio");
