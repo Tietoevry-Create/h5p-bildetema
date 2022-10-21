@@ -30,6 +30,7 @@ export class H5PWrapper
     }
 
     const { l10n, defaultLanguages, backendUrl } = this.params;
+    const { languageCode } = l10n;
 
     const uniqueDefaultLanguages = [...new Set(defaultLanguages)];
     const backendUrlWithoutTrailingSlash = backendUrl?.endsWith("/")
@@ -38,6 +39,7 @@ export class H5PWrapper
 
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-bildetema");
+    document.documentElement.lang = languageCode;
 
     const root = createRoot(this.wrapper);
     root.render(

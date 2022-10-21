@@ -27,6 +27,14 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     label: "Localize",
     fields: [
       {
+        label: "Language code",
+        name: "languageCode",
+        description:
+          "Two character language code, used for setting language in code (English: en, Norwegian Bokmål: nb)",
+        default: "en",
+        type: "text",
+      },
+      {
         label: "Page is loading",
         name: "pageIsLoading",
         default: "Loading…",
