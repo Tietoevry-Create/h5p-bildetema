@@ -18,3 +18,7 @@
   height: 250px;
   justify-content: center;
 }
+
+.visuallyHidden {
+  @include visually-hidden;
+}

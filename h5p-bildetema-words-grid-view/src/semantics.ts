@@ -63,6 +63,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "Pause audio",
         type: "text",
       },
+      {
+        label: "Previous image label",
+        name: "prevImageLabel",
+        default: "Previous image",
+        type: "text",
+      },
+      {
+        label: "Next image label",
+        name: "nextImageLabel",
+        default: "Next image",
+        type: "text",
+      },
     ],
   },
   {
