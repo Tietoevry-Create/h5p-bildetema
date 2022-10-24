@@ -2,6 +2,7 @@
   "scripts": {
     "update-wordpress": "tsx puppeteer/update-wordpress.ts",
     "h5p-pack:all": "h5p pack h5p-bildetema h5p-bildetema-words-grid-view/ h5p-bildetema-words-topic-image/ h5p-editor-bildetema-words-topic-image/ all.h5p",
+    "pack-and-update-wordpress": "npm run h5p-pack:all && npm run update-wordpress",
     "setup-drupal": "tsx puppeteer/setup-drupal.ts",
     "bump-library": "tsx bumpLibrary.ts",
     "bump-and-build": "npm run bump-library && npm run generate-library",
@@ -16,6 +17,9 @@
     "docker:build": "docker build -t h5p-bildetema .",
     "docker:run": "./docker_run_with_all_local_libs_mounted.sh h5p-bildetema 8080",
     "docker:run-no-logs": "npm run docker:run -- -d",
+    "docker:set-wordpress-premissions": "docker exec -it h5p-bildetema-wordpress-1 chown -R www-data:www-data /var/www/html",
+    "docker:run-wordpress": "docker compose up",
+    "docker:run-wordpress-no-logs": "npm run docker:run-wordpress -- -d",
     "check-licenses": "npx license-checker --summary --production --excludePackages 'h5p-bildetema' --onlyAllow 'MIT;ISC;Apache-2.0;Apache 2.0;Apache*;BSD;WTFPL;Artistic-2.0;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Unlicense;Public Domain;'"
   },
   "dependencies": {

@@ -48,7 +48,7 @@ async function updateLibrary(
 (async () => {
   const url = process.env.WORDPRESS_URL
     ? process.env.WORDPRESS_URL
-    : "http://localhost:8080/wp-admin/";
+    : "http://localhost:8090/wp-admin/";
   const libUrl = `${url}admin.php?page=h5p_libraries`;
   const h5pFilePath = "./all.h5p";
 

@@ -1,0 +1,21 @@
+services:
+  mariadb:
+    restart: unless-stopped
+    image: stiahau/h5p-bildetema-mariadb:0.0.1
+    environment:
+      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+  wordpress:
+    depends_on:
+      - mariadb
+    image: stiahau/h5p-bildetema-wordpress:0.0.1
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+    ports:
+      - 8090:80
