@@ -3,20 +3,23 @@
 .button {
   all: unset;
   background-color: white;
+  border: none;
+  border-radius: 0.5rem;
   cursor: pointer;
-  font-size: $font-size-24;
+  font-size: $font-size-18;
   font-weight: bold;
-  left: 0;
-  padding: 1.5rem;
+  left: 1rem;
+  outline: $outline-on-dark-background;
+  padding: 1rem 1.5rem;
   position: fixed;
   text-decoration: underline;
   top: -20rem;
-  width: 100%;
+  width: auto;
   z-index: 999 !important;
 
   &:focus {
     outline: $outline-on-dark-background !important;
-    top: 0;
+    top: 1rem;
   }
 
   @media print {
