@@ -96,7 +96,12 @@ export const validRoute = (
 
     if (subTopics.length)
       return { topics: subTopics, language, loading: false };
-    return { words: topic.words.get(language.code), language, loading: false };
+    return {
+      words: topic.words.get(language.code),
+      language,
+      loading: false,
+      currentTopic: { topicId: topic?.id },
+    };
   }
 
   const subTopic = findTopic(subTopics, language, subTopicId);

@@ -160,11 +160,11 @@ export const Words: React.FC<WordsProps> = ({
       </div>
       <div
         ref={topicViewRef}
-        className={!showTopicImageView && styles.displayNone}
+        className={!showTopicImageView ? styles.displayNone : ""}
       />
       <div
         ref={gridViewRef}
-        className={showTopicImageView && styles.displayNone}
+        className={showTopicImageView ? styles.displayNone : ""}
       />
     </>
   );
