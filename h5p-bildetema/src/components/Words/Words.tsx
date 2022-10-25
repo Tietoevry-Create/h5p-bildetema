@@ -1,7 +1,7 @@
 import type { IH5PContentType, Library } from "h5p-types";
 import { H5P } from "h5p-utils";
-import React, { useEffect, useRef, useState } from "react";
-import { useContentId } from "use-h5p";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { L10nContext, useContentId } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { TopicIds, Word } from "../../../../common/types/types";
 import { getLibraryName } from "../../../../common/utils/library/library.utils";
@@ -33,6 +33,7 @@ export const Words: React.FC<WordsProps> = ({
   const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
   const [isTopicImageView, setIsTopicImageView] = useState(false);
+  const l10n = useContext(L10nContext);
 
   useEffect(() => {
     (() => {
@@ -81,6 +82,7 @@ export const Words: React.FC<WordsProps> = ({
           const params = {
             ...JSON.parse(content.json_content),
             currentLanguage,
+            l10n,
           };
 
           const topicView = H5P.newRunnable(
@@ -107,6 +109,7 @@ export const Words: React.FC<WordsProps> = ({
             params: {
               words,
               showWrittenWords,
+              l10n,
             },
           },
           contentId,

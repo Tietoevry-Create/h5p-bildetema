@@ -151,6 +151,24 @@
         "type": "text"
       },
       {
+        "label": "Previous image label",
+        "name": "prevImageLabel",
+        "default": "Previous image",
+        "type": "text"
+      },
+      {
+        "label": "Next image label",
+        "name": "nextImageLabel",
+        "default": "Next image",
+        "type": "text"
+      },
+      {
+        "label": "No topic selected",
+        "name": "noTopicSelected",
+        "default": "No topic selected.",
+        "type": "text"
+      },
+      {
         "label": "Arabic",
         "name": "lang_ara",
         "default": "Arabic",

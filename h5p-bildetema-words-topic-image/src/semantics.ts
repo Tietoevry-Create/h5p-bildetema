@@ -163,6 +163,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     common: true,
     label: "Localize",
     fields: [
+      // For this to work in Bildetema, the translations needs to be added in h5p-bildetema's semantics as well
       {
         label: "No topic selected",
         name: "noTopicSelected",
