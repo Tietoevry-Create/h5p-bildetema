@@ -38,8 +38,8 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           prevEl: ".swiper-button-prev",
         }}
         modules={multipleImages ? [Pagination, Navigation] : []}
-        // loop={multipleImages}
-        loop={false}
+        loop={multipleImages}
+        loopedSlides={images.length}
         spaceBetween={10}
       >
         {images.length > 1 && (
