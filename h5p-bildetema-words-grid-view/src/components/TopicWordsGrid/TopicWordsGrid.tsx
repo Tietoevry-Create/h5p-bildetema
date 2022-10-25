@@ -13,10 +13,11 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
   showWrittenWords,
 }) => {
   return (
-    <div className={styles.topicgrid}>
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    <ul role="list" className={styles.topicgrid}>
       {words.map(word => (
         <Word key={word.id} word={word} textVisible={showWrittenWords} />
       ))}
-    </div>
+    </ul>
   );
 };
