@@ -86,7 +86,6 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
             type="button"
             className="swiper-button-next"
             aria-labelledby="next-button"
-            lang="en"
           >
             <span id="next-button" className={styles.visuallyHidden}>
               {nextLabel}

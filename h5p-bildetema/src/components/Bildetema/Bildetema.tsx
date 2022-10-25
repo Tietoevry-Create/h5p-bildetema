@@ -190,6 +190,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
         <div
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
+          aria-label="Main content" // TODO: translate
         >
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
