@@ -41,12 +41,19 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
     "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb";
   const { search } = useLocation();
   return (
-    <Link className={topicCardClassName} to={`${linkTo}${search}`}>
-      <img className={styles.topicImage} src={imageSrc} alt="" />
-      <span className={gridElementClassName}>
-        {title}
-        <TopicGridElementAudio audioFiles={audioFiles} />
-      </span>
-    </Link>
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    <li role="listitem">
+      <Link
+        className={topicCardClassName}
+        to={`${linkTo}${search}`}
+        aria-label={title}
+      >
+        <img className={styles.topicImage} src={imageSrc} alt="" />
+        <span className={gridElementClassName}>
+          <h2>{title}</h2>
+          <TopicGridElementAudio audioFiles={audioFiles} />
+        </span>
+      </Link>
+    </li>
   );
 };

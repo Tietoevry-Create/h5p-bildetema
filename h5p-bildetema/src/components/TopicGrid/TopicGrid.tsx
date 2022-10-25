@@ -39,7 +39,9 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
 
   if (topics) {
     return (
-      <div
+      // eslint-disable-next-line jsx-a11y/no-redundant-roles
+      <ul
+        role="list"
         className={`${
           topicsSize === TopicGridSizes.Big
             ? styles.gridBig
@@ -61,7 +63,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             />
           );
         })}
-      </div>
+      </ul>
     );
   }
 
