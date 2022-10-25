@@ -3,6 +3,8 @@
 .languageSelector {
   column-count: 1;
   display: block;
+  margin: 0;
+  padding: 0;
 
   @include breakpoint-min($medium) {
     column-count: 2;

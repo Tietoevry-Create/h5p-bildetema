@@ -48,6 +48,10 @@
 .topicCardBig,
 .topicCardCompact {
   background-color: $beige;
+  border: 1.5px solid $dark-beige;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
   text-decoration: none;
 
   &:hover {
@@ -57,20 +61,12 @@
 }
 
 .topicCardBig {
-  display: flex;
   flex-direction: column;
 }
 
 .topicCardCompact {
-  display: inline-flex;
   flex-direction: row;
-  inline-size: 100%;
   word-break: break-word;
-}
-
-.topicCardBig,
-.topicCardCompact {
-  border: 1.5px solid $dark-beige;
 }
 
 .topicImage {

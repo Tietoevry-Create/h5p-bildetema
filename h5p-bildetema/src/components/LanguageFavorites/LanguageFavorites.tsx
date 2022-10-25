@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
@@ -31,25 +32,29 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
       ? (pathname.split("/")[1] as LanguageCode)
       : "nob";
 
+  const navAriaLabel = "Favorite languages"; // TODO: translate
+
   return (
-    <div className={styles.languageWrapper}>
-      <div className={styles.languages}>
+    <nav aria-label={navAriaLabel} className={styles.languageWrapper}>
+      <ul role="list" className={styles.languages}>
         {favLanguages.map(language => {
           return (
-            <Link
-              key={language.code}
-              to={getLanguagePath(language, topicIds, search, topicsFromDB)}
-              className={`${styles.languageButton} ${
-                currentLanguageCode === language.code
-                  ? styles.languageButton_active
-                  : ""
-              }`}
-            >
-              {langs[`lang_${language.code}`]}
-            </Link>
+            <li role="listitem">
+              <Link
+                key={language.code}
+                to={getLanguagePath(language, topicIds, search, topicsFromDB)}
+                className={`${styles.languageButton} ${
+                  currentLanguageCode === language.code
+                    ? styles.languageButton_active
+                    : ""
+                }`}
+              >
+                {langs[`lang_${language.code}`]}
+              </Link>
+            </li>
           );
         })}
-      </div>
-    </div>
+      </ul>
+    </nav>
   );
 };

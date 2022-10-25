@@ -48,7 +48,9 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   };
 
   return (
-    <div
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    <li
+      role="listitem"
       className={`${middleElement ? styles.languageMiddle : styles.language} ${
         isDisabled ? styles.disabled : ""
       }`}
@@ -71,6 +73,6 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
         <span>{translations[`lang_${language.code}`]}</span>
         <span>{languagesOriginal[language.code]}</span>
       </Link>
-    </div>
+    </li>
   );
 };

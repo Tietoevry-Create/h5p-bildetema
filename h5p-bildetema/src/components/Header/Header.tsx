@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React, {
   useEffect,
   useState,
@@ -44,6 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
     "headerSubtitle",
     ...languageKeys,
   );
+  const navAriaLabel = "Favorite languages"; // TODO: translate
 
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
@@ -113,23 +115,32 @@ export const Header: React.FC<HeaderProps> = ({
           <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
         </Link>
         <div className={styles.language_container}>
-          <div className={styles.languages}>
-            {favLanguages.map(language => {
-              return (
-                <Link
-                  key={language.code}
-                  to={getLanguagePath(language, topicIds, search, topicsFromDB)}
-                  className={`${styles.languageButton} ${
-                    currentLanguageCode === language.code
-                      ? styles.languageButton_active
-                      : ""
-                  }`}
-                >
-                  {langs[`lang_${language.code}`]}
-                </Link>
-              );
-            })}
-          </div>
+          <nav aria-label={navAriaLabel}>
+            <ul role="list" className={styles.languages}>
+              {favLanguages.map(language => {
+                return (
+                  <li role="listitem">
+                    <Link
+                      key={language.code}
+                      to={getLanguagePath(
+                        language,
+                        topicIds,
+                        search,
+                        topicsFromDB,
+                      )}
+                      className={`${styles.languageButton} ${
+                        currentLanguageCode === language.code
+                          ? styles.languageButton_active
+                          : ""
+                      }`}
+                    >
+                      {langs[`lang_${language.code}`]}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
           <LanguageDropdown
             handleSelectorVisibility={setLangSelectorIsShown}
             langSelectorIsShown={langSelectorIsShown}
