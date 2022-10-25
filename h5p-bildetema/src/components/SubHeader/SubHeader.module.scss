@@ -27,6 +27,8 @@
   flex-wrap: wrap;
   font-size: $font-size-18;
   row-gap: 1rem;
+  flex: 1;
+  justify-content: flex-end;
 
   @media print {
     display: none;
