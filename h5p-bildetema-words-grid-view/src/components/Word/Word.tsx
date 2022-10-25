@@ -26,7 +26,8 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const nextLabel = useL10n("nextImageLabel");
 
   const renderImages = (): JSX.Element => {
-    const multipleImages = images && images.length > 1;
+    const numberOfImages = images.length;
+    const multipleImages = images && numberOfImages > 1;
 
     return (
       <Swiper
@@ -39,15 +40,15 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
         }}
         modules={multipleImages ? [Pagination, Navigation] : []}
         loop={multipleImages}
-        loopedSlides={images.length}
+        loopedSlides={numberOfImages}
         spaceBetween={10}
       >
-        {images.length > 1 && (
+        {numberOfImages > 1 && (
           <button type="button" className="swiper-button-prev">
             <span className={styles.visuallyHidden}>{prevLabel}</span>
           </button>
         )}
-        {images.length !== 0 ? (
+        {numberOfImages !== 0 ? (
           images.map(image => (
             <SwiperSlide key={image.src}>
               <div>
@@ -72,7 +73,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
             </div>
           </SwiperSlide>
         )}
-        {images.length > 1 && (
+        {numberOfImages > 1 && (
           <button type="button" className="swiper-button-next">
             <span className={styles.visuallyHidden}>{nextLabel}</span>
           </button>
