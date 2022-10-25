@@ -51,6 +51,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     common: true,
     label: "Localize",
     fields: [
+      // For this to work in Bildetema, the translations needs to be added in h5p-bildetema's semantics as well
       {
         label: "Play audio",
         name: "playAudio",
@@ -61,6 +62,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Pause audio",
         name: "pauseAudio",
         default: "Pause audio",
+        type: "text",
+      },
+      {
+        label: "Previous image label",
+        name: "prevImageLabel",
+        default: "Previous image",
+        type: "text",
+      },
+      {
+        label: "Next image label",
+        name: "nextImageLabel",
+        default: "Next image",
         type: "text",
       },
     ],

@@ -6,4 +6,6 @@
 
 export type TranslationKey =
   | "playAudio"
-  | "pauseAudio";
+  | "pauseAudio"
+  | "prevImageLabel"
+  | "nextImageLabel";

@@ -41,6 +41,14 @@
         {
           "label": "Pause audio",
           "default": "Pause audio"
+        },
+        {
+          "label": "Previous image label",
+          "default": "Previous image"
+        },
+        {
+          "label": "Next image label",
+          "default": "Next image"
         }
       ]
     },

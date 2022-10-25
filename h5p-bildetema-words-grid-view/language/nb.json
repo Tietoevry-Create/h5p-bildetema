@@ -41,6 +41,14 @@
         {
           "label": "Sett lyd på pause",
           "default": "Sett lyd på pause"
+        },
+        {
+          "label": "Forrige bilde",
+          "default": "Forrige bilde"
+        },
+        {
+          "label": "Neste bilde",
+          "default": "Neste bilde"
         }
       ]
     },

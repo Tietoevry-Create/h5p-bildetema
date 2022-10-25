@@ -9,7 +9,7 @@
   .swiper-button-next,
   .swiper-button-prev {
     background-color: #edebe9;
-    border: 1px solid #e3e0dd;
+    border: none;
     border-radius: 50%;
     height: 1.875rem;
     width: 1.875rem;
@@ -19,6 +19,10 @@
       background-color: $burgundy;
       border-color: $burgundy;
       color: white;
+    }
+
+    &:focus {
+      outline: $outline-on-dark-background !important;
     }
 
     &::after {

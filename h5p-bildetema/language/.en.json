@@ -102,6 +102,18 @@
           "default": "Show topics in list view"
         },
         {
+          "label": "Previous image label",
+          "default": "Previous image"
+        },
+        {
+          "label": "Next image label",
+          "default": "Next image"
+        },
+        {
+          "label": "No topic selected",
+          "default": "No topic selected."
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

@@ -60,6 +60,18 @@
         "name": "pauseAudio",
         "default": "Pause audio",
         "type": "text"
+      },
+      {
+        "label": "Previous image label",
+        "name": "prevImageLabel",
+        "default": "Previous image",
+        "type": "text"
+      },
+      {
+        "label": "Next image label",
+        "name": "nextImageLabel",
+        "default": "Next image",
+        "type": "text"
       }
     ]
   },

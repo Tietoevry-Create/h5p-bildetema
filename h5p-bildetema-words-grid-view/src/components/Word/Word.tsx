@@ -1,4 +1,5 @@
 import React from "react";
+import { useL10n } from "use-h5p";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import styles from "./Word.module.scss";
@@ -21,6 +22,9 @@ type WordProps = {
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const { images } = word;
 
+  const prevLabel = useL10n("prevImageLabel");
+  const nextLabel = useL10n("nextImageLabel");
+
   const renderImages = (): JSX.Element => {
     const multipleImages = images && images.length > 1;
 
@@ -29,12 +33,20 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
         pagination={{
           dynamicBullets: multipleImages,
         }}
-        navigation={multipleImages}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
         modules={multipleImages ? [Pagination, Navigation] : []}
         // loop={multipleImages}
         loop={false}
         spaceBetween={10}
       >
+        {images.length > 1 && (
+          <button type="button" className="swiper-button-prev">
+            <span className={styles.visuallyHidden}>{prevLabel}</span>
+          </button>
+        )}
         {images.length !== 0 ? (
           images.map(image => (
             <SwiperSlide key={image.src}>
@@ -59,6 +71,11 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
               />
             </div>
           </SwiperSlide>
+        )}
+        {images.length > 1 && (
+          <button type="button" className="swiper-button-next">
+            <span className={styles.visuallyHidden}>{nextLabel}</span>
+          </button>
         )}
       </Swiper>
     );
