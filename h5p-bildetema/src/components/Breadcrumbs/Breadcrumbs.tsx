@@ -106,7 +106,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
               </span>
             </li>
           ) : (
-            <li role="listitem" aria-current="page" key={path}>
+            <li role="listitem" aria-current="location" key={path}>
               <h1 className={styles.currentPage}>{label}</h1>
             </li>
           );
