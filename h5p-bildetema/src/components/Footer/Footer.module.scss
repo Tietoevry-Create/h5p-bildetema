@@ -24,21 +24,13 @@
   }
 
   a {
+    border-right: 1px solid white;
+    padding-right: $spacing--16;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  p {
-    border-right: 1px solid white;
-    padding-right: $spacing--16;
-  }
-
-  p:last-child {
-    border-right: none;
-    padding-right: none;
   }
 
   :focus {
