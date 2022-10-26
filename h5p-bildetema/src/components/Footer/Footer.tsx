@@ -18,22 +18,14 @@ export const Footer = (): JSX.Element => {
   const copyrightLabel = useL10n("footerCopyright");
 
   return (
-    <div className={styles.footer}>
-      <div className={styles.footer_content}>
-        <p className={styles.hide_from_print}>
-          <a href={contactInfoHref}>{contactInfoLabel}</a>
-        </p>
-        <p>
-          <a href={link1Href}>{link1Label}</a>
-        </p>
-        <p>
-          <a href={link2Href}>{link2Label}</a>
-        </p>
-        <p className={styles.hide_from_print}>
-          <a href={link3Href}>{link3Label}</a>
-        </p>
+    <footer role="contentinfo" className={styles.footer}>
+      <nav className={styles.footer_content}>
+        <a href={contactInfoHref} className={styles.hide_from_print}>{contactInfoLabel}</a>
+        <a href={link1Href}>{link1Label}</a>
+        <a href={link2Href}>{link2Label}</a>
+        <a href={link3Href} className={styles.hide_from_print}>{link3Label}</a>
         <p>{copyrightLabel}</p>
-      </div>
-    </div>
+      </nav>
+    </footer>
   );
 };
