@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
@@ -64,7 +65,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
 
   return (
     <nav aria-label={AriaBreadcrumbsNav}>
-      <ol className={styles.breadcrumbs}>
+      <ol role="list" className={styles.breadcrumbs}>
         {breadCrumbsToRender.map(({ label, path }, index) => {
           const notLastBreadCrumb = index !== breadCrumbsToRender.length - 1;
           const homePageBreadCrumb = index === 0;
@@ -72,6 +73,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
 
           return notLastBreadCrumb ? (
             <li
+              role="listitem"
               key={path}
               className={
                 homePageBreadCrumb && moreThanThreeItems
@@ -104,10 +106,8 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
               </span>
             </li>
           ) : (
-            <li aria-current="page">
-              <h1 className={styles.currentPage} key={path}>
-                {label}
-              </h1>
+            <li role="listitem" aria-current="location" key={path}>
+              <h1 className={styles.currentPage}>{label}</h1>
             </li>
           );
         })}

@@ -119,9 +119,14 @@ export const Header: React.FC<HeaderProps> = ({
             <ul role="list" className={styles.languages}>
               {favLanguages.map(language => {
                 return (
-                  <li role="listitem">
+                  <li
+                    role="listitem"
+                    key={language.code}
+                    aria-current={
+                      currentLanguageCode === language.code ? "page" : undefined
+                    }
+                  >
                     <Link
-                      key={language.code}
                       to={getLanguagePath(
                         language,
                         topicIds,

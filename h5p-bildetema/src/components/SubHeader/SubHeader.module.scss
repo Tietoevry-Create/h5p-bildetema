@@ -5,6 +5,7 @@
   align-items: flex-end;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem 2rem;
   justify-content: space-between;
   min-height: 2.5rem;
@@ -15,10 +16,6 @@
   @include breakpoint-min($small) {
     align-items: center;
   }
-}
-
-.subHeaderWords {
-  flex-wrap: wrap;
 }
 
 .tools {
