@@ -1,38 +1,26 @@
 import * as React from "react";
-import { useL10n } from "../../hooks/useL10n";
+import { useTranslation } from "../../hooks/useTranslation";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
-  const contactInfoLabel = useL10n("footerContactInfoLabel");
-  const contactInfoHref = useL10n("footerContactInfoHref");
-
-  const link1Label = useL10n("footerLink1Label");
-  const link1Href = useL10n("footerLink1Href");
-
-  const link2Label = useL10n("footerLink2Label");
-  const link2Href = useL10n("footerLink2Href");
-
-  const link3Label = useL10n("footerLink3Label");
-  const link3Href = useL10n("footerLink3Href");
-
-  const copyrightLabel = useL10n("footerCopyright");
+  const { t } = useTranslation();
 
   return (
     <div className={styles.footer}>
       <div className={styles.footer_content}>
         <p className={styles.hide_from_print}>
-          <a href={contactInfoHref}>{contactInfoLabel}</a>
+          <a href={t("footerContactInfoHref")}>{t("footerContactInfoLabel")}</a>
         </p>
         <p>
-          <a href={link1Href}>{link1Label}</a>
+          <a href={t("footerLink1Href")}>{t("footerLink1Label")}</a>
         </p>
         <p>
-          <a href={link2Href}>{link2Label}</a>
+          <a href={t("footerLink2Href")}>{t("footerLink2Label")}</a>
         </p>
         <p className={styles.hide_from_print}>
-          <a href={link3Href}>{link3Label}</a>
+          <a href={t("footerLink3Href")}>{t("footerLink3Label")}</a>
         </p>
-        <p>{copyrightLabel}</p>
+        <p>{t("footerCopyright")}</p>
       </div>
     </div>
   );
