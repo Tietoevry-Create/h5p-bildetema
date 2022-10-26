@@ -17,13 +17,19 @@ export const Footer = (): JSX.Element => {
 
   const copyrightLabel = useL10n("footerCopyright");
 
+  const navAriaLabel = "information"; // TODO: translate
+
   return (
     <footer role="contentinfo" className={styles.footer}>
-      <nav className={styles.footer_content}>
-        <a href={contactInfoHref} className={styles.hide_from_print}>{contactInfoLabel}</a>
+      <nav aria-label={navAriaLabel} className={styles.footer_content}>
+        <a href={contactInfoHref} className={styles.hide_from_print}>
+          {contactInfoLabel}
+        </a>
         <a href={link1Href}>{link1Label}</a>
         <a href={link2Href}>{link2Label}</a>
-        <a href={link3Href} className={styles.hide_from_print}>{link3Label}</a>
+        <a href={link3Href} className={styles.hide_from_print}>
+          {link3Label}
+        </a>
         <p>{copyrightLabel}</p>
       </nav>
     </footer>
