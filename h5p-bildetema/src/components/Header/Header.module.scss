@@ -128,6 +128,7 @@
   display: none;
   gap: $spacing--8;
   flex-wrap: wrap;
+  margin: 0;
 
   @include breakpoint-min($medium) {
     display: flex;
@@ -135,6 +136,11 @@
 
   @media print {
     display: flex;
+  }
+
+  li {
+    list-style-type: none;
+    margin: 0;
   }
 }
 
@@ -144,6 +150,7 @@
   color: white;
   cursor: pointer;
   font-size: $font-size-18;
+  line-height: 1;
   margin: 0.35rem 0.5rem 0.25rem;
   padding: 0;
   text-decoration: none;

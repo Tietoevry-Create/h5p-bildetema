@@ -48,6 +48,7 @@
   gap: $spacing--8;
   flex-wrap: nowrap;
   width: max-content;
+  margin: 0;
   padding: 0 $spacing--16;
 
   @media print {
@@ -57,6 +58,11 @@
     max-width: $main-content-max-width;
     width: $main-content-width;
   }
+
+  li {
+    list-style-type: none;
+    margin: 0;
+  }
 }
 
 .languageButton {
@@ -65,6 +71,7 @@
   color: white;
   cursor: pointer;
   font-size: $font-size-16;
+  line-height: 1;
   margin: 0.35rem 0.5rem 0.25rem;
   padding: 0;
   text-decoration: none;

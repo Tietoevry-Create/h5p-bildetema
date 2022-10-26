@@ -28,7 +28,7 @@ describe(Breadcrumbs.name, () => {
     });
 
     expect(container.textContent).toEqual(",");
-    expect(container.querySelector("div")).toBeTruthy();
+    expect(container.querySelector("ol")).toBeTruthy();
     expect(container.querySelector("a")).toBeFalsy();
     expect(container.querySelector("span")).toBeFalsy();
   });

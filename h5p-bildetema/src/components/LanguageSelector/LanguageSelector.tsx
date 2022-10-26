@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React from "react";
 import styles from "./LanguageSelector.module.scss";
 import { Language, TopicIds } from "../../../../common/types/types";
@@ -26,9 +27,11 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     return Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
   };
 
+  const navAriaLabel = "Choose language"; // TODO: translate
+
   return (
-    <div className={styles.languageSelectorWrapper}>
-      <div className={styles.languageSelector}>
+    <nav aria-label={navAriaLabel} className={styles.languageSelectorWrapper}>
+      <ul role="list" className={styles.languageSelector}>
         {languages?.map((language, index) => (
           <LanguageSelectorElement
             path={getLanguagePath(language, topicIds, search, topicsFromDB)}
@@ -40,7 +43,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             currentLanguageCode={currentLanguageCode}
           />
         ))}
-      </div>
-    </div>
+      </ul>
+    </nav>
   );
 };

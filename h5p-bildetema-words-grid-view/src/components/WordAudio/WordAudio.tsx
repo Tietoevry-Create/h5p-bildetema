@@ -58,10 +58,10 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
       </audio>
       <button type="button" onClick={toggleAudio}>
         {textVisible && (
-          <span className={styles.word_label}>
+          <h2 className={styles.word_label}>
             {label}
             &nbsp;
-          </span>
+          </h2>
         )}
         <span className={styles.audioIconSpan}>
           <SpeakerIcon

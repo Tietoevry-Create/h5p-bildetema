@@ -9,19 +9,23 @@ $gap: $spacing--24;
   flex-direction: row;
   flex-wrap: wrap;
   gap: $gap;
+  margin: 0;
+  padding: 0;
 
   [class*="rtl"] & {
     justify-content: flex-end;
   }
 
-  & > a {
+  & > li {
     box-sizing: border-box;
+    list-style-type: none;
+    margin: 0;
     width: 100%;
   }
 }
 
 .gridBig {
-  & > a {
+  & > li {
     @include breakpoint-min(650px) {
       width: calc((100% - #{$gap}) / 2);
     }
@@ -37,7 +41,7 @@ $gap: $spacing--24;
 }
 
 .gridCompact {
-  & > a {
+  & > li {
     @include breakpoint-min(800px) {
       width: calc((100% - #{$gap}) / 2);
     }

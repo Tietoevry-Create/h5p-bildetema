@@ -44,8 +44,15 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
         spaceBetween={10}
       >
         {numberOfImages > 1 && (
-          <button type="button" className="swiper-button-prev">
-            <span className={styles.visuallyHidden}>{prevLabel}</span>
+          // make sure our ARIA text is used instead of swiper's
+          <button
+            type="button"
+            className="swiper-button-prev"
+            aria-labelledby="prev-button"
+          >
+            <span id="prev-button" className={styles.visuallyHidden}>
+              {prevLabel}
+            </span>
           </button>
         )}
         {numberOfImages !== 0 ? (
@@ -74,8 +81,15 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
           </SwiperSlide>
         )}
         {numberOfImages > 1 && (
-          <button type="button" className="swiper-button-next">
-            <span className={styles.visuallyHidden}>{nextLabel}</span>
+          // make sure our ARIA text is used instead of swiper's
+          <button
+            type="button"
+            className="swiper-button-next"
+            aria-labelledby="next-button"
+          >
+            <span id="next-button" className={styles.visuallyHidden}>
+              {nextLabel}
+            </span>
           </button>
         )}
       </Swiper>
@@ -85,9 +99,10 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
   const hasAudio = word.audioFiles && word.audioFiles.length > 0;
 
   return (
-    <div className={styles.word}>
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    <li role="listitem" className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && <WordAudio word={word} textVisible={textVisible} />}
-    </div>
+    </li>
   );
 };
