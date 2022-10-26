@@ -11,7 +11,6 @@ import {
   TopicGridSizes,
   TopicIds,
 } from "../../../../common/types/types";
-import { useL10n } from "../../hooks/useL10n";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -22,6 +21,7 @@ import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { useTranslation } from "../../hooks/useTranslation";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -32,6 +32,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
+  const { t } = useTranslation();
   const { languages: languagesFromDB } = useDBContext() || {};
   const { pathname } = useLocation();
 
@@ -48,8 +49,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   const [searchParams, setSearchParams] = useSearchParams();
   const wordsVisibleParam = "showWrittenWords";
-  const loadingLabel = useL10n("pageIsLoading");
-  const pageTitle = useL10n("headerTitle");
+
   const [topicIds, setTopicIds] = useState<TopicIds>({});
   const [firstTime, setFirstTime] = useState(false);
 
@@ -111,16 +111,15 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     [favLanguages, setFavLanguages],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     userData.favoriteLanguages = favLanguages;
     setUserData(userData);
   }, [favLanguages, userData, setUserData]);
 
   useEffect(() => {
-    if (document.title !== pageTitle) {
-      document.title = pageTitle;
-    }
-  });
+    const pageTitle = t("headerTitle");
+    document.title = pageTitle;
+  }, [t]);
 
   const routes = React.useMemo(() => {
     const paths = [
@@ -192,7 +191,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label="Main content" // TODO: translate
         >
-          {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
+          {isLoadingData
+            ? showLoadingLabel && <p>{t("pageIsLoading")}</p>
+            : routes}
         </div>
         <Footer />
       </div>

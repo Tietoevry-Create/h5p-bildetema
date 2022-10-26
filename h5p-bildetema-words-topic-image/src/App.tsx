@@ -5,7 +5,7 @@ import { Topic, Word } from "../../common/types/types";
 import { getData } from "../../common/utils/data.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Params } from "./h5p/H5PWrapper";
-import { useL10n } from "./hooks/useL10n";
+import { useTranslation } from "./hooks/useTranslation";
 import { OverlayType } from "./types/OverlayType";
 import { renderFigure } from "./utils/figure/figure.utils";
 
@@ -24,6 +24,7 @@ export const App: FC<AppProps> = ({
   aspectRatio,
   backendUrl,
 }) => {
+  const { t } = useTranslation();
   const [topic, setTopic] = useState<Topic | undefined>();
   const [overlays, setOverlays] = useState<Array<OverlayType>>([]);
   const [currentLanguageWords, setCurrentLanguageWords] = useState<Array<Word>>(
@@ -32,8 +33,6 @@ export const App: FC<AppProps> = ({
 
   const [showNoTopicsSelectedText, setShowNoTopicsSelectedText] =
     useState(false);
-
-  const noTopicSelectedText = useL10n("noTopicSelected");
 
   const setComputedWords = React.useCallback(
     (words: Word[] | undefined): void => {
@@ -56,11 +55,11 @@ export const App: FC<AppProps> = ({
     {
       onSuccess({ topics: fetchedTopics }) {
         const rootTopic = fetchedTopics?.find(
-          t => t.id === params.selectedTopic.topicId,
+          ({ id }) => id === params.selectedTopic.topicId,
         );
 
         const subTopic = rootTopic?.subTopics.find(
-          s => s.id === params.selectedTopic.subTopicId,
+          ({ id }) => id === params.selectedTopic.subTopicId,
         );
 
         if (subTopic) {
@@ -124,6 +123,6 @@ export const App: FC<AppProps> = ({
       words={currentLanguageWords}
     />
   ) : (
-    <p>{showNoTopicsSelectedText && !isLoadingData && noTopicSelectedText}</p>
+    <p>{showNoTopicsSelectedText && !isLoadingData && t("noTopicSelected")}</p>
   );
 };

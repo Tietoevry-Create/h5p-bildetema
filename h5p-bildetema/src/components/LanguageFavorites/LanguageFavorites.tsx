@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { languages } from "../../../../common/constants/languages";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
+import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
 export type LanguageFavoritesProps = {
@@ -18,12 +16,8 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
   favLanguages,
   topicIds,
 }) => {
+  const { t } = useTranslation();
   const { topics: topicsFromDB } = useDBContext() || {};
-  const languageKeys = languages.map(
-    lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
-
-  const { ...langs } = useL10ns(...languageKeys);
 
   const { pathname, search } = useLocation();
 
@@ -49,7 +43,7 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
                     : ""
                 }`}
               >
-                {langs[`lang_${language.code}`]}
+                {t(`lang_${language.code}`)}
               </Link>
             </li>
           );

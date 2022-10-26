@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { Word as WordType } from "../../../../common/types/types";
-import { useL10n } from "../../hooks/useL10n";
+import { useTranslation } from "../../hooks/useTranslation";
 import styles from "./WordAudio.module.scss";
 
 type WordAudioProps = {
@@ -11,6 +11,7 @@ type WordAudioProps = {
 };
 
 export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
+  const { t } = useTranslation();
   const { label } = word;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -41,9 +42,6 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
     setPlaying(false);
   }, [word]);
 
-  const playAudioLabel = useL10n("playAudio");
-  const pauseAudioLabel = useL10n("pauseAudio");
-
   return (
     <div
       className={`${styles.wordAudio} ${
@@ -69,7 +67,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
           />
         </span>
         <span className={styles.visuallyHidden}>
-          {playing ? pauseAudioLabel : playAudioLabel}
+          {playing ? t("pauseAudio") : t("playAudio")}
         </span>
       </button>
     </div>

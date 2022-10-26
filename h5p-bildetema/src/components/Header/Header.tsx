@@ -1,19 +1,19 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useRef,
   Dispatch,
   SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { languages } from "../../../../common/constants/languages";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language, TopicIds } from "../../../../common/types/types";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useL10ns } from "../../hooks/useL10n";
+import { useTranslation } from "../../hooks/useTranslation";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -33,18 +33,11 @@ export const Header: React.FC<HeaderProps> = ({
   setFirstTime,
   handleToggleFavoriteLanguage,
 }) => {
+  const { t } = useTranslation();
   const headerRef = useRef<HTMLDivElement>(null);
-  const languageKeys = languages.map(
-    lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
 
   const { topics: topicsFromDB } = useDBContext() || {};
-  const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
-    "selectLanguage",
-    "headerTitle",
-    "headerSubtitle",
-    ...languageKeys,
-  );
+
   const navAriaLabel = "Favorite languages"; // TODO: translate
 
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -56,8 +49,6 @@ export const Header: React.FC<HeaderProps> = ({
       ? (pathname.split("/")[1] as LanguageCode)
       : "nob";
 
-  const titleLabel = headerTitle;
-  const subTitleLabel = headerSubtitle;
   const HomeLinkPath = `/${currentLanguageCode}`;
 
   React.useEffect(() => {
@@ -111,8 +102,10 @@ export const Header: React.FC<HeaderProps> = ({
           to={HomeLinkPath}
           className={styles.logo_labels}
         >
-          <span className={styles.logo_labels_title}>{titleLabel}</span>
-          <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
+          <span className={styles.logo_labels_title}>{t("headerTitle")}</span>
+          <span className={styles.logo_labels_subtitle}>
+            {t("headerSubtitle")}
+          </span>
         </Link>
         <div className={styles.language_container}>
           <nav aria-label={navAriaLabel}>
@@ -134,7 +127,7 @@ export const Header: React.FC<HeaderProps> = ({
                           : ""
                       }`}
                     >
-                      {langs[`lang_${language.code}`]}
+                      {t(`lang_${language.code}`)}
                     </Link>
                   </li>
                 );
@@ -144,7 +137,7 @@ export const Header: React.FC<HeaderProps> = ({
           <LanguageDropdown
             handleSelectorVisibility={setLangSelectorIsShown}
             langSelectorIsShown={langSelectorIsShown}
-            selectLanguageLabel={selectLanguage}
+            selectLanguageLabel={t("selectLanguage")}
             favLanguages={favLanguages}
             topicIds={topicIds}
             search={search}

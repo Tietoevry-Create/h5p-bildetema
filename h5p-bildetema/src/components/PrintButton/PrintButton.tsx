@@ -1,11 +1,11 @@
 import React from "react";
-import { useReactToPrint } from "react-to-print";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { PrintIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
-import { useL10ns } from "../../hooks/useL10n";
-import styles from "./PrintButton.module.scss";
+import { useReactToPrint } from "react-to-print";
 import { TopicIds } from "../../../../common/types/types";
+import { useTranslation } from "../../hooks/useTranslation";
+import { LanguageMenuArrowIcon, PrintIcon } from "../Icons/Icons";
 import { PrintWords } from "../PrintWords/PrintWords";
+import styles from "./PrintButton.module.scss";
 
 type PrintProps = {
   topicIds: TopicIds;
@@ -20,6 +20,8 @@ export const PrintButton: React.FC<PrintProps> = ({
   isWordView,
   showTopicImageView,
 }) => {
+  const { t } = useTranslation();
+
   const [imagesPrRow, setImagesPrRow] = React.useState(3);
   const [printClicked, setPrintClicked] = React.useState(false);
   const [viewPrintDropDown, setViewPrintDropDown] = React.useState(false);
@@ -35,9 +37,6 @@ export const PrintButton: React.FC<PrintProps> = ({
     onTriggered: handleOnClickOutside,
   });
   const printRef = React.useRef(null);
-
-  const { printLabel } = useL10ns("printLabel");
-  const { printImgLabel } = useL10ns("printImgLabel");
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
@@ -81,7 +80,7 @@ export const PrintButton: React.FC<PrintProps> = ({
         >
           <span className={styles.printButtonWrapper}>
             <PrintIcon />
-            {printLabel && <span>{printLabel}</span>}
+            <span>{t("printLabel")}</span>
             {(!showTopicImageView || !isWordView) &&
               (viewPrintDropDown ? (
                 <LanguageMenuArrowIcon
@@ -112,7 +111,7 @@ export const PrintButton: React.FC<PrintProps> = ({
                   setViewPrintDropDown(false);
                 }}
               >
-                {`${el} ${printImgLabel}`}
+                {`${el} ${t("printImgLabel")}`}
               </button>
             </div>
           ))}

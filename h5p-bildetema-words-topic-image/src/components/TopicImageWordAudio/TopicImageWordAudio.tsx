@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { Word as WordType } from "../../../../common/types/types";
-import { useL10n } from "../../hooks/useL10n";
+import { useTranslation } from "../../hooks/useTranslation";
 import styles from "./TopicImageWordAudio.module.scss";
 
 type TopicImageWordAudioProps = {
@@ -20,6 +20,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   unSelectWord,
   hoveredSVG,
 }) => {
+  const { t } = useTranslation();
   const { label } = word;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -70,9 +71,6 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
     setPlaying(false);
   }, [word]);
 
-  const playAudioLabel = useL10n("playAudio");
-  const pauseAudioLabel = useL10n("pauseAudio");
-
   const showAsSelected = word.id === currentWordId || word.id === hoveredSVG;
 
   return (
@@ -103,7 +101,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
           />
         </span>
         <span className={styles.visuallyHidden}>
-          {playing ? pauseAudioLabel : playAudioLabel}
+          {playing ? t("pauseAudio") : t("playAudio")}
         </span>
       </button>
     </div>

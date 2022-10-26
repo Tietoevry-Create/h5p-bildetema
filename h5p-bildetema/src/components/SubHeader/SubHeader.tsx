@@ -1,14 +1,14 @@
 import React from "react";
-import { useContentId } from "use-h5p";
 import { useLocation } from "react-router-dom";
-import { TopicGridSizes, TopicIds } from "../../../../common/types/types";
-import { useL10ns } from "../../hooks/useL10n";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
-import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
-import { Toggle } from "../Toggle/Toggle";
-import styles from "./SubHeader.module.scss";
-import { PrintButton } from "../PrintButton/PrintButton";
+import { useContentId } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { TopicGridSizes, TopicIds } from "../../../../common/types/types";
+import { useTranslation } from "../../hooks/useTranslation";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { PrintButton } from "../PrintButton/PrintButton";
+import { Toggle } from "../Toggle/Toggle";
+import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
+import styles from "./SubHeader.module.scss";
 
 export type SubHeaderProps = {
   topicIds: TopicIds;
@@ -31,7 +31,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   showTopicImageView,
   rtl,
 }) => {
-  const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
+  const { t } = useTranslation();
 
   const contentId = useContentId();
   const { pathname } = useLocation();
@@ -43,7 +43,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
     const element = isWordView ? (
       !showTopicImageView && (
         <Toggle
-          label={showWrittenWordsLabel}
+          label={t("showWrittenWordsLabel")}
           checked={toggleChecked}
           handleChange={handleToggleChange}
           id={`toggle-${contentId}`}

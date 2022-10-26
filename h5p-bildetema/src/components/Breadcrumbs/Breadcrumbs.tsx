@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { useTranslation } from "../../hooks/useTranslation";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import {
   BackIcon,
@@ -25,13 +25,13 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
 }) => {
+  const { t } = useTranslation();
   const { translations } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
   );
-  const l10nLabel = useL10n("breadcrumbsTopic");
-  const topicLabel = labelFromDb.length > 0 ? labelFromDb : l10nLabel;
-  const homeLabel = useL10n("breadcrumbsHome");
+  const topicLabel =
+    labelFromDb.length > 0 ? labelFromDb : t("breadcrumbsTopic");
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const routeBreadCrumbs = useBreadcrumbs(routes);
   const { search } = useLocation();
@@ -88,7 +88,9 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
                     <span className={styles.homeIcon}>
                       <HomeIcon />
                     </span>
-                    <span className={styles.visuallyHidden}>{homeLabel}</span>
+                    <span className={styles.visuallyHidden}>
+                      {t("breadcrumbsHome")}
+                    </span>
                   </span>
                 ) : (
                   <span className={styles.backButton}>

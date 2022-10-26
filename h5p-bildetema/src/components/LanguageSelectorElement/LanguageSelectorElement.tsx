@@ -1,13 +1,9 @@
 import React from "react";
-import { useL10ns } from "use-h5p";
 import { Link } from "react-router-dom";
-import {
-  languages,
-  languagesOriginal,
-} from "../../../../common/constants/languages";
-import { Checkbox } from "../Checkbox/Checkbox";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { languagesOriginal } from "../../../../common/constants/languages";
 import { Language } from "../../../../common/types/types";
+import { useTranslation } from "../../hooks/useTranslation";
+import { Checkbox } from "../Checkbox/Checkbox";
 import styles from "./LanguageSelectorElement.module.scss";
 
 type LanguageSelectorElement = {
@@ -27,9 +23,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   favLanguages,
   handleToggleFavoriteLanguage,
 }) => {
-  const languageKeys = languages.map(
-    lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  const { t } = useTranslation();
 
   const isChecked = !!favLanguages.find(
     favLang => favLang.code === language.code,
@@ -40,8 +34,6 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   const isDisabled =
     currentLanguageCode === language.code ||
     (isChecked && favLanguages.length < 2);
-
-  const translations = useL10ns(...languageKeys, "selectLanguage");
 
   const toggleFavorite = (): void => {
     handleToggleFavoriteLanguage(language, !isChecked);
@@ -70,7 +62,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
         to={path}
         tabIndex={isDisabled ? -1 : 0}
       >
-        <span>{translations[`lang_${language.code}`]}</span>
+        <span>{t(`lang_${language.code}`)}</span>
         <span>{languagesOriginal[language.code]}</span>
       </Link>
     </li>

@@ -1,9 +1,9 @@
 import React from "react";
-import { useL10ns } from "../../hooks/useL10n";
+import { useTranslation } from "../../hooks/useTranslation";
 import styles from "./MainContentLink.module.scss";
 
 export const MainContentLink: React.FC = () => {
-  const { mainContentLink } = useL10ns("mainContentLink");
+  const { t } = useTranslation();
 
   // Hand craft `<a href="#bildetemaMain">` because we're using HashRouter
   // and can't use the builtin functionality.
@@ -19,7 +19,7 @@ export const MainContentLink: React.FC = () => {
   return (
     <nav className={styles.nav}>
       <button type="button" className={styles.button} onClick={handleOnClick}>
-        {mainContentLink}
+        {t("mainContentLink")}
       </button>
     </nav>
   );

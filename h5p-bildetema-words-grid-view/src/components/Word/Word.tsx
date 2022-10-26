@@ -1,18 +1,18 @@
 import React from "react";
-import { useL10n } from "use-h5p";
+import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-import styles from "./Word.module.scss";
 import { Word as WordType } from "../../../../common/types/types";
+import { useTranslation } from "../../hooks/useTranslation";
+import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
+import { WordAudio } from "../WordAudio/WordAudio";
+import styles from "./Word.module.scss";
 
 // import Swiper and modules styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./SwiperOverride.scss";
-import { WordAudio } from "../WordAudio/WordAudio";
-import { gridImageSizes } from "../../utils/image/image.utils";
 
 type WordProps = {
   word: WordType;
@@ -20,10 +20,8 @@ type WordProps = {
 };
 
 export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
+  const { t } = useTranslation();
   const { images } = word;
-
-  const prevLabel = useL10n("prevImageLabel");
-  const nextLabel = useL10n("nextImageLabel");
 
   const renderImages = (): JSX.Element => {
     const numberOfImages = images?.length ?? 0;
@@ -51,7 +49,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
             aria-labelledby="prev-button"
           >
             <span id="prev-button" className={styles.visuallyHidden}>
-              {prevLabel}
+              {t("prevImageLabel")}
             </span>
           </button>
         )}
@@ -88,7 +86,7 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
             aria-labelledby="next-button"
           >
             <span id="next-button" className={styles.visuallyHidden}>
-              {nextLabel}
+              {t("nextImageLabel")}
             </span>
           </button>
         )}
