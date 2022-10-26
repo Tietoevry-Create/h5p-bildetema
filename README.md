@@ -34,8 +34,7 @@ To test with wordpress you can do the following:
 
 1. `npm start`
 2. `npm run docker:run-wordpress` (without logs: `docker:run-wordpress-no-logs`)
-3. When you can access wordpress at: http://localhost:8090/ run: `npm run docker:set-wordpress-premissions` (This is only neccessary to do the first time when starting wordpress or if you have issues with updating h5p-libraries)
-4. When changes have been made make sure that the modules has been built (`npm start`) When the build is complete run: `npm run pack-and-update-wordpress`
+3. When changes have been made make sure that the modules has been built (`npm start`) When the build is complete run: `npm run pack-and-update-wordpress`
 
 ### Storybook
 
