@@ -43,7 +43,7 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
               role="listitem"
               key={language.code}
               aria-current={
-                currentLanguageCode === language.code ? "page" : "false"
+                currentLanguageCode === language.code ? "page" : undefined
               }
             >
               <Link

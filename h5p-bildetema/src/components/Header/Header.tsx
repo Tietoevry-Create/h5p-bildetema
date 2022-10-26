@@ -123,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({
                     role="listitem"
                     key={language.code}
                     aria-current={
-                      currentLanguageCode === language.code ? "page" : "false"
+                      currentLanguageCode === language.code ? "page" : undefined
                     }
                   >
                     <Link
