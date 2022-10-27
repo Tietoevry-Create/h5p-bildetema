@@ -57,6 +57,18 @@
   justify-content: flex-end;
 }
 
+.languages_nav {
+  display: none;
+
+  @include breakpoint-min($medium) {
+    display: block;
+  }
+
+  @media print {
+    display: block;
+  }
+}
+
 .logo_oslomet {
   display: flex;
   justify-self: flex-start;
@@ -125,18 +137,10 @@
 .languages {
   justify-content: center;
   align-items: center;
-  display: none;
+  display: flex;
   gap: $spacing--8;
   flex-wrap: wrap;
   margin: 0;
-
-  @include breakpoint-min($medium) {
-    display: flex;
-  }
-
-  @media print {
-    display: flex;
-  }
 
   li {
     list-style-type: none;

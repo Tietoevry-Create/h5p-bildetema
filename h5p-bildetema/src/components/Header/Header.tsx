@@ -115,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({
           <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
         </Link>
         <div className={styles.language_container}>
-          <nav aria-label={navAriaLabel}>
+          <nav aria-label={navAriaLabel} className={styles.languages_nav}>
             <ul role="list" className={styles.languages}>
               {favLanguages.map(language => {
                 return (
