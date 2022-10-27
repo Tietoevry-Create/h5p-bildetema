@@ -4,6 +4,9 @@
       "label": "Bilde"
     },
     {
+      "label": "Backend Url"
+    },
+    {
       "label": "Valgt tema",
       "fields": [
         {

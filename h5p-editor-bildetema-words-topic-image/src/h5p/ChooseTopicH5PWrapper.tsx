@@ -33,12 +33,11 @@ export class ChooseTopicH5PWrapper
   appendTo($container: JQuery<HTMLElement>): void {
     const backendUrlField = this.findField<H5PGroup<string>>(
       "backendUrl",
-    ) as unknown as H5PField & { $group: JQuery };
-    this.backendUrl = (backendUrlField as any).params ?? "";
+    ) as unknown as H5PField & { $input: JQuery };
+    this.backendUrl = (backendUrlField as any).value ?? "";
 
-    backendUrlField.$group
+    backendUrlField.$input
       .get(0)
-      ?.querySelector("input")
       ?.addEventListener("change", e => {
         this.backendUrl = (e.target as HTMLInputElement).value;
         this.trigger("backend-url-changed", this.backendUrl);

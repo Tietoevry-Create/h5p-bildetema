@@ -4,6 +4,9 @@
       "label": "Image"
     },
     {
+      "label": "Backend Url"
+    },
+    {
       "label": "Selected topic",
       "fields": [
         {
