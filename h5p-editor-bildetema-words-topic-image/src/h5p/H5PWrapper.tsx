@@ -38,27 +38,24 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     const backendUrlField = this.findField<H5PGroup<string>>(
       "backendUrl",
     ) as unknown as H5PField & { $input: JQuery };
-    
+
     this.backendUrl = (backendUrlField as any).value ?? "";
 
-    backendUrlField.$input
-      .get(0)
-      ?.addEventListener("change", e => {
-        this.backendUrl = (e.target as HTMLInputElement).value;
-        this.trigger("backend-url-changed", this.backendUrl);
-      });
+    backendUrlField.$input.get(0)?.addEventListener("change", e => {
+      this.backendUrl = (e.target as HTMLInputElement).value;
+      this.trigger("backend-url-changed", this.backendUrl);
+    });
 
-      this.on("backend-url-changed", async () => {
-        const newWords = await H5PWrapper.fetchTopic(
-          this.topicId,
-          this.subTopicId,
-          this.backendUrl,
-        );
-  
-        this.words = newWords;
-        this.render();
-      
-      });
+    this.on("backend-url-changed", async () => {
+      const newWords = await H5PWrapper.fetchTopic(
+        this.topicId,
+        this.subTopicId,
+        this.backendUrl,
+      );
+
+      this.words = newWords;
+      this.render();
+    });
 
     const containerElement = $container.get(0);
     if (!containerElement) {
@@ -83,8 +80,8 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
       const {
         data: { topicId, subTopicId },
       } = event as { data: ChooseTopicParams };
-      this.topicId = topicId
-      this.subTopicId = subTopicId
+      this.topicId = topicId;
+      this.subTopicId = subTopicId;
 
       const newWords = await H5PWrapper.fetchTopic(
         topicId,

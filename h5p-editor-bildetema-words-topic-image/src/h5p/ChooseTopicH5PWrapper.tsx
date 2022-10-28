@@ -36,12 +36,10 @@ export class ChooseTopicH5PWrapper
     ) as unknown as H5PField & { $input: JQuery };
     this.backendUrl = (backendUrlField as any).value ?? "";
 
-    backendUrlField.$input
-      .get(0)
-      ?.addEventListener("change", e => {
-        this.backendUrl = (e.target as HTMLInputElement).value;
-        this.trigger("backend-url-changed", this.backendUrl);
-      });
+    backendUrlField.$input.get(0)?.addEventListener("change", e => {
+      this.backendUrl = (e.target as HTMLInputElement).value;
+      this.trigger("backend-url-changed", this.backendUrl);
+    });
 
     this.on("backend-url-changed", e => {
       this.render((e.data as string) ?? "");
