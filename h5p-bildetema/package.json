@@ -48,7 +48,7 @@
     "@testing-library/react": "^13.4.0",
     "@types/jquery": "^3.5.14",
     "@types/node": "^18.11.6",
-    "@types/react": "^18.0.23",
+    "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.7",
     "@vitejs/plugin-react": "^2.2.0",
     "esbuild": "^0.15.12",
