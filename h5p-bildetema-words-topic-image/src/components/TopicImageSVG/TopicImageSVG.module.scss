@@ -32,16 +32,6 @@
   ellipse {
     stroke-width: 0.3;
   }
-
-  polygon:hover,
-  polygon:focus,
-  ellipse:hover,
-  ellipse:focus,
-  &_active polygon,
-  &_active ellipse {
-    fill: $orange-overlay !important;
-    stroke: $orange !important;
-  }
 }
 
 .imageContainer {
@@ -67,4 +57,52 @@
 .imageHorizontal {
   height: auto;
   max-height: 100%;
+}
+
+.blueMagenta {
+  polygon:hover,
+  polygon:focus,
+  ellipse:hover,
+  ellipse:focus,
+  &_active polygon,
+  &_active ellipse {
+    fill: $topicImageBlueMagentaHover !important;
+    stroke: $topicImageBlueMagenta !important;
+  }
+}
+
+.burgundy {
+  polygon:hover,
+  polygon:focus,
+  ellipse:hover,
+  ellipse:focus,
+  &_active polygon,
+  &_active ellipse {
+    fill: $topicImageBurgundyHover !important;
+    stroke: $topicImageBurgundy;
+  }
+}
+
+.orange {
+  polygon:hover,
+  polygon:focus,
+  ellipse:hover,
+  ellipse:focus,
+  &_active polygon,
+  &_active ellipse {
+    fill: $topicImageOrange !important;
+    stroke: $topicImageOrange !important;
+  }
+}
+
+.white {
+  polygon:hover,
+  polygon:focus,
+  ellipse:hover,
+  ellipse:focus,
+  &_active polygon,
+  &_active ellipse {
+    fill: $topicImageWhiteHover !important;
+    stroke: $topicImageWhite !important;
+  }
 }

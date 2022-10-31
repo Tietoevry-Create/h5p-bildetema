@@ -3,6 +3,7 @@ import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { pointsToDAttribute } from "../../utils/figure/figure.utils";
 import styles from "./Polygon.module.scss";
+import colorStyles from "../../styles/topicImageEditorColors.module.scss";
 
 export type PolygonProps = {
   hotspot: Hotspot;
@@ -36,7 +37,7 @@ export const Polygon: React.FC<PolygonProps> = ({
 
   return points?.length > 0 ? (
     <path
-      className={styles.path}
+      className={`${styles.path} ${colorStyles[hotspot.color]}`}
       d={pointsToDAttribute(!isDrawingThisPolygon, points)}
       strokeWidth="0.3"
       stroke="black"

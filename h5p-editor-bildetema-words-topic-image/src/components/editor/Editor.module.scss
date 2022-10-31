@@ -44,8 +44,9 @@
   &_buttons {
     display: flex;
     gap: 1rem;
+    align-items: center;
 
-    button {
+    .button {
       all: unset;
       border: 1px solid #d0d0d1;
       border-radius: 0.25em;

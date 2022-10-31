@@ -107,9 +107,10 @@ export const App: FC<AppProps> = ({
 
     const computedOverlays = paramHotspots
       .filter(hotspot => hotspot != null && hotspot.points?.length > 0)
-      .map(({ word, points, rotation, ellipseRadius }) => ({
+      .map(({ word, points, rotation, ellipseRadius, color }) => ({
         wordId: word.id,
         outline: renderFigure(points, rotation, ellipseRadius),
+        color,
       }));
 
     setOverlays(computedOverlays);

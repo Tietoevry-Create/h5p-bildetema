@@ -26,6 +26,15 @@ $blue-magenta: #000064;
 $orange: hsla(39, 100%, 50%, 1);
 $orange-overlay: hsla(39, 100%, 50%, 0.25);
 
+$topicImageBlueMagenta: rgba(0, 0, 100, 0.45);
+$topicImageBlueMagentaHover: rgba(0, 0, 100, 0.65);
+$topicImageBurgundy: rgba(153, 0, 43, 0.45);
+$topicImageBurgundyHover: rgba(153, 0, 43, 0.66);
+$topicImageOrange: rgba(255, 166, 0, 0.45);
+$topicImageOrangeHover: rgba(255, 166, 0, 0.65);
+$topicImageWhite: rgba(255, 255, 255, 0.45);
+$topicImageWhiteHover: rgba(255, 255, 255, 0.65);
+
 $outline-on-dark-background: 3px solid $orange;
 $outline-on-light-background: 3px solid $burgundy;
 
