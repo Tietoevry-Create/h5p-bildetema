@@ -4,6 +4,11 @@
       "label": "Image"
     },
     {
+      "label": "Backend Url",
+      "description": "The Url to the json database",
+      "default": "https://cdn-devbildetema.azureedge.net/data/database.json"
+    },
+    {
       "label": "Selected topic",
       "fields": [
         {

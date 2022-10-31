@@ -311,8 +311,8 @@
       }
     },
     {
-      "label": "Backend-url",
-      "description": "The Url to the json database",
+      "label": "Backend Url",
+      "description": "Url til databasen",
       "default": "https://cdn-devbildetema.azureedge.net/data/database.json"
     }
   ]
