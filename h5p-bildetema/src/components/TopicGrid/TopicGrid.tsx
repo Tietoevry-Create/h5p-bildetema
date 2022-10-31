@@ -33,6 +33,10 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   showTopicImageView,
   toggleShowTopicImageView,
 }) => {
+  const [audioRef, setAudioRef] = React.useState<HTMLAudioElement>();
+  const updateAudioRef = (ref: HTMLAudioElement): void => {
+    setAudioRef(ref);
+  };
   React.useEffect(() => {
     setIsWordView(!!words);
   }, [words, setIsWordView]);
@@ -60,6 +64,8 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
               topicSize={topicsSize}
               languageCode={currentLanguage.code}
               topic={topic}
+              audioRef={audioRef}
+              setAudioRef={updateAudioRef}
             />
           );
         })}

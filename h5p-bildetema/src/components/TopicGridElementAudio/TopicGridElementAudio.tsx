@@ -8,10 +8,14 @@ import styles from "./TopicGridElementAudio.module.scss";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
+  audioRefFromParent: any;
+  setAudioRef: any;
 };
 
 export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   audioFiles,
+  audioRefFromParent,
+  setAudioRef,
 }) => {
   const [playing, setPlaying] = useState(false);
 
@@ -29,6 +33,10 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
       audioElement.pause();
       audioElement.currentTime = 0;
     } else {
+      if (audioRefFromParent) {
+        audioRefFromParent?.current?.pause();
+      }
+      setAudioRef(audioRef);
       audioElement.play();
     }
 
