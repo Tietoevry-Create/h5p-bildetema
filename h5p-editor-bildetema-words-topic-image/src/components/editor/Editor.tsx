@@ -58,20 +58,34 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
   useEffect(() => {
-    const newHotspots: Array<Hotspot> = words.map(word => {
-      const hotspotFromH5P = initialHotspots.find(
-        hotspot => hotspot.word.id === word.id,
+    const newHotspots: Array<Hotspot> = [];
+
+    initialHotspots.forEach(hotspot => {
+      const hotspotIsInWordsArray = words.find(
+        word => hotspot.word.id === word.id,
       );
-      return {
-        points: hotspotFromH5P?.points ?? [],
-        isDrawingThisPolygon: false,
-        word,
-        wordId: word.id,
-        rotation: hotspotFromH5P?.rotation ?? 0,
-        ellipseRadius: hotspotFromH5P?.ellipseRadius,
-        color: hotspotFromH5P?.color ?? Color.ORANGE,
-      };
+      if (hotspotIsInWordsArray) newHotspots.push(hotspot);
     });
+
+    const addMissingHotspots = (): void => {
+      words.forEach(word => {
+        const hotspotExists = !!newHotspots.find(
+          hotspot => hotspot.word.id === word.id,
+        );
+
+        if (hotspotExists) return;
+
+        newHotspots.push({
+          points: [],
+          isDrawingThisPolygon: false,
+          word,
+          rotation: 0,
+          color: Color.ORANGE,
+        });
+      });
+    };
+    addMissingHotspots();
+
     setHotspots(newHotspots);
   }, [initialHotspots, words]);
 
@@ -273,6 +287,24 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     setHotspots(updatedHotspots);
   };
 
+  const moveHotspotTop = (): void => {
+    if (!selectedHotspot) return;
+    const newHotspots = hotspots.filter(
+      hotspot => hotspot.word.id !== selectedHotspot.word.id,
+    );
+    newHotspots.unshift(selectedHotspot);
+    setHotspots(newHotspots);
+  };
+
+  const moveHotspotBottom = (): void => {
+    if (!selectedHotspot) return;
+    const newHotspots = hotspots.filter(
+      hotspot => hotspot.word.id !== selectedHotspot.word.id,
+    );
+    newHotspots.push(selectedHotspot);
+    setHotspots(newHotspots);
+  };
+
   const editorLabel = t("editorLabel");
   const editorDescription = t("editorDescription");
   const finishedButtonLabel = t("finishedButtonLabel");
@@ -292,6 +324,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           <div className={styles.toolbar_buttons}>
             {colors.map(color => (
               <ColorButton
+                key={color}
                 color={color}
                 handleClick={setHotspotColor}
                 selected={selectedHotspot?.color === color}
@@ -310,6 +343,20 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
               onClick={handleReset}
             >
               {resetButtonLabel}
+            </button>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={moveHotspotTop}
+            >
+              Move top
+            </button>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={moveHotspotBottom}
+            >
+              Move bottom
             </button>
           </div>
         )}
