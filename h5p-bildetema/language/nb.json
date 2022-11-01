@@ -5,8 +5,7 @@
       "fields": [
         {
           "label": "Språkkode",
-          "description":
-            "Språkkoden skal være skrevet med to tegn (engelsk: en, norsk bokmål: nb)",
+          "description": "Språkkoden skal være skrevet med to tegn (engelsk: en, norsk bokmål: nb)",
           "default": "nb"
         },
         {
@@ -325,7 +324,7 @@
     {
       "label": "Backend Url",
       "description": "Url til databasen",
-      "default": "https://cdn-devbildetema.azureedge.net/data/database.json"
+      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
     }
   ]
 }

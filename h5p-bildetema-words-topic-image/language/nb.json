@@ -6,7 +6,7 @@
     {
       "label": "Backend Url",
       "description": "The Url to the json database",
-      "default": "https://cdn-devbildetema.azureedge.net/data/database.json"
+      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
     },
     {
       "label": "Valgt tema",

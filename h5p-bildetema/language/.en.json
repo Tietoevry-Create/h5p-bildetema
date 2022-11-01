@@ -5,8 +5,7 @@
       "fields": [
         {
           "label": "Language code",
-          "description":
-            "Two character language code, used for setting language in code (English: en, Norwegian Bokmål: nb)",
+          "description": "Two character language code, used for setting language in code (English: en, Norwegian Bokmål: nb)",
           "default": "en"
         },
         {
@@ -325,7 +324,7 @@
     {
       "label": "Backend Url",
       "description": "The Url to the json database",
-      "default": "https://cdn-devbildetema.azureedge.net/data/database.json"
+      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
     }
   ]
 }

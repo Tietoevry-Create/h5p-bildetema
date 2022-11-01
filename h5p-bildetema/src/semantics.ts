@@ -259,7 +259,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
     label: "Backend Url",
     description: "The Url to the json database",
-    default: "https://cdn-devbildetema.azureedge.net/data/database.json",
+    default: "https://cdn-prodbildetema.azureedge.net/data/database.json",
     name: "backendUrl",
     type: "text",
   },
