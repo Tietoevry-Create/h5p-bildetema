@@ -1,6 +1,7 @@
 @use "../../../common/abstracts/" as *;
 .blueMagenta {
-  fill: $topicImageBlueMagenta !important;
+  fill: $topicImageBlueMagentaFill !important;
+  stroke: $topicImageBlueMagentaStroke !important;
 
   &:hover,
   a:focus & {
@@ -9,7 +10,8 @@
 }
 
 .burgundy {
-  fill: $topicImageBurgundy !important;
+  fill: $topicImageBurgundyFill !important;
+  stroke: $topicImageBurgundyStroke !important;
 
   &:hover,
   a:focus & {
@@ -18,7 +20,8 @@
 }
 
 .orange {
-  fill: $topicImageOrange !important;
+  fill: $topicImageOrangeFill !important;
+  stroke: $topicImageOrangeStroke !important;
 
   &:hover,
   a:focus & {
@@ -27,7 +30,8 @@
 }
 
 .white {
-  fill: $topicImageWhite !important;
+  fill: $topicImageWhiteFill !important;
+  stroke: $topicImageWhiteStroke !important;
 
   &:hover,
   a:focus & {

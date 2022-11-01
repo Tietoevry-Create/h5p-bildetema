@@ -66,8 +66,8 @@
   ellipse:focus,
   &_active polygon,
   &_active ellipse {
-    fill: $topicImageBlueMagentaHover !important;
-    stroke: $topicImageBlueMagenta !important;
+    fill: $topicImageBlueMagentaFill !important;
+    stroke: $topicImageBlueMagentaStroke !important;
   }
 }
 
@@ -78,8 +78,8 @@
   ellipse:focus,
   &_active polygon,
   &_active ellipse {
-    fill: $topicImageBurgundyHover !important;
-    stroke: $topicImageBurgundy;
+    fill: $topicImageBurgundyFill !important;
+    stroke: $topicImageBurgundyStroke !important;
   }
 }
 
@@ -90,8 +90,8 @@
   ellipse:focus,
   &_active polygon,
   &_active ellipse {
-    fill: $topicImageOrange !important;
-    stroke: $topicImageOrange !important;
+    fill: $topicImageOrangeFill !important;
+    stroke: $topicImageOrangeStroke !important;
   }
 }
 
@@ -102,7 +102,7 @@
   ellipse:focus,
   &_active polygon,
   &_active ellipse {
-    fill: $topicImageWhiteHover !important;
-    stroke: $topicImageWhite !important;
+    fill: $topicImageWhiteFill !important;
+    stroke: $topicImageWhiteStroke !important;
   }
 }
