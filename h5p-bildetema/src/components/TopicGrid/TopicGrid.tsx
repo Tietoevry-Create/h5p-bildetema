@@ -1,4 +1,5 @@
 import * as React from "react";
+import { RefObject, useMemo } from "react";
 import {
   Language,
   Topic,
@@ -9,6 +10,11 @@ import {
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
+import {
+  AudioContextType,
+  AudioRefContext,
+} from "../../../../common/context/AudioContext";
+import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 
 export type TopicGridProps = {
   topics?: Topic[];
@@ -33,10 +39,15 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   showTopicImageView,
   toggleShowTopicImageView,
 }) => {
-  const [audioRef, setAudioRef] = React.useState<HTMLAudioElement>();
-  const updateAudioRef = (ref: HTMLAudioElement): void => {
-    setAudioRef(ref);
-  };
+  const [contextAudioRef, setAudioRef] = React.useState(
+    {} as RefObject<HTMLAudioElement>,
+  );
+  const audioContextValue = useMemo(() => {
+    const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
+      setAudioRef(ref);
+    };
+    return { contextAudioRef, setContextAudioRef };
+  }, [contextAudioRef, setAudioRef]);
   React.useEffect(() => {
     setIsWordView(!!words);
   }, [words, setIsWordView]);
@@ -52,23 +63,23 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
             : styles.gridCompact
         }`}
       >
-        {topics?.map(topic => {
-          return (
-            <TopicGridElement
-              key={topic.id}
-              title={
-                topic.labelTranslations.get(currentLanguage.code)?.label ||
-                topic.id
-              }
-              images={topic.images}
-              topicSize={topicsSize}
-              languageCode={currentLanguage.code}
-              topic={topic}
-              audioRef={audioRef}
-              setAudioRef={updateAudioRef}
-            />
-          );
-        })}
+        <AudioRefContext.Provider value={audioContextValue}>
+          {topics?.map(topic => {
+            return (
+              <TopicGridElement
+                key={topic.id}
+                title={
+                  topic.labelTranslations.get(currentLanguage.code)?.label ||
+                  topic.id
+                }
+                images={topic.images}
+                topicSize={topicsSize}
+                languageCode={currentLanguage.code}
+                topic={topic}
+              />
+            );
+          })}
+        </AudioRefContext.Provider>
       </ul>
     );
   }

@@ -5,21 +5,20 @@ import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { AudioFile } from "../../../../common/types/AudioFile";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
+import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
-  audioRefFromParent: any;
-  setAudioRef: any;
 };
 
 export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   audioFiles,
-  audioRefFromParent,
-  setAudioRef,
 }) => {
   const [playing, setPlaying] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
   const toggleAudio = (event: React.MouseEvent): void => {
     event.preventDefault();
@@ -33,10 +32,10 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
       audioElement.pause();
       audioElement.currentTime = 0;
     } else {
-      if (audioRefFromParent) {
-        audioRefFromParent?.current?.pause();
+      if (contextAudioRef) {
+        contextAudioRef?.current?.pause();
       }
-      setAudioRef(audioRef);
+      setContextAudioRef(audioRef);
       audioElement.play();
     }
 
