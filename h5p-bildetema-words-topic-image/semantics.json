@@ -80,6 +80,11 @@
           "type": "number"
         },
         {
+          "label": "Color",
+          "name": "color",
+          "type": "text"
+        },
+        {
           "label": "Word",
           "name": "word",
           "type": "group",

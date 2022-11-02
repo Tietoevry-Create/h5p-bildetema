@@ -11,6 +11,8 @@ import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
+import { Color } from "../../../../common/enums/Color";
+import { ColorButton } from "../ColorButton/ColorButton";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
@@ -40,6 +42,8 @@ enum Click {
   DOUBLE,
 }
 
+const colors = Object.values(Color);
+
 export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const setValue = useContext(SetValueContext);
@@ -65,11 +69,13 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
         wordId: word.id,
         rotation: hotspotFromH5P?.rotation ?? 0,
         ellipseRadius: hotspotFromH5P?.ellipseRadius,
+        color: hotspotFromH5P?.color ?? Color.ORANGE,
       };
     });
     setHotspots(newHotspots);
   }, [initialHotspots, words]);
 
+  // Update h5p-value
   useEffect(() => {
     setValue(hotspots);
   }, [hotspots, setValue]);
@@ -155,6 +161,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
 
     // TODO: Fix performance by caching canvas' bounding box. Must be updated when scrolling/zooming
     const rect = canvasRef.current.getBoundingClientRect();
+    setSelectedWord(null);
 
     const startPoint = calculatePoint(figureDrag.from, rect, aspectRatio);
     const currentPoint = calculatePoint(newPosition, rect, aspectRatio);
@@ -256,6 +263,16 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
       window.removeEventListener("mouseup", stopDraggingEllipsePoint);
   }, []);
 
+  const setHotspotColor = (color: Color): void => {
+    const updatedHotspots = hotspots.map(hotspot => {
+      if (!hotspot.isDrawingThisPolygon) return hotspot;
+
+      return { ...hotspot, color };
+    });
+
+    setHotspots(updatedHotspots);
+  };
+
   const editorLabel = t("editorLabel");
   const editorDescription = t("editorDescription");
   const finishedButtonLabel = t("finishedButtonLabel");
@@ -273,10 +290,25 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           : selectWordLabel}
         {selectedWordId && (
           <div className={styles.toolbar_buttons}>
-            <button type="button" onClick={handleFinishedPressed}>
+            {colors.map(color => (
+              <ColorButton
+                color={color}
+                handleClick={setHotspotColor}
+                selected={selectedHotspot?.color === color}
+              />
+            ))}
+            <button
+              className={styles.button}
+              type="button"
+              onClick={handleFinishedPressed}
+            >
               {finishedButtonLabel}
             </button>
-            <button type="button" onClick={handleReset}>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={handleReset}
+            >
               {resetButtonLabel}
             </button>
           </div>

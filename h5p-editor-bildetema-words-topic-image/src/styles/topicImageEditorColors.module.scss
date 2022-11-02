@@ -1,0 +1,40 @@
+@use "../../../common/abstracts/" as *;
+.blueMagenta {
+  fill: $topicImageBlueMagentaFill !important;
+  stroke: $topicImageBlueMagentaStroke !important;
+
+  &:hover,
+  a:focus & {
+    fill: $topicImageBlueMagentaHover !important;
+  }
+}
+
+.burgundy {
+  fill: $topicImageBurgundyFill !important;
+  stroke: $topicImageBurgundyStroke !important;
+
+  &:hover,
+  a:focus & {
+    fill: $topicImageBurgundyHover !important;
+  }
+}
+
+.orange {
+  fill: $topicImageOrangeFill !important;
+  stroke: $topicImageOrangeStroke !important;
+
+  &:hover,
+  a:focus & {
+    fill: $topicImageOrangeHover !important;
+  }
+}
+
+.white {
+  fill: $topicImageWhiteFill !important;
+  stroke: $topicImageWhiteStroke !important;
+
+  &:hover,
+  a:focus & {
+    fill: $topicImageWhiteHover !important;
+  }
+}

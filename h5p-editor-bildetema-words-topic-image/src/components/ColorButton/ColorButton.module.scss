@@ -1,0 +1,31 @@
+@use "../../../../common/abstracts/" as *;
+
+.button {
+  all: unset;
+  border-radius: 1em;
+  width: 1.4em;
+  height: 1.4em;
+  cursor: pointer;
+
+  outline: grey 1px solid;
+}
+
+.selected {
+  outline: 3px solid black;
+}
+
+.blueMagenta {
+  background: $topicImageBlueMagentaStroke;
+}
+
+.burgundy {
+  background: $topicImageBurgundyStroke;
+}
+
+.orange {
+  background: $topicImageOrangeStroke;
+}
+
+.white {
+  background: $topicImageWhiteStroke;
+}

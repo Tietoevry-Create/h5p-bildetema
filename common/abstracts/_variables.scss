@@ -26,6 +26,24 @@ $blue-magenta: #000064;
 $orange: hsla(39, 100%, 50%, 1);
 $orange-overlay: hsla(39, 100%, 50%, 0.25);
 
+$topicImageBlueMagentaStroke: rgba(0, 0, 100, 1);
+$topicImageBlueMagentaFill: rgba(0, 0, 100, 0.25);
+
+$topicImageBurgundyStroke: rgba(153, 0, 43, 1);
+$topicImageBurgundyFill: rgba(153, 0, 43, 0.25);
+
+$topicImageOrangeStroke: rgba(255, 166, 0, 1);
+$topicImageOrangeFill: rgba(255, 166, 0, 0.25);
+
+$topicImageWhiteStroke: rgba(255, 255, 255, 1);
+$topicImageWhiteFill: rgba(255, 255, 255, 0.25);
+
+// Used for hovering in the editor
+$topicImageBlueMagentaHover: rgba(0, 0, 100, 0.45);
+$topicImageBurgundyHover: rgba(153, 0, 43, 0.45);
+$topicImageOrangeHover: rgba(255, 166, 0, 0.45);
+$topicImageWhiteHover: rgba(255, 255, 255, 0.45);
+
 $outline-on-dark-background: 3px solid $orange;
 $outline-on-light-background: 3px solid $burgundy;
 

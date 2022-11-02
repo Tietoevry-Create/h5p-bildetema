@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from "vitest";
+import { Color } from "../../../../common/enums/Color";
 import { Word } from "../../../../common/types/types";
 import { Hotspot } from "../../types/Hotspot";
 import { PointWithIndex } from "../../types/PointWithIndex";
@@ -20,6 +21,7 @@ describe(finishDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -28,6 +30,7 @@ describe(finishDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -42,6 +45,7 @@ describe(finishDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -50,6 +54,7 @@ describe(finishDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -67,6 +72,7 @@ describe(finishDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -78,6 +84,7 @@ describe(finishDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = finishDrawingHotspot(hotspot);
@@ -99,6 +106,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -107,6 +115,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = resetPointsOfActiveHotspot(hotspot);
@@ -124,6 +133,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -135,6 +145,7 @@ describe(resetPointsOfActiveHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = resetPointsOfActiveHotspot(hotspot);
@@ -167,6 +178,7 @@ describe(activateDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -175,6 +187,7 @@ describe(activateDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = activateDrawingHotspot(hotspot, word.id);
@@ -190,6 +203,7 @@ describe(activateDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const expected: Hotspot = {
@@ -198,6 +212,7 @@ describe(activateDrawingHotspot.name, () => {
       word,
       rotation: 0,
       ellipseRadius: 0,
+      color: Color.ORANGE,
     };
 
     const actual = activateDrawingHotspot(hotspot, "B002");

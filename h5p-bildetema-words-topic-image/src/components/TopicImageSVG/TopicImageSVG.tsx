@@ -23,20 +23,24 @@ export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
   hoveredWord,
   selectHoveredSVG,
 }) => {
-  const overlayFields = overlays.map(overlay => (
-    <g
-      key={overlay.wordId}
-      className={`${styles.overlay} ${
-        hoveredWord === overlay.wordId ? styles.overlay_active : ""
-      }`}
-      onClick={() => selectWord(overlay.wordId)}
-      onMouseEnter={() => selectHoveredSVG(overlay.wordId)}
-      onMouseLeave={() => selectHoveredSVG("")}
-      onFocus={() => selectHoveredSVG(overlay.wordId)}
-      onBlur={() => selectHoveredSVG("")}
-      dangerouslySetInnerHTML={{ __html: overlay.outline }}
-    />
-  ));
+  const overlayFields = overlays.map(overlay => {
+    const active = `${overlay.color}_active`;
+    return (
+      <g
+        key={overlay.wordId}
+        className={`${styles.overlay} ${styles[overlay.color]} ${
+          hoveredWord === overlay.wordId ? styles[active] : ""
+        }
+        `}
+        onClick={() => selectWord(overlay.wordId)}
+        onMouseEnter={() => selectHoveredSVG(overlay.wordId)}
+        onMouseLeave={() => selectHoveredSVG("")}
+        onFocus={() => selectHoveredSVG(overlay.wordId)}
+        onBlur={() => selectHoveredSVG("")}
+        dangerouslySetInnerHTML={{ __html: overlay.outline }}
+      />
+    );
+  });
 
   const isVertical = aspectRatio < 1;
 

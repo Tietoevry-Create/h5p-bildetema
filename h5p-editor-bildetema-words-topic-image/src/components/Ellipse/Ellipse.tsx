@@ -5,6 +5,7 @@ import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { getDelta } from "../../utils/figure/figure.utils";
 import styles from "./Ellipse.module.scss";
+import colorStyles from "../../styles/topicImageEditorColors.module.scss";
 
 type PointWithIndex = Point & { index: number };
 type EllipseHotspot = Omit<Hotspot, "points"> & {
@@ -122,7 +123,7 @@ export const Ellipse: FC<EllipseProps> = ({
         stroke="black"
         fill="none"
         strokeWidth="0.3"
-        className={styles.ellipse}
+        className={`${styles.ellipse} ${colorStyles[hotspot.color]}`}
         onDoubleClick={() => handleShapeClick(hotspot.word.id)}
         onMouseDown={({ clientX: x, clientY: y }) =>
           startShapeDragging(hotspot, { x, y })

@@ -2,6 +2,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Editor } from "./Editor";
+import { Color } from "../../../../common/enums/Color";
 
 export default {
   title: "Components/Editor",
@@ -64,6 +65,7 @@ WithInitialHotspots.args = {
   ],
   initialHotspots: [
     {
+      color: Color.ORANGE,
       points: [
         {
           x: 18.439817864200005,
@@ -249,6 +251,7 @@ WithInitialHotspots.args = {
       ellipseRadius: 0,
     },
     {
+      color: Color.ORANGE,
       points: [],
       isDrawingThisPolygon: false,
       word: {
@@ -261,6 +264,7 @@ WithInitialHotspots.args = {
       ellipseRadius: 0,
     },
     {
+      color: Color.ORANGE,
       points: [],
       isDrawingThisPolygon: false,
       word: {
