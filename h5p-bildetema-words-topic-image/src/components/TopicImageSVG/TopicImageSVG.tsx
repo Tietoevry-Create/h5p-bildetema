@@ -23,24 +23,27 @@ export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
   hoveredWord,
   selectHoveredSVG,
 }) => {
-  const overlayFields = overlays.map(overlay => {
-    const active = `${overlay.color}_active`;
-    return (
-      <g
-        key={overlay.wordId}
-        className={`${styles.overlay} ${styles[overlay.color]} ${
-          hoveredWord === overlay.wordId ? styles[active] : ""
-        }
+  const overlayFields = overlays
+    .slice(0)
+    .reverse()
+    .map(overlay => {
+      const active = `${overlay.color}_active`;
+      return (
+        <g
+          key={overlay.wordId}
+          className={`${styles.overlay} ${styles[overlay.color]} ${
+            hoveredWord === overlay.wordId ? styles[active] : ""
+          }
         `}
-        onClick={() => selectWord(overlay.wordId)}
-        onMouseEnter={() => selectHoveredSVG(overlay.wordId)}
-        onMouseLeave={() => selectHoveredSVG("")}
-        onFocus={() => selectHoveredSVG(overlay.wordId)}
-        onBlur={() => selectHoveredSVG("")}
-        dangerouslySetInnerHTML={{ __html: overlay.outline }}
-      />
-    );
-  });
+          onClick={() => selectWord(overlay.wordId)}
+          onMouseEnter={() => selectHoveredSVG(overlay.wordId)}
+          onMouseLeave={() => selectHoveredSVG("")}
+          onFocus={() => selectHoveredSVG(overlay.wordId)}
+          onBlur={() => selectHoveredSVG("")}
+          dangerouslySetInnerHTML={{ __html: overlay.outline }}
+        />
+      );
+    });
 
   const isVertical = aspectRatio < 1;
 

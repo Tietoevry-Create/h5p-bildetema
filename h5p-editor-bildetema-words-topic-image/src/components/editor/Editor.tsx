@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { ArrowIcon } from "../Icons/Icons";
 import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
@@ -58,20 +59,34 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
   useEffect(() => {
-    const newHotspots: Array<Hotspot> = words.map(word => {
-      const hotspotFromH5P = initialHotspots.find(
-        hotspot => hotspot.word.id === word.id,
+    const newHotspots: Array<Hotspot> = [];
+
+    initialHotspots.forEach(hotspot => {
+      const hotspotIsInWordsArray = words.find(
+        word => hotspot.word.id === word.id,
       );
-      return {
-        points: hotspotFromH5P?.points ?? [],
-        isDrawingThisPolygon: false,
-        word,
-        wordId: word.id,
-        rotation: hotspotFromH5P?.rotation ?? 0,
-        ellipseRadius: hotspotFromH5P?.ellipseRadius,
-        color: hotspotFromH5P?.color ?? Color.ORANGE,
-      };
+      if (hotspotIsInWordsArray) newHotspots.push(hotspot);
     });
+
+    const addMissingHotspots = (): void => {
+      words.forEach(word => {
+        const hotspotExists = !!newHotspots.find(
+          hotspot => hotspot.word.id === word.id,
+        );
+
+        if (hotspotExists) return;
+
+        newHotspots.push({
+          points: [],
+          isDrawingThisPolygon: false,
+          word,
+          rotation: 0,
+          color: Color.ORANGE,
+        });
+      });
+    };
+    addMissingHotspots();
+
     setHotspots(newHotspots);
   }, [initialHotspots, words]);
 
@@ -158,7 +173,6 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     if (!canvasRef.current) {
       return;
     }
-
     // TODO: Fix performance by caching canvas' bounding box. Must be updated when scrolling/zooming
     const rect = canvasRef.current.getBoundingClientRect();
     setSelectedWord(null);
@@ -173,15 +187,18 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
         ...point,
         ...getDelta(point, motionDelta),
       }));
+    const hotspotIndex = hotspots.findIndex(
+      hotspot => hotspot.word.id === figureDrag.hotspot.word.id,
+    );
 
     setHotspots([
-      ...hotspots.slice(0, figureDrag.hotspotIndex),
+      ...hotspots.slice(0, hotspotIndex),
       {
-        ...hotspots[figureDrag.hotspotIndex],
+        ...hotspots[hotspotIndex],
         isDrawingThisPolygon: false,
         points: movedPoints,
       },
-      ...hotspots.slice(figureDrag.hotspotIndex + 1),
+      ...hotspots.slice(hotspotIndex + 1),
     ]);
   };
 
@@ -273,6 +290,32 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     setHotspots(updatedHotspots);
   };
 
+  const moveHotspotUp = (): void => {
+    if (!selectedHotspot) return;
+    const hotspotIndex = hotspots.findIndex(
+      hotspot => hotspot.word.id === selectedHotspot.word.id,
+    );
+    if (hotspotIndex === 0 || hotspotIndex === -1) return;
+    [hotspots[hotspotIndex], hotspots[hotspotIndex - 1]] = [
+      hotspots[hotspotIndex - 1],
+      hotspots[hotspotIndex],
+    ];
+    setHotspots([...hotspots]);
+  };
+
+  const moveHotspotDown = (): void => {
+    if (!selectedHotspot) return;
+    const hotspotIndex = hotspots.findIndex(
+      hotspot => hotspot.word.id === selectedHotspot.word.id,
+    );
+    if (hotspotIndex === hotspots.length - 1 || hotspotIndex === -1) return;
+    [hotspots[hotspotIndex], hotspots[hotspotIndex + 1]] = [
+      hotspots[hotspotIndex + 1],
+      hotspots[hotspotIndex],
+    ];
+    setHotspots([...hotspots]);
+  };
+
   const editorLabel = t("editorLabel");
   const editorDescription = t("editorDescription");
   const finishedButtonLabel = t("finishedButtonLabel");
@@ -292,6 +335,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           <div className={styles.toolbar_buttons}>
             {colors.map(color => (
               <ColorButton
+                key={color}
                 color={color}
                 handleClick={setHotspotColor}
                 selected={selectedHotspot?.color === color}
@@ -310,6 +354,23 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
               onClick={handleReset}
             >
               {resetButtonLabel}
+            </button>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={moveHotspotUp}
+            >
+              <ArrowIcon
+                transform="scale(0.9) rotate(180)"
+                transformOrigin="50% 50%"
+              />
+            </button>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={moveHotspotDown}
+            >
+              <ArrowIcon transform="scale(0.9)" transformOrigin="50% 50%" />
             </button>
           </div>
         )}
