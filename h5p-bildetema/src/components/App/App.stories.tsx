@@ -11,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof App> = () => (
   <App
     defaultLanguages={["nob"]}
-    backendUrl="https://cdn-devbildetema.azureedge.net/data/database.json"
+    backendUrl="https://cdn-prodbildetema.azureedge.net/data/database.json"
   />
 );
 
