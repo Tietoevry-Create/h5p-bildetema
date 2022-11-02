@@ -133,27 +133,30 @@ export const Svg: FC<SvgProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       onMouseMove={onMouseMove}
     >
-      {hotspots.map((hotspot, index) =>
-        hotspot.points && hotspot.points?.length > 0 ? (
-          <Shape
-            key={hotspot.word.id}
-            hotspot={hotspot}
-            setHotspot={updatedHotspot =>
-              setHotspots(
-                hotspots.map(hs =>
-                  hs.word.id === updatedHotspot.word.id ? updatedHotspot : hs,
-                ),
-              )
-            }
-            handleShapeClick={handleShapeClick}
-            startShapeDragging={startShapeDragging(index)}
-            endShapeDragging={endShapeDragging}
-            canvasRef={canvasRef}
-            isDraggingEllipsePoint={isDraggingEllipsePoint}
-            setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
-          />
-        ) : null,
-      )}
+      {hotspots
+        .slice(0)
+        .reverse()
+        .map((hotspot, index) =>
+          hotspot.points && hotspot.points?.length > 0 ? (
+            <Shape
+              key={hotspot.word.id}
+              hotspot={hotspot}
+              setHotspot={updatedHotspot =>
+                setHotspots(
+                  hotspots.map(hs =>
+                    hs.word.id === updatedHotspot.word.id ? updatedHotspot : hs,
+                  ),
+                )
+              }
+              handleShapeClick={handleShapeClick}
+              startShapeDragging={startShapeDragging(index)}
+              endShapeDragging={endShapeDragging}
+              canvasRef={canvasRef}
+              isDraggingEllipsePoint={isDraggingEllipsePoint}
+              setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
+            />
+          ) : null,
+        )}
       {currentDrawnShape &&
         currentDrawnShape?.points?.map(({ x, y, index }) => (
           <circle

@@ -85,7 +85,6 @@ export const Ellipse: FC<EllipseProps> = ({
         x: xPercentage,
         y: yPercentage,
       });
-
       setHotspot({
         ...hotspot,
         ellipseRadius: Math.max(minimalRadius, distanceFromCenter),
