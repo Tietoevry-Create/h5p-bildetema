@@ -28,6 +28,11 @@ type BildetemaProps = {
   isLoadingData: boolean;
 };
 
+enum SEARCHPARAMS {
+  wordsVisible = "showWrittenWords",
+  articlesVisible = "showArticles",
+}
+
 export const Bildetema: React.FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
@@ -47,7 +52,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   }, []);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const wordsVisibleParam = "showWrittenWords";
+
   const loadingLabel = useL10n("pageIsLoading");
   const pageTitle = useL10n("headerTitle");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
@@ -60,13 +65,37 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [isWordView, setIsWordView] = useState(false);
   const [showTopicImageView, setShowTopicImageView] = useState(true);
 
-  const [showWrittenWords, setShowWrittenWords] = useState(
-    searchParams.get(wordsVisibleParam) !== null
-      ? searchParams.get(wordsVisibleParam) === "true"
-      : true,
-  );
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
+
+  const handleSearchParams = (search: SEARCHPARAMS, value: string): void => {
+    const sParams = Object.values(SEARCHPARAMS)
+      .filter(param => {
+        if(param === search) return true
+        return searchParams.get(param)
+      })
+      .map(param => {
+        if(param === search){
+          return `${param}=${value}`
+        }
+        const currValue = searchParams.get(param)
+        return `${param}=${currValue}`
+      })
+      .join("&");
+      setSearchParams(sParams)
+  };
+
+  const [showWrittenWords, setShowWrittenWords] = useState(
+    searchParams.get(SEARCHPARAMS.wordsVisible) !== null
+      ? searchParams.get(SEARCHPARAMS.wordsVisible) === "true"
+      : true,
+  );
+
+  const [showArticles, setShowArticles] = useState(
+    searchParams.get(SEARCHPARAMS.articlesVisible) !== null
+      ? searchParams.get(SEARCHPARAMS.articlesVisible) === "true"
+      : true,
+  );
 
   if (!favLanguages.length && languagesFromDB) {
     const languages: Language[] = [];
@@ -91,8 +120,13 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     return !!currentLanguage?.rtl;
   }, [favLanguages, pathname]);
 
+  const handleToggleArticles = (value: boolean): void => {
+    handleSearchParams(SEARCHPARAMS.articlesVisible, value.toString());
+    setShowArticles(value);
+  };
+
   const handleToggleChange = (value: boolean): void => {
-    setSearchParams(`${wordsVisibleParam}=${value}`);
+    handleSearchParams(SEARCHPARAMS.wordsVisible, value.toString());
     setShowWrittenWords(value);
   };
 

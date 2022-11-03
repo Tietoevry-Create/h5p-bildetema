@@ -8,6 +8,7 @@ export type Word = {
   label: string;
   images: ImageUrl[];
   audioFiles?: Array<AudioFile>;
+  article?: string;
 };
 
 export type ImageUrl = {
