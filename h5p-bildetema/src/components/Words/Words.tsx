@@ -85,6 +85,8 @@ export const Words: React.FC<WordsProps> = ({
             ...JSON.parse(content.json_content),
             currentLanguage,
             l10n,
+            showWrittenWords,
+            showArticles,
           };
 
           const topicView = H5P.newRunnable(

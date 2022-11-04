@@ -12,6 +12,8 @@ type TopicImageWordAudioProps = {
   selectHoveredWord: (word: string) => void;
   unSelectWord: (word: string) => void;
   hoveredSVG: string | undefined;
+  showWrittenWords: boolean;
+  showArticles: boolean;
 };
 
 export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
@@ -20,8 +22,12 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
   selectHoveredWord,
   unSelectWord,
   hoveredSVG,
+  showWrittenWords,
+  showArticles,
 }) => {
-  const { label } = word;
+  const { label, article } = word;
+  const text = article && showArticles ? `${article} ${label}` : label;
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
@@ -104,10 +110,13 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         onFocus={() => selectHoveredWord(word.id)}
         onBlur={() => selectHoveredWord("")}
       >
-        <span className={styles.word_label}>
-          {label}
-          &nbsp;
-        </span>
+        {" "}
+        {showWrittenWords && (
+          <span className={styles.word_label}>
+            {text}
+            &nbsp;
+          </span>
+        )}
         <span className={styles.audioIconSpan}>
           <SpeakerIcon
             className={playing ? styles.audioIconActive : styles.audioIcon}
