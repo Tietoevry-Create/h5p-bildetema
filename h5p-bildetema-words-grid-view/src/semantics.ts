@@ -85,4 +85,11 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     default: true,
     importance: "low",
   },
+  {
+    label: "Show articles",
+    name: "showArticles",
+    type: "boolean",
+    default: false,
+    importance: "low",
+  },
 ];

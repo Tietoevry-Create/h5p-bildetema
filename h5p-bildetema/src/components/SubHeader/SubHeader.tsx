@@ -9,6 +9,7 @@ import { Toggle } from "../Toggle/Toggle";
 import styles from "./SubHeader.module.scss";
 import { PrintButton } from "../PrintButton/PrintButton";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 
 export type SubHeaderProps = {
   topicIds: TopicIds;
@@ -17,6 +18,8 @@ export type SubHeaderProps = {
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
+  handleToggleArticles: (value: boolean) => void;
+  articlesToggleChecked: boolean;
   showTopicImageView: boolean;
   rtl: boolean;
 };
@@ -30,8 +33,12 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   handleToggleChange,
   showTopicImageView,
   rtl,
+  handleToggleArticles,
+  articlesToggleChecked,
 }) => {
+  const { topics } = useDBContext() || {};
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
+  const { showArticlesLabel } = useL10ns("showArticlesLabel");
 
   const contentId = useContentId();
   const { pathname } = useLocation();
@@ -39,15 +46,41 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   const currentLanguageCode =
     pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
 
+  const showArticlesToggle = React.useMemo(() => {
+    const { topicId, subTopicId } = topicIds;
+    const words = subTopicId
+      ? topics
+          ?.find(t => t.id === topicId)
+          ?.subTopics?.find(s => s.id === subTopicId)
+          ?.words?.get(currentLanguageCode as LanguageCode)
+      : topics
+          ?.find(t => t.id === topicId)
+          ?.words?.get(currentLanguageCode as LanguageCode);
+    return !!words?.find(word => {
+      if (word?.article) return true;
+      return false;
+    });
+  }, [currentLanguageCode, topicIds, topics]);
+
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
       !showTopicImageView && (
-        <Toggle
-          label={showWrittenWordsLabel}
-          checked={toggleChecked}
-          handleChange={handleToggleChange}
-          id={`toggle-${contentId}`}
-        />
+        <>
+          <Toggle
+            label={showWrittenWordsLabel}
+            checked={toggleChecked}
+            handleChange={handleToggleChange}
+            id={`toggle-${contentId}`}
+          />
+          {showArticlesToggle && (
+            <Toggle
+              label={showArticlesLabel}
+              checked={articlesToggleChecked}
+              handleChange={handleToggleArticles}
+              id={`toggle-articles-${contentId}`}
+            />
+          )}
+        </>
       )
     ) : (
       <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />

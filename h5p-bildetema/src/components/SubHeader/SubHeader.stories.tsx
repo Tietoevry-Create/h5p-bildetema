@@ -10,6 +10,7 @@ export default {
 
 const Template = (isWordView: boolean, isRtl: boolean): JSX.Element => {
   const [checked, setChecked] = React.useState(true);
+  const [articlesChecked, setArticlesChecked] = React.useState(true);
   const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
 
   return (
@@ -24,6 +25,10 @@ const Template = (isWordView: boolean, isRtl: boolean): JSX.Element => {
       toggleChecked={checked}
       showTopicImageView={false}
       rtl={isRtl}
+      handleToggleArticles={(value: boolean): void => {
+        setArticlesChecked(value);
+      }}
+      articlesToggleChecked={articlesChecked}
     />
   );
 };

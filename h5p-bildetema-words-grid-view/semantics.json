@@ -81,5 +81,12 @@
     "type": "boolean",
     "default": true,
     "importance": "low"
+  },
+  {
+    "label": "Show articles",
+    "name": "showArticles",
+    "type": "boolean",
+    "default": false,
+    "importance": "low"
   }
 ]

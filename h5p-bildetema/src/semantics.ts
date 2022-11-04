@@ -53,6 +53,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Show articles label",
+        name: "showArticlesLabel",
+        default: "Show articles",
+        type: "text",
+      },
+      {
         label: "Print label",
         name: "printLabel",
         default: "Print",

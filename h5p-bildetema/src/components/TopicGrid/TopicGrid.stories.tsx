@@ -35,6 +35,7 @@ const defaultArgs: TopicGridProps = {
   showWrittenWords: false,
   currentLanguage: { label: "nob", code: "nob", rtl: false },
   showTopicImageView: true,
+  showArticles: false,
 };
 export const ThemesGrid = Template.bind({});
 ThemesGrid.args = {

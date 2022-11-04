@@ -9,6 +9,7 @@ export type TranslationKey =
   | "pageIsLoading"
   | "mainContentLink"
   | "showWrittenWordsLabel"
+  | "showArticlesLabel"
   | "printLabel"
   | "printImgLabel"
   | "playAudio"

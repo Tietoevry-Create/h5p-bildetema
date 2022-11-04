@@ -21,6 +21,10 @@
           "default": "Vis ord"
         },
         {
+          "label": "Vis artikkel",
+          "default": "Vis artikkel"
+        },
+        {
           "label": "Skriv ut",
           "default": "Skriv ut"
         },

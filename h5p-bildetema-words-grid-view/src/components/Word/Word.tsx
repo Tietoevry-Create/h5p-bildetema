@@ -17,9 +17,14 @@ import { gridImageSizes } from "../../utils/image/image.utils";
 type WordProps = {
   word: WordType;
   textVisible: boolean;
+  showArticles: boolean;
 };
 
-export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
+export const Word: React.FC<WordProps> = ({
+  textVisible,
+  word,
+  showArticles,
+}) => {
   const { images } = word;
 
   const prevLabel = useL10n("prevImageLabel");
@@ -102,7 +107,13 @@ export const Word: React.FC<WordProps> = ({ textVisible, word }) => {
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
-      {hasAudio && <WordAudio word={word} textVisible={textVisible} />}
+      {hasAudio && (
+        <WordAudio
+          word={word}
+          textVisible={textVisible}
+          showArticles={showArticles}
+        />
+      )}
     </li>
   );
 };

@@ -71,18 +71,18 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const handleSearchParams = (search: SEARCHPARAMS, value: string): void => {
     const sParams = Object.values(SEARCHPARAMS)
       .filter(param => {
-        if(param === search) return true
-        return searchParams.get(param)
+        if (param === search) return true;
+        return searchParams.get(param);
       })
       .map(param => {
-        if(param === search){
-          return `${param}=${value}`
+        if (param === search) {
+          return `${param}=${value}`;
         }
-        const currValue = searchParams.get(param)
-        return `${param}=${currValue}`
+        const currValue = searchParams.get(param);
+        return `${param}=${currValue}`;
       })
       .join("&");
-      setSearchParams(sParams)
+    setSearchParams(sParams);
   };
 
   const [showWrittenWords, setShowWrittenWords] = useState(
@@ -94,7 +94,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [showArticles, setShowArticles] = useState(
     searchParams.get(SEARCHPARAMS.articlesVisible) !== null
       ? searchParams.get(SEARCHPARAMS.articlesVisible) === "true"
-      : true,
+      : false,
   );
 
   if (!favLanguages.length && languagesFromDB) {
@@ -183,6 +183,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                 favLanguages={favLanguages}
                 showTopicImageView={showTopicImageView}
                 toggleShowTopicImageView={toggleShowTopicImageView}
+                showArticles={showArticles}
               />
             }
           />
@@ -197,6 +198,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     showWrittenWords,
     topicsSize,
     showTopicImageView,
+    showArticles,
   ]);
 
   return (
@@ -220,6 +222,8 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           toggleChecked={showWrittenWords}
           showTopicImageView={showTopicImageView}
           rtl={directionRtl}
+          handleToggleArticles={handleToggleArticles}
+          articlesToggleChecked={showArticles}
         />
         <div
           id="bildetemaMain"

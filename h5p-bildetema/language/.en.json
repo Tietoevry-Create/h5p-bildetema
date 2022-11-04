@@ -21,6 +21,10 @@
           "default": "Show written words"
         },
         {
+          "label": "Show articles label",
+          "default": "Show articles"
+        },
+        {
           "label": "Print label",
           "default": "Print"
         },

@@ -9,14 +9,20 @@ import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 type WordAudioProps = {
   word: WordType;
   textVisible: boolean;
+  showArticles: boolean;
 };
 
-export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
-  const { label } = word;
+export const WordAudio: React.FC<WordAudioProps> = ({
+  word,
+  textVisible,
+  showArticles,
+}) => {
+  const { label, article } = word;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
+  const text = article && showArticles ? `${article} ${label}` : label;
   const handleAudioEnded = (): void => {
     setPlaying(false);
   };
@@ -41,7 +47,6 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
 
     setPlaying(!playing);
   };
-
   useEffect(() => {
     // Reload sources whenever the language changes
     audioRef.current?.load();
@@ -70,7 +75,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
       <button type="button" onClick={toggleAudio}>
         {textVisible && (
           <h2 className={styles.word_label}>
-            {label}
+            {text}
             &nbsp;
           </h2>
         )}

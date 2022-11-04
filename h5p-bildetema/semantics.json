@@ -31,6 +31,12 @@
         "type": "text"
       },
       {
+        "label": "Show articles label",
+        "name": "showArticlesLabel",
+        "default": "Show articles",
+        "type": "text"
+      },
+      {
         "label": "Print label",
         "name": "printLabel",
         "default": "Print",

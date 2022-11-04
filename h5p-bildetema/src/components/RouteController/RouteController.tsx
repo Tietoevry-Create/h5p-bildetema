@@ -25,6 +25,7 @@ export type RouteControllerProps = {
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
   showTopicImageView: boolean;
   toggleShowTopicImageView: (value: boolean) => void;
+  showArticles: boolean;
 };
 
 export const RouteController: React.FC<RouteControllerProps> = ({
@@ -36,6 +37,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   favLanguages,
   showTopicImageView,
   toggleShowTopicImageView,
+  showArticles,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const { langId, topicLabel, subTopicId } = useParams();
@@ -140,6 +142,7 @@ export const RouteController: React.FC<RouteControllerProps> = ({
         currentTopic={currentTopic}
         showTopicImageView={showTopicImageView}
         toggleShowTopicImageView={toggleShowTopicImageView}
+        showArticles={showArticles}
       />
     );
   }

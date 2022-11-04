@@ -23,6 +23,7 @@ export type TopicGridProps = {
   currentTopic?: TopicIds;
   showTopicImageView: boolean;
   toggleShowTopicImageView: (value: boolean) => void;
+  showArticles: boolean;
 };
 
 export const TopicGrid: React.FC<TopicGridProps> = ({
@@ -35,6 +36,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   currentTopic,
   showTopicImageView,
   toggleShowTopicImageView,
+  showArticles,
 }) => {
   const [contextAudioRef, setAudioRef] = React.useState(
     {} as RefObject<HTMLAudioElement>,
@@ -90,6 +92,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
         currentLanguage={currentLanguage.code}
         showTopicImageView={showTopicImageView}
         toggleShowTopicImageView={toggleShowTopicImageView}
+        showArticles={showArticles}
       />
     );
   }

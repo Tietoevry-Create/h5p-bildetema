@@ -10,6 +10,7 @@ import { TranslationKey } from "../types/TranslationKey";
 export type Params = {
   words?: Word[];
   showWrittenWords?: boolean;
+  showArticles?: boolean;
   l10n: Record<TranslationKey, string>;
 };
 
@@ -59,6 +60,7 @@ export class H5PWrapper
             <App
               words={params.words ?? []}
               showWrittenWords={params.showWrittenWords ?? true}
+              showArticles={params.showArticles ?? false}
             />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
