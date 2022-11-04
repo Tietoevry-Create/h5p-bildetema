@@ -64,24 +64,24 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
-      !showTopicImageView && (
-        <>
+      // TODO: might be removed if toggles should be visible in topic view
+      // !showTopicImageView && (
+      <>
+        <Toggle
+          label={showWrittenWordsLabel}
+          checked={toggleChecked}
+          handleChange={handleToggleChange}
+          id={`toggle-${contentId}`}
+        />
+        {showArticlesToggle && (
           <Toggle
-            label={showWrittenWordsLabel}
-            checked={toggleChecked}
-            handleChange={handleToggleChange}
-            id={`toggle-${contentId}`}
+            label={showArticlesLabel}
+            checked={articlesToggleChecked}
+            handleChange={handleToggleArticles}
+            id={`toggle-articles-${contentId}`}
           />
-          {showArticlesToggle && (
-            <Toggle
-              label={showArticlesLabel}
-              checked={articlesToggleChecked}
-              handleChange={handleToggleArticles}
-              id={`toggle-articles-${contentId}`}
-            />
-          )}
-        </>
-      )
+        )}
+      </>
     ) : (
       // ) : (
       <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
