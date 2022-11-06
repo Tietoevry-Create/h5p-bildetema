@@ -10,10 +10,7 @@ import {
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
-import {
-  AudioContextType,
-  AudioRefContext,
-} from "../../../../common/context/AudioContext";
+import { AudioRefContext } from "../../../../common/context/AudioContext";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 
 export type TopicGridProps = {

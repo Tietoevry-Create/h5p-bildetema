@@ -32,13 +32,13 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
       audioElement.pause();
       audioElement.currentTime = 0;
     } else {
-      if (contextAudioRef) {
+      if (contextAudioRef?.current) {
         contextAudioRef?.current?.pause();
+        contextAudioRef!.current!.currentTime = 0;
       }
       setContextAudioRef(audioRef);
       audioElement.play();
     }
-
     setPlaying(!playing);
   };
 
@@ -51,6 +51,14 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
     audioRef.current?.load();
     handleAudioEnded();
   }, [audioFiles]);
+
+  useEffect(() => {
+    if (audioRef.current?.paused) {
+      setPlaying(false);
+    } else {
+      setPlaying(true);
+    }
+  }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
