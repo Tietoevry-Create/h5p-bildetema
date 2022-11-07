@@ -51,7 +51,7 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
-    "esbuild": "^0.15.12",
+    "esbuild": "^0.15.13",
     "h5p-generate-configs": "^0.4.1",
     "sass": "^1.55.0",
     "ts-node": "^10.9.1",
