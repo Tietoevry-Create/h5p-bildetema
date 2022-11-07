@@ -53,11 +53,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   }, [audioFiles]);
 
   useEffect(() => {
-    if (audioRef.current?.paused) {
-      setPlaying(false);
-    } else {
-      setPlaying(true);
-    }
+    setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");

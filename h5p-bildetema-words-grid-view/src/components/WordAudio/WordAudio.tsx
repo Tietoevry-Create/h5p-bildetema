@@ -49,11 +49,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
   }, [word]);
 
   useEffect(() => {
-    if (audioRef.current?.paused) {
-      setPlaying(false);
-    } else {
-      setPlaying(true);
-    }
+    setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");
