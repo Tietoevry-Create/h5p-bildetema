@@ -4,6 +4,7 @@ import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { Word as WordType } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
+import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 
 type WordAudioProps = {
   word: WordType;
@@ -14,6 +15,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
   const { label } = word;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+  const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
   const handleAudioEnded = (): void => {
     setPlaying(false);
@@ -29,6 +31,11 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
       audioElement.pause();
       audioElement.currentTime = 0;
     } else {
+      if (contextAudioRef?.current) {
+        contextAudioRef?.current?.pause();
+        contextAudioRef!.current!.currentTime = 0;
+      }
+      setContextAudioRef(audioRef);
       audioElement.play();
     }
 
@@ -40,6 +47,14 @@ export const WordAudio: React.FC<WordAudioProps> = ({ word, textVisible }) => {
     audioRef.current?.load();
     setPlaying(false);
   }, [word]);
+
+  useEffect(() => {
+    if (audioRef.current?.paused) {
+      setPlaying(false);
+    } else {
+      setPlaying(true);
+    }
+  }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
