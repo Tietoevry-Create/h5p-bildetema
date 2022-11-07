@@ -58,7 +58,7 @@
     },
     {
       "label": "Vis artikkler",
-      "default": "Vis artikkler"
+      "default": false
     }
   ]
 }

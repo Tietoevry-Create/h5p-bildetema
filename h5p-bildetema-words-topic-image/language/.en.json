@@ -108,8 +108,8 @@
       "default": "Show written words"
     },
     {
-      "label": "Show articles label",
-      "default": "Show articles"
+      "label": "Show articles",
+      "default": false
     }
 
   ]
