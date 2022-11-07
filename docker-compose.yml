@@ -10,7 +10,7 @@ services:
   wordpress:
     depends_on:
       - mariadb
-    image: stiahau/h5p-bildetema-wordpress:0.0.2
+    image: stiahau/h5p-bildetema-wordpress:0.0.3
     restart: unless-stopped
     environment:
       - WORDPRESS_DB_HOST=mariadb
