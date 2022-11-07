@@ -29,6 +29,7 @@ export type Topic = {
   subTopics: Topic[];
   words: Map<LanguageCode, Word[]>;
   images: ImageUrl[];
+  onlyTopicImage: boolean;
 };
 
 export type JSONData = {
@@ -43,6 +44,7 @@ export type JSONTopic = {
   subTopics: Record<string, JSONTopic>;
   words: Record<string, Word[]>;
   images: ImageUrl[];
+  onlyTopicImage?: boolean;
 };
 
 export enum TopicGridSizes {

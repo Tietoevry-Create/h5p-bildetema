@@ -6,6 +6,7 @@ import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { TopicIds, Word } from "../../../../common/types/types";
 import { getLibraryName } from "../../../../common/utils/library/library.utils";
 import { Toggle } from "../Toggle/Toggle";
+import { useDBContext } from "../../../../common/hooks/useDBContext";
 import styles from "./Words.module.scss";
 // eslint-disable-next-line import/no-relative-packages
 import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid-view/src/library";
@@ -36,6 +37,16 @@ export const Words: React.FC<WordsProps> = ({
   const contentId = useContentId();
   const [isTopicImageView, setIsTopicImageView] = useState(false);
   const l10n = useContext(L10nContext);
+  const { topics } = useDBContext() || {};
+  const onlyTopicImage = React.useMemo(() => {
+    if (!isTopicImageView) return false;
+    if (topic?.subTopicId) {
+      return topics
+        ?.find(t => t.id === topic?.topicId)
+        ?.subTopics.find(s => s.id === topic?.subTopicId)?.onlyTopicImage;
+    }
+    return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
+  }, [topic?.subTopicId, topic?.topicId, topics, isTopicImageView]);
 
   useEffect(() => {
     (() => {
@@ -160,7 +171,7 @@ export const Words: React.FC<WordsProps> = ({
   return (
     <>
       <div className={styles.toggle}>
-        {isTopicImageView && (
+        {isTopicImageView && !onlyTopicImage && (
           <Toggle
             label="Topic view"
             checked={showTopicImageView}
@@ -171,11 +182,15 @@ export const Words: React.FC<WordsProps> = ({
       </div>
       <div
         ref={topicViewRef}
-        className={!showTopicImageView ? styles.displayNone : ""}
+        className={
+          !showTopicImageView && !onlyTopicImage ? styles.displayNone : ""
+        }
       />
       <div
         ref={gridViewRef}
-        className={showTopicImageView ? styles.displayNone : ""}
+        className={
+          showTopicImageView || onlyTopicImage ? styles.displayNone : ""
+        }
       />
     </>
   );

@@ -53,6 +53,7 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         subTopics: [],
         labelTranslations: labelTranslations,
         words: words,
+        onlyTopicImage: subtopic?.onlyTopicImage ?? false,
       });
     });
     const labelTranslations = new Map<LanguageCode, Word>(
@@ -70,6 +71,7 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         subTopics: subTopics,
         labelTranslations: labelTranslations,
         words: words,
+        onlyTopicImage: topic?.onlyTopicImage ?? false,
       }),
     );
   });
