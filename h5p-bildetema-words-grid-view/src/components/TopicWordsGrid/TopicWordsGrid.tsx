@@ -32,7 +32,12 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
     <ul role="list" className={styles.topicgrid}>
       <AudioRefContext.Provider value={audioContextValue}>
         {words.map(word => (
-          <Word key={word.id} word={word} textVisible={showWrittenWords}           showArticles={showArticles}/>
+          <Word
+            key={word.id}
+            word={word}
+            textVisible={showWrittenWords}
+            showArticles={showArticles}
+          />
         ))}
       </AudioRefContext.Provider>
     </ul>
