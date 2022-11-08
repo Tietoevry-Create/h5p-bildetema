@@ -28,6 +28,8 @@ describe(TopicImageContainer.name, () => {
         words={words}
         topicImage="test"
         topicOverlays={[]}
+        showWrittenWords={false}
+        showArticles={false}
       />,
     );
     return container;
@@ -40,6 +42,8 @@ describe(TopicImageContainer.name, () => {
       topicOverlays: [],
       topicImageType: "3dSceneWithHotspots",
       words: [{ ...baseWord }],
+      showWrittenWords: true,
+      showArticles: false,
     });
 
     expect(container.querySelector("div")).toBeTruthy();
@@ -53,6 +57,8 @@ describe(TopicImageContainer.name, () => {
       topicOverlays: [],
       topicImageType: "vectorImageWithHotspots",
       words: [],
+      showWrittenWords: true,
+      showArticles: false,
     });
     expect(container.querySelector("div")).toBeTruthy();
     expect(container.querySelector("div")?.children.length).toBeGreaterThan(0);
@@ -65,6 +71,8 @@ describe(TopicImageContainer.name, () => {
       topicOverlays: [],
       topicImageType: "nonVectorImageWithHotspots",
       words: [],
+      showWrittenWords: true,
+      showArticles: false,
     });
     expect(container.querySelector("div")).toBeTruthy();
     expect(container.querySelector("div")?.children.length).toBeGreaterThan(0);

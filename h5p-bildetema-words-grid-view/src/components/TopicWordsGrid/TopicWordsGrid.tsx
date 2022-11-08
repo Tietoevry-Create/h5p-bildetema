@@ -7,11 +7,13 @@ import { AudioRefContext } from "../../../../common/context/AudioContext";
 type TopicWordsGridProps = {
   words: WordType[];
   showWrittenWords: boolean;
+  showArticles: boolean;
 };
 
 export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
   words,
   showWrittenWords,
+  showArticles,
 }) => {
   const [contextAudioRef, setAudioRef] = React.useState(
     {} as React.RefObject<HTMLAudioElement>,
@@ -30,7 +32,12 @@ export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
     <ul role="list" className={styles.topicgrid}>
       <AudioRefContext.Provider value={audioContextValue}>
         {words.map(word => (
-          <Word key={word.id} word={word} textVisible={showWrittenWords} />
+          <Word
+            key={word.id}
+            word={word}
+            textVisible={showWrittenWords}
+            showArticles={showArticles}
+          />
         ))}
       </AudioRefContext.Provider>
     </ul>

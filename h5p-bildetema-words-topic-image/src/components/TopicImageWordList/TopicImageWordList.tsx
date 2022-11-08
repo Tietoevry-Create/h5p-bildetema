@@ -10,6 +10,8 @@ export type TopicImageWordListProps = {
   selectHoveredWord: (word: string) => void;
   selectWord: (word: string) => void;
   hoveredSVG: string | undefined;
+  showWrittenWords: boolean;
+  showArticles: boolean;
 };
 
 export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
@@ -18,6 +20,8 @@ export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
   selectHoveredWord,
   selectWord,
   hoveredSVG,
+  showWrittenWords,
+  showArticles,
 }) => {
   const [contextAudioRef, setAudioRef] = React.useState(
     {} as React.RefObject<HTMLAudioElement>,
@@ -41,6 +45,8 @@ export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
               selectHoveredWord={selectHoveredWord}
               unSelectWord={selectWord}
               hoveredSVG={hoveredSVG}
+              showWrittenWords={showWrittenWords}
+              showArticles={showArticles}
             />
           </div>
         ))}

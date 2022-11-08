@@ -17,6 +17,7 @@ type WordsProps = {
   currentLanguage: LanguageCode;
   showTopicImageView: boolean;
   toggleShowTopicImageView: (value: boolean) => void;
+  showArticles: boolean;
 };
 
 export const Words: React.FC<WordsProps> = ({
@@ -26,6 +27,7 @@ export const Words: React.FC<WordsProps> = ({
   currentLanguage,
   showTopicImageView,
   toggleShowTopicImageView,
+  showArticles,
 }) => {
   const topicViewRef = useRef<HTMLDivElement>(null);
   const gridViewRef = useRef<HTMLDivElement>(null);
@@ -83,6 +85,8 @@ export const Words: React.FC<WordsProps> = ({
             ...JSON.parse(content.json_content),
             currentLanguage,
             l10n,
+            showWrittenWords,
+            showArticles,
           };
 
           const topicView = H5P.newRunnable(
@@ -109,6 +113,7 @@ export const Words: React.FC<WordsProps> = ({
             params: {
               words,
               showWrittenWords,
+              showArticles,
               l10n,
             },
           },
@@ -133,11 +138,13 @@ export const Words: React.FC<WordsProps> = ({
       words,
       showWrittenWords,
       currentLanguage,
+      showArticles,
     });
     gridViewInstance?.trigger("change-params", {
       words,
       showWrittenWords,
       currentLanguage,
+      showArticles,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -147,6 +154,7 @@ export const Words: React.FC<WordsProps> = ({
     topicViewInstance,
     gridViewInstance,
     currentLanguage,
+    showArticles,
   ]);
 
   return (

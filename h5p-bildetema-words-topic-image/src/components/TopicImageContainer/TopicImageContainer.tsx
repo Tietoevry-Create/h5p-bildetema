@@ -12,6 +12,8 @@ export type TopicImageContainerProps = {
   topicOverlays: OverlayType[];
   topicImageType: TopicImageTypes;
   words: Word[];
+  showWrittenWords: boolean;
+  showArticles: boolean;
 };
 
 export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
@@ -20,6 +22,8 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
   topicOverlays,
   topicImageType,
   words,
+  showWrittenWords,
+  showArticles,
 }) => {
   const [currentWordId, setCurrentWordId] = React.useState("");
   const [hoveredWord, setHoveredWord] = React.useState("");
@@ -49,6 +53,8 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
           selectHoveredWord={selectHoveredWord}
           selectWord={selectWord}
           hoveredSVG={hoveredSVG}
+          showWrittenWords={showWrittenWords}
+          showArticles={showArticles}
         />
         <TopicImageSVG
           image={topicImage}

@@ -55,6 +55,10 @@
     {
       "label": "Vis ord",
       "default": true
+    },
+    {
+      "label": "Vis artikkler",
+      "default": false
     }
   ]
 }

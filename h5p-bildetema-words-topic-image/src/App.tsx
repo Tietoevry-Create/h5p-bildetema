@@ -14,6 +14,8 @@ export type AppProps = {
   imagePath: string;
   aspectRatio: number;
   backendUrl: string;
+  showWrittenWords: boolean;
+  showArticles: boolean;
 };
 
 const hasValue = <T,>(obj: T | null | undefined): obj is T => !!obj;
@@ -23,13 +25,14 @@ export const App: FC<AppProps> = ({
   imagePath,
   aspectRatio,
   backendUrl,
+  showWrittenWords,
+  showArticles,
 }) => {
   const [topic, setTopic] = useState<Topic | undefined>();
   const [overlays, setOverlays] = useState<Array<OverlayType>>([]);
   const [currentLanguageWords, setCurrentLanguageWords] = useState<Array<Word>>(
     [],
   );
-
   const [showNoTopicsSelectedText, setShowNoTopicsSelectedText] =
     useState(false);
 
@@ -123,6 +126,8 @@ export const App: FC<AppProps> = ({
       topicImageType="nonVectorImageWithHotspots"
       topicOverlays={overlays}
       words={currentLanguageWords}
+      showWrittenWords={showWrittenWords}
+      showArticles={showArticles}
     />
   ) : (
     <p>{showNoTopicsSelectedText && !isLoadingData && noTopicSelectedText}</p>

@@ -28,6 +28,8 @@ describe(TopicImageWordList.name, () => {
         selectHoveredWord={() => ""}
         selectWord={() => ""}
         hoveredSVG={hoveredSVG}
+        showWrittenWords={false}
+        showArticles={false}
       />,
     );
     return container;
@@ -40,6 +42,8 @@ describe(TopicImageWordList.name, () => {
       selectHoveredWord: () => "",
       selectWord: () => "",
       hoveredSVG: undefined,
+      showWrittenWords: true,
+      showArticles: false,
     });
 
     expect(container.querySelector("div")).toBeTruthy();
@@ -53,6 +57,8 @@ describe(TopicImageWordList.name, () => {
       selectHoveredWord: () => "",
       selectWord: () => "",
       hoveredSVG: undefined,
+      showWrittenWords: true,
+      showArticles: false,
     });
     expect(container.querySelector("div")).toBeTruthy();
     expect(container.querySelector("div")?.children.length).toEqual(1);

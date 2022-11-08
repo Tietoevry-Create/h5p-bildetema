@@ -102,6 +102,15 @@
           "default": "Pause audio"
         }
       ]
+    },
+    {
+      "label": "Show written words",
+      "default": true
+    },
+    {
+      "label": "Show articles",
+      "default": false
     }
+
   ]
 }

@@ -102,6 +102,14 @@
           "default": "Sett lyd på pause"
         }
       ]
+    },
+    {
+      "label": "Vis ord",
+      "default": true
+    },
+    {
+      "label": "Vis artikkler",
+      "default": false
     }
   ]
 }
