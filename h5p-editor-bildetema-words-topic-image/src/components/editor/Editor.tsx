@@ -55,6 +55,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const [selectedWordId, setSelectedWord] = useState<string | null>(null);
   const [hotspots, setHotspots] = useState(initialHotspots);
   const [isDraggingEllipsePoint, setIsDraggingEllipsePoint] = useState(false);
+  const [copiedHotspot, setCopiedHotspot] = useState<Hotspot>();
 
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
@@ -316,12 +317,35 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     setHotspots([...hotspots]);
   };
 
+  const handleCopy = (): void => {
+    if (!selectedHotspot?.points) return;
+    const cPoints = selectedHotspot.points.map(point => ({
+      x: point.x + 5,
+      y: point.y + 5,
+      index: point.index,
+    }));
+    setCopiedHotspot({ ...selectedHotspot, points: cPoints });
+    handleFinishedPressed();
+  };
+
+  const handlePaste = (): void => {
+    if (!copiedHotspot) return;
+    const updatedHotspots = hotspots.map(hotspot => {
+      if (!hotspot.isDrawingThisPolygon) return hotspot;
+      return { ...copiedHotspot, word: hotspot.word };
+    });
+    setHotspots(updatedHotspots);
+  };
+
   const editorLabel = t("editorLabel");
   const editorDescription = t("editorDescription");
   const finishedButtonLabel = t("finishedButtonLabel");
   const resetButtonLabel = t("resetButtonLabel");
   const selectWordLabel = t("selectWordLabel");
   const selectedWordLabel = t("selectedWordLabel");
+
+  const copy = !!selectedHotspot?.points?.length;
+  const paste = !copy && !!copiedHotspot;
 
   return (
     <div className={styles.editor} data-test-id="editor">
@@ -341,6 +365,24 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
                 selected={selectedHotspot?.color === color}
               />
             ))}
+            {copy && (
+              <button
+                className={styles.button}
+                type="button"
+                onClick={handleCopy}
+              >
+                Copy
+              </button>
+            )}
+            {paste && (
+              <button
+                className={styles.button}
+                type="button"
+                onClick={handlePaste}
+              >
+                Paste
+              </button>
+            )}
             <button
               className={styles.button}
               type="button"

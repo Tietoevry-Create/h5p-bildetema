@@ -3,8 +3,11 @@ import { PointWithIndex } from "../../types/PointWithIndex";
 
 export const resetPoints = (hotspot: Hotspot): Hotspot => {
   return {
-    ...hotspot,
     points: [],
+    rotation: 0,
+    word: hotspot.word,
+    isDrawingThisPolygon: hotspot.isDrawingThisPolygon,
+    color: hotspot.color,
   };
 };
 
