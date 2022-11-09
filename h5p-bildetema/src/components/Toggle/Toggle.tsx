@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import ReactToggle from "react-toggle";
 import styles from "./Toggle.module.scss";
+import "./ReactToggle.scss";
 
 type ToggleProps = {
   handleChange: (checked: boolean) => void;
@@ -30,17 +32,13 @@ export const Toggle: React.FC<ToggleProps> = ({
       htmlFor={id}
     >
       {label && <span className={styles.label}>{label}</span>}
-      <span className={styles.toggle}>
-        <input
-          id={id}
-          checked={checked}
-          type="checkbox"
-          onChange={e => handleChange(e.target.checked)}
-          onKeyUp={() => handleOnFocus(true)}
-          onBlur={() => handleOnFocus(false)}
-        />
-        <span className={styles.slider} />
-      </span>
+      <ReactToggle
+        id={id}
+        checked={checked}
+        onChange={e => handleChange(e.target.checked)}
+        onKeyUp={() => handleOnFocus(true)}
+        onBlur={() => handleOnFocus(false)}
+      />
     </label>
   );
 };
