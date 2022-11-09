@@ -1,10 +1,12 @@
 import type { IH5PContentType, Library } from "h5p-types";
 import { H5P } from "h5p-utils";
 import React, { useEffect, useRef, useState, useContext } from "react";
+import { useSearchParams } from "react-router-dom";
 import { L10nContext, useContentId } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { TopicIds, Word } from "../../../../common/types/types";
 import { getLibraryName } from "../../../../common/utils/library/library.utils";
+import { SearchParameters } from "../../enums/SearchParameters";
 import { Toggle } from "../Toggle/Toggle";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import styles from "./Words.module.scss";
@@ -16,7 +18,6 @@ type WordsProps = {
   topic?: TopicIds;
   showWrittenWords: boolean;
   currentLanguage: LanguageCode;
-  showTopicImageView: boolean;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
 };
@@ -26,7 +27,6 @@ export const Words: React.FC<WordsProps> = ({
   topic,
   showWrittenWords,
   currentLanguage,
-  showTopicImageView,
   toggleShowTopicImageView,
   showArticles,
 }) => {
@@ -36,6 +36,12 @@ export const Words: React.FC<WordsProps> = ({
   const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
   const [isTopicImageView, setIsTopicImageView] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [showTopicImageView, setTopicImageView] = useState(
+    searchParams.get(SearchParameters.showTopicImageView) !== null
+      ? searchParams.get(SearchParameters.showTopicImageView) === "true"
+      : true,
+  );
   const l10n = useContext(L10nContext);
   const { topics } = useDBContext() || {};
   const onlyTopicImage = React.useMemo(() => {
@@ -47,6 +53,16 @@ export const Words: React.FC<WordsProps> = ({
     }
     return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
   }, [topic?.subTopicId, topic?.topicId, topics, isTopicImageView]);
+
+  React.useEffect(() => {
+    toggleShowTopicImageView(showTopicImageView);
+  }, [toggleShowTopicImageView, showTopicImageView]);
+
+  const handleViewChange = (value: boolean): void => {
+    setTopicImageView(value);
+    searchParams.set(SearchParameters.showTopicImageView, value.toString());
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
     (() => {
@@ -115,7 +131,7 @@ export const Words: React.FC<WordsProps> = ({
           setTopicViewInstance(topicView);
         } else {
           setIsTopicImageView(false);
-          toggleShowTopicImageView(false);
+          setTopicImageView(false);
         }
 
         const gridView = H5P.newRunnable(
@@ -136,10 +152,6 @@ export const Words: React.FC<WordsProps> = ({
 
       setViewInstances(topicViewRef.current, gridViewRef.current);
     })();
-    return () => {
-      toggleShowTopicImageView(true);
-    };
-
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentId, topicViewRef, gridViewRef]);
@@ -175,7 +187,7 @@ export const Words: React.FC<WordsProps> = ({
           <Toggle
             label="Topic view"
             checked={showTopicImageView}
-            handleChange={toggleShowTopicImageView}
+            handleChange={handleViewChange}
             id={`topic-view-toggle-${contentId}`}
           />
         )}
