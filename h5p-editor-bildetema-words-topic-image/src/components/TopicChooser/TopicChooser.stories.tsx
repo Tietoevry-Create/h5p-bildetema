@@ -15,6 +15,7 @@ const baseTopic: Topic = {
   subTopics: [],
   words: new Map<LanguageCode, Word[]>(),
   labelTranslations: new Map<LanguageCode, Word>(),
+  onlyTopicImage: false,
   images: [
     {
       src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
