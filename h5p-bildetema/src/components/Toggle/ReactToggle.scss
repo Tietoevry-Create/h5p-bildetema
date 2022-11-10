@@ -24,12 +24,12 @@
 .react-toggle-screenreader-only {
   border: 0;
   clip: rect(0 0 0 0);
-  height: 0.063rem;
-  margin: -0.063rem;
+  height: 0.063em;
+  margin: -0.063em;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 0.063rem;
+  width: 0.063em;
 }
 
 .react-toggle--disabled {
@@ -40,10 +40,10 @@
 }
 
 .react-toggle-track {
-  width: 3.125rem;
-  height: 1.5rem;
+  width: 3.125em;
+  height: 1.5em;
   padding: 0;
-  border-radius: 1.875rem;
+  border-radius: 1.875em;
   background-color: #4d4d4d;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
@@ -64,22 +64,22 @@
 
 .react-toggle-track-check {
   position: absolute;
-  width: 0.875rem;
-  height: 0.625rem;
+  width: 0.875em;
+  height: 0.625em;
   top: 0;
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
-  left: 0.5rem;
+  left: 0.5em;
   opacity: 0;
   -webkit-transition: opacity 0.25s ease;
   -moz-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
 
   svg {
-    height: 0.688rem;
-    width: 0.875rem;
+    height: 0.688em;
+    width: 0.875em;
   }
 }
 
@@ -92,22 +92,22 @@
 
 .react-toggle-track-x {
   position: absolute;
-  width: 0.625rem;
-  height: 0.625rem;
+  width: 0.625em;
+  height: 0.625em;
   top: 0;
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
-  right: 0.625rem;
+  right: 0.625em;
   opacity: 1;
   -webkit-transition: opacity 0.25s ease;
   -moz-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
 
   svg {
-    height: 0.625rem;
-    width: 0.625rem;
+    height: 0.625em;
+    width: 0.625em;
   }
 }
 
@@ -118,10 +118,10 @@
 .react-toggle-thumb {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
-  top: 0.063rem;
-  left: 0.063rem;
-  width: 1.375rem;
-  height: 1.375rem;
+  top: 0.063em;
+  left: 0.063em;
+  width: 1.375em;
+  height: 1.375em;
   border: 1px solid #4d4d4d;
   border-radius: 50%;
   background-color: #ffffff;
@@ -136,6 +136,6 @@
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  left: 1.688rem;
+  left: 1.688em;
   border-color: $burgundy;
 }
