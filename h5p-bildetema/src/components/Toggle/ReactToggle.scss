@@ -1,0 +1,118 @@
+@use "../../../../common/abstracts" as *;
+
+.react-toggle {
+  touch-action: pan-x;
+
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.react-toggle-screenreader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 0.0625em;
+  margin: -0.0625em;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 0.0625em;
+}
+
+.react-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+
+.react-toggle-track {
+  width: 3.125em;
+  height: 1.5em;
+  padding: 0;
+  border-radius: 1.875em;
+  background-color: #4d4d4d;
+  transition: all 0.2s ease;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #4d4d4d;
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: $burgundy;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: $burgundy;
+}
+
+.react-toggle-track-check {
+  position: absolute;
+  width: 0.875em;
+  height: 0.625em;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  left: 0.5em;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  svg {
+    height: 0.625em;
+    width: 0.875em;
+  }
+}
+
+.react-toggle--checked .react-toggle-track-check {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle-track-x {
+  position: absolute;
+  width: 0.625em;
+  height: 0.625em;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  right: 0.625em;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+
+  svg {
+    height: 0.625em;
+    width: 0.625em;
+  }
+}
+
+.react-toggle--checked .react-toggle-track-x {
+  opacity: 0;
+}
+
+.react-toggle-thumb {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  position: absolute;
+  top: 0.0625em;
+  left: 0.0625em;
+  width: 1.375em;
+  height: 1.375em;
+  border: 0.0625em solid #4d4d4d;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  left: 1.6875em;
+  border-color: $burgundy;
+}
