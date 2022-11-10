@@ -9,16 +9,7 @@
   background-color: transparent;
   border: 0;
   padding: 0;
-
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
 }
 
 .react-toggle-screenreader-only {
@@ -35,7 +26,6 @@
 .react-toggle--disabled {
   cursor: not-allowed;
   opacity: 0.5;
-  -webkit-transition: opacity 0.25s;
   transition: opacity 0.25s;
 }
 
@@ -45,8 +35,6 @@
   padding: 0;
   border-radius: 1.875em;
   background-color: #4d4d4d;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
@@ -73,8 +61,6 @@
   line-height: 0;
   left: 0.5em;
   opacity: 0;
-  -webkit-transition: opacity 0.25s ease;
-  -moz-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
 
   svg {
@@ -85,8 +71,6 @@
 
 .react-toggle--checked .react-toggle-track-check {
   opacity: 1;
-  -webkit-transition: opacity 0.25s ease;
-  -moz-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
 }
 
@@ -101,8 +85,6 @@
   line-height: 0;
   right: 0.625em;
   opacity: 1;
-  -webkit-transition: opacity 0.25s ease;
-  -moz-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
 
   svg {
@@ -125,13 +107,7 @@
   border: 0.0625em solid #4d4d4d;
   border-radius: 50%;
   background-color: #ffffff;
-
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
-
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
   transition: all 0.25s ease;
 }
 
