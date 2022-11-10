@@ -53,7 +53,6 @@ describe(finishDrawingHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
-      ellipseRadius: 0,
       color: Color.ORANGE,
     };
 
@@ -114,7 +113,6 @@ describe(resetPointsOfActiveHotspot.name, () => {
       points: [],
       word,
       rotation: 0,
-      ellipseRadius: 0,
       color: Color.ORANGE,
     };
 
