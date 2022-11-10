@@ -122,7 +122,8 @@
   align-items: center;
   display: flex;
 
-  .homeIcon {
+  .homeIcon,
+  .homeIcon svg {
     height: 1.5rem;
     width: 1.5rem;
   }
@@ -137,8 +138,12 @@
 
   .backIcon {
     display: none;
-    height: 1.5rem;
-    width: 1.5rem;
+
+    &,
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
 
     @include breakpoint-min($small) {
       display: block;
