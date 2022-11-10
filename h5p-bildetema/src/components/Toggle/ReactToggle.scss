@@ -24,12 +24,12 @@
 .react-toggle-screenreader-only {
   border: 0;
   clip: rect(0 0 0 0);
-  height: 0.063em;
-  margin: -0.063em;
+  height: 0.0625em;
+  margin: -0.0625em;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 0.063em;
+  width: 0.0625em;
 }
 
 .react-toggle--disabled {
@@ -78,7 +78,7 @@
   transition: opacity 0.25s ease;
 
   svg {
-    height: 0.688em;
+    height: 0.625em;
     width: 0.875em;
   }
 }
@@ -118,11 +118,11 @@
 .react-toggle-thumb {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
-  top: 0.063em;
-  left: 0.063em;
+  top: 0.0625em;
+  left: 0.0625em;
   width: 1.375em;
   height: 1.375em;
-  border: 1px solid #4d4d4d;
+  border: 0.0625em solid #4d4d4d;
   border-radius: 50%;
   background-color: #ffffff;
 
@@ -136,6 +136,6 @@
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  left: 1.688em;
+  left: 1.6875em;
   border-color: $burgundy;
 }
