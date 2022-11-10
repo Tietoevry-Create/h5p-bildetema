@@ -37,7 +37,13 @@ export const BreadcrumbsArrowIcon: React.FC<IconProps & IconSizeProps> = ({
   width,
   height,
 }) => (
-  <svg width="0.625rem" height="1.063rem" fill="none" viewBox="0 0 10 17" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="0.625rem"
+    height="1.063rem"
+    fill="none"
+    viewBox="0 0 10 17"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
       fill="currentcolor"
@@ -50,7 +56,13 @@ export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
   width,
   height,
 }) => (
-  <svg width="0.625rem" height="1.063rem" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="0.625rem"
+    height="1.063rem"
+    viewBox="0 0 10 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
       fill="currentcolor"
@@ -148,16 +160,14 @@ export const StarFilledIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="28px"
-    viewBox="0 0 28 28"
-    width="28px"
+    height="1.75rem"
+    viewBox="0 0 24 24"
+    width="1.75rem"
     fill="currentColor"
   >
-    <g transform="scale(1.2)">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-    </g>
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
   </svg>
 );
 
@@ -166,15 +176,13 @@ export const StarOutlineIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="28px"
-    viewBox="0 0 28 28"
-    width="28px"
+    height="1.75rem"
+    viewBox="0 0 24 24"
+    width="1.75rem"
     fill="currentColor"
   >
-    <g transform="scale(1.2)">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-    </g>
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
   </svg>
 );
 
