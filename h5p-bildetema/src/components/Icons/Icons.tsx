@@ -22,9 +22,10 @@ export const HomeIcon: React.FC<IconProps & IconSizeProps> = ({
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24px"
-    width="24px"
+    height="24"
+    width="24"
     fill="currentColor"
+    viewBox="0 0 24 24"
   >
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -36,7 +37,13 @@ export const BreadcrumbsArrowIcon: React.FC<IconProps & IconSizeProps> = ({
   width,
   height,
 }) => (
-  <svg width="10" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="10"
+    height="17"
+    fill="none"
+    viewBox="0 0 10 17"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
       fill="currentcolor"
@@ -49,7 +56,13 @@ export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
   width,
   height,
 }) => (
-  <svg width="10" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="10"
+    height="17"
+    viewBox="0 0 10 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
       fill="currentcolor"
@@ -147,16 +160,14 @@ export const StarFilledIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="28px"
-    viewBox="0 0 28 28"
-    width="28px"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
     fill="currentColor"
   >
-    <g transform="scale(1.2)">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-    </g>
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
   </svg>
 );
 
@@ -165,15 +176,13 @@ export const StarOutlineIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="28px"
-    viewBox="0 0 28 28"
-    width="28px"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
     fill="currentColor"
   >
-    <g transform="scale(1.2)">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-    </g>
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
   </svg>
 );
 
@@ -182,9 +191,9 @@ export const PrintIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24px"
+    height="24"
     viewBox="0 0 24 24"
-    width="24px"
+    width="24"
     fill="currentColor"
   >
     <path d="M0 0h24v24H0z" fill="none" />
@@ -200,6 +209,7 @@ export const LanguageIcon: React.FC<
     height="24"
     width="24"
     fill="currentColor"
+    viewBox="0 0 24 24"
   >
     <path d="M12 21.5q-1.95 0-3.688-.75-1.737-.75-3.025-2.038Q4 17.425 3.25 15.688 2.5 13.95 2.5 12q0-1.975.75-3.7t2.037-3.013Q6.575 4 8.312 3.25 10.05 2.5 12 2.5q1.975 0 3.7.75t3.012 2.037Q20 6.575 20.75 8.3q.75 1.725.75 3.7 0 1.95-.75 3.688-.75 1.737-2.038 3.024Q17.425 20 15.7 20.75q-1.725.75-3.7.75Zm0-1.525q.775-1 1.288-2.037.512-1.038.862-2.263h-4.3q.35 1.25.863 2.287Q11.225 19 12 19.975Zm-1.925-.275q-.575-.825-1.037-1.875-.463-1.05-.713-2.15h-3.4q.8 1.55 2.125 2.613 1.325 1.062 3.025 1.412Zm3.85 0q1.7-.35 3.025-1.412 1.325-1.063 2.125-2.613h-3.4q-.3 1.1-.75 2.162-.45 1.063-1 1.863ZM4.3 14.175h3.725q-.1-.55-.15-1.088-.05-.537-.05-1.087 0-.55.05-1.088.05-.537.15-1.087H4.3q-.15.5-.225 1.05Q4 11.425 4 12t.075 1.125q.075.55.225 1.05Zm5.225 0h4.95q.1-.55.15-1.075.05-.525.05-1.1 0-.575-.05-1.1-.05-.525-.15-1.075h-4.95q-.1.55-.15 1.075-.05.525-.05 1.1 0 .575.05 1.1.05.525.15 1.075Zm6.45 0H19.7q.15-.5.225-1.05Q20 12.575 20 12t-.075-1.125q-.075-.55-.225-1.05h-3.725q.1.55.15 1.087.05.538.05 1.088t-.05 1.087q-.05.538-.15 1.088Zm-.3-5.85h3.4q-.8-1.575-2.112-2.613-1.313-1.037-3.038-1.437.575.875 1.025 1.912.45 1.038.725 2.138Zm-5.825 0h4.3q-.35-1.25-.887-2.313Q12.725 4.95 12 4.025q-.725.925-1.262 1.987-.538 1.063-.888 2.313Zm-4.925 0h3.4q.275-1.1.725-2.138.45-1.037 1.025-1.912-1.75.4-3.05 1.437-1.3 1.038-2.1 2.613Z" />
   </svg>
@@ -213,6 +223,7 @@ export const BackIcon: React.FC<
     height="24"
     width="24"
     fill="currentColor"
+    viewBox="0 0 24 24"
   >
     <path d="M19 19v-4q0-1.25-.875-2.125T16 12H6.8l3.6 3.6L9 17l-6-6 6-6 1.4 1.4L6.8 10H16q2.075 0 3.538 1.462Q21 12.925 21 15v4Z" />
   </svg>

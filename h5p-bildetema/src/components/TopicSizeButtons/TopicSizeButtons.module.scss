@@ -26,6 +26,11 @@
   padding: 0;
   text-align: center;
 
+  svg {
+    height: 2rem;
+    width: 2rem;
+  }
+
   &:hover {
     background-color: #fff;
     border-color: $burgundy;

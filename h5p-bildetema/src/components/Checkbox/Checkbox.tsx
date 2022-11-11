@@ -25,7 +25,15 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           onChange={e => handleChange(e.target.checked)}
           disabled={disabled}
         />
-        {checked ? <StarFilledIcon /> : <StarOutlineIcon />}
+        {checked ? (
+          <span className={styles.starIcon}>
+            <StarFilledIcon />
+          </span>
+        ) : (
+          <span className={styles.starIcon}>
+            <StarOutlineIcon />
+          </span>
+        )}
       </span>
     </label>
   );

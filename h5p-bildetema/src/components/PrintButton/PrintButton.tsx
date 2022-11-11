@@ -80,20 +80,20 @@ export const PrintButton: React.FC<PrintProps> = ({
           }}
         >
           <span className={styles.printButtonWrapper}>
-            <PrintIcon />
+            <span className={styles.printIcon} aria-hidden="true">
+              <PrintIcon />
+            </span>
             {printLabel && <span>{printLabel}</span>}
-            {(!showTopicImageView || !isWordView) &&
-              (viewPrintDropDown ? (
+            {(!showTopicImageView || !isWordView) && (
+              <span className={styles.arrowIcon} aria-hidden="true">
                 <LanguageMenuArrowIcon
-                  transform="scale(0.9) rotate(180)"
+                  transform={
+                    viewPrintDropDown ? "scale(0.9) rotate(180)" : "scale(0.9)"
+                  }
                   transformOrigin="50% 50%"
                 />
-              ) : (
-                <LanguageMenuArrowIcon
-                  transform="scale(0.9)"
-                  transformOrigin="50% 50%"
-                />
-              ))}
+              </span>
+            )}
           </span>
         </button>
         <div

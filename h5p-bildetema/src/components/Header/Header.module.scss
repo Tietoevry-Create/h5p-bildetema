@@ -75,7 +75,7 @@
   margin: 0;
 
   svg {
-    width: 60px;
+    width: 3.75rem;
   }
 
   @include breakpoint-min($small) {
@@ -86,7 +86,7 @@
 
   @include breakpoint-min($medium) {
     svg {
-      width: 80px;
+      width: 5rem;
     }
   }
 
