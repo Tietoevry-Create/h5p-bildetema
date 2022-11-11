@@ -22,16 +22,12 @@ import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { SearchParameters } from "../../enums/SearchParameters";
 
 type BildetemaProps = {
   defaultLanguages: string[];
   isLoadingData: boolean;
 };
-
-enum SEARCHPARAMS {
-  wordsVisible = "showWrittenWords",
-  articlesVisible = "showArticles",
-}
 
 export const Bildetema: React.FC<BildetemaProps> = ({
   defaultLanguages,
@@ -68,32 +64,23 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
 
-  const handleSearchParams = (search: SEARCHPARAMS, value: string): void => {
-    const sParams = Object.values(SEARCHPARAMS)
-      .filter(param => {
-        if (param === search) return true;
-        return searchParams.get(param);
-      })
-      .map(param => {
-        if (param === search) {
-          return `${param}=${value}`;
-        }
-        const currValue = searchParams.get(param);
-        return `${param}=${currValue}`;
-      })
-      .join("&");
-    setSearchParams(sParams);
+  const handleSearchParams = (
+    search: SearchParameters,
+    value: string,
+  ): void => {
+    searchParams.set(search, value);
+    setSearchParams(searchParams);
   };
 
   const [showWrittenWords, setShowWrittenWords] = useState(
-    searchParams.get(SEARCHPARAMS.wordsVisible) !== null
-      ? searchParams.get(SEARCHPARAMS.wordsVisible) === "true"
+    searchParams.get(SearchParameters.wordsVisible) !== null
+      ? searchParams.get(SearchParameters.wordsVisible) === "true"
       : true,
   );
 
   const [showArticles, setShowArticles] = useState(
-    searchParams.get(SEARCHPARAMS.articlesVisible) !== null
-      ? searchParams.get(SEARCHPARAMS.articlesVisible) === "true"
+    searchParams.get(SearchParameters.articlesVisible) !== null
+      ? searchParams.get(SearchParameters.articlesVisible) === "true"
       : false,
   );
 
@@ -121,12 +108,12 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   }, [favLanguages, pathname]);
 
   const handleToggleArticles = (value: boolean): void => {
-    handleSearchParams(SEARCHPARAMS.articlesVisible, value.toString());
+    handleSearchParams(SearchParameters.articlesVisible, value.toString());
     setShowArticles(value);
   };
 
   const handleToggleChange = (value: boolean): void => {
-    handleSearchParams(SEARCHPARAMS.wordsVisible, value.toString());
+    handleSearchParams(SearchParameters.wordsVisible, value.toString());
     setShowWrittenWords(value);
   };
 
@@ -181,7 +168,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
-                showTopicImageView={showTopicImageView}
                 toggleShowTopicImageView={toggleShowTopicImageView}
                 showArticles={showArticles}
               />
@@ -197,7 +183,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     handleToggleFavoriteLanguage,
     showWrittenWords,
     topicsSize,
-    showTopicImageView,
     showArticles,
   ]);
 

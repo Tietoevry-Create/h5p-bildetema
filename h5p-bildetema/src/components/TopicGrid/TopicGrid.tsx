@@ -1,5 +1,6 @@
 import * as React from "react";
 import { RefObject, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Language,
   Topic,
@@ -11,7 +12,7 @@ import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
 import { AudioRefContext } from "../../../../common/context/AudioContext";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
+import { SearchParameters } from "../../enums/SearchParameters";
 
 export type TopicGridProps = {
   topics?: Topic[];
@@ -21,7 +22,6 @@ export type TopicGridProps = {
   showWrittenWords: boolean;
   currentLanguage: Language;
   currentTopic?: TopicIds;
-  showTopicImageView: boolean;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
 };
@@ -34,7 +34,6 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   showWrittenWords,
   currentLanguage,
   currentTopic,
-  showTopicImageView,
   toggleShowTopicImageView,
   showArticles,
 }) => {
@@ -47,9 +46,16 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
     };
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   React.useEffect(() => {
     setIsWordView(!!words);
-  }, [words, setIsWordView]);
+    if (!words) {
+      searchParams.delete(SearchParameters.showTopicImageView);
+      setSearchParams(searchParams);
+    }
+  }, [words, setIsWordView, setSearchParams, searchParams]);
 
   if (topics) {
     return (
@@ -90,7 +96,6 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
         topic={currentTopic}
         showWrittenWords={showWrittenWords}
         currentLanguage={currentLanguage.code}
-        showTopicImageView={showTopicImageView}
         toggleShowTopicImageView={toggleShowTopicImageView}
         showArticles={showArticles}
       />

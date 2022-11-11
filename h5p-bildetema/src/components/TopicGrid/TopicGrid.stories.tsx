@@ -21,6 +21,7 @@ const baseTopic: Topic = {
       src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
     },
   ],
+  onlyTopicImage: false,
 };
 
 const Template: ComponentStory<typeof TopicGrid> = args => (
@@ -34,7 +35,6 @@ const defaultArgs: TopicGridProps = {
   toggleShowTopicImageView: () => null,
   showWrittenWords: false,
   currentLanguage: { label: "nob", code: "nob", rtl: false },
-  showTopicImageView: true,
   showArticles: false,
 };
 export const ThemesGrid = Template.bind({});

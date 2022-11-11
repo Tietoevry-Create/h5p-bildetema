@@ -23,7 +23,6 @@ export type RouteControllerProps = {
   topicsSize: TopicGridSizes;
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
-  showTopicImageView: boolean;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
 };
@@ -35,7 +34,6 @@ export const RouteController: React.FC<RouteControllerProps> = ({
   setTopicIds,
   addFavoriteLanguage,
   favLanguages,
-  showTopicImageView,
   toggleShowTopicImageView,
   showArticles,
 }) => {
@@ -140,7 +138,6 @@ export const RouteController: React.FC<RouteControllerProps> = ({
         showWrittenWords={showWrittenWords}
         setIsWordView={setIsWordView}
         currentTopic={currentTopic}
-        showTopicImageView={showTopicImageView}
         toggleShowTopicImageView={toggleShowTopicImageView}
         showArticles={showArticles}
       />
