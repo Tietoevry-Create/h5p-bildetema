@@ -38,3 +38,13 @@
     fill: $topicImageWhiteHover !important;
   }
 }
+
+.blackTransparent {
+  fill: $topicImageBlackTransparentFill !important;
+  stroke: $topicImageBlackTransparentStroke !important;
+
+  &:hover,
+  a:focus & {
+    fill: $topicImageBlackTransparentHover !important;
+  }
+}
