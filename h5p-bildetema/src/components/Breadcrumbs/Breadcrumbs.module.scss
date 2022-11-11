@@ -104,6 +104,12 @@
     align-items: center;
   }
 
+  & svg,
+  &Left svg {
+    height: 1.063rem;
+    width: 0.625rem;
+  }
+
   &Left {
     display: flex;
     align-items: center;

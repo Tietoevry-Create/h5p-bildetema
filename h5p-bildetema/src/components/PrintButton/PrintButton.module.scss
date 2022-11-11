@@ -103,3 +103,14 @@
     font-size: $font-size-20;
   }
 }
+
+.printIcon,
+.printIcon svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.arrowIcon svg {
+  height: 0.625rem;
+  width: 1rem;
+}

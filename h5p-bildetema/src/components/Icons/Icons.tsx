@@ -38,8 +38,8 @@ export const BreadcrumbsArrowIcon: React.FC<IconProps & IconSizeProps> = ({
   height,
 }) => (
   <svg
-    width="0.625rem"
-    height="1.063rem"
+    width="10"
+    height="17"
     fill="none"
     viewBox="0 0 10 17"
     xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +57,8 @@ export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
   height,
 }) => (
   <svg
-    width="0.625rem"
-    height="1.063rem"
+    width="10"
+    height="17"
     viewBox="0 0 10 17"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -79,8 +79,8 @@ export const BigTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
   height,
 }) => (
   <svg
-    width="2rem"
-    height="2rem"
+    width="32"
+    height="32"
     viewBox="0 0 32 32"
     fill="transparent"
     xmlns="http://www.w3.org/2000/svg"
@@ -122,8 +122,8 @@ export const CompactTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
   height,
 }) => (
   <svg
-    width="2rem"
-    height="2rem"
+    width="32"
+    height="32"
     viewBox="0 0 32 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -139,8 +139,8 @@ export const LanguageMenuArrowIcon: React.FC<
   IconProps & IconSizeProps & IconTransformProps
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
-    width="1rem"
-    height="0.625rem"
+    width="16"
+    height="10"
     viewBox="0 0 16 10"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -160,9 +160,9 @@ export const StarFilledIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="1.75rem"
+    height="24"
     viewBox="0 0 24 24"
-    width="1.75rem"
+    width="24"
     fill="currentColor"
   >
     <path d="M0 0h24v24H0z" fill="none" />
@@ -176,9 +176,9 @@ export const StarOutlineIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="1.75rem"
+    height="24"
     viewBox="0 0 24 24"
-    width="1.75rem"
+    width="24"
     fill="currentColor"
   >
     <path d="M0 0h24v24H0z" fill="none" />
@@ -191,9 +191,9 @@ export const PrintIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="1.5rem"
+    height="24"
     viewBox="0 0 24 24"
-    width="1.5rem"
+    width="24"
     fill="currentColor"
   >
     <path d="M0 0h24v24H0z" fill="none" />
@@ -206,8 +206,8 @@ export const LanguageIcon: React.FC<
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="1.5rem"
-    width="1.5rem"
+    height="24"
+    width="24"
     fill="currentColor"
     viewBox="0 0 24 24"
   >
