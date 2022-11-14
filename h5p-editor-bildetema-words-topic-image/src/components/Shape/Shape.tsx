@@ -15,6 +15,7 @@ type ShapeProps = {
   canvasRef: RefObject<HTMLElement>;
   isDraggingEllipsePoint: boolean;
   setIsDraggingEllipsePoint: (isDragging: boolean) => void;
+  isHidden: boolean;
 };
 
 type EllipseHotspot = Omit<Hotspot, "points"> & {
@@ -35,6 +36,7 @@ export const Shape: FC<ShapeProps> = ({
   canvasRef,
   isDraggingEllipsePoint,
   setIsDraggingEllipsePoint,
+  isHidden,
 }) => {
   const { points, isDrawingThisPolygon } = hotspot;
 
@@ -42,24 +44,29 @@ export const Shape: FC<ShapeProps> = ({
     return null;
   }
 
-  return isEllipse(hotspot) ? (
-    <Ellipse
-      setHotspot={setHotspot}
-      isDraggingEllipsePoint={isDraggingEllipsePoint}
-      setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
-      hotspot={hotspot}
-      handleShapeClick={handleShapeClick}
-      startShapeDragging={startShapeDragging}
-      endShapeDragging={endShapeDragging}
-      isDrawingThisEllipse={isDrawingThisPolygon}
-      canvasRef={canvasRef}
-    />
-  ) : (
-    <Polygon
-      hotspot={hotspot}
-      handleShapeClick={handleShapeClick}
-      startShapeDragging={startShapeDragging}
-      endShapeDragging={endShapeDragging}
-    />
-  );
+  const shapeOrNull = (): JSX.Element | null => {
+    if (isHidden) return null;
+    return isEllipse(hotspot) ? (
+      <Ellipse
+        setHotspot={setHotspot}
+        isDraggingEllipsePoint={isDraggingEllipsePoint}
+        setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
+        hotspot={hotspot}
+        handleShapeClick={handleShapeClick}
+        startShapeDragging={startShapeDragging}
+        endShapeDragging={endShapeDragging}
+        isDrawingThisEllipse={isDrawingThisPolygon}
+        canvasRef={canvasRef}
+      />
+    ) : (
+      <Polygon
+        hotspot={hotspot}
+        handleShapeClick={handleShapeClick}
+        startShapeDragging={startShapeDragging}
+        endShapeDragging={endShapeDragging}
+      />
+    );
+  };
+
+  return shapeOrNull();
 };
