@@ -116,7 +116,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
 
     return (
       <div ref={ref} className="wrapper">
-        <h1 className={styles.printHeader}>{getHeader()}</h1>
+        <div className={styles.printHeader}>{getHeader()}</div>
         <table>
           <tbody>{renderTable()}</tbody>
         </table>
