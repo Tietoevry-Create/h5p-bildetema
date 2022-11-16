@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { L10nContext, useContentId } from "use-h5p";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicIds, Word } from "../../../../common/types/types";
+import { DisplayView, TopicIds, Word } from "../../../../common/types/types";
 import { getLibraryName } from "../../../../common/utils/library/library.utils";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { Toggle } from "../Toggle/Toggle";
@@ -12,6 +12,7 @@ import { useDBContext } from "../../../../common/hooks/useDBContext";
 import styles from "./Words.module.scss";
 // eslint-disable-next-line import/no-relative-packages
 import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid-view/src/library";
+import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 
 type WordsProps = {
   words?: Word[];
@@ -184,11 +185,9 @@ export const Words: React.FC<WordsProps> = ({
     <>
       {isTopicImageView && !onlyTopicImage && (
         <div className={styles.toggle}>
-          <Toggle
-            label="Topic view"
-            checked={showTopicImageView}
-            handleChange={handleViewChange}
-            id={`topic-view-toggle-${contentId}`}
+          <DisplayViewButtons
+            displayView={showTopicImageView || onlyTopicImage ? DisplayView.TopicImage : DisplayView.Grid}
+            setDisplayView={handleViewChange}
           />
         </div>
       )}

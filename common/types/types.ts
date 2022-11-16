@@ -52,6 +52,11 @@ export enum TopicGridSizes {
   Compact,
 }
 
+export enum DisplayView {
+  TopicImage,
+  Grid,
+}
+
 export type TopicIdentifier = {
   topicId: string;
   subTopicId?: string;
