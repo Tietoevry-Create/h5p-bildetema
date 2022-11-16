@@ -7,11 +7,12 @@
   height: 1.4em;
   cursor: pointer;
 
-  outline: grey 1px solid;
+  box-sizing: border-box;
 }
 
 .selected {
-  outline: 3px solid black;
+  outline: 0.1875em solid #3d79c0;
+  outline-offset: 0.125em;
 }
 
 .blueMagenta {
@@ -27,5 +28,11 @@
 }
 
 .white {
+  border: 0.0625em solid grey;
   background: $topicImageWhiteStroke;
+}
+
+.blackTransparent {
+  border: 0.4em solid $topicImageBlackTransparentStroke;
+  background: $topicImageBlackTransparentFill;
 }

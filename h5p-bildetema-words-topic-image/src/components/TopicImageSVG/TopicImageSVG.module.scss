@@ -106,3 +106,15 @@
     stroke: $topicImageWhiteStroke !important;
   }
 }
+
+.blackTransparent {
+  polygon:hover,
+  polygon:focus,
+  ellipse:hover,
+  ellipse:focus,
+  &_active polygon,
+  &_active ellipse {
+    fill: $topicImageBlackTransparentFill !important;
+    stroke: $topicImageBlackTransparentStroke !important;
+  }
+}
