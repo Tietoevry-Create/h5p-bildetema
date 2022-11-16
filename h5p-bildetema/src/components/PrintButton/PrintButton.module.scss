@@ -1,10 +1,20 @@
 @use "../../../../common/abstracts" as *;
 
+.printWrapper {
+  border-top: 2px solid $beige;
+  margin-top: $spacing--40;
+  padding-top: $spacing--24;
+
+  @media print {
+    display: none;
+  }
+}
+
 .printButton,
 .printButtonActive {
   all: unset;
-  background-color: $grey;
-  border: 2px solid transparent;
+  background-color: transparent;
+  border: 2px solid $dark-beige;
   border-radius: 1rem;
   cursor: pointer;
   font-size: $font-size-18;
@@ -31,10 +41,6 @@
   }
 }
 
-.printGridButton {
-  padding: 0.375rem 0.75rem 0.375rem 1rem;
-}
-
 .printButtonActive {
   &,
   &:focus,
@@ -59,14 +65,18 @@
   display: none;
   position: absolute;
   flex-direction: column;
-  margin-top: 0.5rem;
+  transform: translate(0, 0.5rem);
   background-color: white;
   min-width: 3rem;
   box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   z-index: $fav-language-selector-z-index;
-  padding: 1.25rem;
+  padding: 0.5rem 1rem;
   color: black;
+
+  @include breakpoint-min($x-small) {
+    transform: translate(0, calc(-100% - 3rem));
+  }
 }
 
 .show {
@@ -80,7 +90,7 @@
   justify-content: center;
   align-items: center;
   &:not(:last-child) {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 2px solid $beige;
   }
   transition-duration: 0.2s;
 
@@ -98,10 +108,6 @@
   align-items: center;
   line-height: 1;
   padding: 1rem $spacing--8;
-
-  @include breakpoint-min($medium) {
-    font-size: $font-size-20;
-  }
 }
 
 .printIcon,

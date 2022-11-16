@@ -62,15 +62,11 @@ export const PrintButton: React.FC<PrintProps> = ({
   const printDropdownOptions = [2, 3, 4, 5, 6];
 
   return (
-    <>
+    <div className={styles.printWrapper}>
       <div className={styles.printDropdown} ref={dropdownRef}>
         <button
           type="button"
-          className={`${
-            isActive ? styles.printButtonActive : styles.printButton
-          } ${
-            !showTopicImageView || !isWordView ? styles.printGridButton : ""
-          }`}
+          className={isActive ? styles.printButtonActive : styles.printButton}
           onClick={() => {
             if (!showTopicImageView || !isWordView) {
               handleDropDownClicked();
@@ -129,6 +125,6 @@ export const PrintButton: React.FC<PrintProps> = ({
           />
         </div>
       )}
-    </>
+    </div>
   );
 };

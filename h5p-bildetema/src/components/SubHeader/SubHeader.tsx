@@ -7,7 +7,6 @@ import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle } from "../Toggle/Toggle";
 import styles from "./SubHeader.module.scss";
-import { PrintButton } from "../PrintButton/PrintButton";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 
@@ -87,17 +86,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
       <TopicSizeButtons topicsSize={topicsSize} setTopicsSize={setTopicsSize} />
     );
 
-    return (
-      <span className={styles.tools}>
-        <PrintButton
-          topicIds={topicIds}
-          showWrittenWords={toggleChecked}
-          isWordView={isWordView}
-          showTopicImageView={showTopicImageView}
-        />
-        {element}
-      </span>
-    );
+    return <span className={styles.tools}>{element}</span>;
   };
 
   return (

@@ -6,7 +6,7 @@
   position: relative;
   top: 0;
   z-index: $header-z-index;
-  margin-bottom: -2rem;
+  margin-bottom: -3rem;
 
   @include breakpoint-min($x-small) {
     padding: $spacing--24 0 $spacing--16;

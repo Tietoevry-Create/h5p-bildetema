@@ -23,6 +23,7 @@ import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
+import { PrintButton } from "../PrintButton/PrintButton";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -216,6 +217,12 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           aria-label="Main content" // TODO: translate
         >
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
+          <PrintButton
+            topicIds={topicIds}
+            showWrittenWords={showWrittenWords}
+            isWordView={isWordView}
+            showTopicImageView={showTopicImageView}
+          />
         </div>
         <Footer />
       </div>

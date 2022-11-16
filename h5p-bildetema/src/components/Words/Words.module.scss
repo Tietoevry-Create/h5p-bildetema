@@ -4,7 +4,7 @@
   display: flex;
   justify-content: flex-start;
   font-size: $font-size-18;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing--32;
 
   @media print {
     display: none;
