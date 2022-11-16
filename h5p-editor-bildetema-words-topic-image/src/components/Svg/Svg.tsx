@@ -20,6 +20,7 @@ export type SvgProps = {
   canvasRef: RefObject<HTMLElement>;
   isDraggingEllipsePoint: boolean;
   setIsDraggingEllipsePoint: (isDragging: boolean) => void;
+  hideHotspotsWhileDrawing: boolean;
 };
 
 export const Svg: FC<SvgProps> = ({
@@ -33,6 +34,7 @@ export const Svg: FC<SvgProps> = ({
   canvasRef,
   isDraggingEllipsePoint,
   setIsDraggingEllipsePoint,
+  hideHotspotsWhileDrawing,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<
@@ -125,6 +127,7 @@ export const Svg: FC<SvgProps> = ({
       handleShapeDrag(shapeDrag, { x: event.clientX, y: event.clientY });
     }
   };
+  const someDrawing = hotspots.some(hotspot => hotspot.isDrawingThisPolygon);
   return (
     <svg
       className={styles.svg}
@@ -154,6 +157,11 @@ export const Svg: FC<SvgProps> = ({
               canvasRef={canvasRef}
               isDraggingEllipsePoint={isDraggingEllipsePoint}
               setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
+              isHidden={(() => {
+                if (!someDrawing) return false;
+                if (hotspot.isDrawingThisPolygon) return false;
+                return hideHotspotsWhileDrawing;
+              })()}
             />
           ) : null,
         )}

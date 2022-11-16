@@ -56,6 +56,8 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const [hotspots, setHotspots] = useState(initialHotspots);
   const [isDraggingEllipsePoint, setIsDraggingEllipsePoint] = useState(false);
   const [copiedHotspot, setCopiedHotspot] = useState<Hotspot>();
+  const [hideHotspotsWhileDrawing, sethideHotspotsWhileDrawing] =
+    useState(false);
 
   const aspectRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
@@ -63,10 +65,16 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     const newHotspots: Array<Hotspot> = [];
 
     initialHotspots.forEach(hotspot => {
-      const hotspotIsInWordsArray = words.find(
+      const hotspotWordFromWordsArray = words.find(
         word => hotspot.word.id === word.id,
       );
-      if (hotspotIsInWordsArray) newHotspots.push(hotspot);
+      if (hotspotWordFromWordsArray) {
+        const updatedHotspot = {
+          ...hotspot,
+          word: hotspotWordFromWordsArray,
+        };
+        newHotspots.push(updatedHotspot);
+      }
     });
 
     const addMissingHotspots = (): void => {
@@ -351,71 +359,90 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     <div className={styles.editor} data-test-id="editor">
       <span className={styles.editor_label}>{editorLabel}</span>
       <span className={styles.editor_description}>{editorDescription}</span>
+
       <div className={styles.toolbar}>
-        {selectedWordId
-          ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWordId)}`
-          : selectWordLabel}
-        {selectedWordId && (
-          <div className={styles.toolbar_buttons}>
-            {colors.map(color => (
-              <ColorButton
-                key={color}
-                color={color}
-                handleClick={setHotspotColor}
-                selected={selectedHotspot?.color === color}
-              />
-            ))}
-            {copy && (
-              <button
-                className={styles.button}
-                type="button"
-                onClick={handleCopy}
-              >
-                Copy
-              </button>
-            )}
-            {paste && (
-              <button
-                className={styles.button}
-                type="button"
-                onClick={handlePaste}
-              >
-                Paste
-              </button>
-            )}
-            <button
-              className={styles.button}
-              type="button"
-              onClick={handleFinishedPressed}
-            >
-              {finishedButtonLabel}
-            </button>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={handleReset}
-            >
-              {resetButtonLabel}
-            </button>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={moveHotspotUp}
-            >
-              <ArrowIcon
-                transform="scale(0.9) rotate(180)"
-                transformOrigin="50% 50%"
-              />
-            </button>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={moveHotspotDown}
-            >
-              <ArrowIcon transform="scale(0.9)" transformOrigin="50% 50%" />
-            </button>
-          </div>
-        )}
+        <div>
+          {selectedWordId
+            ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWordId)}`
+            : selectWordLabel}
+        </div>
+        <div>
+          {selectedWordId && (
+            <div className={styles.wrapper}>
+              <div className={styles.toolbar_buttons}>
+                {colors.map(color => (
+                  <ColorButton
+                    key={color}
+                    color={color}
+                    handleClick={setHotspotColor}
+                    selected={selectedHotspot?.color === color}
+                  />
+                ))}
+              </div>
+              <div className={styles.toolbar_buttons}>
+                {copy && (
+                  <button
+                    className={styles.button}
+                    type="button"
+                    onClick={handleCopy}
+                  >
+                    Copy
+                  </button>
+                )}
+                {paste && (
+                  <button
+                    className={styles.button}
+                    type="button"
+                    onClick={handlePaste}
+                  >
+                    Paste
+                  </button>
+                )}
+                <button
+                  className={styles.button}
+                  type="button"
+                  onClick={handleFinishedPressed}
+                >
+                  {finishedButtonLabel}
+                </button>
+                <button
+                  className={styles.button}
+                  type="button"
+                  onClick={handleReset}
+                >
+                  {resetButtonLabel}
+                </button>
+                <button
+                  className={styles.button}
+                  type="button"
+                  onClick={moveHotspotUp}
+                >
+                  <ArrowIcon
+                    transform="scale(0.9) rotate(180)"
+                    transformOrigin="50% 50%"
+                  />
+                </button>
+                <button
+                  className={styles.button}
+                  type="button"
+                  onClick={moveHotspotDown}
+                >
+                  <ArrowIcon transform="scale(0.9)" transformOrigin="50% 50%" />
+                </button>
+
+                <button
+                  className={`${styles.button} ${
+                    hideHotspotsWhileDrawing ? styles.active : ""
+                  }`}
+                  type="button"
+                  onClick={() => sethideHotspotsWhileDrawing(prev => !prev)}
+                >
+                  Hide shapes
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div className={styles.editor_content}>
         <div>
@@ -466,6 +493,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
             canvasRef={canvasRef}
             isDraggingEllipsePoint={isDraggingEllipsePoint}
             setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
+            hideHotspotsWhileDrawing={hideHotspotsWhileDrawing}
           />
         </div>
       </div>
