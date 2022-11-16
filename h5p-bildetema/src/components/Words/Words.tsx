@@ -182,16 +182,16 @@ export const Words: React.FC<WordsProps> = ({
 
   return (
     <>
-      <div className={styles.toggle}>
-        {isTopicImageView && !onlyTopicImage && (
+      {isTopicImageView && !onlyTopicImage && (
+        <div className={styles.toggle}>
           <Toggle
             label="Topic view"
             checked={showTopicImageView}
             handleChange={handleViewChange}
             id={`topic-view-toggle-${contentId}`}
           />
-        )}
-      </div>
+        </div>
+      )}
       <div
         ref={topicViewRef}
         className={
