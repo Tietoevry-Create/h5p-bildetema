@@ -37,6 +37,25 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
       );
     };
 
+    const getHeader = (): string => {
+      if (subTopicId && topicId) {
+        return (
+          topics
+            ?.find(topic => topic.id === topicId)
+            ?.subTopics.find(s => s.id === subTopicId)
+            ?.labelTranslations.get(currentLanguageCode)?.label ?? ""
+        );
+      }
+      if (topicId) {
+        return (
+          topics
+            ?.find(topic => topic.id === topicId)
+            ?.labelTranslations.get(currentLanguageCode)?.label ?? ""
+        );
+      }
+      return "";
+    };
+
     const renderTable = (): JSX.Element[] => {
       const findWords = (): Word[] | undefined => {
         if (isWordView) {
@@ -97,7 +116,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
 
     return (
       <div ref={ref} className="wrapper">
-        <div className={styles.printHeader}>TODO overskrift/logo her</div>
+        <h1 className={styles.printHeader}>{getHeader()}</h1>
         <table>
           <tbody>{renderTable()}</tbody>
         </table>
