@@ -5,6 +5,7 @@ import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
+import { TopicIds } from "../../../../common/types/types";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import {
   BackIcon,
@@ -12,6 +13,7 @@ import {
   BreadcrumbsArrowLeftIcon,
   HomeIcon,
 } from "../Icons/Icons";
+import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import styles from "./Breadcrumbs.module.scss";
 
 export type BreadcrumbsProps = {
@@ -20,13 +22,15 @@ export type BreadcrumbsProps = {
     path: string;
   }[];
   currentLanguageCode: LanguageCode;
+  topicIds: TopicIds;
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
+  topicIds: { topicId, subTopicId },
 }) => {
-  const { translations } = useDBContext() || {};
+  const { translations, topics } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
   );
@@ -40,11 +44,35 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   const breadCrumbsToRender =
     breadCrumbs ??
     routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
+      const label = ((): string => {
+        const urlComponent = `${decodeURIComponent(
+          (breadcrumb as React.ReactPortal).props.children,
+        )}`;
+        const topic = topics?.find(t => t.id === topicId);
+        const tLabel = topic?.labelTranslations.get(currentLanguageCode)?.label;
+        if (
+          tLabel &&
+          labelToUrlComponent(tLabel) ===
+            labelToUrlComponent(urlComponent)
+        ) {
+          return tLabel;
+        }
+        const sTopic = topic?.subTopics.find(s => s.id === subTopicId);
+        const sLabel =
+          sTopic?.labelTranslations.get(currentLanguageCode)?.label;
+        if (
+          sLabel &&
+          labelToUrlComponent(sLabel) ===
+            labelToUrlComponent(urlComponent)
+        ) {
+          return sLabel;
+        }
+        return urlComponent;
+      })();
+
       return {
         path: `${key}${search}`,
-        label: `${decodeURIComponent(
-          (breadcrumb as React.ReactPortal).props.children,
-        )}`,
+        label,
       };
     });
 
