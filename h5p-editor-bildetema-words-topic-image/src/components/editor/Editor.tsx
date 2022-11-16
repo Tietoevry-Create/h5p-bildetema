@@ -444,9 +444,6 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           )}
         </div>
       </div>
-      {/* {selectedWordId
-          ? `${selectedWordLabel}: ${getSelectedWordLabel(selectedWordId)}`
-          : selectWordLabel} */}
       <div className={styles.editor_content}>
         <div>
           <div className={styles.controls}>
