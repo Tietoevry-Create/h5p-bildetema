@@ -114,3 +114,9 @@
   height: 0.625rem;
   width: 1rem;
 }
+
+.printLabel {
+  @include breakpoint-max($small) {
+    @include visually-hidden;
+  }
+}
