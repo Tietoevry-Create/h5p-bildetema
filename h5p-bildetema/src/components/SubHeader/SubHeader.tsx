@@ -86,12 +86,14 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
 
     return (
       <span className={styles.tools}>
-        <PrintButton
-          topicIds={topicIds}
-          showWrittenWords={toggleChecked}
-          isWordView={isWordView}
-          showTopicImageView={showTopicImageView}
-        />
+        {isWordView && (
+          <PrintButton
+            topicIds={topicIds}
+            showWrittenWords={toggleChecked}
+            isWordView={isWordView}
+            showTopicImageView={showTopicImageView}
+          />
+        )}
         {element}
       </span>
     );

@@ -80,7 +80,7 @@ export const App: FC<AppProps> = ({
       if (!topic) {
         setShowNoTopicsSelectedText(true);
       }
-    }, 300);
+    }, 1000);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

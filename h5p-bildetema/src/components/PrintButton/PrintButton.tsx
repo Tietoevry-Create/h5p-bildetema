@@ -83,7 +83,9 @@ export const PrintButton: React.FC<PrintProps> = ({
             <span className={styles.printIcon} aria-hidden="true">
               <PrintIcon />
             </span>
-            {printLabel && <span>{printLabel}</span>}
+            {printLabel && (
+              <span className={styles.printLabel}>{printLabel}</span>
+            )}
             {(!showTopicImageView || !isWordView) && (
               <span className={styles.arrowIcon} aria-hidden="true">
                 <LanguageMenuArrowIcon
