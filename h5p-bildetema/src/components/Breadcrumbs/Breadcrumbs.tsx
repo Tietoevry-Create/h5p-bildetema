@@ -48,23 +48,27 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         const urlComponent = `${decodeURIComponent(
           (breadcrumb as React.ReactPortal).props.children,
         )}`;
+
         const topic = topics?.find(t => t.id === topicId);
         const tLabel = topic?.labelTranslations.get(currentLanguageCode)?.label;
-        if (
-          tLabel &&
-          labelToUrlComponent(tLabel) ===
-            labelToUrlComponent(urlComponent)
-        ) {
+
+        const isTopicLabel =
+          !!tLabel &&
+          labelToUrlComponent(tLabel) === labelToUrlComponent(urlComponent);
+
+        if (isTopicLabel) {
           return tLabel;
         }
+
         const sTopic = topic?.subTopics.find(s => s.id === subTopicId);
         const sLabel =
           sTopic?.labelTranslations.get(currentLanguageCode)?.label;
-        if (
-          sLabel &&
-          labelToUrlComponent(sLabel) ===
-            labelToUrlComponent(urlComponent)
-        ) {
+
+        const isSubTopicLabel =
+          !!sLabel &&
+          labelToUrlComponent(sLabel) === labelToUrlComponent(urlComponent);
+
+        if (isSubTopicLabel) {
           return sLabel;
         }
         return urlComponent;
