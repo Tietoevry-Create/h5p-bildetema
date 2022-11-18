@@ -22,13 +22,13 @@ export type BreadcrumbsProps = {
     path: string;
   }[];
   currentLanguageCode: LanguageCode;
-  topicIds: TopicIds;
+  topicIds?: TopicIds;
 };
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
-  topicIds: { topicId, subTopicId },
+  topicIds,
 }) => {
   const { translations, topics } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
@@ -48,7 +48,11 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         const urlComponent = `${decodeURIComponent(
           (breadcrumb as React.ReactPortal).props.children,
         )}`;
+        if (!topicIds) {
+          return urlComponent;
+        }
 
+        const { topicId, subTopicId } = topicIds || {};
         const topic = topics?.find(t => t.id === topicId);
         const tLabel = topic?.labelTranslations.get(currentLanguageCode)?.label;
 
