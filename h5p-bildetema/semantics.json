@@ -61,6 +61,18 @@
         "type": "text"
       },
       {
+        "label": "Footer about label",
+        "name": "footerAboutLabel",
+        "default": "About Bildetema",
+        "type": "text"
+      },
+      {
+        "label": "Footer about URL",
+        "name": "footerAboutHref",
+        "default": "/about-bildetema",
+        "type": "text"
+      },
+      {
         "label": "Footer contact info label",
         "name": "footerContactInfoLabel",
         "default": "Contact us",
