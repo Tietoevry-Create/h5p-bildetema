@@ -69,7 +69,7 @@
       {
         "label": "Footer about URL",
         "name": "footerAboutHref",
-        "default": "/about-bildetema",
+        "default": "/om-bildetema",
         "type": "text"
       },
       {
