@@ -41,6 +41,14 @@
           "default": "Sett lyd på pause"
         },
         {
+          "label": "Footer: Om Bildetema tekst",
+          "default": "Om Bildetema"
+        },
+        {
+          "label": "Footer: Om Bildetema URL",
+          "default": "/om-bildetema"
+        },
+        {
           "label": "Footer: Kontaktinfo-overskrift",
           "default": "Kontakt oss"
         },

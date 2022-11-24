@@ -3,6 +3,9 @@ import { useL10n } from "../../hooks/useL10n";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
+  const aboutLabel = useL10n("footerAboutLabel");
+  const aboutHref = useL10n("footerAboutHref");
+
   const contactInfoLabel = useL10n("footerContactInfoLabel");
   const contactInfoHref = useL10n("footerContactInfoHref");
 
@@ -22,6 +25,9 @@ export const Footer = (): JSX.Element => {
   return (
     <footer role="contentinfo" className={styles.footer}>
       <nav aria-label={navAriaLabel} className={styles.footer_content}>
+        <a href={aboutHref} className={styles.hide_from_print}>
+          {aboutLabel}
+        </a>
         <a href={contactInfoHref} className={styles.hide_from_print}>
           {contactInfoLabel}
         </a>

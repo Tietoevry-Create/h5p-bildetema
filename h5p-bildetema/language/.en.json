@@ -41,6 +41,14 @@
           "default": "Pause audio"
         },
         {
+          "label": "About label",
+          "default": "About Bildetema"
+        },
+        {
+          "label": "About URL",
+          "default": "/about-bildetema"
+        },
+        {
           "label": "Footer contact info label",
           "default": "Contact us"
         },

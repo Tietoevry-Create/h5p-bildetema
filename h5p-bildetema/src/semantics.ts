@@ -83,6 +83,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Footer about label",
+        name: "footerAboutLabel",
+        default: "About Bildetema",
+        type: "text",
+      },
+      {
+        label: "Footer about URL",
+        name: "footerAboutHref",
+        default: "/om-bildetema",
+        type: "text",
+      },
+      {
         label: "Footer contact info label",
         name: "footerContactInfoLabel",
         default: "Contact us",
