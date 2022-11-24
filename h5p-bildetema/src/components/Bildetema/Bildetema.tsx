@@ -138,7 +138,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   }, [favLanguages, userData, setUserData]);
 
   useEffect(() => {
-    if (document.title === "") {
+    if (document.title !== pageTitle) {
       document.title = pageTitle;
     }
   });
