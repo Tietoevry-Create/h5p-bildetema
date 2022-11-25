@@ -67,7 +67,7 @@ jobs:
       - name: Set image as output
         id: docker_image
         shell: bash
-        run: echo "::set-output name=tag::${{ env.DOCKER_SHA }}"
+        run: echo "{tag}=${{ env.DOCKER_SHA }}" >> $GITHUB_OUTPUT
   deploy-dev:
     if: github.ref == 'refs/heads/main'
     name: Deploy dev
