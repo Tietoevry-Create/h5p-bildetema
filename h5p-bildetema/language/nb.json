@@ -41,6 +41,18 @@
           "default": "Sett lyd på pause"
         },
         {
+          "label": "Footer: Overskrift 1",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Footer: Overskrift 2",
+          "default": "Andre sider"
+        },
+        {
+          "label": "Footer: Overskrift 3",
+          "default": "Om nettsiden"
+        },
+        {
           "label": "Footer: Om Bildetema tekst",
           "default": "Om Bildetema"
         },
@@ -79,6 +91,22 @@
         {
           "label": "Footer: URL på tredje lenke",
           "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Footer: Personvernerklæring tekst",
+          "default": "Personvernerklæring"
+        },
+        {
+          "label": "Footer: Personvernerklæring URL",
+          "default": "/personvernerklaering"
+        },
+        {
+          "label": "Footer: Tilgjengelighetserklæring tekst",
+          "default": "Tilgjengelighetserklæring"
+        },
+        {
+          "label": "Footer: Tilgjengelighetserklæring URL",
+          "default": "/tilgjengelighetserklaering"
         },
         {
           "label": "Navn på første lenke i brødsmulestien",

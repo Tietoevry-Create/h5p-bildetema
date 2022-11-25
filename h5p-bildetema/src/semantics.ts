@@ -83,6 +83,24 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Footer headline 1",
+        name: "footerHeadline1",
+        default: "Bildetema",
+        type: "text",
+      },
+      {
+        label: "Footer headline 2",
+        name: "footerHeadline2",
+        default: "Other sites",
+        type: "text",
+      },
+      {
+        label: "Footer headline 3",
+        name: "footerHeadline3",
+        default: "About the site",
+        type: "text",
+      },
+      {
         label: "Footer about label",
         name: "footerAboutLabel",
         default: "About Bildetema",
@@ -121,7 +139,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer link 2 label",
         name: "footerLink2Label",
-        default: "OsloMet",
+        default: "OsloMet - Oslo Metropolitan University",
         type: "text",
       },
       {
@@ -140,6 +158,30 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Footer link 3 URL",
         name: "footerLink3Href",
         default: "https://lexin.oslomet.no/",
+        type: "text",
+      },
+      {
+        label: "Footer privacy statement label",
+        name: "footerPrivacyStatementLabel",
+        default: "Privacy statement",
+        type: "text",
+      },
+      {
+        label: "Footer privacy statement URL",
+        name: "footerPrivacyStatementHref",
+        default: "/personvernerklaering",
+        type: "text",
+      },
+      {
+        label: "Footer accessibility statement label",
+        name: "footerAccessibilityStatementLabel",
+        default: "Accessibility statement",
+        type: "text",
+      },
+      {
+        label: "Footer accessibility statement URL",
+        name: "footerAccessibilityStatementHref",
+        default: "/tilgjengelighetserklaering",
         type: "text",
       },
       {

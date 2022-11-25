@@ -41,6 +41,18 @@
           "default": "Pause audio"
         },
         {
+          "label": "Footer headline 1",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Footer headline 2",
+          "default": "Other sites"
+        },
+        {
+          "label": "Footer headline 3",
+          "default": "About the site"
+        },
+        {
           "label": "About label",
           "default": "About Bildetema"
         },
@@ -66,7 +78,7 @@
         },
         {
           "label": "Footer link 2 label",
-          "default": "OsloMet"
+          "default": "OsloMet - Oslo Metropolitan University"
         },
         {
           "label": "Footer link 2 URL",
@@ -79,6 +91,22 @@
         {
           "label": "Footer link 3 URL",
           "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Footer privacy statement label",
+          "default": "Privacy statement"
+        },
+        {
+          "label": "Footer privacy statement URL",
+          "default": "/privacy-statement"
+        },
+        {
+          "label": "Footer accessibility statement label",
+          "default": "Accessibility statement"
+        },
+        {
+          "label": "Footer accessibility statement URL",
+          "default": "/accessibility-statement"
         },
         {
           "label": "Breadcrumbs 'Topic' label",
