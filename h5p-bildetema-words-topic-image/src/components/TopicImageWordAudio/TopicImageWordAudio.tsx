@@ -110,13 +110,6 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         onFocus={() => selectHoveredWord(word.id)}
         onBlur={() => selectHoveredWord("")}
       >
-        {" "}
-        {showWrittenWords && (
-          <span className={styles.word_label}>
-            {text}
-            &nbsp;
-          </span>
-        )}
         <span className={styles.audioIconSpan}>
           <SpeakerIcon
             className={playing ? styles.audioIconActive : styles.audioIcon}
@@ -124,7 +117,13 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         </span>
         <span className={styles.visuallyHidden}>
           {playing ? pauseAudioLabel : playAudioLabel}
-        </span>
+        </span>{" "}
+        {showWrittenWords && (
+          <span className={styles.word_label}>
+            {text}
+            &nbsp;
+          </span>
+        )}
       </button>
     </div>
   );
