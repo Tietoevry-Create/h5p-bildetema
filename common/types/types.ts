@@ -58,8 +58,8 @@ export type TopicIdentifier = {
 };
 
 export type UserData = {
-  currentLanguage: Language;
   favoriteLanguages: Language[];
+  currentLanguage?: Language;
 };
 
 export type TopicIds = {

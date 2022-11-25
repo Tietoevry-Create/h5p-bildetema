@@ -16,7 +16,7 @@ export const useUserData = (): [
 ] => {
   const userData = getUserData();
   if (!("favoriteLanguages" in userData)) {
-    userData.favoriteLanguages = [];
+    return [{ favoriteLanguages: [] }, setUserData];
   }
   return [userData, setUserData];
 };
