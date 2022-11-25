@@ -1,7 +1,6 @@
 import { library as h5pBildetema } from "./h5p-bildetema/src/library";
 import { library as h5pBildetemaWordsGridView } from "./h5p-bildetema-words-grid-view/src/library";
 import { library as h5pBildetemaWordsTopicImage } from "./h5p-bildetema-words-topic-image/src/library";
-import { library as h5pBildetemaWordsTreeView } from "./h5p-bildetema-words-tree-view/src/library";
 import { library as h5pEditorBildetemaWordsTopicImage } from "./h5p-editor-bildetema-words-topic-image/src/library";
 import query from "cli-interact";
 import type { Library } from "h5p-types";
@@ -21,10 +20,6 @@ const libs: pathAndLibrary[] = [
   {
     path: "./h5p-bildetema-words-topic-image/src/library.ts",
     lib: h5pBildetemaWordsTopicImage,
-  },
-  {
-    path: "./h5p-bildetema-words-tree-view/src/library.ts",
-    lib: h5pBildetemaWordsTreeView,
   },
   {
     path: "./h5p-editor-bildetema-words-topic-image/src/library.ts",
