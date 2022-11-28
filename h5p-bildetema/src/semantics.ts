@@ -83,6 +83,24 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Footer headline 1",
+        name: "footerHeadline1",
+        default: "Bildetema",
+        type: "text",
+      },
+      {
+        label: "Footer headline 2",
+        name: "footerHeadline2",
+        default: "Other sites",
+        type: "text",
+      },
+      {
+        label: "Footer headline 3",
+        name: "footerHeadline3",
+        default: "About the site",
+        type: "text",
+      },
+      {
         label: "Footer about label",
         name: "footerAboutLabel",
         default: "About Bildetema",
@@ -91,7 +109,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer about URL",
         name: "footerAboutHref",
-        default: "/om-bildetema",
+        default: "/about-bildetema",
         type: "text",
       },
       {
@@ -104,6 +122,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Footer contact info URL",
         name: "footerContactInfoHref",
         default: "mailto:support@lexindrift.atlassian.net",
+        type: "text",
+      },
+      {
+        label: "Footer previous Bildetema site label",
+        name: "footerPrevBildetemaLabel",
+        default: "Previous Bildetema site",
+        type: "text",
+      },
+      {
+        label: "Footer previous Bildetema site URL",
+        name: "footerPrevBildetemaHref",
+        default: "https://bildetema.oslomet.no/",
         type: "text",
       },
       {
@@ -121,7 +151,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer link 2 label",
         name: "footerLink2Label",
-        default: "OsloMet",
+        default: "OsloMet - Oslo Metropolitan University",
         type: "text",
       },
       {
@@ -140,6 +170,30 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Footer link 3 URL",
         name: "footerLink3Href",
         default: "https://lexin.oslomet.no/",
+        type: "text",
+      },
+      {
+        label: "Footer privacy statement label",
+        name: "footerPrivacyStatementLabel",
+        default: "Privacy statement",
+        type: "text",
+      },
+      {
+        label: "Footer privacy statement URL",
+        name: "footerPrivacyStatementHref",
+        default: "/privacy-statement",
+        type: "text",
+      },
+      {
+        label: "Footer accessibility statement label",
+        name: "footerAccessibilityStatementLabel",
+        default: "Accessibility statement",
+        type: "text",
+      },
+      {
+        label: "Footer accessibility statement URL",
+        name: "footerAccessibilityStatementHref",
+        default: "/accessibility-statement",
         type: "text",
       },
       {

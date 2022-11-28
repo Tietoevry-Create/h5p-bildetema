@@ -41,6 +41,18 @@
           "default": "Pause audio"
         },
         {
+          "label": "Footer: Overskrift 1",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Footer: Overskrift 2",
+          "default": "Andre sider"
+        },
+        {
+          "label": "Footer: Overskrift 3",
+          "default": "Om nettsiden"
+        },
+        {
           "label": "Footer: Om Bildetema tekst",
           "default": "Om Bildetema"
         },
@@ -57,6 +69,14 @@
           "default": "mailto:support@lexindrift.atlassian.net"
         },
         {
+          "label": "Footer: forrige Bildetema tekst",
+          "default": "Gamle Bildetema"
+        },
+        {
+          "label": "Footer: forrige Bildetema URL",
+          "default": "https://bildetema.oslomet.no/"
+        },
+        {
           "label": "Footer link 1 label",
           "default": "NAFO - National Centre of Multicultural Education"
         },
@@ -66,7 +86,7 @@
         },
         {
           "label": "Footer link 2 label",
-          "default": "OsloMet"
+          "default": "OsloMet - storbyuniversitetet"
         },
         {
           "label": "Footer link 2 URL",
@@ -79,6 +99,22 @@
         {
           "label": "Footer link 3 URL",
           "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Footer: Personvernerklæring tekst",
+          "default": "Personvernerklæring"
+        },
+        {
+          "label": "Footer: Personvernerklæring URL",
+          "default": "/personvernerklaering"
+        },
+        {
+          "label": "Footer: Tilgjengelighetserklæring tekst",
+          "default": "Tilgjengelighetserklæring"
+        },
+        {
+          "label": "Footer: Tilgjengelighetserklæring URL",
+          "default": "/tilgjengelighetserklaering"
         },
         {
           "label": "Breadcrumbs 'Topic' label",
