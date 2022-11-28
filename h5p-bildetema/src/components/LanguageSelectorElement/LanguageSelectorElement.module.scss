@@ -44,6 +44,7 @@
 .languageLabel {
   all: unset;
   flex: 1;
+  color: $base-font-color;
   display: flex;
   font-size: $font-size-18;
   cursor: pointer;
@@ -65,5 +66,11 @@
 
   &:hover {
     text-decoration-line: underline;
+  }
+
+  &:hover, 
+  &:focus {
+    box-shadow: none;
+    color: $base-font-color;
   }
 }

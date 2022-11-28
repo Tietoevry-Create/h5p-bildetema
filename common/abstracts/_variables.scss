@@ -20,6 +20,8 @@ $medium: 64rem;
 $large: 75rem;
 $x-large: 90rem;
 
+$black: #000000;
+$white: #ffffff;
 $grey: #eee;
 $beige: #f6f5f4;
 $dark-beige: #ebeae8;
@@ -27,6 +29,8 @@ $burgundy: #99002b;
 $blue-magenta: #000064;
 $orange: hsla(39, 100%, 50%, 1);
 $orange-overlay: hsla(39, 100%, 50%, 0.25);
+
+$base-font-color: $black;
 
 $topicImageBlueMagentaStroke: rgba(0, 0, 100, 1);
 $topicImageBlueMagentaFill: rgba(0, 0, 100, 0.25);
@@ -53,16 +57,16 @@ $topicImageBlackTransparentHover: rgba(37, 22, 22, 0.45);
 $outline-on-dark-background: 3px solid $orange;
 $outline-on-light-background: 3px solid $burgundy;
 
-$checkbox-color: black;
+$checkbox-color: $black;
 $checkbox-disabled-color: #9c9c99;
 $checkbox-shadow-color: $orange;
-$checkmark-color: white;
+$checkmark-color: $white;
 
 $toggle-on-color: $burgundy;
-$toggle-off-color: white;
-$toggle-slider-on-color: white;
+$toggle-off-color: $white;
+$toggle-slider-on-color: $white;
 $toggle-slider-off-color: $burgundy;
-$toggle-focus-color: black;
+$toggle-focus-color: $black;
 
 $main-content-margin: 0 auto;
 $main-content-max-width: 90rem;

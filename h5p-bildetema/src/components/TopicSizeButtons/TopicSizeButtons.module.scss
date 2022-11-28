@@ -15,7 +15,7 @@
   background-color: #eee;
   border: 2px solid transparent;
   border-radius: 0.5rem;
-  color: #000;
+  color: $base-font-color;
   cursor: pointer;
   line-height: 50%;
   min-width: 2.5rem;
@@ -32,13 +32,13 @@
   }
 
   &:hover {
-    background-color: #fff;
+    background-color: $white;
     border-color: $burgundy;
     color: $burgundy;
   }
 
   &:focus {
-    background-color: #fff;
+    background-color: $white;
     color: $burgundy;
 
     &:hover {
@@ -47,13 +47,13 @@
   }
 
   &.active {
-    color: white;
+    color: $white;
     background-color: $burgundy;
     pointer-events: none;
 
     path {
-      fill: white;
-      stroke: white;
+      fill: $white;
+      stroke: $white;
     }
   }
 }

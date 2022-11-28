@@ -6,6 +6,7 @@
   background-color: $grey;
   border: 2px solid transparent;
   border-radius: 1rem;
+  color: $base-font-color;
   cursor: pointer;
   font-size: $font-size-18;
   font-weight: normal;
@@ -13,7 +14,7 @@
   padding: 0.375rem 1rem;
 
   &:hover {
-    background-color: #fff;
+    background-color: $white;
     border-color: $burgundy;
     color: $burgundy;
   }
@@ -41,7 +42,7 @@
   &:hover {
     background-color: $burgundy;
     border-color: $burgundy;
-    color: #fff;
+    color: $white;
   }
 
   &:hover {
@@ -60,13 +61,13 @@
   position: absolute;
   flex-direction: column;
   margin-top: 0.5rem;
-  background-color: white;
+  background-color: $white;
   min-width: 3rem;
   box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   z-index: $fav-language-selector-z-index;
   padding: 1.25rem;
-  color: black;
+  color: $black;
 }
 
 .show {
@@ -91,6 +92,7 @@
 
 .printDropdownElement {
   all: unset;
+  color: $base-font-color;
   direction: ltr;
   font-size: $font-size-18;
   gap: $spacing--16;
