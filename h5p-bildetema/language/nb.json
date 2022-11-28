@@ -69,6 +69,14 @@
           "default": "mailto:support@lexindrift.atlassian.net"
         },
         {
+          "label": "Footer: forrige Bildetema tekst",
+          "default": "Gamle Bildetema"
+        },
+        {
+          "label": "Footer: forrige Bildetema URL",
+          "default": "https://bildetema.oslomet.no/"
+        },
+        {
           "label": "Footer: Tekst på første link",
           "default": "NAFO - Nasjonalt senter for flerkulturell opplæring"
         },

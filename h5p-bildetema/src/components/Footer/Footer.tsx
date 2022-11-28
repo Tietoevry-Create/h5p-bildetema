@@ -13,6 +13,9 @@ export const Footer = (): JSX.Element => {
   const contactInfoLabel = useL10n("footerContactInfoLabel");
   const contactInfoHref = useL10n("footerContactInfoHref");
 
+  const prevBildetemaLabel = useL10n("footerPrevBildetemaLabel");
+  const prevBildetemaHref = useL10n("footerPrevBildetemaHref");
+
   const link1Label = useL10n("footerLink1Label");
   const link1Href = useL10n("footerLink1Href");
 
@@ -46,6 +49,9 @@ export const Footer = (): JSX.Element => {
               </li>
               <li>
                 <a href={contactInfoHref}>{contactInfoLabel}</a>
+              </li>
+              <li>
+                <a href={prevBildetemaHref}>{prevBildetemaLabel}</a>
               </li>
             </ul>
           </div>

@@ -21,6 +21,8 @@ export type TranslationKey =
   | "footerAboutHref"
   | "footerContactInfoLabel"
   | "footerContactInfoHref"
+  | "footerPrevBildetemaLabel"
+  | "footerPrevBildetemaHref"
   | "footerLink1Label"
   | "footerLink1Href"
   | "footerLink2Label"

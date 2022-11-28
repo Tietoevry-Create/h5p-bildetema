@@ -69,6 +69,14 @@
           "default": "mailto:support@lexindrift.atlassian.net"
         },
         {
+          "label": "Footer: forrige Bildetema tekst",
+          "default": "Gamle Bildetema"
+        },
+        {
+          "label": "Footer: forrige Bildetema URL",
+          "default": "https://bildetema.oslomet.no/"
+        },
+        {
           "label": "Footer link 1 label",
           "default": "NAFO - National Centre of Multicultural Education"
         },
