@@ -1,13 +1,10 @@
 @use "../../../../common/abstracts" as *;
 
 .buttons {
-  background-color: $beige;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: row;
-  gap: 4px;
-  padding: 4px;
-  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
+  gap: 1rem;
+  width: 100%;
 
   @media print {
     display: none;
@@ -16,40 +13,48 @@
 
 .buttonBig,
 .buttonCompact {
-  background-color: transparent;
-  border: none;
-  //border: 2px solid transparent;
-  border-radius: 0.4rem;
+  background-color: $grey;
+  border: 2px solid transparent;
+  border-radius: 1rem;
   color: #000;
   cursor: pointer;
-  font-size: $font-size-16;
+  font-size: $font-size-18;
   line-height: 1;
   overflow: hidden;
-  padding: 0.75rem 1rem;
+  padding: 0.5625rem 1rem;
   text-align: center;
 
+  @include breakpoint-max($small) {
+    width: 50%;
+  }
+
+  &::after {
+    color: transparent;
+    content: attr(title);
+    display: block;
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
   &:hover {
-    background-color: $dark-beige;
-    //border-color: $burgundy;
-    //color: $burgundy;
+    background-color: white;
+    border-color: $burgundy;
+    color: $burgundy;
   }
 
   &:focus {
-    //background-color: #fff;
-    //color: $burgundy;
-
     &:hover {
       outline: none;
     }
   }
 
   &.active {
-    background-color: white;
+    background-color: $burgundy;
+    color: white;
+    font-weight: bold;
     pointer-events: none;
-
-    box-shadow: 1px 1.5px 1.5px rgba(0, 0, 0, 0.05),
-      -1px 1.5px 1.5px rgba(0, 0, 0, 0.05), -1px -1px 1.5px rgba(0, 0, 0, 0.05),
-      1px -1px 1.5px rgba(0, 0, 0, 0.05);
   }
 }
 

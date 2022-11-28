@@ -186,7 +186,11 @@ export const Words: React.FC<WordsProps> = ({
       {isTopicImageView && !onlyTopicImage && (
         <div className={styles.toggle}>
           <DisplayViewButtons
-            displayView={showTopicImageView || onlyTopicImage ? DisplayView.TopicImage : DisplayView.Grid}
+            displayView={
+              showTopicImageView || onlyTopicImage
+                ? DisplayView.TopicImage
+                : DisplayView.Grid
+            }
             setDisplayView={handleViewChange}
           />
         </div>

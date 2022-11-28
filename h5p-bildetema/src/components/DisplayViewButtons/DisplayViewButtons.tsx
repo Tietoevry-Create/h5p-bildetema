@@ -8,7 +8,6 @@ export type DisplayViewButtonsProps = {
   setDisplayView: (topicImage: boolean) => void;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
   displayView,
   setDisplayView,
@@ -28,19 +27,23 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
     <div className={styles.buttons}>
       <button
         type="button"
-        className={`${styles.buttonBig} ${displayView === DisplayView.TopicImage ? styles.active : ""
-          }`}
+        className={`${styles.buttonBig} ${
+          displayView === DisplayView.TopicImage ? styles.active : ""
+        }`}
         onClick={handleClick}
         tabIndex={displayView === DisplayView.TopicImage ? -1 : 0}
+        title={topicImageLabel}
       >
         <span>{topicImageLabel}</span>
       </button>
       <button
         type="button"
-        className={`${styles.buttonCompact} ${displayView === DisplayView.Grid ? styles.active : ""
-          }`}
+        className={`${styles.buttonCompact} ${
+          displayView === DisplayView.Grid ? styles.active : ""
+        }`}
         onClick={handleClick}
         tabIndex={displayView === DisplayView.Grid ? -1 : 0}
+        title={gridLabel}
       >
         <span>{gridLabel}</span>
       </button>
