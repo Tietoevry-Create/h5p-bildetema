@@ -7,7 +7,6 @@ import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { DisplayView, TopicIds, Word } from "../../../../common/types/types";
 import { getLibraryName } from "../../../../common/utils/library/library.utils";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { Toggle } from "../Toggle/Toggle";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import styles from "./Words.module.scss";
 // eslint-disable-next-line import/no-relative-packages
