@@ -20,8 +20,8 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
     }
   };
 
-  const topicImageLabel = "Topic image"; //useL10n("bigTopics");
-  const gridLabel = "Grid"; //useL10n("compactTopics");
+  const topicImageLabel = useL10n("viewTopicImage");
+  const gridLabel = useL10n("viewGrid");
 
   return (
     <div className={styles.buttons}>

@@ -161,6 +161,14 @@
           "default": "Ingen tema er valgt."
         },
         {
+          "label": "Temabilde tekst",
+          "default": "Temabilde"
+        },
+        {
+          "label": "Grid tekst",
+          "default": "Grid"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

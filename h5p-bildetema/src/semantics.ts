@@ -262,6 +262,18 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "No topic selected.",
         type: "text",
       },
+      {
+        label: "Topic image label",
+        name: "viewTopicImage",
+        default: "Topic image",
+        type: "text",
+      },
+      {
+        label: "Grid label",
+        name: "viewGrid",
+        default: "Grid",
+        type: "text",
+      },
       lang("ara", "Arabic"),
       lang("ckb", "Sorani"),
       lang("dan", "Danish"),
