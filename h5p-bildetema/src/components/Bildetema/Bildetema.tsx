@@ -47,6 +47,9 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const defaultShowWrittenWords = true;
+  const defaultShowArticles = false;
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const loadingLabel = useL10n("pageIsLoading");
@@ -66,22 +69,28 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   const handleSearchParams = (
     search: SearchParameters,
-    value: string,
+    value: boolean,
+    defaultValue: boolean,
   ): void => {
-    searchParams.set(search, value);
+    if (defaultValue === value) {
+      searchParams.delete(search);
+      setSearchParams(searchParams);
+      return;
+    }
+    searchParams.set(search, value.toString());
     setSearchParams(searchParams);
   };
 
   const [showWrittenWords, setShowWrittenWords] = useState(
     searchParams.get(SearchParameters.wordsVisible) !== null
       ? searchParams.get(SearchParameters.wordsVisible) === "true"
-      : true,
+      : defaultShowWrittenWords,
   );
 
   const [showArticles, setShowArticles] = useState(
     searchParams.get(SearchParameters.articlesVisible) !== null
       ? searchParams.get(SearchParameters.articlesVisible) === "true"
-      : false,
+      : defaultShowArticles,
   );
 
   if (!favLanguages.length && languagesFromDB) {
@@ -108,12 +117,20 @@ export const Bildetema: React.FC<BildetemaProps> = ({
   }, [favLanguages, pathname]);
 
   const handleToggleArticles = (value: boolean): void => {
-    handleSearchParams(SearchParameters.articlesVisible, value.toString());
+    handleSearchParams(
+      SearchParameters.articlesVisible,
+      value,
+      defaultShowArticles,
+    );
     setShowArticles(value);
   };
 
   const handleToggleChange = (value: boolean): void => {
-    handleSearchParams(SearchParameters.wordsVisible, value.toString());
+    handleSearchParams(
+      SearchParameters.wordsVisible,
+      value,
+      defaultShowWrittenWords,
+    );
     setShowWrittenWords(value);
   };
 
