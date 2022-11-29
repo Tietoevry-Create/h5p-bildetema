@@ -5,7 +5,7 @@
       "fields": [
         {
           "label": "Sprogkode",
-          "description": "Sprogkoden skal skrives med to tegn (engelsk: en, norsk bokmål: nb)",
+          "description": "Sprogkoden skal skrives med to tegn (engelsk: en, dansk: da)",
           "default": "da"
         },
         {
@@ -109,11 +109,11 @@
           "default": "/privacy-statement"
         },
         {
-          "label": "Footer: accessibility statement tekst",
+          "label": "Footer: Tilgængelighedserklæring tekst",
           "default": "Accessibility statement"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring URL",
+          "label": "Footer: Tilgængelighedserklæring URL",
           "default": "/accessibility-statement"
         },
         {
@@ -267,8 +267,8 @@
       ]
     },
     {
-      "label": "Default languages",
-      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
+      "label": "Forudvalgte sprog",
+      "description": "Der bør være op til tre standardsprog. Disse er forudvalgte sprog hvis ingen anden er valgt. Vi anbefaler at tilføje tre af dem",
       "entity": "Sprog",
       "field": {
         "label": "Sprog",
