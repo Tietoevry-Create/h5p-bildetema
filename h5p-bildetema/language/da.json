@@ -263,10 +263,6 @@
         {
           "label": "Vietnamesisk",
           "default": "Vietnamesisk"
-        },
-        {
-          "label": "Backend Url",
-          "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
         }
       ]
     },
