@@ -1,0 +1,378 @@
+{
+  "semantics": [
+    {
+      "label": "Oversættelser",
+      "fields": [
+        {
+          "label": "Sprogkode",
+          "description": "Sprogkoden skal skrives med to tegn (engelsk: en, norsk bokmål: nb)",
+          "default": "da"
+        },
+        {
+          "label": "Siden loader",
+          "default": "Loader…"
+        },
+        {
+          "label": "Spring til hovedindhold",
+          "default": "Spring til hovedindhold"
+        },
+        {
+          "label": "Vis ord",
+          "default": "Vis ord"
+        },
+        {
+          "label": "Vis artikel",
+          "default": "Vis artikel"
+        },
+        {
+          "label": "Print",
+          "default": "Print"
+        },
+        {
+          "label": "Billeder i bredden",
+          "default": "billeder i bredden"
+        },
+        {
+          "label": "Spil lyd",
+          "default": "Spil lyd"
+        },
+        {
+          "label": "Lyd på pause",
+          "default": "Lyd på pause"
+        },
+        {
+          "label": "Footer: Overskrift 1",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Footer: Overskrift 2",
+          "default": "Andre sider"
+        },
+        {
+          "label": "Footer: Overskrift 3",
+          "default": "Om nettsiden"
+        },
+        {
+          "label": "Footer: Om Bildetema tekst",
+          "default": "Om Bildetema"
+        },
+        {
+          "label": "Footer: Om Bildetema URL",
+          "default": "/om-bildetema"
+        },
+        {
+          "label": "Footer: Kontaktinfo-overskrift",
+          "default": "Kontakt os"
+        },
+        {
+          "label": "Footer: Kontaktinfo-URL",
+          "default": "mailto:support@lexindrift.atlassian.net"
+        },
+        {
+          "label": "Footer: forrige Bildetema tekst",
+          "default": "Gamle Bildetema"
+        },
+        {
+          "label": "Footer: forrige Bildetema URL",
+          "default": "https://bildetema.oslomet.no/"
+        },
+        {
+          "label": "Footer: Tekst på første link",
+          "default": "NAFO - National Centre of Multicultural Education"
+        },
+        {
+          "label": "Footer: URL på første link",
+          "default": "https://nafo.oslomet.no/"
+        },
+        {
+          "label": "Footer: Tekst på andet link",
+          "default": "OsloMet - Oslo Metropolitan University"
+        },
+        {
+          "label": "Footer: URL på andet link",
+          "default": "https://oslomet.no/"
+        },
+        {
+          "label": "Footer: Tekst på tredje link",
+          "default": "LEXIN"
+        },
+        {
+          "label": "Footer: URL på tredje link",
+          "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Footer: Personvernerklæring tekst",
+          "default": "Personvernerklæring"
+        },
+        {
+          "label": "Footer: Personvernerklæring URL",
+          "default": "/personvernerklaering"
+        },
+        {
+          "label": "Footer: Tilgjengelighetserklæring tekst",
+          "default": "Tilgjengelighetserklæring"
+        },
+        {
+          "label": "Footer: Tilgjengelighetserklæring URL",
+          "default": "/tilgjengelighetserklaering"
+        },
+        {
+          "label": "Navn på første link i brødkrummestien",
+          "default": "Vælg et tema"
+        },
+        {
+          "label": "Navn på 'hjem' i brødkrummestien",
+          "default": "Hjem"
+        },
+        {
+          "label": "Navn på sprogvalg-knap",
+          "default": "Sprog"
+        },
+        {
+          "label": "Copyright",
+          "default": "Copyright © 2022 · All Rights Reserved"
+        },
+        {
+          "label": "Header: Titel",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Header: Undertekst",
+          "default": "Flersproget billedordbog"
+        },
+        {
+          "label": "Temastørrelse stor",
+          "default": "Temaer i gittervisning"
+        },
+        {
+          "label": "Temastørrelse kompakt",
+          "default": "Temavisning i liste"
+        },
+        {
+          "label": "Forrige billede",
+          "default": "Forrige billede"
+        },
+        {
+          "label": "Næste billede",
+          "default": "Næste billede"
+        },
+        {
+          "label": "Intet tema er valgt",
+          "default": "Intet tema er valgt."
+        },
+        {
+          "label": "Arabisk",
+          "default": "Arabisk"
+        },
+        {
+          "label": "Kurdisk sorani",
+          "default": "Kurdisk sorani"
+        },
+        {
+          "label": "Dansk",
+          "default": "Dansk"
+        },
+        {
+          "label": "Engelsk",
+          "default": "Engelsk"
+        },
+        {
+          "label": "Persisk",
+          "default": "Persisk"
+        },
+        {
+          "label": "Fransk",
+          "default": "Fransk"
+        },
+        {
+          "label": "Islandsk",
+          "default": "Islandsk"
+        },
+        {
+          "label": "Kurdisk kurmanji",
+          "default": "Kurdisk kurmanji"
+        },
+        {
+          "label": "Litauisk",
+          "default": "Litauisk"
+        },
+        {
+          "label": "Norsk (nynorsk)",
+          "default": "Norsk (nynorsk)"
+        },
+        {
+          "label": "Norsk (bokmål)",
+          "default": "Norsk (bokmål)"
+        },
+        {
+          "label": "Polsk",
+          "default": "Polsk"
+        },
+        {
+          "label": "Dari",
+          "default": "Dari"
+        },
+        {
+          "label": "Pashto",
+          "default": "Pashto"
+        },
+        {
+          "label": "Russisk",
+          "default": "Russisk"
+        },
+        {
+          "label": "Nordsamisk",
+          "default": "Nordsamisk"
+        },
+        {
+          "label": "Somali",
+          "default": "Somali"
+        },
+        {
+          "label": "Spansk",
+          "default": "Spansk"
+        },
+        {
+          "label": "Svensk",
+          "default": "Svensk"
+        },
+        {
+          "label": "Filippinsk",
+          "default": "Filippinsk"
+        },
+        {
+          "label": "Thai",
+          "default": "Thai"
+        },
+        {
+          "label": "Tigrinsk",
+          "default": "Tigrinsk"
+        },
+        {
+          "label": "Ukrainsk",
+          "default": "Ukrainsk"
+        },
+        {
+          "label": "Vietnamesisk",
+          "default": "Vietnamesisk"
+        },
+        {
+          "label": "Backend Url",
+          "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
+        }
+      ]
+    },
+    {
+      "label": "Default languages",
+      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
+      "entity": "Sprog",
+      "field": {
+        "label": "Sprog",
+        "default": "dan",
+        "options": [
+          {
+            "label": "Arabisk",
+            "value": "ara"
+          },
+          {
+            "label": "Kurdisk sorani",
+            "value": "ckb"
+          },
+          {
+            "label": "Dansk",
+            "value": "dan"
+          },
+          {
+            "label": "Engelsk",
+            "value": "eng"
+          },
+          {
+            "label": "Persisk",
+            "value": "fas"
+          },
+          {
+            "label": "Fransk",
+            "value": "fra"
+          },
+          {
+            "label": "Islandsk",
+            "value": "isl"
+          },
+          {
+            "label": "Kurdisk kurmanji",
+            "value": "kmr"
+          },
+          {
+            "label": "Litauisk",
+            "value": "lit"
+          },
+          {
+            "label": "Norsk (nynorsk)",
+            "value": "nno"
+          },
+          {
+            "label": "Norsk (bokmål)",
+            "value": "nob"
+          },
+          {
+            "label": "Polsk",
+            "value": "pol"
+          },
+          {
+            "label": "Dari",
+            "value": "prs"
+          },
+          {
+            "label": "Pashto",
+            "value": "pus"
+          },
+          {
+            "label": "Russisk",
+            "value": "rus"
+          },
+          {
+            "label": "Nordsamisk",
+            "value": "sme"
+          },
+          {
+            "label": "Somali",
+            "value": "som"
+          },
+          {
+            "label": "Spansk",
+            "value": "spa"
+          },
+          {
+            "label": "Svensk",
+            "value": "swe"
+          },
+          {
+            "label": "Filippinsk",
+            "value": "tgl"
+          },
+          {
+            "label": "Thai",
+            "value": "tha"
+          },
+          {
+            "label": "Tigrinsk",
+            "value": "tir"
+          },
+          {
+            "label": "Ukrainsk",
+            "value": "ukr"
+          },
+          {
+            "label": "Vietnamesisk",
+            "value": "vie"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Backend Url",
+      "description": "Url til databasen",
+      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
+    }
+  ]
+}
