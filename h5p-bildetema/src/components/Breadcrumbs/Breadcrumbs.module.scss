@@ -58,6 +58,7 @@
 .link {
   all: unset;
   align-items: center;
+  color: $base-font-color;
   display: flex;
   font-size: $font-size-18;
   gap: 0.5rem;
@@ -80,12 +81,12 @@
     padding: 0.375rem 1rem;
 
     &:hover {
-      background-color: #fff;
+      background-color: $white;
       border-color: $burgundy;
       color: $burgundy;
     }
     &:focus {
-      background-color: #fff;
+      background-color: $white;
       color: $burgundy;
 
       &:hover {
@@ -109,6 +110,7 @@
 
   & svg,
   &Left svg {
+    color: $base-font-color;
     height: 1.063rem;
     width: 0.625rem;
   }
@@ -161,10 +163,12 @@
 }
 
 .currentPage {
-  font-size: 1.5rem;
-  font-weight: bold;
-  line-height: 1;
-  margin: 0.5rem 0;
+  color: $base-font-color;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+  margin: 0.5rem 0 !important;
+  padding: 0 !important;
   word-break: break-all;
 }
 

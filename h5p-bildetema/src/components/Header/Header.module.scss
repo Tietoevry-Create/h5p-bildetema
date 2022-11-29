@@ -32,7 +32,7 @@
 
   &_content {
     align-items: flex-start;
-    color: white;
+    color: $white;
     display: flex;
     gap: $spacing--16;
     justify-content: flex-start;
@@ -96,7 +96,7 @@
 }
 
 .logo_labels {
-  color: white;
+  color: $white;
   display: flex;
   flex-direction: column;
   font-size: $font-size-16;
@@ -112,10 +112,13 @@
   }
 
   &:hover {
+    color: $white;
     text-decoration: none;
   }
 
   &:focus {
+    box-shadow: none;
+    color: $white;
     outline: $outline-on-dark-background !important;
   }
 
@@ -150,8 +153,8 @@
 
 .languageButton {
   background-color: transparent;
-  border-bottom: 0.1rem solid #fff;
-  color: white;
+  border-bottom: 0.1rem solid $white;
+  color: $white;
   cursor: pointer;
   font-size: $font-size-18;
   line-height: 1;
@@ -161,18 +164,21 @@
   white-space: nowrap;
 
   &:hover {
+    color: $white;
     border-color: transparent;
     text-decoration: none;
   }
 
   &:focus {
+    box-shadow: none;
+    color: $white;
     outline: $outline-on-dark-background !important;
     outline-offset: 2px;
   }
 
   &_active,
   &.active {
-    background-color: #fff;
+    background-color: $white;
     border-color: transparent;
     border-radius: 0.5rem;
     color: $burgundy;
@@ -180,13 +186,18 @@
     padding: 0.35rem 0.5rem 0.25rem;
     text-decoration: none;
 
+    &:hover {
+      color: $burgundy;
+    }
+
     &:focus {
+      color: $burgundy;
       outline: $outline-on-dark-background !important;
     }
 
     @media print {
       background-color: transparent;
-      color: #fff;
+      color: $white;
     }
   }
 

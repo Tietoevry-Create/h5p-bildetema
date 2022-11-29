@@ -26,6 +26,16 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
+    &:focus {
+      border-color: none;
+      box-shadow: none;
+      outline: $outline-on-light-background !important;
+    }
+
+    &:checked::before {
+      content: none;
+    }
   }
 }
 
