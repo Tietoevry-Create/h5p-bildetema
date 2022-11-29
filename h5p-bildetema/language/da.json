@@ -101,20 +101,20 @@
           "default": "https://lexin.oslomet.no/"
         },
         {
-          "label": "Footer: Personvernerklæring tekst",
-          "default": "Personvernerklæring"
+          "label": "Footer: privacy statement tekst",
+          "default": "Privacy statement"
         },
         {
-          "label": "Footer: Personvernerklæring URL",
-          "default": "/personvernerklaering"
+          "label": "Footer: privacy statement URL",
+          "default": "/privacy-statement"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring tekst",
-          "default": "Tilgjengelighetserklæring"
+          "label": "Footer: accessibility statement tekst",
+          "default": "Accessibility statement"
         },
         {
           "label": "Footer: Tilgjengelighetserklæring URL",
-          "default": "/tilgjengelighetserklaering"
+          "default": "/accessibility-statement"
         },
         {
           "label": "Navn på første link i brødkrummestien",
