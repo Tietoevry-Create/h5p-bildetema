@@ -263,10 +263,6 @@
         {
           "label": "Vietnamese",
           "default": "Vietnamese"
-        },
-        {
-          "label": "Backend Url",
-          "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
         }
       ]
     },

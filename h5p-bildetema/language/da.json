@@ -1,44 +1,44 @@
 {
   "semantics": [
     {
-      "label": "Oversettelser",
+      "label": "Oversættelser",
       "fields": [
         {
-          "label": "Språkkode",
-          "description": "Språkkoden skal være skrevet med to tegn (engelsk: en, norsk bokmål: nb)",
-          "default": "nb"
+          "label": "Sprogkode",
+          "description": "Sprogkoden skal skrives med to tegn (engelsk: en, dansk: da)",
+          "default": "da"
         },
         {
-          "label": "Siden laster",
-          "default": "Laster…"
+          "label": "Siden loader",
+          "default": "Loader…"
         },
         {
-          "label": "Hopp til hovedinnhold",
-          "default": "Hopp til hovedinnhold"
+          "label": "Spring til hovedindhold",
+          "default": "Spring til hovedindhold"
         },
         {
           "label": "Vis ord",
           "default": "Vis ord"
         },
         {
-          "label": "Vis artikkel",
-          "default": "Vis artikkel"
+          "label": "Vis artikel",
+          "default": "Vis artikel"
         },
         {
-          "label": "Skriv ut",
-          "default": "Skriv ut"
+          "label": "Print",
+          "default": "Print"
         },
         {
-          "label": "Skriv ut bilde",
-          "default": "bilder i bredden"
+          "label": "Billeder i bredden",
+          "default": "billeder i bredden"
         },
         {
-          "label": "Spill lyd",
-          "default": "Spill lyd"
+          "label": "Spil lyd",
+          "default": "Spil lyd"
         },
         {
-          "label": "Sett lyd på pause",
-          "default": "Sett lyd på pause"
+          "label": "Lyd på pause",
+          "default": "Lyd på pause"
         },
         {
           "label": "Footer: Overskrift 1",
@@ -62,7 +62,7 @@
         },
         {
           "label": "Footer: Kontaktinfo-overskrift",
-          "default": "Kontakt oss"
+          "default": "Kontakt os"
         },
         {
           "label": "Footer: Kontaktinfo-URL",
@@ -78,87 +78,87 @@
         },
         {
           "label": "Footer: Tekst på første link",
-          "default": "NAFO - Nasjonalt senter for flerkulturell opplæring"
+          "default": "NAFO - National Centre of Multicultural Education"
         },
         {
-          "label": "Footer: URL på første lenke",
+          "label": "Footer: URL på første link",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på andre lenke",
-          "default": "OsloMet - storbyuniversitetet"
+          "label": "Footer: Tekst på andet link",
+          "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Footer: URL på andre lenke",
+          "label": "Footer: URL på andet link",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på tredje lenke",
+          "label": "Footer: Tekst på tredje link",
           "default": "LEXIN"
         },
         {
-          "label": "Footer: URL på tredje lenke",
+          "label": "Footer: URL på tredje link",
           "default": "https://lexin.oslomet.no/"
         },
         {
-          "label": "Footer: Personvernerklæring tekst",
-          "default": "Personvernerklæring"
+          "label": "Footer: privacy statement tekst",
+          "default": "Privacy statement"
         },
         {
-          "label": "Footer: Personvernerklæring URL",
-          "default": "/personvernerklaering"
+          "label": "Footer: privacy statement URL",
+          "default": "/privacy-statement"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring tekst",
-          "default": "Tilgjengelighetserklæring"
+          "label": "Footer: Tilgængelighedserklæring tekst",
+          "default": "Accessibility statement"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring URL",
-          "default": "/tilgjengelighetserklaering"
+          "label": "Footer: Tilgængelighedserklæring URL",
+          "default": "/accessibility-statement"
         },
         {
-          "label": "Navn på første lenke i brødsmulestien",
-          "default": "Velg et tema"
+          "label": "Navn på første link i brødkrummestien",
+          "default": "Vælg et tema"
         },
         {
-          "label": "Navn på hjemsiden i brødsmulestien",
+          "label": "Navn på 'hjem' i brødkrummestien",
           "default": "Hjem"
         },
         {
-          "label": "Navn på språkvelger-knapp",
-          "default": "Språk"
+          "label": "Navn på sprogvalg-knap",
+          "default": "Sprog"
         },
         {
-          "label": "Kopibeskyttelse",
-          "default": "Kopibeskyttet © 2022 · Alle rettigheter"
+          "label": "Copyright",
+          "default": "Copyright © 2022 · All Rights Reserved"
         },
         {
-          "label": "Header: Tittel",
+          "label": "Header: Titel",
           "default": "Bildetema"
         },
         {
           "label": "Header: Undertekst",
-          "default": "Flerspråklig bildeordbok"
+          "default": "Flersproget billedordbog"
         },
         {
           "label": "Temastørrelse stor",
-          "default": "Temavisning i rutenett"
+          "default": "Temaer i gittervisning"
         },
         {
           "label": "Temastørrelse kompakt",
           "default": "Temavisning i liste"
         },
         {
-          "label": "Forrige bilde",
-          "default": "Forrige bilde"
+          "label": "Forrige billede",
+          "default": "Forrige billede"
         },
         {
-          "label": "Neste bilde",
-          "default": "Neste bilde"
+          "label": "Næste billede",
+          "default": "Næste billede"
         },
         {
-          "label": "Ingen tema er valgt",
-          "default": "Ingen tema er valgt."
+          "label": "Intet tema er valgt",
+          "default": "Intet tema er valgt."
         },
         {
           "label": "Temabilde tekst",
@@ -173,8 +173,8 @@
           "default": "Arabisk"
         },
         {
-          "label": "Sorani",
-          "default": "Sorani"
+          "label": "Kurdisk sorani",
+          "default": "Kurdisk sorani"
         },
         {
           "label": "Dansk",
@@ -197,8 +197,8 @@
           "default": "Islandsk"
         },
         {
-          "label": "Kurmanji",
-          "default": "Kurmanji"
+          "label": "Kurdisk kurmanji",
+          "default": "Kurdisk kurmanji"
         },
         {
           "label": "Litauisk",
@@ -233,8 +233,8 @@
           "default": "Nordsamisk"
         },
         {
-          "label": "Somalisk",
-          "default": "Somalisk"
+          "label": "Somali",
+          "default": "Somali"
         },
         {
           "label": "Spansk",
@@ -245,16 +245,16 @@
           "default": "Svensk"
         },
         {
-          "label": "Tagalog",
-          "default": "Tagalog"
+          "label": "Filippinsk",
+          "default": "Filippinsk"
         },
         {
           "label": "Thai",
           "default": "Thai"
         },
         {
-          "label": "Tigrinja",
-          "default": "Tigrinja"
+          "label": "Tigrinsk",
+          "default": "Tigrinsk"
         },
         {
           "label": "Ukrainsk",
@@ -267,19 +267,19 @@
       ]
     },
     {
-      "label": "Default languages",
-      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
-      "entity": "Språk",
+      "label": "Forudvalgte sprog",
+      "description": "Der bør være op til tre standardsprog. Disse er forudvalgte sprog hvis ingen anden er valgt. Vi anbefaler at tilføje tre af dem",
+      "entity": "Sprog",
       "field": {
-        "label": "Språk",
-        "default": "nob",
+        "label": "Sprog",
+        "default": "dan",
         "options": [
           {
             "label": "Arabisk",
             "value": "ara"
           },
           {
-            "label": "Sorani",
+            "label": "Kurdisk sorani",
             "value": "ckb"
           },
           {
@@ -303,7 +303,7 @@
             "value": "isl"
           },
           {
-            "label": "Kurmanji",
+            "label": "Kurdisk kurmanji",
             "value": "kmr"
           },
           {
@@ -339,7 +339,7 @@
             "value": "sme"
           },
           {
-            "label": "Somalisk",
+            "label": "Somali",
             "value": "som"
           },
           {
@@ -351,7 +351,7 @@
             "value": "swe"
           },
           {
-            "label": "Tagalog",
+            "label": "Filippinsk",
             "value": "tgl"
           },
           {
@@ -359,7 +359,7 @@
             "value": "tha"
           },
           {
-            "label": "Tigrinja",
+            "label": "Tigrinsk",
             "value": "tir"
           },
           {
