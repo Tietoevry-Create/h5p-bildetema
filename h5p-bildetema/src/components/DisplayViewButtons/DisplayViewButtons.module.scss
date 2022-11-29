@@ -1,0 +1,63 @@
+@use "../../../../common/abstracts" as *;
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+
+  @media print {
+    display: none;
+  }
+}
+
+.buttonBig,
+.buttonCompact {
+  background-color: $grey;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  color: #000;
+  cursor: pointer;
+  font-size: $font-size-18;
+  line-height: 1;
+  overflow: hidden;
+  padding: 0.5625rem 1rem;
+  text-align: center;
+
+  @include breakpoint-max($small) {
+    width: 50%;
+  }
+
+  &::after {
+    color: transparent;
+    content: attr(title);
+    display: block;
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  &:hover {
+    background-color: white;
+    border-color: $burgundy;
+    color: $burgundy;
+  }
+
+  &:focus {
+    &:hover {
+      outline: none;
+    }
+  }
+
+  &.active {
+    background-color: $burgundy;
+    color: white;
+    font-weight: bold;
+    pointer-events: none;
+  }
+}
+
+.visuallyHidden {
+  @include visually-hidden;
+}

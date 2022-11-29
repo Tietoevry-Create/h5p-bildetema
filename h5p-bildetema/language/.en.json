@@ -161,6 +161,14 @@
           "default": "No topic selected."
         },
         {
+          "label": "Topic image label",
+          "default": "Topic image"
+        },
+        {
+          "label": "Grid label",
+          "default": "Grid"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

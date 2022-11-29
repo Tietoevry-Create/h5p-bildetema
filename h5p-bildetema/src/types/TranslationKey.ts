@@ -44,6 +44,8 @@ export type TranslationKey =
   | "prevImageLabel"
   | "nextImageLabel"
   | "noTopicSelected"
+  | "viewTopicImage"
+  | "viewGrid"
   | "lang_ara"
   | "lang_ckb"
   | "lang_dan"

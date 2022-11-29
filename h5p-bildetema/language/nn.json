@@ -149,6 +149,26 @@
           "default": "Show topics in list view"
         },
         {
+          "label": "Forrige bilde",
+          "default": "Forrige bilde"
+        },
+        {
+          "label": "Neste bilde",
+          "default": "Neste bilde"
+        },
+        {
+          "label": "Ingen tema er valgt",
+          "default": "Ingen tema er valgt."
+        },
+        {
+          "label": "Temabilde tekst",
+          "default": "Temabilde"
+        },
+        {
+          "label": "Grid tekst",
+          "default": "Grid"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

@@ -241,6 +241,18 @@
         "type": "text"
       },
       {
+        "label": "Topic image label",
+        "name": "viewTopicImage",
+        "default": "Topic image",
+        "type": "text"
+      },
+      {
+        "label": "Grid label",
+        "name": "viewGrid",
+        "default": "Grid",
+        "type": "text"
+      },
+      {
         "label": "Arabic",
         "name": "lang_ara",
         "default": "Arabic",
