@@ -1,10 +1,11 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { Howl } from "howler";
 import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
 import { Word as WordType } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
-import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
+// import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 
 type WordAudioProps = {
   word: WordType;
@@ -18,60 +19,74 @@ export const WordAudio: React.FC<WordAudioProps> = ({
   showArticles,
 }) => {
   const { label, article } = word;
-  const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
-  const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
+
+  // const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
   const text = article && showArticles ? `${article} ${label}` : label;
   const handleAudioEnded = (): void => {
     setPlaying(false);
   };
 
-  const toggleAudio = (): void => {
-    const audioElement = audioRef.current;
-    if (!audioElement) {
-      return;
-    }
+  const [audio, setAudio] = useState(
+    new Howl({
+      src: word.audioFiles?.map(file => file.url) || "",
+      onend: handleAudioEnded,
+    }),
+  );
 
+  const toggleAudio = (): void => {
     if (playing) {
-      audioElement.pause();
-      audioElement.currentTime = 0;
+      audio.stop();
     } else {
-      if (contextAudioRef?.current) {
-        contextAudioRef.current.pause();
-        contextAudioRef.current.currentTime = 0;
-      }
-      setContextAudioRef(audioRef);
-      audioElement.play();
+      // if (contextAudioRef?.current) {
+      //   contextAudioRef.current.pause();
+      //   contextAudioRef.current.currentTime = 0;
+      // }
+      // setContextAudioRef(audioRef);
+      audio.play();
     }
 
     setPlaying(!playing);
   };
+  
   useEffect(() => {
     // Reload sources whenever the language changes
-    audioRef.current?.load();
+    setAudio(new Howl({
+      src: word.audioFiles?.map(file => file.url) || "",
+      onend: handleAudioEnded,
+    }))
     setPlaying(false);
   }, [word]);
 
   useEffect(() => {
-    setPlaying(audioRef.current?.paused === false);
-  }, [audioRef.current?.paused]);
+    setPlaying(audio.playing() === true);
+  }, [audio, setPlaying]);
 
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
-
+  // const sound = new Howl({
+  //   src: word.audioFiles?.map(file =>file.url)
+  // })
   return (
     <div
       className={`${styles.wordAudio} ${
         textVisible ? "" : styles.wordAudioHideForPrint
       }`}
     >
+      {/* <button
+        type="button"
+        onClick={() => console.log(audio.playing())}
+      >
+        {" "}
+        hei
+      </button> */}
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioRef} onEnded={handleAudioEnded}>
+      {/* <audio ref={audioRef} onEnded={handleAudioEnded}>
         {word.audioFiles?.map(file => (
           <source key={file.mimeType} src={file.url} type={file.mimeType} />
         ))}
-      </audio>
+      </audio> */}
       <button type="button" onClick={toggleAudio}>
         {textVisible && (
           <h2 className={styles.word_label}>
