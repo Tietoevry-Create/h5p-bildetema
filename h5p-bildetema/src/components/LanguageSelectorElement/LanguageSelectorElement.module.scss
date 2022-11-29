@@ -19,11 +19,6 @@
   &:focus {
     background: $beige;
   }
-  &.disabled {
-    color: $checkbox-disabled-color;
-    pointer-events: none;
-    user-select: none;
-  }
 
   &:focus-within {
     background: $beige;
@@ -72,5 +67,15 @@
   &:focus {
     box-shadow: none;
     color: $base-font-color;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  user-select: none;
+
+  &,
+  a {
+    color: $checkbox-disabled-color;
   }
 }
