@@ -53,12 +53,8 @@ export const Word: React.FC<WordProps> = ({
           <button
             type="button"
             className="swiper-button-prev"
-            aria-labelledby="prev-button"
-          >
-            <span id="prev-button" className={styles.visuallyHidden}>
-              {prevLabel}
-            </span>
-          </button>
+            aria-label={prevLabel}
+          />
         )}
         {numberOfImages !== 0 ? (
           images.map(image => (
@@ -90,12 +86,8 @@ export const Word: React.FC<WordProps> = ({
           <button
             type="button"
             className="swiper-button-next"
-            aria-labelledby="next-button"
-          >
-            <span id="next-button" className={styles.visuallyHidden}>
-              {nextLabel}
-            </span>
-          </button>
+            aria-label={nextLabel}
+          />
         )}
       </Swiper>
     );
