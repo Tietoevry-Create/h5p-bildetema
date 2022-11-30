@@ -155,7 +155,6 @@ export const Header: React.FC<HeaderProps> = ({
             search={search}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             currentLanguageCode={currentLanguageCode}
-            isMobile={isMobile}
             firstTime={firstTime}
           />
         </div>
