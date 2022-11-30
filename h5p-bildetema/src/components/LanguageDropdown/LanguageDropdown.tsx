@@ -45,8 +45,10 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
+    const { currentTarget } = e;
+
     requestAnimationFrame(() => {
-      if (!e.currentTarget.contains(document.activeElement)) {
+      if (!currentTarget.contains(document.activeElement)) {
         handleSelectorVisibility(false);
         setIsActive(false);
       }
