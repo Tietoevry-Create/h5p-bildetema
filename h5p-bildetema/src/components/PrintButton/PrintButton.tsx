@@ -31,6 +31,17 @@ export const PrintButton: React.FC<PrintProps> = ({
     setIsActive(false);
   };
 
+  const handleOnBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
+    const currentTarget = e.currentTarget;
+
+    requestAnimationFrame(() => {
+      if (!currentTarget.contains(document.activeElement)) {
+        setViewPrintDropDown(false);
+        setIsActive(false);
+      }
+    });
+  };
+
   const dropdownRef = useDetectClickOutside({
     onTriggered: handleOnClickOutside,
   });
@@ -63,7 +74,11 @@ export const PrintButton: React.FC<PrintProps> = ({
 
   return (
     <>
-      <div className={styles.printDropdown} ref={dropdownRef}>
+      <div
+        className={styles.printDropdown}
+        ref={dropdownRef}
+        onBlur={e => handleOnBlur(e)}
+      >
         <button
           type="button"
           className={`${
@@ -100,7 +115,7 @@ export const PrintButton: React.FC<PrintProps> = ({
         </button>
         <div
           className={`${styles.printDropdownContent} ${
-            viewPrintDropDown && styles.show
+            viewPrintDropDown ? styles.show : ""
           }`}
         >
           {printDropdownOptions.map(el => (

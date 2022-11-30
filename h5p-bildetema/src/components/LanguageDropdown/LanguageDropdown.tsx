@@ -46,12 +46,27 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
     setIsActive(!isActive);
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
+    const currentTarget = e.currentTarget;
+
+    requestAnimationFrame(() => {
+      if (!currentTarget.contains(document.activeElement)) {
+        handleSelectorVisibility(false);
+        setIsActive(false);
+      }
+    });
+  };
+
   React.useEffect(() => {
     setIsActive(firstTime);
   }, [currentLanguageCode]);
 
   return (
-    <div className={styles.languageMenuButtonWrapper} ref={dropdownRef}>
+    <div
+      className={styles.languageMenuButtonWrapper}
+      ref={dropdownRef}
+      onBlur={e => handleBlur(e)}
+    >
       <button
         type="button"
         onClick={handleOnClick}
