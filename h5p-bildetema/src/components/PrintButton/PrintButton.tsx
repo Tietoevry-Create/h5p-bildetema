@@ -32,10 +32,8 @@ export const PrintButton: React.FC<PrintProps> = ({
   };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
-    const currentTarget = e.currentTarget;
-
     requestAnimationFrame(() => {
-      if (!currentTarget.contains(document.activeElement)) {
+      if (!e.currentTarget.contains(document.activeElement)) {
         setViewPrintDropDown(false);
         setIsActive(false);
       }

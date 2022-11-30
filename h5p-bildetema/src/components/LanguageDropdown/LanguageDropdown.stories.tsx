@@ -16,7 +16,6 @@ const Template: ComponentStory<typeof LanguageDropdown> = args => (
 export const Default = Template.bind({});
 
 const defaultArgs: LanguageDropdownProps = {
-  isMobile: false,
   search: "",
   currentLanguageCode: "nob",
   topicIds: {},

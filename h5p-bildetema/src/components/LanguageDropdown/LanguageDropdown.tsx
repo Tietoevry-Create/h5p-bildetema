@@ -12,7 +12,6 @@ export type LanguageDropdownProps = {
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   currentLanguageCode: string;
-  isMobile: boolean | null;
   search: string;
   topicIds: TopicIds;
   firstTime: boolean;
@@ -25,7 +24,6 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   favLanguages,
   handleToggleFavoriteLanguage,
   currentLanguageCode,
-  isMobile,
   search,
   firstTime,
   topicIds,
@@ -47,10 +45,8 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
-    const currentTarget = e.currentTarget;
-
     requestAnimationFrame(() => {
-      if (!currentTarget.contains(document.activeElement)) {
+      if (!e.currentTarget.contains(document.activeElement)) {
         handleSelectorVisibility(false);
         setIsActive(false);
       }
