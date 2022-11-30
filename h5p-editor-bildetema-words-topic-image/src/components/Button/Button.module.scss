@@ -1,8 +1,10 @@
+@use "../../../../common/abstracts" as *;
+
 .button {
   all: unset;
   border: 1px solid #d0d0d1;
   border-radius: 0.25em;
-  font-size: 0.875rem;
+  font-size: $font-size-14;
   font-weight: normal;
   padding: 0.3rem 1.2rem;
   cursor: pointer;

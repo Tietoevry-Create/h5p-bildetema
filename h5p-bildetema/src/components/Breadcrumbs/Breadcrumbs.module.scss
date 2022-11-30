@@ -8,7 +8,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  font-size: 1.5rem;
+  font-size: $font-size-24;
   gap: $spacing--24;
   margin: 0;
   padding: 0;
@@ -164,7 +164,7 @@
 
 .currentPage {
   color: $base-font-color;
-  font-size: 1.5rem !important;
+  font-size: $font-size-24 !important;
   font-weight: bold !important;
   line-height: 1 !important;
   margin: 0.5rem 0 !important;
