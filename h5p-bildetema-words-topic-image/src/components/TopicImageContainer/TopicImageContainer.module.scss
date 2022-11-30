@@ -2,8 +2,13 @@
 
 .wrapper {
   display: flex;
+  flex-direction: column;
   gap: $spacing--16;
   width: 100%;
+
+  @include breakpoint-min($x-small) {
+    flex-direction: row;
+  }
 
   :focus {
     outline: $outline-on-light-background;
