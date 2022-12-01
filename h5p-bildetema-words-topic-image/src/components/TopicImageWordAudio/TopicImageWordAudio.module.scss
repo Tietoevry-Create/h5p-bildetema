@@ -20,10 +20,11 @@
 .wordAudio button {
   all: unset;
   align-items: center;
+  border-radius: 1rem;
   cursor: pointer;
   display: flex;
   gap: 0.5rem;
-  padding: 0.35rem 0.5rem;
+  padding: 0.25rem 1rem;
 
   @media print {
     padding: 0;
@@ -51,29 +52,42 @@
   }
 }
 
-.audioIcon,
-.audioIconActive {
+.audioIcon {
   fill: none;
   height: 1.5rem;
 
   path {
-    stroke: #8f8f8f;
+    stroke: #858585;
     stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
+}
 
-  &:hover,
-  &:focus {
-    path {
-      stroke: #333;
-    }
+.wordAudio:not(.wordAudio_active) button:hover {
+  background-color: $beige;
+
+  path {
+    stroke: $base-font-color;
   }
 }
 
-.audioIconActive {
-  path {
-    stroke: #333;
+.wordAudio_active {
+  button {
+    background-color: #ebebff;
+  }
+
+  &.selected button,
+  button:focus {
+    outline: $outline-on-audio;
+  }
+
+  .word_label {
+    color: $blue-magenta;
+  }
+
+  .audioIcon path {
+    stroke: $blue-magenta;
   }
 }
 

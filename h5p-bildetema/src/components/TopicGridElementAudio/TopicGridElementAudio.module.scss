@@ -16,13 +16,12 @@
   height: 1.5rem;
 }
 
-.audioIcon,
-.audioIconActive {
+.audioIcon {
   fill: none;
   height: 1.5rem;
 
   path {
-    stroke: #8f8f8f;
+    stroke: #858585;
     stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -40,10 +39,8 @@
   }
 }
 
-.audioIconActive {
-  path {
-    stroke: #333;
-  }
+.wordAudio_active .audioIcon path {
+  stroke: $base-font-color;
 }
 
 .visuallyHidden {
