@@ -57,6 +57,7 @@
 
 .imageVertical {
   height: 100%;
+  max-height: calc(100vh - 5rem);
 }
 
 .imageHorizontal {
