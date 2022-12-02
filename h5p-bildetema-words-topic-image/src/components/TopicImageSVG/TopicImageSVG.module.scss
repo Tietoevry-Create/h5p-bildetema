@@ -44,7 +44,7 @@
     width: 80%;
   }
 
-  @include breakpoint-min($small) {
+  @include breakpoint-min($medium) {
     max-height: calc(100vh - 11rem); // Compensate for header height
   }
 }
@@ -57,6 +57,7 @@
 
 .imageVertical {
   height: 100%;
+  max-height: calc(100vh - 5rem); // Compensate for mobile header height
 }
 
 .imageHorizontal {
