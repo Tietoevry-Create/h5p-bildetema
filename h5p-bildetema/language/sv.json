@@ -113,7 +113,7 @@
           "default": "Tillgänglighetsförklaring"
         },
         {
-          "label": "Sidefot: Tillgänglighetsförklaring URL",
+          "label": "Sidfot: Tillgänglighetsförklaring URL",
           "default": "/accessibility-statement"
         },
         {
