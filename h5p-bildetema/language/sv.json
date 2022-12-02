@@ -5,7 +5,7 @@
       "fields": [
         {
           "label": "Språkkod",
-          "description": "Två teckens språkkod, används för att ställa in språk i kod (engelska: en, norsk bokmål: nb)",
+          "description": "Två teckens språkkod, används för att ställa in språk i kod (engelska: en, svenska: sv)",
           "default": "sv"
         },
         {
