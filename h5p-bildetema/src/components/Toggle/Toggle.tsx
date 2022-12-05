@@ -31,7 +31,11 @@ export const Toggle: React.FC<ToggleProps> = ({
       className={isFocused ? styles.containerFocused : styles.container}
       htmlFor={id}
     >
-      {label && <span className={styles.label}>{label}</span>}
+      {label && (
+        <span className={styles.label} lang={document.documentElement.lang}>
+          {label}
+        </span>
+      )}
       <ReactToggle
         id={id}
         checked={checked}

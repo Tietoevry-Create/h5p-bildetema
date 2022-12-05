@@ -34,7 +34,7 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
         tabIndex={displayView === DisplayView.TopicImage ? -1 : 0}
         title={topicImageLabel}
       >
-        <span>{topicImageLabel}</span>
+        <span lang={document.documentElement.lang}>{topicImageLabel}</span>
       </button>
       <button
         type="button"
@@ -45,7 +45,7 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
         tabIndex={displayView === DisplayView.Grid ? -1 : 0}
         title={gridLabel}
       >
-        <span>{gridLabel}</span>
+        <span lang={document.documentElement.lang}>{gridLabel}</span>
       </button>
     </div>
   );

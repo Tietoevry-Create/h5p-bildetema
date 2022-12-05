@@ -36,7 +36,12 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         tabIndex={topicsSize === TopicGridSizes.Big ? -1 : 0}
       >
         <BigTopicsIcon />
-        <span className={styles.visuallyHidden}>{bigTopicsLabel}</span>
+        <span
+          className={styles.visuallyHidden}
+          lang={document.documentElement.lang}
+        >
+          {bigTopicsLabel}
+        </span>
       </button>
       <button
         type="button"
@@ -47,7 +52,12 @@ export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
         tabIndex={topicsSize === TopicGridSizes.Compact ? -1 : 0}
       >
         <CompactTopicsIcon />
-        <span className={styles.visuallyHidden}>{compactTopicsLabel}</span>
+        <span
+          className={styles.visuallyHidden}
+          lang={document.documentElement.lang}
+        >
+          {compactTopicsLabel}
+        </span>
       </button>
     </div>
   );

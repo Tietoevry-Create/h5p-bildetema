@@ -115,7 +115,10 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
             className={playing ? styles.audioIconActive : styles.audioIcon}
           />
         </span>
-        <span className={styles.visuallyHidden}>
+        <span
+          className={styles.visuallyHidden}
+          lang={document.documentElement.lang}
+        >
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>{" "}
         {showWrittenWords && (

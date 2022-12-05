@@ -71,7 +71,10 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
         <SpeakerIcon
           className={playing ? styles.audioIconActive : styles.audioIcon}
         />
-        <span className={styles.visuallyHidden}>
+        <span
+          className={styles.visuallyHidden}
+          lang={document.documentElement.lang}
+        >
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>
       </button>

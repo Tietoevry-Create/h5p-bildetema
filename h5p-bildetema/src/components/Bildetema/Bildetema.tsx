@@ -23,6 +23,7 @@ import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
+import { languagesAttribute } from "../../../../common/constants/languages";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -103,7 +104,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     setFavLanguages([...languages]);
   }
 
-  const directionRtl: boolean = React.useMemo(() => {
+  const getCurrentLanguage = (): Language => {
     const currentLanguageCode: LanguageCode =
       pathname.split("/").length >= 2
         ? (pathname.split("/")[1] as LanguageCode)
@@ -112,8 +113,11 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     const currentLanguage: Language | undefined = favLanguages.find(
       language => language.code === currentLanguageCode,
     );
+    return currentLanguage as Language;
+  };
 
-    return !!currentLanguage?.rtl;
+  const directionRtl: boolean = React.useMemo(() => {
+    return !!getCurrentLanguage()?.rtl;
   }, [favLanguages, pathname]);
 
   const handleToggleArticles = (value: boolean): void => {
@@ -215,23 +219,27 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
         />
         <LanguageFavorites topicIds={topicIds} favLanguages={favLanguages} />
-        <SubHeader
-          topicIds={topicIds}
-          topicsSize={topicsSize}
-          setTopicsSize={setTopicsSize}
-          isWordView={isWordView}
-          handleToggleChange={handleToggleChange}
-          toggleChecked={showWrittenWords}
-          showTopicImageView={showTopicImageView}
-          rtl={directionRtl}
-          handleToggleArticles={handleToggleArticles}
-          articlesToggleChecked={showArticles}
-        />
         <div
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label="Main content" // TODO: translate
+          lang={
+            languagesAttribute[getCurrentLanguage().code] ??
+            document.documentElement.lang
+          }
         >
+          <SubHeader
+            topicIds={topicIds}
+            topicsSize={topicsSize}
+            setTopicsSize={setTopicsSize}
+            isWordView={isWordView}
+            handleToggleChange={handleToggleChange}
+            toggleChecked={showWrittenWords}
+            showTopicImageView={showTopicImageView}
+            rtl={directionRtl}
+            handleToggleArticles={handleToggleArticles}
+            articlesToggleChecked={showArticles}
+          />
           {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />

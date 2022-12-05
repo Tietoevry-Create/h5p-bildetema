@@ -126,7 +126,12 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
                     <span className={styles.homeIcon}>
                       <HomeIcon />
                     </span>
-                    <span className={styles.visuallyHidden}>{homeLabel}</span>
+                    <span
+                      className={styles.visuallyHidden}
+                      lang={document.documentElement.lang}
+                    >
+                      {homeLabel}
+                    </span>
                   </span>
                 ) : (
                   <span className={styles.backButton}>
