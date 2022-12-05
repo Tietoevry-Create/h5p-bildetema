@@ -87,6 +87,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
     setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);
 
+  const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
 
@@ -115,10 +116,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
             className={playing ? styles.audioIconActive : styles.audioIcon}
           />
         </span>
-        <span
-          className={styles.visuallyHidden}
-          lang={document.documentElement.lang}
-        >
+        <span className={styles.visuallyHidden} lang={lang}>
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>{" "}
         {showWrittenWords && (

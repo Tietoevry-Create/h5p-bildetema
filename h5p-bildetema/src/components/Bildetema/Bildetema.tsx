@@ -225,7 +225,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label="Main content" // TODO: translate
-          lang={attributeLanguages[getCurrentLanguage().code] ?? siteLang}
+          lang={attributeLanguages[getCurrentLanguage()?.code] ?? siteLang}
         >
           <SubHeader
             topicIds={topicIds}
