@@ -5,6 +5,7 @@ import { Language, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
+import { useL10n } from "../../hooks/useL10n";
 
 export type LanguageSelectorProps = {
   currentLanguageCode: string;
@@ -28,6 +29,9 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   };
 
   const navAriaLabel = "Choose language"; // TODO: translate
+  const selectLanguageLinkPart1 = useL10n("selectLanguageLinkPart1");
+  const selectLanguageLinkPart2 = useL10n("selectLanguageLinkPart2");
+  const linkHref = useL10n("footerPrevBildetemaHref");
 
   return (
     <nav aria-label={navAriaLabel} className={styles.languageSelectorWrapper}>
@@ -44,6 +48,10 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           />
         ))}
       </ul>
+      <p>
+        {selectLanguageLinkPart1}{" "}
+        <a href={linkHref}>{selectLanguageLinkPart2}</a>
+      </p>
     </nav>
   );
 };

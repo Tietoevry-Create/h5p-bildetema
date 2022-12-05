@@ -24,4 +24,13 @@
   max-height: calc(100vh - 11rem);
   overflow-y: auto;
   z-index: $fav-language-selector-z-index;
+
+  p {
+    font-size: $font-size-16 !important;
+    margin: 1rem 0.5rem 0.5rem 0.5rem;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
