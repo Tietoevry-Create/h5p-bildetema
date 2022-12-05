@@ -23,7 +23,7 @@ import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { languagesAttribute } from "../../../../common/constants/languages";
+import { attributeLanguages } from "../../../../common/constants/languages";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -224,7 +224,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label="Main content" // TODO: translate
           lang={
-            languagesAttribute[getCurrentLanguage().code] ??
+            attributeLanguages[getCurrentLanguage().code] ??
             document.documentElement.lang
           }
         >

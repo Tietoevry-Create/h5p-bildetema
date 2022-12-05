@@ -52,7 +52,11 @@ export const languagesOriginal = {
   vie: "Việt",
 } as const;
 
-export const languagesAttribute = {
+/**
+ * ISO-639-1 codes are used in cases where there's some lack of support
+ * for ISO-639-3 codes, for example with the HTML `lang` attribute.
+ */
+export const attributeLanguages: Record<typeof languages[number], string> = {
   ara: "ar",
   ckb: "ku",
   dan: "da",
