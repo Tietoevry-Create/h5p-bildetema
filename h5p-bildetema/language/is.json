@@ -1,11 +1,11 @@
 {
   "semantics": [
     {
-      "label": "Localize",
+      "label": "Þýðingar",
       "fields": [
         {
-          "label": "Language code",
-          "description": "Two character language code, used for setting language in code (English: en, Norwegian Bokmål: nb)",
+          "label": "Tungumálakóði",
+          "description": "Tveggja stafa tungumálakóði, notaður til að setja tungumál í kóða (enska: en, íslenska: is)",
           "default": "is"
         },
         {
@@ -125,8 +125,8 @@
           "default": "Home"
         },
         {
-          "label": "Language selection label",
-          "default": "Language"
+          "label": "Tungumálavali texti",
+          "default": "Tungumál"
         },
         {
           "label": "Copyright",
@@ -149,16 +149,16 @@
           "default": "Show topics in list view"
         },
         {
-          "label": "Previous image label",
-          "default": "Previous image"
+          "label": "Fyrri mynd",
+          "default": "Fyrri mynd"
         },
         {
-          "label": "Next image label",
-          "default": "Next image"
+          "label": "Næsta mynd",
+          "default": "Næsta mynd"
         },
         {
-          "label": "No topic selected",
-          "default": "No topic selected."
+          "label": "Ekkert efni valið",
+          "default": "Ekkert efni valið."
         },
         {
           "label": "Topic image label",
@@ -169,157 +169,157 @@
           "default": "Grid"
         },
         {
-          "label": "Arabic",
-          "default": "Arabic"
+          "label": "Arabíska",
+          "default": "Arabíska"
         },
         {
-          "label": "Sorani",
-          "default": "Sorani"
+          "label": "Kúrdíska sorani",
+          "default": "Kúrdíska sorani"
         },
         {
-          "label": "Danish",
-          "default": "Danish"
+          "label": "Danska",
+          "default": "Danska"
         },
         {
-          "label": "English",
-          "default": "English"
+          "label": "Enska",
+          "default": "Enska"
         },
         {
-          "label": "Persian",
-          "default": "Persian"
+          "label": "Persneska",
+          "default": "Persneska"
         },
         {
-          "label": "French",
-          "default": "French"
+          "label": "Franska",
+          "default": "Franska"
         },
         {
-          "label": "Icelandic",
-          "default": "Icelandic"
+          "label": "Íslenska",
+          "default": "Íslenska"
         },
         {
-          "label": "Kurmanji",
-          "default": "Kurmanji"
+          "label": "Kúrdíska kurmanji",
+          "default": "Kúrdíska kurmanji"
         },
         {
-          "label": "Lithuanian",
-          "default": "Lithuanian"
+          "label": "Litháíska",
+          "default": "Litháíska"
         },
         {
-          "label": "Norwegian (nynorsk)",
-          "default": "Norwegian (nynorsk)"
+          "label": "Nýnorska",
+          "default": "Nýnorska"
         },
         {
-          "label": "Norwegian (bokmål)",
-          "default": "Norwegian (bokmål)"
+          "label": "Norska",
+          "default": "Norska"
         },
         {
-          "label": "Polish",
-          "default": "Polish"
+          "label": "Pólska",
+          "default": "Pólska"
         },
         {
           "label": "Dari",
           "default": "Dari"
         },
         {
-          "label": "Pashto",
-          "default": "Pashto"
+          "label": "Pastú",
+          "default": "Pastú"
         },
         {
-          "label": "Russian",
-          "default": "Russian"
+          "label": "Rússneska",
+          "default": "Rússneska"
         },
         {
-          "label": "Northern Sami",
-          "default": "Northern Sami"
+          "label": "Samíska",
+          "default": "Samíska"
         },
         {
-          "label": "Somali",
-          "default": "Somali"
+          "label": "Sómalska",
+          "default": "Sómalska"
         },
         {
-          "label": "Spanish",
-          "default": "Spanish"
+          "label": "Spænska",
+          "default": "Spænska"
         },
         {
-          "label": "Swedish",
-          "default": "Swedish"
+          "label": "Sænska",
+          "default": "Sænska"
         },
         {
-          "label": "Tagalog",
-          "default": "Tagalog"
+          "label": "Filippseyska",
+          "default": "Filippseyska"
         },
         {
-          "label": "Thai",
-          "default": "Thai"
+          "label": "Tælenska",
+          "default": "Tælenska"
         },
         {
-          "label": "Tigrinya",
-          "default": "Tigrinya"
+          "label": "Tígrinja",
+          "default": "Tígrinja"
         },
         {
-          "label": "Ukrainian",
-          "default": "Ukrainian"
+          "label": "Úkraínska",
+          "default": "Úkraínska"
         },
         {
-          "label": "Vietnamese",
-          "default": "Vietnamese"
+          "label": "Víetnamska",
+          "default": "Víetnamska"
         }
       ]
     },
     {
-      "label": "Default languages",
-      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
-      "entity": "Language",
+      "label": "Forvalin tungumál",
+      "description": "Það ættu að vera allt að þrjú sjálfgefin tungumál. Þetta eru forvalin tungumál ef ekkert annað er valið. Við mælum með að bæta þremur þeirra við",
+      "entity": "Tungumál",
       "field": {
-        "label": "Language",
+        "label": "Tungumál",
         "default": "isl",
         "options": [
           {
-            "label": "Arabic",
+            "label": "Arabíska",
             "value": "ara"
           },
           {
-            "label": "Sorani",
+            "label": "Kúrdíska sorani",
             "value": "ckb"
           },
           {
-            "label": "Danish",
+            "label": "Danska",
             "value": "dan"
           },
           {
-            "label": "English",
+            "label": "Enska",
             "value": "eng"
           },
           {
-            "label": "Persian",
+            "label": "Persneska",
             "value": "fas"
           },
           {
-            "label": "French",
+            "label": "Franska",
             "value": "fra"
           },
           {
-            "label": "Icelandic",
+            "label": "Íslenska",
             "value": "isl"
           },
           {
-            "label": "Kurmanji",
+            "label": "Kúrdíska kurmanji",
             "value": "kmr"
           },
           {
-            "label": "Lithuanian",
+            "label": "Litháíska",
             "value": "lit"
           },
           {
-            "label": "Norwegian (nynorsk)",
+            "label": "Nýnorska",
             "value": "nno"
           },
           {
-            "label": "Norwegian (bokmål)",
+            "label": "Norska",
             "value": "nob"
           },
           {
-            "label": "Polish",
+            "label": "Pólska",
             "value": "pol"
           },
           {
@@ -327,47 +327,47 @@
             "value": "prs"
           },
           {
-            "label": "Pashto",
+            "label": "Pastú",
             "value": "pus"
           },
           {
-            "label": "Russian",
+            "label": "Rússneska",
             "value": "rus"
           },
           {
-            "label": "Northern Sami",
+            "label": "Samíska",
             "value": "sme"
           },
           {
-            "label": "Somali",
+            "label": "Sómalska",
             "value": "som"
           },
           {
-            "label": "Spanish",
+            "label": "Spænska",
             "value": "spa"
           },
           {
-            "label": "Swedish",
+            "label": "Sænska",
             "value": "swe"
           },
           {
-            "label": "Tagalog",
+            "label": "Filippseyska",
             "value": "tgl"
           },
           {
-            "label": "Thai",
+            "label": "Tælenska",
             "value": "tha"
           },
           {
-            "label": "Tigrinya",
+            "label": "Tígrinja",
             "value": "tir"
           },
           {
-            "label": "Ukrainian",
+            "label": "Úkraínska",
             "value": "ukr"
           },
           {
-            "label": "Vietnamese",
+            "label": "Víetnamska",
             "value": "vie"
           }
         ]

@@ -267,8 +267,8 @@
       ]
     },
     {
-      "label": "Default languages",
-      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
+      "label": "Forhåndsvalgte språk",
+      "description": "Det bør være opptil tre standardspråk. Dette er forhåndsvalgte språk hvis ingen andre er valgt. Vi anbefaler å legge til tre av dem",
       "entity": "Språk",
       "field": {
         "label": "Språk",
