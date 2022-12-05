@@ -1,0 +1,382 @@
+{
+  "semantics": [
+    {
+      "label": "Þýðingar",
+      "fields": [
+        {
+          "label": "Tungumálakóði",
+          "description": "Tveggja stafa tungumálakóði, notaður til að setja tungumál í kóða (enska: en, íslenska: is)",
+          "default": "is"
+        },
+        {
+          "label": "Page is loading",
+          "default": "Loading…"
+        },
+        {
+          "label": "Skip to main content label",
+          "default": "Skip to main content"
+        },
+        {
+          "label": "Show written words label",
+          "default": "Show written words"
+        },
+        {
+          "label": "Show articles label",
+          "default": "Show articles"
+        },
+        {
+          "label": "Print label",
+          "default": "Print"
+        },
+        {
+          "label": "Print img label",
+          "default": "images in width"
+        },
+        {
+          "label": "Play audio",
+          "default": "Play audio"
+        },
+        {
+          "label": "Pause audio",
+          "default": "Pause audio"
+        },
+        {
+          "label": "Footer headline 1",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Footer headline 2",
+          "default": "Other sites"
+        },
+        {
+          "label": "Footer headline 3",
+          "default": "About the site"
+        },
+        {
+          "label": "Footer about label",
+          "default": "About Bildetema"
+        },
+        {
+          "label": "Footer about URL",
+          "default": "/about-bildetema"
+        },
+        {
+          "label": "Footer contact info label",
+          "default": "Contact us"
+        },
+        {
+          "label": "Footer contact info URL",
+          "default": "mailto:support@lexindrift.atlassian.net"
+        },
+        {
+          "label": "Footer previous Bildetema site label",
+          "default": "Previous Bildetema site"
+        },
+        {
+          "label": "Footer previous Bildetema site URL",
+          "default": "https://bildetema.oslomet.no/"
+        },
+        {
+          "label": "Footer link 1 label",
+          "default": "NAFO - National Centre of Multicultural Education"
+        },
+        {
+          "label": "Footer link 1 URL",
+          "default": "https://nafo.oslomet.no/"
+        },
+        {
+          "label": "Footer link 2 label",
+          "default": "OsloMet - Oslo Metropolitan University"
+        },
+        {
+          "label": "Footer link 2 URL",
+          "default": "https://oslomet.no/"
+        },
+        {
+          "label": "Footer link 3 label",
+          "default": "LEXIN"
+        },
+        {
+          "label": "Footer link 3 URL",
+          "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Footer privacy statement label",
+          "default": "Privacy statement"
+        },
+        {
+          "label": "Footer privacy statement URL",
+          "default": "/privacy-statement"
+        },
+        {
+          "label": "Footer accessibility statement label",
+          "default": "Accessibility statement"
+        },
+        {
+          "label": "Footer accessibility statement URL",
+          "default": "/accessibility-statement"
+        },
+        {
+          "label": "Breadcrumbs 'Topic' label",
+          "default": "Choose a topic"
+        },
+        {
+          "label": "Breadcrumbs 'Home' label",
+          "default": "Home"
+        },
+        {
+          "label": "Tungumálavali texti",
+          "default": "Tungumál"
+        },
+        {
+          "label": "Copyright",
+          "default": "Copyright © 2022 · All Rights Reserved"
+        },
+        {
+          "label": "Header title",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Header subtitle",
+          "default": "Multi-lingual image dictionary"
+        },
+        {
+          "label": "Topic size big",
+          "default": "Show topics in grid view"
+        },
+        {
+          "label": "Topic size compact",
+          "default": "Show topics in list view"
+        },
+        {
+          "label": "Fyrri mynd",
+          "default": "Fyrri mynd"
+        },
+        {
+          "label": "Næsta mynd",
+          "default": "Næsta mynd"
+        },
+        {
+          "label": "Ekkert efni valið",
+          "default": "Ekkert efni valið."
+        },
+        {
+          "label": "Topic image label",
+          "default": "Topic image"
+        },
+        {
+          "label": "Grid label",
+          "default": "Grid"
+        },
+        {
+          "label": "Arabíska",
+          "default": "Arabíska"
+        },
+        {
+          "label": "Kúrdíska sorani",
+          "default": "Kúrdíska sorani"
+        },
+        {
+          "label": "Danska",
+          "default": "Danska"
+        },
+        {
+          "label": "Enska",
+          "default": "Enska"
+        },
+        {
+          "label": "Persneska",
+          "default": "Persneska"
+        },
+        {
+          "label": "Franska",
+          "default": "Franska"
+        },
+        {
+          "label": "Íslenska",
+          "default": "Íslenska"
+        },
+        {
+          "label": "Kúrdíska kurmanji",
+          "default": "Kúrdíska kurmanji"
+        },
+        {
+          "label": "Litháíska",
+          "default": "Litháíska"
+        },
+        {
+          "label": "Nýnorska",
+          "default": "Nýnorska"
+        },
+        {
+          "label": "Norska",
+          "default": "Norska"
+        },
+        {
+          "label": "Pólska",
+          "default": "Pólska"
+        },
+        {
+          "label": "Dari",
+          "default": "Dari"
+        },
+        {
+          "label": "Pastú",
+          "default": "Pastú"
+        },
+        {
+          "label": "Rússneska",
+          "default": "Rússneska"
+        },
+        {
+          "label": "Samíska",
+          "default": "Samíska"
+        },
+        {
+          "label": "Sómalska",
+          "default": "Sómalska"
+        },
+        {
+          "label": "Spænska",
+          "default": "Spænska"
+        },
+        {
+          "label": "Sænska",
+          "default": "Sænska"
+        },
+        {
+          "label": "Filippseyska",
+          "default": "Filippseyska"
+        },
+        {
+          "label": "Tælenska",
+          "default": "Tælenska"
+        },
+        {
+          "label": "Tígrinja",
+          "default": "Tígrinja"
+        },
+        {
+          "label": "Úkraínska",
+          "default": "Úkraínska"
+        },
+        {
+          "label": "Víetnamska",
+          "default": "Víetnamska"
+        }
+      ]
+    },
+    {
+      "label": "Forvalin tungumál",
+      "description": "Það ættu að vera allt að þrjú sjálfgefin tungumál. Þetta eru forvalin tungumál ef ekkert annað er valið. Við mælum með að bæta þremur þeirra við",
+      "entity": "Tungumál",
+      "field": {
+        "label": "Tungumál",
+        "default": "isl",
+        "options": [
+          {
+            "label": "Arabíska",
+            "value": "ara"
+          },
+          {
+            "label": "Kúrdíska sorani",
+            "value": "ckb"
+          },
+          {
+            "label": "Danska",
+            "value": "dan"
+          },
+          {
+            "label": "Enska",
+            "value": "eng"
+          },
+          {
+            "label": "Persneska",
+            "value": "fas"
+          },
+          {
+            "label": "Franska",
+            "value": "fra"
+          },
+          {
+            "label": "Íslenska",
+            "value": "isl"
+          },
+          {
+            "label": "Kúrdíska kurmanji",
+            "value": "kmr"
+          },
+          {
+            "label": "Litháíska",
+            "value": "lit"
+          },
+          {
+            "label": "Nýnorska",
+            "value": "nno"
+          },
+          {
+            "label": "Norska",
+            "value": "nob"
+          },
+          {
+            "label": "Pólska",
+            "value": "pol"
+          },
+          {
+            "label": "Dari",
+            "value": "prs"
+          },
+          {
+            "label": "Pastú",
+            "value": "pus"
+          },
+          {
+            "label": "Rússneska",
+            "value": "rus"
+          },
+          {
+            "label": "Samíska",
+            "value": "sme"
+          },
+          {
+            "label": "Sómalska",
+            "value": "som"
+          },
+          {
+            "label": "Spænska",
+            "value": "spa"
+          },
+          {
+            "label": "Sænska",
+            "value": "swe"
+          },
+          {
+            "label": "Filippseyska",
+            "value": "tgl"
+          },
+          {
+            "label": "Tælenska",
+            "value": "tha"
+          },
+          {
+            "label": "Tígrinja",
+            "value": "tir"
+          },
+          {
+            "label": "Úkraínska",
+            "value": "ukr"
+          },
+          {
+            "label": "Víetnamska",
+            "value": "vie"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Backend Url",
+      "description": "The Url to the json database",
+      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
+    }
+  ]
+}
