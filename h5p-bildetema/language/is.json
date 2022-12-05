@@ -1,0 +1,382 @@
+{
+  "semantics": [
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Language code",
+          "description": "Two character language code, used for setting language in code (English: en, Norwegian Bokmål: nb)",
+          "default": "is"
+        },
+        {
+          "label": "Page is loading",
+          "default": "Loading…"
+        },
+        {
+          "label": "Skip to main content label",
+          "default": "Skip to main content"
+        },
+        {
+          "label": "Show written words label",
+          "default": "Show written words"
+        },
+        {
+          "label": "Show articles label",
+          "default": "Show articles"
+        },
+        {
+          "label": "Print label",
+          "default": "Print"
+        },
+        {
+          "label": "Print img label",
+          "default": "images in width"
+        },
+        {
+          "label": "Play audio",
+          "default": "Play audio"
+        },
+        {
+          "label": "Pause audio",
+          "default": "Pause audio"
+        },
+        {
+          "label": "Footer headline 1",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Footer headline 2",
+          "default": "Other sites"
+        },
+        {
+          "label": "Footer headline 3",
+          "default": "About the site"
+        },
+        {
+          "label": "Footer about label",
+          "default": "About Bildetema"
+        },
+        {
+          "label": "Footer about URL",
+          "default": "/about-bildetema"
+        },
+        {
+          "label": "Footer contact info label",
+          "default": "Contact us"
+        },
+        {
+          "label": "Footer contact info URL",
+          "default": "mailto:support@lexindrift.atlassian.net"
+        },
+        {
+          "label": "Footer previous Bildetema site label",
+          "default": "Previous Bildetema site"
+        },
+        {
+          "label": "Footer previous Bildetema site URL",
+          "default": "https://bildetema.oslomet.no/"
+        },
+        {
+          "label": "Footer link 1 label",
+          "default": "NAFO - National Centre of Multicultural Education"
+        },
+        {
+          "label": "Footer link 1 URL",
+          "default": "https://nafo.oslomet.no/"
+        },
+        {
+          "label": "Footer link 2 label",
+          "default": "OsloMet - Oslo Metropolitan University"
+        },
+        {
+          "label": "Footer link 2 URL",
+          "default": "https://oslomet.no/"
+        },
+        {
+          "label": "Footer link 3 label",
+          "default": "LEXIN"
+        },
+        {
+          "label": "Footer link 3 URL",
+          "default": "https://lexin.oslomet.no/"
+        },
+        {
+          "label": "Footer privacy statement label",
+          "default": "Privacy statement"
+        },
+        {
+          "label": "Footer privacy statement URL",
+          "default": "/privacy-statement"
+        },
+        {
+          "label": "Footer accessibility statement label",
+          "default": "Accessibility statement"
+        },
+        {
+          "label": "Footer accessibility statement URL",
+          "default": "/accessibility-statement"
+        },
+        {
+          "label": "Breadcrumbs 'Topic' label",
+          "default": "Choose a topic"
+        },
+        {
+          "label": "Breadcrumbs 'Home' label",
+          "default": "Home"
+        },
+        {
+          "label": "Language selection label",
+          "default": "Language"
+        },
+        {
+          "label": "Copyright",
+          "default": "Copyright © 2022 · All Rights Reserved"
+        },
+        {
+          "label": "Header title",
+          "default": "Bildetema"
+        },
+        {
+          "label": "Header subtitle",
+          "default": "Multi-lingual image dictionary"
+        },
+        {
+          "label": "Topic size big",
+          "default": "Show topics in grid view"
+        },
+        {
+          "label": "Topic size compact",
+          "default": "Show topics in list view"
+        },
+        {
+          "label": "Previous image label",
+          "default": "Previous image"
+        },
+        {
+          "label": "Next image label",
+          "default": "Next image"
+        },
+        {
+          "label": "No topic selected",
+          "default": "No topic selected."
+        },
+        {
+          "label": "Topic image label",
+          "default": "Topic image"
+        },
+        {
+          "label": "Grid label",
+          "default": "Grid"
+        },
+        {
+          "label": "Arabic",
+          "default": "Arabic"
+        },
+        {
+          "label": "Sorani",
+          "default": "Sorani"
+        },
+        {
+          "label": "Danish",
+          "default": "Danish"
+        },
+        {
+          "label": "English",
+          "default": "English"
+        },
+        {
+          "label": "Persian",
+          "default": "Persian"
+        },
+        {
+          "label": "French",
+          "default": "French"
+        },
+        {
+          "label": "Icelandic",
+          "default": "Icelandic"
+        },
+        {
+          "label": "Kurmanji",
+          "default": "Kurmanji"
+        },
+        {
+          "label": "Lithuanian",
+          "default": "Lithuanian"
+        },
+        {
+          "label": "Norwegian (nynorsk)",
+          "default": "Norwegian (nynorsk)"
+        },
+        {
+          "label": "Norwegian (bokmål)",
+          "default": "Norwegian (bokmål)"
+        },
+        {
+          "label": "Polish",
+          "default": "Polish"
+        },
+        {
+          "label": "Dari",
+          "default": "Dari"
+        },
+        {
+          "label": "Pashto",
+          "default": "Pashto"
+        },
+        {
+          "label": "Russian",
+          "default": "Russian"
+        },
+        {
+          "label": "Northern Sami",
+          "default": "Northern Sami"
+        },
+        {
+          "label": "Somali",
+          "default": "Somali"
+        },
+        {
+          "label": "Spanish",
+          "default": "Spanish"
+        },
+        {
+          "label": "Swedish",
+          "default": "Swedish"
+        },
+        {
+          "label": "Tagalog",
+          "default": "Tagalog"
+        },
+        {
+          "label": "Thai",
+          "default": "Thai"
+        },
+        {
+          "label": "Tigrinya",
+          "default": "Tigrinya"
+        },
+        {
+          "label": "Ukrainian",
+          "default": "Ukrainian"
+        },
+        {
+          "label": "Vietnamese",
+          "default": "Vietnamese"
+        }
+      ]
+    },
+    {
+      "label": "Default languages",
+      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
+      "entity": "Language",
+      "field": {
+        "label": "Language",
+        "default": "isl",
+        "options": [
+          {
+            "label": "Arabic",
+            "value": "ara"
+          },
+          {
+            "label": "Sorani",
+            "value": "ckb"
+          },
+          {
+            "label": "Danish",
+            "value": "dan"
+          },
+          {
+            "label": "English",
+            "value": "eng"
+          },
+          {
+            "label": "Persian",
+            "value": "fas"
+          },
+          {
+            "label": "French",
+            "value": "fra"
+          },
+          {
+            "label": "Icelandic",
+            "value": "isl"
+          },
+          {
+            "label": "Kurmanji",
+            "value": "kmr"
+          },
+          {
+            "label": "Lithuanian",
+            "value": "lit"
+          },
+          {
+            "label": "Norwegian (nynorsk)",
+            "value": "nno"
+          },
+          {
+            "label": "Norwegian (bokmål)",
+            "value": "nob"
+          },
+          {
+            "label": "Polish",
+            "value": "pol"
+          },
+          {
+            "label": "Dari",
+            "value": "prs"
+          },
+          {
+            "label": "Pashto",
+            "value": "pus"
+          },
+          {
+            "label": "Russian",
+            "value": "rus"
+          },
+          {
+            "label": "Northern Sami",
+            "value": "sme"
+          },
+          {
+            "label": "Somali",
+            "value": "som"
+          },
+          {
+            "label": "Spanish",
+            "value": "spa"
+          },
+          {
+            "label": "Swedish",
+            "value": "swe"
+          },
+          {
+            "label": "Tagalog",
+            "value": "tgl"
+          },
+          {
+            "label": "Thai",
+            "value": "tha"
+          },
+          {
+            "label": "Tigrinya",
+            "value": "tir"
+          },
+          {
+            "label": "Ukrainian",
+            "value": "ukr"
+          },
+          {
+            "label": "Vietnamese",
+            "value": "vie"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Backend Url",
+      "description": "The Url to the json database",
+      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
+    }
+  ]
+}
