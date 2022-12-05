@@ -55,7 +55,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
       // Effects can't trigger `HTMLAudioElement#play` in Safari.
       // Only direct user triggers (click, touch) can start audio and video
       audioElement.play();
-      setPlaying(playing);
+      setPlaying(true);
     }
   }, [currentWordId, playing, word.id]);
 
