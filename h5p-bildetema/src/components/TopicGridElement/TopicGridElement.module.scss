@@ -75,6 +75,16 @@
   word-break: break-word;
 }
 
+.topicCardActive,
+.topicCardActive:hover {
+  background-color: $blue-magenta-lighter;
+  border-color: $blue-magenta-light;
+
+  h2 {
+    color: $blue-magenta;
+  }
+}
+
 .topicImage {
   object-fit: cover;
 

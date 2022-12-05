@@ -78,7 +78,7 @@
 
 .wordAudio_active {
   button {
-    background-color: #ebebff;
+    background-color: $blue-magenta-lighter;
 
     &:focus {
       outline: $outline-on-audio;

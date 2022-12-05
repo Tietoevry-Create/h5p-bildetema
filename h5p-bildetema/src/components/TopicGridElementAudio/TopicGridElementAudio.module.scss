@@ -12,8 +12,14 @@
 
 .wordAudio button {
   all: unset;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
   height: 1.5rem;
+
+  &:focus {
+    outline-offset: 0.25rem;
+  }
 }
 
 .audioIcon {
@@ -39,8 +45,16 @@
   }
 }
 
-.wordAudio_active .audioIcon path {
-  stroke: $base-font-color;
+.wordAudio_active {
+  color: $blue-magenta;
+
+  button:focus {
+    outline: $outline-on-audio;
+  }
+
+  .audioIcon path {
+    stroke: $blue-magenta;
+  }
 }
 
 .visuallyHidden {
