@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactToggle from "react-toggle";
 import styles from "./Toggle.module.scss";
 import "./ReactToggle.scss";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 type ToggleProps = {
   handleChange: (checked: boolean) => void;
@@ -15,7 +16,8 @@ export const Toggle: React.FC<ToggleProps> = ({
   label,
   id,
 }) => {
-  // Show orange focus when tab/keyboard is used, not on click
+  const lang = useSiteLanguage();
+  // Show focus when tab/keyboard is used, not on click
   const [isFocused, setIsFocused] = useState(false);
   const handleOnFocus = (showFocus: boolean): void => {
     if (showFocus && !isFocused) {
@@ -32,7 +34,7 @@ export const Toggle: React.FC<ToggleProps> = ({
       htmlFor={id}
     >
       {label && (
-        <span className={styles.label} lang={document.documentElement.lang}>
+        <span className={styles.label} lang={lang}>
           {label}
         </span>
       )}

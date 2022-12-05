@@ -24,6 +24,7 @@ import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { attributeLanguages } from "../../../../common/constants/languages";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -36,6 +37,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 }) => {
   const { languages: languagesFromDB } = useDBContext() || {};
   const { pathname } = useLocation();
+  const lang = useSiteLanguage();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -223,10 +225,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label="Main content" // TODO: translate
-          lang={
-            attributeLanguages[getCurrentLanguage().code] ??
-            document.documentElement.lang
-          }
+          lang={attributeLanguages[getCurrentLanguage().code] ?? lang}
         >
           <SubHeader
             topicIds={topicIds}

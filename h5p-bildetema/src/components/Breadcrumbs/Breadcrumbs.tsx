@@ -15,6 +15,7 @@ import {
 } from "../Icons/Icons";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import styles from "./Breadcrumbs.module.scss";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 export type BreadcrumbsProps = {
   breadCrumbs?: {
@@ -30,6 +31,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   currentLanguageCode,
   topicIds,
 }) => {
+  const lang = useSiteLanguage();
   const { translations, topics } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
@@ -126,10 +128,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
                     <span className={styles.homeIcon}>
                       <HomeIcon />
                     </span>
-                    <span
-                      className={styles.visuallyHidden}
-                      lang={document.documentElement.lang}
-                    >
+                    <span className={styles.visuallyHidden} lang={lang}>
                       {homeLabel}
                     </span>
                   </span>
