@@ -109,12 +109,12 @@
           "default": "/personvernerklaering"
         },
         {
-          "label": "Footer: Tilgjengelegheitserklæring tekst",
-          "default": "Tilgjengelegheitserklæring"
+          "label": "Footer: Tilgjengeerklæring tekst",
+          "default": "Tilgjengeerklæring"
         },
         {
-          "label": "Footer: Tilgjengelegheitserklæring URL",
-          "default": "/Tilgjengelegheitserklaering"
+          "label": "Footer: Tilgjengeerklæring URL",
+          "default": "/Tilgjengeerklaering"
         },
         {
           "label": "Namn på første lenkje i brødsmulestien",
@@ -268,7 +268,7 @@
     },
     {
       "label": "Førehandsvalde språk",
-      "description": "Det bør vera opptil tre standardspråk. Dette er førehandsvalde språk viss ingen andre er valde. Me tilrår å leggja til tre av dei",
+      "description": "Det bør vere opptil tre standardspråk. Dette er førehandsvalde språk viss ingen andre er valde. Me tilrår å leggja til tre av dei",
       "entity": "Språk",
       "field": {
         "label": "Språk",
