@@ -1,11 +1,11 @@
 {
   "semantics": [
     {
-      "label": "Localize",
+      "label": "Omsetjingar",
       "fields": [
         {
           "label": "Språkkode",
-          "description": "Språkkoda skal vere skrevet med to tegn (engelsk: en, norsk nynorsk: nn)",
+          "description": "Språkkoden skal vere skriven med to teikn (engelsk: en, norsk nynorsk: nn)",
           "default": "nn"
         },
         {
@@ -17,8 +17,8 @@
           "default": "Hopp til hovudinnhald"
         },
         {
-          "label": "Vis skrevne ord",
-          "default": "Vis skrevne ord"
+          "label": "Vis ord",
+          "default": "Vis ord"
         },
         {
           "label": "Vis artikkel",
@@ -29,16 +29,16 @@
           "default": "Skriv ut"
         },
         {
-          "label": "Print img label",
-          "default": "images in width"
+          "label": "Skriv ut bilete",
+          "default": "bilete i breidda"
         },
         {
-          "label": "Play audio",
-          "default": "Play audio"
+          "label": "Spel lyd",
+          "default": "Spel lyd"
         },
         {
-          "label": "Pause audio",
-          "default": "Pause audio"
+          "label": "Set lyd på pause",
+          "default": "Set lyd på pause"
         },
         {
           "label": "Footer: Overskrift 1",
@@ -50,7 +50,7 @@
         },
         {
           "label": "Footer: Overskrift 3",
-          "default": "Om nettsiden"
+          "default": "Om nettsida"
         },
         {
           "label": "Footer: Om Bildetema tekst",
@@ -61,43 +61,43 @@
           "default": "/om-bildetema"
         },
         {
-          "label": "Footer contact info label",
-          "default": "Contact us"
+          "label": "Footer: Kontaktinfo-overskrift",
+          "default": "Kontakt oss"
         },
         {
-          "label": "Footer contact info URL",
+          "label": "Footer: Kontaktinfo-URL",
           "default": "mailto:support@lexindrift.atlassian.net"
         },
         {
-          "label": "Footer: forrige Bildetema tekst",
+          "label": "Footer: førre Bildetema tekst",
           "default": "Gamle Bildetema"
         },
         {
-          "label": "Footer: forrige Bildetema URL",
+          "label": "Footer: førre Bildetema URL",
           "default": "https://bildetema.oslomet.no/"
         },
         {
-          "label": "Footer link 1 label",
-          "default": "NAFO - National Centre of Multicultural Education"
+          "label": "Footer: Tekst på første lenkje",
+          "default": "NAFO - Nasjonalt senter for fleirkulturell opplæring"
         },
         {
-          "label": "Footer link 1 URL",
+          "label": "Footer: URL på første lenkje",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer link 2 label",
+          "label": "Footer: Tekst på andre lenkje",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Footer link 2 URL",
+          "label": "Footer: URL på andre lenkje",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer link 3 label",
+          "label": "Footer: Tekst på tredje lenkje",
           "default": "LEXIN"
         },
         {
-          "label": "Footer link 3 URL",
+          "label": "Footer: URL på tredje lenkje",
           "default": "https://lexin.oslomet.no/"
         },
         {
@@ -109,112 +109,112 @@
           "default": "/personvernerklaering"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring tekst",
-          "default": "Tilgjengelighetserklæring"
+          "label": "Footer: Tilgjengeerklæring tekst",
+          "default": "Tilgjengeerklæring"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring URL",
-          "default": "/tilgjengelighetserklaering"
+          "label": "Footer: Tilgjengeerklæring URL",
+          "default": "/Tilgjengeerklaering"
         },
         {
-          "label": "Breadcrumbs 'Topic' label",
-          "default": "Choose a topic"
+          "label": "Namn på første lenkje i brødsmulestien",
+          "default": "Vel eit tema"
         },
         {
-          "label": "Breadcrumbs 'Home' label",
-          "default": "Home"
+          "label": "Namn på heimsida i brødsmulestien",
+          "default": "Heim"
         },
         {
-          "label": "Language selection label",
-          "default": "Language"
+          "label": "Namn på språkveljar-knapp",
+          "default": "Språk"
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2022 · All Rights Reserved"
+          "default": "Kopibeskytta © 2022 · Alle rettar"
         },
         {
-          "label": "Header title",
+          "label": "Header: Tittel",
           "default": "Bildetema"
         },
         {
-          "label": "Header subtitle",
-          "default": "Multi-lingual image dictionary"
+          "label": "Header: Undertekst",
+          "default": "Fleirspråkleg biletordbok"
         },
         {
-          "label": "Topic size big",
-          "default": "Show topics in grid view"
+          "label": "Temastorleik stor",
+          "default": "Temavisning i rutenett"
         },
         {
-          "label": "Topic size compact",
-          "default": "Show topics in list view"
+          "label": "Temastorleik kompakt",
+          "default": "Temavisning i liste"
         },
         {
-          "label": "Forrige bilde",
-          "default": "Forrige bilde"
+          "label": "Førre bilete",
+          "default": "Førre bilete"
         },
         {
-          "label": "Neste bilde",
-          "default": "Neste bilde"
+          "label": "Neste bilete",
+          "default": "Neste bilete"
         },
         {
-          "label": "Ingen tema er valgt",
-          "default": "Ingen tema er valgt."
+          "label": "Ingen tema er valde",
+          "default": "Ingen tema er valde."
         },
         {
-          "label": "Temabilde tekst",
-          "default": "Temabilde"
+          "label": "Temabilete tekst",
+          "default": "Temabilete"
         },
         {
           "label": "Grid tekst",
           "default": "Grid"
         },
         {
-          "label": "Arabic",
-          "default": "Arabic"
+          "label": "Arabisk",
+          "default": "Arabisk"
         },
         {
           "label": "Sorani",
           "default": "Sorani"
         },
         {
-          "label": "Danish",
-          "default": "Danish"
+          "label": "Dansk",
+          "default": "Dansk"
         },
         {
-          "label": "English",
-          "default": "English"
+          "label": "Engelsk",
+          "default": "Engelsk"
         },
         {
-          "label": "Persian",
-          "default": "Persian"
+          "label": "Persisk",
+          "default": "Persisk"
         },
         {
-          "label": "French",
-          "default": "French"
+          "label": "Fransk",
+          "default": "Fransk"
         },
         {
-          "label": "Icelandic",
-          "default": "Icelandic"
+          "label": "Islandsk",
+          "default": "Islandsk"
         },
         {
           "label": "Kurmanji",
           "default": "Kurmanji"
         },
         {
-          "label": "Lithuanian",
-          "default": "Lithuanian"
+          "label": "Litauisk",
+          "default": "Litauisk"
         },
         {
-          "label": "Norwegian (nynorsk)",
-          "default": "Norwegian (nynorsk)"
+          "label": "Norsk (nynorsk)",
+          "default": "Norsk (nynorsk)"
         },
         {
-          "label": "Norwegian (bokmål)",
-          "default": "Norwegian (bokmål)"
+          "label": "Norsk (bokmål)",
+          "default": "Norsk (bokmål)"
         },
         {
-          "label": "Polish",
-          "default": "Polish"
+          "label": "Polsk",
+          "default": "Polsk"
         },
         {
           "label": "Dari",
@@ -225,24 +225,24 @@
           "default": "Pashto"
         },
         {
-          "label": "Russian",
-          "default": "Russian"
+          "label": "Russisk",
+          "default": "Russisk"
         },
         {
-          "label": "Northern Sami",
-          "default": "Northern Sami"
+          "label": "Nordsamisk",
+          "default": "Nordsamisk"
         },
         {
-          "label": "Somali",
-          "default": "Somali"
+          "label": "Somalisk",
+          "default": "Somalisk"
         },
         {
-          "label": "Spanish",
-          "default": "Spanish"
+          "label": "Spansk",
+          "default": "Spansk"
         },
         {
-          "label": "Swedish",
-          "default": "Swedish"
+          "label": "Svensk",
+          "default": "Svensk"
         },
         {
           "label": "Tagalog",
@@ -253,29 +253,29 @@
           "default": "Thai"
         },
         {
-          "label": "Tigrinya",
-          "default": "Tigrinya"
+          "label": "Tigrinja",
+          "default": "Tigrinja"
         },
         {
-          "label": "Ukrainian",
-          "default": "Ukrainian"
+          "label": "Ukrainsk",
+          "default": "Ukrainsk"
         },
         {
-          "label": "Vietnamese",
-          "default": "Vietnamese"
+          "label": "Vietnamesisk",
+          "default": "Vietnamesisk"
         }
       ]
     },
     {
-      "label": "Default languages",
-      "description": "There should be up to three default languages. These are defaults for the current site language. We recommend adding three of them",
-      "entity": "Language",
+      "label": "Førehandsvalde språk",
+      "description": "Det bør vere opptil tre standardspråk. Dette er førehandsvalde språk viss ingen andre er valde. Me tilrår å leggja til tre av dei",
+      "entity": "Språk",
       "field": {
-        "label": "Language",
-        "default": "nob",
+        "label": "Språk",
+        "default": "nno",
         "options": [
           {
-            "label": "Arabic",
+            "label": "Arabisk",
             "value": "ara"
           },
           {
@@ -283,23 +283,23 @@
             "value": "ckb"
           },
           {
-            "label": "Danish",
+            "label": "Dansk",
             "value": "dan"
           },
           {
-            "label": "English",
+            "label": "Engelsk",
             "value": "eng"
           },
           {
-            "label": "Persian",
+            "label": "Persisk",
             "value": "fas"
           },
           {
-            "label": "French",
+            "label": "Fransk",
             "value": "fra"
           },
           {
-            "label": "Icelandic",
+            "label": "Islandsk",
             "value": "isl"
           },
           {
@@ -307,19 +307,19 @@
             "value": "kmr"
           },
           {
-            "label": "Lithuanian",
+            "label": "Litauisk",
             "value": "lit"
           },
           {
-            "label": "Norwegian (nynorsk)",
+            "label": "Norsk (nynorsk)",
             "value": "nno"
           },
           {
-            "label": "Norwegian (bokmål)",
+            "label": "Norsk (bokmål)",
             "value": "nob"
           },
           {
-            "label": "Polish",
+            "label": "Polsk",
             "value": "pol"
           },
           {
@@ -331,23 +331,23 @@
             "value": "pus"
           },
           {
-            "label": "Russian",
+            "label": "Russisk",
             "value": "rus"
           },
           {
-            "label": "Northern Sami",
+            "label": "Nordsamisk",
             "value": "sme"
           },
           {
-            "label": "Somali",
+            "label": "Somalisk",
             "value": "som"
           },
           {
-            "label": "Spanish",
+            "label": "Spansk",
             "value": "spa"
           },
           {
-            "label": "Swedish",
+            "label": "Svensk",
             "value": "swe"
           },
           {
@@ -359,15 +359,15 @@
             "value": "tha"
           },
           {
-            "label": "Tigrinya",
+            "label": "Tigrinja",
             "value": "tir"
           },
           {
-            "label": "Ukrainian",
+            "label": "Ukrainsk",
             "value": "ukr"
           },
           {
-            "label": "Vietnamese",
+            "label": "Vietnamesisk",
             "value": "vie"
           }
         ]
