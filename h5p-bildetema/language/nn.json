@@ -5,7 +5,7 @@
       "fields": [
         {
           "label": "Språkkode",
-          "description": "Språkkoden skal vera skriven med to teikn (engelsk: en, norsk nynorsk: nn)",
+          "description": "Språkkoden skal vere skriven med to teikn (engelsk: en, norsk nynorsk: nn)",
           "default": "nn"
         },
         {
