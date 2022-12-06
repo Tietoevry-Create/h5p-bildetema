@@ -14,7 +14,7 @@
 
 .languageLabel {
   @include breakpoint-max($small) {
-    display: none;
+    @include visually-hidden;
   }
 }
 
