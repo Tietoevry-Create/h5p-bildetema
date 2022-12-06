@@ -133,6 +133,10 @@
           "default": "Hjem"
         },
         {
+          "label": "Yndlingssprog aria tekst",
+          "default": "Yndlingssprog"
+        },
+        {
           "label": "Navn på sprogvalg-knap",
           "default": "Sprog"
         },

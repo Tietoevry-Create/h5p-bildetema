@@ -6,7 +6,7 @@ import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { Language, TopicIds } from "../../../../common/types/types";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useL10ns } from "../../hooks/useL10n";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
 export type LanguageFavoritesProps = {
@@ -32,7 +32,7 @@ export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
       ? (pathname.split("/")[1] as LanguageCode)
       : "nob";
 
-  const navAriaLabel = "Favorite languages"; // TODO: translate
+  const navAriaLabel = useL10n("favoriteLanguagesAriaLabel");
 
   return (
     <nav aria-label={navAriaLabel} className={styles.languageWrapper}>

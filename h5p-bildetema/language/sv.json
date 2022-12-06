@@ -133,6 +133,10 @@
           "default": "Hem"
         },
         {
+          "label": "Favoritspråk aria text",
+          "default": "Favoritspråk"
+        },
+        {
           "label": "Namn på språkvalsknappen",
           "default": "Språk"
         },

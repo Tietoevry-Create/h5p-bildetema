@@ -133,6 +133,10 @@
           "default": "Home"
         },
         {
+          "label": "Favorite languages aria label",
+          "default": "Favorite languages"
+        },
+        {
           "label": "Tungumálavali texti",
           "default": "Tungumál"
         },

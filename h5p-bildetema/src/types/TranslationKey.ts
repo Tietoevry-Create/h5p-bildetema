@@ -37,6 +37,7 @@ export type TranslationKey =
   | "breadcrumbsAriaLabel"
   | "breadcrumbsTopic"
   | "breadcrumbsHome"
+  | "favoriteLanguagesAriaLabel"
   | "selectLanguage"
   | "footerCopyright"
   | "headerTitle"

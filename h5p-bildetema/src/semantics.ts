@@ -221,6 +221,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Favorite languages aria label",
+        name: "favoriteLanguagesAriaLabel",
+        default: "Favorite languages",
+        type: "text",
+      },
+      {
         label: "Language selection label",
         name: "selectLanguage",
         default: "Language",

@@ -199,6 +199,12 @@
         "type": "text"
       },
       {
+        "label": "Favorite languages aria label",
+        "name": "favoriteLanguagesAriaLabel",
+        "default": "Favorite languages",
+        "type": "text"
+      },
+      {
         "label": "Language selection label",
         "name": "selectLanguage",
         "default": "Language",

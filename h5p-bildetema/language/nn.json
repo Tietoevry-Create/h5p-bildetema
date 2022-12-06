@@ -133,6 +133,10 @@
           "default": "Heim"
         },
         {
+          "label": "Favorittspråk aria tekst",
+          "default": "Favorittspråk"
+        },
+        {
           "label": "Namn på språkveljar-knapp",
           "default": "Språk"
         },
