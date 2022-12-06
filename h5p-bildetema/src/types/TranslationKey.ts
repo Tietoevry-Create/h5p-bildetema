@@ -46,6 +46,8 @@ export type TranslationKey =
   | "noTopicSelected"
   | "viewTopicImage"
   | "viewGrid"
+  | "selectLanguageLinkPart1"
+  | "selectLanguageLinkPart2"
   | "lang_ara"
   | "lang_ckb"
   | "lang_dan"

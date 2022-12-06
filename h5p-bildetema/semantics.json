@@ -253,6 +253,18 @@
         "type": "text"
       },
       {
+        "label": "Select language link part 1",
+        "name": "selectLanguageLinkPart1",
+        "default": "Not the language you are looking for? Go to",
+        "type": "text"
+      },
+      {
+        "label": "Select language link part 2",
+        "name": "selectLanguageLinkPart2",
+        "default": "old Bildetema",
+        "type": "text"
+      },
+      {
         "label": "Arabic",
         "name": "lang_ara",
         "default": "Arabic",

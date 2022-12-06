@@ -169,6 +169,14 @@
           "default": "Grid"
         },
         {
+          "label": "Språkvelger link del 1",
+          "default": "Finner du ikke språket du leter etter? Gå til"
+        },
+        {
+          "label": "Språkvelger link del 2",
+          "default": "gamle Bildetema"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

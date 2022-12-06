@@ -169,6 +169,14 @@
           "default": "Grid"
         },
         {
+          "label": "Select language link part 1",
+          "default": "Not the language you are looking for? Go to"
+        },
+        {
+          "label": "Select language link part 2",
+          "default": "old Bildetema"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },
