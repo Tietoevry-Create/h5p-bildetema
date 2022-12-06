@@ -194,7 +194,7 @@
         },
         {
           "label": "Select language link part 1",
-          "default": "Can't find the language you're looking for? Go to"
+          "default": "Not the language you are looking for? Go to"
         },
         {
           "label": "Select language link part 2",
