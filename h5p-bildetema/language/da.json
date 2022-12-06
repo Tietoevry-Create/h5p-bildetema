@@ -137,6 +137,14 @@
           "default": "Yndlingssprog"
         },
         {
+          "label": "Vælg yndlingssprog aria tekst del 1",
+          "default": "Vælg"
+        },
+        {
+          "label": "Vælg yndlingssprog aria tekst del 2",
+          "default": "som yndlingssprog"
+        },
+        {
           "label": "Vælg sprog aria tekst",
           "default": "Vælg sprog"
         },

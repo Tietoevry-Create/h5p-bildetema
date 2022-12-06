@@ -38,6 +38,8 @@ export type TranslationKey =
   | "breadcrumbsTopic"
   | "breadcrumbsHome"
   | "favoriteLanguagesAriaLabel"
+  | "chooseFavoriteLanguageAriaLabelPart1"
+  | "chooseFavoriteLanguageAriaLabelPart2"
   | "chooseLanguageAriaLabel"
   | "selectLanguage"
   | "footerCopyright"

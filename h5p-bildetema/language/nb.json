@@ -137,6 +137,14 @@
           "default": "Favorittspråk"
         },
         {
+          "label": "Velg favorittspråk aria tekst del 1",
+          "default": "Velg"
+        },
+        {
+          "label": "Velg favorittspråk aria tekst del 2",
+          "default": "som favorittspråk"
+        },
+        {
           "label": "Velg språk aria tekst",
           "default": "Velg språk"
         },
