@@ -137,6 +137,10 @@
           "default": "Favorittspråk"
         },
         {
+          "label": "Vel språk aria tekst",
+          "default": "Vel språk"
+        },
+        {
           "label": "Namn på språkveljar-knapp",
           "default": "Språk"
         },

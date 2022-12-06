@@ -28,7 +28,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     return Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
   };
 
-  const navAriaLabel = "Choose language"; // TODO: translate
+  const navAriaLabel = useL10n("chooseLanguageAriaLabel");
   const selectLanguageLinkPart1 = useL10n("selectLanguageLinkPart1");
   const selectLanguageLinkPart2 = useL10n("selectLanguageLinkPart2");
   const linkHref = useL10n("footerPrevBildetemaHref");

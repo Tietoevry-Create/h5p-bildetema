@@ -137,6 +137,10 @@
           "default": "Favorite languages"
         },
         {
+          "label": "Choose language aria label",
+          "default": "Choose language"
+        },
+        {
           "label": "Tungumálavali texti",
           "default": "Tungumál"
         },

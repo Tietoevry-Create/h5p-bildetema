@@ -137,6 +137,10 @@
           "default": "Yndlingssprog"
         },
         {
+          "label": "Vælg sprog aria tekst",
+          "default": "Vælg sprog"
+        },
+        {
           "label": "Navn på sprogvalg-knap",
           "default": "Sprog"
         },
