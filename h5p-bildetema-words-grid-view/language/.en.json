@@ -49,6 +49,10 @@
         {
           "label": "Next image label",
           "default": "Next image"
+        },
+        {
+          "label": "Language code",
+          "default": "en"
         }
       ]
     },

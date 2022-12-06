@@ -8,4 +8,5 @@ export type TranslationKey =
   | "playAudio"
   | "pauseAudio"
   | "prevImageLabel"
-  | "nextImageLabel";
+  | "nextImageLabel"
+  | "htmlLanguageCode";

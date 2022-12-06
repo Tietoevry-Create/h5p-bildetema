@@ -57,6 +57,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({
     setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);
 
+  const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
   const pauseAudioLabel = useL10n("pauseAudio");
 
@@ -84,7 +85,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({
             className={playing ? styles.audioIconActive : styles.audioIcon}
           />
         </span>
-        <span className={styles.visuallyHidden}>
+        <span className={styles.visuallyHidden} lang={lang}>
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>
       </button>

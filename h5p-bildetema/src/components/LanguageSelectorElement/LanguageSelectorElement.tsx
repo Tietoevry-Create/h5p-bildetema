@@ -3,6 +3,7 @@ import { useL10ns } from "use-h5p";
 import { Link } from "react-router-dom";
 import {
   languages,
+  attributeLanguages,
   languagesOriginal,
 } from "../../../../common/constants/languages";
 import { Checkbox } from "../Checkbox/Checkbox";
@@ -71,7 +72,9 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
         tabIndex={isDisabled ? -1 : 0}
       >
         <span>{translations[`lang_${language.code}`]}</span>
-        <span>{languagesOriginal[language.code]}</span>
+        <span lang={attributeLanguages[language.code]}>
+          {languagesOriginal[language.code]}
+        </span>
       </Link>
     </li>
   );

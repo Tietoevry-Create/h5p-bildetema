@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DisplayView } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import styles from "./DisplayViewButtons.module.scss";
 
 export type DisplayViewButtonsProps = {
@@ -20,6 +21,7 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
     }
   };
 
+  const lang = useSiteLanguage();
   const topicImageLabel = useL10n("viewTopicImage");
   const gridLabel = useL10n("viewGrid");
 
@@ -34,7 +36,7 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
         tabIndex={displayView === DisplayView.TopicImage ? -1 : 0}
         title={topicImageLabel}
       >
-        <span>{topicImageLabel}</span>
+        <span lang={lang}>{topicImageLabel}</span>
       </button>
       <button
         type="button"
@@ -45,7 +47,7 @@ export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
         tabIndex={displayView === DisplayView.Grid ? -1 : 0}
         title={gridLabel}
       >
-        <span>{gridLabel}</span>
+        <span lang={lang}>{gridLabel}</span>
       </button>
     </div>
   );

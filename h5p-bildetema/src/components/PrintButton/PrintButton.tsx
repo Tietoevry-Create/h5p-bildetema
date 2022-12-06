@@ -6,6 +6,7 @@ import { useL10ns } from "../../hooks/useL10n";
 import styles from "./PrintButton.module.scss";
 import { TopicIds } from "../../../../common/types/types";
 import { PrintWords } from "../PrintWords/PrintWords";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 type PrintProps = {
   topicIds: TopicIds;
@@ -20,6 +21,7 @@ export const PrintButton: React.FC<PrintProps> = ({
   isWordView,
   showTopicImageView,
 }) => {
+  const lang = useSiteLanguage();
   const [imagesPrRow, setImagesPrRow] = React.useState(3);
   const [printClicked, setPrintClicked] = React.useState(false);
   const [viewPrintDropDown, setViewPrintDropDown] = React.useState(false);
@@ -99,7 +101,9 @@ export const PrintButton: React.FC<PrintProps> = ({
               <PrintIcon />
             </span>
             {printLabel && (
-              <span className={styles.printLabel}>{printLabel}</span>
+              <span className={styles.printLabel} lang={lang}>
+                {printLabel}
+              </span>
             )}
             {(!showTopicImageView || !isWordView) && (
               <span className={styles.arrowIcon} aria-hidden="true">

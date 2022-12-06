@@ -49,6 +49,10 @@
         {
           "label": "Neste bilde",
           "default": "Neste bilde"
+        },
+        {
+          "label": "Språkkode",
+          "default": "nb"
         }
       ]
     },

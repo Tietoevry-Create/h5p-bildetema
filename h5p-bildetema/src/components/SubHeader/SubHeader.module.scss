@@ -9,9 +9,6 @@
   gap: 1rem 2rem;
   justify-content: space-between;
   min-height: 2.5rem;
-  margin: $main-content-margin;
-  max-width: $main-content-max-width;
-  width: $main-content-width;
 
   @include breakpoint-min($small) {
     align-items: center;

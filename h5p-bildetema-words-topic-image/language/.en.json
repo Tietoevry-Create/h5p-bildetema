@@ -100,6 +100,10 @@
         {
           "label": "Pause audio",
           "default": "Pause audio"
+        },
+        {
+          "label": "Language code",
+          "default": "en"
         }
       ]
     },
@@ -111,6 +115,5 @@
       "label": "Show articles",
       "default": false
     }
-
   ]
 }

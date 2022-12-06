@@ -6,6 +6,7 @@ import { AudioFile } from "../../../../common/types/AudioFile";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
 import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
@@ -18,6 +19,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const lang = useSiteLanguage();
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
   const toggleAudio = (event: React.MouseEvent): void => {
@@ -71,7 +73,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
         <SpeakerIcon
           className={playing ? styles.audioIconActive : styles.audioIcon}
         />
-        <span className={styles.visuallyHidden}>
+        <span className={styles.visuallyHidden} lang={lang}>
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>
       </button>
