@@ -17,11 +17,11 @@
 
   &:hover,
   &:focus {
-    background: $beige;
+    background: $light-grey;
   }
 
   &:focus-within {
-    background: $beige;
+    background: $light-grey;
     text-decoration-line: underline;
   }
 }

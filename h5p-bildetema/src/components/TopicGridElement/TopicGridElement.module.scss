@@ -48,8 +48,8 @@
 
 .topicCardBig,
 .topicCardCompact {
-  background-color: $beige;
-  border: 1.5px solid $dark-beige;
+  background-color: $light-grey;
+  border: 1.5px solid $dark-grey;
   box-sizing: border-box;
   display: flex;
   height: 100%;
@@ -58,7 +58,7 @@
 
   &:hover {
     text-decoration: none;
-    background-color: $dark-beige;
+    background-color: $dark-grey;
   }
 
   &:focus {
