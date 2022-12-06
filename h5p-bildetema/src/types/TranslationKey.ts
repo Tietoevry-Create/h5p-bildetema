@@ -8,6 +8,7 @@ export type TranslationKey =
   | "htmlLanguageCode"
   | "pageIsLoading"
   | "mainContentLink"
+  | "mainContentAriaLabel"
   | "showWrittenWordsLabel"
   | "showArticlesLabel"
   | "printLabel"

@@ -47,6 +47,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Main content aria label",
+        name: "mainContentAriaLabel",
+        default: "Main content",
+        type: "text",
+      },
+      {
         label: "Show written words label",
         name: "showWrittenWordsLabel",
         default: "Show written words",

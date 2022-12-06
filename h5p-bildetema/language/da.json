@@ -17,6 +17,10 @@
           "default": "Spring til hovedindhold"
         },
         {
+          "label": "Hovedindhold aria tekst",
+          "default": "Hovedindhold"
+        },
+        {
           "label": "Vis ord",
           "default": "Vis ord"
         },

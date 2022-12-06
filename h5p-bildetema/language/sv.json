@@ -17,6 +17,10 @@
           "default": "Hoppa till huvudinnehållet"
         },
         {
+          "label": "Huvudinnehåll aria text",
+          "default": "Huvudinnehåll"
+        },
+        {
           "label": "Visa ord",
           "default": "Visa ord"
         },

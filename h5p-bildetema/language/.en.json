@@ -17,6 +17,10 @@
           "default": "Skip to main content"
         },
         {
+          "label": "Main content aria label",
+          "default": "Main content"
+        },
+        {
           "label": "Show written words label",
           "default": "Show written words"
         },

@@ -17,6 +17,10 @@
           "default": "Hopp til hovedinnhold"
         },
         {
+          "label": "Hovedinnhold aria tekst",
+          "default": "Hovedinnhold"
+        },
+        {
           "label": "Vis ord",
           "default": "Vis ord"
         },

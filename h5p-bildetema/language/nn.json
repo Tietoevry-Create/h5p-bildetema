@@ -17,6 +17,10 @@
           "default": "Hopp til hovudinnhald"
         },
         {
+          "label": "Hovudinnhald aria tekst",
+          "default": "Hovudinnhald"
+        },
+        {
           "label": "Vis ord",
           "default": "Vis ord"
         },

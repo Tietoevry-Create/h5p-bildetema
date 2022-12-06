@@ -57,6 +57,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   const loadingLabel = useL10n("pageIsLoading");
   const pageTitle = useL10n("headerTitle");
+  const mainContentAriaLabel = useL10n("mainContentAriaLabel");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
   const [firstTime, setFirstTime] = useState(false);
 
@@ -224,7 +225,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
         <div
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
-          aria-label="Main content" // TODO: translate
+          aria-label={mainContentAriaLabel}
           lang={attributeLanguages[getCurrentLanguage()?.code] ?? siteLang}
         >
           <SubHeader
