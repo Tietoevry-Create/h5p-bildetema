@@ -277,7 +277,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Select language link part 1",
         name: "selectLanguageLinkPart1",
-        default: "Can't find the language you're looking for? Go to",
+        default: "Not the language you are looking for? Go to",
         type: "text",
       },
       {

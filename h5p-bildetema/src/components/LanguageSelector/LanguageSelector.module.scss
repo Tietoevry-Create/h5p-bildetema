@@ -29,8 +29,12 @@
     font-size: $font-size-16 !important;
     margin: 1rem 0.5rem 0.5rem 0.5rem;
 
-    a:hover {
-      text-decoration: none;
+    a {
+      color: $black;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
