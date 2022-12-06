@@ -181,6 +181,12 @@
         "type": "text"
       },
       {
+        "label": "Breadcrumbs aria label",
+        "name": "breadcrumbsAriaLabel",
+        "default": "Breadcrumbs",
+        "type": "text"
+      },
+      {
         "label": "Breadcrumbs 'Topic' label",
         "name": "breadcrumbsTopic",
         "default": "Choose a topic",

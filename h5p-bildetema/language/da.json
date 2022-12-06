@@ -121,6 +121,10 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Brødkrummesti aria tekst",
+          "default": "Brødkrummesti"
+        },
+        {
           "label": "Navn på første link i brødkrummestien",
           "default": "Vælg et tema"
         },

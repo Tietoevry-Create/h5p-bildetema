@@ -121,6 +121,10 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Breadcrumbs aria label",
+          "default": "Breadcrumbs"
+        },
+        {
           "label": "Breadcrumbs 'Topic' label",
           "default": "Choose a topic"
         },

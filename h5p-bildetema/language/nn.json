@@ -121,6 +121,10 @@
           "default": "/Tilgjengeerklaering"
         },
         {
+          "label": "Brødsmulesti aria tekst",
+          "default": "Brødsmulesti"
+        },
+        {
           "label": "Namn på første lenkje i brødsmulestien",
           "default": "Vel eit tema"
         },

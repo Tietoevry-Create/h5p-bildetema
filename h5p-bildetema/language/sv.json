@@ -121,6 +121,10 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Länkstigen aria text",
+          "default": "Länkstigen"
+        },
+        {
           "label": "Namn på första länken i länkstigen",
           "default": "Välj ett tema"
         },
