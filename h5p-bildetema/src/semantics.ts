@@ -226,6 +226,8 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "Favorite languages",
         type: "text",
       },
+      // TODO: Combine `chooseFavoriteLanguageAriaLabelPart1` and `chooseFavoriteLanguageAriaLabelPart2`
+      // into one and add support for arguments to the l10n hook.
       {
         label: "Choose favorite language aria label part 1",
         name: "chooseFavoriteLanguageAriaLabelPart1",
