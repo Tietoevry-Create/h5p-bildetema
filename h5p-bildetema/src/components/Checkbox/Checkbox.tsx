@@ -7,6 +7,7 @@ type CheckboxProps = {
   handleChange: (checked: boolean) => void;
   checked: boolean;
   disabled: boolean;
+  label: string;
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -14,6 +15,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   handleChange,
   checked,
   disabled,
+  label,
 }) => {
   return (
     <label className={styles.container} htmlFor={id}>
@@ -24,13 +26,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           checked={checked}
           onChange={e => handleChange(e.target.checked)}
           disabled={disabled}
+          aria-label={label}
         />
         {checked ? (
-          <span className={styles.starIcon}>
+          <span className={styles.starIcon} aria-hidden="true">
             <StarFilledIcon />
           </span>
         ) : (
-          <span className={styles.starIcon}>
+          <span className={styles.starIcon} aria-hidden="true">
             <StarOutlineIcon />
           </span>
         )}

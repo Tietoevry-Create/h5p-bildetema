@@ -13,7 +13,7 @@ import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language, TopicIds } from "../../../../common/types/types";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useL10ns } from "../../hooks/useL10n";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
     "headerSubtitle",
     ...languageKeys,
   );
-  const navAriaLabel = "Favorite languages"; // TODO: translate
+  const navAriaLabel = useL10n("favoriteLanguagesAriaLabel");
 
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
@@ -105,7 +105,6 @@ export const Header: React.FC<HeaderProps> = ({
         <div className={styles.logo_oslomet}>
           <OsloMetLogo />
         </div>
-        {/* TODO: Add Bildetema logo when ready */}
         <Link
           key={HomeLinkPath}
           to={HomeLinkPath}

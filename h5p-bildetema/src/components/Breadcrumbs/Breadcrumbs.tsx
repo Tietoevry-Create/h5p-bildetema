@@ -86,7 +86,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       };
     });
 
-  const AriaBreadcrumbsNav = "breadcrumbs"; // TODO: translate
+  const breadcrumbsAriaLabel = useL10n("breadcrumbsAriaLabel");
   const onlyHomePage = breadCrumbsToRender && breadCrumbsToRender.length === 1;
 
   if (onlyHomePage) {
@@ -102,7 +102,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   }
 
   return (
-    <nav aria-label={AriaBreadcrumbsNav}>
+    <nav aria-label={breadcrumbsAriaLabel}>
       <ol role="list" className={styles.breadcrumbs}>
         {breadCrumbsToRender.map(({ label, path }, index) => {
           const notLastBreadCrumb = index !== breadCrumbsToRender.length - 1;

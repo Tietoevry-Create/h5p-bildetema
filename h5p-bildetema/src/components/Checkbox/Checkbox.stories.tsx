@@ -21,6 +21,7 @@ const Template = (disabled: boolean): JSX.Element => {
       checked={checked}
       disabled={disabled}
       handleChange={handleChange}
+      label="Checkbox label"
     />
   );
 };

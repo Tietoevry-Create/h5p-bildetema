@@ -17,6 +17,10 @@
           "default": "Spring til hovedindhold"
         },
         {
+          "label": "Hovedindhold aria tekst",
+          "default": "Hovedindhold"
+        },
+        {
           "label": "Vis ord",
           "default": "Vis ord"
         },
@@ -117,12 +121,32 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Brødkrummesti aria tekst",
+          "default": "Brødkrummesti"
+        },
+        {
           "label": "Navn på første link i brødkrummestien",
           "default": "Vælg et tema"
         },
         {
           "label": "Navn på 'hjem' i brødkrummestien",
           "default": "Hjem"
+        },
+        {
+          "label": "Yndlingssprog aria tekst",
+          "default": "Yndlingssprog"
+        },
+        {
+          "label": "Vælg yndlingssprog aria tekst del 1",
+          "default": "Vælg"
+        },
+        {
+          "label": "Vælg yndlingssprog aria tekst del 2",
+          "default": "som yndlingssprog"
+        },
+        {
+          "label": "Vælg sprog aria tekst",
+          "default": "Vælg sprog"
         },
         {
           "label": "Navn på sprogvalg-knap",

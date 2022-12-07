@@ -17,6 +17,10 @@
           "default": "Hopp til hovudinnhald"
         },
         {
+          "label": "Hovudinnhald aria tekst",
+          "default": "Hovudinnhald"
+        },
+        {
           "label": "Vis ord",
           "default": "Vis ord"
         },
@@ -117,12 +121,32 @@
           "default": "/Tilgjengeerklaering"
         },
         {
+          "label": "Brødsmulesti aria tekst",
+          "default": "Brødsmulesti"
+        },
+        {
           "label": "Namn på første lenkje i brødsmulestien",
           "default": "Vel eit tema"
         },
         {
           "label": "Namn på heimsida i brødsmulestien",
           "default": "Heim"
+        },
+        {
+          "label": "Favorittspråk aria tekst",
+          "default": "Favorittspråk"
+        },
+        {
+          "label": "Vel favorittspråk aria tekst del 1",
+          "default": "Vel"
+        },
+        {
+          "label": "Vel favorittspråk aria tekst del 2",
+          "default": "som favorittspråk"
+        },
+        {
+          "label": "Vel språk aria tekst",
+          "default": "Vel språk"
         },
         {
           "label": "Namn på språkveljar-knapp",

@@ -17,6 +17,10 @@
           "default": "Skip to main content"
         },
         {
+          "label": "Main content aria label",
+          "default": "Main content"
+        },
+        {
           "label": "Show written words label",
           "default": "Show written words"
         },
@@ -117,12 +121,32 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Breadcrumbs aria label",
+          "default": "Breadcrumbs"
+        },
+        {
           "label": "Breadcrumbs 'Topic' label",
           "default": "Choose a topic"
         },
         {
           "label": "Breadcrumbs 'Home' label",
           "default": "Home"
+        },
+        {
+          "label": "Favorite languages aria label",
+          "default": "Favorite languages"
+        },
+        {
+          "label": "Choose favorite language aria label part 1",
+          "default": "Choose"
+        },
+        {
+          "label": "Choose favorite language aria label part 2",
+          "default": "as favorite language"
+        },
+        {
+          "label": "Choose language aria label",
+          "default": "Choose language"
         },
         {
           "label": "Language selection label",

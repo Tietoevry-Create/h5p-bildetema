@@ -17,6 +17,10 @@
           "default": "Hoppa till huvudinnehållet"
         },
         {
+          "label": "Huvudinnehåll aria text",
+          "default": "Huvudinnehåll"
+        },
+        {
           "label": "Visa ord",
           "default": "Visa ord"
         },
@@ -117,12 +121,32 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Länkstigen aria text",
+          "default": "Länkstigen"
+        },
+        {
           "label": "Namn på första länken i länkstigen",
           "default": "Välj ett tema"
         },
         {
           "label": "Namn på hemsidan i länkstigen",
           "default": "Hem"
+        },
+        {
+          "label": "Favoritspråk aria text",
+          "default": "Favoritspråk"
+        },
+        {
+          "label": "Välj favoritspråk aria text del 1",
+          "default": "Välj"
+        },
+        {
+          "label": "Välj favoritspråk aria text del 2",
+          "default": "som favoritspråk"
+        },
+        {
+          "label": "Välj språk aria text",
+          "default": "Välj språk"
         },
         {
           "label": "Namn på språkvalsknappen",

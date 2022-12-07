@@ -10,6 +10,7 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { Language } from "../../../../common/types/types";
 import styles from "./LanguageSelectorElement.module.scss";
+import { useL10n } from "../../hooks/useL10n";
 
 type LanguageSelectorElement = {
   path: string;
@@ -44,6 +45,13 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
+  const languageAriaPart1 = useL10n("chooseFavoriteLanguageAriaLabelPart1");
+  const languageAriaPart2 = useL10n("chooseFavoriteLanguageAriaLabelPart2");
+
+  const checkboxLabel = `${languageAriaPart1} ${translations[
+    `lang_${language.code}`
+  ].toLocaleLowerCase()} ${languageAriaPart2}`;
+
   const toggleFavorite = (): void => {
     handleToggleFavoriteLanguage(language, !isChecked);
   };
@@ -61,6 +69,7 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
           id={language.code}
           checked={isChecked}
           disabled={isDisabled}
+          label={checkboxLabel}
           handleChange={() => {
             toggleFavorite();
           }}

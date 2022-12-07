@@ -47,6 +47,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Main content aria label",
+        name: "mainContentAriaLabel",
+        default: "Main content",
+        type: "text",
+      },
+      {
         label: "Show written words label",
         name: "showWrittenWordsLabel",
         default: "Show written words",
@@ -197,6 +203,12 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Breadcrumbs aria label",
+        name: "breadcrumbsAriaLabel",
+        default: "Breadcrumbs",
+        type: "text",
+      },
+      {
         label: "Breadcrumbs 'Topic' label",
         name: "breadcrumbsTopic",
         default: "Choose a topic",
@@ -206,6 +218,32 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Breadcrumbs 'Home' label",
         name: "breadcrumbsHome",
         default: "Home",
+        type: "text",
+      },
+      {
+        label: "Favorite languages aria label",
+        name: "favoriteLanguagesAriaLabel",
+        default: "Favorite languages",
+        type: "text",
+      },
+      // TODO: Combine `chooseFavoriteLanguageAriaLabelPart1` and `chooseFavoriteLanguageAriaLabelPart2`
+      // into one and add support for arguments to the l10n hook.
+      {
+        label: "Choose favorite language aria label part 1",
+        name: "chooseFavoriteLanguageAriaLabelPart1",
+        default: "Choose",
+        type: "text",
+      },
+      {
+        label: "Choose favorite language aria label part 2",
+        name: "chooseFavoriteLanguageAriaLabelPart2",
+        default: "as favorite language",
+        type: "text",
+      },
+      {
+        label: "Choose language aria label",
+        name: "chooseLanguageAriaLabel",
+        default: "Choose language",
         type: "text",
       },
       {
