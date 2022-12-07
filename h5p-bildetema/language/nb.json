@@ -186,11 +186,11 @@
         },
         {
           "label": "Temabilde tekst",
-          "default": "Temabilde"
+          "default": "Oversiktsbilde"
         },
         {
           "label": "Grid tekst",
-          "default": "Grid"
+          "default": "Enkeltbilder"
         },
         {
           "label": "Språkvelger link del 1",

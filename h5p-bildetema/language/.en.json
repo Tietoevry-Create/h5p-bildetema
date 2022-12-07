@@ -186,11 +186,11 @@
         },
         {
           "label": "Topic image label",
-          "default": "Topic image"
+          "default": "Overview image"
         },
         {
           "label": "Grid label",
-          "default": "Grid"
+          "default": "Single photos"
         },
         {
           "label": "Select language link part 1",

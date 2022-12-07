@@ -186,11 +186,11 @@
         },
         {
           "label": "Temabilete tekst",
-          "default": "Temabilete"
+          "default": "Oversiktsbilete"
         },
         {
           "label": "Grid tekst",
-          "default": "Grid"
+          "default": "Enkeltbilete"
         },
         {
           "label": "Språkveljar link del 1",
