@@ -23,8 +23,7 @@ import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { attributeLanguages } from "../../../../common/constants/languages";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -37,7 +36,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 }) => {
   const { languages: languagesFromDB } = useDBContext() || {};
   const { pathname } = useLocation();
-  const siteLang = useSiteLanguage();
+  const currentLang = useCurrentLanguage();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -226,7 +225,6 @@ export const Bildetema: React.FC<BildetemaProps> = ({
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label={mainContentAriaLabel}
-          lang={attributeLanguages[getCurrentLanguage()?.code] ?? siteLang}
         >
           <SubHeader
             topicIds={topicIds}
@@ -240,7 +238,11 @@ export const Bildetema: React.FC<BildetemaProps> = ({
             handleToggleArticles={handleToggleArticles}
             articlesToggleChecked={showArticles}
           />
-          {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
+          {isLoadingData ? (
+            showLoadingLabel && <p>{loadingLabel}</p>
+          ) : (
+            <div lang={currentLang}>{routes}</div>
+          )}
         </div>
         <Footer />
       </div>
