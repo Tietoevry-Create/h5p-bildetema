@@ -15,7 +15,10 @@ import {
 } from "../Icons/Icons";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import styles from "./Breadcrumbs.module.scss";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import {
+  useCurrentLanguage,
+  useSiteLanguage,
+} from "../../hooks/useSiteLanguage";
 
 export type BreadcrumbsProps = {
   breadCrumbs?: {
@@ -32,6 +35,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   topicIds,
 }) => {
   const lang = useSiteLanguage();
+  const currentLang = useCurrentLanguage();
   const { translations, topics } = useDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
@@ -93,7 +97,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     const homePageElement = breadCrumbsToRender[0];
 
     return (
-      <div className={styles.breadcrumbs}>
+      <div className={styles.breadcrumbs} lang={currentLang}>
         <h1 className={styles.currentPage} key={homePageElement.path}>
           {homePageElement.label}
         </h1>
@@ -103,7 +107,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
 
   return (
     <nav aria-label={breadcrumbsAriaLabel}>
-      <ol role="list" className={styles.breadcrumbs}>
+      <ol role="list" className={styles.breadcrumbs} lang={currentLang}>
         {breadCrumbsToRender.map(({ label, path }, index) => {
           const notLastBreadCrumb = index !== breadCrumbsToRender.length - 1;
           const homePageBreadCrumb = index === 0;
