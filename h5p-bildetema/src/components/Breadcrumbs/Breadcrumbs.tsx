@@ -15,10 +15,8 @@ import {
 } from "../Icons/Icons";
 import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import styles from "./Breadcrumbs.module.scss";
-import {
-  useCurrentLanguage,
-  useSiteLanguage,
-} from "../../hooks/useSiteLanguage";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
 export type BreadcrumbsProps = {
   breadCrumbs?: {

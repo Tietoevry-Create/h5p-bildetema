@@ -23,7 +23,7 @@ import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { useCurrentLanguage } from "../../hooks/useSiteLanguage";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
