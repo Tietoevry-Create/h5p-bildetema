@@ -12,12 +12,10 @@ import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
-  audioPlaying: (state: boolean) => void;
 };
 
 export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   audioFiles,
-  audioPlaying,
 }) => {
   const [playing, setPlaying] = useState(false);
 
@@ -46,12 +44,10 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
       audioElement.play();
     }
     setPlaying(!playing);
-    audioPlaying(!playing);
   };
 
   const handleAudioEnded = (): void => {
     setPlaying(false);
-    audioPlaying(false);
   };
 
   useEffect(() => {
@@ -62,7 +58,6 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
 
   useEffect(() => {
     setPlaying(audioRef.current?.paused === false);
-    audioPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");

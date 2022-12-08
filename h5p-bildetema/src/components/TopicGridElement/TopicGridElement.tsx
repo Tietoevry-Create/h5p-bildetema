@@ -25,12 +25,6 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   topicSize,
   languageCode,
 }) => {
-  const [audioPlaying, setAudioPlaying] = React.useState(false);
-
-  const handleAudioPlaying = (state: boolean): void => {
-    setAudioPlaying(state);
-  };
-
   const audioFiles = topic.labelTranslations.get(languageCode)?.audioFiles;
   const topicCardClassName =
     topicSize === TopicGridSizes.Big
@@ -49,21 +43,14 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem">
-      <div
-        className={`${topicCardClassName} ${
-          audioPlaying ? styles.topicCardActive : ""
-        }`}
-      >
+      <div className={topicCardClassName}>
         <img className={styles.topicImage} src={imageSrc} alt="" />
         <Link className={styles.topicLink} to={`${linkTo}${search}`}>
           <h2>{title}</h2>
         </Link>
         <span className={gridElementClassName}>
           <h2 aria-hidden="true">{title}</h2>
-          <TopicGridElementAudio
-            audioFiles={audioFiles}
-            audioPlaying={handleAudioPlaying}
-          />
+          <TopicGridElementAudio audioFiles={audioFiles} />
         </span>
       </div>
     </li>
