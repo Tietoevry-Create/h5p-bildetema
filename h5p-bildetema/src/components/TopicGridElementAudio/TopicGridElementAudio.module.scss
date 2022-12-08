@@ -22,6 +22,16 @@
   }
 }
 
+.audioIconSpan {
+  align-items: center;
+  display: flex;
+  height: 1.5rem;
+
+  @media print {
+    display: none;
+  }
+}
+
 .audioIcon {
   fill: none;
   height: 1.5rem;
@@ -38,10 +48,6 @@
     path {
       stroke: $base-font-color;
     }
-  }
-
-  @media print {
-    display: none;
   }
 }
 

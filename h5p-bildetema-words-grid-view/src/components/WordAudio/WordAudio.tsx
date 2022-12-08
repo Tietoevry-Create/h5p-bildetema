@@ -83,7 +83,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({
             &nbsp;
           </h2>
         )}
-        <span className={styles.audioIconSpan}>
+        <span className={styles.audioIconSpan} aria-hidden="true">
           {playing ? (
             <SpeakerPlayingIcon className={styles.audioIcon} />
           ) : (

@@ -81,11 +81,13 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
         ))}
       </audio>
       <button type="button" onClick={toggleAudio}>
-        {playing ? (
-          <SpeakerPlayingIcon className={styles.audioIcon} />
-        ) : (
-          <SpeakerIcon className={styles.audioIcon} />
-        )}
+        <span className={styles.audioIconSpan} aria-hidden="true">
+          {playing ? (
+            <SpeakerPlayingIcon className={styles.audioIcon} />
+          ) : (
+            <SpeakerIcon className={styles.audioIcon} />
+          )}
+        </span>
         <span className={styles.visuallyHidden} lang={lang}>
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>

@@ -116,7 +116,7 @@ export const TopicImageWordAudio: React.FC<TopicImageWordAudioProps> = ({
         onFocus={() => selectHoveredWord(word.id)}
         onBlur={() => selectHoveredWord("")}
       >
-        <span className={styles.audioIconSpan}>
+        <span className={styles.audioIconSpan} aria-hidden="true">
           {playing ? (
             <SpeakerPlayingIcon className={styles.audioIcon} />
           ) : (
