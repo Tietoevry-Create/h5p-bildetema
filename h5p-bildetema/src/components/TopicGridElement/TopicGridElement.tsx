@@ -43,17 +43,16 @@ export const TopicGridElement: React.FC<TopicGridElementProps> = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem">
-      <Link
-        className={topicCardClassName}
-        to={`${linkTo}${search}`}
-        aria-label={title}
-      >
+      <div className={topicCardClassName}>
         <img className={styles.topicImage} src={imageSrc} alt="" />
-        <span className={gridElementClassName}>
+        <Link className={styles.topicLink} to={`${linkTo}${search}`}>
           <h2>{title}</h2>
+        </Link>
+        <span className={gridElementClassName}>
+          <h2 aria-hidden="true">{title}</h2>
           <TopicGridElementAudio audioFiles={audioFiles} />
         </span>
-      </Link>
+      </div>
     </li>
   );
 };
