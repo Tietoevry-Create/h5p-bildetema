@@ -4,7 +4,7 @@
   padding: 0.25rem 0;
 
   &.selected button {
-    outline: $outline-on-light-background;
+    border-color: $burgundy;
   }
 
   @media print {
@@ -24,7 +24,10 @@
   cursor: pointer;
   display: flex;
   gap: 0.5rem;
-  padding: 0.25rem 1rem;
+  padding: 0.125rem 0.75rem;
+  /* make the border similar to outline */
+  border: 3px solid transparent;
+  outline-offset: -3px;
 
   @media print {
     padding: 0;
@@ -45,7 +48,7 @@
 .audioIconSpan {
   align-items: center;
   display: flex;
-  height: 2.1em; /* same as label height */
+  height: 2.1rem; /* same as label height */
 
   @media print {
     display: none;
@@ -72,12 +75,11 @@
   }
 }
 
-.wordAudio_active {
-  &.selected button,
-  button:focus {
-    outline: $outline-on-light-background;
-  }
+.wordAudio.selected button path {
+  stroke: $base-font-color;
+}
 
+.wordAudio_active {
   .word_label {
     color: $base-font-color;
   }
