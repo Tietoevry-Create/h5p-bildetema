@@ -68,7 +68,7 @@
   }
 }
 
-.wordAudio:not(.wordAudio_active) button:hover {
+.wordAudio button:hover {
   background-color: $beige;
 
   path {
@@ -77,20 +77,12 @@
 }
 
 .wordAudio_active {
-  button {
-    background-color: $blue-magenta-lighter;
-
-    &:focus {
-      outline: $outline-on-audio;
-    }
-  }
-
   .word_label {
-    color: $blue-magenta;
+    color: $base-font-color;
   }
 
   .audioIcon path {
-    stroke: $blue-magenta;
+    stroke: $base-font-color;
   }
 }
 

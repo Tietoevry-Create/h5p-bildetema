@@ -36,7 +36,7 @@
   &:hover,
   &:focus {
     path {
-      stroke: #333;
+      stroke: $base-font-color;
     }
   }
 
@@ -46,14 +46,10 @@
 }
 
 .wordAudio_active {
-  color: $blue-magenta;
-
-  button:focus {
-    outline: $outline-on-audio;
-  }
+  color: $base-font-color;
 
   .audioIcon path {
-    stroke: $blue-magenta;
+    stroke: $base-font-color;
   }
 }
 
