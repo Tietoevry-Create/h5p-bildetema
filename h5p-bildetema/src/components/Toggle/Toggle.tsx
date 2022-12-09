@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactToggle from "react-toggle";
+import { CheckedIcon, UncheckedIcon } from "../Icons/Icons";
 import styles from "./Toggle.module.scss";
 import "./ReactToggle.scss";
 
@@ -38,6 +39,7 @@ export const Toggle: React.FC<ToggleProps> = ({
         onChange={e => handleChange(e.target.checked)}
         onKeyUp={() => handleOnFocus(true)}
         onBlur={() => handleOnFocus(false)}
+        icons={{ checked: <CheckedIcon />, unchecked: <UncheckedIcon /> }}
       />
     </label>
   );
