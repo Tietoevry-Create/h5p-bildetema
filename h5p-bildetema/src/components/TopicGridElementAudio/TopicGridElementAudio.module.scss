@@ -12,17 +12,32 @@
 
 .wordAudio button {
   all: unset;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
   height: 1.5rem;
+
+  &:focus {
+    outline-offset: 0.25rem;
+  }
 }
 
-.audioIcon,
-.audioIconActive {
+.audioIconSpan {
+  align-items: center;
+  display: flex;
+  height: 1.5rem;
+
+  @media print {
+    display: none;
+  }
+}
+
+.audioIcon {
   fill: none;
   height: 1.5rem;
 
   path {
-    stroke: #8f8f8f;
+    stroke: #858585;
     stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -31,18 +46,16 @@
   &:hover,
   &:focus {
     path {
-      stroke: #333;
+      stroke: $base-font-color;
     }
-  }
-
-  @media print {
-    display: none;
   }
 }
 
-.audioIconActive {
-  path {
-    stroke: #333;
+.wordAudio_active {
+  color: $base-font-color;
+
+  .audioIcon path {
+    stroke: $base-font-color;
   }
 }
 

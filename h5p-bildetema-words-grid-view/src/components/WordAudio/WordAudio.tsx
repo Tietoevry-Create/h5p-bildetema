@@ -1,6 +1,9 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
+import {
+  SpeakerIcon,
+  SpeakerPlayingIcon,
+} from "../../../../common/components/Icons/Icons";
 import { Word as WordType } from "../../../../common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
@@ -65,7 +68,7 @@ export const WordAudio: React.FC<WordAudioProps> = ({
     <div
       className={`${styles.wordAudio} ${
         textVisible ? "" : styles.wordAudioHideForPrint
-      }`}
+      } ${playing ? styles.wordAudio_active : ""}`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
@@ -80,10 +83,12 @@ export const WordAudio: React.FC<WordAudioProps> = ({
             &nbsp;
           </h2>
         )}
-        <span className={styles.audioIconSpan}>
-          <SpeakerIcon
-            className={playing ? styles.audioIconActive : styles.audioIcon}
-          />
+        <span className={styles.audioIconSpan} aria-hidden="true">
+          {playing ? (
+            <SpeakerPlayingIcon className={styles.audioIcon} />
+          ) : (
+            <SpeakerIcon className={styles.audioIcon} />
+          )}
         </span>
         <span className={styles.visuallyHidden} lang={lang}>
           {playing ? pauseAudioLabel : playAudioLabel}

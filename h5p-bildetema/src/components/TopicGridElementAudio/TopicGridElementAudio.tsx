@@ -1,7 +1,9 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { SpeakerIcon } from "../../../../common/components/Icons/Icons";
+import {
+  SpeakerIcon,
+  SpeakerPlayingIcon,
+} from "../../../../common/components/Icons/Icons";
 import { AudioFile } from "../../../../common/types/AudioFile";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
@@ -62,7 +64,11 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   const pauseAudioLabel = useL10n("pauseAudio");
 
   return (
-    <div className={styles.wordAudio}>
+    <div
+      className={`${styles.wordAudio} ${
+        playing ? styles.wordAudio_active : ""
+      }`}
+    >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
         {audioFiles?.map(file => (
@@ -70,9 +76,13 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
         ))}
       </audio>
       <button type="button" onClick={toggleAudio}>
-        <SpeakerIcon
-          className={playing ? styles.audioIconActive : styles.audioIcon}
-        />
+        <span className={styles.audioIconSpan} aria-hidden="true">
+          {playing ? (
+            <SpeakerPlayingIcon className={styles.audioIcon} />
+          ) : (
+            <SpeakerIcon className={styles.audioIcon} />
+          )}
+        </span>
         <span className={styles.visuallyHidden} lang={lang}>
           {playing ? pauseAudioLabel : playAudioLabel}
         </span>
