@@ -59,6 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
   const HomeLinkPath = `/${currentLanguageCode}`;
+  const osloMetLogoAria = useL10n("footerOsloMetLabel");
 
   React.useEffect(() => {
     if (firstTime === true) {
@@ -103,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
     <div ref={headerRef} className={styles.header}>
       <div className={styles.header_content}>
         <div className={styles.logo_oslomet}>
-          <OsloMetLogo />
+          <OsloMetLogo role="img" ariaLabel={osloMetLogoAria} />
         </div>
         <Link
           key={HomeLinkPath}

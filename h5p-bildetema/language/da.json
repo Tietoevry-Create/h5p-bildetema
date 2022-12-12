@@ -81,27 +81,27 @@
           "default": "https://bildetema.oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på første link",
+          "label": "Footer: NAFO tekst",
           "default": "NAFO - National Centre of Multicultural Education"
         },
         {
-          "label": "Footer: URL på første link",
+          "label": "Footer: NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på andet link",
+          "label": "Footer: OsloMet tekst",
           "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Footer: URL på andet link",
+          "label": "Footer: OsloMet URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på tredje link",
+          "label": "Footer: Lexin tekst",
           "default": "LEXIN"
         },
         {
-          "label": "Footer: URL på tredje link",
+          "label": "Footer: Lexin URL",
           "default": "https://lexin.oslomet.no/"
         },
         {

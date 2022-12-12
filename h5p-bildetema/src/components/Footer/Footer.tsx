@@ -16,14 +16,14 @@ export const Footer = (): JSX.Element => {
   const prevBildetemaLabel = useL10n("footerPrevBildetemaLabel");
   const prevBildetemaHref = useL10n("footerPrevBildetemaHref");
 
-  const link1Label = useL10n("footerLink1Label");
-  const link1Href = useL10n("footerLink1Href");
+  const NAFOLabel = useL10n("footerNAFOLabel");
+  const NAFOHref = useL10n("footerNAFOHref");
 
-  const link2Label = useL10n("footerLink2Label");
-  const link2Href = useL10n("footerLink2Href");
+  const osloMetLabel = useL10n("footerOsloMetLabel");
+  const osloMetHref = useL10n("footerOsloMetHref");
 
-  const link3Label = useL10n("footerLink3Label");
-  const link3Href = useL10n("footerLink3Href");
+  const lexinLabel = useL10n("footerLexinLabel");
+  const lexinHref = useL10n("footerLexinHref");
 
   const privacyStatementLabel = useL10n("footerPrivacyStatementLabel");
   const privacyStatementHref = useL10n("footerPrivacyStatementHref");
@@ -59,13 +59,13 @@ export const Footer = (): JSX.Element => {
             <h2>{headline2}</h2>
             <ul>
               <li>
-                <a href={link1Href}>{link1Label}</a>
+                <a href={NAFOHref}>{NAFOLabel}</a>
               </li>
               <li>
-                <a href={link2Href}>{link2Label}</a>
+                <a href={osloMetHref}>{osloMetLabel}</a>
               </li>
               <li>
-                <a href={link3Href}>{link3Label}</a>
+                <a href={lexinHref}>{lexinLabel}</a>
               </li>
             </ul>
           </div>

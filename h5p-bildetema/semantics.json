@@ -121,38 +121,38 @@
         "type": "text"
       },
       {
-        "label": "Footer link 1 label",
-        "name": "footerLink1Label",
+        "label": "Footer NAFO label",
+        "name": "footerNAFOLabel",
         "default": "NAFO - National Centre of Multicultural Education",
         "type": "text"
       },
       {
-        "label": "Footer link 1 URL",
-        "name": "footerLink1Href",
+        "label": "Footer NAFO URL",
+        "name": "footerNAFOHref",
         "default": "https://nafo.oslomet.no/",
         "type": "text"
       },
       {
-        "label": "Footer link 2 label",
-        "name": "footerLink2Label",
+        "label": "Footer OsloMet label",
+        "name": "footerOsloMetLabel",
         "default": "OsloMet - Oslo Metropolitan University",
         "type": "text"
       },
       {
-        "label": "Footer link 2 URL",
-        "name": "footerLink2Href",
+        "label": "Footer OsloMet URL",
+        "name": "footerOsloMetHref",
         "default": "https://oslomet.no/",
         "type": "text"
       },
       {
-        "label": "Footer link 3 label",
-        "name": "footerLink3Label",
+        "label": "Footer Lexin label",
+        "name": "footerLexinLabel",
         "default": "LEXIN",
         "type": "text"
       },
       {
-        "label": "Footer link 3 URL",
-        "name": "footerLink3Href",
+        "label": "Footer Lexin URL",
+        "name": "footerLexinHref",
         "default": "https://lexin.oslomet.no/",
         "type": "text"
       },
