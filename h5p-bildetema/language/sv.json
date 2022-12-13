@@ -45,18 +45,6 @@
           "default": "Pausa ljud"
         },
         {
-          "label": "Sidfot: rubrik 1",
-          "default": "Bildteman"
-        },
-        {
-          "label": "Sidfot: rubrik 2",
-          "default": "Andra sidor"
-        },
-        {
-          "label": "Sidfot: rubrik 3",
-          "default": "Om webbplatsen"
-        },
-        {
           "label": "Sidfot: om text",
           "default": "Om Bildteman"
         },
@@ -154,7 +142,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Upphovsrättsligt skyddad © 2022 · Alla rättigheter  "
+          "default": "Upphovsrättsligt skyddad © 2022 · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
         },
         {
           "label": "Sidhuvud: Titel",

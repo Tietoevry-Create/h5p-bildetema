@@ -89,24 +89,6 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
-        label: "Footer headline 1",
-        name: "footerHeadline1",
-        default: "Bildetema",
-        type: "text",
-      },
-      {
-        label: "Footer headline 2",
-        name: "footerHeadline2",
-        default: "Other sites",
-        type: "text",
-      },
-      {
-        label: "Footer headline 3",
-        name: "footerHeadline3",
-        default: "About the site",
-        type: "text",
-      },
-      {
         label: "Footer about label",
         name: "footerAboutLabel",
         default: "About Bildetema",

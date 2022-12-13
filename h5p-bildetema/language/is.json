@@ -45,18 +45,6 @@
           "default": "Pause audio"
         },
         {
-          "label": "Footer headline 1",
-          "default": "Bildetema"
-        },
-        {
-          "label": "Footer headline 2",
-          "default": "Other sites"
-        },
-        {
-          "label": "Footer headline 3",
-          "default": "About the site"
-        },
-        {
           "label": "Footer about label",
           "default": "About Bildetema"
         },
@@ -154,7 +142,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2022 · All Rights Reserved"
+          "default": "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header title",

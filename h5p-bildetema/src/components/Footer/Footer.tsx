@@ -3,10 +3,6 @@ import { useL10n } from "../../hooks/useL10n";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
-  const headline1 = useL10n("footerHeadline1");
-  const headline2 = useL10n("footerHeadline2");
-  const headline3 = useL10n("footerHeadline3");
-
   const aboutLabel = useL10n("footerAboutLabel");
   const aboutHref = useL10n("footerAboutHref");
 
@@ -42,7 +38,6 @@ export const Footer = (): JSX.Element => {
       <div className={styles.footer_wrapper}>
         <div className={styles.footer_content}>
           <div className={styles.footer_section}>
-            <h2>{headline1}</h2>
             <ul>
               <li>
                 <a href={aboutHref}>{aboutLabel}</a>
@@ -56,7 +51,6 @@ export const Footer = (): JSX.Element => {
             </ul>
           </div>
           <div className={styles.footer_section}>
-            <h2>{headline2}</h2>
             <ul>
               <li>
                 <a href={NAFOHref}>{NAFOLabel}</a>
@@ -70,7 +64,6 @@ export const Footer = (): JSX.Element => {
             </ul>
           </div>
           <div className={styles.footer_section}>
-            <h2>{headline3}</h2>
             <ul>
               <li>
                 <a href={privacyStatementHref}>{privacyStatementLabel}</a>
