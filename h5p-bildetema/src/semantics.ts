@@ -249,7 +249,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Copyright",
         name: "footerCopyright",
-        default: "Copyright © 2022 · All Rights Reserved",
+        default: "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
         type: "text",
       },
       {
@@ -297,13 +297,13 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Topic image label",
         name: "viewTopicImage",
-        default: "Topic image",
+        default: "Overview image",
         type: "text",
       },
       {
         label: "Grid label",
         name: "viewGrid",
-        default: "Grid",
+        default: "Single photos",
         type: "text",
       },
       {
