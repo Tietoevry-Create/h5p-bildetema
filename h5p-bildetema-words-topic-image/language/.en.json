@@ -98,8 +98,8 @@
           "default": "Play audio"
         },
         {
-          "label": "Pause audio",
-          "default": "Pause audio"
+          "label": "Stop audio",
+          "default": "Stop audio"
         },
         {
           "label": "Language code",

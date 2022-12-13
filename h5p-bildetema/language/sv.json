@@ -41,20 +41,8 @@
           "default": "Spela ljud"
         },
         {
-          "label": "Pausa ljud",
-          "default": "Pausa ljud"
-        },
-        {
-          "label": "Sidfot: rubrik 1",
-          "default": "Bildteman"
-        },
-        {
-          "label": "Sidfot: rubrik 2",
-          "default": "Andra sidor"
-        },
-        {
-          "label": "Sidfot: rubrik 3",
-          "default": "Om webbplatsen"
+          "label": "Stoppa ljudet",
+          "default": "Stoppa ljudet"
         },
         {
           "label": "Sidfot: om text",
@@ -81,27 +69,27 @@
           "default": "https://bildetema.oslomet.no/"
         },
         {
-          "label": "Sidfot: text på första länken",
+          "label": "Sidfot: NAFO text",
           "default": "NAFO - Nationellt center för mångkulturell utbildning"
         },
         {
-          "label": "Sidfot: URL första länken",
+          "label": "Sidfot: NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Sidfot: text andra länken",
+          "label": "Sidfot: OsloMet text",
           "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Sidfot: URL andra länken",
+          "label": "Sidfot: OsloMet URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Sidfot: text tredje länken",
+          "label": "Sidfot: Lexin text",
           "default": "LEXIN"
         },
         {
-          "label": "Sidfot: URL tredje länken",
+          "label": "Sidfot: Lexin URL",
           "default": "https://lexin.csc.kth.se/lexin/"
         },
         {
@@ -119,6 +107,14 @@
         {
           "label": "Sidfot: Tillgänglighetsförklaring URL",
           "default": "/accessibility-statement"
+        },
+        {
+          "label": "Sidfot: copyright bilder text",
+          "default": "Copyright bilder"
+        },
+        {
+          "label": "Sidfot: copyright bilder URL",
+          "default": "/copyright-images"
         },
         {
           "label": "Länkstigen aria text",
@@ -154,7 +150,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Upphovsrättsligt skyddad © 2022 · Alla rättigheter  "
+          "default": "Upphovsrättsligt skyddad © 2022 · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
         },
         {
           "label": "Sidhuvud: Titel",

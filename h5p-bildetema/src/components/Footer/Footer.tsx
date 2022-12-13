@@ -3,10 +3,6 @@ import { useL10n } from "../../hooks/useL10n";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
-  const headline1 = useL10n("footerHeadline1");
-  const headline2 = useL10n("footerHeadline2");
-  const headline3 = useL10n("footerHeadline3");
-
   const aboutLabel = useL10n("footerAboutLabel");
   const aboutHref = useL10n("footerAboutHref");
 
@@ -16,14 +12,14 @@ export const Footer = (): JSX.Element => {
   const prevBildetemaLabel = useL10n("footerPrevBildetemaLabel");
   const prevBildetemaHref = useL10n("footerPrevBildetemaHref");
 
-  const link1Label = useL10n("footerLink1Label");
-  const link1Href = useL10n("footerLink1Href");
+  const NAFOLabel = useL10n("footerNAFOLabel");
+  const NAFOHref = useL10n("footerNAFOHref");
 
-  const link2Label = useL10n("footerLink2Label");
-  const link2Href = useL10n("footerLink2Href");
+  const osloMetLabel = useL10n("footerOsloMetLabel");
+  const osloMetHref = useL10n("footerOsloMetHref");
 
-  const link3Label = useL10n("footerLink3Label");
-  const link3Href = useL10n("footerLink3Href");
+  const lexinLabel = useL10n("footerLexinLabel");
+  const lexinHref = useL10n("footerLexinHref");
 
   const privacyStatementLabel = useL10n("footerPrivacyStatementLabel");
   const privacyStatementHref = useL10n("footerPrivacyStatementHref");
@@ -35,6 +31,9 @@ export const Footer = (): JSX.Element => {
     "footerAccessibilityStatementHref",
   );
 
+  const copyrightImagesLabel = useL10n("footerCopyrightImagesLabel");
+  const copyrightImagesHref = useL10n("footerCopyrightImagesHref");
+
   const copyrightLabel = useL10n("footerCopyright");
 
   return (
@@ -42,7 +41,6 @@ export const Footer = (): JSX.Element => {
       <div className={styles.footer_wrapper}>
         <div className={styles.footer_content}>
           <div className={styles.footer_section}>
-            <h2>{headline1}</h2>
             <ul>
               <li>
                 <a href={aboutHref}>{aboutLabel}</a>
@@ -56,21 +54,19 @@ export const Footer = (): JSX.Element => {
             </ul>
           </div>
           <div className={styles.footer_section}>
-            <h2>{headline2}</h2>
             <ul>
               <li>
-                <a href={link1Href}>{link1Label}</a>
+                <a href={NAFOHref}>{NAFOLabel}</a>
               </li>
               <li>
-                <a href={link2Href}>{link2Label}</a>
+                <a href={osloMetHref}>{osloMetLabel}</a>
               </li>
               <li>
-                <a href={link3Href}>{link3Label}</a>
+                <a href={lexinHref}>{lexinLabel}</a>
               </li>
             </ul>
           </div>
           <div className={styles.footer_section}>
-            <h2>{headline3}</h2>
             <ul>
               <li>
                 <a href={privacyStatementHref}>{privacyStatementLabel}</a>
@@ -79,6 +75,9 @@ export const Footer = (): JSX.Element => {
                 <a href={accessibilityStatementHref}>
                   {accessibilityStatementLabel}
                 </a>
+              </li>
+              <li>
+                <a href={copyrightImagesHref}>{copyrightImagesLabel}</a>
               </li>
             </ul>
           </div>

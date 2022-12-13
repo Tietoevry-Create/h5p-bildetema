@@ -41,20 +41,8 @@
           "default": "Play audio"
         },
         {
-          "label": "Pause audio",
-          "default": "Pause audio"
-        },
-        {
-          "label": "Footer headline 1",
-          "default": "Bildetema"
-        },
-        {
-          "label": "Footer headline 2",
-          "default": "Other sites"
-        },
-        {
-          "label": "Footer headline 3",
-          "default": "About the site"
+          "label": "Stop audio",
+          "default": "Stop audio"
         },
         {
           "label": "Footer about label",
@@ -81,27 +69,27 @@
           "default": "https://bildetema.oslomet.no/"
         },
         {
-          "label": "Footer link 1 label",
+          "label": "Footer NAFO label",
           "default": "NAFO - National Centre of Multicultural Education"
         },
         {
-          "label": "Footer link 1 URL",
+          "label": "Footer NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer link 2 label",
+          "label": "Footer OsloMet label",
           "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Footer link 2 URL",
+          "label": "Footer OsloMet URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer link 3 label",
+          "label": "Footer Lexin label",
           "default": "LEXIN"
         },
         {
-          "label": "Footer link 3 URL",
+          "label": "Footer Lexin URL",
           "default": "https://lexin.oslomet.no/"
         },
         {
@@ -119,6 +107,14 @@
         {
           "label": "Footer accessibility statement URL",
           "default": "/accessibility-statement"
+        },
+        {
+          "label": "Footer copyright images label",
+          "default": "Copyright images"
+        },
+        {
+          "label": "Footer copyright images URL",
+          "default": "/copyright-images"
         },
         {
           "label": "Breadcrumbs aria label",
@@ -154,7 +150,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2022 · All Rights Reserved"
+          "default": "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header title",
@@ -186,11 +182,11 @@
         },
         {
           "label": "Topic image label",
-          "default": "Topic image"
+          "default": "Overview image"
         },
         {
           "label": "Grid label",
-          "default": "Grid"
+          "default": "Single photos"
         },
         {
           "label": "Select language link part 1",

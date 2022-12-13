@@ -61,7 +61,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");
-  const pauseAudioLabel = useL10n("pauseAudio");
+  const stopAudioLabel = useL10n("stopAudio");
 
   return (
     <div
@@ -84,7 +84,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
           )}
         </span>
         <span className={styles.visuallyHidden} lang={lang}>
-          {playing ? pauseAudioLabel : playAudioLabel}
+          {playing ? stopAudioLabel : playAudioLabel}
         </span>
       </button>
     </div>

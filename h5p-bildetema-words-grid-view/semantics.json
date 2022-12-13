@@ -56,9 +56,9 @@
         "type": "text"
       },
       {
-        "label": "Pause audio",
-        "name": "pauseAudio",
-        "default": "Pause audio",
+        "label": "Stop audio",
+        "name": "stopAudio",
+        "default": "Stop audio",
         "type": "text"
       },
       {

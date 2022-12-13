@@ -6,7 +6,7 @@
 
 export type TranslationKey =
   | "playAudio"
-  | "pauseAudio"
+  | "stopAudio"
   | "prevImageLabel"
   | "nextImageLabel"
   | "htmlLanguageCode";

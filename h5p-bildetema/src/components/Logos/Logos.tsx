@@ -2,6 +2,8 @@ import * as React from "react";
 
 export type LogoProps = {
   logoColor?: string;
+  role?: string;
+  ariaLabel?: string;
 };
 
 export type LogoSizeProps = {
@@ -13,12 +15,16 @@ export const OsloMetLogo: React.FC<LogoProps & LogoSizeProps> = ({
   logoColor,
   width,
   height,
+  role,
+  ariaLabel,
 }) => (
   <svg
     id="a"
     width={width || "80"}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 364.62 215.86"
+    role={role}
+    aria-label={ariaLabel}
   >
     <path
       d="M11.15,199.15c-14.71-14.71-14.99-36.66-.07-51.59,14.71-14.71,36.73-14.49,51.44,.21,14.71,14.71,14.92,36.74,.22,51.44-15,15-36.88,14.64-51.59-.07Zm39.46-39.46c-8.54-8.54-20.81-8.89-28.55-1.15-8.04,8.04-7.53,20.16,1,28.7,8.54,8.54,20.66,9.04,28.7,1.01,7.82-7.82,7.39-20.02-1.15-28.56Z"

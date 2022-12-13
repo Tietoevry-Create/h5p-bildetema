@@ -41,20 +41,8 @@
           "default": "Spill lyd"
         },
         {
-          "label": "Sett lyd på pause",
-          "default": "Sett lyd på pause"
-        },
-        {
-          "label": "Footer: Overskrift 1",
-          "default": "Bildetema"
-        },
-        {
-          "label": "Footer: Overskrift 2",
-          "default": "Andre sider"
-        },
-        {
-          "label": "Footer: Overskrift 3",
-          "default": "Om nettsiden"
+          "label": "Stopp lyd",
+          "default": "Stopp lyd"
         },
         {
           "label": "Footer: Om Bildetema tekst",
@@ -81,27 +69,27 @@
           "default": "https://bildetema.oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på første link",
+          "label": "Footer: NAFO tekst",
           "default": "NAFO - Nasjonalt senter for flerkulturell opplæring"
         },
         {
-          "label": "Footer: URL på første lenke",
+          "label": "Footer: NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på andre lenke",
+          "label": "Footer: OsloMet tekst",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Footer: URL på andre lenke",
+          "label": "Footer: OsloMet URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer: Tekst på tredje lenke",
+          "label": "Footer: Lexin tekst",
           "default": "LEXIN"
         },
         {
-          "label": "Footer: URL på tredje lenke",
+          "label": "Footer: Lexin URL",
           "default": "https://lexin.oslomet.no/"
         },
         {
@@ -119,6 +107,14 @@
         {
           "label": "Footer: Tilgjengelighetserklæring URL",
           "default": "/tilgjengelighetserklaering"
+        },
+        {
+          "label": "Footer: opphavsrett bilder tekst",
+          "default": "Opphavsrett bilder"
+        },
+        {
+          "label": "Footer: opphavsrett bilder URL",
+          "default": "/opphavsrett-bilder"
         },
         {
           "label": "Brødsmulesti aria tekst",
@@ -154,7 +150,7 @@
         },
         {
           "label": "Kopibeskyttelse",
-          "default": "Kopibeskyttet © 2022 · Alle rettigheter"
+          "default": "Kopibeskyttet © 2022 · Alle rettigheter · Nasjonalt senter for flerkulturell opplæring (NAFO), OsloMet"
         },
         {
           "label": "Header: Tittel",
@@ -186,11 +182,11 @@
         },
         {
           "label": "Temabilde tekst",
-          "default": "Temabilde"
+          "default": "Oversiktsbilde"
         },
         {
           "label": "Grid tekst",
-          "default": "Grid"
+          "default": "Enkeltbilder"
         },
         {
           "label": "Språkvelger link del 1",
