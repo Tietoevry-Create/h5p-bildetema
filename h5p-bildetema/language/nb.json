@@ -109,6 +109,14 @@
           "default": "/tilgjengelighetserklaering"
         },
         {
+          "label": "Footer: opphavsrett bilder tekst",
+          "default": "Opphavsrett bilder"
+        },
+        {
+          "label": "Footer: opphavsrett bilder URL",
+          "default": "/opphavsrett-bilder"
+        },
+        {
           "label": "Brødsmulesti aria tekst",
           "default": "Brødsmulesti"
         },

@@ -109,6 +109,14 @@
           "default": "/accessibility-statement"
         },
         {
+          "label": "Footer: copyright billeder tekst",
+          "default": "Copyright billeder"
+        },
+        {
+          "label": "Footer: copyright billeder URL",
+          "default": "/copyright-images"
+        },
+        {
           "label": "Brødkrummesti aria tekst",
           "default": "Brødkrummesti"
         },
