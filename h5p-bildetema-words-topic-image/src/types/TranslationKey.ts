@@ -7,5 +7,5 @@
 export type TranslationKey =
   | "noTopicSelected"
   | "playAudio"
-  | "pauseAudio"
+  | "stopAudio"
   | "htmlLanguageCode";

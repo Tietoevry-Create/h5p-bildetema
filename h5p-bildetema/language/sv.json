@@ -41,8 +41,8 @@
           "default": "Spela ljud"
         },
         {
-          "label": "Pausa ljud",
-          "default": "Pausa ljud"
+          "label": "Stoppa ljudet",
+          "default": "Stoppa ljudet"
         },
         {
           "label": "Sidfot: om text",

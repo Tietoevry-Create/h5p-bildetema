@@ -41,8 +41,8 @@
           "default": "Spil lyd"
         },
         {
-          "label": "Lyd på pause",
-          "default": "Lyd på pause"
+          "label": "Stop lyden",
+          "default": "Stop lyden"
         },
         {
           "label": "Footer: Om Bildetema tekst",

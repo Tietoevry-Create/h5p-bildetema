@@ -59,9 +59,9 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
-        label: "Pause audio",
-        name: "pauseAudio",
-        default: "Pause audio",
+        label: "Stop audio",
+        name: "stopAudio",
+        default: "Stop audio",
         type: "text",
       },
       {

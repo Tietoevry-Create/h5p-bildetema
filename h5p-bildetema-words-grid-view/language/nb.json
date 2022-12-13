@@ -39,8 +39,8 @@
           "default": "Spill av lyd"
         },
         {
-          "label": "Sett lyd på pause",
-          "default": "Sett lyd på pause"
+          "label": "Stopp lyd",
+          "default": "Stopp lyd"
         },
         {
           "label": "Forrige bilde",

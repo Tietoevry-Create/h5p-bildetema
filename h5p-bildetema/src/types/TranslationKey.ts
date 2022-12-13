@@ -14,7 +14,7 @@ export type TranslationKey =
   | "printLabel"
   | "printImgLabel"
   | "playAudio"
-  | "pauseAudio"
+  | "stopAudio"
   | "footerAboutLabel"
   | "footerAboutHref"
   | "footerContactInfoLabel"
