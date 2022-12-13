@@ -249,7 +249,8 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Copyright",
         name: "footerCopyright",
-        default: "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
+        default:
+          "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
         type: "text",
       },
       {
