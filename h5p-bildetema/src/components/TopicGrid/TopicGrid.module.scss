@@ -34,7 +34,7 @@ $gap: $spacing--24;
       width: calc((100% - (#{$gap} * 2)) / 3);
     }
 
-    @include breakpoint-min(1300px) {
+    @include breakpoint-min(1200px) {
       width: calc((100% - (#{$gap} * 3)) / 4);
     }
   }
