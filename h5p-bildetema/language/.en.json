@@ -77,19 +77,19 @@
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer OsloMet label",
+          "label": "Footer link 1 label",
           "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Footer OsloMet URL",
+          "label": "Footer link 1 URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer Lexin label",
+          "label": "Footer link 2 label",
           "default": "LEXIN"
         },
         {
-          "label": "Footer Lexin URL",
+          "label": "Footer link 2 URL",
           "default": "https://lexin.oslomet.no/"
         },
         {
@@ -158,7 +158,11 @@
         },
         {
           "label": "Header subtitle",
-          "default": "Multi-lingual image dictionary"
+          "default": "Multilingual image dictionary"
+        },
+        {
+          "label": "Header OsloMet logo aria label",
+          "default": "OsloMet - Oslo Metropolitan University"
         },
         {
           "label": "Topic size big",

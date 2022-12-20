@@ -10,51 +10,51 @@
         },
         {
           "label": "Page is loading",
-          "default": "Loading…"
+          "default": "Hleður…"
         },
         {
           "label": "Skip to main content label",
-          "default": "Skip to main content"
+          "default": "Fara í megin efni"
         },
         {
           "label": "Main content aria label",
-          "default": "Main content"
+          "default": "Megin efni"
         },
         {
           "label": "Show written words label",
-          "default": "Show written words"
+          "default": "Sýna orð"
         },
         {
           "label": "Show articles label",
-          "default": "Show articles"
+          "default": "Sýna grein"
         },
         {
           "label": "Print label",
-          "default": "Print"
+          "default": "Prenta"
         },
         {
           "label": "Print img label",
-          "default": "images in width"
+          "default": "víðar myndir"
         },
         {
           "label": "Play audio",
-          "default": "Play audio"
+          "default": "Spila hljóð"
         },
         {
           "label": "Stop audio",
-          "default": "Stop audio"
+          "default": "Stoppa hljóð"
         },
         {
           "label": "Footer about label",
-          "default": "About Bildetema"
+          "default": "Um Bildetema/Myndaþema"
         },
         {
           "label": "Footer about URL",
-          "default": "/about-bildetema"
+          "default": "/um-bildetema/myndaþema"
         },
         {
           "label": "Footer contact info label",
-          "default": "Contact us"
+          "default": "Hafa sanmband"
         },
         {
           "label": "Footer contact info URL",
@@ -62,7 +62,7 @@
         },
         {
           "label": "Footer previous Bildetema site label",
-          "default": "Previous Bildetema site"
+          "default": "Gamla Bildetema vefsíðan"
         },
         {
           "label": "Footer previous Bildetema site URL",
@@ -70,79 +70,79 @@
         },
         {
           "label": "Footer NAFO label",
-          "default": "NAFO - National Centre of Multicultural Education"
+          "default": "NAFO - National Centre of Multicultural Education/NAFO - Miðstöð fjöltyngisfræða"
         },
         {
           "label": "Footer NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer OsloMet label",
-          "default": "OsloMet - Oslo Metropolitan University"
+          "label": "Footer link 1 label",
+          "default": "Miðju máls og læsis, Centre of language and literacy"
         },
         {
-          "label": "Footer OsloMet URL",
-          "default": "https://oslomet.no/"
+          "label": "Footer link 1 URL",
+          "default": "https://mml.reykjavik.is/"
         },
         {
-          "label": "Footer Lexin label",
-          "default": "LEXIN"
+          "label": "Footer link 2 label",
+          "default": "Menntastefna Reykjavíkurborgar"
         },
         {
-          "label": "Footer Lexin URL",
-          "default": "https://lexin.oslomet.no/"
+          "label": "Footer link 2 URL",
+          "default": "https://menntastefna.is/"
         },
         {
           "label": "Footer privacy statement label",
-          "default": "Privacy statement"
+          "default": "Yfirlýsing um friðhelgi"
         },
         {
           "label": "Footer privacy statement URL",
-          "default": "/privacy-statement"
+          "default": "/yfirlýsing-um-friðhelgi"
         },
         {
           "label": "Footer accessibility statement label",
-          "default": "Accessibility statement"
+          "default": "Yfirlýsing um aðgang"
         },
         {
           "label": "Footer accessibility statement URL",
-          "default": "/accessibility-statement"
+          "default": "/yfirlýsing-um-aðgang"
         },
         {
           "label": "Footer copyright images label",
-          "default": "Copyright images"
+          "default": "Höfundaréttur mynda"
         },
         {
           "label": "Footer copyright images URL",
-          "default": "/copyright-images"
+          "default": "/höfundaréttur-mynda"
         },
         {
           "label": "Breadcrumbs aria label",
-          "default": "Breadcrumbs"
+          "default": "Brauðmylsna"
         },
         {
           "label": "Breadcrumbs 'Topic' label",
-          "default": "Choose a topic"
+          "default": "Veljið efni"
         },
         {
           "label": "Breadcrumbs 'Home' label",
-          "default": "Home"
+          "default": "Heim"
         },
         {
           "label": "Favorite languages aria label",
-          "default": "Favorite languages"
+          "default": "Uppáhalds tungumál"
         },
         {
           "label": "Choose favorite language aria label part 1",
-          "default": "Choose"
+          "default": "Veljið"
         },
         {
           "label": "Choose favorite language aria label part 2",
-          "default": "as favorite language"
+          "default": "sem uppáhalds tungumál"
         },
         {
           "label": "Choose language aria label",
-          "default": "Choose language"
+          "default": "Veljið tungumál"
         },
         {
           "label": "Tungumálavali texti",
@@ -150,23 +150,27 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
+          "default": "Höfundaréttur © 2022· Allur réttur áskilinn· National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header title",
-          "default": "Bildetema"
+          "default": "Myndaþema"
         },
         {
           "label": "Header subtitle",
-          "default": "Multi-lingual image dictionary"
+          "default": "Fjöltyngismyndaorðabók"
+        },
+        {
+          "label": "Header OsloMet logo aria label",
+          "default": "OsloMet - Oslo Metropolitan University"
         },
         {
           "label": "Topic size big",
-          "default": "Show topics in grid view"
+          "default": "Sýnið efnisflokka sem reiti"
         },
         {
           "label": "Topic size compact",
-          "default": "Show topics in list view"
+          "default": "Sýna efnisflokka sem lista"
         },
         {
           "label": "Fyrri mynd",
@@ -182,19 +186,19 @@
         },
         {
           "label": "Topic image label",
-          "default": "Topic image"
+          "default": "Þemamynd efnisflokks"
         },
         {
           "label": "Grid label",
-          "default": "Grid"
+          "default": "Reitir"
         },
         {
           "label": "Select language link part 1",
-          "default": "Not the language you are looking for? Go to"
+          "default": "Finnur þú ekki tungumálið sem þú leitar að? Farðu í"
         },
         {
           "label": "Select language link part 2",
-          "default": "old Bildetema"
+          "default": "gamla Bildetema"
         },
         {
           "label": "Arabíska",
