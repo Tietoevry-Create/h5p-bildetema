@@ -17,6 +17,7 @@
     align-items: center;
     flex-direction: row;
     gap: unset;
+    min-height: 2.75rem;
 
     &::after {
       $nbsp: \00a0;
@@ -63,7 +64,7 @@
   font-size: $font-size-18;
   gap: 0.5rem;
   height: 1.5rem;
-  line-height: 1;
+  line-height: 1.4;
   text-decoration: none;
   cursor: pointer;
 
@@ -166,8 +167,8 @@
   color: $base-font-color;
   font-size: 1.5rem !important;
   font-weight: bold !important;
-  line-height: 1 !important;
-  margin: 0.5rem 0 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
   padding: 0 !important;
   word-break: break-all;
 }
