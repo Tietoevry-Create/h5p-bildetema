@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
   const HomeLinkPath = `/${currentLanguageCode}`;
-  const osloMetLogoAria = useL10n("footerOsloMetLabel");
+  const osloMetLogoAria = useL10n("headerOsloMetlogoAriaLabel");
 
   React.useEffect(() => {
     if (firstTime === true) {

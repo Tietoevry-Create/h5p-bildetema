@@ -29,11 +29,11 @@
           "default": "Visa artiklar"
         },
         {
-          "label": "Skriva ut",
-          "default": "Skriva ut"
+          "label": "Skriv ut",
+          "default": "Skriv ut"
         },
         {
-          "label": "Skriva ut bild text",
+          "label": "Skriv ut bild text",
           "default": "bilder i bredd"
         },
         {
@@ -77,19 +77,19 @@
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Sidfot: OsloMet text",
+          "label": "Sidfot: länk 1 text",
           "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Sidfot: OsloMet URL",
+          "label": "Sidfot: länk 1 URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Sidfot: Lexin text",
+          "label": "Sidfot: länk 2 text",
           "default": "LEXIN"
         },
         {
-          "label": "Sidfot: Lexin URL",
+          "label": "Sidfot: länk 2 URL",
           "default": "https://lexin.csc.kth.se/lexin/"
         },
         {
@@ -159,6 +159,10 @@
         {
           "label": "Sidhuvud: Undertitel",
           "default": "Flerspråkig bildordbok"
+        },
+        {
+          "label": "Sidhuvud: OsloMet logo aria text",
+          "default": "OsloMet - Oslo Metropolitan University"
         },
         {
           "label": "Temastorlek: stor",

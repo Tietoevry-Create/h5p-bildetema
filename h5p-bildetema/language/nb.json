@@ -77,19 +77,19 @@
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer: OsloMet tekst",
+          "label": "Footer: lenke 1 tekst",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Footer: OsloMet URL",
+          "label": "Footer: lenke 1 URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer: Lexin tekst",
+          "label": "Footer: lenke 2 tekst",
           "default": "LEXIN"
         },
         {
-          "label": "Footer: Lexin URL",
+          "label": "Footer: lenke 2 URL",
           "default": "https://lexin.oslomet.no/"
         },
         {
@@ -159,6 +159,10 @@
         {
           "label": "Header: Undertekst",
           "default": "Flerspråklig bildeordbok"
+        },
+        {
+          "label": "Header: OsloMet logo aria tekst",
+          "default": "OsloMet - storbyuniversitetet"
         },
         {
           "label": "Temastørrelse stor",
