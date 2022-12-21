@@ -31,9 +31,6 @@ export const Footer = (): JSX.Element => {
     "footerAccessibilityStatementHref",
   );
 
-  const copyrightImagesLabel = useL10n("footerCopyrightImagesLabel");
-  const copyrightImagesHref = useL10n("footerCopyrightImagesHref");
-
   const copyrightLabel = useL10n("footerCopyright");
 
   return (
@@ -75,9 +72,6 @@ export const Footer = (): JSX.Element => {
                 <a href={accessibilityStatementHref}>
                   {accessibilityStatementLabel}
                 </a>
-              </li>
-              <li>
-                <a href={copyrightImagesHref}>{copyrightImagesLabel}</a>
               </li>
             </ul>
           </div>

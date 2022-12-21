@@ -185,18 +185,6 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
-        label: "Footer copyright images label",
-        name: "footerCopyrightImagesLabel",
-        default: "Copyright images",
-        type: "text",
-      },
-      {
-        label: "Footer copyright images URL",
-        name: "footerCopyrightImagesHref",
-        default: "/copyright-images",
-        type: "text",
-      },
-      {
         label: "Breadcrumbs aria label",
         name: "breadcrumbsAriaLabel",
         default: "Breadcrumbs",

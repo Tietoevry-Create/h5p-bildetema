@@ -109,14 +109,6 @@
           "default": "/accessibility-statement"
         },
         {
-          "label": "Sidfot: copyright bilder text",
-          "default": "Copyright bilder"
-        },
-        {
-          "label": "Sidfot: copyright bilder URL",
-          "default": "/copyright-images"
-        },
-        {
           "label": "Länkstigen aria text",
           "default": "Länkstigen"
         },

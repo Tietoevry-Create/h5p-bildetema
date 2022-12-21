@@ -109,14 +109,6 @@
           "default": "/accessibility-statement"
         },
         {
-          "label": "Footer copyright images label",
-          "default": "Copyright images"
-        },
-        {
-          "label": "Footer copyright images URL",
-          "default": "/copyright-images"
-        },
-        {
           "label": "Breadcrumbs aria label",
           "default": "Breadcrumbs"
         },
