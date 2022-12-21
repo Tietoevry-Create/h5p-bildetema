@@ -12,4 +12,8 @@
   p {
     font-size: 1.125rem;
   }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+  }
 }
