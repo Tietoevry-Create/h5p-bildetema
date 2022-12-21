@@ -109,14 +109,6 @@
           "default": "/yfirlýsing-um-aðgang"
         },
         {
-          "label": "Footer copyright images label",
-          "default": "Höfundaréttur mynda"
-        },
-        {
-          "label": "Footer copyright images URL",
-          "default": "/höfundaréttur-mynda"
-        },
-        {
           "label": "Breadcrumbs aria label",
           "default": "Brauðmylsna"
         },

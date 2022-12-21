@@ -31,8 +31,6 @@ export type TranslationKey =
   | "footerPrivacyStatementHref"
   | "footerAccessibilityStatementLabel"
   | "footerAccessibilityStatementHref"
-  | "footerCopyrightImagesLabel"
-  | "footerCopyrightImagesHref"
   | "breadcrumbsAriaLabel"
   | "breadcrumbsTopic"
   | "breadcrumbsHome"
