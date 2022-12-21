@@ -66,7 +66,7 @@
         },
         {
           "label": "Footer: forrige Bildetema URL",
-          "default": "https://bildetema.oslomet.no/"
+          "default": "https://bildetema.oslomet.no/bildetema/bildetema-portal/index.html?page=start&amp;version=danish"
         },
         {
           "label": "Footer: NAFO tekst",
@@ -86,11 +86,11 @@
         },
         {
           "label": "Footer: link 2 tekst",
-          "default": "LEXIN"
+          "default": "Nationalt videncenter for læsning"
         },
         {
           "label": "Footer: link 2 URL",
-          "default": "https://lexin.oslomet.no/"
+          "default": "https://www.videnomlaesning.dk/"
         },
         {
           "label": "Footer: privacy statement tekst",
