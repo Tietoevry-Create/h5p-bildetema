@@ -81,6 +81,7 @@ export const PrintButton: React.FC<PrintProps> = ({
       >
         <button
           type="button"
+          aria-label={printLabel}
           className={`${
             isActive ? styles.printButtonActive : styles.printButton
           } ${
