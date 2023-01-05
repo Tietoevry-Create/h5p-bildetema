@@ -26,7 +26,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           checked={checked}
           onChange={e => handleChange(e.target.checked)}
           disabled={disabled}
-          aria-label={label}
         />
         {checked ? (
           <span className={styles.starIcon} aria-hidden="true">
@@ -38,6 +37,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           </span>
         )}
       </span>
+      <span className={styles.visuallyHidden}>{label}</span>
     </label>
   );
 };
