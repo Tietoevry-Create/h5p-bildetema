@@ -109,6 +109,22 @@
           "default": "/dk/tilgjengelighetserklaering"
         },
         {
+          "label": "Footer: Creative commons img alt tekst",
+          "default": "Creative Commons-licens"
+        },
+        {
+          "label": "Footer: Creative commons tekst",
+          "default": "Licenseret under en"
+        },
+        {
+          "label": "Footer: Creative commons link URL",
+          "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.da"
+        },
+        {
+          "label": "Footer: Creative commons link tekst",
+          "default": "Creative Commons Kreditering-Ikkekommerciel-Deling på samme vilkår 4.0 International licens"
+        },
+        {
           "label": "Brødkrummesti aria tekst",
           "default": "Brødkrummesti"
         },
@@ -142,7 +158,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
+          "default": "Copyright © 2023 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header: Titel",

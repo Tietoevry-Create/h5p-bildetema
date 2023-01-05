@@ -109,6 +109,22 @@
           "default": "/en/tilgjengelighetserklaering"
         },
         {
+          "label": "Footer creative commons img alt text",
+          "default": "Creative Commons License"
+        },
+        {
+          "label": "Footer creative commons text",
+          "default": "Licensed under a"
+        },
+        {
+          "label": "Footer creative commons link URL",
+          "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        },
+        {
+          "label": "Footer creative commons link text",
+          "default": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License"
+        },
+        {
           "label": "Breadcrumbs aria label",
           "default": "Breadcrumbs"
         },
@@ -142,7 +158,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
+          "default": "Copyright © 2023 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header title",

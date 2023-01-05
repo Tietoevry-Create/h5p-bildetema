@@ -109,6 +109,22 @@
           "default": "/se/tilgjengelighetserklaering"
         },
         {
+          "label": "Sidfot: Creative commons img alt text",
+          "default": "Creative Commons-licens"
+        },
+        {
+          "label": "Sidfot: Creative commons text",
+          "default": "Licensierad under en"
+        },
+        {
+          "label": "Sidfot: Creative commons link URL",
+          "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.sv"
+        },
+        {
+          "label": "Sidfot: Creative commons link text",
+          "default": "Creative Commons Erkännande-IckeKommersiell-DelaLika 4.0 Internationell licens"
+        },
+        {
           "label": "Länkstigen aria text",
           "default": "Länkstigen"
         },
@@ -142,7 +158,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Upphovsrättsligt skyddad © 2022 · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
+          "default": "Upphovsrättsligt skyddad © 2023 · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
         },
         {
           "label": "Sidhuvud: Titel",

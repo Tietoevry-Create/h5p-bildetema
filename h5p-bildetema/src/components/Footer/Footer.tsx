@@ -33,6 +33,11 @@ export const Footer = (): JSX.Element => {
 
   const copyrightLabel = useL10n("footerCopyright");
 
+  const creativeCommonsImgAlt = useL10n("footerCreativeCommonsImgAlt");
+  const creativeCommonsText = useL10n("footerCreativeCommonsText");
+  const creativeCommonsLinkURL = useL10n("footerCreativeCommonsLinkURL");
+  const creativeCommonsLinkText = useL10n("footerCreativeCommonsLinkText");
+
   return (
     <footer role="contentinfo" className={styles.footer}>
       <div className={styles.footer_wrapper}>
@@ -77,6 +82,22 @@ export const Footer = (): JSX.Element => {
           </div>
         </div>
         <p>{copyrightLabel}</p>
+        <p className={styles.creativeCommons}>
+          <a
+            rel="license"
+            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+          >
+            <img
+              alt={creativeCommonsImgAlt}
+              src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"
+            />
+          </a>
+          {creativeCommonsText}{" "}
+          <a rel="license" href={creativeCommonsLinkURL}>
+            {creativeCommonsLinkText}
+          </a>
+          .
+        </p>
       </div>
     </footer>
   );
