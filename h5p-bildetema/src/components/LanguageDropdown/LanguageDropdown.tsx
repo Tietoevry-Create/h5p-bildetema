@@ -68,6 +68,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
       <button
         type="button"
         onClick={handleOnClick}
+        aria-label={selectLanguageLabel}
         className={
           isActive ? styles.languageMenuButtonActive : styles.languageMenuButton
         }
