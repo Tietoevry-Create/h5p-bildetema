@@ -63,12 +63,12 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
         if (isWordView) {
           return subTopicId
             ? topics
-                ?.find(t => t.id === topicId)
-                ?.subTopics?.find(s => s.id === subTopicId)
-                ?.words?.get(currentLanguageCode)
+              ?.find(t => t.id === topicId)
+              ?.subTopics?.find(s => s.id === subTopicId)
+              ?.words?.get(currentLanguageCode)
             : topics
-                ?.find(t => t.id === topicId)
-                ?.words?.get(currentLanguageCode);
+              ?.find(t => t.id === topicId)
+              ?.words?.get(currentLanguageCode);
         }
 
         if (!topicId) {
@@ -130,9 +130,13 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
 
     return (
       <div ref={ref} className="wrapper">
-        <div className={styles.printHeader}>{getHeader()}</div>
         <table>
-          <tbody>{renderTable()}</tbody>
+          <tbody>
+            <tr className={styles.printHeader}>
+              <th colSpan={imagesPrRow}>{getHeader()}</th>
+            </tr>
+            {renderTable()}
+          </tbody>
         </table>
       </div>
     );
