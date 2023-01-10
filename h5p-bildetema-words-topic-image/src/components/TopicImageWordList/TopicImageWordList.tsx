@@ -36,7 +36,11 @@ export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
   }, [contextAudioRef, setAudioRef]);
   return (
     <AudioRefContext.Provider value={audioContextValue}>
-      <div className={styles.topicImageWordList}>
+      <div
+        className={`${styles.topicImageWordList} ${
+          showWrittenWords ? "" : styles.hideFromPrint
+        }`}
+      >
         {words?.map((word: Word) => (
           <div className="topic-image-word-list-item" key={word.id}>
             <TopicImageWordAudio

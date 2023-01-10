@@ -15,3 +15,9 @@
     margin: 0 0 0 auto;
   }
 }
+
+.hideFromPrint {
+  @media print {
+    display: none;
+  }
+}
