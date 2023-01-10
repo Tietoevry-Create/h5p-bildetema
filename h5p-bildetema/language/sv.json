@@ -50,7 +50,7 @@
         },
         {
           "label": "Sidfot: om URL",
-          "default": "/om-bildteman"
+          "default": "/se/om-bildetema"
         },
         {
           "label": "Sidfot: Kontaktinfo rubrik",
@@ -58,7 +58,7 @@
         },
         {
           "label": "Sidfot: Kontaktinfo e-postlänk",
-          "default": "mailto:support@lexindrift.atlassian.net"
+          "default": "mailto:bildetema@oslomet.no"
         },
         {
           "label": "Sidfot: gamla Bildteman text",
@@ -98,7 +98,7 @@
         },
         {
           "label": "Sidfot: Sekretesspolicy URL",
-          "default": "/privacy-statement"
+          "default": "/se/personvernerklaering"
         },
         {
           "label": "Sidfot: Tillgänglighetsförklaring text",
@@ -106,7 +106,7 @@
         },
         {
           "label": "Sidfot: Tillgänglighetsförklaring URL",
-          "default": "/accessibility-statement"
+          "default": "/se/tilgjengelighetserklaering"
         },
         {
           "label": "Länkstigen aria text",

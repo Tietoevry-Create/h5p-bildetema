@@ -50,7 +50,7 @@
         },
         {
           "label": "Footer about URL",
-          "default": "/about-bildetema"
+          "default": "/en/om-bildetema"
         },
         {
           "label": "Footer contact info label",
@@ -58,11 +58,11 @@
         },
         {
           "label": "Footer contact info URL",
-          "default": "mailto:support@lexindrift.atlassian.net"
+          "default": "mailto:bildetema@oslomet.no"
         },
         {
           "label": "Footer previous Bildetema site label",
-          "default": "Previous Bildetema site"
+          "default": "Old Bildetema site"
         },
         {
           "label": "Footer previous Bildetema site URL",
@@ -98,7 +98,7 @@
         },
         {
           "label": "Footer privacy statement URL",
-          "default": "/privacy-statement"
+          "default": "/en/personvernerklaering"
         },
         {
           "label": "Footer accessibility statement label",
@@ -106,7 +106,7 @@
         },
         {
           "label": "Footer accessibility statement URL",
-          "default": "/accessibility-statement"
+          "default": "/en/tilgjengelighetserklaering"
         },
         {
           "label": "Breadcrumbs aria label",
@@ -150,7 +150,7 @@
         },
         {
           "label": "Header subtitle",
-          "default": "Multilingual image dictionary"
+          "default": "Multilingual visual dictionary"
         },
         {
           "label": "Header OsloMet logo aria label",
