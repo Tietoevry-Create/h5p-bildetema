@@ -97,7 +97,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer about URL",
         name: "footerAboutHref",
-        default: "/about-bildetema",
+        default: "/en/om-bildetema",
         type: "text",
       },
       {
@@ -109,13 +109,13 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer contact info URL",
         name: "footerContactInfoHref",
-        default: "mailto:support@lexindrift.atlassian.net",
+        default: "mailto:bildetema@oslomet.no",
         type: "text",
       },
       {
         label: "Footer previous Bildetema site label",
         name: "footerPrevBildetemaLabel",
-        default: "Previous Bildetema site",
+        default: "Old Bildetema site",
         type: "text",
       },
       {
@@ -169,7 +169,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer privacy statement URL",
         name: "footerPrivacyStatementHref",
-        default: "/privacy-statement",
+        default: "/en/personvernerklaering",
         type: "text",
       },
       {
@@ -181,7 +181,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Footer accessibility statement URL",
         name: "footerAccessibilityStatementHref",
-        default: "/accessibility-statement",
+        default: "/en/tilgjengelighetserklaering",
         type: "text",
       },
       {
@@ -250,7 +250,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       {
         label: "Header subtitle",
         name: "headerSubtitle",
-        default: "Multilingual image dictionary",
+        default: "Multilingual visual dictionary",
         type: "text",
       },
       {

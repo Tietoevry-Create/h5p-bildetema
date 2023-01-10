@@ -50,7 +50,7 @@
         },
         {
           "label": "Footer: Om Bildetema URL",
-          "default": "/om-bildetema"
+          "default": "/dk/om-bildetema"
         },
         {
           "label": "Footer: Kontaktinfo-overskrift",
@@ -58,7 +58,7 @@
         },
         {
           "label": "Footer: Kontaktinfo-URL",
-          "default": "mailto:support@lexindrift.atlassian.net"
+          "default": "mailto:bildetema@oslomet.no"
         },
         {
           "label": "Footer: forrige Bildetema tekst",
@@ -98,7 +98,7 @@
         },
         {
           "label": "Footer: privacy statement URL",
-          "default": "/privacy-statement"
+          "default": "/dk/personvernerklaering"
         },
         {
           "label": "Footer: Tilgængelighedserklæring tekst",
@@ -106,7 +106,7 @@
         },
         {
           "label": "Footer: Tilgængelighedserklæring URL",
-          "default": "/accessibility-statement"
+          "default": "/dk/tilgjengelighetserklaering"
         },
         {
           "label": "Brødkrummesti aria tekst",

@@ -50,7 +50,7 @@
         },
         {
           "label": "Footer about URL",
-          "default": "/um-bildetema/myndaþema"
+          "default": "/is/om-bildetema"
         },
         {
           "label": "Footer contact info label",
@@ -58,7 +58,7 @@
         },
         {
           "label": "Footer contact info URL",
-          "default": "mailto:support@lexindrift.atlassian.net"
+          "default": "mailto:bildetema@oslomet.no"
         },
         {
           "label": "Footer previous Bildetema site label",
@@ -98,7 +98,7 @@
         },
         {
           "label": "Footer privacy statement URL",
-          "default": "/yfirlýsing-um-friðhelgi"
+          "default": "/is/personvernerklaering"
         },
         {
           "label": "Footer accessibility statement label",
@@ -106,7 +106,7 @@
         },
         {
           "label": "Footer accessibility statement URL",
-          "default": "/yfirlýsing-um-aðgang"
+          "default": "/is/tilgjengelighetserklaering"
         },
         {
           "label": "Breadcrumbs aria label",

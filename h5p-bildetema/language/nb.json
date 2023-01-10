@@ -58,7 +58,7 @@
         },
         {
           "label": "Footer: Kontaktinfo-URL",
-          "default": "mailto:support@lexindrift.atlassian.net"
+          "default": "mailto:bildetema@oslomet.no"
         },
         {
           "label": "Footer: forrige Bildetema tekst",
