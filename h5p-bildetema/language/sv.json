@@ -66,7 +66,7 @@
         },
         {
           "label": "Sidfot: gamla Bildteman URL",
-          "default": "https://bildetema.oslomet.no/bildetema/bildetema-portal/index.html?page=simple-html5&amp;version=swedish"
+          "default": "https://bildetema.oslomet.no/bildetema/bildetema-portal/index.html?page=simple-html5&version=swedish"
         },
         {
           "label": "Sidfot: NAFO text",
