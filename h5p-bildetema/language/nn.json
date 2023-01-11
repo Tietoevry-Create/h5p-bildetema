@@ -109,6 +109,22 @@
           "default": "/nn/tilgjengelighetserklaering"
         },
         {
+          "label": "Footer: Creative commons img alt tekst",
+          "default": "Creative Commons-lisens"
+        },
+        {
+          "label": "Footer: Creative commons tekst",
+          "default": "Lisensiert under ein"
+        },
+        {
+          "label": "Footer: Creative commons link URL",
+          "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.no"
+        },
+        {
+          "label": "Footer: Creative commons link tekst",
+          "default": "Creative Commons Navngivelse-IkkeKommersiell-DelPåSammeVilkår 4.0 Internasjonal lisens"
+        },
+        {
           "label": "Brødsmulesti aria tekst",
           "default": "Brødsmulesti"
         },
@@ -142,7 +158,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Kopibeskytta © 2022 · Alle rettar · Nasjonalt senter for fleirkulturell opplæring (NAFO), OsloMet"
+          "default": "Kopibeskytta © 2023 · Alle rettar · Nasjonalt senter for fleirkulturell opplæring (NAFO), OsloMet"
         },
         {
           "label": "Header: Tittel",

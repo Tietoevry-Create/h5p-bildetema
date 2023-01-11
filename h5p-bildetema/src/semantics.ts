@@ -185,6 +185,31 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         type: "text",
       },
       {
+        label: "Footer creative commons img alt text",
+        name: "footerCreativeCommonsImgAlt",
+        default: "Creative Commons License",
+        type: "text",
+      },
+      {
+        label: "Footer creative commons text",
+        name: "footerCreativeCommonsText",
+        default: "Licensed under a",
+        type: "text",
+      },
+      {
+        label: "Footer creative commons link URL",
+        name: "footerCreativeCommonsLinkURL",
+        default: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        type: "text",
+      },
+      {
+        label: "Footer creative commons link text",
+        name: "footerCreativeCommonsLinkText",
+        default:
+          "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License",
+        type: "text",
+      },
+      {
         label: "Breadcrumbs aria label",
         name: "breadcrumbsAriaLabel",
         default: "Breadcrumbs",
@@ -238,7 +263,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         label: "Copyright",
         name: "footerCopyright",
         default:
-          "Copyright © 2022 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
+          "Copyright © 2023 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
         type: "text",
       },
       {
