@@ -72,7 +72,7 @@
   }
 
   p {
-    margin-bottom: $spacing--32;
+    margin-bottom: $spacing--16;
   }
 
   :focus {
@@ -84,15 +84,8 @@
     display: none;
   }
 
-  .creativeCommons {
-    font-size: $font-size-16;
-    margin-bottom: $spacing--16;
-    max-width: 35rem;
-
-    img {
-      border-width: 0;
-      float: left;
-      margin: $spacing--8 $spacing--8 0 0;
-    }
+  .creativeCommons img {
+    border-width: 0;
+    margin: $spacing--8 $spacing--8 0 0;
   }
 }
