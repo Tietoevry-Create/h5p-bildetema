@@ -17,6 +17,7 @@ const Template = (): JSX.Element => {
       showWrittenWords
       isWordView={false}
       showTopicImageView
+      showArticles
     />
   );
 };

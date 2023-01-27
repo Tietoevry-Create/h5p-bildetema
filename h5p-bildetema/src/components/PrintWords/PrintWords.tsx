@@ -10,6 +10,7 @@ type PrintWordsProps = {
   showWrittenWords: boolean;
   imagesPrRow: number;
   isWordView: boolean;
+  showArticles: boolean;
 };
 
 export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
@@ -19,6 +20,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
       showWrittenWords,
       imagesPrRow,
       isWordView,
+      showArticles,
     },
     ref,
   ) => {
@@ -93,13 +95,16 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
+            const wordLabel = showArticles
+              ? `${word.article} ${word.label}`
+              : word.label;
             const img = word.images?.at(0)?.src;
             return (
               <td key={word.id}>
                 <div className={styles.imgWrapper}>
                   {img && <img src={img} alt="" />}
                   {showWrittenWords && img && (
-                    <div className={styles.label}>{word.label}</div>
+                    <div className={styles.label}>{wordLabel}</div>
                   )}
                 </div>
               </td>

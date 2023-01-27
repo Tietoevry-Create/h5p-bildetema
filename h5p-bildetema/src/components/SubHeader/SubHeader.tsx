@@ -92,6 +92,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
             showWrittenWords={toggleChecked}
             isWordView={isWordView}
             showTopicImageView={showTopicImageView}
+            showArticles={articlesToggleChecked && showArticlesToggle}
           />
         )}
         {element}
