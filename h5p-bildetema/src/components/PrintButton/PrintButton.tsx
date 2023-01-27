@@ -12,6 +12,7 @@ type PrintProps = {
   showWrittenWords: boolean;
   showTopicImageView: boolean;
   isWordView: boolean;
+  showArticles: boolean;
 };
 
 export const PrintButton: React.FC<PrintProps> = ({
@@ -19,6 +20,7 @@ export const PrintButton: React.FC<PrintProps> = ({
   showWrittenWords,
   isWordView,
   showTopicImageView,
+  showArticles,
 }) => {
   const [imagesPrRow, setImagesPrRow] = React.useState(3);
   const [printClicked, setPrintClicked] = React.useState(false);
@@ -144,6 +146,7 @@ export const PrintButton: React.FC<PrintProps> = ({
             showWrittenWords={showWrittenWords}
             imagesPrRow={imagesPrRow}
             isWordView={isWordView}
+            showArticles={showArticles}
           />
         </div>
       )}
