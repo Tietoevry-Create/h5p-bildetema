@@ -46,7 +46,7 @@
         },
         {
           "label": "Footer: Om Bildetema tekst",
-          "default": "Om Bildetema"
+          "default": "Om Billedtema"
         },
         {
           "label": "Footer: Om Bildetema URL",
@@ -62,7 +62,7 @@
         },
         {
           "label": "Footer: forrige Bildetema tekst",
-          "default": "Gamle Bildetema"
+          "default": "Gamle Billedtema"
         },
         {
           "label": "Footer: forrige Bildetema URL",
@@ -162,7 +162,7 @@
         },
         {
           "label": "Header: Titel",
-          "default": "Bildetema"
+          "default": "Billedtema"
         },
         {
           "label": "Header: Undertekst",
@@ -206,7 +206,7 @@
         },
         {
           "label": "Sprogvælger link del 2",
-          "default": "gamle Bildetema"
+          "default": "gamle Billedtema"
         },
         {
           "label": "Arabisk",
