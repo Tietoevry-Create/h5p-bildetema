@@ -63,12 +63,12 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
         if (isWordView) {
           return subTopicId
             ? topics
-                ?.find(t => t.id === topicId)
-                ?.subTopics?.find(s => s.id === subTopicId)
-                ?.words?.get(currentLanguageCode)
+              ?.find(t => t.id === topicId)
+              ?.subTopics?.find(s => s.id === subTopicId)
+              ?.words?.get(currentLanguageCode)
             : topics
-                ?.find(t => t.id === topicId)
-                ?.words?.get(currentLanguageCode);
+              ?.find(t => t.id === topicId)
+              ?.words?.get(currentLanguageCode);
         }
 
         if (!topicId) {
@@ -99,7 +99,14 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
               showArticles && word.article
                 ? `${word.article} ${word.label}`
                 : word.label;
-            const img = word.images?.at(0)?.src;
+
+            const activeImage = word.images?.find(image => {
+              return document.querySelector(
+                `div.swiper-slide-active img[src="${image?.src}"]`,
+              );
+            });
+
+            const img = activeImage?.src ?? word.images?.at(0)?.src;
             return (
               <td key={word.id}>
                 <div className={styles.imgWrapper}>
