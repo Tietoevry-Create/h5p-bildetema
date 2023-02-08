@@ -95,9 +95,10 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
-            const wordLabel = showArticles
-              ? `${word.article} ${word.label}`
-              : word.label;
+            const wordLabel =
+              showArticles && word.article
+                ? `${word.article} ${word.label}`
+                : word.label;
             const img = word.images?.at(0)?.src;
             return (
               <td key={word.id}>
