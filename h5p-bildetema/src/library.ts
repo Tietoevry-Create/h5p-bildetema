@@ -12,6 +12,11 @@ export const library: Library = {
       path: "dist/bundle.js",
     },
   ],
+  preloadedCss: [
+    {
+      path: "dist/main.css",
+    },
+  ],
   preloadedDependencies: [
     {
       machineName: "H5P.BildetemaWordsGridView",
