@@ -12,6 +12,112 @@
     "type": "text"
   },
   {
+    "label": "Current language",
+    "name": "currentLanguage",
+    "type": "select",
+    "widget": "none",
+    "optional": true,
+    "options": [
+      {
+        "label": "Arabic",
+        "value": "ara"
+      },
+      {
+        "label": "Sorani",
+        "value": "ckb"
+      },
+      {
+        "label": "Danish",
+        "value": "dan"
+      },
+      {
+        "label": "English",
+        "value": "eng"
+      },
+      {
+        "label": "Persian",
+        "value": "fas"
+      },
+      {
+        "label": "French",
+        "value": "fra"
+      },
+      {
+        "label": "Icelandic",
+        "value": "isl"
+      },
+      {
+        "label": "Kurmanji",
+        "value": "kmr"
+      },
+      {
+        "label": "Lithuanian",
+        "value": "lit"
+      },
+      {
+        "label": "Norwegian (nynorsk)",
+        "value": "nno"
+      },
+      {
+        "label": "Norwegian (bokmål)",
+        "value": "nob"
+      },
+      {
+        "label": "Polish",
+        "value": "pol"
+      },
+      {
+        "label": "Dari",
+        "value": "prs"
+      },
+      {
+        "label": "Pashto",
+        "value": "pus"
+      },
+      {
+        "label": "Russian",
+        "value": "rus"
+      },
+      {
+        "label": "Northern Sami",
+        "value": "sme"
+      },
+      {
+        "label": "Somali",
+        "value": "som"
+      },
+      {
+        "label": "Spanish",
+        "value": "spa"
+      },
+      {
+        "label": "Swedish",
+        "value": "swe"
+      },
+      {
+        "label": "Tagalog",
+        "value": "tgl"
+      },
+      {
+        "label": "Thai",
+        "value": "tha"
+      },
+      {
+        "label": "Tigrinya",
+        "value": "tir"
+      },
+      {
+        "label": "Ukrainian",
+        "value": "ukr"
+      },
+      {
+        "label": "Vietnamese",
+        "value": "vie"
+      }
+    ],
+    "default": "eng"
+  },
+  {
     "label": "Selected topic",
     "name": "selectedTopic",
     "type": "group",
@@ -82,7 +188,30 @@
         {
           "label": "Color",
           "name": "color",
-          "type": "text"
+          "type": "select",
+          "default": "burgundy",
+          "options": [
+            {
+              "label": "Burgundy",
+              "value": "burgundy"
+            },
+            {
+              "label": "Blue magenta",
+              "value": "blueMagenta"
+            },
+            {
+              "label": "Orange",
+              "value": "orange"
+            },
+            {
+              "label": "Black transparent",
+              "value": "blackTransparent"
+            },
+            {
+              "label": "White",
+              "value": "white"
+            }
+          ]
         },
         {
           "label": "Word",

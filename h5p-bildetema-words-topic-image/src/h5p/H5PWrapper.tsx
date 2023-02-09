@@ -1,27 +1,13 @@
-import type { IH5PContentType, Image } from "h5p-types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { IH5PContentType, InferParamsFromSemantics } from "h5p-types";
 import { H5P, H5PContentType } from "h5p-utils";
 import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import type { TopicImageHotspot } from "../../../common/types/TopicImageHotspot";
 import { App } from "../App";
-import type { TranslationKey } from "../types/TranslationKey";
-import { LanguageCode } from "../../../common/types/LanguageCode";
+import { semantics } from "../semantics";
 
-export type Params = {
-  topicImage: Image;
-  hotspots: Array<TopicImageHotspot>;
-  selectedTopic: {
-    topicId: string;
-    subTopicId: string;
-  };
-  l10n: Record<TranslationKey, string>;
-  currentLanguage?: LanguageCode;
-  backendUrl?: string;
-  showWrittenWords: boolean;
-  showArticles: boolean;
-};
+export type Params = InferParamsFromSemantics<typeof semantics>;
 
 const queryClient = new QueryClient();
 

@@ -1,6 +1,13 @@
-import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
+import type {
+  H5PBehaviour,
+  H5PField,
+  H5PFieldSelect,
+  H5PL10n,
+  ReadonlyDeep,
+} from "h5p-types";
+import { languageOptions } from "../../common/constants/languages";
 
-export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
+export const semantics = [
   {
     label: "Image",
     name: "topicImage",
@@ -13,6 +20,15 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     description: "The Url to the json database",
     type: "text",
   },
+  {
+    label: "Current language",
+    name: "currentLanguage",
+    type: "select",
+    widget: "none",
+    optional: true,
+    options: languageOptions,
+    default: "eng",
+  } satisfies H5PFieldSelect,
   {
     label: "Selected topic",
     name: "selectedTopic",
@@ -84,7 +100,30 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         {
           label: "Color",
           name: "color",
-          type: "text",
+          type: "select",
+          default: "burgundy",
+          options: [
+            {
+              label: "Burgundy",
+              value: "burgundy",
+            },
+            {
+              label: "Blue magenta",
+              value: "blueMagenta",
+            },
+            {
+              label: "Orange",
+              value: "orange",
+            },
+            {
+              label: "Black transparent",
+              value: "blackTransparent",
+            },
+            {
+              label: "White",
+              value: "white",
+            },
+          ],
         },
         {
           label: "Word",
@@ -203,4 +242,4 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     default: false,
     importance: "low",
   },
-];
+] as const satisfies ReadonlyDeep<Array<H5PField | H5PBehaviour | H5PL10n>>;

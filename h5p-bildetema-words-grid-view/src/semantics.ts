@@ -1,6 +1,6 @@
-import { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
+import { H5PBehaviour, H5PField, H5PL10n, ReadonlyDeep } from "h5p-types";
 
-export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
+export const semantics = [
   {
     label: "Words",
     name: "words",
@@ -15,6 +15,11 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       type: "group",
       fields: [
         {
+          label: "Id",
+          name: "id",
+          type: "text",
+        },
+        {
           label: "Word",
           name: "label",
           type: "text",
@@ -25,15 +30,79 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
           type: "list",
           entity: "Image",
           field: {
-            label: "Image URL",
-            name: "imageUrl",
-            type: "text",
+            label: "Image",
+            name: "image",
+            type: "group",
+            fields: [
+              {
+                label: "Src",
+                name: "src",
+                type: "text",
+              },
+              {
+                label: "Src sets",
+                name: "srcSets",
+                type: "list",
+                entity: "Src set",
+                optional: true,
+                field: {
+                  label: "Src set",
+                  name: "srcSet",
+                  type: "group",
+                  fields: [
+                    {
+                      label: "Src",
+                      name: "src",
+                      type: "text",
+                    },
+                    {
+                      label: "Width",
+                      name: "width",
+                      type: "number",
+                    },
+                  ],
+                },
+              },
+            ],
           },
         },
         {
-          label: "Audio URL",
-          name: "audio",
-          type: "text",
+          label: "Audio files",
+          name: "audioFiles",
+          type: "list",
+          entity: "Audio file",
+          field: {
+            label: "Audio file",
+            name: "audioFile",
+            type: "group",
+            fields: [
+              {
+                label: "Mime type",
+                name: "mimeType",
+                type: "select",
+                default: "audio/webm",
+                options: [
+                  {
+                    label: "WebM",
+                    value: "audio/webm",
+                  },
+                  {
+                    label: "MP3",
+                    value: "audio/mp3",
+                  },
+                  {
+                    label: "WAV",
+                    value: "audio/x-wav",
+                  },
+                ],
+              },
+              {
+                label: "Url",
+                name: "url",
+                type: "text",
+              },
+            ],
+          },
         },
       ],
     },
@@ -100,4 +169,4 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     default: false,
     importance: "low",
   },
-];
+] as const satisfies ReadonlyDeep<Array<H5PField | H5PBehaviour | H5PL10n>>;

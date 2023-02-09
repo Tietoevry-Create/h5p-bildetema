@@ -1,3 +1,5 @@
+import { H5PFieldText } from "h5p-types";
+
 export const languages = [
   "ara",
   "ckb",
@@ -24,6 +26,50 @@ export const languages = [
   "ukr",
   "vie",
 ] as const;
+
+const languagesEnglish = {
+  Arabic: "ara",
+  Sorani: "ckb",
+  Danish: "dan",
+  English: "eng",
+  Persian: "fas",
+  French: "fra",
+  Icelandic: "isl",
+  Kurmanji: "kmr",
+  Lithuanian: "lit",
+  "Norwegian (nynorsk)": "nno",
+  "Norwegian (bokmål)": "nob",
+  Polish: "pol",
+  Dari: "prs",
+  Pashto: "pus",
+  Russian: "rus",
+  "Northern Sami": "sme",
+  Somali: "som",
+  Spanish: "spa",
+  Swedish: "swe",
+  Tagalog: "tgl",
+  Thai: "tha",
+  Tigrinya: "tir",
+  Ukrainian: "ukr",
+  Vietnamese: "vie",
+} as const;
+
+export const languageFields = Object.entries(languagesEnglish).map(
+  ([name, code]) =>
+    ({
+      label: name,
+      name: `lang_${code}`,
+      default: name,
+      type: "text",
+    } satisfies H5PFieldText),
+);
+
+export const languageOptions = Object.entries(languagesEnglish).map(
+  ([name, code]) => ({
+    label: name,
+    value: code,
+  }),
+);
 
 export const languagesOriginal = {
   ara: "العربية",

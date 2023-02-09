@@ -1,11 +1,11 @@
 import type {
+  H5PField,
   H5PFieldGroup,
   H5PGroup,
+  H5PImage,
   IH5PEditorImageField,
   IH5PFieldInstance,
   IH5PWidget,
-  H5PField,
-  Image,
 } from "h5p-types";
 import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
 import * as React from "react";
@@ -22,7 +22,7 @@ type Field = H5PFieldGroup;
 export type Params = Array<Hotspot>;
 
 export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
-  private image: Image | undefined;
+  private image: H5PImage | undefined;
 
   private root: Root | undefined;
 
@@ -105,7 +105,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     this.wrapper.parentElement?.removeChild(this.wrapper);
   }
 
-  private static fetchImage(field: IH5PEditorImageField): Image | undefined {
+  private static fetchImage(field: IH5PEditorImageField): H5PImage | undefined {
     if (field?.params) {
       return {
         ...field.params,

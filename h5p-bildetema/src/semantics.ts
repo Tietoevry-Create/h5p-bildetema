@@ -1,25 +1,10 @@
-import { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
-import { languages } from "../../common/constants/languages";
+import { H5PBehaviour, H5PField, H5PL10n, ReadonlyDeep } from "h5p-types";
+import {
+  languageFields,
+  languageOptions,
+} from "../../common/constants/languages";
 
-const lang = (
-  isoCode: (typeof languages)[number],
-  label: string,
-): H5PFieldText => ({
-  label,
-  name: `lang_${isoCode}`,
-  default: label,
-  type: "text",
-});
-
-const langOption = (
-  isoCode: (typeof languages)[number],
-  label: string,
-): { label: string; value: string } => ({
-  label,
-  value: isoCode,
-});
-
-export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
+export const semantics = [
   {
     name: "l10n",
     type: "group",
@@ -338,30 +323,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
         default: "old Bildetema",
         type: "text",
       },
-      lang("ara", "Arabic"),
-      lang("ckb", "Sorani"),
-      lang("dan", "Danish"),
-      lang("eng", "English"),
-      lang("fas", "Persian"),
-      lang("fra", "French"),
-      lang("isl", "Icelandic"),
-      lang("kmr", "Kurmanji"),
-      lang("lit", "Lithuanian"),
-      lang("nno", "Norwegian (nynorsk)"),
-      lang("nob", "Norwegian (bokmål)"),
-      lang("pol", "Polish"),
-      lang("prs", "Dari"),
-      lang("pus", "Pashto"),
-      lang("rus", "Russian"),
-      lang("sme", "Northern Sami"),
-      lang("som", "Somali"),
-      lang("spa", "Spanish"),
-      lang("swe", "Swedish"),
-      lang("tgl", "Tagalog"),
-      lang("tha", "Thai"),
-      lang("tir", "Tigrinya"),
-      lang("ukr", "Ukrainian"),
-      lang("vie", "Vietnamese"),
+      ...languageFields,
     ],
   },
   {
@@ -376,32 +338,7 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
       name: "languageCode",
       type: "select",
       default: "nob",
-      options: [
-        langOption("ara", "Arabic"),
-        langOption("ckb", "Sorani"),
-        langOption("dan", "Danish"),
-        langOption("eng", "English"),
-        langOption("fas", "Persian"),
-        langOption("fra", "French"),
-        langOption("isl", "Icelandic"),
-        langOption("kmr", "Kurmanji"),
-        langOption("lit", "Lithuanian"),
-        langOption("nno", "Norwegian (nynorsk)"),
-        langOption("nob", "Norwegian (bokmål)"),
-        langOption("pol", "Polish"),
-        langOption("prs", "Dari"),
-        langOption("pus", "Pashto"),
-        langOption("rus", "Russian"),
-        langOption("sme", "Northern Sami"),
-        langOption("som", "Somali"),
-        langOption("spa", "Spanish"),
-        langOption("swe", "Swedish"),
-        langOption("tgl", "Tagalog"),
-        langOption("tha", "Thai"),
-        langOption("tir", "Tigrinya"),
-        langOption("ukr", "Ukrainian"),
-        langOption("vie", "Vietnamese"),
-      ],
+      options: [...languageOptions],
     },
   },
   {
@@ -411,4 +348,4 @@ export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
     name: "backendUrl",
     type: "text",
   },
-];
+] as const satisfies ReadonlyDeep<Array<H5PField | H5PBehaviour | H5PL10n>>;

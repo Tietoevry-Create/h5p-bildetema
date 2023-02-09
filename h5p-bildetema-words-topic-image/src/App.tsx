@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
+import { Color } from "../../common/enums/Color";
 import { Topic, Word } from "../../common/types/types";
 import { getData } from "../../common/utils/data.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
@@ -113,7 +114,7 @@ export const App: FC<AppProps> = ({
       .map(({ word, points, rotation, ellipseRadius, color }) => ({
         wordId: word.id,
         outline: renderFigure(points, rotation, ellipseRadius),
-        color,
+        color: color as Color,
       }));
 
     setOverlays(computedOverlays);

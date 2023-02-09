@@ -1,20 +1,15 @@
-import type { IH5PContentType } from "h5p-types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { IH5PContentType, InferParamsFromSemantics } from "h5p-types";
 import { H5PContentType } from "h5p-utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import { LanguageCode } from "../../../common/types/LanguageCode";
 import { App } from "../components/App/App";
-import { TranslationKey } from "../types/TranslationKey";
+import { semantics } from "../semantics";
 
 const queryClient = new QueryClient();
-type Params = {
-  l10n: Record<TranslationKey, string>;
-  defaultLanguages?: Array<LanguageCode>;
-  backendUrl?: string;
-};
+type Params = InferParamsFromSemantics<typeof semantics>;
 
 export class H5PWrapper
   extends H5PContentType<Params>
