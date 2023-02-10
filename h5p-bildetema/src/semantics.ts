@@ -2,7 +2,7 @@ import { H5PBehaviour, H5PField, H5PFieldText, H5PL10n } from "h5p-types";
 import { languages } from "../../common/constants/languages";
 
 const lang = (
-  isoCode: typeof languages[number],
+  isoCode: (typeof languages)[number],
   label: string,
 ): H5PFieldText => ({
   label,
@@ -12,7 +12,7 @@ const lang = (
 });
 
 const langOption = (
-  isoCode: typeof languages[number],
+  isoCode: (typeof languages)[number],
   label: string,
 ): { label: string; value: string } => ({
   label,
