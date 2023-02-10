@@ -7,5 +7,5 @@ export const useL10n = (translationKey: TranslationKey): string => {
 
 export const useL10ns = <TString extends TranslationKey = TranslationKey>(
   ...translationKeys: Array<TString>
-): Record<(typeof translationKeys)[number], string> =>
+): Record<typeof translationKeys[number], string> =>
   useLocalizations<TranslationKey>(...translationKeys);
