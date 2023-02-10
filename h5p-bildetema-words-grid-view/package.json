@@ -41,7 +41,7 @@
     "@storybook/builder-vite": "^0.2.6",
     "@storybook/react": "^6.5.14",
     "@testing-library/react": "^13.4.0",
-    "@types/jquery": "^3.5.14",
+    "@types/jquery": "^3.5.16",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "h5p-generate-configs": "^0.4.2",
