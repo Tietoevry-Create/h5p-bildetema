@@ -1,31 +1,26 @@
-import { BuildOptions, PluginOption } from "vite";
+import { BuildOptions } from "vite";
 
-export const wrapIIFE = (): PluginOption => ({
-  name: "wrap-iife",
-  generateBundle(options, bundle) {
-    const chunks = Object.values(bundle);
-
-    for (let i = 0; i < chunks.length; i += 1) {
-      const chunk = chunks[i];
-      const isOutputChunk = "code" in chunk;
-      if (isOutputChunk) {
-        // eslint-disable-next-line no-param-reassign
-        chunk.code = `(function(){${chunk.code}})()`;
-      }
-    }
-  },
-});
-
-export const getBuildConfig = (): BuildOptions => ({
+export const getBuildConfig = (libName: string): BuildOptions => ({
   minify: "esbuild",
 
+  lib: {
+    entry: "src/index.tsx",
+    formats: ["iife"],
+    name: libName,
+    fileName: () => `bundle.js`,
+  },
+
   rollupOptions: {
-    input: "src/index.tsx",
     output: {
-      file: "dist/bundle.js",
-      dir: undefined,
-      esModule: false,
-      format: "iife",
+      assetFileNames: assetInfo => {
+        // For some reason, an H5P content type's style file cannot be named `style.css`.
+        // Therefore we need to change the name before saving it.
+        if (assetInfo.name === "style.css") {
+          return `main.css`;
+        }
+
+        return assetInfo.name ?? "";
+      },
     },
   },
 
