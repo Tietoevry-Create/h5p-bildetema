@@ -26,3 +26,7 @@ export const getBuildConfig = (libName: string): BuildOptions => ({
 
   target: "es6",
 });
+
+export const define = {
+  "process.env.NODE_ENV": "production",
+};
