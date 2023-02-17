@@ -4,14 +4,14 @@ import fs from "fs";
 const { log } = console;
 
 async function openPage(page: puppeteer.Page, url: string) {
-  log("Open-page");
+  log(`Opening ${url}`);
   await page.goto(`${url}`, {
     waitUntil: "networkidle2",
   });
 }
 
 async function logInIfNotAuthenticated(page: puppeteer.Page): Promise<void> {
-  log("Loggin");
+  log("Logging in");
   const user = process.env.WORDPRESS_USER
     ? process.env.WORDPRESS_USER
     : "admin";
@@ -34,7 +34,7 @@ async function updateLibrary(
   page: puppeteer.Page,
   filePath: string,
 ): Promise<void> {
-  log("Upload");
+  log("Uploading H5P file");
   const [fileChooser] = await Promise.all([
     page.waitForFileChooser(),
     page.click("#h5p-file"),
@@ -53,7 +53,7 @@ async function updateLibrary(
   const h5pFilePath = "./all.h5p";
 
   if (!fs.existsSync(h5pFilePath)) return;
-  log("file exist");
+  log("File exists");
   // debug settings:
   // const browser = await puppeteer.launch({
   //   dumpio: true,

@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from "@testing-library/react";
 import * as React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from "vitest";
 import { Word } from "../../../../common/types/types";
 import {
