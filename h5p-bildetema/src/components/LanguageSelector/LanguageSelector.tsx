@@ -7,6 +7,7 @@ import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 import { useL10n } from "../../hooks/useL10n";
 import { filterURL } from "../../utils/url.utils";
+import { languagesOriginal } from "../../../../common/constants/languages";
 
 export type LanguageSelectorProps = {
   currentLanguageCode: string;
@@ -38,17 +39,19 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   return (
     <nav aria-label={navAriaLabel} className={styles.languageSelectorWrapper}>
       <ul role="list" className={styles.languageSelector}>
-        {languages?.map((language, index) => (
-          <LanguageSelectorElement
-            path={getLanguagePath(language, topicIds, search, topicsFromDB)}
-            key={language.code}
-            language={language}
-            middleElement={index === Math.max(1, getAmountOfRows() - 1)}
-            favLanguages={favLanguages}
-            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-            currentLanguageCode={currentLanguageCode}
-          />
-        ))}
+        {languages
+          ?.filter(language => languagesOriginal?.[language.code])
+          ?.map((language, index) => (
+            <LanguageSelectorElement
+              path={getLanguagePath(language, topicIds, search, topicsFromDB)}
+              key={language.code}
+              language={language}
+              middleElement={index === Math.max(1, getAmountOfRows() - 1)}
+              favLanguages={favLanguages}
+              handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+              currentLanguageCode={currentLanguageCode}
+            />
+          ))}
       </ul>
       <p>
         {selectLanguageLinkPart1}{" "}
