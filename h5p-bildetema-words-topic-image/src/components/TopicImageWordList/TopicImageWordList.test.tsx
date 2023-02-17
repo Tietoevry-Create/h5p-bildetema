@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from "vitest";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from "@testing-library/react";
 import * as React from "react";
 import {
