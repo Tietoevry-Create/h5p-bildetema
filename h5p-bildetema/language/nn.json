@@ -273,8 +273,8 @@
           "default": "Nordsamisk"
         },
         {
-          "label": "Somalisk",
-          "default": "Somalisk"
+          "label": "Somali",
+          "default": "Somali"
         },
         {
           "label": "Spansk",
@@ -379,7 +379,7 @@
             "value": "sme"
           },
           {
-            "label": "Somalisk",
+            "label": "Somali",
             "value": "som"
           },
           {
