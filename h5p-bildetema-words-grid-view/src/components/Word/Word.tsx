@@ -45,7 +45,6 @@ export const Word: React.FC<WordProps> = ({
         }}
         modules={multipleImages ? [Pagination, Navigation] : []}
         loop={multipleImages}
-        loopedSlides={numberOfImages}
         spaceBetween={10}
       >
         {numberOfImages > 1 && (
