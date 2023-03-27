@@ -54,7 +54,7 @@
     "jsdom": "^21.1.1",
     "license-checker": "^25.0.1",
     "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.7",
     "puppeteer": "^19.7.4",
     "tsx": "^3.12.5",
     "vite": "^4.1.4",
