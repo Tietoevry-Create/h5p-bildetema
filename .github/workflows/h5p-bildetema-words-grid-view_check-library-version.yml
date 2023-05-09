@@ -12,6 +12,10 @@ on:
       - common/**
       - h5p-bildetema-words-grid-view/**
 
+permissions:
+  contents: read
+  pull-request: write
+  
 env:
   project-id: h5p-bildetema-words-grid-view
   project-name: H5P.BildetemaWordsGridView
