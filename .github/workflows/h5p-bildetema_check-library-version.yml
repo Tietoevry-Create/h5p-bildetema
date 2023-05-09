@@ -12,6 +12,10 @@ on:
       - common/**
       - h5p-bildetema/**
 
+permissions:
+  contents: read
+  pull-requests: write
+
 env:
   project-id: h5p-bildetema
   project-name: H5P.Bildetema
