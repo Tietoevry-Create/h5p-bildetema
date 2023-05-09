@@ -14,7 +14,7 @@ on:
 
 permissions:
   contents: read
-  pull-request: write
+  pull-requests: write
 
 env:
   project-id: h5p-editor-bildetema-words-topic-image
