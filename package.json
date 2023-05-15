@@ -55,7 +55,7 @@
     "license-checker": "^25.0.1",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
-    "puppeteer": "^20.1.2",
+    "puppeteer": "^20.2.0",
     "tsx": "^3.12.7",
     "vite": "^4.3.5",
     "vitest": "^0.31.0"
