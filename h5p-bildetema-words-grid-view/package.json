@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@mdx-js/react": "^2.3.0",
-    "@storybook/addon-essentials": "^7.0.9",
+    "@storybook/addon-essentials": "^7.0.12",
     "@storybook/addon-links": "^7.0.9",
     "@storybook/builder-vite": "^7.0.9",
     "@storybook/react": "^7.0.9",
