@@ -38,7 +38,7 @@
     "@mdx-js/react": "^2.3.0",
     "@storybook/addon-essentials": "^7.0.12",
     "@storybook/addon-links": "^7.0.12",
-    "@storybook/builder-vite": "^7.0.12",
+    "@storybook/builder-vite": "^7.0.13",
     "@storybook/react": "^7.0.12",
     "@testing-library/react": "^14.0.0",
     "@types/jquery": "^3.5.16",
