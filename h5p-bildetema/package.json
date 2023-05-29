@@ -42,7 +42,7 @@
     "use-react-router-breadcrumbs": "^4.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.0.12",
+    "@storybook/addon-essentials": "^7.0.18",
     "@storybook/addon-links": "^7.0.12",
     "@storybook/builder-vite": "^7.0.12",
     "@storybook/react": "^7.0.12",
