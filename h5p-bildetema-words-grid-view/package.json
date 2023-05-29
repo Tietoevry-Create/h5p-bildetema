@@ -39,7 +39,7 @@
     "@storybook/addon-essentials": "^7.0.12",
     "@storybook/addon-links": "^7.0.12",
     "@storybook/builder-vite": "^7.0.12",
-    "@storybook/react": "^7.0.12",
+    "@storybook/react": "^7.0.18",
     "@testing-library/react": "^14.0.0",
     "@types/jquery": "^3.5.16",
     "@types/react": "^18.2.6",
