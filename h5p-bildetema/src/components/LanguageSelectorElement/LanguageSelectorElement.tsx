@@ -16,7 +16,8 @@ type LanguageSelectorElement = {
   path: string;
   language: Language;
   currentLanguageCode: string;
-  middleElement: boolean;
+  bottomElementAt2Col: boolean;
+  bottomElementAt3Col: boolean;
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
@@ -25,7 +26,8 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
   path,
   language,
   currentLanguageCode,
-  middleElement,
+  bottomElementAt2Col,
+  bottomElementAt3Col,
   favLanguages,
   handleToggleFavoriteLanguage,
 }) => {
@@ -60,7 +62,9 @@ export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li
       role="listitem"
-      className={`${middleElement ? styles.languageMiddle : styles.language} ${
+      className={`${styles.language} ${
+        bottomElementAt2Col ? styles.languageBottom2Col : ""
+      } ${bottomElementAt3Col ? styles.languageBottom3Col : ""} ${
         isDisabled ? styles.disabled : ""
       }`}
     >
