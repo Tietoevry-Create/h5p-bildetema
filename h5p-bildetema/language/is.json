@@ -265,6 +265,10 @@
           "default": "Pastú"
         },
         {
+          "label": "Rúmenska",
+          "default": "Rúmenska"
+        },
+        {
           "label": "Rússneska",
           "default": "Rússneska"
         },
@@ -279,6 +283,10 @@
         {
           "label": "Spænska",
           "default": "Spænska"
+        },
+        {
+          "label": "Svahílí",
+          "default": "Svahílí"
         },
         {
           "label": "Sænska",
@@ -297,8 +305,16 @@
           "default": "Tígrinja"
         },
         {
+          "label": "Tyrkneska",
+          "default": "Tyrkneska"
+        },
+        {
           "label": "Úkraínska",
           "default": "Úkraínska"
+        },
+        {
+          "label": "Úrdú",
+          "default": "Úrdú"
         },
         {
           "label": "Víetnamska",
@@ -371,6 +387,10 @@
             "value": "pus"
           },
           {
+            "label": "Rúmenska",
+            "value": "ron"
+          },
+          {
             "label": "Rússneska",
             "value": "rus"
           },
@@ -385,6 +405,10 @@
           {
             "label": "Spænska",
             "value": "spa"
+          },
+          {
+            "label": "Svahílí",
+            "value": "swa"
           },
           {
             "label": "Sænska",
@@ -403,8 +427,16 @@
             "value": "tir"
           },
           {
+            "label": "Tyrkneska",
+            "value": "tur"
+          },
+          {
             "label": "Úkraínska",
             "value": "ukr"
+          },
+          {
+            "label": "Úrdú",
+            "value": "urd"
           },
           {
             "label": "Víetnamska",

@@ -265,6 +265,10 @@
           "default": "Pashto"
         },
         {
+          "label": "Rumensk",
+          "default": "Rumensk"
+        },
+        {
           "label": "Russisk",
           "default": "Russisk"
         },
@@ -279,6 +283,10 @@
         {
           "label": "Spansk",
           "default": "Spansk"
+        },
+        {
+          "label": "Swahili",
+          "default": "Swahili"
         },
         {
           "label": "Svensk",
@@ -297,8 +305,16 @@
           "default": "Tigrinja"
         },
         {
+          "label": "Tyrkisk",
+          "default": "Tyrkisk"
+        },
+        {
           "label": "Ukrainsk",
           "default": "Ukrainsk"
+        },
+        {
+          "label": "Urdu",
+          "default": "Urdu"
         },
         {
           "label": "Vietnamesisk",
@@ -371,6 +387,10 @@
             "value": "pus"
           },
           {
+            "label": "Rumensk",
+            "value": "ron"
+          },
+          {
             "label": "Russisk",
             "value": "rus"
           },
@@ -385,6 +405,10 @@
           {
             "label": "Spansk",
             "value": "spa"
+          },
+          {
+            "label": "Swahili",
+            "value": "swa"
           },
           {
             "label": "Svensk",
@@ -403,8 +427,16 @@
             "value": "tir"
           },
           {
+            "label": "Tyrkisk",
+            "value": "tur"
+          },
+          {
             "label": "Ukrainsk",
             "value": "ukr"
+          },
+          {
+            "label": "Urdu",
+            "value": "urd"
           },
           {
             "label": "Vietnamesisk",
