@@ -21,7 +21,8 @@ const Template = (
     rtl,
   };
   const favLanguages: Language[] = favorite ? [language] : [];
-  const middleElement = true;
+  const bottomElementAt2Col = true;
+  const bottomElementAt3Col = false;
   const handleToggleFavoriteLanguage = (lang: Language, fav: boolean): void => {
     console.info(fav);
   };
@@ -32,7 +33,8 @@ const Template = (
       handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
       language={language}
       currentLanguageCode=""
-      middleElement={middleElement}
+      bottomElementAt2Col={bottomElementAt2Col}
+      bottomElementAt3Col={bottomElementAt3Col}
       favLanguages={favLanguages}
     />
   );
