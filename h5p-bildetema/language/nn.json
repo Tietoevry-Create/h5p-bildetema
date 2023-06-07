@@ -213,7 +213,7 @@
           "default": "Arabisk"
         },
         {
-          "label": "Sorani",
+          "label": "Kurdisk (sorani)",
           "default": "Sorani"
         },
         {
@@ -237,7 +237,7 @@
           "default": "Islandsk"
         },
         {
-          "label": "Kurmanji",
+          "label": "Kurdisk (kurmanji)",
           "default": "Kurmanji"
         },
         {
@@ -335,7 +335,7 @@
             "value": "ara"
           },
           {
-            "label": "Sorani",
+            "label": "Kurdisk (sorani)",
             "value": "ckb"
           },
           {
@@ -359,7 +359,7 @@
             "value": "isl"
           },
           {
-            "label": "Kurmanji",
+            "label": "Kurdisk (kurmanji)",
             "value": "kmr"
           },
           {

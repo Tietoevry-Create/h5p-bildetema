@@ -319,9 +319,9 @@
         "type": "text"
       },
       {
-        "label": "Sorani",
+        "label": "Kurdish (Sorani)",
         "name": "lang_ckb",
-        "default": "Sorani",
+        "default": "Kurdish (Sorani)",
         "type": "text"
       },
       {
@@ -355,9 +355,9 @@
         "type": "text"
       },
       {
-        "label": "Kurmanji",
+        "label": "Kurdish (Kurmanji)",
         "name": "lang_kmr",
-        "default": "Kurmanji",
+        "default": "Kurdish (Kurmanji)",
         "type": "text"
       },
       {
@@ -499,7 +499,7 @@
           "value": "ara"
         },
         {
-          "label": "Sorani",
+          "label": "Kurdish (Sorani)",
           "value": "ckb"
         },
         {
@@ -523,7 +523,7 @@
           "value": "isl"
         },
         {
-          "label": "Kurmanji",
+          "label": "Kurdish (Kurmanji)",
           "value": "kmr"
         },
         {

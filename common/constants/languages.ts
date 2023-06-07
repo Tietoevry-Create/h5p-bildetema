@@ -37,7 +37,7 @@ export const languagesOriginal = {
   fas: "فارسی",
   fra: "Français",
   isl: "Íslenska",
-  kmr: "کورمانجی",
+  kmr: "Kurmancî",
   lit: "Lietuvių",
   nno: "Nynorsk",
   nob: "Bokmål",
