@@ -213,8 +213,8 @@
           "default": "Arabisk"
         },
         {
-          "label": "Sorani",
-          "default": "Sorani"
+          "label": "Kurdisk (sorani)",
+          "default": "Kurdisk (sorani)"
         },
         {
           "label": "Dansk",
@@ -237,8 +237,8 @@
           "default": "Islandsk"
         },
         {
-          "label": "Kurmanji",
-          "default": "Kurmanji"
+          "label": "Kurdisk (kurmanji)",
+          "default": "Kurdisk (kurmanji)"
         },
         {
           "label": "Litauisk",
@@ -335,7 +335,7 @@
             "value": "ara"
           },
           {
-            "label": "Sorani",
+            "label": "Kurdisk (sorani)",
             "value": "ckb"
           },
           {
@@ -359,7 +359,7 @@
             "value": "isl"
           },
           {
-            "label": "Kurmanji",
+            "label": "Kurdisk (kurmanji)",
             "value": "kmr"
           },
           {
