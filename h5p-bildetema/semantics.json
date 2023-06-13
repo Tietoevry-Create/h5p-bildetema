@@ -343,6 +343,12 @@
         "type": "text"
       },
       {
+        "label": "Filipino",
+        "name": "lang_fil",
+        "default": "Filipino",
+        "type": "text"
+      },
+      {
         "label": "French",
         "name": "lang_fra",
         "default": "French",
@@ -439,12 +445,6 @@
         "type": "text"
       },
       {
-        "label": "Tagalog",
-        "name": "lang_tgl",
-        "default": "Tagalog",
-        "type": "text"
-      },
-      {
         "label": "Thai",
         "name": "lang_tha",
         "default": "Thai",
@@ -515,6 +515,10 @@
           "value": "fas"
         },
         {
+          "label": "Filipino",
+          "value": "fil"
+        },
+        {
           "label": "French",
           "value": "fra"
         },
@@ -577,10 +581,6 @@
         {
           "label": "Swedish",
           "value": "swe"
-        },
-        {
-          "label": "Tagalog",
-          "value": "tgl"
         },
         {
           "label": "Thai",

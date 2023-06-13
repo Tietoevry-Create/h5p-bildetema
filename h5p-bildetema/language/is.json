@@ -229,6 +229,10 @@
           "default": "Persneska"
         },
         {
+          "label": "Filippseyska",
+          "default": "Filippseyska"
+        },
+        {
           "label": "Franska",
           "default": "Franska"
         },
@@ -293,10 +297,6 @@
           "default": "Sænska"
         },
         {
-          "label": "Filippseyska",
-          "default": "Filippseyska"
-        },
-        {
           "label": "Tælenska",
           "default": "Tælenska"
         },
@@ -349,6 +349,10 @@
           {
             "label": "Persneska",
             "value": "fas"
+          },
+          {
+            "label": "Filippseyska",
+            "value": "fil"
           },
           {
             "label": "Franska",
@@ -413,10 +417,6 @@
           {
             "label": "Sænska",
             "value": "swe"
-          },
-          {
-            "label": "Filippseyska",
-            "value": "tgl"
           },
           {
             "label": "Tælenska",

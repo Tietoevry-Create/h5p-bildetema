@@ -229,6 +229,10 @@
           "default": "Persisk"
         },
         {
+          "label": "Filippinsk",
+          "default": "Filippinsk"
+        },
+        {
           "label": "Fransk",
           "default": "Fransk"
         },
@@ -293,10 +297,6 @@
           "default": "Svensk"
         },
         {
-          "label": "Filippinsk",
-          "default": "Filippinsk"
-        },
-        {
           "label": "Thai",
           "default": "Thai"
         },
@@ -349,6 +349,10 @@
           {
             "label": "Persisk",
             "value": "fas"
+          },
+          {
+            "label": "Filippinsk",
+            "value": "fil"
           },
           {
             "label": "Fransk",
@@ -413,10 +417,6 @@
           {
             "label": "Svensk",
             "value": "swe"
-          },
-          {
-            "label": "Filippinsk",
-            "value": "tgl"
           },
           {
             "label": "Thai",
