@@ -9,7 +9,7 @@
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
-    "build": "tsc && vite build && npm run generate-library",
+    "build": "tsc && vite build",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "eslint:check": "eslint .",
@@ -19,8 +19,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "start-storybook -p 6006 -h localhost",
-    "build-storybook": "build-storybook",
-    "generate-library": "h5p-generate-configs l --type-definition ./src/library.ts --out ./library.json"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
@@ -40,7 +39,6 @@
     "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
-    "h5p-generate-configs": "^0.4.2",
     "prettier": "^2.8.8",
     "sass": "^1.62.1",
     "ts-node": "^10.9.1",

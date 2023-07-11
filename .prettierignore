@@ -1,8 +1,5 @@
 **/coverage/tmp/*
 **/storybook-static
 **/dist
-TranslationKey.ts
-semantics.json
-library.json
 storybook-static
 language

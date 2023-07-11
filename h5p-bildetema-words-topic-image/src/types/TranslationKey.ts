@@ -1,11 +1,3 @@
-// --------- ⚠️  WARNING  ⚠️ ---------
-// This file is generated from the values within `semantics.json`'s l10n group. 
-// Do not change it manually, but rather change `semantics.ts` and run
-// `npm run generate-semantics`.
-// -----------------------------------
+import { Params } from "./Params";
 
-export type TranslationKey =
-  | "noTopicSelected"
-  | "playAudio"
-  | "stopAudio"
-  | "htmlLanguageCode";
+export type TranslationKey = keyof Params["l10n"];
