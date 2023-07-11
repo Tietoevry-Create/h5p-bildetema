@@ -8,7 +8,6 @@
     "bump-and-build": "npm run bump-library && npm run build",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
-    "postinstall": "concurrently 'npm install --prefix h5p-bildetema' 'npm install --prefix h5p-bildetema-words-grid-view' 'npm install --prefix h5p-bildetema-words-topic-image' 'npm install --prefix h5p-editor-bildetema-words-topic-image'",
     "start": "concurrently 'npm start --prefix h5p-bildetema' 'npm start --prefix h5p-bildetema-words-grid-view' 'npm start --prefix h5p-bildetema-words-topic-image' 'npm start --prefix h5p-editor-bildetema-words-topic-image'",
     "build": "concurrently 'npm run build --prefix h5p-bildetema' 'npm run build --prefix h5p-bildetema-words-grid-view' 'npm run build --prefix h5p-bildetema-words-topic-image' 'npm run build --prefix h5p-editor-bildetema-words-topic-image'",
     "test": "concurrently 'vitest run' 'npm test --prefix h5p-bildetema' 'npm test --prefix h5p-bildetema-words-grid-view' 'npm test --prefix h5p-bildetema-words-topic-image' 'npm test --prefix h5p-editor-bildetema-words-topic-image'",
@@ -58,5 +57,12 @@
     "tsx": "^3.12.7",
     "vite": "^4.3.9",
     "vitest": "^0.31.1"
-  }
+  },
+  "workspaces": [
+    "common",
+    "h5p-bildetema",
+    "h5p-bildetema-words-grid-view",
+    "h5p-bildetema-words-topic-image",
+    "h5p-editor-bildetema-words-topic-image"
+  ]
 }
