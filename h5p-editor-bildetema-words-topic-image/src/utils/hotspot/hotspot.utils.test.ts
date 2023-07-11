@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from "vitest";
 import { Color } from "common/enums/Color";
 import { Word } from "common/types/types";

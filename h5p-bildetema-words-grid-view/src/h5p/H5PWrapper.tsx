@@ -47,7 +47,7 @@ export class H5PWrapper
 
   private render(overrideParams?: Partial<Params>): void {
     // This is not a React context, so we can't use useMemo
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
+
     const params: Params = {
       ...this.params,
       ...overrideParams,

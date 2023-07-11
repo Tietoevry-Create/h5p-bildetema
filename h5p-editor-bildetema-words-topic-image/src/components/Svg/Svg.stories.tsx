@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { Color } from "common/enums/Color";

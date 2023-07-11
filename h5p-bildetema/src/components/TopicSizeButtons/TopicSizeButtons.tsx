@@ -9,7 +9,6 @@ export type TopicSizeButtonsProps = {
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
   topicsSize,
   setTopicsSize,

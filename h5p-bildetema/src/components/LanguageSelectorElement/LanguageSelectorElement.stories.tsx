@@ -1,5 +1,5 @@
 import React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { ComponentMeta } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Language } from "common/types/types";

@@ -6,8 +6,8 @@
     "**/*"
   ],
   "scripts": {
-    "lint:check": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:check": "eslint . --report-unused-disable-directives",
+    "lint:fix": "npm run lint:check -- --fix"
   },
   "dependencies": {
     "core-js": "^3.31.1",

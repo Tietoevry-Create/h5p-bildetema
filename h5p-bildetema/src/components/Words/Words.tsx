@@ -170,7 +170,6 @@ export const Words: React.FC<WordsProps> = ({
       showArticles,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     words,
     showWrittenWords,
