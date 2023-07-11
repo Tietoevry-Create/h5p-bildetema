@@ -1,4 +1,4 @@
-import type { IH5PContentType, Library } from "h5p-types";
+import type { H5PLibrary, IH5PContentType, Library } from "h5p-types";
 import { H5P } from "h5p-utils";
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -10,7 +10,7 @@ import { SearchParameters } from "../../enums/SearchParameters";
 import { useDBContext } from "../../../../common/hooks/useDBContext";
 import styles from "./Words.module.scss";
 // eslint-disable-next-line import/no-relative-packages
-import { library as gridViewLibrary } from "../../../../h5p-bildetema-words-grid-view/src/library";
+import gridViewLibrary from "../../../../h5p-bildetema-words-grid-view/library.json";
 import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 
 type WordsProps = {
@@ -136,7 +136,7 @@ export const Words: React.FC<WordsProps> = ({
 
         const gridView = H5P.newRunnable(
           {
-            library: getLibraryName(gridViewLibrary),
+            library: getLibraryName(gridViewLibrary as H5PLibrary),
             params: {
               words,
               showWrittenWords,
