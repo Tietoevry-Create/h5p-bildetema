@@ -18,3 +18,5 @@ storybook-static
 all.h5p
 
 .turbo
+
+*.tsbuildinfo
