@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from "react";
+import { Language, TopicIds } from "common/types/types";
+import { getLanguagePath } from "common/utils/router.utils";
+import { useDBContext } from "common/hooks/useDBContext";
+import { languagesOriginal } from "common/constants/languages";
 import styles from "./LanguageSelector.module.scss";
-import { Language, TopicIds } from "../../../../common/types/types";
-import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 import { useL10n } from "../../hooks/useL10n";
 import { filterURL } from "../../utils/url.utils";
-import { languagesOriginal } from "../../../../common/constants/languages";
 
 export type LanguageSelectorProps = {
   currentLanguageCode: string;

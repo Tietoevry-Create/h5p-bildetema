@@ -10,12 +10,8 @@
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
     "build": "tsc && vite build",
-    "format:check": "prettier . --check",
-    "format:fix": "prettier . --write",
-    "eslint:check": "eslint .",
-    "eslint:fix": "eslint . --fix",
-    "lint": "npm run format:check && npm run eslint:check",
-    "lint:fix": "npm run format:fix && npm run eslint:fix",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "start-storybook -p 6006 -h localhost",
@@ -23,6 +19,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
+    "common": "*",
     "h5p-types": "^1.18.1",
     "h5p-utils": "^3.2.1",
     "react": "^18.2.0",
@@ -37,13 +34,10 @@
     "@types/jquery": "^3.5.16",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
-    "@typescript-eslint/eslint-plugin": "^5.59.8",
-    "@typescript-eslint/parser": "^5.59.8",
-    "prettier": "^2.8.8",
+    "eslint-config-custom": "*",
     "sass": "^1.62.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.9",
-    "vitest": "^0.31.1"
+    "vite-utils": "*"
   }
 }

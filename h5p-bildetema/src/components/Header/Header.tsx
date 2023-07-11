@@ -8,11 +8,11 @@ import React, {
   SetStateAction,
 } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { languages } from "../../../../common/constants/languages";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language, TopicIds } from "../../../../common/types/types";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { getLanguagePath } from "../../../../common/utils/router.utils";
+import { languages } from "common/constants/languages";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language, TopicIds } from "common/types/types";
+import { useDBContext } from "common/hooks/useDBContext";
+import { getLanguagePath } from "common/utils/router.utils";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";

@@ -1,13 +1,10 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import {
-  SpeakerIcon,
-  SpeakerPlayingIcon,
-} from "../../../../common/components/Icons/Icons";
-import { Word as WordType } from "../../../../common/types/types";
+import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
+import { Word as WordType } from "common/types/types";
+import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicImageWordAudio.module.scss";
-import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 
 type TopicImageWordAudioProps = {
   word: WordType;

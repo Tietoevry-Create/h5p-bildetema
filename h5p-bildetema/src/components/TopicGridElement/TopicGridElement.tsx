@@ -1,12 +1,8 @@
 import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import {
-  ImageUrl,
-  Topic,
-  TopicGridSizes,
-} from "../../../../common/types/types";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
+import { LanguageCode } from "common/types/LanguageCode";
+import { ImageUrl, Topic, TopicGridSizes } from "common/types/types";
+import { labelToUrlComponent } from "common/utils/string.utils";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
 import styles from "./TopicGridElement.module.scss";
 

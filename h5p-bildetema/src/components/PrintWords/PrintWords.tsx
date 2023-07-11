@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicIds, Topic, Word } from "../../../../common/types/types";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { TopicIds, Topic, Word } from "common/types/types";
 import styles from "./PrintWords.module.scss";
 
 type PrintWordsProps = {
@@ -121,7 +121,7 @@ export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
           })}
           {index === chunksOfWords.length - 1 &&
             [...Array(missingItemsInLastRow)].map((_, i) => (
-              // eslint-disable-next-line react/no-array-index-key
+              // eslint-disable-next-line react/no-array-index-key,jsx-a11y/control-has-associated-label
               <td key={`${i}${chunk.at(0)?.id}`} />
             ))}
         </tr>

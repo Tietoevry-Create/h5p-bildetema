@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Word as WordType } from "../../../../common/types/types";
+import { Word as WordType } from "common/types/types";
+import { AudioRefContext } from "common/context/AudioContext";
 import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
-import { AudioRefContext } from "../../../../common/context/AudioContext";
 
 type TopicWordsGridProps = {
   words: WordType[];

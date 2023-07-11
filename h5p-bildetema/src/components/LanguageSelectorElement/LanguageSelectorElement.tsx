@@ -5,10 +5,10 @@ import {
   languages,
   attributeLanguages,
   languagesOriginal,
-} from "../../../../common/constants/languages";
+} from "common/constants/languages";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language } from "common/types/types";
 import { Checkbox } from "../Checkbox/Checkbox";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language } from "../../../../common/types/types";
 import styles from "./LanguageSelectorElement.module.scss";
 import { useL10n } from "../../hooks/useL10n";
 

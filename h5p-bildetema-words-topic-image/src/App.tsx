@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
-import { Topic, Word } from "../../common/types/types";
-import { getData } from "../../common/utils/data.utils";
+import { Topic, Word } from "common/types/types";
+import { getData } from "common/utils/data.utils";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Params } from "./h5p/H5PWrapper";
 import { useL10n } from "./hooks/useL10n";

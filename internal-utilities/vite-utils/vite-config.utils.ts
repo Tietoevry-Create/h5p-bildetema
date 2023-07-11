@@ -1,4 +1,6 @@
 import { BuildOptions } from "vite";
+import react from "@vitejs/plugin-react";
+import unpluginJsonDts from "unplugin-json-dts/vite";
 
 export const getBuildConfig = (libName: string): BuildOptions => ({
   minify: "esbuild",
@@ -30,3 +32,15 @@ export const getBuildConfig = (libName: string): BuildOptions => ({
 export const define = {
   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV ?? "production"),
 };
+
+export const defineConfig = (
+  name: string,
+  testEnvironment: "happy-dom" | "jsdom",
+) => ({
+  plugins: [react(), unpluginJsonDts()],
+  build: getBuildConfig(name),
+  define,
+  test: {
+    environment: testEnvironment,
+  },
+});

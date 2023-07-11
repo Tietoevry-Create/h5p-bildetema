@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DisplayView } from "../../../../common/types/types";
+import { DisplayView } from "common/types/types";
 import { useL10n } from "../../hooks/useL10n";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import styles from "./DisplayViewButtons.module.scss";

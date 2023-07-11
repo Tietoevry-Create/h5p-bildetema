@@ -1,5 +1,5 @@
 import React from "react";
-import { Color } from "../../../../common/enums/Color";
+import { Color } from "common/enums/Color";
 import styles from "./ColorButton.module.scss";
 
 export type ColorButtonProps = {

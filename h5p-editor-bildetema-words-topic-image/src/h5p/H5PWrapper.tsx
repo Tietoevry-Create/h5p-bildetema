@@ -10,9 +10,9 @@ import type {
 import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
 import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
-import { LanguageCode } from "../../../common/types/LanguageCode";
-import { Word } from "../../../common/types/types";
-import { getData } from "../../../common/utils/data.utils";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Word } from "common/types/types";
+import { getData } from "common/utils/data.utils";
 import { App } from "../App";
 import { SetValueContext } from "../contexts/SetValueContext";
 import { Hotspot } from "../types/Hotspot";

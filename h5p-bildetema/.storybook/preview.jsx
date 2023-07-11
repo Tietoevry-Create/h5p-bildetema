@@ -6,8 +6,8 @@ import { H5PWrapper } from "../src/h5p/H5PWrapper";
 import { semantics } from "../src/semantics";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
-import { getData } from "../../common/utils/data.utils";
-import { DBContext } from "../../common/context/DBContext";
+import { getData } from "common/utils/data.utils";
+import { DBContext } from "common/context/DBContext";
 
 const queryClient = new QueryClient();
 

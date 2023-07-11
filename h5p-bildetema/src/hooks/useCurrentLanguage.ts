@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { attributeLanguages } from "../../../common/constants/languages";
-import { LanguageCode } from "../../../common/types/LanguageCode";
+import { attributeLanguages } from "common/constants/languages";
+import { LanguageCode } from "common/types/LanguageCode";
 
 export const useCurrentLanguage = (): string => {
   const { pathname } = useLocation();

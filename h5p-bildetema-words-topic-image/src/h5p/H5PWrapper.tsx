@@ -4,10 +4,10 @@ import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import type { TopicImageHotspot } from "../../../common/types/TopicImageHotspot";
+import type { TopicImageHotspot } from "common/types/TopicImageHotspot";
+import { LanguageCode } from "common/types/LanguageCode";
 import { App } from "../App";
 import type { TranslationKey } from "../types/TranslationKey";
-import { LanguageCode } from "../../../common/types/LanguageCode";
 
 export type Params = {
   topicImage: Image;

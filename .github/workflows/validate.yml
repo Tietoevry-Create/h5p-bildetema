@@ -1,56 +1,69 @@
-name: "Build and validate: h5p-bildetema-words-grid-view"
+name: Build and validate
 
 on:
   pull_request:
-    paths:
-      - common/**
-      - h5p-bildetema-words-grid-view/**
 
-  workflow_dispatch: {}
-
-env:
-  working-directory: "./h5p-bildetema-words-grid-view"
-
-defaults:
-  run:
-    working-directory: "./h5p-bildetema-words-grid-view"
+  workflow_dispatch:
 
 jobs:
   build:
+    name: Build
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install root dependencies
+      - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Build
         run: npm run build
-        working-directory: ${{env.working-directory}}
 
-  validate:
+  lint:
+    name: Lint
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install root dependencies
+      - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Lint
-        run: npm run lint
+        run: npm run lint:check
 
   test:
+    name: Test
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install root dependencies
+      - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Test
         run: npm run test
         env:
           CI: true
+
+  check-format:
+    name: Check format
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Check format
+        run: npm run format:check

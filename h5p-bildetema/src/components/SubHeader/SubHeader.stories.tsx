@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
+import { TopicGridSizes } from "common/types/types";
 import { SubHeader } from "./SubHeader";
-import { TopicGridSizes } from "../../../../common/types/types";
 
 export default {
   title: "Components/SubHeader",
