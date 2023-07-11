@@ -11,6 +11,6 @@ export default defineConfig({
   build: getBuildConfig("H5P.BildetemaWordsTopicImage"),
   define,
   test: {
-    environment: "happy-dom",
+    environment: "jsdom",
   },
 });
