@@ -1,10 +1,4 @@
-import {
-  createContext,
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useState,
-} from "react";
+import { createContext, RefObject } from "react";
 
 export type AudioContextType = {
   contextAudioRef: React.RefObject<HTMLAudioElement> | undefined;
@@ -13,5 +7,7 @@ export type AudioContextType = {
 
 export const AudioRefContext = createContext<AudioContextType>({
   contextAudioRef: undefined,
-  setContextAudioRef: () => {},
+  setContextAudioRef: () => {
+    /* Intentionally left empty */
+  },
 });
