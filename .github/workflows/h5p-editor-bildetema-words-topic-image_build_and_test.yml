@@ -25,11 +25,6 @@ jobs:
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Install Node.js dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: ${{env.working-directory}}
-
       - name: Build
         run: npm run build
         working-directory: ${{env.working-directory}}
