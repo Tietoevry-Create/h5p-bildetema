@@ -38,11 +38,6 @@ jobs:
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Install Node.js dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: ${{env.working-directory}}
-
       - name: Lint
         run: npm run lint
 
@@ -54,11 +49,6 @@ jobs:
 
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
-
-      - name: Install Node.js dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: ${{env.working-directory}}
 
       - name: Test
         run: npm run test
