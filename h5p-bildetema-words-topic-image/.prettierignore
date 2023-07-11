@@ -1,3 +1,5 @@
 storybook-static
 coverage/tmp/*.json
 language
+semantics.json.d.ts
+library.json.d.ts
