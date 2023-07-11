@@ -51,8 +51,8 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         label: subtopic.label,
         images: subtopic.images,
         subTopics: [],
-        labelTranslations: labelTranslations,
-        words: words,
+        labelTranslations,
+        words,
         onlyTopicImage: subtopic?.onlyTopicImage ?? false,
       });
     });
@@ -68,9 +68,9 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         id: topic.id,
         label: topic.label,
         images: topic.images,
-        subTopics: subTopics,
-        labelTranslations: labelTranslations,
-        words: words,
+        subTopics,
+        labelTranslations,
+        words,
         onlyTopicImage: topic?.onlyTopicImage ?? false,
       }),
     );

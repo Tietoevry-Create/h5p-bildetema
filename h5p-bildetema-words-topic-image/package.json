@@ -36,6 +36,10 @@
     "sass": "^1.62.1",
     "ts-node": "^10.9.1",
     "tsconfig-custom": "*",
-    "vite-utils": "*"
+    "vite-utils": "*",
+    "vitest": "^0.33.0"
+  },
+  "eslintConfig": {
+    "extends": "custom"
   }
 }

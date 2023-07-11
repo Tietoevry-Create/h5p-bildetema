@@ -5,10 +5,9 @@
   "files": [
     "**/*"
   ],
-  "devDependencies": {
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@types/react-toggle": "^4.0.3"
+  "scripts": {
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "core-js": "^3.31.1",
@@ -17,5 +16,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "replace-special-characters": "^1.2.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@types/react-toggle": "^4.0.3",
+    "eslint-config-custom": "*"
+  },
+  "eslintConfig": {
+    "extends": "custom"
   }
 }

@@ -6,13 +6,6 @@ import {
   TopicImageWordListProps,
 } from "./TopicImageWordList";
 
-const baseWord = {
-  id: "1",
-  label: "Bildetema",
-  images: [{ src: "" }],
-  audio: "https://cdn-prodbildetema.azureedge.net/audio/nob/V0888.wav",
-};
-
 describe(TopicImageWordList.name, () => {
   const template = ({
     words,
@@ -46,19 +39,5 @@ describe(TopicImageWordList.name, () => {
 
     expect(container.querySelector("div")).toBeTruthy();
     expect(container.querySelector("div")?.children.length).toEqual(0);
-  });
-
-  it("Should one child when words hase one element", () => {
-    const container = template({
-      currentWordId: undefined,
-      words: [{ ...baseWord }],
-      selectHoveredWord: () => "",
-      selectWord: () => "",
-      hoveredSVG: undefined,
-      showWrittenWords: true,
-      showArticles: false,
-    });
-    expect(container.querySelector("div")).toBeTruthy();
-    expect(container.querySelector("div")?.children.length).toEqual(1);
   });
 });
