@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FC } from "react";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import { H5PWrapper } from "../src/h5p/H5PWrapper";
 import { semantics } from "../src/semantics";
@@ -23,7 +23,7 @@ const l10n = Object.fromEntries(
 const h5pInstance = new H5PWrapper({ region: "", l10n }, contentId, undefined);
 
 export const decorators = [
-  (/** @type {React.FC} */ Story) => (
+  (/** @type {FC} */ Story) => (
     <H5PContext.Provider value={h5pInstance}>
       <L10nContext.Provider value={l10n}>
         <ContentIdContext.Provider value="content-id">

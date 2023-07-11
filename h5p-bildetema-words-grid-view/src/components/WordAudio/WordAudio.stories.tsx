@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import * as React from "react";
 import { WordAudio } from "./WordAudio";
 
 export default {

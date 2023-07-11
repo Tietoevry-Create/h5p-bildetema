@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import * as React from "react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Topic, TopicGridSizes, Word } from "common/types/types";
 import { TopicGrid, TopicGridProps } from "./TopicGrid";

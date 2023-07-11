@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react";
+import { FC } from "react";
 
 export type IconProps = {
   iconColor?: string;
@@ -15,7 +15,7 @@ export type IconTransformProps = {
   transformOrigin?: string;
 };
 
-export const HomeIcon: React.FC<IconProps & IconSizeProps> = ({
+export const HomeIcon: FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,
   height,
@@ -32,7 +32,7 @@ export const HomeIcon: React.FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const BreadcrumbsArrowIcon: React.FC<IconProps & IconSizeProps> = ({
+export const BreadcrumbsArrowIcon: FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,
   height,
@@ -51,7 +51,7 @@ export const BreadcrumbsArrowIcon: React.FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
+export const BreadcrumbsArrowLeftIcon: FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,
   height,
@@ -73,7 +73,7 @@ export const BreadcrumbsArrowLeftIcon: React.FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const BigTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
+export const BigTopicsIcon: FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,
   height,
@@ -116,7 +116,7 @@ export const BigTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const CompactTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
+export const CompactTopicsIcon: FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,
   height,
@@ -135,7 +135,7 @@ export const CompactTopicsIcon: React.FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const LanguageMenuArrowIcon: React.FC<
+export const LanguageMenuArrowIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
@@ -155,7 +155,7 @@ export const LanguageMenuArrowIcon: React.FC<
   </svg>
 );
 
-export const StarFilledIcon: React.FC<
+export const StarFilledIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
@@ -171,7 +171,7 @@ export const StarFilledIcon: React.FC<
   </svg>
 );
 
-export const StarOutlineIcon: React.FC<
+export const StarOutlineIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
@@ -186,9 +186,13 @@ export const StarOutlineIcon: React.FC<
   </svg>
 );
 
-export const PrintIcon: React.FC<
-  IconProps & IconSizeProps & IconTransformProps
-> = ({ iconColor, width, height, transform, transformOrigin }) => (
+export const PrintIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
+  iconColor,
+  width,
+  height,
+  transform,
+  transformOrigin,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -201,7 +205,7 @@ export const PrintIcon: React.FC<
   </svg>
 );
 
-export const LanguageIcon: React.FC<
+export const LanguageIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
 > = ({ iconColor, width, height, transform, transformOrigin }) => (
   <svg
@@ -215,9 +219,13 @@ export const LanguageIcon: React.FC<
   </svg>
 );
 
-export const BackIcon: React.FC<
-  IconProps & IconSizeProps & IconTransformProps
-> = ({ iconColor, width, height, transform, transformOrigin }) => (
+export const BackIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
+  iconColor,
+  width,
+  height,
+  transform,
+  transformOrigin,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -229,7 +237,7 @@ export const BackIcon: React.FC<
   </svg>
 );
 
-export const CheckedIcon: React.FC = () => (
+export const CheckedIcon: FC = () => (
   <svg width="14" height="11" viewBox="0 0 14 11" aria-hidden="true">
     <path
       d="M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0"
@@ -238,7 +246,7 @@ export const CheckedIcon: React.FC = () => (
   </svg>
 );
 
-export const UncheckedIcon: React.FC = () => (
+export const UncheckedIcon: FC = () => (
   <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
     <path
       d="M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12"

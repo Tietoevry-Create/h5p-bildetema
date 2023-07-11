@@ -1,5 +1,5 @@
-import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { FC } from "react";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
 import englishTranslations from "../language/en.json";
@@ -17,7 +17,7 @@ export const parameters = {
 };
 
 export const decorators = [
-  (/** @type {React.FC} */ Story) => (
+  (/** @type {FC} */ Story) => (
     <QueryClientProvider client={queryClient}>
       <Story />
     </QueryClientProvider>

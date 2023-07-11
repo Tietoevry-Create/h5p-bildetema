@@ -1,5 +1,5 @@
-import React from "react";
 import { Color } from "common/enums/Color";
+import { FC } from "react";
 import styles from "./ColorButton.module.scss";
 
 export type ColorButtonProps = {
@@ -8,7 +8,7 @@ export type ColorButtonProps = {
   handleClick: (color: Color) => void;
 };
 
-export const ColorButton: React.FC<ColorButtonProps> = ({
+export const ColorButton: FC<ColorButtonProps> = ({
   color,
   selected,
   handleClick,

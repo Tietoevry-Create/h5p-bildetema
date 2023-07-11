@@ -1,8 +1,8 @@
-import React from "react";
+import { FC } from "react";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./MainContentLink.module.scss";
 
-export const MainContentLink: React.FC = () => {
+export const MainContentLink: FC = () => {
   const { mainContentLink } = useL10ns("mainContentLink");
 
   // Hand craft `<a href="#bildetemaMain">` because we're using HashRouter

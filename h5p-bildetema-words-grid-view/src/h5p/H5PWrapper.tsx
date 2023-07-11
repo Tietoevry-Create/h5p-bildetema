@@ -1,9 +1,8 @@
+import { Word } from "common/types/types";
 import type { IH5PContentType } from "h5p-types";
 import { H5PContentType } from "h5p-utils";
-import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import { Word } from "common/types/types";
 import App from "../App";
 import { TranslationKey } from "../types/TranslationKey";
 

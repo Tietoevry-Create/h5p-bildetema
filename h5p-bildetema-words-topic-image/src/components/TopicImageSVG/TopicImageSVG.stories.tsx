@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
-import { TopicImageSVG } from "./TopicImageSVG";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
+import { TopicImageSVG } from "./TopicImageSVG";
 
 export default {
   label: "Molecules/Topic grid",

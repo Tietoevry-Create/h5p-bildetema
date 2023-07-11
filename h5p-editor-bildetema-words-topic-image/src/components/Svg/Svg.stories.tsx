@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import * as React from "react";
 import { Color } from "common/enums/Color";
 import { Svg } from "./Svg";
 

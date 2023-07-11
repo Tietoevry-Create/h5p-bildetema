@@ -1,7 +1,7 @@
 import { createContext, RefObject } from "react";
 
 export type AudioContextType = {
-  contextAudioRef: React.RefObject<HTMLAudioElement> | undefined;
+  contextAudioRef: RefObject<HTMLAudioElement> | undefined;
   setContextAudioRef: (ref: RefObject<HTMLAudioElement>) => void;
 };
 

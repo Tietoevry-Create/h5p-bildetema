@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { ColorButton, ColorButtonProps } from "./ColorButton";
@@ -19,7 +17,7 @@ export const Default = Template.bind({});
 const defaultArgs: ColorButtonProps = {
   color: Color.ORANGE,
   selected: true,
-  handleClick: (color: Color) => null,
+  handleClick: () => null,
 };
 
 Default.args = defaultArgs;

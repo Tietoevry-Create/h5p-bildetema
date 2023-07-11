@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useL10n } from "../../hooks/useL10n";
 import { filterURL } from "../../utils/url.utils";
 import styles from "./Footer.module.scss";

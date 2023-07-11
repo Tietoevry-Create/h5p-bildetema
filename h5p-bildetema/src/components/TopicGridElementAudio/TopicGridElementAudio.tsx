@@ -1,17 +1,16 @@
-import * as React from "react";
-import { useEffect, useRef, useState } from "react";
 import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
-import { AudioFile } from "common/types/AudioFile";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
+import { AudioFile } from "common/types/AudioFile";
+import { FC, MouseEvent, useEffect, useRef, useState } from "react";
 import { useL10n } from "../../hooks/useL10n";
-import styles from "./TopicGridElementAudio.module.scss";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import styles from "./TopicGridElementAudio.module.scss";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
 };
 
-export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
+export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
   audioFiles,
 }) => {
   const [playing, setPlaying] = useState(false);
@@ -21,7 +20,7 @@ export const TopicGridElementAudio: React.FC<TopicGridElementAudioProps> = ({
   const lang = useSiteLanguage();
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
-  const toggleAudio = (event: React.MouseEvent): void => {
+  const toggleAudio = (event: MouseEvent): void => {
     event.preventDefault();
 
     const audioElement = audioRef.current;

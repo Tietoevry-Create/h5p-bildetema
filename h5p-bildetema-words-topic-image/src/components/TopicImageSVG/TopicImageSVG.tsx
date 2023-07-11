@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React from "react";
+import { FC } from "react";
 import { OverlayType } from "../../types/OverlayType";
 import { TopicImageTypes } from "../../types/TopicImageTypes";
 import styles from "./TopicImageSVG.module.scss";
@@ -14,7 +14,7 @@ export type TopicImageSVGProps = {
   selectHoveredSVG: (word: string) => void;
 };
 
-export const TopicImageSVG: React.FC<TopicImageSVGProps> = ({
+export const TopicImageSVG: FC<TopicImageSVGProps> = ({
   image,
   aspectRatio,
   overlays,

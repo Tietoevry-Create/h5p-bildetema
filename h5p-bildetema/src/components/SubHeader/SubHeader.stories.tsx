@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { TopicGridSizes } from "common/types/types";
+import { useState } from "react";
 import { SubHeader } from "./SubHeader";
 
 export default {
@@ -9,9 +9,9 @@ export default {
 } as ComponentMeta<typeof SubHeader>;
 
 const Template = (isWordView: boolean, isRtl: boolean): JSX.Element => {
-  const [checked, setChecked] = React.useState(true);
-  const [articlesChecked, setArticlesChecked] = React.useState(true);
-  const [topicSize, setTopicsSize] = React.useState(TopicGridSizes.Big);
+  const [checked, setChecked] = useState(true);
+  const [articlesChecked, setArticlesChecked] = useState(true);
+  const [topicSize, setTopicsSize] = useState(TopicGridSizes.Big);
 
   return (
     <SubHeader

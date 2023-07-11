@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import * as React from "react";
-import { FC, useEffect, useState } from "react";
 import { Topic, Word } from "common/types/types";
 import { getData } from "common/utils/data.utils";
+import { FC, useCallback, useEffect, useState } from "react";
 import { TopicImageContainer } from "./components/TopicImageContainer/TopicImageContainer";
 import { Params } from "./h5p/H5PWrapper";
 import { useL10n } from "./hooks/useL10n";
@@ -38,7 +37,7 @@ export const App: FC<AppProps> = ({
 
   const noTopicSelectedText = useL10n("noTopicSelected");
 
-  const setComputedWords = React.useCallback(
+  const setComputedWords = useCallback(
     (words: Word[] | undefined): void => {
       const paramHotspots = params.hotspots;
 

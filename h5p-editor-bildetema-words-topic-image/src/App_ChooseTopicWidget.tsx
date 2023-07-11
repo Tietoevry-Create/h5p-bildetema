@@ -1,7 +1,7 @@
-import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Topic } from "common/types/types";
 import { getData } from "common/utils/data.utils";
+import { FC, useEffect, useState } from "react";
 import { TopicChooser } from "./components/TopicChooser/TopicChooser";
 import { Params as ChooseTopicWidgetParams } from "./h5p/ChooseTopicH5PWrapper";
 
@@ -12,7 +12,7 @@ export type Params = {
   subTopicId: string | undefined;
 };
 
-export const AppChooseTopicWidget: React.FC<Params> = ({
+export const AppChooseTopicWidget: FC<Params> = ({
   setValue,
   backendUrl,
   topicId,
@@ -23,14 +23,14 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
   );
   const topics = data?.topics;
 
-  const [currentTopic, setCurrentTopic] = React.useState<Topic | undefined>(
+  const [currentTopic, setCurrentTopic] = useState<Topic | undefined>(
     undefined,
   );
-  const [currentSubTopic, setCurrentSubTopic] = React.useState<
-    Topic | undefined
-  >(undefined);
+  const [currentSubTopic, setCurrentSubTopic] = useState<Topic | undefined>(
+    undefined,
+  );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (topics && topicId) {
       const newCurrentTopic = topics.find(topic => topic.id === topicId);
       setCurrentTopic(newCurrentTopic);
@@ -43,7 +43,7 @@ export const AppChooseTopicWidget: React.FC<Params> = ({
     }
   }, [topics, topicId, subTopicId]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (currentTopic) {
       setValue({ topicId: currentTopic.id, subTopicId: currentSubTopic?.id });
     }
