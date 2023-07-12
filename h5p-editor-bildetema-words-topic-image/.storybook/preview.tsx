@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { FC } from "react";
+import { H5PEditor } from "h5p-utils";
+import React, { FC } from "react";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
 import englishTranslations from "../language/en.json";
@@ -17,11 +18,12 @@ export const parameters = {
 };
 
 export const decorators = [
-  (/** @type {FC} */ Story) => (
+  (Story: FC) => (
     <QueryClientProvider client={queryClient}>
       <Story />
     </QueryClientProvider>
   ),
 ];
 
-H5PEditor.language["H5PEditor.BildetemaWordsTopicImage"] = englishTranslations;
+(H5PEditor.language as any)["H5PEditor.BildetemaWordsTopicImage"] =
+  englishTranslations;
