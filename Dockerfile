@@ -17,7 +17,7 @@ ADD ./docker-php-entrypoint docker-php-entrypoint
 # Install packages in main projects and all sub projects
 RUN npm install 
 RUN npm run build
-RUN rm -rf node_modules
+RUN rm -rf ./**/node_modules
 
 FROM kentis123/drupal-h5p:drupal-7
 
