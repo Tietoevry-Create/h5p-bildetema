@@ -1,6 +1,13 @@
-import { BuildOptions } from "vite";
+// @ts-check
 
-export const getBuildConfig = (libName: string): BuildOptions => ({
+const react = require("@vitejs/plugin-react").default;
+const unpluginJsonDts = require("unplugin-json-dts/vite");
+
+/**
+ * @param {string} libName
+ * @returns {import("vite").UserConfig["build"]}
+ */
+const getBuildConfig = libName => ({
   minify: "esbuild",
 
   lib: {
@@ -27,6 +34,23 @@ export const getBuildConfig = (libName: string): BuildOptions => ({
   target: "es6",
 });
 
-export const define = {
+const define = {
   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV ?? "production"),
+};
+
+/**
+ * @param {string} name
+ * @param {"happy-dom" | "jsdom"} testEnvironment
+ */
+const defineConfig = (name, testEnvironment) => ({
+  plugins: [react(), unpluginJsonDts()],
+  build: getBuildConfig(name),
+  define,
+  test: {
+    environment: testEnvironment,
+  },
+});
+
+module.exports = {
+  defineConfig,
 };

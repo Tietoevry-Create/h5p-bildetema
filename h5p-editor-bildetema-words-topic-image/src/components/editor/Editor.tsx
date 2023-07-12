@@ -7,12 +7,12 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { Word } from "common/types/types";
+import { Color } from "common/enums/Color";
 import { ArrowIcon } from "../Icons/Icons";
-import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
-import { Color } from "../../../../common/enums/Color";
 import { ColorButton } from "../ColorButton/ColorButton";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";

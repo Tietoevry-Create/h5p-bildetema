@@ -6,13 +6,10 @@ import {
   useLocation,
   useSearchParams,
 } from "react-router-dom";
-import {
-  Language,
-  TopicGridSizes,
-  TopicIds,
-} from "../../../../common/types/types";
+import { Language, TopicGridSizes, TopicIds } from "common/types/types";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
 import { useL10n } from "../../hooks/useL10n";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
@@ -21,7 +18,6 @@ import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 

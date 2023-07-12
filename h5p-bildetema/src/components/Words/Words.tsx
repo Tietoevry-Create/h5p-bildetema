@@ -3,11 +3,11 @@ import { H5P } from "h5p-utils";
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { L10nContext, useContentId } from "use-h5p";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { DisplayView, TopicIds, Word } from "../../../../common/types/types";
-import { getLibraryName } from "../../../../common/utils/library/library.utils";
+import { LanguageCode } from "common/types/LanguageCode";
+import { DisplayView, TopicIds, Word } from "common/types/types";
+import { getLibraryName } from "common/utils/library/library.utils";
+import { useDBContext } from "common/hooks/useDBContext";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
 import styles from "./Words.module.scss";
 // eslint-disable-next-line import/no-relative-packages
 import gridViewLibrary from "../../../../h5p-bildetema-words-grid-view/library.json";
@@ -170,7 +170,6 @@ export const Words: React.FC<WordsProps> = ({
       showArticles,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     words,
     showWrittenWords,

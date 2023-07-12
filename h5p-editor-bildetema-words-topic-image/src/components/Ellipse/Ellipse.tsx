@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC, RefObject, useEffect, useMemo } from "react";
-import { findDistance } from "../../../../common/utils/figure/figure.utils";
+import { findDistance } from "common/utils/figure/figure.utils";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { getDelta } from "../../utils/figure/figure.utils";

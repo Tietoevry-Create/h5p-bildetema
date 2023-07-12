@@ -1,4 +1,4 @@
-import { UserData } from "../../../common/types/types";
+import { UserData } from "common/types/types";
 
 export const getUserData = (): UserData => {
   return JSON.parse(

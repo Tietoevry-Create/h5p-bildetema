@@ -1,13 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import {
-  Language,
-  TopicGridSizes,
-  TopicIds,
-} from "../../../../common/types/types";
+import { LanguageCode } from "common/types/LanguageCode";
+import { useDBContext } from "common/hooks/useDBContext";
+import { Language, TopicGridSizes, TopicIds } from "common/types/types";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 import {
   findTopic,

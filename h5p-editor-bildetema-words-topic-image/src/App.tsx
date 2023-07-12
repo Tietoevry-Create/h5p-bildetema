@@ -1,7 +1,7 @@
 import type { Image } from "h5p-types";
 import * as React from "react";
-import { LanguageCode } from "../../common/types/LanguageCode";
-import { Word } from "../../common/types/types";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Word } from "common/types/types";
 import { Editor } from "./components/editor/Editor";
 import { t } from "./h5p/H5P.util";
 import { Hotspot } from "./types/Hotspot";

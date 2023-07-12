@@ -1,4 +1,4 @@
-import type { Point } from "../../../../common/types/Point";
+import type { Point } from "common/types/Point";
 
 export const renderFigure = (
   points: Array<Point>,

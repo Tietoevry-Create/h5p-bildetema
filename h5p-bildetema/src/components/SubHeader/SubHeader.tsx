@@ -1,15 +1,15 @@
 import React from "react";
 import { useContentId } from "use-h5p";
 import { useLocation } from "react-router-dom";
-import { TopicGridSizes, TopicIds } from "../../../../common/types/types";
+import { TopicGridSizes, TopicIds } from "common/types/types";
+import { LanguageCode } from "common/types/LanguageCode";
+import { useDBContext } from "common/hooks/useDBContext";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import { Toggle } from "../Toggle/Toggle";
 import styles from "./SubHeader.module.scss";
 import { PrintButton } from "../PrintButton/PrintButton";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
 
 export type SubHeaderProps = {
   topicIds: TopicIds;

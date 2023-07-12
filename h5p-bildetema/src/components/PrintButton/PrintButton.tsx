@@ -1,10 +1,10 @@
 import React from "react";
 import { useReactToPrint } from "react-to-print";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { TopicIds } from "common/types/types";
 import { PrintIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./PrintButton.module.scss";
-import { TopicIds } from "../../../../common/types/types";
 import { PrintWords } from "../PrintWords/PrintWords";
 
 type PrintProps = {

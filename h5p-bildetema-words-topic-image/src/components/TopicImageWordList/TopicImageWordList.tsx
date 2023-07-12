@@ -1,6 +1,6 @@
 import React from "react";
-import { AudioRefContext } from "../../../../common/context/AudioContext";
-import { Word } from "../../../../common/types/types";
+import { AudioRefContext } from "common/context/AudioContext";
+import { Word } from "common/types/types";
 import { TopicImageWordAudio } from "../TopicImageWordAudio/TopicImageWordAudio";
 import styles from "./TopicImageWordList.module.scss";
 

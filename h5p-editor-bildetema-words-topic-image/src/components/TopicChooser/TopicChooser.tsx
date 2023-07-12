@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Topic } from "../../../../common/types/types";
+import { Topic } from "common/types/types";
 import { t } from "../../h5p/H5P.util";
 import styles from "./TopicChooser.module.scss";
 

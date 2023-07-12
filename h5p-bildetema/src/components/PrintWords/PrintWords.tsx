@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicIds, Topic, Word } from "../../../../common/types/types";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { TopicIds, Topic, Word } from "common/types/types";
 import styles from "./PrintWords.module.scss";
 
 type PrintWordsProps = {

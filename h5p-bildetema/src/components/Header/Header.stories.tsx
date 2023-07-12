@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { ComponentMeta } from "@storybook/react";
+import { Language } from "common/types/types";
 import { Header } from "./Header";
-import { Language } from "../../../../common/types/types";
 
 export default {
   title: "Components/Header",

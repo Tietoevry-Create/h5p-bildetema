@@ -3,9 +3,10 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicIds } from "../../../../common/types/types";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { TopicIds } from "common/types/types";
+import { labelToUrlComponent } from "common/utils/string.utils";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import {
   BackIcon,
@@ -13,7 +14,6 @@ import {
   BreadcrumbsArrowLeftIcon,
   HomeIcon,
 } from "../Icons/Icons";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import styles from "./Breadcrumbs.module.scss";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";

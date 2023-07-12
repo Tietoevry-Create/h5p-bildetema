@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Word } from "../../../../common/types/types";
+import { Word } from "common/types/types";
 import { OverlayType } from "../../types/OverlayType";
 import { TopicImageTypes } from "../../types/TopicImageTypes";
 import { TopicImageSVG } from "../TopicImageSVG/TopicImageSVG";

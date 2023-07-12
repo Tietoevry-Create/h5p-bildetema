@@ -7,11 +7,11 @@ import {
   TopicGridSizes,
   TopicIds,
   Word,
-} from "../../../../common/types/types";
+} from "common/types/types";
+import { AudioRefContext } from "common/context/AudioContext";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
-import { AudioRefContext } from "../../../../common/context/AudioContext";
 import { SearchParameters } from "../../enums/SearchParameters";
 
 export type TopicGridProps = {

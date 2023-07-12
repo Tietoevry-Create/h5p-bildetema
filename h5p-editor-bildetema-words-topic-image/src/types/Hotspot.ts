@@ -1,6 +1,6 @@
-import type { Word } from "../../../common/types/types";
+import type { Word } from "common/types/types";
+import type { Color } from "common/enums/Color";
 import type { PointWithIndex } from "./PointWithIndex";
-import type { Color } from "../../../common/enums/Color";
 
 export type Hotspot = {
   points?: Array<PointWithIndex>;

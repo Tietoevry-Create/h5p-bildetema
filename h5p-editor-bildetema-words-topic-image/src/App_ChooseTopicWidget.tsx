@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Topic } from "../../common/types/types";
-import { getData } from "../../common/utils/data.utils";
+import { Topic } from "common/types/types";
+import { getData } from "common/utils/data.utils";
 import { TopicChooser } from "./components/TopicChooser/TopicChooser";
 import { Params as ChooseTopicWidgetParams } from "./h5p/ChooseTopicH5PWrapper";
 

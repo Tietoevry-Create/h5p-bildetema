@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import * as puppeteer from "puppeteer";
 
 const sleep = async (ms: number): Promise<void> =>
   new Promise(resolve => setTimeout(resolve, ms));
@@ -185,7 +185,7 @@ async function createTopicImageInstance(
   //   headless: false,
   //   devtools: true,
   // });
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
 
   // Create topic images

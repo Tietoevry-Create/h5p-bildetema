@@ -1,13 +1,10 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import {
-  SpeakerIcon,
-  SpeakerPlayingIcon,
-} from "../../../../common/components/Icons/Icons";
-import { AudioFile } from "../../../../common/types/AudioFile";
+import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
+import { AudioFile } from "common/types/AudioFile";
+import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicGridElementAudio.module.scss";
-import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 
 type TopicGridElementAudioProps = {

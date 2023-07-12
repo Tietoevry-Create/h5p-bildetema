@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getData } from "../../../../common/utils/data.utils";
+import { getData } from "common/utils/data.utils";
+import { DBContext } from "common/context/DBContext";
 import { Bildetema } from "../Bildetema/Bildetema";
-import { DBContext } from "../../../../common/context/DBContext";
 
 type appProps = {
   defaultLanguages: string[];

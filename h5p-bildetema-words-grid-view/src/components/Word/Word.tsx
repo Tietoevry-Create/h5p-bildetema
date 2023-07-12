@@ -2,8 +2,8 @@ import React from "react";
 import { useL10n } from "use-h5p";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
+import { Word as WordType } from "common/types/types";
 import styles from "./Word.module.scss";
-import { Word as WordType } from "../../../../common/types/types";
 import { Image } from "../Image/Image";
 
 // import Swiper and modules styles

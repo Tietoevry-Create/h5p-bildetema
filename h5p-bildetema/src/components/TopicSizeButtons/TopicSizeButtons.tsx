@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TopicGridSizes } from "../../../../common/types/types";
+import { TopicGridSizes } from "common/types/types";
 import { BigTopicsIcon, CompactTopicsIcon } from "../Icons/Icons";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicSizeButtons.module.scss";
@@ -9,7 +9,6 @@ export type TopicSizeButtonsProps = {
   setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const TopicSizeButtons: React.FC<TopicSizeButtonsProps> = ({
   topicsSize,
   setTopicsSize,
