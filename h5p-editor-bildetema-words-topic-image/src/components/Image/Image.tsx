@@ -1,12 +1,12 @@
-import React from "react";
-import type { Image as ImageType } from "h5p-types";
+import type { H5PImage } from "h5p-types";
+import { FC } from "react";
 import styles from "./Image.module.scss";
 
 export type ImageProps = {
-  image: ImageType | undefined;
+  image: H5PImage | undefined;
 };
 
-export const Image: React.FC<ImageProps> = ({ image }) => {
+export const Image: FC<ImageProps> = ({ image }) => {
   return image ? (
     <img
       className={styles.image}

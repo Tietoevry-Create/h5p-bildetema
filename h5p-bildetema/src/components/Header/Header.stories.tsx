@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-
 import { ComponentMeta } from "@storybook/react";
 import { Language } from "common/types/types";
+import { useState } from "react";
 import { Header } from "./Header";
 
 export default {

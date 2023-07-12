@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import * as React from "react";
-import { TopicImageContainer } from "./TopicImageContainer";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
+import { TopicImageContainer } from "./TopicImageContainer";
 
 export default {
   label: "Molecules/Image container",

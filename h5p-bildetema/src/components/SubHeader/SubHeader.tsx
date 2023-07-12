@@ -1,20 +1,20 @@
-import React from "react";
-import { useContentId } from "use-h5p";
-import { useLocation } from "react-router-dom";
-import { TopicGridSizes, TopicIds } from "common/types/types";
-import { LanguageCode } from "common/types/LanguageCode";
 import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { TopicGridSizes, TopicIds } from "common/types/types";
+import { Dispatch, FC, SetStateAction, useMemo } from "react";
+import { useLocation } from "react-router-dom";
+import { useContentId } from "use-h5p";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
-import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
-import { Toggle } from "../Toggle/Toggle";
-import styles from "./SubHeader.module.scss";
 import { PrintButton } from "../PrintButton/PrintButton";
+import { Toggle } from "../Toggle/Toggle";
+import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
+import styles from "./SubHeader.module.scss";
 
 export type SubHeaderProps = {
   topicIds: TopicIds;
   topicsSize: TopicGridSizes;
-  setTopicsSize: React.Dispatch<React.SetStateAction<TopicGridSizes>>;
+  setTopicsSize: Dispatch<SetStateAction<TopicGridSizes>>;
   isWordView: boolean;
   toggleChecked: boolean;
   handleToggleChange: (value: boolean) => void;
@@ -24,7 +24,7 @@ export type SubHeaderProps = {
   rtl: boolean;
 };
 
-export const SubHeader: React.FC<SubHeaderProps> = ({
+export const SubHeader: FC<SubHeaderProps> = ({
   topicIds,
   topicsSize,
   setTopicsSize,
@@ -46,7 +46,7 @@ export const SubHeader: React.FC<SubHeaderProps> = ({
   const currentLanguageCode =
     pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
 
-  const showArticlesToggle = React.useMemo(() => {
+  const showArticlesToggle = useMemo(() => {
     const { topicId, subTopicId } = topicIds;
     const words = subTopicId
       ? topics

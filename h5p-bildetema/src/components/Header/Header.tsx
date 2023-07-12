@@ -1,18 +1,19 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useRef,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import { Link, useLocation } from "react-router-dom";
 import { languages } from "common/constants/languages";
+import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Language, TopicIds } from "common/types/types";
-import { useDBContext } from "common/hooks/useDBContext";
 import { getLanguagePath } from "common/utils/router.utils";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
@@ -26,7 +27,7 @@ export type HeaderProps = {
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header: FC<HeaderProps> = ({
   favLanguages,
   topicIds,
   firstTime,
@@ -61,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
   const HomeLinkPath = `/${currentLanguageCode}`;
   const osloMetLogoAria = useL10n("headerOsloMetlogoAriaLabel");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (firstTime === true) {
       setLangSelectorIsShown(true);
       setFirstTime(false);

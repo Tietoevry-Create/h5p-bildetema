@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ComponentMeta } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Language } from "common/types/types";

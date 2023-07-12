@@ -1,13 +1,13 @@
-import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { DBContext } from "common/context/DBContext";
+import { getData } from "common/utils/data.utils";
+import { FC, useEffect, useState } from "react";
 import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import { H5PWrapper } from "../src/h5p/H5PWrapper";
-import { semantics } from "../src/semantics";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
-import { getData } from "common/utils/data.utils";
-import { DBContext } from "common/context/DBContext";
+import { H5PWrapper } from "../src/h5p/H5PWrapper";
+import { semantics } from "../src/semantics";
 
 const queryClient = new QueryClient();
 
@@ -31,10 +31,10 @@ export const parameters = {
 };
 
 export const decorators = [
-  (/** @type {React.FC} */ Story) => {
-    const [data, setData] = React.useState();
+  (/** @type {FC} */ Story) => {
+    const [data, setData] = useState();
 
-    React.useEffect(() => {
+    useEffect(() => {
       queryClient.fetchQuery(["dataFromDB"], () => getData("")).then(setData);
     }, []);
 

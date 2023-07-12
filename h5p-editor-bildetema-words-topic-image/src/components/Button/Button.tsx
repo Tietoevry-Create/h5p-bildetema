@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styles from "./Button.module.scss";
 
 type ButtonProps = {
@@ -9,7 +9,7 @@ type ButtonProps = {
   clickHandler: (id: string) => void;
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   id,
   label,
   clickHandler,

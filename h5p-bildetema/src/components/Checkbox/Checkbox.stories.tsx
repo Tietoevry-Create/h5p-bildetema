@@ -1,6 +1,5 @@
-import React from "react";
-
 import { ComponentMeta } from "@storybook/react";
+import { useState } from "react";
 import { Checkbox } from "./Checkbox";
 
 export default {
@@ -9,7 +8,7 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 const Template = (disabled: boolean): JSX.Element => {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (value: boolean): void => {
     setChecked(value);

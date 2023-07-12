@@ -1,11 +1,11 @@
-import React from "react";
-import { useReactToPrint } from "react-to-print";
-import { useDetectClickOutside } from "react-detect-click-outside";
 import { TopicIds } from "common/types/types";
-import { PrintIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
+import { FC, FocusEvent, useEffect, useRef, useState } from "react";
+import { useDetectClickOutside } from "react-detect-click-outside";
+import { useReactToPrint } from "react-to-print";
 import { useL10ns } from "../../hooks/useL10n";
-import styles from "./PrintButton.module.scss";
+import { LanguageMenuArrowIcon, PrintIcon } from "../Icons/Icons";
 import { PrintWords } from "../PrintWords/PrintWords";
+import styles from "./PrintButton.module.scss";
 
 type PrintProps = {
   topicIds: TopicIds;
@@ -15,25 +15,25 @@ type PrintProps = {
   showArticles: boolean;
 };
 
-export const PrintButton: React.FC<PrintProps> = ({
+export const PrintButton: FC<PrintProps> = ({
   topicIds,
   showWrittenWords,
   isWordView,
   showTopicImageView,
   showArticles,
 }) => {
-  const [imagesPrRow, setImagesPrRow] = React.useState(3);
-  const [printClicked, setPrintClicked] = React.useState(false);
-  const [viewPrintDropDown, setViewPrintDropDown] = React.useState(false);
-  const [renderPrintWords, setRenderPrintWords] = React.useState(false);
-  const [isActive, setIsActive] = React.useState(false);
+  const [imagesPrRow, setImagesPrRow] = useState(3);
+  const [printClicked, setPrintClicked] = useState(false);
+  const [viewPrintDropDown, setViewPrintDropDown] = useState(false);
+  const [renderPrintWords, setRenderPrintWords] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleOnClickOutside = (): void => {
     setViewPrintDropDown(false);
     setIsActive(false);
   };
 
-  const handleOnBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
+  const handleOnBlur = (e: FocusEvent<HTMLElement, Element>): void => {
     const { currentTarget } = e;
 
     requestAnimationFrame(() => {
@@ -47,7 +47,7 @@ export const PrintButton: React.FC<PrintProps> = ({
   const dropdownRef = useDetectClickOutside({
     onTriggered: handleOnClickOutside,
   });
-  const printRef = React.useRef(null);
+  const printRef = useRef(null);
 
   const { printLabel } = useL10ns("printLabel");
   const { printImgLabel } = useL10ns("printImgLabel");
@@ -63,7 +63,7 @@ export const PrintButton: React.FC<PrintProps> = ({
     setIsActive(!isActive);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (printClicked) {
       setPrintClicked(false);
       handlePrint();

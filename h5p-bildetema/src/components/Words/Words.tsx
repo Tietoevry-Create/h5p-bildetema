@@ -1,17 +1,19 @@
-import type { H5PLibrary, IH5PContentType, Library } from "h5p-types";
-import { H5P } from "h5p-utils";
-import React, { useEffect, useRef, useState, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
-import { L10nContext, useContentId } from "use-h5p";
+import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { DisplayView, TopicIds, Word } from "common/types/types";
 import { getLibraryName } from "common/utils/library/library.utils";
-import { useDBContext } from "common/hooks/useDBContext";
+import type { H5PLibrary, IH5PContentType } from "h5p-types";
+import { H5P } from "h5p-utils";
+import { FC, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { L10nContext, useContentId } from "use-h5p";
 import { SearchParameters } from "../../enums/SearchParameters";
+import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 import styles from "./Words.module.scss";
+
+// TODO: Export library from h5p-bildetema-words-topic-view
 // eslint-disable-next-line import/no-relative-packages
 import gridViewLibrary from "../../../../h5p-bildetema-words-grid-view/library.json";
-import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 
 type WordsProps = {
   words?: Word[];
@@ -22,7 +24,7 @@ type WordsProps = {
   showArticles: boolean;
 };
 
-export const Words: React.FC<WordsProps> = ({
+export const Words: FC<WordsProps> = ({
   words,
   topic,
   showWrittenWords,
@@ -44,7 +46,7 @@ export const Words: React.FC<WordsProps> = ({
   );
   const l10n = useContext(L10nContext);
   const { topics } = useDBContext() || {};
-  const onlyTopicImage = React.useMemo(() => {
+  const onlyTopicImage = useMemo(() => {
     if (!isTopicImageView) return false;
     if (topic?.subTopicId) {
       return topics
@@ -54,7 +56,7 @@ export const Words: React.FC<WordsProps> = ({
     return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
   }, [topic?.subTopicId, topic?.topicId, topics, isTopicImageView]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     toggleShowTopicImageView(showTopicImageView);
   }, [toggleShowTopicImageView, showTopicImageView]);
 
@@ -122,7 +124,7 @@ export const Words: React.FC<WordsProps> = ({
                 machineName: content.machine_name,
                 majorVersion: content.major_version,
                 minorVersion: content.minor_version,
-              } as Library),
+              } as H5PLibrary),
               params,
             },
             content.content_id,

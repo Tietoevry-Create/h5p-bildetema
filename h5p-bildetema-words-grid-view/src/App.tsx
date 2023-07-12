@@ -1,5 +1,5 @@
-import * as React from "react";
 import { Word } from "common/types/types";
+import { FC } from "react";
 import { TopicWordsGrid } from "./components/TopicWordsGrid/TopicWordsGrid";
 
 export type AppProps = {
@@ -8,7 +8,7 @@ export type AppProps = {
   showArticles: boolean;
 };
 
-const App: React.FC<AppProps> = ({ words, showWrittenWords, showArticles }) => {
+const App: FC<AppProps> = ({ words, showWrittenWords, showArticles }) => {
   return (
     <TopicWordsGrid
       words={words}

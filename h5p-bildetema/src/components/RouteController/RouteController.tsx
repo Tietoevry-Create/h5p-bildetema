@@ -1,9 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language, TopicGridSizes, TopicIds } from "common/types/types";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
-import { LanguageCode } from "common/types/LanguageCode";
-import { useDBContext } from "common/hooks/useDBContext";
-import { Language, TopicGridSizes, TopicIds } from "common/types/types";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 import {
   findTopic,
@@ -14,8 +21,8 @@ import { TopicGrid } from "../TopicGrid/TopicGrid";
 
 export type RouteControllerProps = {
   showWrittenWords: boolean;
-  setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
-  setTopicIds: React.Dispatch<React.SetStateAction<TopicIds>>;
+  setIsWordView: Dispatch<SetStateAction<boolean>>;
+  setTopicIds: Dispatch<SetStateAction<TopicIds>>;
   topicsSize: TopicGridSizes;
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
@@ -23,7 +30,7 @@ export type RouteControllerProps = {
   showArticles: boolean;
 };
 
-export const RouteController: React.FC<RouteControllerProps> = ({
+export const RouteController: FC<RouteControllerProps> = ({
   showWrittenWords,
   setIsWordView,
   topicsSize,

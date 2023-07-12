@@ -1,4 +1,3 @@
-import * as React from "react";
 import { FC, MouseEvent, RefObject } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";

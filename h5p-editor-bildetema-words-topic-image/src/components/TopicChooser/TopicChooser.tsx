@@ -1,26 +1,24 @@
-import * as React from "react";
 import { Topic } from "common/types/types";
+import { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
 import { t } from "../../h5p/H5P.util";
 import styles from "./TopicChooser.module.scss";
 
 type TopicChooserProps = {
   items?: Topic[];
   setCurrentTopic: (topic: Topic) => void;
-  setCurrentSubTopic: React.Dispatch<React.SetStateAction<Topic | undefined>>;
+  setCurrentSubTopic: Dispatch<SetStateAction<Topic | undefined>>;
   topic?: Topic;
   subTopic?: Topic;
 };
 
-export const TopicChooser: React.FC<TopicChooserProps> = ({
+export const TopicChooser: FC<TopicChooserProps> = ({
   items,
   setCurrentTopic,
   setCurrentSubTopic,
   topic,
   subTopic,
 }) => {
-  const onTopicSelected = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ): void => {
+  const onTopicSelected = (event: ChangeEvent<HTMLSelectElement>): void => {
     if (setCurrentTopic) {
       const selectedTopic = items?.find(item => item.id === event.target.value);
       if (selectedTopic) {
@@ -30,9 +28,7 @@ export const TopicChooser: React.FC<TopicChooserProps> = ({
     }
   };
 
-  const onSubTopicSelected = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ): void => {
+  const onSubTopicSelected = (event: ChangeEvent<HTMLSelectElement>): void => {
     if (setCurrentSubTopic) {
       const selectedSubTopic = topic?.subTopics.find(
         s => s.id === event.target.value,

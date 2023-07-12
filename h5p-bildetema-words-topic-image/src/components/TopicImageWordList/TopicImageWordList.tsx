@@ -1,6 +1,6 @@
-import React from "react";
 import { AudioRefContext } from "common/context/AudioContext";
 import { Word } from "common/types/types";
+import { FC, RefObject, useMemo, useState } from "react";
 import { TopicImageWordAudio } from "../TopicImageWordAudio/TopicImageWordAudio";
 import styles from "./TopicImageWordList.module.scss";
 
@@ -14,7 +14,7 @@ export type TopicImageWordListProps = {
   showArticles: boolean;
 };
 
-export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
+export const TopicImageWordList: FC<TopicImageWordListProps> = ({
   words,
   currentWordId,
   selectHoveredWord,
@@ -23,13 +23,11 @@ export const TopicImageWordList: React.FC<TopicImageWordListProps> = ({
   showWrittenWords,
   showArticles,
 }) => {
-  const [contextAudioRef, setAudioRef] = React.useState(
-    {} as React.RefObject<HTMLAudioElement>,
+  const [contextAudioRef, setAudioRef] = useState(
+    {} as RefObject<HTMLAudioElement>,
   );
-  const audioContextValue = React.useMemo(() => {
-    const setContextAudioRef = (
-      ref: React.RefObject<HTMLAudioElement>,
-    ): void => {
+  const audioContextValue = useMemo(() => {
+    const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);
     };
     return { contextAudioRef, setContextAudioRef };

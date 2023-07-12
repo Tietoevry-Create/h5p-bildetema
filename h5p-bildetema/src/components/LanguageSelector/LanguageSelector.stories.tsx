@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Language } from "common/types/types";
 import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";

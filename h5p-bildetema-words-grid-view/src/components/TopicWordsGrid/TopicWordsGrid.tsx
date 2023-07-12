@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Word as WordType } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
+import { Word as WordType } from "common/types/types";
+import { FC, RefObject, useMemo, useState } from "react";
 import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
 
@@ -10,18 +10,16 @@ type TopicWordsGridProps = {
   showArticles: boolean;
 };
 
-export const TopicWordsGrid: React.FC<TopicWordsGridProps> = ({
+export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
   words,
   showWrittenWords,
   showArticles,
 }) => {
-  const [contextAudioRef, setAudioRef] = React.useState(
-    {} as React.RefObject<HTMLAudioElement>,
+  const [contextAudioRef, setAudioRef] = useState(
+    {} as RefObject<HTMLAudioElement>,
   );
-  const audioContextValue = React.useMemo(() => {
-    const setContextAudioRef = (
-      ref: React.RefObject<HTMLAudioElement>,
-    ): void => {
+  const audioContextValue = useMemo(() => {
+    const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);
     };
     return { contextAudioRef, setContextAudioRef };

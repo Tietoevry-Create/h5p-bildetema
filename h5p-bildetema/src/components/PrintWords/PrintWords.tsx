@@ -1,8 +1,8 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
 import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { TopicIds, Topic, Word } from "common/types/types";
+import { Topic, TopicIds, Word } from "common/types/types";
+import { forwardRef } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./PrintWords.module.scss";
 
 type PrintWordsProps = {
@@ -13,7 +13,7 @@ type PrintWordsProps = {
   showArticles: boolean;
 };
 
-export const PrintWords = React.forwardRef<HTMLDivElement, PrintWordsProps>(
+export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
   (
     {
       topicIds: { topicId, subTopicId },

@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "target": "es2015",
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "downlevelIteration": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,

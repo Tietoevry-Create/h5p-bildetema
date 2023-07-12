@@ -1,7 +1,7 @@
-import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getData } from "common/utils/data.utils";
 import { DBContext } from "common/context/DBContext";
+import { getData } from "common/utils/data.utils";
+import { FC } from "react";
 import { Bildetema } from "../Bildetema/Bildetema";
 
 type appProps = {
@@ -9,7 +9,7 @@ type appProps = {
   backendUrl: string;
 };
 
-export const App: React.FC<appProps> = ({ defaultLanguages, backendUrl }) => {
+export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
   const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
     getData(backendUrl),
   );

@@ -1,5 +1,5 @@
-import * as React from "react";
 import { Word } from "common/types/types";
+import { FC, useState } from "react";
 import { OverlayType } from "../../types/OverlayType";
 import { TopicImageTypes } from "../../types/TopicImageTypes";
 import { TopicImageSVG } from "../TopicImageSVG/TopicImageSVG";
@@ -16,7 +16,7 @@ export type TopicImageContainerProps = {
   showArticles: boolean;
 };
 
-export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
+export const TopicImageContainer: FC<TopicImageContainerProps> = ({
   topicImage,
   aspectRatio,
   topicOverlays,
@@ -25,9 +25,9 @@ export const TopicImageContainer: React.FC<TopicImageContainerProps> = ({
   showWrittenWords,
   showArticles,
 }) => {
-  const [currentWordId, setCurrentWordId] = React.useState("");
-  const [hoveredWord, setHoveredWord] = React.useState("");
-  const [hoveredSVG, setHoveredSVG] = React.useState("");
+  const [currentWordId, setCurrentWordId] = useState("");
+  const [hoveredWord, setHoveredWord] = useState("");
+  const [hoveredSVG, setHoveredSVG] = useState("");
 
   const selectWord = (word: string): void => {
     setCurrentWordId(word);
