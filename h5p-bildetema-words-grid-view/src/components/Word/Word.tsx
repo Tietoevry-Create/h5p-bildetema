@@ -1,18 +1,16 @@
-import React from "react";
-import { useL10n } from "use-h5p";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-import styles from "./Word.module.scss";
-import { Word as WordType } from "../../../../common/types/types";
-import { Image } from "../Image/Image";
-
-// import Swiper and modules styles
+import { Word as WordType } from "common/types/types";
+import { FC } from "react";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "./SwiperOverride.scss";
-import { WordAudio } from "../WordAudio/WordAudio";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useL10n } from "use-h5p";
 import { gridImageSizes } from "../../utils/image/image.utils";
+import { Image } from "../Image/Image";
+import { WordAudio } from "../WordAudio/WordAudio";
+import "./SwiperOverride.scss";
+import styles from "./Word.module.scss";
 
 type WordProps = {
   word: WordType;
@@ -20,11 +18,7 @@ type WordProps = {
   showArticles: boolean;
 };
 
-export const Word: React.FC<WordProps> = ({
-  textVisible,
-  word,
-  showArticles,
-}) => {
+export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
   const { images } = word;
 
   const prevLabel = useL10n("prevImageLabel");

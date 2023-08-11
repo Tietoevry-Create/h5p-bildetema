@@ -1,4 +1,4 @@
-import { Color } from "../../../common/enums/Color";
+import { Color } from "common/enums/Color";
 
 export type OverlayType = {
   wordId: string;

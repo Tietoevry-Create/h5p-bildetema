@@ -1,6 +1,6 @@
-semantics.json
-src/types/TranslationKey.ts
 storybook-static
 **/storybook-static
 coverage/tmp/*.json
 language
+semantics.json.d.ts
+library.json.d.ts

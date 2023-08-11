@@ -1,7 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
-import * as React from "react";
+import { describe, expect, it } from "vitest";
 import { Breadcrumbs, BreadcrumbsProps } from "./Breadcrumbs";
 
 describe(Breadcrumbs.name, () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { StarFilledIcon, StarOutlineIcon } from "../Icons/Icons";
 import styles from "./Checkbox.module.scss";
 
@@ -10,7 +10,7 @@ type CheckboxProps = {
   label: string;
 };
 
-export const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox: FC<CheckboxProps> = ({
   id,
   handleChange,
   checked,

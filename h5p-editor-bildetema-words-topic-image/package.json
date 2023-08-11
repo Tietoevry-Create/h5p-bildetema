@@ -9,43 +9,27 @@
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
-    "build": "tsc && vite build && npm run generate-library",
-    "format:check": "prettier . --check",
-    "format:fix": "prettier . --write",
-    "eslint:check": "eslint .",
-    "eslint:fix": "eslint . --fix",
-    "lint": "npm run format:check && npm run eslint:check",
-    "lint:fix": "npm run format:fix && npm run eslint:fix",
+    "build": "tsc && vite build",
+    "lint:check": "eslint . --report-unused-disable-directives",
+    "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest run",
     "test:watch": "vitest",
-    "storybook": "start-storybook -p 6006 -h localhost",
-    "build-storybook": "build-storybook",
-    "generate-library": "h5p-generate-configs l --type-definition ./src/library.ts --out ./library.json"
+    "storybook": "storybook dev -p 6006 -h localhost",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
-    "h5p-types": "^1.18.1",
-    "h5p-utils": "^3.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "common": "*"
   },
   "devDependencies": {
-    "@mdx-js/react": "^2.3.0",
-    "@storybook/addon-essentials": "^7.0.18",
-    "@storybook/addon-links": "^7.0.18",
-    "@storybook/builder-vite": "^7.0.18",
-    "@storybook/react": "^7.0.18",
     "@types/jquery": "^3.5.16",
-    "@types/react": "^18.2.7",
-    "@types/react-dom": "^18.2.4",
-    "@typescript-eslint/eslint-plugin": "^5.59.8",
-    "@typescript-eslint/parser": "^5.59.8",
-    "h5p-generate-configs": "^0.4.2",
-    "prettier": "^2.8.8",
-    "sass": "^1.62.1",
+    "eslint-config-custom": "*",
+    "storybook-custom": "*",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.9",
-    "vitest": "^0.31.1"
+    "tsconfig-custom": "*",
+    "vite-utils": "*"
+  },
+  "eslintConfig": {
+    "extends": "custom"
   }
 }

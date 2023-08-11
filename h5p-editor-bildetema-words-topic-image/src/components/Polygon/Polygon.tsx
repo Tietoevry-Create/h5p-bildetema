@@ -1,18 +1,18 @@
-import * as React from "react";
+import { FC, MouseEvent } from "react";
+import colorStyles from "../../styles/topicImageEditorColors.module.scss";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { pointsToDAttribute } from "../../utils/figure/figure.utils";
 import styles from "./Polygon.module.scss";
-import colorStyles from "../../styles/topicImageEditorColors.module.scss";
 
 export type PolygonProps = {
   hotspot: Hotspot;
   handleShapeClick: (wordId: string) => void;
   startShapeDragging: (hotspot: Hotspot, startPoint: Point) => void;
-  endShapeDragging: (event: React.MouseEvent) => boolean;
+  endShapeDragging: (event: MouseEvent) => boolean;
 };
 
-export const Polygon: React.FC<PolygonProps> = ({
+export const Polygon: FC<PolygonProps> = ({
   hotspot,
   handleShapeClick,
   startShapeDragging,
@@ -28,7 +28,7 @@ export const Polygon: React.FC<PolygonProps> = ({
     handleShapeClick(hotspot.word.id);
   };
 
-  const onShapeStartDrag = (event: React.MouseEvent): void => {
+  const onShapeStartDrag = (event: MouseEvent): void => {
     event.stopPropagation();
 
     const { clientX: x, clientY: y } = event;

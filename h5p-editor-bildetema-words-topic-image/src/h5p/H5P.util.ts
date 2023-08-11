@@ -1,6 +1,6 @@
 import { H5PEditor } from "h5p-utils";
 import type { libraryStrings } from "../../language/en.json";
-import { library } from "../library";
+import library from "../../library.json";
 
 export const t: (
   key: keyof typeof libraryStrings,

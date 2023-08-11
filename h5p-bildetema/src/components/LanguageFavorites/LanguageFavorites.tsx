@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React from "react";
+import { languages } from "common/constants/languages";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language, TopicIds } from "common/types/types";
+import { getLanguagePath } from "common/utils/router.utils";
+import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { languages } from "../../../../common/constants/languages";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { Language, TopicIds } from "../../../../common/types/types";
-import { getLanguagePath } from "../../../../common/utils/router.utils";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
@@ -14,7 +14,7 @@ export type LanguageFavoritesProps = {
   favLanguages: Language[];
 };
 
-export const LanguageFavorites: React.FC<LanguageFavoritesProps> = ({
+export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   favLanguages,
   topicIds,
 }) => {

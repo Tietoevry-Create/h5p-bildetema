@@ -1,7 +1,4 @@
 {
-  "extends": "../tsconfig.base.json",
-  "compilerOptions": {
-    "lib": ["ESNext", "DOM"]
-  },
+  "extends": "tsconfig-custom/index.json",
   "include": ["./src/**/*", "typings.d.ts", "vite.config.ts"]
 }

@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
-import * as React from "react";
+import { Word } from "common/types/types";
 import { describe, expect, it } from "vitest";
-import { Word } from "../../../../common/types/types";
 import {
   TopicImageContainer,
   TopicImageContainerProps,

@@ -1,4 +1,4 @@
-import { Translation } from "../../../common/types/types";
+import { Translation } from "common/types/types";
 
 export function getLabelFromTranslationRecord(
   tr: Record<string, Translation> | undefined,

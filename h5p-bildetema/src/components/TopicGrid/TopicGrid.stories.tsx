@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import * as React from "react";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Topic, TopicGridSizes, Word } from "../../../../common/types/types";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Topic, TopicGridSizes, Word } from "common/types/types";
 import { TopicGrid, TopicGridProps } from "./TopicGrid";
 
 export default {

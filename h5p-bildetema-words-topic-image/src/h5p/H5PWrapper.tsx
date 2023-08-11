@@ -1,13 +1,12 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { LanguageCode } from "common/types/LanguageCode";
+import type { TopicImageHotspot } from "common/types/TopicImageHotspot";
 import type { IH5PContentType, Image } from "h5p-types";
 import { H5P, H5PContentType } from "h5p-utils";
-import * as React from "react";
-import { createRoot, Root } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Root, createRoot } from "react-dom/client";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-import type { TopicImageHotspot } from "../../../common/types/TopicImageHotspot";
 import { App } from "../App";
 import type { TranslationKey } from "../types/TranslationKey";
-import { LanguageCode } from "../../../common/types/LanguageCode";
 
 export type Params = {
   topicImage: Image;
@@ -56,7 +55,7 @@ export class H5PWrapper
 
   private render(overrideParams?: Partial<Params>): void {
     // This is not a React context, so we can't use useMemo
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
+
     const params: Params = {
       ...this.params,
       ...overrideParams,

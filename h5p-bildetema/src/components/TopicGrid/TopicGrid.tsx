@@ -1,24 +1,31 @@
-import * as React from "react";
-import { RefObject, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { AudioRefContext } from "common/context/AudioContext";
 import {
   Language,
   Topic,
   TopicGridSizes,
   TopicIds,
   Word,
-} from "../../../../common/types/types";
+} from "common/types/types";
+import {
+  Dispatch,
+  FC,
+  RefObject,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { useSearchParams } from "react-router-dom";
+import { SearchParameters } from "../../enums/SearchParameters";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
-import { AudioRefContext } from "../../../../common/context/AudioContext";
-import { SearchParameters } from "../../enums/SearchParameters";
 
 export type TopicGridProps = {
   topics?: Topic[];
   words?: Word[];
   topicsSize: TopicGridSizes;
-  setIsWordView: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsWordView: Dispatch<SetStateAction<boolean>>;
   showWrittenWords: boolean;
   currentLanguage: Language;
   currentTopic?: TopicIds;
@@ -26,7 +33,7 @@ export type TopicGridProps = {
   showArticles: boolean;
 };
 
-export const TopicGrid: React.FC<TopicGridProps> = ({
+export const TopicGrid: FC<TopicGridProps> = ({
   topics,
   words,
   topicsSize,
@@ -37,7 +44,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
   toggleShowTopicImageView,
   showArticles,
 }) => {
-  const [contextAudioRef, setAudioRef] = React.useState(
+  const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
   const audioContextValue = useMemo(() => {
@@ -49,7 +56,7 @@ export const TopicGrid: React.FC<TopicGridProps> = ({
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsWordView(!!words);
     if (!words) {
       searchParams.delete(SearchParameters.showTopicImageView);

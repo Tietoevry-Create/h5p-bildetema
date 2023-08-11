@@ -1,4 +1,4 @@
-import { Language, Topic, TopicIds, Word } from "../../../common/types/types";
+import { Language, Topic, TopicIds, Word } from "common/types/types";
 
 export type TopicsAndWords = {
   topics?: Topic[];

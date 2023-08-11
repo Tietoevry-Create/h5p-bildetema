@@ -1,6 +1,5 @@
-import React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from "@storybook/react";
+import { useState } from "react";
 import { Checkbox } from "./Checkbox";
 
 export default {
@@ -9,7 +8,7 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 const Template = (disabled: boolean): JSX.Element => {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (value: boolean): void => {
     setChecked(value);

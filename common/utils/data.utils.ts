@@ -26,15 +26,6 @@ const topics: Topic[] = [];
 let translations: Translations = {} as Translations;
 let backendURL = "https://cdn-prodbildetema.azureedge.net/data/database.json";
 
-export const getData = async (databaseUrl: string): Promise<Data> => {
-  if (databaseUrl !== "") backendURL = databaseUrl;
-
-  if (!topics.length || languages.length) {
-    await fetchJson();
-  }
-  return { topics, languages, translations };
-};
-
 const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
   const t: Topic[] = [];
   jsonTopic.forEach(topic => {
@@ -51,8 +42,8 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         label: subtopic.label,
         images: subtopic.images,
         subTopics: [],
-        labelTranslations: labelTranslations,
-        words: words,
+        labelTranslations,
+        words,
         onlyTopicImage: subtopic?.onlyTopicImage ?? false,
       });
     });
@@ -68,9 +59,9 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         id: topic.id,
         label: topic.label,
         images: topic.images,
-        subTopics: subTopics,
-        labelTranslations: labelTranslations,
-        words: words,
+        subTopics,
+        labelTranslations,
+        words,
         onlyTopicImage: topic?.onlyTopicImage ?? false,
       }),
     );
@@ -78,7 +69,7 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
   return t;
 };
 
-const fetchJson = async () => {
+const fetchJson = async (): Promise<void> => {
   const data = await fetch(backendURL);
 
   const jsonData: JSONData = await data.json();
@@ -91,4 +82,13 @@ const fetchJson = async () => {
   languages.push(...langs);
   topics.push(...convertJsonToTopicsArray(jsonTopic));
   translations = jsonData.translations;
+};
+
+export const getData = async (databaseUrl: string): Promise<Data> => {
+  if (databaseUrl !== "") backendURL = databaseUrl;
+
+  if (!topics.length || languages.length) {
+    await fetchJson();
+  }
+  return { topics, languages, translations };
 };

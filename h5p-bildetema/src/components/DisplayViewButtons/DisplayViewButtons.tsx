@@ -1,5 +1,5 @@
-import * as React from "react";
-import { DisplayView } from "../../../../common/types/types";
+import { DisplayView } from "common/types/types";
+import { FC } from "react";
 import { useL10n } from "../../hooks/useL10n";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import styles from "./DisplayViewButtons.module.scss";
@@ -9,7 +9,7 @@ export type DisplayViewButtonsProps = {
   setDisplayView: (topicImage: boolean) => void;
 };
 
-export const DisplayViewButtons: React.FC<DisplayViewButtonsProps> = ({
+export const DisplayViewButtons: FC<DisplayViewButtonsProps> = ({
   displayView,
   setDisplayView,
 }) => {

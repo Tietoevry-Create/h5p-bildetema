@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { FC, useState } from "react";
 import ReactToggle from "react-toggle";
 import { CheckedIcon, UncheckedIcon } from "../Icons/Icons";
-import styles from "./Toggle.module.scss";
 import "./ReactToggle.scss";
+import styles from "./Toggle.module.scss";
 
 type ToggleProps = {
   handleChange: (checked: boolean) => void;
@@ -10,7 +10,7 @@ type ToggleProps = {
   label: string;
   id: string;
 };
-export const Toggle: React.FC<ToggleProps> = ({
+export const Toggle: FC<ToggleProps> = ({
   handleChange,
   checked,
   label,

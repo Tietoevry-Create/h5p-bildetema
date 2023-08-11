@@ -1,0 +1,7 @@
+{
+  "extends": "tsconfig-custom/index.json",
+  "compilerOptions": {
+    "allowJs": true
+  },
+  "include": ["index.js", "index.d.ts"]
+}

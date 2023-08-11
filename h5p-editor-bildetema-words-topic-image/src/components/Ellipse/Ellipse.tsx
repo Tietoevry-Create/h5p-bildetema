@@ -1,11 +1,11 @@
+import { findDistance } from "common/utils/figure/figure.utils";
 import * as React from "react";
 import { FC, RefObject, useEffect, useMemo } from "react";
-import { findDistance } from "../../../../common/utils/figure/figure.utils";
+import colorStyles from "../../styles/topicImageEditorColors.module.scss";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { getDelta } from "../../utils/figure/figure.utils";
 import styles from "./Ellipse.module.scss";
-import colorStyles from "../../styles/topicImageEditorColors.module.scss";
 
 type PointWithIndex = Point & { index: number };
 type EllipseHotspot = Omit<Hotspot, "points"> & {

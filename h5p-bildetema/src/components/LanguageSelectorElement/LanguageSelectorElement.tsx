@@ -1,16 +1,16 @@
-import React from "react";
-import { useL10ns } from "use-h5p";
-import { Link } from "react-router-dom";
 import {
-  languages,
   attributeLanguages,
+  languages,
   languagesOriginal,
-} from "../../../../common/constants/languages";
-import { Checkbox } from "../Checkbox/Checkbox";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language } from "../../../../common/types/types";
-import styles from "./LanguageSelectorElement.module.scss";
+} from "common/constants/languages";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language } from "common/types/types";
+import { FC } from "react";
+import { Link } from "react-router-dom";
+import { useL10ns } from "use-h5p";
 import { useL10n } from "../../hooks/useL10n";
+import { Checkbox } from "../Checkbox/Checkbox";
+import styles from "./LanguageSelectorElement.module.scss";
 
 type LanguageSelectorElement = {
   path: string;
@@ -22,7 +22,7 @@ type LanguageSelectorElement = {
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
-export const LanguageSelectorElement: React.FC<LanguageSelectorElement> = ({
+export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
   path,
   language,
   currentLanguageCode,

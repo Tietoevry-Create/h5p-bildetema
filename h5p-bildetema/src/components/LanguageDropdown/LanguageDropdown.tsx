@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import { Language, TopicIds } from "common/types/types";
+import {
+  Dispatch,
+  FC,
+  FocusEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { Language, TopicIds } from "../../../../common/types/types";
 import { LanguageIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 
 export type LanguageDropdownProps = {
-  handleSelectorVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSelectorVisibility: Dispatch<SetStateAction<boolean>>;
   langSelectorIsShown: boolean | undefined;
   selectLanguageLabel: string;
   favLanguages: Language[];
@@ -17,7 +24,7 @@ export type LanguageDropdownProps = {
   firstTime: boolean;
 };
 
-export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
+export const LanguageDropdown: FC<LanguageDropdownProps> = ({
   handleSelectorVisibility,
   langSelectorIsShown,
   selectLanguageLabel,
@@ -44,7 +51,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
     setIsActive(!isActive);
   };
 
-  const handleOnBlur = (e: React.FocusEvent<HTMLElement, Element>): void => {
+  const handleOnBlur = (e: FocusEvent<HTMLElement, Element>): void => {
     const { currentTarget } = e;
 
     requestAnimationFrame(() => {
@@ -55,7 +62,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsActive(firstTime);
   }, [currentLanguageCode]);
 

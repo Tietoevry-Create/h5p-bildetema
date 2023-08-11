@@ -1,31 +1,34 @@
-import { library as h5pBildetema } from "./h5p-bildetema/src/library";
-import { library as h5pBildetemaWordsGridView } from "./h5p-bildetema-words-grid-view/src/library";
-import { library as h5pBildetemaWordsTopicImage } from "./h5p-bildetema-words-topic-image/src/library";
-import { library as h5pEditorBildetemaWordsTopicImage } from "./h5p-editor-bildetema-words-topic-image/src/library";
+import h5pBildetema from "./h5p-bildetema/library.json";
+import h5pBildetemaWordsGridView from "./h5p-bildetema-words-grid-view/library.json";
+import h5pBildetemaWordsTopicImage from "./h5p-bildetema-words-topic-image/library.json";
+import h5pEditorBildetemaWordsTopicImage from "./h5p-editor-bildetema-words-topic-image/library.json";
 import query from "cli-interact";
-import type { Library } from "h5p-types";
+import type { H5PLibrary } from "h5p-types";
 import fs from "fs";
 
-type pathAndLibrary = {
+type PathAndLibrary = {
   path: string;
-  lib: Library;
+  lib: H5PLibrary;
 };
 
-const libs: pathAndLibrary[] = [
-  { path: "./h5p-bildetema/src/library.ts", lib: h5pBildetema },
+const libs = [
   {
-    path: "./h5p-bildetema-words-grid-view/src/library.ts",
-    lib: h5pBildetemaWordsGridView,
+    path: "./h5p-bildetema/library.json",
+    lib: h5pBildetema as H5PLibrary,
   },
   {
-    path: "./h5p-bildetema-words-topic-image/src/library.ts",
-    lib: h5pBildetemaWordsTopicImage,
+    path: "./h5p-bildetema-words-grid-view/library.json",
+    lib: h5pBildetemaWordsGridView as H5PLibrary,
   },
   {
-    path: "./h5p-editor-bildetema-words-topic-image/src/library.ts",
-    lib: h5pEditorBildetemaWordsTopicImage,
+    path: "./h5p-bildetema-words-topic-image/library.json",
+    lib: h5pBildetemaWordsTopicImage as H5PLibrary,
   },
-];
+  {
+    path: "./h5p-editor-bildetema-words-topic-image/library.json",
+    lib: h5pEditorBildetemaWordsTopicImage as H5PLibrary,
+  },
+] satisfies Array<PathAndLibrary>;
 
 libs.forEach(el => {
   const { path, lib } = el;

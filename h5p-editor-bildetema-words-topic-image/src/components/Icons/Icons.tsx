@@ -1,11 +1,11 @@
-import * as React from "react";
+import { FC } from "react";
 
 export type IconTransformProps = {
   transform?: string;
   transformOrigin?: string;
 };
 
-export const ArrowIcon: React.FC<IconTransformProps> = ({
+export const ArrowIcon: FC<IconTransformProps> = ({
   transform,
   transformOrigin,
 }) => (

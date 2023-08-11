@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styles from "./Image.module.scss";
 
 export type srcSet = {
@@ -14,7 +14,7 @@ export type ImageProps = {
   sizes?: ReadonlyArray<string>;
 };
 
-export const Image: React.FC<ImageProps> = ({
+export const Image: FC<ImageProps> = ({
   src,
   width,
   height,

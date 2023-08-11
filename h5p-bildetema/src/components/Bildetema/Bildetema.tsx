@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language, TopicGridSizes, TopicIds } from "common/types/types";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import {
   Navigate,
   Route,
@@ -6,31 +9,24 @@ import {
   useLocation,
   useSearchParams,
 } from "react-router-dom";
-import {
-  Language,
-  TopicGridSizes,
-  TopicIds,
-} from "../../../../common/types/types";
+import { SearchParameters } from "../../enums/SearchParameters";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 import { useL10n } from "../../hooks/useL10n";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
+import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./Bildetema.module.scss";
-import { MainContentLink } from "../MainContentLink/MainContentLink";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { SearchParameters } from "../../enums/SearchParameters";
-import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
   isLoadingData: boolean;
 };
 
-export const Bildetema: React.FC<BildetemaProps> = ({
+export const Bildetema: FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
@@ -40,7 +36,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       if (isLoadingData) {
         setShowLoadingLabel(true);
@@ -118,7 +114,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     return currentLanguage as Language;
   };
 
-  const directionRtl: boolean = React.useMemo(() => {
+  const directionRtl: boolean = useMemo(() => {
     return !!getCurrentLanguage()?.rtl;
   }, [favLanguages, pathname]);
 
@@ -140,7 +136,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     setShowWrittenWords(value);
   };
 
-  const handleToggleFavoriteLanguage = React.useCallback(
+  const handleToggleFavoriteLanguage = useCallback(
     (language: Language, favorite: boolean): void => {
       if (favorite) {
         // When favLanguages is 0 it means that this is the first visit, and favLanguages should be added from defaultLanguages.
@@ -155,7 +151,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     [favLanguages, setFavLanguages],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     userData.favoriteLanguages = favLanguages;
     setUserData(userData);
   }, [favLanguages, userData, setUserData]);
@@ -166,7 +162,7 @@ export const Bildetema: React.FC<BildetemaProps> = ({
     }
   });
 
-  const routes = React.useMemo(() => {
+  const routes = useMemo(() => {
     const paths = [
       "/:langId",
       "/:langId/:topicLabel",

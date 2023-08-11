@@ -1,4 +1,3 @@
-import * as React from "react";
 import { FC, MouseEvent, RefObject, useMemo, useState } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { HotspotUpdate } from "../../types/HotspotUpdate";

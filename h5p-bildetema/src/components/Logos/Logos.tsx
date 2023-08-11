@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FC } from "react";
 
 export type LogoProps = {
   logoColor?: string;
@@ -11,7 +11,7 @@ export type LogoSizeProps = {
   height?: number;
 };
 
-export const OsloMetLogo: React.FC<LogoProps & LogoSizeProps> = ({
+export const OsloMetLogo: FC<LogoProps & LogoSizeProps> = ({
   logoColor,
   width,
   height,

@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React from "react";
-import styles from "./LanguageSelector.module.scss";
-import { Language, TopicIds } from "../../../../common/types/types";
-import { getLanguagePath } from "../../../../common/utils/router.utils";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
+import { languagesOriginal } from "common/constants/languages";
+import { useDBContext } from "common/hooks/useDBContext";
+import { Language, TopicIds } from "common/types/types";
+import { getLanguagePath } from "common/utils/router.utils";
+import { FC } from "react";
 import { useL10n } from "../../hooks/useL10n";
 import { filterURL } from "../../utils/url.utils";
-import { languagesOriginal } from "../../../../common/constants/languages";
+import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
+import styles from "./LanguageSelector.module.scss";
 
 export type LanguageSelectorProps = {
   currentLanguageCode: string;
@@ -17,7 +17,7 @@ export type LanguageSelectorProps = {
   topicIds: TopicIds;
 };
 
-export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+export const LanguageSelector: FC<LanguageSelectorProps> = ({
   favLanguages,
   currentLanguageCode,
   handleToggleFavoriteLanguage,

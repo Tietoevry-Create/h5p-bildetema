@@ -1,9 +1,15 @@
+.storybook
 node_modules
 src
 .babelrc
+.eslintrc.json
 .gitignore
 .h5pignore
-package.json
+.prettierignore
 package-lock.json
+package.json
+postcss.config.js
 README.md
+tsconfig.json
+typings.d.ts
 vite.config.ts

@@ -1,19 +1,18 @@
-import type { Image as ImageType } from "h5p-types";
-import React, {
+import { Color } from "common/enums/Color";
+import { Word } from "common/types/types";
+import type { H5PImage } from "h5p-types";
+import {
   FC,
+  MouseEvent,
   useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import { ArrowIcon } from "../Icons/Icons";
-import { Word } from "../../../../common/types/types";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
-import { Color } from "../../../../common/enums/Color";
-import { ColorButton } from "../ColorButton/ColorButton";
 import { HotspotUpdate } from "../../types/HotspotUpdate";
 import { Point } from "../../types/Point";
 import { PointUpdate } from "../../types/PointUpdate";
@@ -28,12 +27,14 @@ import {
   resetPointsOfActiveHotspot,
 } from "../../utils/hotspot/hotspot.utils";
 import { Button } from "../Button/Button";
+import { ColorButton } from "../ColorButton/ColorButton";
+import { ArrowIcon } from "../Icons/Icons";
 import { Image } from "../Image/Image";
 import { Svg } from "../Svg/Svg";
 import styles from "./Editor.module.scss";
 
 export type EditorProps = {
-  image: ImageType | undefined;
+  image: H5PImage | undefined;
   words: Word[];
   initialHotspots: Array<Hotspot>;
 };
@@ -109,10 +110,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
     [hotspots, selectedWordId],
   );
 
-  const handleClick = ({
-    clientX,
-    clientY,
-  }: React.MouseEvent<HTMLElement>): void => {
+  const handleClick = ({ clientX, clientY }: MouseEvent<HTMLElement>): void => {
     if (!canvasRef?.current || !selectedHotspot || isDraggingEllipsePoint) {
       return;
     }

@@ -1,8 +1,6 @@
-import React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Language } from "common/types/types";
 import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
-import { Language } from "../../../../common/types/types";
 
 export default {
   title: "Components/LanguageSelector",

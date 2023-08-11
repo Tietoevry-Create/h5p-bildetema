@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React from "react";
+import { useDBContext } from "common/hooks/useDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { TopicIds } from "common/types/types";
+import { labelToUrlComponent } from "common/utils/string.utils";
+import { FC, ReactPortal } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n } from "use-h5p";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
-import { useDBContext } from "../../../../common/hooks/useDBContext";
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { TopicIds } from "../../../../common/types/types";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import {
   BackIcon,
@@ -13,10 +16,7 @@ import {
   BreadcrumbsArrowLeftIcon,
   HomeIcon,
 } from "../Icons/Icons";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
 import styles from "./Breadcrumbs.module.scss";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
-import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
 export type BreadcrumbsProps = {
   breadCrumbs?: {
@@ -27,7 +27,7 @@ export type BreadcrumbsProps = {
   topicIds?: TopicIds;
 };
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
+export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
   topicIds,
@@ -50,7 +50,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
       const label = ((): string => {
         const urlComponent = `${decodeURIComponent(
-          (breadcrumb as React.ReactPortal).props.children,
+          (breadcrumb as ReactPortal).props.children,
         )}`;
         if (!topicIds) {
           return urlComponent;

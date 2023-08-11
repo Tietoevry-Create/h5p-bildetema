@@ -1,13 +1,9 @@
-import * as React from "react";
-import { useEffect, useRef, useState } from "react";
-import {
-  SpeakerIcon,
-  SpeakerPlayingIcon,
-} from "../../../../common/components/Icons/Icons";
-import { Word as WordType } from "../../../../common/types/types";
+import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
+import { useAudioRefContext } from "common/hooks/useAudioContext";
+import { Word as WordType } from "common/types/types";
+import { FC, useEffect, useRef, useState } from "react";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
-import { useAudioRefContext } from "../../../../common/hooks/useAudioContext";
 
 type WordAudioProps = {
   word: WordType;
@@ -15,7 +11,7 @@ type WordAudioProps = {
   showArticles: boolean;
 };
 
-export const WordAudio: React.FC<WordAudioProps> = ({
+export const WordAudio: FC<WordAudioProps> = ({
   word,
   textVisible,
   showArticles,

@@ -1,6 +1,6 @@
-import { LanguageCode } from "../../../../common/types/LanguageCode";
-import { Language, Topic, TopicIds } from "../../../../common/types/types";
-import { labelToUrlComponent } from "../../../../common/utils/string.utils";
+import { LanguageCode } from "common/types/LanguageCode";
+import { Language, Topic, TopicIds } from "common/types/types";
+import { labelToUrlComponent } from "common/utils/string.utils";
 import { TopicsAndWords } from "../../types/TopicsAndWords";
 
 export const getTopicSlug = (

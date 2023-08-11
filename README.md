@@ -39,3 +39,12 @@ To test with wordpress you can do the following:
 ### Storybook
 
 Each project comes with [Storybook](https://storybook.js.org). Storybook provides hot module reloading and is the best option when editing React components where H5P is not involved. Whenever you're changing any code that depends on H5P, developing in the Docker environment is usually the best option. To run Storybook, `cd` into the project you want to work with and run `npm run storybook`.
+
+### Turborepo
+
+When updating turbo, you need to install both the arm64 and x64 versions for it to work in CI as well.
+
+```bash
+npm install -D --arch=x64 --platform=linux turbo
+npm install -D --arch=arm64 --platform=darwin turbo
+```

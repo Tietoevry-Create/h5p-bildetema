@@ -1,14 +1,13 @@
-import { H5PEditor, H5PWidget } from "h5p-utils";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type {
+  H5PField,
   H5PFieldGroup,
   H5PGroup,
   IH5PFieldInstance,
   IH5PWidget,
-  H5PField,
 } from "h5p-types";
-import * as React from "react";
-import { createRoot, Root } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { H5PEditor, H5PWidget } from "h5p-utils";
+import { Root, createRoot } from "react-dom/client";
 import { AppChooseTopicWidget } from "../App_ChooseTopicWidget";
 
 type Field = H5PFieldGroup;
