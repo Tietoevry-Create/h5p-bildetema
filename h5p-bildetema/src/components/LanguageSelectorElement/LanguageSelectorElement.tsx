@@ -55,8 +55,9 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li
       role="listitem"
-      className={`${middleElement ? styles.languageMiddle : styles.language} ${isDisabled ? styles.disabled : ""
-        }`}
+      className={`${middleElement ? styles.languageMiddle : styles.language} ${
+        isDisabled ? styles.disabled : ""
+      }`}
     >
       <span className={styles.checkboxWrapper}>
         <Checkbox

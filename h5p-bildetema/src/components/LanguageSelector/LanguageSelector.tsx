@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { languages as languagesConst, languagesOriginal } from "common/constants/languages";
+import {
+  languages as languagesConst,
+  languagesOriginal,
+} from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
 import { Language, TopicIds } from "common/types/types";
 import { LanguageCode } from "common/types/LanguageCode";
@@ -44,7 +47,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
 
-  const getTranslatedLabel = (language: Language): string => {
+  const translatedLabel = (language: Language): string => {
     return translations[`lang_${language.code}`];
   };
 
@@ -53,7 +56,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
       <ul role="list" className={styles.languageSelector}>
         {languages
           ?.filter(language => languagesOriginal?.[language.code])
-          ?.sort((a, b) => getTranslatedLabel(a).localeCompare(getTranslatedLabel(b)))
+          ?.sort((a, b) => translatedLabel(a).localeCompare(translatedLabel(b)))
           ?.map((language, index) => (
             <LanguageSelectorElement
               path={getLanguagePath(language, topicIds, search, topicsFromDB)}
@@ -64,7 +67,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
               handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
               currentLanguageCode={currentLanguageCode}
               translations={translations}
-              translatedLabel={getTranslatedLabel(language)}
+              translatedLabel={translatedLabel(language)}
             />
           ))}
       </ul>
