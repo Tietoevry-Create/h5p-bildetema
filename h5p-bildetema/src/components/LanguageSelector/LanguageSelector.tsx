@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { languagesOriginal } from "common/constants/languages";
+import { languages as languagesConst, languagesOriginal } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
 import { Language, TopicIds } from "common/types/types";
+import { LanguageCode } from "common/types/LanguageCode";
 import { getLanguagePath } from "common/utils/router.utils";
 import { FC } from "react";
+import { useL10ns } from "use-h5p";
 import { useL10n } from "../../hooks/useL10n";
 import { filterURL } from "../../utils/url.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
@@ -36,11 +38,22 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   const linkHref = useL10n("footerPrevBildetemaHref");
   const filteredLinkHref = filterURL(linkHref);
 
+  const languageKeys = languagesConst.map(
+    lang => `lang_${lang}`,
+  ) as Array<`lang_${LanguageCode}`>;
+
+  const translations = useL10ns(...languageKeys, "selectLanguage");
+
+  const getTranslatedLabel = (language: Language): string => {
+    return translations[`lang_${language.code}`];
+  };
+
   return (
     <nav aria-label={navAriaLabel} className={styles.languageSelectorWrapper}>
       <ul role="list" className={styles.languageSelector}>
         {languages
           ?.filter(language => languagesOriginal?.[language.code])
+          ?.sort((a, b) => getTranslatedLabel(a).localeCompare(getTranslatedLabel(b)))
           ?.map((language, index) => (
             <LanguageSelectorElement
               path={getLanguagePath(language, topicIds, search, topicsFromDB)}
@@ -50,6 +63,8 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
               favLanguages={favLanguages}
               handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
               currentLanguageCode={currentLanguageCode}
+              translations={translations}
+              translatedLabel={getTranslatedLabel(language)}
             />
           ))}
       </ul>
