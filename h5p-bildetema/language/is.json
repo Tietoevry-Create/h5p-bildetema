@@ -213,8 +213,8 @@
           "default": "Arabíska"
         },
         {
-          "label": "Kúrdíska sorani",
-          "default": "Kúrdíska sorani"
+          "label": "Kúrdíska (sorani)",
+          "default": "Kúrdíska (sorani)"
         },
         {
           "label": "Danska",
@@ -241,8 +241,8 @@
           "default": "Íslenska"
         },
         {
-          "label": "Kúrdíska kurmanji",
-          "default": "Kúrdíska kurmanji"
+          "label": "Kúrdíska (kurmanji)",
+          "default": "Kúrdíska (kurmanji)"
         },
         {
           "label": "Litháíska",
@@ -335,7 +335,7 @@
             "value": "ara"
           },
           {
-            "label": "Kúrdíska sorani",
+            "label": "Kúrdíska (sorani)",
             "value": "ckb"
           },
           {
@@ -363,7 +363,7 @@
             "value": "isl"
           },
           {
-            "label": "Kúrdíska kurmanji",
+            "label": "Kúrdíska (kurmanji)",
             "value": "kmr"
           },
           {
