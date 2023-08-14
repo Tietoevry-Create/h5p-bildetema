@@ -6,9 +6,7 @@ export default {
   component: Bildetema,
 } satisfies Meta<typeof Bildetema>;
 
-const Template: StoryFn<typeof Bildetema> = (args) => (
-  <Bildetema {...args} />
-);
+const Template: StoryFn<typeof Bildetema> = args => <Bildetema {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

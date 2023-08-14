@@ -35,5 +35,5 @@ Default.args = {
       color: Color.ORANGE,
     },
   ],
-  handlePointClick: () => { },
+  handlePointClick: () => {},
 };
