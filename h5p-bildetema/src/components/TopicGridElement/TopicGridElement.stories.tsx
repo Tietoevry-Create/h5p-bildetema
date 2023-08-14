@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { TopicGridSizes, Word } from "common/types/types";
 import { TopicGridElement, TopicGridElementProps } from "./TopicGridElement";
@@ -31,9 +31,9 @@ export default {
   title: "Atoms/Grid Element",
   component: TopicGridElement,
   args: fallbackArgs,
-} as ComponentMeta<typeof TopicGridElement>;
+} satisfies Meta<typeof TopicGridElement>;
 
-const Template: ComponentStory<typeof TopicGridElement> = args => (
+const Template: StoryFn<typeof TopicGridElement> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <TopicGridElement {...args} />
 );

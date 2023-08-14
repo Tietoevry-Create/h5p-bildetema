@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Language } from "common/types/types";
 import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
 
 export default {
   title: "Components/LanguageSelector",
   component: LanguageSelector,
-} as ComponentMeta<typeof LanguageSelector>;
+} satisfies Meta<typeof LanguageSelector>;
 
-const Template: ComponentStory<typeof LanguageSelector> = args => (
+const Template: StoryFn<typeof LanguageSelector> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <LanguageSelector {...args} />
 );

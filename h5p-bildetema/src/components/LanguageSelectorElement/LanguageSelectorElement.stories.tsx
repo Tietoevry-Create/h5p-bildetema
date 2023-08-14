@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Language } from "common/types/types";
 import { LanguageSelectorElement } from "./LanguageSelectorElement";
@@ -6,7 +6,7 @@ import { LanguageSelectorElement } from "./LanguageSelectorElement";
 export default {
   title: "Components/LanguageSelectorElement",
   component: LanguageSelectorElement,
-} as ComponentMeta<typeof LanguageSelectorElement>;
+} satisfies Meta<typeof LanguageSelectorElement>;
 
 const Template = (
   code: LanguageCode,

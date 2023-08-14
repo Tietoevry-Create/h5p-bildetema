@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { Editor } from "./Editor";
 
@@ -8,7 +8,7 @@ export default {
   args: {
     initialHotspots: [],
   },
-} as ComponentMeta<typeof Editor>;
+} satisfies Meta<typeof Editor>;
 
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
@@ -25,7 +25,7 @@ const landscapeImage = {
   height: 667,
 };
 
-const Template: ComponentStory<typeof Editor> = args => (
+const Template: StoryFn<typeof Editor> = args => (
   /* eslint-disable-next-line react/jsx-props-no-spreading */
   <Editor {...args} />
 );

@@ -1,12 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { LanguageDropdown, LanguageDropdownProps } from "./LanguageDropdown";
 
 export default {
   title: "Components/LanguageDropdown",
   component: LanguageDropdown,
-} as ComponentMeta<typeof LanguageDropdown>;
+} satisfies Meta<typeof LanguageDropdown>;
 
-const Template: ComponentStory<typeof LanguageDropdown> = args => (
+const Template: StoryFn<typeof LanguageDropdown> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <LanguageDropdown {...args} />
 );

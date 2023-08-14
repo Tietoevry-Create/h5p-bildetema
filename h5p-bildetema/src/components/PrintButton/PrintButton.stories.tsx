@@ -1,10 +1,10 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { PrintButton } from "./PrintButton";
 
 export default {
   title: "Components/PrintButton",
   component: PrintButton,
-} as ComponentMeta<typeof PrintButton>;
+} satisfies Meta<typeof PrintButton>;
 
 const Template = (): JSX.Element => {
   const topicIds = {};

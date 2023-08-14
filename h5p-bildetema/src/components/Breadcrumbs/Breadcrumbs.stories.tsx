@@ -1,12 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Breadcrumbs } from "./Breadcrumbs";
 
 export default {
   title: "Components/Breadcrumbs",
   component: Breadcrumbs,
-} as ComponentMeta<typeof Breadcrumbs>;
+} satisfies Meta<typeof Breadcrumbs>;
 
-const Template: ComponentStory<typeof Breadcrumbs> = args => (
+const Template: StoryFn<typeof Breadcrumbs> = args => (
   /* eslint-disable-next-line react/jsx-props-no-spreading */
   <Breadcrumbs {...args} />
 );

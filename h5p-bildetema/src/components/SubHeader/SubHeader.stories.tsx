@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { TopicGridSizes } from "common/types/types";
 import { useState } from "react";
 import { SubHeader } from "./SubHeader";
@@ -6,7 +6,7 @@ import { SubHeader } from "./SubHeader";
 export default {
   title: "Components/SubHeader",
   component: SubHeader,
-} as ComponentMeta<typeof SubHeader>;
+} satisfies Meta<typeof SubHeader>;
 
 const Template = (isWordView: boolean, isRtl: boolean): JSX.Element => {
   const [checked, setChecked] = useState(true);

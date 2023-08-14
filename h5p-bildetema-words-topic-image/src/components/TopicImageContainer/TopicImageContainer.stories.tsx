@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 import { TopicImageContainer } from "./TopicImageContainer";
 
 export default {
-  label: "Molecules/Image container",
+  title: "Molecules/Image container",
   component: TopicImageContainer,
-} as ComponentMeta<typeof TopicImageContainer>;
+} satisfies Meta<typeof TopicImageContainer>;
 
-const Template: ComponentStory<typeof TopicImageContainer> = args => (
+const Template: StoryFn<typeof TopicImageContainer> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <TopicImageContainer {...args} />
 );
@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof TopicImageContainer> = args => (
 export const ImageContainer = Template.bind({});
 ImageContainer.args = {
   aspectRatio: 1,
+  showWrittenWords: true,
   topicImage: cat,
   topicOverlays: overlays,
   topicImageType: "vectorImageWithHotspots",

@@ -1,12 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Topic, TopicGridSizes, Word } from "common/types/types";
 import { TopicGrid, TopicGridProps } from "./TopicGrid";
 
 export default {
-  label: "Molecules/ToppicGrid",
+  title: "Molecules/TopicGrid",
   component: TopicGrid,
-} as ComponentMeta<typeof TopicGrid>;
+} satisfies Meta<typeof TopicGrid>;
 
 const baseTopic: Topic = {
   id: "1",
@@ -22,7 +22,7 @@ const baseTopic: Topic = {
   onlyTopicImage: false,
 };
 
-const Template: ComponentStory<typeof TopicGrid> = args => (
+const Template: StoryFn<typeof TopicGrid> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <TopicGrid {...args} />
 );

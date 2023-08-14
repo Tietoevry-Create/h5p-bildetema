@@ -1,12 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Topic, Word } from "common/types/types";
 import { TopicChooser } from "./TopicChooser";
 
 export default {
-  label: "Molecules/TopicChooser",
+  title: "Molecules/TopicChooser",
   component: TopicChooser,
-} as ComponentMeta<typeof TopicChooser>;
+} satisfies Meta<typeof TopicChooser>;
 
 const baseTopic: Topic = {
   id: "1",
@@ -24,7 +24,7 @@ const baseTopic: Topic = {
 const subTopics: Topic[] = [];
 subTopics.push({ ...baseTopic, id: "1", label: "Subtopic 1.1" });
 
-const Template: ComponentStory<typeof TopicChooser> = args => (
+const Template: StoryFn<typeof TopicChooser> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <TopicChooser {...args} />
 );

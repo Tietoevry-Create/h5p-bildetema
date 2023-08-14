@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { ColorButton, ColorButtonProps } from "./ColorButton";
 
 export default {
   title: "Components/ColorButton",
   component: ColorButton,
-} as ComponentMeta<typeof ColorButton>;
+} satisfies Meta<typeof ColorButton>;
 
-const Template: ComponentStory<typeof ColorButton> = args => (
+const Template: StoryFn<typeof ColorButton> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <ColorButton {...args} />
 );

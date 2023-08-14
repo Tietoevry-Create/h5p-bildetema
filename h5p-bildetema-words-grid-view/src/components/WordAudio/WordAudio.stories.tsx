@@ -1,18 +1,19 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { WordAudio } from "./WordAudio";
 
 export default {
   title: "Atoms/WordAudio",
   component: WordAudio,
-} as ComponentMeta<typeof WordAudio>;
+} satisfies Meta<typeof WordAudio>;
 
-const Template: ComponentStory<typeof WordAudio> = args => (
+const Template: StoryFn<typeof WordAudio> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <WordAudio {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
+  textVisible: true,
   word: {
     id: "V0889",
     label: "Elg",

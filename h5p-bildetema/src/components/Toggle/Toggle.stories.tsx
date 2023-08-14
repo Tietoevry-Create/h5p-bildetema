@@ -1,11 +1,11 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { useState } from "react";
 import { Toggle } from "./Toggle";
 
 export default {
   title: "Components/Toggle",
   component: Toggle,
-} as ComponentMeta<typeof Toggle>;
+} satisfies Meta<typeof Toggle>;
 
 const Template = (size: string, label: string): JSX.Element => {
   const [checked, setChecked] = useState(false);

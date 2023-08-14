@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { Language } from "common/types/types";
 import { useState } from "react";
 import { Header } from "./Header";
@@ -6,7 +6,7 @@ import { Header } from "./Header";
 export default {
   title: "Components/Header",
   component: Header,
-} as ComponentMeta<typeof Header>;
+} satisfies Meta<typeof Header>;
 
 const Template = (): JSX.Element => {
   const [firstTime, setFirstTime] = useState(false);

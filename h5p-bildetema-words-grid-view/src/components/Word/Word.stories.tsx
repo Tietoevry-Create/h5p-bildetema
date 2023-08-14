@@ -1,14 +1,14 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Word } from "./Word";
 
 export default {
   title: "Atoms/Word",
   component: Word,
-} as ComponentMeta<typeof Word>;
+} satisfies Meta<typeof Word>;
 
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
-const Template: ComponentStory<typeof Word> = args => (
+const Template: StoryFn<typeof Word> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Word {...args} />
 );

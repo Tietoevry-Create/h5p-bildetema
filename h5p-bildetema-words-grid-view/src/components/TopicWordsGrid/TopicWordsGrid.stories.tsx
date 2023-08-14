@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Word } from "common/types/types";
 import { TopicWordsGrid } from "./TopicWordsGrid";
 
 export default {
-  label: "Molecules/ToppicWordsGrid",
+  title: "Molecules/TopicWordsGrid",
   component: TopicWordsGrid,
-} as ComponentMeta<typeof TopicWordsGrid>;
+} satisfies Meta<typeof TopicWordsGrid>;
 
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
@@ -25,7 +25,7 @@ const baseWord: Word = {
   ],
 };
 
-const Template: ComponentStory<typeof TopicWordsGrid> = args => (
+const Template: StoryFn<typeof TopicWordsGrid> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <TopicWordsGrid {...args} />
 );

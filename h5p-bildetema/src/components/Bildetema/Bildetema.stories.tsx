@@ -1,11 +1,23 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Bildetema } from "./Bildetema";
 
 export default {
   title: "Bildetema/Bildetema",
   component: Bildetema,
-} as ComponentMeta<typeof Bildetema>;
+} satisfies Meta<typeof Bildetema>;
 
-export const Default = (): JSX.Element => (
-  <Bildetema defaultLanguages={["nob"]} isLoadingData />
+const Template: StoryFn<typeof Bildetema> = (args) => (
+  <Bildetema {...args} />
 );
+
+export const Default = Template.bind({});
+Default.args = {
+  defaultLanguages: ["nob"],
+  isLoadingData: false,
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  ...Default.args,
+  isLoadingData: true,
+};

@@ -1,12 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Image } from "./Image";
 
 export default {
   title: "Components/Image",
   component: Image,
-} as ComponentMeta<typeof Image>;
+} satisfies Meta<typeof Image>;
 
-const Template: ComponentStory<typeof Image> = args => (
+const Template: StoryFn<typeof Image> = args => (
   /* eslint-disable-next-line react/jsx-props-no-spreading */
   <Image {...args} />
 );

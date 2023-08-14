@@ -1,11 +1,11 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { useState } from "react";
 import { Checkbox } from "./Checkbox";
 
 export default {
   title: "Components/Checkbox",
   component: Checkbox,
-} as ComponentMeta<typeof Checkbox>;
+} satisfies Meta<typeof Checkbox>;
 
 const Template = (disabled: boolean): JSX.Element => {
   const [checked, setChecked] = useState(false);
