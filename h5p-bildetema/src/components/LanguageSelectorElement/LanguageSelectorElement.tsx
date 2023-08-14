@@ -1,13 +1,10 @@
 import {
   attributeLanguages,
-  languages,
   languagesOriginal,
 } from "common/constants/languages";
-import { LanguageCode } from "common/types/LanguageCode";
 import { Language } from "common/types/types";
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { useL10ns } from "use-h5p";
 import { useL10n } from "../../hooks/useL10n";
 import { Checkbox } from "../Checkbox/Checkbox";
 import styles from "./LanguageSelectorElement.module.scss";
@@ -19,6 +16,8 @@ type LanguageSelectorElement = {
   bottomElementAt2Col: boolean;
   bottomElementAt3Col: boolean;
   favLanguages: Language[];
+  translations: Record<string, string>;
+  translatedLabel: string;
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
 };
 
@@ -29,12 +28,10 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
   bottomElementAt2Col,
   bottomElementAt3Col,
   favLanguages,
+  translations,
+  translatedLabel,
   handleToggleFavoriteLanguage,
 }) => {
-  const languageKeys = languages.map(
-    lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
-
   const isChecked = !!favLanguages.find(
     favLang => favLang.code === language.code,
   );
@@ -44,8 +41,6 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
   const isDisabled =
     currentLanguageCode === language.code ||
     (isChecked && favLanguages.length < 2);
-
-  const translations = useL10ns(...languageKeys, "selectLanguage");
 
   const languageAriaPart1 = useL10n("chooseFavoriteLanguageAriaLabelPart1");
   const languageAriaPart2 = useL10n("chooseFavoriteLanguageAriaLabelPart2");
@@ -84,7 +79,7 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
         to={path}
         tabIndex={isDisabled ? -1 : 0}
       >
-        <span>{translations[`lang_${language.code}`]}</span>
+        <span>{translatedLabel}</span>
         <span lang={attributeLanguages[language.code]}>
           {languagesOriginal[language.code]}
         </span>

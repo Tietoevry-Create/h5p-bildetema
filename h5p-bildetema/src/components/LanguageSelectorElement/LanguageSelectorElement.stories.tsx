@@ -24,6 +24,9 @@ const Template = (
   const handleToggleFavoriteLanguage = (lang: Language, fav: boolean): void => {
     console.info(fav);
   };
+  const translations: Record<string, string> = {
+    selectLanguage: "",
+  };
 
   return (
     <LanguageSelectorElement
@@ -34,6 +37,8 @@ const Template = (
       bottomElementAt2Col={bottomElementAt2Col}
       bottomElementAt3Col={bottomElementAt3Col}
       favLanguages={favLanguages}
+      translations={translations}
+      translatedLabel=""
     />
   );
 };
