@@ -2,7 +2,7 @@ import { Meta } from "@storybook/react";
 import { PrintButton } from "./PrintButton";
 
 export default {
-  title: "Components/PrintButton",
+  title: "Components/Print button",
   component: PrintButton,
 } satisfies Meta<typeof PrintButton>;
 

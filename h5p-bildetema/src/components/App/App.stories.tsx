@@ -13,4 +13,6 @@ const Template: StoryFn<typeof App> = () => (
   />
 );
 
-export const Default = Template.bind({});
+export const Default = {
+  render: Template,
+};

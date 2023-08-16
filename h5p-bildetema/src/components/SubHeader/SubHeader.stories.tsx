@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SubHeader } from "./SubHeader";
 
 export default {
-  title: "Components/SubHeader",
+  title: "Components/Sub header",
   component: SubHeader,
 } satisfies Meta<typeof SubHeader>;
 

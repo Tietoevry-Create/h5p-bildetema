@@ -4,7 +4,7 @@ import { Language } from "common/types/types";
 import { LanguageSelectorElement } from "./LanguageSelectorElement";
 
 export default {
-  title: "Components/LanguageSelectorElement",
+  title: "Components/Language selector element",
   component: LanguageSelectorElement,
 } satisfies Meta<typeof LanguageSelectorElement>;
 

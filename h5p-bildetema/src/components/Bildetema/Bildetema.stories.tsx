@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { Bildetema } from "./Bildetema";
 
 export default {
@@ -6,19 +6,16 @@ export default {
   component: Bildetema,
 } satisfies Meta<typeof Bildetema>;
 
-const Template: StoryFn<typeof Bildetema> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Bildetema {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  defaultLanguages: ["nob"],
-  isLoadingData: false,
+export const Default = {
+  args: {
+    defaultLanguages: ["nob"],
+    isLoadingData: false,
+  },
 };
 
-export const Loading = Template.bind({});
-Loading.args = {
-  ...Default.args,
-  isLoadingData: true,
+export const Loading = {
+  args: {
+    ...Default.args,
+    isLoadingData: true,
+  },
 };
