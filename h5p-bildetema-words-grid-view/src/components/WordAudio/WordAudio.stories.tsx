@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { WordAudio } from "./WordAudio";
 
 export default {
@@ -6,7 +6,9 @@ export default {
   component: WordAudio,
 } satisfies Meta<typeof WordAudio>;
 
-export const Default = {
+type Story = StoryObj<typeof WordAudio>;
+
+export const Default: Story = {
   args: {
     textVisible: true,
     word: {

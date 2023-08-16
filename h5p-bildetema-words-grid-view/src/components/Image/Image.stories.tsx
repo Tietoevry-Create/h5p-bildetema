@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Image } from "./Image";
 
 export default {
@@ -6,9 +6,11 @@ export default {
   component: Image,
 } satisfies Meta<typeof Image>;
 
+type Story = StoryObj<typeof Image>;
+
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
-export const Default = {
+export const Default: Story = {
   args: {
     src: `${cdnURL}/images/large/V1037a.jpeg`,
     srcSets: [

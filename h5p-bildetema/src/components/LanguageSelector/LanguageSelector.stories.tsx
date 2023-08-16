@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Language } from "common/types/types";
 import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
 
@@ -7,7 +7,9 @@ export default {
   component: LanguageSelector,
 } satisfies Meta<typeof LanguageSelector>;
 
-export const Default = {
+type Story = StoryObj<typeof LanguageSelector>;
+
+export const Default: Story = {
   args: {
     topicIds: {},
     search: "",

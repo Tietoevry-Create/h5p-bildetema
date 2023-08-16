@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Topic, TopicGridSizes, Word } from "common/types/types";
 import { TopicGrid, TopicGridProps } from "./TopicGrid";
@@ -7,6 +7,8 @@ export default {
   title: "Molecules/Topic grid",
   component: TopicGrid,
 } satisfies Meta<typeof TopicGrid>;
+
+type Story = StoryObj<typeof TopicGrid>;
 
 const baseTopic: Topic = {
   id: "1",
@@ -31,7 +33,7 @@ const defaultArgs: TopicGridProps = {
   showArticles: false,
 };
 
-export const ThemesGrid = {
+export const ThemesGrid: Story = {
   args: {
     ...defaultArgs,
     topics: [

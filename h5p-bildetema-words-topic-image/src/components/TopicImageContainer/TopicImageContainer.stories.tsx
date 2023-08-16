@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 import { TopicImageContainer } from "./TopicImageContainer";
 
@@ -7,7 +7,9 @@ export default {
   component: TopicImageContainer,
 } satisfies Meta<typeof TopicImageContainer>;
 
-export const ImageContainer = {
+type Story = StoryObj<typeof TopicImageContainer>;
+
+export const ImageContainer: Story = {
   args: {
     aspectRatio: 1,
     showWrittenWords: true,

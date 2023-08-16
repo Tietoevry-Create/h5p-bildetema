@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { LanguageDropdown } from "./LanguageDropdown";
 
 export default {
@@ -6,7 +6,9 @@ export default {
   component: LanguageDropdown,
 } satisfies Meta<typeof LanguageDropdown>;
 
-export const Default = {
+type Story = StoryObj<typeof LanguageDropdown>;
+
+export const Default: Story = {
   args: {
     search: "",
     currentLanguageCode: "nob",

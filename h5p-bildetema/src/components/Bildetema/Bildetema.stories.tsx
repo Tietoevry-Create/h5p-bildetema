@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Bildetema } from "./Bildetema";
 
 export default {
@@ -6,14 +6,16 @@ export default {
   component: Bildetema,
 } satisfies Meta<typeof Bildetema>;
 
-export const Default = {
+type Story = StoryObj<typeof Bildetema>;
+
+export const Default: Story = {
   args: {
     defaultLanguages: ["nob"],
     isLoadingData: false,
   },
 };
 
-export const Loading = {
+export const Loading: Story = {
   args: {
     ...Default.args,
     isLoadingData: true,

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { Svg } from "./Svg";
 
@@ -9,7 +9,9 @@ export default {
   component: Svg,
 } satisfies Meta<typeof Svg>;
 
-export const Default = {
+type Story = StoryObj<typeof Svg>;
+
+export const Default: Story = {
   args: {
     hotspots: [
       {
@@ -30,6 +32,6 @@ export const Default = {
         color: Color.ORANGE,
       },
     ],
-    handlePointClick: () => { },
+    handlePointClick: () => {},
   },
 };

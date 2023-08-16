@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Word } from "./Word";
 
 export default {
@@ -6,9 +6,11 @@ export default {
   component: Word,
 } satisfies Meta<typeof Word>;
 
+type Story = StoryObj<typeof Word>;
+
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
-export const Default = {
+export const Default: Story = {
   args: {
     word: {
       id: "V0600",
@@ -29,7 +31,7 @@ export const Default = {
   },
 };
 
-export const MultipleImages = {
+export const MultipleImages: Story = {
   args: {
     word: {
       id: "V0599",
@@ -53,7 +55,7 @@ export const MultipleImages = {
   },
 };
 
-export const NoImages = {
+export const NoImages: Story = {
   args: {
     word: {
       id: "V0889",
@@ -65,7 +67,7 @@ export const NoImages = {
   },
 };
 
-export const HiddenText = {
+export const HiddenText: Story = {
   args: {
     word: {
       id: "V0889",

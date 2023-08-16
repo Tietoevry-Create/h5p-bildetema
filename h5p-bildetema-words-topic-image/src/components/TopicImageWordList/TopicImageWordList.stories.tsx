@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { TopicImageWordList } from "./TopicImageWordList";
 
 export default {
@@ -6,7 +6,9 @@ export default {
   component: TopicImageWordList,
 } satisfies Meta<typeof TopicImageWordList>;
 
-export const WordList = {
+type Story = StoryObj<typeof TopicImageWordList>;
+
+export const WordList: Story = {
   args: {
     showWrittenWords: true,
     words: [

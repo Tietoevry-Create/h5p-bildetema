@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Breadcrumbs } from "./Breadcrumbs";
 
 export default {
@@ -6,7 +6,9 @@ export default {
   component: Breadcrumbs,
 } satisfies Meta<typeof Breadcrumbs>;
 
-export const Default = {
+type Story = StoryObj<typeof Breadcrumbs>;
+
+export const Default: Story = {
   args: {
     breadCrumbs: [
       { label: "Tema", path: "/tema" },
@@ -17,13 +19,13 @@ export const Default = {
   },
 };
 
-export const SingleBreadcrumb = {
+export const SingleBreadcrumb: Story = {
   args: {
     breadCrumbs: [{ label: "Tema", path: "/tema" }],
   },
 };
 
-export const EmptyBreadcrumb = {
+export const EmptyBreadcrumb: Story = {
   args: {
     breadCrumbs: [],
   },

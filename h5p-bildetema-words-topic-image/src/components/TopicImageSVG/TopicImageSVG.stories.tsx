@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 import { TopicImageSVG } from "./TopicImageSVG";
 
@@ -7,7 +7,9 @@ export default {
   component: TopicImageSVG,
 } satisfies Meta<typeof TopicImageSVG>;
 
-export const SvgComponent = {
+type Story = StoryObj<typeof TopicImageSVG>;
+
+export const SvgComponent: Story = {
   args: {
     aspectRatio: 1,
     image: cat,

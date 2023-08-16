@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { ColorButton, ColorButtonProps } from "./ColorButton";
 
@@ -7,7 +7,9 @@ export default {
   component: ColorButton,
 } satisfies Meta<typeof ColorButton>;
 
-export const Default = {
+type Story = StoryObj<typeof ColorButton>;
+
+export const Default: Story = {
   args: {
     color: Color.ORANGE,
     selected: true,

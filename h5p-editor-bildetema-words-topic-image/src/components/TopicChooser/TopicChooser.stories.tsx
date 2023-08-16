@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
 import { Topic, Word } from "common/types/types";
 import { TopicChooser } from "./TopicChooser";
@@ -7,6 +7,8 @@ export default {
   title: "Molecules/Topic chooser",
   component: TopicChooser,
 } satisfies Meta<typeof TopicChooser>;
+
+type Story = StoryObj<typeof TopicChooser>;
 
 const baseTopic: Topic = {
   id: "1",
@@ -24,7 +26,7 @@ const baseTopic: Topic = {
 const subTopics: Topic[] = [];
 subTopics.push({ ...baseTopic, id: "1", label: "Subtopic 1.1" });
 
-export const ThemesGrid = {
+export const ThemesGrid: Story = {
   args: {
     items: [
       { ...baseTopic, label: "test1", tema1: "test1", subTopics } as Topic,

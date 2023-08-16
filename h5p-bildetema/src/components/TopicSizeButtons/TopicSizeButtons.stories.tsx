@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { TopicSizeButtons } from "./TopicSizeButtons";
 
 export default {
@@ -6,6 +6,8 @@ export default {
   component: TopicSizeButtons,
 } satisfies Meta<typeof TopicSizeButtons>;
 
-export const ThemesTopicList = {
+type Story = StoryObj<typeof TopicSizeButtons>;
+
+export const ThemesTopicList: Story = {
   args: {},
 };

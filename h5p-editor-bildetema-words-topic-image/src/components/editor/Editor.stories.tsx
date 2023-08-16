@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { Editor } from "./Editor";
 
@@ -9,6 +9,8 @@ export default {
     initialHotspots: [],
   },
 } satisfies Meta<typeof Editor>;
+
+type Story = StoryObj<typeof Editor>;
 
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
@@ -25,7 +27,7 @@ const landscapeImage = {
   height: 667,
 };
 
-export const Portrait = {
+export const Portrait: Story = {
   args: {
     image: portraitImage,
     words: [
@@ -37,7 +39,7 @@ export const Portrait = {
   },
 };
 
-export const Landscape = {
+export const Landscape: Story = {
   args: {
     image: landscapeImage,
     words: [
@@ -50,7 +52,7 @@ export const Landscape = {
   },
 };
 
-export const WithInitialHotspots = {
+export const WithInitialHotspots: Story = {
   args: {
     image: portraitImage,
     words: [

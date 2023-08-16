@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Word } from "common/types/types";
 import { TopicWordsGrid } from "./TopicWordsGrid";
 
@@ -6,6 +6,8 @@ export default {
   title: "Molecules/Topic words grid",
   component: TopicWordsGrid,
 } satisfies Meta<typeof TopicWordsGrid>;
+
+type Story = StoryObj<typeof TopicWordsGrid>;
 
 const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
@@ -25,7 +27,7 @@ const baseWord: Word = {
   ],
 };
 
-export const ThemesGrid = {
+export const ThemesGrid: Story = {
   args: {
     words: [
       { ...baseWord, id: "1", label: "test1", tema1: "test1" } as Word,
