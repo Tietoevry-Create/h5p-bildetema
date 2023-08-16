@@ -31,8 +31,8 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
 }) => {
   const { topics: topicsFromDB, languages } = useDBContext() || {};
 
-  const getAmountOfRows = (): number => {
-    return Math.max(1, Math.ceil(languages ? languages.length / 2 : 0));
+  const getAmountOfRows = (columns: number): number => {
+    return Math.max(1, Math.ceil(languages ? languages.length / columns : 0));
   };
 
   const navAriaLabel = useL10n("chooseLanguageAriaLabel");
@@ -62,7 +62,13 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
               path={getLanguagePath(language, topicIds, search, topicsFromDB)}
               key={language.code}
               language={language}
-              middleElement={index === Math.max(1, getAmountOfRows() - 1)}
+              bottomElementAt2Col={
+                index === Math.max(1, getAmountOfRows(2) - 1)
+              }
+              bottomElementAt3Col={
+                index === Math.max(1, getAmountOfRows(3) - 1) ||
+                index === Math.max(1, getAmountOfRows(3) * 2 - 1)
+              }
               favLanguages={favLanguages}
               handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
               currentLanguageCode={currentLanguageCode}

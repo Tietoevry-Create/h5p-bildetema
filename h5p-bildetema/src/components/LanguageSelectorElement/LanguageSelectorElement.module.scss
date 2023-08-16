@@ -1,6 +1,5 @@
 @use "../../../../common/abstracts" as *;
-.language,
-.languageMiddle {
+.language {
   all: unset;
   display: inline-flex;
   justify-content: flex-start;
@@ -26,8 +25,14 @@
   }
 }
 
-.languageMiddle {
-  @include breakpoint-min($medium) {
+.languageBottom2Col {
+  @include breakpoint-between($medium, $x-large) {
+    border-bottom-color: transparent;
+  }
+}
+
+.languageBottom3Col {
+  @include breakpoint-min($x-large) {
     border-bottom-color: transparent;
   }
 }

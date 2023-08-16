@@ -13,7 +13,8 @@ type LanguageSelectorElement = {
   path: string;
   language: Language;
   currentLanguageCode: string;
-  middleElement: boolean;
+  bottomElementAt2Col: boolean;
+  bottomElementAt3Col: boolean;
   favLanguages: Language[];
   translations: Record<string, string>;
   translatedLabel: string;
@@ -24,7 +25,8 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
   path,
   language,
   currentLanguageCode,
-  middleElement,
+  bottomElementAt2Col,
+  bottomElementAt3Col,
   favLanguages,
   translations,
   translatedLabel,
@@ -55,7 +57,9 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li
       role="listitem"
-      className={`${middleElement ? styles.languageMiddle : styles.language} ${
+      className={`${styles.language} ${
+        bottomElementAt2Col ? styles.languageBottom2Col : ""
+      } ${bottomElementAt3Col ? styles.languageBottom3Col : ""} ${
         isDisabled ? styles.disabled : ""
       }`}
     >
