@@ -9,6 +9,10 @@
   @include breakpoint-min($medium) {
     column-count: 2;
   }
+
+  @include breakpoint-min($x-large) {
+    column-count: 3;
+  }
 }
 
 .languageSelectorWrapper {

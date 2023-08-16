@@ -22,3 +22,9 @@
     @content;
   }
 }
+
+@mixin breakpoint-between($min, $max) {
+  @media (min-width: $min) and (max-width: calc(#{$max} - 1px)) {
+    @content;
+  }
+}
