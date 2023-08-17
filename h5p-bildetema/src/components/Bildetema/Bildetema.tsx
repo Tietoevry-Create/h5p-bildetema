@@ -116,7 +116,8 @@ export const Bildetema: FC<BildetemaProps> = ({
 
   const directionRtl: boolean = useMemo(() => {
     return !!getCurrentLanguage()?.rtl;
-  }, [favLanguages, pathname, getCurrentLanguage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favLanguages, pathname]);
 
   const handleToggleArticles = (value: boolean): void => {
     handleSearchParams(
