@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Color } from "common/enums/Color";
-import { ColorButton, ColorButtonProps } from "./ColorButton";
+import { ColorButton } from "./ColorButton";
 
 export default {
   title: "Components/Color button",
