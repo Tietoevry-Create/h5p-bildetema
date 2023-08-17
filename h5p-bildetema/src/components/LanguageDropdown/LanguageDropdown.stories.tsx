@@ -1,34 +1,29 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { LanguageDropdown, LanguageDropdownProps } from "./LanguageDropdown";
+import { Meta, StoryObj } from "@storybook/react";
+import { LanguageDropdown } from "./LanguageDropdown";
 
 export default {
-  title: "Components/LanguageDropdown",
+  title: "Components/Language dropdown",
   component: LanguageDropdown,
-} as ComponentMeta<typeof LanguageDropdown>;
+} satisfies Meta<typeof LanguageDropdown>;
 
-const Template: ComponentStory<typeof LanguageDropdown> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <LanguageDropdown {...args} />
-);
+type Story = StoryObj<typeof LanguageDropdown>;
 
-export const Default = Template.bind({});
-
-const defaultArgs: LanguageDropdownProps = {
-  search: "",
-  currentLanguageCode: "nob",
-  topicIds: {},
-  handleSelectorVisibility: () => null,
-  handleToggleFavoriteLanguage: () => null,
-  langSelectorIsShown: true,
-  firstTime: true,
-  favLanguages: [
-    {
-      label: "Norsk (Bokmål)",
-      code: "nob",
-      rtl: false,
-    },
-  ],
-  selectLanguageLabel: "Select language",
+export const Default: Story = {
+  args: {
+    search: "",
+    currentLanguageCode: "nob",
+    topicIds: {},
+    handleSelectorVisibility: () => null,
+    handleToggleFavoriteLanguage: () => null,
+    langSelectorIsShown: true,
+    firstTime: true,
+    favLanguages: [
+      {
+        label: "Norsk (Bokmål)",
+        code: "nob",
+        rtl: false,
+      },
+    ],
+    selectLanguageLabel: "Select language",
+  },
 };
-
-Default.args = defaultArgs;

@@ -1,39 +1,37 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { Svg } from "./Svg";
 
 export default {
   title: "Components/Svg",
   component: Svg,
-} as ComponentMeta<typeof Svg>;
+} satisfies Meta<typeof Svg>;
 
-const Template: ComponentStory<typeof Svg> = args => (
-  /* eslint-disable-next-line react/jsx-props-no-spreading */
-  <Svg {...args} />
-);
+type Story = StoryObj<typeof Svg>;
 
-export const Default = Template.bind({});
-Default.args = {
-  hotspots: [
-    {
-      isDrawingThisPolygon: false,
-      word: {
-        id: "1",
-        label: "hello",
-        images: [],
-        audioFiles: [],
+export const Default: Story = {
+  args: {
+    hotspots: [
+      {
+        isDrawingThisPolygon: false,
+        word: {
+          id: "1",
+          label: "hello",
+          images: [],
+          audioFiles: [],
+        },
+        points: [
+          { x: 10, y: 10, index: 0 },
+          { x: 20, y: 20, index: 1 },
+          { x: 10, y: 20, index: 2 },
+        ],
+        rotation: 0,
+        ellipseRadius: 0,
+        color: Color.ORANGE,
       },
-      points: [
-        { x: 10, y: 10, index: 0 },
-        { x: 20, y: 20, index: 1 },
-        { x: 10, y: 20, index: 2 },
-      ],
-      rotation: 0,
-      ellipseRadius: 0,
-      color: Color.ORANGE,
-    },
-  ],
-  handlePointClick: () => {},
+    ],
+    handlePointClick: () => {},
+  },
 };

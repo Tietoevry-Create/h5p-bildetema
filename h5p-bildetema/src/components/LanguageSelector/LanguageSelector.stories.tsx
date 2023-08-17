@@ -1,33 +1,28 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Language } from "common/types/types";
-import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
+import { LanguageSelector } from "./LanguageSelector";
 
 export default {
-  title: "Components/LanguageSelector",
+  title: "Components/Language selector",
   component: LanguageSelector,
-} as ComponentMeta<typeof LanguageSelector>;
+} satisfies Meta<typeof LanguageSelector>;
 
-const Template: ComponentStory<typeof LanguageSelector> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <LanguageSelector {...args} />
-);
+type Story = StoryObj<typeof LanguageSelector>;
 
-export const Default = Template.bind({});
-
-const defaultArgs: LanguageSelectorProps = {
-  topicIds: {},
-  search: "",
-  favLanguages: [
-    {
-      label: "Polsk",
-      code: "pol",
-      rtl: false,
+export const Default: Story = {
+  args: {
+    topicIds: {},
+    search: "",
+    favLanguages: [
+      {
+        label: "Norsk (bokmål)",
+        code: "nob",
+        rtl: false,
+      },
+    ],
+    currentLanguageCode: "nob",
+    handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
+      console.info(fav);
     },
-  ],
-  currentLanguageCode: "nob",
-  handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
-    console.info(fav);
   },
 };
-
-Default.args = defaultArgs;

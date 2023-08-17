@@ -1,43 +1,63 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Toggle } from "./Toggle";
 
 export default {
   title: "Components/Toggle",
   component: Toggle,
-} as ComponentMeta<typeof Toggle>;
+  render: ({ id, checked, label }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [isChecked, setIsChecked] = useState(checked);
 
-const Template = (size: string, label: string): JSX.Element => {
-  const [checked, setChecked] = useState(false);
+    let size;
 
-  const handleChange = (value: boolean): void => {
-    setChecked(value);
-  };
+    switch (label) {
+      case "Large":
+        size = "1.4rem";
+        break;
+      case "Medium":
+        size = "1.2rem";
+        break;
+      case "Small":
+      default:
+        size = "1rem";
+    }
 
-  return (
-    <span style={{ fontSize: size }}>
-      <Toggle
-        label={label}
-        id={label}
-        checked={checked}
-        handleChange={handleChange}
-      />
-    </span>
-  );
+    return (
+      <span style={{ fontSize: size }}>
+        <Toggle
+          id={id}
+          checked={isChecked}
+          handleChange={setIsChecked}
+          label={label}
+        />
+      </span>
+    );
+  },
+} satisfies Meta<typeof Toggle>;
+
+type Story = StoryObj<typeof Toggle>;
+
+export const LabelSmall: Story = {
+  args: {
+    id: "small",
+    checked: false,
+    label: "Small",
+  },
 };
 
-const small = "1rem";
-const medium = "1.2rem";
-const large = "1.4rem";
-
-export const LabelSmall = (): JSX.Element => {
-  return Template(small, "Small");
+export const LabelMedium: Story = {
+  args: {
+    id: "medium",
+    checked: false,
+    label: "Medium",
+  },
 };
 
-export const LabelMedium = (): JSX.Element => {
-  return Template(medium, "Medium");
-};
-
-export const LabelLarge = (): JSX.Element => {
-  return Template(large, "Large");
+export const LabelLarge: Story = {
+  args: {
+    id: "large",
+    checked: false,
+    label: "Large",
+  },
 };

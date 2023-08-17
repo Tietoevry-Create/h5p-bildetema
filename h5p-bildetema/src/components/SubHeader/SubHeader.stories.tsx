@@ -1,58 +1,78 @@
-import { ComponentMeta } from "@storybook/react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { Meta, StoryObj } from "@storybook/react";
 import { TopicGridSizes } from "common/types/types";
 import { useState } from "react";
 import { SubHeader } from "./SubHeader";
 
 export default {
-  title: "Components/SubHeader",
+  title: "Components/Sub header",
   component: SubHeader,
-} as ComponentMeta<typeof SubHeader>;
+  render: ({ isWordView, rtl }) => {
+    const [checked, setChecked] = useState(true);
+    const [articlesChecked, setArticlesChecked] = useState(true);
+    const [topicSize, setTopicsSize] = useState(TopicGridSizes.Big);
 
-const Template = (isWordView: boolean, isRtl: boolean): JSX.Element => {
-  const [checked, setChecked] = useState(true);
-  const [articlesChecked, setArticlesChecked] = useState(true);
-  const [topicSize, setTopicsSize] = useState(TopicGridSizes.Big);
+    return (
+      <SubHeader
+        topicIds={{}}
+        setTopicsSize={setTopicsSize}
+        topicsSize={topicSize}
+        isWordView={isWordView}
+        handleToggleChange={(value: boolean) => {
+          setChecked(value);
+        }}
+        toggleChecked={checked}
+        showTopicImageView={false}
+        rtl={rtl}
+        handleToggleArticles={(value: boolean): void => {
+          setArticlesChecked(value);
+        }}
+        articlesToggleChecked={articlesChecked}
+      />
+    );
+  },
+} satisfies Meta<typeof SubHeader>;
 
-  return (
-    <SubHeader
-      topicIds={{}}
-      setTopicsSize={setTopicsSize}
-      topicsSize={topicSize}
-      isWordView={isWordView}
-      handleToggleChange={(value: boolean) => {
-        setChecked(value);
-      }}
-      toggleChecked={checked}
-      showTopicImageView={false}
-      rtl={isRtl}
-      handleToggleArticles={(value: boolean): void => {
-        setArticlesChecked(value);
-      }}
-      articlesToggleChecked={articlesChecked}
-    />
-  );
+type Story = StoryObj<typeof SubHeader>;
+
+export const Default: Story = {
+  args: {
+    isWordView: false,
+    rtl: false,
+  },
 };
 
-export const Default = (): JSX.Element => {
-  return Template(false, false);
+export const DefaultRtl: Story = {
+  args: {
+    isWordView: false,
+    rtl: true,
+  },
 };
 
-export const DefaultRtl = (): JSX.Element => {
-  return Template(false, true);
+export const isWordView: Story = {
+  args: {
+    isWordView: true,
+    rtl: false,
+  },
 };
 
-export const isWordView = (): JSX.Element => {
-  return Template(true, false);
+export const isWordViewRtl: Story = {
+  args: {
+    isWordView: true,
+    rtl: true,
+  },
 };
 
-export const isWordViewRtl = (): JSX.Element => {
-  return Template(true, true);
+export const isTopicImageView: Story = {
+  args: {
+    isWordView: true,
+    rtl: false,
+  },
 };
 
-export const isTopicImageView = (): JSX.Element => {
-  return Template(true, false);
-};
-
-export const isTopicImageViewRtl = (): JSX.Element => {
-  return Template(true, true);
+export const isTopicImageViewRtl: Story = {
+  args: {
+    isWordView: true,
+    rtl: true,
+  },
 };

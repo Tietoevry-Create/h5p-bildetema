@@ -1,43 +1,35 @@
-import { ComponentMeta } from "@storybook/react";
-import { Language } from "common/types/types";
-import { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./Header";
 
 export default {
   title: "Components/Header",
   component: Header,
-} as ComponentMeta<typeof Header>;
+} satisfies Meta<typeof Header>;
 
-const Template = (): JSX.Element => {
-  const [firstTime, setFirstTime] = useState(false);
-  const languages: Array<Language> = [
-    {
-      label: "Norsk (Bokmål)",
-      code: "nob",
-      rtl: false,
-    },
-    {
-      label: "Norsk (Nynorsk)",
-      code: "nno",
-      rtl: false,
-    },
-    {
-      label: "Polsk",
-      code: "pol",
-      rtl: false,
-    },
-  ];
-  return (
-    <Header
-      topicIds={{}}
-      favLanguages={languages}
-      firstTime={firstTime}
-      setFirstTime={setFirstTime}
-      handleToggleFavoriteLanguage={() => null}
-    />
-  );
-};
+type Story = StoryObj<typeof Header>;
 
-export const Default = (): JSX.Element => {
-  return Template();
+export const Default: Story = {
+  args: {
+    topicIds: {},
+    favLanguages: [
+      {
+        label: "Norsk (bokmål)",
+        code: "nob",
+        rtl: false,
+      },
+      {
+        label: "Norsk (nynorsk)",
+        code: "nno",
+        rtl: false,
+      },
+      {
+        label: "Polsk",
+        code: "pol",
+        rtl: false,
+      },
+    ],
+    firstTime: false,
+    setFirstTime: () => null,
+    handleToggleFavoriteLanguage: () => null,
+  },
 };
