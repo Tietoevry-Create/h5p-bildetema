@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Language } from "common/types/types";
-import { LanguageSelector, LanguageSelectorProps } from "./LanguageSelector";
+import { LanguageSelector } from "./LanguageSelector";
 
 export default {
   title: "Components/Language selector",
@@ -15,8 +15,8 @@ export const Default: Story = {
     search: "",
     favLanguages: [
       {
-        label: "Polsk",
-        code: "pol",
+        label: "Norsk (bokmål)",
+        code: "nob",
         rtl: false,
       },
     ],

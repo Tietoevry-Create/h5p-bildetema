@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { App } from "./App";
 
 export default {
@@ -6,13 +6,11 @@ export default {
   component: App,
 } satisfies Meta<typeof App>;
 
-const Template: StoryFn<typeof App> = () => (
-  <App
-    defaultLanguages={["nob"]}
-    backendUrl="https://cdn-prodbildetema.azureedge.net/data/database.json"
-  />
-);
+type Story = StoryObj<typeof App>;
 
-export const Default = {
-  render: Template,
+export const Default: Story = {
+  args: {
+    defaultLanguages: ["nob"],
+    backendUrl: "https://cdn-prodbildetema.azureedge.net/data/database.json",
+  },
 };
