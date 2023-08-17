@@ -8,13 +8,11 @@ export type LogoProps = {
 
 export type LogoSizeProps = {
   width?: number;
-  height?: number;
 };
 
 export const OsloMetLogo: FC<LogoProps & LogoSizeProps> = ({
   logoColor,
   width,
-  height,
   role,
   ariaLabel,
 }) => (
