@@ -9,18 +9,6 @@ import {
   Translations,
 } from "../types/types";
 
-const NON_LANGUAGE_FIELDS = [
-  "Bane",
-  "Bilde_a",
-  "Bilde_b",
-  "Bilde_c",
-  "Elementtype",
-  "Tema1",
-  "Title",
-  "Undertema1",
-  "Bokmål_nb_duplisert",
-];
-
 const languages: Language[] = [];
 const topics: Topic[] = [];
 let translations: Translations = {} as Translations;
