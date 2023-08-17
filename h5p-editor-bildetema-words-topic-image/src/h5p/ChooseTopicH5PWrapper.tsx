@@ -19,7 +19,8 @@ const queryClient = new QueryClient();
 
 export class ChooseTopicH5PWrapper
   extends H5PWidget<Field, Params>
-  implements IH5PWidget {
+  implements IH5PWidget
+{
   changes: Array<() => void> = [];
 
   private backendUrl = "";

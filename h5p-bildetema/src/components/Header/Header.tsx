@@ -135,10 +135,11 @@ export const Header: FC<HeaderProps> = ({
                         search,
                         topicsFromDB,
                       )}
-                      className={`${styles.languageButton} ${currentLanguageCode === language.code
+                      className={`${styles.languageButton} ${
+                        currentLanguageCode === language.code
                           ? styles.languageButton_active
                           : ""
-                        }`}
+                      }`}
                     >
                       {langs[`lang_${language.code}`]}
                     </Link>

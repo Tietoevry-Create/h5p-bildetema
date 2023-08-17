@@ -102,18 +102,18 @@ export const Words: FC<WordsProps> = ({
         topicRootElement: HTMLDivElement,
         gridRootElement: HTMLDivElement,
       ): void => {
-        const existingContent = (window as ExistingContentWindow).H5PAllContents?.filter(
-          (h5pContent: H5PContent) => {
-            const params = JSON.parse(h5pContent.json_content);
+        const existingContent = (
+          window as ExistingContentWindow
+        ).H5PAllContents?.filter((h5pContent: H5PContent) => {
+          const params = JSON.parse(h5pContent.json_content);
 
-            return (
-              topic &&
-              params.selectedTopic &&
-              params.selectedTopic.topicId === topic?.topicId &&
-              params.selectedTopic.subTopicId === topic?.subTopicId
-            );
-          },
-        );
+          return (
+            topic &&
+            params.selectedTopic &&
+            params.selectedTopic.topicId === topic?.topicId &&
+            params.selectedTopic.subTopicId === topic?.subTopicId
+          );
+        });
 
         const currentTopicHasTopicImage =
           existingContent && existingContent.length > 0;
