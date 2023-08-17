@@ -1,30 +1,29 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { TopicImageWordList } from "./TopicImageWordList";
 
 export default {
-  label: "Molecules/Word list",
+  title: "Molecules/Word list",
   component: TopicImageWordList,
-} as ComponentMeta<typeof TopicImageWordList>;
+} satisfies Meta<typeof TopicImageWordList>;
 
-const Template: ComponentStory<typeof TopicImageWordList> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <TopicImageWordList {...args} />
-);
+type Story = StoryObj<typeof TopicImageWordList>;
 
-export const WordList = Template.bind({});
-WordList.args = {
-  words: [
-    {
-      id: "1",
-      label: "Bildetema",
-      images: [{ src: "" }],
-      audioFiles: [],
-    },
-    {
-      id: "2",
-      label: "Temabilde",
-      images: [{ src: "" }],
-      audioFiles: [],
-    },
-  ],
+export const WordList: Story = {
+  args: {
+    showWrittenWords: true,
+    words: [
+      {
+        id: "1",
+        label: "Bildetema",
+        images: [{ src: "" }],
+        audioFiles: [],
+      },
+      {
+        id: "2",
+        label: "Temabilde",
+        images: [{ src: "" }],
+        audioFiles: [],
+      },
+    ],
+  },
 };

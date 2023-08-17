@@ -1,31 +1,30 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { WordAudio } from "./WordAudio";
 
 export default {
-  title: "Atoms/WordAudio",
+  title: "Atoms/Word audio",
   component: WordAudio,
-} as ComponentMeta<typeof WordAudio>;
+} satisfies Meta<typeof WordAudio>;
 
-const Template: ComponentStory<typeof WordAudio> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <WordAudio {...args} />
-);
+type Story = StoryObj<typeof WordAudio>;
 
-export const Default = Template.bind({});
-Default.args = {
-  word: {
-    id: "V0889",
-    label: "Elg",
-    images: [
-      {
-        src: "https://images.unsplash.com/photo-1549471013-3364d7220b75?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750",
-      },
-    ],
-    audioFiles: [
-      {
-        url: "https://www.w3schools.com/TAGS/horse.ogg",
-        mimeType: "audio/ogg" as "audio/mp3",
-      },
-    ],
+export const Default: Story = {
+  args: {
+    textVisible: true,
+    word: {
+      id: "V0889",
+      label: "Elg",
+      images: [
+        {
+          src: "https://images.unsplash.com/photo-1549471013-3364d7220b75?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750",
+        },
+      ],
+      audioFiles: [
+        {
+          url: "https://www.w3schools.com/TAGS/horse.ogg",
+          mimeType: "audio/ogg" as "audio/mp3",
+        },
+      ],
+    },
   },
 };

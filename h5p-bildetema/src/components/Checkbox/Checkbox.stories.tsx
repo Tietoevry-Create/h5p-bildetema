@@ -1,30 +1,33 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Checkbox } from "./Checkbox";
 
 export default {
   title: "Components/Checkbox",
   component: Checkbox,
-} as ComponentMeta<typeof Checkbox>;
+} satisfies Meta<typeof Checkbox>;
 
-const Template = (disabled: boolean): JSX.Element => {
-  const [checked, setChecked] = useState(false);
+type Story = StoryObj<typeof Checkbox>;
 
-  const handleChange = (value: boolean): void => {
-    setChecked(value);
-  };
+export const Default: Story = {
+  args: {
+    id: "small",
+    checked: false,
+    disabled: false,
+    label: "Checkbox label",
+  },
+  render: ({ id, checked, disabled, label }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [isChecked, setIsChecked] = useState(checked);
 
-  return (
-    <Checkbox
-      id="small"
-      checked={checked}
-      disabled={disabled}
-      handleChange={handleChange}
-      label="Checkbox label"
-    />
-  );
-};
-
-export const Default = (): JSX.Element => {
-  return Template(false);
+    return (
+      <Checkbox
+        id={id}
+        checked={isChecked}
+        disabled={disabled}
+        handleChange={setIsChecked}
+        label={label}
+      />
+    );
+  },
 };

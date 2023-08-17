@@ -1,19 +1,19 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { cat, overlays } from "../../../.storybook/assets/cat.svg";
 import { TopicImageSVG } from "./TopicImageSVG";
 
 export default {
-  label: "Molecules/Topic grid",
+  title: "Molecules/Topic grid",
   component: TopicImageSVG,
-} as ComponentMeta<typeof TopicImageSVG>;
+} satisfies Meta<typeof TopicImageSVG>;
 
-const Template: ComponentStory<typeof TopicImageSVG> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <TopicImageSVG {...args} />
-);
+type Story = StoryObj<typeof TopicImageSVG>;
 
-export const SvgComponent = Template.bind({});
-SvgComponent.args = {
-  image: cat,
-  overlays,
+export const SvgComponent: Story = {
+  args: {
+    aspectRatio: 1,
+    image: cat,
+    overlays,
+    topicImageType: "vectorImageWithHotspots",
+  },
 };

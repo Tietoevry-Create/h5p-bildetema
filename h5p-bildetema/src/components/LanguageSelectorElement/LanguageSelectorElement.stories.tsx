@@ -1,56 +1,81 @@
-import { ComponentMeta } from "@storybook/react";
-import { LanguageCode } from "common/types/LanguageCode";
+import { Meta, StoryObj } from "@storybook/react";
 import { Language } from "common/types/types";
 import { LanguageSelectorElement } from "./LanguageSelectorElement";
 
 export default {
-  title: "Components/LanguageSelectorElement",
+  title: "Components/Language selector element",
   component: LanguageSelectorElement,
-} as ComponentMeta<typeof LanguageSelectorElement>;
+} satisfies Meta<typeof LanguageSelectorElement>;
 
-const Template = (
-  code: LanguageCode,
-  rtl: boolean,
-  favorite: boolean,
-): JSX.Element => {
-  const language: Language = {
-    label: "",
-    code,
-    rtl,
-  };
-  const favLanguages: Language[] = favorite ? [language] : [];
-  const bottomElementAt2Col = true;
-  const bottomElementAt3Col = false;
-  const handleToggleFavoriteLanguage = (lang: Language, fav: boolean): void => {
-    console.info(fav);
-  };
-  const translations: Record<string, string> = {
-    selectLanguage: "",
-  };
+type Story = StoryObj<typeof LanguageSelectorElement>;
 
-  return (
-    <LanguageSelectorElement
-      path=""
-      handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-      language={language}
-      currentLanguageCode=""
-      bottomElementAt2Col={bottomElementAt2Col}
-      bottomElementAt3Col={bottomElementAt3Col}
-      favLanguages={favLanguages}
-      translations={translations}
-      translatedLabel=""
-    />
-  );
+export const Default: Story = {
+  args: {
+    bottomElementAt2Col: false,
+    bottomElementAt3Col: false,
+    currentLanguageCode: "nob",
+    favLanguages: [
+      {
+        label: "Norsk (bokmål)",
+        code: "nob",
+        rtl: false,
+      },
+    ],
+    handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
+      console.info(fav);
+    },
+    language: {
+      label: "Engelsk",
+      code: "eng",
+      rtl: false,
+    },
+    path: "",
+    translations: {
+      selectLanguage: "Velg språk",
+      lang_eng: "Engelsk",
+      lang_nob: "Norsk (bokmål)",
+    },
+    translatedLabel: "Engelsk",
+  },
 };
 
-export const Default = (): JSX.Element => {
-  return Template("nob", false, false);
+export const Favorite: Story = {
+  args: {
+    ...Default.args,
+    favLanguages: [
+      {
+        label: "Norsk (bokmål)",
+        code: "nob",
+        rtl: false,
+      },
+      {
+        label: "Engelsk",
+        code: "eng",
+        rtl: false,
+      },
+    ],
+  },
 };
 
-export const Favorite = (): JSX.Element => {
-  return Template("nob", false, true);
+export const CurrentLanguage: Story = {
+  args: {
+    ...Default.args,
+    currentLanguageCode: "eng",
+  },
 };
 
-export const RTL = (): JSX.Element => {
-  return Template("ara", true, false);
+export const RTL: Story = {
+  args: {
+    ...Default.args,
+    language: {
+      label: "Arabisk",
+      code: "ara",
+      rtl: true,
+    },
+    translations: {
+      ...Default.args?.translations,
+      lang_ara: "Arabisk",
+    },
+    translatedLabel: "Arabisk",
+  },
 };
