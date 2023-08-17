@@ -116,7 +116,7 @@ export const Bildetema: FC<BildetemaProps> = ({
 
   const directionRtl: boolean = useMemo(() => {
     return !!getCurrentLanguage()?.rtl;
-  }, [favLanguages, pathname]);
+  }, [favLanguages, pathname, getCurrentLanguage]);
 
   const handleToggleArticles = (value: boolean): void => {
     handleSearchParams(
