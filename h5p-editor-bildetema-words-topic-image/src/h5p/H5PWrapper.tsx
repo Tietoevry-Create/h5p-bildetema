@@ -158,7 +158,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   }
 
   private setValueForField = (params: Params): void => {
-    // @ts-expect-error The first element for some reason becomes an empty string. Therefore, we need to put something in front which will be substituted.
-    this.setValue(this.field, [false, ...params]);
+    this.setValue(this.field, params);
   };
 }
