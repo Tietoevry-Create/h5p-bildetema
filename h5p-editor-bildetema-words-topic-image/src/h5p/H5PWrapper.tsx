@@ -158,6 +158,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   }
 
   private setValueForField = (params: Params): void => {
-    this.setValue(this.field, [...params]);
+    this.setValue(this.field, params);
   };
 }
