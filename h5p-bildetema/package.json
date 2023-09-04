@@ -11,7 +11,7 @@
     "start:dev": "vite",
     "build:dev": "vite build --mode=development",
     "build": "tsc && vite build",
-    "lint:check": "eslint . --report-unused-disable-directives",
+    "lint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest run",
     "test:watch": "vitest",
