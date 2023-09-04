@@ -20,7 +20,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.29.12",
+    "@tanstack/react-query": "^4.33.0",
     "common": "*",
     "react-detect-click-outside": "^1.1.7",
     "react-router-dom": "^6.11.2",
