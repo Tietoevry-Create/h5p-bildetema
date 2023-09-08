@@ -20,7 +20,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.29.12",
+    "@tanstack/react-query": "^4.35.0",
     "common": "*",
     "use-h5p": "^1.3.0"
   },
