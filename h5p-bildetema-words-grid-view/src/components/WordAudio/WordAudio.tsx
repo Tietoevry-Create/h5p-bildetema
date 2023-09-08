@@ -2,6 +2,7 @@ import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { Word as WordType } from "common/types/types";
 import { FC, useEffect, useRef, useState } from "react";
+import { extractWordLabel } from "common/utils/word.utils";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./WordAudio.module.scss";
 
@@ -16,12 +17,12 @@ export const WordAudio: FC<WordAudioProps> = ({
   textVisible,
   showArticles,
 }) => {
-  const { label, article } = word;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
-  const text = article && showArticles ? `${article} ${label}` : label;
+  const text = extractWordLabel(word, showArticles);
+
   const handleAudioEnded = (): void => {
     setPlaying(false);
   };

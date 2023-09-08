@@ -1,8 +1,9 @@
 import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Topic, TopicIds, Word } from "common/types/types";
+import { Topic, TopicIds, TopicWord, Word } from "common/types/types";
 import { forwardRef } from "react";
 import { useLocation } from "react-router-dom";
+import { extractWordLabel } from "common/utils/word.utils";
 import styles from "./PrintWords.module.scss";
 
 type PrintWordsProps = {
@@ -33,10 +34,12 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
 
     const topicsToWords = (
       inputTopics: Topic[] | undefined,
-    ): Word[] | undefined => {
-      return inputTopics?.map(
-        t => t.labelTranslations.get(currentLanguageCode) ?? ({} as Word),
-      );
+    ): TopicWord[] | undefined => {
+      return inputTopics?.map(t => {
+        const topicWords =
+          t.labelTranslations.get(currentLanguageCode) ?? ({} as TopicWord);
+        return topicWords;
+      });
     };
 
     const getHeader = (): string => {
@@ -59,7 +62,7 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
     };
 
     const renderTable = (): JSX.Element[] => {
-      const findWords = (): Word[] | undefined => {
+      const findWords = (): Word[] | TopicWord[] | undefined => {
         if (isWordView) {
           return subTopicId
             ? topics
@@ -95,10 +98,7 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
-            const wordLabel =
-              showArticles && word.article
-                ? `${word.article} ${word.label}`
-                : word.label;
+            const wordLabel = extractWordLabel(word, showArticles);
 
             // TODO: Change method to find correct image from Swiper
             const activeImage = word.images?.find(image => {

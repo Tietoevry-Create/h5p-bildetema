@@ -14,7 +14,7 @@ export const Default: Story = {
   args: {
     word: {
       id: "V0600",
-      label: "Brettspill",
+      labels: [{ label: "Brettspill" }],
       images: [
         {
           src: `${cdnURL}/images/medium/V0575a.jpeg`,
@@ -35,7 +35,7 @@ export const MultipleImages: Story = {
   args: {
     word: {
       id: "V0599",
-      label: "Puslespill",
+      labels: [{ label: "Puslespill" }],
       images: [
         {
           src: `${cdnURL}/images/medium/V0575a.jpeg`,
@@ -59,7 +59,7 @@ export const NoImages: Story = {
   args: {
     word: {
       id: "V0889",
-      label: "Elg",
+      labels: [{ label: "Elg" }],
       images: [],
       audioFiles: [],
     },
@@ -71,7 +71,7 @@ export const HiddenText: Story = {
   args: {
     word: {
       id: "V0889",
-      label: "Elg",
+      labels: [{ label: "Elg" }],
       images: [
         {
           src: `${cdnURL}/images/medium/V0575a.jpeg`,

@@ -8,7 +8,7 @@ import {
 
 const baseWord: Word = {
   id: "1",
-  label: "Bildetema",
+  labels: [{ label: "Bildetema" }],
   images: [{ src: "" }],
   audioFiles: [],
 };

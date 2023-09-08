@@ -7,6 +7,7 @@ import {
   JSONData,
   Data,
   Translations,
+  TopicWord,
 } from "../types/types";
 
 const languages: Language[] = [];
@@ -19,8 +20,11 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
   jsonTopic.forEach(topic => {
     const subTopics: Topic[] = [];
     Object.values(topic.subTopics).forEach(subtopic => {
-      const labelTranslations = new Map<LanguageCode, Word>(
-        Object.entries(subtopic.labelTranslations) as [LanguageCode, Word][],
+      const labelTranslations = new Map<LanguageCode, TopicWord>(
+        Object.entries(subtopic.labelTranslations) as [
+          LanguageCode,
+          TopicWord,
+        ][],
       );
       const words = new Map<LanguageCode, Word[]>(
         Object.entries(subtopic.words) as [LanguageCode, Word[]][],
@@ -35,8 +39,8 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
         onlyTopicImage: subtopic?.onlyTopicImage ?? false,
       });
     });
-    const labelTranslations = new Map<LanguageCode, Word>(
-      Object.entries(topic.labelTranslations) as [LanguageCode, Word][],
+    const labelTranslations = new Map<LanguageCode, TopicWord>(
+      Object.entries(topic.labelTranslations) as [LanguageCode, TopicWord][],
     );
     const words = new Map<LanguageCode, Word[]>(
       Object.entries(topic.words) as [LanguageCode, Word[]][],

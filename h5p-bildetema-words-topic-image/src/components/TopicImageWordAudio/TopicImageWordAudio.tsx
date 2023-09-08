@@ -2,6 +2,7 @@ import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { Word as WordType } from "common/types/types";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { extractWordLabel } from "common/utils/word.utils";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicImageWordAudio.module.scss";
 
@@ -24,8 +25,7 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
   showWrittenWords,
   showArticles,
 }) => {
-  const { label, article } = word;
-  const text = article && showArticles ? `${article} ${label}` : label;
+  const text = extractWordLabel(word, showArticles);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
