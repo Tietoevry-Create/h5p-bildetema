@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { extractWordLabel } from "common/utils/word.utils";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";
@@ -274,7 +275,9 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   };
 
   const getSelectedWordLabel = (wordId: string): string => {
-    return hotspots.filter(hotspot => hotspot.word.id === wordId)[0].word.label;
+    const hotspot = hotspots.find(el => el.word.id === wordId);
+    if (!hotspot) return "";
+    return extractWordLabel(hotspot.word, false);
   };
 
   useEffect(() => {
@@ -445,18 +448,18 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
       <div className={styles.editor_content}>
         <div>
           <div className={styles.controls}>
-            {hotspots.map(
-              ({ word: { label, id }, isDrawingThisPolygon, points }) => (
+            {hotspots.map(({ word, isDrawingThisPolygon, points }) => {
+              return (
                 <Button
-                  key={id}
+                  key={word.id}
                   isActive={isDrawingThisPolygon}
                   isFinished={!!points?.length}
-                  label={label}
-                  id={id}
-                  clickHandler={() => handleWordSelected(id)}
+                  label={extractWordLabel(word, false)}
+                  id={word.id}
+                  clickHandler={() => handleWordSelected(word.id)}
                 />
-              ),
-            )}
+              );
+            })}
           </div>
         </div>
         <div

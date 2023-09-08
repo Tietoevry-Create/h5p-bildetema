@@ -18,7 +18,7 @@ export const Default: Story = {
         isDrawingThisPolygon: false,
         word: {
           id: "1",
-          label: "hello",
+          labels: [{ label: "Bildetema" }],
           images: [],
           audioFiles: [],
         },

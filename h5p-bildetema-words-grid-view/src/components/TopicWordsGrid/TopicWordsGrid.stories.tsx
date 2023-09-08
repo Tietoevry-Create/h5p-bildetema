@@ -13,7 +13,7 @@ const cdnURL = "https://cdn-prodbildetema.azureedge.net";
 
 const baseWord: Word = {
   id: "V0599",
-  label: "Puslespill",
+  labels: [{ label: "Puslespill" }],
   images: [
     {
       src: `${cdnURL}/images/medium/V0575a.jpeg`,

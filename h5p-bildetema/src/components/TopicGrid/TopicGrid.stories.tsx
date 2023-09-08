@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Topic, TopicGridSizes, Word } from "common/types/types";
+import { Topic, TopicGridSizes, TopicWord, Word } from "common/types/types";
 import { TopicGrid, TopicGridProps } from "./TopicGrid";
 
 export default {
@@ -15,7 +15,7 @@ const baseTopic: Topic = {
   label: "",
   subTopics: [],
   words: new Map<LanguageCode, Word[]>(),
-  labelTranslations: new Map<LanguageCode, Word>(),
+  labelTranslations: new Map<LanguageCode, TopicWord>(),
   images: [
     {
       src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",

@@ -4,6 +4,7 @@ import { TopicGridSizes, TopicIds } from "common/types/types";
 import { Dispatch, FC, SetStateAction, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { useContentId } from "use-h5p";
+import { wordsIncludesArticles } from "common/utils/word.utils";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { PrintButton } from "../PrintButton/PrintButton";
@@ -56,10 +57,8 @@ export const SubHeader: FC<SubHeaderProps> = ({
       : topics
           ?.find(t => t.id === topicId)
           ?.words?.get(currentLanguageCode as LanguageCode);
-    return !!words?.find(word => {
-      if (word?.article) return true;
-      return false;
-    });
+    if (!words) return false;
+    return wordsIncludesArticles(words);
   }, [currentLanguageCode, topicIds, topics]);
 
   const renderLeftMenu = (): JSX.Element => {
