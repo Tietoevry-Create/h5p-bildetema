@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { Meta, StoryObj } from "@storybook/react";
 import { Color } from "common/enums/Color";
 import { Svg } from "./Svg";

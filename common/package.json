@@ -10,7 +10,7 @@
     "lint:fix": "npm run lint:check -- --fix"
   },
   "dependencies": {
-    "core-js": "^3.31.1",
+    "core-js": "^3.32.2",
     "h5p-types": "^2.0.1",
     "h5p-utils": "^3.2.3",
     "react": "^18.2.0",
@@ -18,8 +18,8 @@
     "replace-special-characters": "^1.2.7"
   },
   "devDependencies": {
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "@types/react-toggle": "^4.0.3",
     "eslint-config-custom": "*"
   },
