@@ -15,11 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Setup Bun and Install
+        uses: oven-sh/setup-bun@v1
+      - run: bun install --production --frozen-lockfile
 
       - name: Build
-        run: npm run build
+        run: bun run build
 
   lint:
     name: Lint
@@ -30,11 +31,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Setup Bun and Install
+        uses: oven-sh/setup-bun@v1
+      - run: bun install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint:check
+        run: bun run lint:check
 
   test:
     name: Test
@@ -45,11 +47,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Setup Bun and Install
+        uses: oven-sh/setup-bun@v1
+      - run: bun install --frozen-lockfile
 
       - name: Test
-        run: npm run test
+        run: bun run test
         env:
           CI: true
 
@@ -62,8 +65,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Setup Bun and Install
+        uses: oven-sh/setup-bun@v1
+      - run: bun install --frozen-lockfile
 
       - name: Check format
-        run: npm run format:check
+        run: bun run format:check
