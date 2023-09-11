@@ -13,8 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install Node.js dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Setup Bun and Install
+        uses: oven-sh/setup-bun@v1
+      - run: bun install --frozen-lockfile
 
       - name: Check licenses
-        run: npm run check-licenses
+        run: bun run check-licenses
