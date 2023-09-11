@@ -12,7 +12,8 @@
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "puppeteer": "^20.4.0",
-    "tsx": "^3.12.7"
+    "tsx": "^3.12.7",
+    "turbo": "^1.10.13"
   },
   "scripts": {
     "update-wordpress": "tsx puppeteer/update-wordpress.ts",
@@ -45,6 +46,5 @@
     "internal-utilities/*"
   ],
   "dependencies": {
-    "turbo": "^1.10.13"
   }
 }
