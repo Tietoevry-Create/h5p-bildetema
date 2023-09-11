@@ -1,5 +1,19 @@
 {
   "name": "h5p-bildetema-root",
+  "devDependencies": {
+    "cli-interact": "^0.1.9",
+    "@types/react": "^18.2.21",
+    "@types/cli-interact": "^0.1.1",
+    "@types/puppeteer": "^5.4.7",
+    "autoprefixer": "^10.4.14",
+    "happy-dom": "^9.20.3",
+    "jsdom": "^22.1.0",
+    "license-checker": "^25.0.1",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "puppeteer": "^20.4.0",
+    "tsx": "^3.12.7"
+  },
   "scripts": {
     "update-wordpress": "tsx puppeteer/update-wordpress.ts",
     "h5p-pack:all": "h5p pack h5p-bildetema h5p-bildetema-words-grid-view/ h5p-bildetema-words-topic-image/ h5p-editor-bildetema-words-topic-image/ all.h5p",
@@ -22,22 +36,6 @@
     "docker:run-wordpress-no-logs": "npm run docker:run-wordpress -- -d",
     "check-licenses": "npx license-checker --summary --production --excludePackages 'h5p-bildetema' --onlyAllow 'MIT;ISC;Apache-2.0;Apache 2.0;Apache*;BSD;WTFPL;Artistic-2.0;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Unlicense;Public Domain;'"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "cli-interact": "^0.1.9",
-    "@types/react": "^18.2.21",
-    "@types/cli-interact": "^0.1.1",
-    "@types/puppeteer": "^5.4.7",
-    "autoprefixer": "^10.4.14",
-    "happy-dom": "^9.20.3",
-    "jsdom": "^22.1.0",
-    "license-checker": "^25.0.1",
-    "postcss": "^8.4.24",
-    "prettier": "^2.8.8",
-    "puppeteer": "^20.4.0",
-    "tsx": "^3.12.7",
-    "turbo": "^1.10.12"
-  },
   "workspaces": [
     "common",
     "h5p-bildetema",
@@ -45,5 +43,8 @@
     "h5p-bildetema-words-topic-image",
     "h5p-editor-bildetema-words-topic-image",
     "internal-utilities/*"
-  ]
+  ],
+  "dependencies": {
+    "turbo": "^1.10.13"
+  }
 }
