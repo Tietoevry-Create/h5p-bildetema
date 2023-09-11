@@ -45,6 +45,5 @@
     "h5p-editor-bildetema-words-topic-image",
     "internal-utilities/*"
   ],
-  "dependencies": {
-  }
+  "dependencies": {}
 }
