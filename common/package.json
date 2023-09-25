@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "core-js": "^3.32.2",
-    "h5p-types": "^4.0.0",
+    "h5p-types": "^4.0.1",
     "h5p-utils": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
