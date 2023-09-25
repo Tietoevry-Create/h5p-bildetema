@@ -1,7 +1,7 @@
-import type { InferParamsFromSemantics, ReadonlyDeep } from "h5p-types";
+import type { InferParamsFromSemantics } from "h5p-types";
 import semantics from "../../semantics.json";
 
-export type Params = InferParamsFromSemantics<ReadonlyDeep<typeof semantics>>;
+export type Params = InferParamsFromSemantics<typeof semantics>;
 
 // Import semantics into value space to ensure that `unplugin-json-dts`
 // generates the correct types.
