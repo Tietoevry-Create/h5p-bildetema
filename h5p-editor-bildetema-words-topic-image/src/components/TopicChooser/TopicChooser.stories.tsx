@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Topic, Word } from "common/types/types";
+import { Topic, TopicWord, Word } from "common/types/types";
 import { TopicChooser } from "./TopicChooser";
 
 export default {
@@ -15,7 +15,7 @@ const baseTopic: Topic = {
   label: "",
   subTopics: [],
   words: new Map<LanguageCode, Word[]>(),
-  labelTranslations: new Map<LanguageCode, Word>(),
+  labelTranslations: new Map<LanguageCode, TopicWord>(),
   onlyTopicImage: false,
   images: [
     {

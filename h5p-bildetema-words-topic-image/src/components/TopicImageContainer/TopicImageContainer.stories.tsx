@@ -19,13 +19,13 @@ export const ImageContainer: Story = {
     words: [
       {
         id: overlays[0].wordId,
-        label: "Øre",
+        labels: [{ label: "Øre" }],
         images: [{ src: "" }],
         audioFiles: [],
       },
       {
         id: overlays[1].wordId,
-        label: "Pote",
+        labels: [{ label: "Potet" }],
         images: [{ src: "" }],
         audioFiles: [],
       },

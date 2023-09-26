@@ -31,9 +31,9 @@ export const Portrait: Story = {
   args: {
     image: portraitImage,
     words: [
-      { audioFiles: [], label: "Mor", id: "V0002", images: [] },
-      { audioFiles: [], label: "Far", id: "V0003", images: [] },
-      { audioFiles: [], label: "Sønn", id: "V0005", images: [] },
+      { audioFiles: [], labels: [{ label: "Mor" }], id: "V0002", images: [] },
+      { audioFiles: [], labels: [{ label: "Far" }], id: "V0003", images: [] },
+      { audioFiles: [], labels: [{ label: "Sønn" }], id: "V0005", images: [] },
     ],
     initialHotspots: [],
   },
@@ -43,10 +43,15 @@ export const Landscape: Story = {
   args: {
     image: landscapeImage,
     words: [
-      { audioFiles: [], label: "Mor", id: "V0002", images: [] },
-      { audioFiles: [], label: "Far", id: "V0003", images: [] },
-      { audioFiles: [], label: "Sønn", id: "V0005", images: [] },
-      { audioFiles: [], label: "Datter", id: "V0006", images: [] },
+      { audioFiles: [], labels: [{ label: "Mor" }], id: "V0002", images: [] },
+      { audioFiles: [], labels: [{ label: "Far" }], id: "V0003", images: [] },
+      { audioFiles: [], labels: [{ label: "Sønn" }], id: "V0005", images: [] },
+      {
+        audioFiles: [],
+        labels: [{ label: "Datter" }],
+        id: "V0006",
+        images: [],
+      },
     ],
     initialHotspots: [],
   },
@@ -56,9 +61,9 @@ export const WithInitialHotspots: Story = {
   args: {
     image: portraitImage,
     words: [
-      { audioFiles: [], label: "Mor", id: "V0002", images: [] },
-      { audioFiles: [], label: "Far", id: "V0003", images: [] },
-      { audioFiles: [], label: "Sønn", id: "V0005", images: [] },
+      { audioFiles: [], labels: [{ label: "Mor" }], id: "V0002", images: [] },
+      { audioFiles: [], labels: [{ label: "Far" }], id: "V0003", images: [] },
+      { audioFiles: [], labels: [{ label: "Sønn" }], id: "V0005", images: [] },
     ],
     initialHotspots: [
       {
@@ -240,7 +245,7 @@ export const WithInitialHotspots: Story = {
         isDrawingThisPolygon: false,
         word: {
           audioFiles: [],
-          label: "Mor",
+          labels: [{ label: "Mor" }],
           id: "V0002",
           images: [],
         },
@@ -253,7 +258,7 @@ export const WithInitialHotspots: Story = {
         isDrawingThisPolygon: false,
         word: {
           audioFiles: [],
-          label: "Far",
+          labels: [{ label: "Far" }],
           id: "V0003",
           images: [],
         },
@@ -266,7 +271,7 @@ export const WithInitialHotspots: Story = {
         isDrawingThisPolygon: false,
         word: {
           audioFiles: [],
-          label: "Sønn",
+          labels: [{ label: "Sønn" }],
           id: "V0005",
           images: [],
         },

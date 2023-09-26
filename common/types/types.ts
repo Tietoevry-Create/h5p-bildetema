@@ -3,13 +3,24 @@ import { LanguageCode } from "./LanguageCode";
 
 export type InputWord = Record<string, string>;
 
-export type Word = {
+interface CommonWord {
   id: string;
-  label: string;
   images: ImageUrl[];
   audioFiles?: Array<AudioFile>;
+  order?: number;
+}
+
+export interface TopicWord extends CommonWord {
+  label: string;
   article?: string;
-};
+}
+
+export interface Word extends CommonWord {
+  labels: {
+    label: string;
+    article?: string;
+  }[];
+}
 
 export type ImageUrl = {
   src: string;
@@ -25,7 +36,7 @@ export type Language = {
 export type Topic = {
   id: string;
   label: string;
-  labelTranslations: Map<LanguageCode, Word>;
+  labelTranslations: Map<LanguageCode, TopicWord>;
   subTopics: Topic[];
   words: Map<LanguageCode, Word[]>;
   images: ImageUrl[];
@@ -40,7 +51,7 @@ export type JSONData = {
 export type JSONTopic = {
   id: string;
   label: string;
-  labelTranslations: Record<string, Word>;
+  labelTranslations: Record<string, TopicWord>;
   subTopics: Record<string, JSONTopic>;
   words: Record<string, Word[]>;
   images: ImageUrl[];

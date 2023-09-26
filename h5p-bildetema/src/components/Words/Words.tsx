@@ -24,6 +24,18 @@ type WordsProps = {
   showArticles: boolean;
 };
 
+type H5PContent = {
+  content_id: number;
+  json_content: string;
+  machine_name: string;
+  major_version: number;
+  minor_version: number;
+};
+
+type ExistingContentWindow = Window & {
+  H5PAllContents?: H5PContent[];
+};
+
 export const Words: FC<WordsProps> = ({
   words,
   topic,
@@ -90,18 +102,18 @@ export const Words: FC<WordsProps> = ({
         topicRootElement: HTMLDivElement,
         gridRootElement: HTMLDivElement,
       ): void => {
-        const existingContent = (window as any).H5PAllContents?.filter(
-          (h5pContent: any) => {
-            const params = JSON.parse(h5pContent.json_content);
+        const existingContent = (
+          window as ExistingContentWindow
+        ).H5PAllContents?.filter((h5pContent: H5PContent) => {
+          const params = JSON.parse(h5pContent.json_content);
 
-            return (
-              topic &&
-              params.selectedTopic &&
-              params.selectedTopic.topicId === topic?.topicId &&
-              params.selectedTopic.subTopicId === topic?.subTopicId
-            );
-          },
-        );
+          return (
+            topic &&
+            params.selectedTopic &&
+            params.selectedTopic.topicId === topic?.topicId &&
+            params.selectedTopic.subTopicId === topic?.subTopicId
+          );
+        });
 
         const currentTopicHasTopicImage =
           existingContent && existingContent.length > 0;

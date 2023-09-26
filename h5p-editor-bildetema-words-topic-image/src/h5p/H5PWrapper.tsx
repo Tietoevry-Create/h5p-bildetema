@@ -3,7 +3,6 @@ import { Word } from "common/types/types";
 import { getData } from "common/utils/data.utils";
 import type {
   H5PField,
-  H5PFieldGroup,
   H5PGroup,
   H5PImage,
   IH5PEditorImageField,
@@ -16,8 +15,8 @@ import { App } from "../App";
 import { SetValueContext } from "../contexts/SetValueContext";
 import { Hotspot } from "../types/Hotspot";
 import { Params as ChooseTopicParams } from "./ChooseTopicH5PWrapper";
+import { BackendUrlField, Field } from "../types/Fields";
 
-type Field = H5PFieldGroup;
 export type Params = Array<Hotspot>;
 
 export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
@@ -38,7 +37,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
       "backendUrl",
     ) as unknown as H5PField & { $input: JQuery };
 
-    this.backendUrl = (backendUrlField as any).value ?? "";
+    this.backendUrl = (backendUrlField as BackendUrlField).value ?? "";
 
     backendUrlField.$input.get(0)?.addEventListener("change", e => {
       this.backendUrl = (e.target as HTMLInputElement).value;
@@ -159,7 +158,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
   }
 
   private setValueForField = (params: Params): void => {
-    // @ts-expect-error The first element for some reason becomes an empty string. Therefore, we need to put something in front which will be substituted.
-    this.setValue(this.field, [false, ...params]);
+    this.setValue(this.field, params);
   };
 }

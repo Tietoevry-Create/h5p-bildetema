@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type {
   H5PField,
-  H5PFieldGroup,
   H5PGroup,
   IH5PFieldInstance,
   IH5PWidget,
@@ -9,8 +8,7 @@ import type {
 import { H5PEditor, H5PWidget } from "h5p-utils";
 import { Root, createRoot } from "react-dom/client";
 import { AppChooseTopicWidget } from "../App_ChooseTopicWidget";
-
-type Field = H5PFieldGroup;
+import { BackendUrlField, Field } from "../types/Fields";
 
 export type Params = {
   topicId: string;
@@ -33,7 +31,7 @@ export class ChooseTopicH5PWrapper
     const backendUrlField = this.findField<H5PGroup<string>>(
       "backendUrl",
     ) as unknown as H5PField & { $input: JQuery };
-    this.backendUrl = (backendUrlField as any).value ?? "";
+    this.backendUrl = (backendUrlField as BackendUrlField).value ?? "";
 
     backendUrlField.$input.get(0)?.addEventListener("change", e => {
       this.backendUrl = (e.target as HTMLInputElement).value;

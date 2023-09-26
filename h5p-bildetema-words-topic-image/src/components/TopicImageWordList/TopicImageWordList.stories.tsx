@@ -14,13 +14,13 @@ export const WordList: Story = {
     words: [
       {
         id: "1",
-        label: "Bildetema",
+        labels: [{ label: "Bildetema" }],
         images: [{ src: "" }],
         audioFiles: [],
       },
       {
         id: "2",
-        label: "Temabilde",
+        labels: [{ label: "TemaTema" }],
         images: [{ src: "" }],
         audioFiles: [],
       },

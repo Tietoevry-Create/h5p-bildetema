@@ -11,7 +11,7 @@ import {
 } from "./hotspot.utils";
 
 describe(finishDrawingHotspot.name, () => {
-  const word = { id: "", images: [], label: "" };
+  const word: Word = { id: "", images: [], labels: [] };
 
   it("should finish drawing the active hotspot", () => {
     const hotspot: Hotspot = {
@@ -92,7 +92,7 @@ describe(finishDrawingHotspot.name, () => {
 });
 
 describe(resetPointsOfActiveHotspot.name, () => {
-  const word = { id: "", images: [], label: "" };
+  const word: Word = { id: "", images: [], labels: [] };
 
   it("should reset the active hotspot's points", () => {
     const hotspot: Hotspot = {
@@ -168,7 +168,7 @@ describe(removePoint.name, () => {
 
 describe(activateDrawingHotspot.name, () => {
   it("should activate the hotspot if it has the same word id as the given word id", () => {
-    const word: Word = { id: "A001", images: [], label: "Word" };
+    const word: Word = { id: "", images: [], labels: [] };
     const hotspot: Hotspot = {
       isDrawingThisPolygon: false,
       points: [],
@@ -193,7 +193,7 @@ describe(activateDrawingHotspot.name, () => {
   });
 
   it("should deactivate the hotspot if it does not have the same word id as the given word id", () => {
-    const word: Word = { id: "A001", images: [], label: "Word" };
+    const word: Word = { id: "", images: [], labels: [] };
     const hotspot: Hotspot = {
       isDrawingThisPolygon: true,
       points: [],
