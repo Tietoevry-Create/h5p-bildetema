@@ -5,7 +5,7 @@ import {
 } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
 import { Language, TopicIds } from "common/types/types";
-import { LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString } from "common/types/LanguageCode";
 import { getLanguagePath } from "common/utils/router.utils";
 import { FC } from "react";
 import { useL10ns } from "use-h5p";
@@ -44,7 +44,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
 
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  ) as Array<LanguageCodeString>;
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
 

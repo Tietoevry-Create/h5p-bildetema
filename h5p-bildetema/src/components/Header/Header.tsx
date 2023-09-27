@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
 import { Language, TopicIds } from "common/types/types";
 import { getLanguagePath } from "common/utils/router.utils";
 import {
@@ -38,7 +38,7 @@ export const Header: FC<HeaderProps> = ({
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  ) as Array<LanguageCodeString>;
 
   const { topics: topicsFromDB } = useDBContext() || {};
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(

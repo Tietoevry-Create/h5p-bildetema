@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages as languagesConst } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
 import { Language, TopicIds } from "common/types/types";
 import { getLanguagePath } from "common/utils/router.utils";
-import { translatedLabel } from "../../utils/language.utils";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { translatedLabel } from "../../utils/language.utils";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
@@ -22,7 +22,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   const { topics: topicsFromDB } = useDBContext() || {};
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  ) as Array<LanguageCodeString>;
 
   const { ...langs } = useL10ns(...languageKeys);
 
