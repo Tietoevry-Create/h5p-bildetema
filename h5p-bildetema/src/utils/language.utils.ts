@@ -3,7 +3,7 @@ import { Language } from "common/types/types";
 
 export const translatedLabel = (
   language: Language,
-  languages: Record<LanguageCodeString, string>,
+  translations: Record<LanguageCodeString, string>,
 ): string => {
-  return languages[`lang_${language.code}`];
+  return translations[`lang_${language.code}`];
 };
