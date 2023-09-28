@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
 import { Language, TopicIds } from "common/types/types";
 import { getLanguagePath } from "common/utils/router.utils";
 import {
@@ -15,6 +15,7 @@ import {
 } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
+import { translatedLabel } from "../../utils/language.utils";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -37,7 +38,7 @@ export const Header: FC<HeaderProps> = ({
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  ) as Array<LanguageCodeString>;
 
   const { topics: topicsFromDB } = useDBContext() || {};
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
@@ -119,33 +120,41 @@ export const Header: FC<HeaderProps> = ({
         <div className={styles.language_container}>
           <nav aria-label={navAriaLabel} className={styles.languages_nav}>
             <ul role="list" className={styles.languages}>
-              {favLanguages.map(language => {
-                return (
-                  <li
-                    role="listitem"
-                    key={language.code}
-                    aria-current={
-                      currentLanguageCode === language.code ? "page" : undefined
-                    }
-                  >
-                    <Link
-                      to={getLanguagePath(
-                        language,
-                        topicIds,
-                        search,
-                        topicsFromDB,
-                      )}
-                      className={`${styles.languageButton} ${
+              {favLanguages
+                .sort((a, b) =>
+                  translatedLabel(a, langs).localeCompare(
+                    translatedLabel(b, langs),
+                  ),
+                )
+                .map(language => {
+                  return (
+                    <li
+                      role="listitem"
+                      key={language.code}
+                      aria-current={
                         currentLanguageCode === language.code
-                          ? styles.languageButton_active
-                          : ""
-                      }`}
+                          ? "page"
+                          : undefined
+                      }
                     >
-                      {langs[`lang_${language.code}`]}
-                    </Link>
-                  </li>
-                );
-              })}
+                      <Link
+                        to={getLanguagePath(
+                          language,
+                          topicIds,
+                          search,
+                          topicsFromDB,
+                        )}
+                        className={`${styles.languageButton} ${
+                          currentLanguageCode === language.code
+                            ? styles.languageButton_active
+                            : ""
+                        }`}
+                      >
+                        {translatedLabel(language, langs)}
+                      </Link>
+                    </li>
+                  );
+                })}
             </ul>
           </nav>
           <LanguageDropdown

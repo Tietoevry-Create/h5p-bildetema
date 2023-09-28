@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { languages } from "common/constants/languages";
+import { languages as languagesConst } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
 import { Language, TopicIds } from "common/types/types";
 import { getLanguagePath } from "common/utils/router.utils";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { translatedLabel } from "../../utils/language.utils";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
@@ -19,9 +20,9 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   topicIds,
 }) => {
   const { topics: topicsFromDB } = useDBContext() || {};
-  const languageKeys = languages.map(
+  const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  ) as Array<LanguageCodeString>;
 
   const { ...langs } = useL10ns(...languageKeys);
 
@@ -37,28 +38,32 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   return (
     <nav aria-label={navAriaLabel} className={styles.languageWrapper}>
       <ul role="list" className={styles.languages}>
-        {favLanguages.map(language => {
-          return (
-            <li
-              role="listitem"
-              key={language.code}
-              aria-current={
-                currentLanguageCode === language.code ? "page" : undefined
-              }
-            >
-              <Link
-                to={getLanguagePath(language, topicIds, search, topicsFromDB)}
-                className={`${styles.languageButton} ${
-                  currentLanguageCode === language.code
-                    ? styles.languageButton_active
-                    : ""
-                }`}
+        {favLanguages
+          .sort((a, b) =>
+            translatedLabel(a, langs).localeCompare(translatedLabel(b, langs)),
+          )
+          .map(language => {
+            return (
+              <li
+                role="listitem"
+                key={language.code}
+                aria-current={
+                  currentLanguageCode === language.code ? "page" : undefined
+                }
               >
-                {langs[`lang_${language.code}`]}
-              </Link>
-            </li>
-          );
-        })}
+                <Link
+                  to={getLanguagePath(language, topicIds, search, topicsFromDB)}
+                  className={`${styles.languageButton} ${
+                    currentLanguageCode === language.code
+                      ? styles.languageButton_active
+                      : ""
+                  }`}
+                >
+                  {translatedLabel(language, langs)}
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     </nav>
   );

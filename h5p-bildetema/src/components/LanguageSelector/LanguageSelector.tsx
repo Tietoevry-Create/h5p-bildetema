@@ -5,11 +5,12 @@ import {
 } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
 import { Language, TopicIds } from "common/types/types";
-import { LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString } from "common/types/LanguageCode";
 import { getLanguagePath } from "common/utils/router.utils";
 import { FC } from "react";
 import { useL10ns, useL10n } from "../../hooks/useL10n";
 import { filterURL } from "../../utils/url.utils";
+import { translatedLabel } from "../../utils/language.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 import styles from "./LanguageSelector.module.scss";
 
@@ -42,20 +43,20 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
 
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
-  ) as Array<`lang_${LanguageCode}`>;
+  ) as Array<LanguageCodeString>;
 
   const translations = useL10ns(...languageKeys, "selectLanguage");
-
-  const translatedLabel = (language: Language): string => {
-    return translations[`lang_${language.code}`];
-  };
 
   return (
     <nav aria-label={navAriaLabel} className={styles.languageSelectorWrapper}>
       <ul role="list" className={styles.languageSelector}>
         {languages
           ?.filter(language => languagesOriginal?.[language.code])
-          ?.sort((a, b) => translatedLabel(a).localeCompare(translatedLabel(b)))
+          ?.sort((a, b) =>
+            translatedLabel(a, translations).localeCompare(
+              translatedLabel(b, translations),
+            ),
+          )
           ?.map((language, index) => (
             <LanguageSelectorElement
               path={getLanguagePath(language, topicIds, search, topicsFromDB)}
@@ -72,7 +73,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
               handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
               currentLanguageCode={currentLanguageCode}
               translations={translations}
-              translatedLabel={translatedLabel(language)}
+              translatedLabel={translatedLabel(language, translations)}
             />
           ))}
       </ul>
