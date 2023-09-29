@@ -121,10 +121,11 @@ export const Header: FC<HeaderProps> = ({
           <nav aria-label={navAriaLabel} className={styles.languages_nav}>
             <ul role="list" className={styles.languages}>
               {favLanguages
-                .sort((a, b) =>
-                  translatedLabel(a, langs).localeCompare(
-                    translatedLabel(b, langs),
-                  ),
+                .sort(
+                  (a, b) =>
+                    translatedLabel(a, langs)?.localeCompare(
+                      translatedLabel(b, langs),
+                    ),
                 )
                 .map(language => {
                   return (

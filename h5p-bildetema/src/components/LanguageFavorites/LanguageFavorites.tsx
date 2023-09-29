@@ -39,8 +39,11 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
     <nav aria-label={navAriaLabel} className={styles.languageWrapper}>
       <ul role="list" className={styles.languages}>
         {favLanguages
-          .sort((a, b) =>
-            translatedLabel(a, langs).localeCompare(translatedLabel(b, langs)),
+          .sort(
+            (a, b) =>
+              translatedLabel(a, langs)?.localeCompare(
+                translatedLabel(b, langs),
+              ),
           )
           .map(language => {
             return (
