@@ -15,7 +15,10 @@ import {
 } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
-import { translatedLabel } from "../../utils/language.utils";
+import {
+  filterFavoriteLanguages,
+  translatedLabel,
+} from "../../utils/language.utils";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -40,7 +43,8 @@ export const Header: FC<HeaderProps> = ({
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
 
-  const { topics: topicsFromDB } = useDBContext() || {};
+  const { topics: topicsFromDB, languages: languagesFromDB } =
+    useDBContext() || {};
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
     "headerTitle",
@@ -103,6 +107,11 @@ export const Header: FC<HeaderProps> = ({
     };
   }, [handleIsMobile]);
 
+  const filteredFavLanguages = filterFavoriteLanguages(
+    favLanguages,
+    languagesFromDB,
+  );
+
   return (
     <div ref={headerRef} className={styles.header}>
       <div className={styles.header_content}>
@@ -120,7 +129,7 @@ export const Header: FC<HeaderProps> = ({
         <div className={styles.language_container}>
           <nav aria-label={navAriaLabel} className={styles.languages_nav}>
             <ul role="list" className={styles.languages}>
-              {favLanguages
+              {filteredFavLanguages
                 .sort(
                   (a, b) =>
                     translatedLabel(a, langs)?.localeCompare(

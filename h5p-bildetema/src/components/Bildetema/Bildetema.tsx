@@ -19,6 +19,7 @@ import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
+import { filterFavoriteLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 
 type BildetemaProps = {
@@ -153,9 +154,12 @@ export const Bildetema: FC<BildetemaProps> = ({
   );
 
   useEffect(() => {
-    userData.favoriteLanguages = favLanguages;
+    userData.favoriteLanguages = filterFavoriteLanguages(
+      favLanguages,
+      languagesFromDB,
+    );
     setUserData(userData);
-  }, [favLanguages, userData, setUserData]);
+  }, [favLanguages, userData, setUserData, languagesFromDB]);
 
   useEffect(() => {
     if (document.title !== pageTitle) {
