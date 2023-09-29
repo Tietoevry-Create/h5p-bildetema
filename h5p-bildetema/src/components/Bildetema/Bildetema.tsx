@@ -19,7 +19,7 @@ import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { RouteController } from "../RouteController/RouteController";
 import { SubHeader } from "../SubHeader/SubHeader";
-import { filterFavoriteLanguages } from "../../utils/language.utils";
+import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 
 type BildetemaProps = {
@@ -154,7 +154,7 @@ export const Bildetema: FC<BildetemaProps> = ({
   );
 
   useEffect(() => {
-    userData.favoriteLanguages = filterFavoriteLanguages(
+    userData.favoriteLanguages = sanitizeLanguages(
       favLanguages,
       languagesFromDB,
     );

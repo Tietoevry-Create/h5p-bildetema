@@ -15,10 +15,7 @@ import {
 } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
-import {
-  filterFavoriteLanguages,
-  translatedLabel,
-} from "../../utils/language.utils";
+import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -107,7 +104,7 @@ export const Header: FC<HeaderProps> = ({
     };
   }, [handleIsMobile]);
 
-  const filteredFavLanguages = filterFavoriteLanguages(
+  const sanitizedFavLanguages = sanitizeLanguages(
     favLanguages,
     languagesFromDB,
   );
@@ -129,7 +126,7 @@ export const Header: FC<HeaderProps> = ({
         <div className={styles.language_container}>
           <nav aria-label={navAriaLabel} className={styles.languages_nav}>
             <ul role="list" className={styles.languages}>
-              {filteredFavLanguages
+              {sanitizedFavLanguages
                 .sort(
                   (a, b) =>
                     translatedLabel(a, langs)?.localeCompare(

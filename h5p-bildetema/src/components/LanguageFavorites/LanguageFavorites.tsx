@@ -6,10 +6,7 @@ import { Language, TopicIds } from "common/types/types";
 import { getLanguagePath } from "common/utils/router.utils";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  filterFavoriteLanguages,
-  translatedLabel,
-} from "../../utils/language.utils";
+import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
@@ -39,7 +36,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
 
   const navAriaLabel = useL10n("favoriteLanguagesAriaLabel");
 
-  const filteredFavLanguages = filterFavoriteLanguages(
+  const sanitizedFavLanguages = sanitizeLanguages(
     favLanguages,
     languagesFromDB,
   );
@@ -47,7 +44,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   return (
     <nav aria-label={navAriaLabel} className={styles.languageWrapper}>
       <ul role="list" className={styles.languages}>
-        {filteredFavLanguages
+        {sanitizedFavLanguages
           .sort(
             (a, b) =>
               translatedLabel(a, langs)?.localeCompare(
