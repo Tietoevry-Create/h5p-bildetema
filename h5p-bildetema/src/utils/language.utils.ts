@@ -10,7 +10,7 @@ export const translatedLabel = (
 };
 
 /**
- * Filter out languages that are not in the database.
+ * Filter out languages that are not in the database or the original list of languages.
  * This is to avoid errors when the database is updated.
  * @param languages - languages to sanitize
  * @param languagesFromDB - languages from the database
@@ -19,9 +19,9 @@ export const sanitizeLanguages = (
   languages: Language[],
   languagesFromDB: Language[] | undefined,
 ): Language[] => {
-  return languages
-    .filter(language => languagesOriginal?.[language.code])
-    .filter(
-      language => languagesFromDB?.find(lang => lang.code === language.code),
-    );
+  return languages.filter(
+    language =>
+      languagesOriginal?.[language.code] &&
+      languagesFromDB?.find(lang => lang.code === language.code),
+  );
 };
