@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useL10n } from "use-h5p";
+import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
 import { WordAudio } from "../WordAudio/WordAudio";
