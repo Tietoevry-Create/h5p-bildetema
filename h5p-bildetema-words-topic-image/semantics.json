@@ -95,9 +95,27 @@
               "type": "text"
             },
             {
-              "label": "Label",
-              "name": "label",
-              "type": "text"
+              "label": "Labels",
+              "name": "labels",
+              "type": "list",
+              "entity": "Label",
+              "field": {
+                "label": "Label",
+                "name": "label",
+                "type": "group",
+                "fields": [
+                  {
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text"
+                  },
+                  {
+                    "label": "Article",
+                    "name": "article",
+                    "type": "text"
+                  }
+                ]
+              }
             },
             {
               "label": "Images",
