@@ -13,7 +13,7 @@ import {
 const languages: Language[] = [];
 const topics: Topic[] = [];
 let translations: Translations = {} as Translations;
-let backendURL = "https://cdn-prodbildetema.azureedge.net/data/database.json";
+let backendURL = "https://cdn-prod-bildetema.azureedge.net/data/database.json";
 
 const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
   const t: Topic[] = [];

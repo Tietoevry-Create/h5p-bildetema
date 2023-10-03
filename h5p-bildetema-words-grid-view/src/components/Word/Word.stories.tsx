@@ -8,7 +8,7 @@ export default {
 
 type Story = StoryObj<typeof Word>;
 
-const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+const cdnURL = "https://cdn-prod-bildetema.azureedge.net";
 
 export const Default: Story = {
   args: {
