@@ -5,7 +5,7 @@ import { TopicIds } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
 import { FC, ReactPortal } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useL10n } from "use-h5p";
+import { useL10n } from "../../hooks/useL10n";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
