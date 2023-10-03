@@ -5,6 +5,11 @@ export const extractWordLabel = (
   includeArticle: boolean,
 ): string => {
   const isTopicWord = "label" in word;
+  const isWord = "labels" in word;
+  if (!isTopicWord && !isWord) {
+    // word has not been updated yet
+    return "";
+  }
   if (isTopicWord) {
     const articleInWord = "article" in word;
     return articleInWord && includeArticle
