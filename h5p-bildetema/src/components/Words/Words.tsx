@@ -59,7 +59,6 @@ export const Words: FC<WordsProps> = ({
   const l10n = useContext(L10nContext);
   const { topics } = useDBContext() || {};
   const onlyTopicImage = useMemo(() => {
-    if (!isTopicImageView) return false;
     if (topic?.subTopicId) {
       return topics
         ?.find(t => t.id === topic?.topicId)
@@ -148,6 +147,11 @@ export const Words: FC<WordsProps> = ({
           setTopicImageView(false);
         }
 
+        // If onlyTopicImage is true, and a Topic Image exist, we don't need to render the grid view
+        if (currentTopicHasTopicImage && onlyTopicImage) {
+          return;
+        }
+
         const gridView = H5P.newRunnable(
           {
             library: getLibraryName(gridViewLibrary as H5PLibrary),
@@ -209,15 +213,11 @@ export const Words: FC<WordsProps> = ({
       )}
       <div
         ref={topicViewRef}
-        className={
-          !showTopicImageView && !onlyTopicImage ? styles.displayNone : ""
-        }
+        className={!showTopicImageView ? styles.displayNone : ""}
       />
       <div
         ref={gridViewRef}
-        className={
-          showTopicImageView || onlyTopicImage ? styles.displayNone : ""
-        }
+        className={showTopicImageView ? styles.displayNone : ""}
       />
     </>
   );
