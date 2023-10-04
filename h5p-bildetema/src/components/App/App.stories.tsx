@@ -11,6 +11,6 @@ type Story = StoryObj<typeof App>;
 export const Default: Story = {
   args: {
     defaultLanguages: ["nob"],
-    backendUrl: "https://cdn-prodbildetema.azureedge.net/data/database.json",
+    backendUrl: "https://cdn-prod-bildetema.azureedge.net/data/database.json",
   },
 };

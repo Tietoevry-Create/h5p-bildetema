@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj<typeof Editor>;
 
-const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+const cdnURL = "https://cdn-prod-bildetema.azureedge.net";
 
 const portraitImage = {
   // path: "https://images.unsplash.com/photo-1537017206014-37e7e84d84c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",

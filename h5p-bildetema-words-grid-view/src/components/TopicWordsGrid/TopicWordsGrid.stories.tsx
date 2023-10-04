@@ -9,7 +9,7 @@ export default {
 
 type Story = StoryObj<typeof TopicWordsGrid>;
 
-const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+const cdnURL = "https://cdn-prod-bildetema.azureedge.net";
 
 const baseWord: Word = {
   id: "V0599",
