@@ -11,6 +11,10 @@ export const extractWordLabel = (
       ? `${word.article as string} ${word.label as string}`
       : (word.label as string);
   }
+  if (!word.labels) {
+    // Word has not been updated yet or is missing labels
+    return "";
+  }
   return word.labels
     .map(el =>
       el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
@@ -22,6 +26,6 @@ export const wordsIncludesArticles = (words: Word[]): boolean => {
   return words.some(word => {
     const isTopicWord = "article" in word;
     if (isTopicWord) return !!(word.article as string);
-    return word.labels.some(el => el.article);
+    return word.labels?.some(el => el.article);
   });
 };
