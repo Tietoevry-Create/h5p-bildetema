@@ -1,4 +1,4 @@
-const cdnURL = "https://cdn-prodbildetema.azureedge.net";
+const cdnURL = "https://cdn-prod-bildetema.azureedge.net";
 
 export const databaseURL = `${cdnURL}/data/database.xlsx`;
 export const JSONURL = `${cdnURL}/data/database.json`;

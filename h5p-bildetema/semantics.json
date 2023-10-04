@@ -612,7 +612,7 @@
   {
     "label": "Backend Url",
     "description": "The Url to the json database",
-    "default": "https://cdn-prodbildetema.azureedge.net/data/database.json",
+    "default": "https://cdn-prod-bildetema.azureedge.net/data/database.json",
     "name": "backendUrl",
     "type": "text"
   }

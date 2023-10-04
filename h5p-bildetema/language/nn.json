@@ -448,7 +448,7 @@
     {
       "label": "Backend Url",
       "description": "Url til databasen",
-      "default": "https://cdn-prodbildetema.azureedge.net/data/database.json"
+      "default": "https://cdn-prod-bildetema.azureedge.net/data/database.json"
     }
   ]
 }
