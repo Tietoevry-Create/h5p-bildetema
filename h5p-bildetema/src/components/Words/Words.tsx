@@ -65,7 +65,7 @@ export const Words: FC<WordsProps> = ({
         ?.subTopics.find(s => s.id === topic?.subTopicId)?.onlyTopicImage;
     }
     return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
-  }, [topic?.subTopicId, topic?.topicId, topics, isTopicImageView]);
+  }, [topic?.subTopicId, topic?.topicId, topics]);
 
   useEffect(() => {
     toggleShowTopicImageView(showTopicImageView);
