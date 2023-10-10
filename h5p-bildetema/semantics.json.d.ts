@@ -588,7 +588,7 @@ declare const $defaultExport: [
 	{
 		label: "Backend Url",
 		description: "The Url to the json database",
-		"default": "https://cdn-prod-bildetema.azureedge.net/data/database.json",
+		"default": "https://cdn-prod-bildetema.azureedge.net/data/database.json.tar.gz",
 		name: "backendUrl",
 		type: "text"
 	}
