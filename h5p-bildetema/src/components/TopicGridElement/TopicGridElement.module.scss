@@ -3,19 +3,20 @@
 .gridElementBig,
 .gridElementCompact {
   align-items: center;
-  word-wrap: break-word;
-  padding: 1rem 1.5rem;
   border-radius: 0;
+  box-sizing: border-box;
+  color: $base-font-color;
+  display: flex;
   font-size: $font-size-18;
   font-weight: bold;
-  line-height: 1.4;
-  color: $base-font-color;
-  width: 100%;
-  transition-duration: 0.2s;
-  box-sizing: border-box;
-  display: flex;
   gap: 0.5rem;
   justify-content: space-between;
+  line-height: 1.4;
+  padding: 1rem 1.5rem;
+  text-align: start;
+  transition-duration: 0.2s;
+  width: 100%;
+  word-wrap: break-word;
 
   @include breakpoint-min($medium) {
     padding: 1rem 2rem;
