@@ -61,14 +61,6 @@
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Sidfot: gamla Bildteman text",
-          "default": "Gamla Bildteman"
-        },
-        {
-          "label": "Sidfot: gamla Bildteman URL",
-          "default": "https://bildetema.oslomet.no/bildetema/bildetema-portal/index.html?page=simple-html5&version=swedish"
-        },
-        {
           "label": "Sidfot: NAFO text",
           "default": "NAFO - Nationellt center för mångkulturell utbildning"
         },
@@ -199,14 +191,6 @@
         {
           "label": "Grid text",
           "default": "Grid"
-        },
-        {
-          "label": "Språkväljarlänk del 1",
-          "default": "Hittar du inte språket du letar efter? Gå till"
-        },
-        {
-          "label": "Språkväljarlänk del 2",
-          "default": "gamla Bildteman"
         },
         {
           "label": "Arabiska",

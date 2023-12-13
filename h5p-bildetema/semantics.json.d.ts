@@ -91,18 +91,6 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
-				label: "Footer previous Bildetema site label",
-				name: "footerPrevBildetemaLabel",
-				"default": "Old Bildetema site",
-				type: "text"
-			},
-			{
-				label: "Footer previous Bildetema site URL",
-				name: "footerPrevBildetemaHref",
-				"default": "https://bildetema.oslomet.no/",
-				type: "text"
-			},
-			{
 				label: "Footer NAFO label",
 				name: "footerNAFOLabel",
 				"default": "NAFO - National Centre of Multicultural Education",
@@ -298,18 +286,6 @@ declare const $defaultExport: [
 				label: "Grid label",
 				name: "viewGrid",
 				"default": "Single photos",
-				type: "text"
-			},
-			{
-				label: "Select language link part 1",
-				name: "selectLanguageLinkPart1",
-				"default": "Not the language you are looking for? Go to",
-				type: "text"
-			},
-			{
-				label: "Select language link part 2",
-				name: "selectLanguageLinkPart2",
-				"default": "old Bildetema",
 				type: "text"
 			},
 			{

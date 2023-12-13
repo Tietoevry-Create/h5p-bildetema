@@ -61,14 +61,6 @@
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Footer: forrige Bildetema tekst",
-          "default": "Gamle Billedtema"
-        },
-        {
-          "label": "Footer: forrige Bildetema URL",
-          "default": "https://bildetema.oslomet.no/bildetema/bildetema-portal/index.html?page=simple-html5&version=danish"
-        },
-        {
           "label": "Footer: NAFO tekst",
           "default": "NAFO - National Centre of Multicultural Education"
         },
@@ -199,14 +191,6 @@
         {
           "label": "Grid tekst",
           "default": "Grid"
-        },
-        {
-          "label": "Sprogvælger link del 1",
-          "default": "Kan du ikke finde det sprog, du leder efter? Gå til"
-        },
-        {
-          "label": "Sprogvælger link del 2",
-          "default": "gamle Billedtema"
         },
         {
           "label": "Arabisk",

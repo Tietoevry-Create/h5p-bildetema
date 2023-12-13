@@ -1,5 +1,4 @@
 import { useL10n } from "../../hooks/useL10n";
-import { filterURL } from "../../utils/url.utils";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
@@ -8,10 +7,6 @@ export const Footer = (): JSX.Element => {
 
   const contactInfoLabel = useL10n("footerContactInfoLabel");
   const contactInfoHref = useL10n("footerContactInfoHref");
-
-  const prevBildetemaLabel = useL10n("footerPrevBildetemaLabel");
-  const prevBildetemaHref = useL10n("footerPrevBildetemaHref");
-  const filteredPrevBildetemaHref = filterURL(prevBildetemaHref);
 
   const NAFOLabel = useL10n("footerNAFOLabel");
   const NAFOHref = useL10n("footerNAFOHref");
@@ -50,9 +45,6 @@ export const Footer = (): JSX.Element => {
               </li>
               <li>
                 <a href={contactInfoHref}>{contactInfoLabel}</a>
-              </li>
-              <li>
-                <a href={filteredPrevBildetemaHref}>{prevBildetemaLabel}</a>
               </li>
             </ul>
           </div>
