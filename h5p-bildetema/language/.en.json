@@ -61,14 +61,6 @@
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Footer previous Bildetema site label",
-          "default": "Old Bildetema site"
-        },
-        {
-          "label": "Footer previous Bildetema site URL",
-          "default": "https://bildetema.oslomet.no/"
-        },
-        {
           "label": "Footer NAFO label",
           "default": "NAFO - National Centre of Multicultural Education"
         },
@@ -199,14 +191,6 @@
         {
           "label": "Grid label",
           "default": "Single photos"
-        },
-        {
-          "label": "Select language link part 1",
-          "default": "Not the language you are looking for? Go to"
-        },
-        {
-          "label": "Select language link part 2",
-          "default": "old Bildetema"
         },
         {
           "label": "Arabic",

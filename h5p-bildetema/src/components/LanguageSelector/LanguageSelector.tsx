@@ -9,7 +9,6 @@ import { LanguageCodeString } from "common/types/LanguageCode";
 import { getLanguagePath } from "common/utils/router.utils";
 import { FC } from "react";
 import { useL10ns, useL10n } from "../../hooks/useL10n";
-import { filterURL } from "../../utils/url.utils";
 import { translatedLabel } from "../../utils/language.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 import styles from "./LanguageSelector.module.scss";
@@ -36,10 +35,6 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   };
 
   const navAriaLabel = useL10n("chooseLanguageAriaLabel");
-  const selectLanguageLinkPart1 = useL10n("selectLanguageLinkPart1");
-  const selectLanguageLinkPart2 = useL10n("selectLanguageLinkPart2");
-  const linkHref = useL10n("footerPrevBildetemaHref");
-  const filteredLinkHref = filterURL(linkHref);
 
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
@@ -77,10 +72,6 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
             />
           ))}
       </ul>
-      <p>
-        {selectLanguageLinkPart1}{" "}
-        <a href={filteredLinkHref}>{selectLanguageLinkPart2}</a>
-      </p>
     </nav>
   );
 };

@@ -61,14 +61,6 @@
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Footer previous Bildetema site label",
-          "default": "Gamla Bildetema vefsíðan"
-        },
-        {
-          "label": "Footer previous Bildetema site URL",
-          "default": "https://bildetema.oslomet.no/"
-        },
-        {
           "label": "Footer NAFO label",
           "default": "NAFO - National Centre of Multicultural Education/NAFO - Miðstöð fjöltyngisfræða"
         },
@@ -199,14 +191,6 @@
         {
           "label": "Grid label",
           "default": "Reitir"
-        },
-        {
-          "label": "Select language link part 1",
-          "default": "Finnur þú ekki tungumálið sem þú leitar að? Farðu í"
-        },
-        {
-          "label": "Select language link part 2",
-          "default": "gamla Bildetema"
         },
         {
           "label": "Arabíska",
