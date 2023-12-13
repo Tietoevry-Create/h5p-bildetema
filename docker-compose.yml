@@ -1,7 +1,7 @@
 services:
   mariadb:
     restart: unless-stopped
-    image: stiahau/h5p-bildetema-mariadb:0.0.1
+    image: stiahau/h5p-bildetema-mariadb:0.0.2
     environment:
       - MYSQL_ROOT_PASSWORD=wordpress
       - MYSQL_DATABASE=wordpress
@@ -14,8 +14,24 @@ services:
   wordpress:
     depends_on:
       - mariadb
-    image: stiahau/h5p-bildetema-wordpress:0.0.3
+    image: stiahau/h5p-bildetema-wordpress:0.0.4
     restart: unless-stopped
+    volumes:
+      # WP-CONFIG
+      - ./docker-config/wp-config.php:/var/www/html/wp-config.php
+      
+      # Bildetema
+      - ./h5p-bildetema/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.Bildetema-1.0/dist/      
+      
+      # Bildetema grid
+      - ./h5p-bildetema-words-grid-view/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.BildetemaWordsGridView-1.0/dist/
+      
+      # Bildetema topic view
+      - ./h5p-bildetema-words-topic-image/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.BildetemaTopicImageView-1.0/dist/
+
+      # Bildetema editor
+      - ./h5p-editor-bildetema-words-topic-image/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5PEditor.BildetemaWordsTopicImage-1.0/dist/
+      
     environment:
       - WORDPRESS_DB_HOST=mariadb
       - WORDPRESS_DB_USER=wordpress
