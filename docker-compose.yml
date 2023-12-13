@@ -19,19 +19,19 @@ services:
     volumes:
       # WP-CONFIG
       - ./docker-config/wp-config.php:/var/www/html/wp-config.php
-      
+
       # Bildetema
-      - ./h5p-bildetema/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.Bildetema-1.0/dist/      
-      
+      - ./h5p-bildetema/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.Bildetema-1.0/dist/
+
       # Bildetema grid
       - ./h5p-bildetema-words-grid-view/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.BildetemaWordsGridView-1.0/dist/
-      
+
       # Bildetema topic view
       - ./h5p-bildetema-words-topic-image/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5P.BildetemaTopicImageView-1.0/dist/
 
       # Bildetema editor
       - ./h5p-editor-bildetema-words-topic-image/dist/:/var/www/html/wp-content/uploads/h5p/libraries/H5PEditor.BildetemaWordsTopicImage-1.0/dist/
-      
+
     environment:
       - WORDPRESS_DB_HOST=mariadb
       - WORDPRESS_DB_USER=wordpress
