@@ -86,9 +86,13 @@ define( 'NONCE_SALT',       getenv_docker('WORDPRESS_NONCE_SALT',       '12d8cfb
 // (See also https://wordpress.stackexchange.com/a/152905/199287)
 
 // H5P Settings:
+// ignore h5p version numbers
 define('H5P_DEV', true);
-/**#@-*/
 
+// dont cache h5p libraries
+define('H5P_DISABLE_AGGREGATION', true);
+
+/**#@-*/
 /**
  * WordPress database table prefix.
  *
