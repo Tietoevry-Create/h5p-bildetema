@@ -35,7 +35,7 @@ To test with wordpress you can do the following:
 1. `npm start`
 2. `npm run docker:run-wordpress` (without logs: `docker:run-wordpress-no-logs`)
 3. When changes have been made make sure that the modules has been built (`npm start`) When the build is complete run: `npm run pack-and-update-wordpress`
-4. To speed things up `dist dirs` have been mounted in the container such that changes should automatically be applied. (This might not always work, in that case run `npm run pack-and-update-wordpress`)
+4. To speed things up `dist dirs` have been mounted in the container such that changes should automatically be applied. (If this does not work, or you need to update semantics, library or language run`npm run pack-and-update-wordpress`.)
 
 ### Storybook
 
