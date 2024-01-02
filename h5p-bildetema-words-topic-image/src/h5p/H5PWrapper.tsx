@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageCode } from "common/types/LanguageCode";
 import type { TopicImageHotspot } from "common/types/TopicImageHotspot";
-import type { IH5PContentType, Image } from "h5p-types";
+import type { IH5PContentType, H5PImage } from "h5p-types";
 import { H5P, H5PContentType } from "h5p-utils";
 import { Root, createRoot } from "react-dom/client";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
@@ -9,7 +9,7 @@ import { App } from "../App";
 import type { TranslationKey } from "../types/TranslationKey";
 
 export type Params = {
-  topicImage: Image;
+  topicImage: H5PImage;
   hotspots: Array<TopicImageHotspot>;
   selectedTopic: {
     topicId: string;
