@@ -81,7 +81,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - uses: azure/webapps-deploy@v2
+      - uses: azure/webapps-deploy@v3
         with:
           app-name: "dev-bildetema-drupal"
           publish-profile: ${{ secrets.PUBLISH_PROFILE }}
@@ -99,7 +99,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - uses: azure/webapps-deploy@v2
+      - uses: azure/webapps-deploy@v3
         with:
           app-name: "test-bildetema-drupal"
           publish-profile: ${{ secrets.PUBLISH_PROFILE }}
