@@ -39,8 +39,7 @@ To test with wordpress you can do the following:
 
 **Tip:**
 The chrome extention [fiveserver](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server) can proxy requests to wordpress and auto refresh the page when changes are detected.
-cmd+shift+p type "five" start to start the server and close to stop the server. (fiveserver settings can be changed in the config: fiveserver.config.cjs) 
-
+cmd+shift+p type "five" start to start the server and close to stop the server. (fiveserver settings can be changed in the config: fiveserver.config.cjs)
 
 ### Storybook
 
