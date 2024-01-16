@@ -7,7 +7,7 @@
   {
     "label": "Backend Url",
     "name": "backendUrl",
-    "default": "https://cdn-prod-bildetema.azureedge.net/data/database.json",
+    "default": "https://cdn-prod-bildetema.azureedge.net/data/database.json.tar.gz",
     "description": "The Url to the json database",
     "type": "text"
   },
