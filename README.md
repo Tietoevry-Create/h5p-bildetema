@@ -38,8 +38,8 @@ To test with wordpress you can do the following:
 4. To speed things up `dist dirs` have been mounted in the container such that changes should automatically be applied. (If this does not work, or you need to update semantics, library or language run `npm run pack-and-update-wordpress`.)
 
 **Tip:**
-The chrome extention [fiveserver](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server) can proxy requests to wordpress and auto refresh the page when changes are detected.
-cmd+shift+p type "five" start to start the server and close to stop the server. (fiveserver settings can be changed in the config: fiveserver.config.cjs)
+The vscode extention [fiveserver](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server) can proxy requests to wordpress and auto refresh the page when changes are detected.
+cmd+shift+p type "five" to see the list of commands.(fiveserver settings can be changed in the config: fiveserver.config.cjs)
 
 ### Storybook
 
