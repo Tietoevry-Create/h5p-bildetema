@@ -1,26 +1,18 @@
 import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Language, TopicGridSizes, TopicIds } from "common/types/types";
+import { Language, TopicIds } from "common/types/types";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useSearchParams,
-} from "react-router-dom";
-import { SearchParameters } from "../../enums/SearchParameters";
-import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
 import { MainContentLink } from "../MainContentLink/MainContentLink";
-import { RouteController } from "../RouteController/RouteController";
-import { SubHeader } from "../SubHeader/SubHeader";
+import { TopicRouteController } from "../TopicRouteController/TopicRouteController";
 import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
+import SearchView from "../SearchView/SearchView";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -33,7 +25,6 @@ export const Bildetema: FC<BildetemaProps> = ({
 }) => {
   const { languages: languagesFromDB } = useDBContext() || {};
   const { pathname } = useLocation();
-  const currentLang = useCurrentLanguage();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -46,52 +37,14 @@ export const Bildetema: FC<BildetemaProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const defaultShowWrittenWords = true;
-  const defaultShowArticles = false;
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const loadingLabel = useL10n("pageIsLoading");
   const pageTitle = useL10n("headerTitle");
   const mainContentAriaLabel = useL10n("mainContentAriaLabel");
   const [topicIds, setTopicIds] = useState<TopicIds>({});
   const [firstTime, setFirstTime] = useState(false);
 
-  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
-  const [topicsSize, setTopicsSize] = useState(
-    smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
-  );
-  const [isWordView, setIsWordView] = useState(false);
-  const [showTopicImageView, setShowTopicImageView] = useState(true);
-
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
-
-  const handleSearchParams = (
-    search: SearchParameters,
-    value: boolean,
-    defaultValue: boolean,
-  ): void => {
-    if (defaultValue === value) {
-      searchParams.delete(search);
-      setSearchParams(searchParams);
-      return;
-    }
-    searchParams.set(search, value.toString());
-    setSearchParams(searchParams);
-  };
-
-  const [showWrittenWords, setShowWrittenWords] = useState(
-    searchParams.get(SearchParameters.wordsVisible) !== null
-      ? searchParams.get(SearchParameters.wordsVisible) === "true"
-      : defaultShowWrittenWords,
-  );
-
-  const [showArticles, setShowArticles] = useState(
-    searchParams.get(SearchParameters.articlesVisible) !== null
-      ? searchParams.get(SearchParameters.articlesVisible) === "true"
-      : defaultShowArticles,
-  );
 
   if (!favLanguages.length && languagesFromDB) {
     const languages: Language[] = [];
@@ -119,24 +72,6 @@ export const Bildetema: FC<BildetemaProps> = ({
     return !!getCurrentLanguage()?.rtl;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favLanguages, pathname]);
-
-  const handleToggleArticles = (value: boolean): void => {
-    handleSearchParams(
-      SearchParameters.articlesVisible,
-      value,
-      defaultShowArticles,
-    );
-    setShowArticles(value);
-  };
-
-  const handleToggleChange = (value: boolean): void => {
-    handleSearchParams(
-      SearchParameters.wordsVisible,
-      value,
-      defaultShowWrittenWords,
-    );
-    setShowWrittenWords(value);
-  };
 
   const handleToggleFavoriteLanguage = useCallback(
     (language: Language, favorite: boolean): void => {
@@ -167,16 +102,14 @@ export const Bildetema: FC<BildetemaProps> = ({
     }
   });
 
+  const [isTopicRoute, setIsTopicRoute] = useState(true);
+
   const routes = useMemo(() => {
     const paths = [
       "/:langId",
       "/:langId/:topicLabel",
       "/:langId/:topicLabel/:subTopicId",
     ];
-
-    const toggleShowTopicImageView = (value: boolean): void => {
-      setShowTopicImageView(value);
-    };
 
     return (
       <Routes>
@@ -185,19 +118,23 @@ export const Bildetema: FC<BildetemaProps> = ({
             key={path}
             path={path}
             element={
-              <RouteController
-                setIsWordView={setIsWordView}
-                topicsSize={topicsSize}
-                showWrittenWords={showWrittenWords}
+              <TopicRouteController
+                rtl={directionRtl}
+                topicIds={topicIds}
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
-                toggleShowTopicImageView={toggleShowTopicImageView}
-                showArticles={showArticles}
+                setIsTopicRouteTrue={() => setIsTopicRoute(true)}
               />
             }
           />
         ))}
+        <Route
+          path="/sok"
+          element={
+            <SearchView setIsTopicRouteFalse={() => setIsTopicRoute(false)} />
+          }
+        />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
@@ -205,9 +142,8 @@ export const Bildetema: FC<BildetemaProps> = ({
     defaultLanguages,
     favLanguages,
     handleToggleFavoriteLanguage,
-    showWrittenWords,
-    topicsSize,
-    showArticles,
+    topicIds,
+    directionRtl,
   ]);
 
   return (
@@ -220,30 +156,19 @@ export const Bildetema: FC<BildetemaProps> = ({
           firstTime={firstTime}
           setFirstTime={setFirstTime}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+          hideLanguageSelectors={!isTopicRoute}
         />
-        <LanguageFavorites topicIds={topicIds} favLanguages={favLanguages} />
+        <LanguageFavorites
+          topicIds={topicIds}
+          favLanguages={favLanguages}
+          hidden={!isTopicRoute}
+        />
         <div
           id="bildetemaMain"
           className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label={mainContentAriaLabel}
         >
-          <SubHeader
-            topicIds={topicIds}
-            topicsSize={topicsSize}
-            setTopicsSize={setTopicsSize}
-            isWordView={isWordView}
-            handleToggleChange={handleToggleChange}
-            toggleChecked={showWrittenWords}
-            showTopicImageView={showTopicImageView}
-            rtl={directionRtl}
-            handleToggleArticles={handleToggleArticles}
-            articlesToggleChecked={showArticles}
-          />
-          {isLoadingData ? (
-            showLoadingLabel && <p>{loadingLabel}</p>
-          ) : (
-            <div lang={currentLang}>{routes}</div>
-          )}
+          {isLoadingData ? showLoadingLabel && <p>{loadingLabel}</p> : routes}
         </div>
         <Footer />
       </div>

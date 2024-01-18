@@ -41,6 +41,11 @@
   }
 }
 
+.hidden {
+  display: none;
+  position: relative;
+}
+
 .languages {
   justify-content: flex-start;
   align-items: center;
