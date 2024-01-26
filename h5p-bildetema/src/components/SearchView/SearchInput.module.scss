@@ -1,0 +1,24 @@
+@use "../../../../common/abstracts" as *;
+
+.searchInputWrapper {
+  position: relative;
+}
+.searchInput {
+  padding: 0.8rem 1rem;
+  width: 100%;
+  border: 2px solid $burgundy;
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+.searchInputText{
+  position: absolute;
+  right: 0;
+  height: 100%;
+  padding: 0.8rem 1rem;
+  background-color: $burgundy;
+  color: $white;
+  border: 2px solid $burgundy;
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}

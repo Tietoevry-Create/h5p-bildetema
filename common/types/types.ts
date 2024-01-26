@@ -22,6 +22,11 @@ export interface Word extends CommonWord {
   }[];
 }
 
+export interface WordSearchResults extends Word {
+  topicId?: string;
+  subTopicId?: string;
+}
+
 export type ImageUrl = {
   src: string;
   srcSets?: { src: string; width: number }[];

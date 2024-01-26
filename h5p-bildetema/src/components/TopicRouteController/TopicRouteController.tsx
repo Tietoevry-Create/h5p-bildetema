@@ -11,6 +11,7 @@ import {
 } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
+import styles from "./TopicRouteController.module.scss";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 import {
   findTopic,
@@ -195,7 +196,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
   if ((words && language) || (topics && language)) {
     return (
-      <>
+      <div
+       className={`${styles.body} ${rtl ? styles.rtl : ""}`}
+      >
         <SubHeader
           topicIds={topicIds}
           topicsSize={topicsSize}
@@ -221,7 +224,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
             showArticles={showArticles}
           />
         </div>
-      </>
+      </div>
     );
   }
 

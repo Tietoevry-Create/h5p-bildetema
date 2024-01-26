@@ -46,6 +46,8 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
     });
 
   const isVertical = aspectRatio < 1;
+  const svgImage = typeof process === 'undefined' ? image : `http://localhost:8090/wp-content/uploads/h5p/${image.split("//").at(2)}`
+  // const svgImage = typeof process === 'undefined' ? image : `https://cdn-prod-bildetema.azureedge.net/images/large/T107a.jpeg`
 
   return (
     <div className={styles.imageContainer}>
@@ -55,7 +57,7 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
       {topicImageType === "nonVectorImageWithHotspots" && (
         <img
           className={isVertical ? styles.imageVertical : styles.imageHorizontal}
-          src={image}
+          src={svgImage}
           alt=""
         />
       )}
