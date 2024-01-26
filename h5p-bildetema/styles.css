@@ -17,6 +17,10 @@ BlankSlate WordPress Theme © 2011-2023 TidyThemes
 BlankSlate is distributed under the terms of the GNU GPL
 */
 
+html {
+  scrollbar-gutter: stable;
+}
+
 html,
 body,
 div,
