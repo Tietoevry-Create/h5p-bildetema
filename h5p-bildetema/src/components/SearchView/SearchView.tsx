@@ -1,5 +1,5 @@
 import { useDBContext } from "common/hooks/useDBContext";
-import React from "react";
+import React, { useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { WordSearchResults } from "common/types/types";
 import debounce from 'debounce';
@@ -70,7 +70,7 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
     currSearch ? searchForWord(currSearch) : []
   )
 
-  const debouncedSearch =
+  const debouncedSearch = useRef(
     debounce((value: string) => {
       if(value === "") {
         setSearchResult([])
@@ -79,12 +79,14 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
       const res = searchForWord(value)
       setSearchResult(res)
     }, 400)
+  ).current
 
   const handleSearch = (value: string): void => {
     if(value === "") {
       searchParams.delete("search")
       setSearchParams(searchParams)
-      debouncedSearch(value)
+      setSearchResult([])
+      debouncedSearch.clear()
       return
     }
     searchParams.set("search", value)

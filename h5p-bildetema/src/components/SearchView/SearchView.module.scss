@@ -10,20 +10,19 @@
   background-color: $dark-beige;
 }
 
-.searchFieldWrapper{
-  display: flex;
-  padding: 1rem 0rem;
-}
-
 .grid {
   margin: $main-content-margin;
   width: $main-content-width;
+  max-width: $main-content-max-width;
   display: grid;
   grid-template-columns: 1fr;
-  
   @include breakpoint-min(700px) {
     grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
   }
+}
+
+.searchFieldWrapper{
+  padding: 1rem 0rem;
 }
 
 .searchField{
@@ -32,7 +31,6 @@
   @include breakpoint-min(700px) {
     grid-column-start: 2;
   }
-  // flex-grow: 1;
 }
 
 .searchResultWrapper{
