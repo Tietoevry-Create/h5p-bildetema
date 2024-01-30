@@ -1,0 +1,9 @@
+.img {
+  box-sizing: border-box;
+  object-fit: contain;
+  object-position: bottom center;
+  width: 100%;
+
+  // Set pointer events to none to prevent microsoft edge to show visual search icon
+  pointer-events: none;
+}

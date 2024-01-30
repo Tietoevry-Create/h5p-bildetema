@@ -1,28 +1,28 @@
-import { Word as WordType } from "common/types/types";
-import { FC } from "react";
+// import { Word as WordType } from "common/types/types";
 import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { gridImageSizes } from "common/utils/image/image.utils";
+import { Image } from "common/components/Image/Image";
+import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
-import { extractWordLabel } from "common/utils/word.utils";
+import { toSingleLabel } from "common/utils/word.utils";
 import { useL10n } from "../../hooks/useL10n";
-import { gridImageSizes } from "../../utils/image/image.utils";
-import { Image } from "../Image/Image";
-import styles from "./Word.module.scss";
+import styles from "./SearchResultCard.module.scss";
+import "common/styles/SwiperOverride.scss";
 
-type WordProps = {
-  word: WordType;
-  textVisible: boolean;
-  showArticles: boolean;
+type SearchResultCardProps = {
+  searchResult: SearchResult;
 };
 
-export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
-  const { images } = word;
+export const SearchResultCard = ({ searchResult }: SearchResultCardProps): JSX.Element => {
+  const { images } = searchResult;
 
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
+  
 
   const renderImages = (): JSX.Element => {
     const numberOfImages = images?.length ?? 0;
@@ -86,30 +86,25 @@ export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
     );
   };
 
-  const hasAudio = word.audioFiles && word.audioFiles.length > 0;
+  // const hasAudio = word.audioFiles && word.audioFiles.length > 0;
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
   const stopAudioLabel = useL10n("stopAudio");
-  const label = textVisible ? extractWordLabel(word, showArticles) : "";
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className={styles.word}>
+    <li role="listitem" className={styles.searchResultCard}>
       <div className={styles.image_container}>{renderImages()}</div>
-      {hasAudio && (
-        // <WordAudio
-        //   word={word}
-        //   textVisible={textVisible}
-        //   showArticles={showArticles}
-        // />
-        <Audio 
+      {searchResult.translations.map(translation => (
+        <Audio
+          key={translation.langCode}
+          label={toSingleLabel(translation.labels)}
           lang={lang}
-          stopAudioLabel={stopAudioLabel}
           playAudioLabel={playAudioLabel}
-          audioFiles={word.audioFiles}
-          label={label}
-        />
-      )}
+          stopAudioLabel={stopAudioLabel}
+          audioFiles={translation.audioFiles}
+        />        
+      ))}
     </li>
   );
 };

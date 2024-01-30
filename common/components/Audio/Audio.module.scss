@@ -1,0 +1,91 @@
+@use "common/abstracts" as *;
+
+.wordAudio {
+  padding: 0.25rem 0;
+
+  &HideForPrint {
+    // Hide whole component on print
+    @media print {
+      display: none;
+    }
+  }
+
+  [class*="rtl"] & {
+    direction: rtl;
+    svg g {
+      transform: scale(-1, 1);
+      transform-origin: center center;
+    }
+  }
+}
+
+.wordAudio button {
+  all: unset;
+  align-items: center;
+  border-radius: 1rem;
+  cursor: pointer;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem 1rem;
+}
+
+.word_label {
+  color: $base-font-color;
+  font-size: $font-size-24;
+  font-weight: normal;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+  word-break: break-word;
+}
+
+.audioIconSpan {
+  align-items: center;
+  display: flex;
+  height: 2.1rem; /* same as label height */
+
+  @media print {
+    display: none;
+  }
+}
+
+.audioIcon {
+  fill: none;
+  height: 1.5rem;
+
+  path {
+    stroke: #858585;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover,
+  &:focus {
+    path {
+      stroke: #333;
+    }
+  }
+}
+
+.wordAudio button:hover {
+  background-color: $grey;
+
+  path {
+    stroke: $base-font-color;
+  }
+}
+
+.wordAudio_active {
+  .word_label {
+    color: $base-font-color;
+  }
+
+  .audioIcon path {
+    stroke: $base-font-color;
+  }
+}
+
+.visuallyHidden {
+  @include visually-hidden;
+}

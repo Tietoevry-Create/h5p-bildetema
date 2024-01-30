@@ -3,6 +3,11 @@ import { LanguageCode } from "./LanguageCode";
 
 export type InputWord = Record<string, string>;
 
+export type Labels = {
+  label: string;
+  article?: string;
+}[]
+
 interface CommonWord {
   id: string;
   images: ImageUrl[];
@@ -16,15 +21,20 @@ export interface TopicWord extends CommonWord {
 }
 
 export interface Word extends CommonWord {
-  labels: {
-    label: string;
-    article?: string;
-  }[];
+  labels: Labels;
 }
 
 export interface WordSearchResults extends Word {
   topicId?: string;
   subTopicId?: string;
+}
+
+export type SearchResult = {
+  id: string;
+  images: ImageUrl[];
+  topicId?: string;
+  subTopicId?: string;
+  translations: searchResultTranslations[]
 }
 
 export type ImageUrl = {
@@ -97,7 +107,13 @@ export type Data = {
 export type Translation = {
   id: string;
   label: string;
-  audioFiles: Array<AudioFile>;
+  audioFiles?: Array<AudioFile>;
 };
+
+export type searchResultTranslations = {
+  langCode: LanguageCode;
+  labels: Labels;
+  audioFiles?: Array<AudioFile>;
+}
 
 export type Translations = Record<LanguageCode, Record<string, Translation>>;
