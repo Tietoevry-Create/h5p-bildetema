@@ -6,9 +6,9 @@ import styles from "./Audio.module.scss";
 import { AudioFile } from "../../types/AudioFile";
 
 type AudioProps = {
-  lang: string
+  lang: string;
   stopAudioLabel: string;
-  playAudioLabel: string
+  playAudioLabel: string;
   audioFiles?: AudioFile[];
   label?: string;
 };
@@ -18,12 +18,12 @@ export const Audio: FC<AudioProps> = ({
   audioFiles,
   lang,
   stopAudioLabel,
-  playAudioLabel
+  playAudioLabel,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
-  const textVisible = !!label
+  const textVisible = !!label;
 
   // const text = extractWordLabel(word, showArticles);
 

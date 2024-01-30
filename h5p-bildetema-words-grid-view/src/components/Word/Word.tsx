@@ -102,7 +102,7 @@ export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
         //   textVisible={textVisible}
         //   showArticles={showArticles}
         // />
-        <Audio 
+        <Audio
           lang={lang}
           stopAudioLabel={stopAudioLabel}
           playAudioLabel={playAudioLabel}

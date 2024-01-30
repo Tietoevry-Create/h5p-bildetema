@@ -1,7 +1,12 @@
 import { useDBContext } from "common/hooks/useDBContext";
 import React, { useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SearchResult, Topic, searchResultTranslations, Word } from "common/types/types";
+import {
+  SearchResult,
+  Topic,
+  searchResultTranslations,
+  Word,
+} from "common/types/types";
 import debounce from "debounce";
 // import {distance, closest} from 'fastest-levenshtein'
 import { LanguageCode } from "common/types/LanguageCode";
@@ -17,7 +22,7 @@ type SearchViewProps = {
 const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
   setIsTopicRouteFalse();
   // const { topics: topicsFromDB, languages: languagesFromDB } =
-  const { topics: topicsFromDB} = useDBContext() || {};
+  const { topics: topicsFromDB } = useDBContext() || {};
   const langCode = useCurrentLanguageCode();
   const [searchParams, setSearchParams] = useSearchParams();
 

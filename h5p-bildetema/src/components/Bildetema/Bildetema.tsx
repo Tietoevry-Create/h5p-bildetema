@@ -169,9 +169,15 @@ export const Bildetema: FC<BildetemaProps> = ({
           // className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label={mainContentAriaLabel}
         >
-          {isLoadingData ? showLoadingLabel && <p
-       className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
-          >{loadingLabel}</p> : routes}
+          {isLoadingData
+            ? showLoadingLabel && (
+                <p
+                  className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
+                >
+                  {loadingLabel}
+                </p>
+              )
+            : routes}
         </div>
         <Footer />
       </div>

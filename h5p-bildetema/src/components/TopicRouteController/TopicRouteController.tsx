@@ -196,9 +196,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
   if ((words && language) || (topics && language)) {
     return (
-      <div
-       className={`${styles.body} ${rtl ? styles.rtl : ""}`}
-      >
+      <div className={`${styles.body} ${rtl ? styles.rtl : ""}`}>
         <SubHeader
           topicIds={topicIds}
           topicsSize={topicsSize}

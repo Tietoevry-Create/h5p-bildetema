@@ -1,6 +1,6 @@
 @use "../../../../common/abstracts" as *;
 
-.searchField{
+.searchField {
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -11,5 +11,3 @@
   font-weight: bold;
   line-height: 1.4;
 }
-
-

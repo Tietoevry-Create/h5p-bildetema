@@ -11,8 +11,6 @@ export type SearchResultViewProps = {
 const SearchResultView = ({
   searchResults,
 }: SearchResultViewProps): JSX.Element => {
-
-
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
@@ -27,13 +25,15 @@ const SearchResultView = ({
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <ul
       role="list"
-      style={{display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))", gap: "10px"}}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
+        gap: "10px",
+      }}
     >
       <AudioRefContext.Provider value={audioContextValue}>
         {searchResults?.map(w => {
-          return (
-            <SearchResultCard key={w.id} searchResult={w} />
-          );
+          return <SearchResultCard key={w.id} searchResult={w} />;
         })}
       </AudioRefContext.Provider>
     </ul>

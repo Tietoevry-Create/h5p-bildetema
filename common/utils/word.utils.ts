@@ -1,12 +1,15 @@
 import { Labels, TopicWord, Word } from "../types/types";
 
-export const toSingleLabel = (labels: Labels, includeArticle = false): string => {
+export const toSingleLabel = (
+  labels: Labels,
+  includeArticle = false,
+): string => {
   return labels
     .map(el =>
       el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
     )
     .join(" / ");
-}
+};
 
 export const extractWordLabel = (
   word: Word | TopicWord,

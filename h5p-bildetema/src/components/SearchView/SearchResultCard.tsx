@@ -17,12 +17,13 @@ type SearchResultCardProps = {
   searchResult: SearchResult;
 };
 
-export const SearchResultCard = ({ searchResult }: SearchResultCardProps): JSX.Element => {
+export const SearchResultCard = ({
+  searchResult,
+}: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
 
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
-  
 
   const renderImages = (): JSX.Element => {
     const numberOfImages = images?.length ?? 0;
@@ -103,7 +104,7 @@ export const SearchResultCard = ({ searchResult }: SearchResultCardProps): JSX.E
           playAudioLabel={playAudioLabel}
           stopAudioLabel={stopAudioLabel}
           audioFiles={translation.audioFiles}
-        />        
+        />
       ))}
     </li>
   );

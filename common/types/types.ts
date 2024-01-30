@@ -6,7 +6,7 @@ export type InputWord = Record<string, string>;
 export type Labels = {
   label: string;
   article?: string;
-}[]
+}[];
 
 interface CommonWord {
   id: string;
@@ -34,8 +34,8 @@ export type SearchResult = {
   images: ImageUrl[];
   topicId?: string;
   subTopicId?: string;
-  translations: searchResultTranslations[]
-}
+  translations: searchResultTranslations[];
+};
 
 export type ImageUrl = {
   src: string;
@@ -114,6 +114,6 @@ export type searchResultTranslations = {
   langCode: LanguageCode;
   labels: Labels;
   audioFiles?: Array<AudioFile>;
-}
+};
 
 export type Translations = Record<LanguageCode, Record<string, Translation>>;
