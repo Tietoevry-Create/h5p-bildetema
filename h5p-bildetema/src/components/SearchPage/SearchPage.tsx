@@ -3,12 +3,9 @@ import React, { useDeferredValue, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   SearchResult,
-  Topic,
-  searchResultTranslations,
-  Word,
 } from "common/types/types";
 import debounce from "debounce";
-import { LanguageCode } from "common/types/LanguageCode";
+import { searchForWord } from "common/utils/word.utils";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -26,102 +23,12 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const currSearch = searchParams.get("search") ?? "";
 
-  const findTranslationsForWord = (
-    word: Word,
-    topic: Topic,
-    languagesToFind: LanguageCode[],
-  ): searchResultTranslations[] => {
-    if (languagesToFind.length === 0) {
-      return [];
-    }
-    const results: searchResultTranslations[] = [];
-    languagesToFind.forEach(lc => {
-      const translation = topic.words.get(lc)?.find(w => w.id === word.id);
-      if (translation) {
-        results.push({
-          langCode: lc,
-          audioFiles: translation.audioFiles,
-          labels: translation.labels,
-        });
-      }
-    });
-
-    return results;
-  };
-
-  const searchForWord = (
-    s: string,
-    languagesToFind: LanguageCode[] = ["swe", "isl"],
-  ): SearchResult[] => {
-    const resWords = topicsFromDB
-      ?.map(topic => {
-        const topicWords = topic.words.get(langCode);
-        if (topicWords?.length) {
-          const p = topicWords
-            .filter(w => {
-              return w.labels.some(label => label.label.includes(s));
-            })
-            .map(w => {
-              const searchResult: SearchResult = {
-                id: w.id,
-                images: w.images,
-                translations: [
-                  {
-                    langCode,
-                    labels: w.labels,
-                    audioFiles: w.audioFiles,
-                  },
-                  ...findTranslationsForWord(w, topic, languagesToFind),
-                ],
-                topicId: topic.id,
-              };
-              return searchResult;
-            });
-          return p;
-        }
-        return topic.subTopics
-          .map(subTopic => {
-            const subTopicWords = subTopic.words.get(langCode);
-            if (subTopicWords?.length) {
-              return subTopicWords
-                .filter(w => {
-                  return w.labels.some(label => label.label.includes(s));
-                })
-                .map(w => {
-                  const searchResult: SearchResult = {
-                    id: w.id,
-                    images: w.images,
-                    translations: [
-                      {
-                        langCode,
-                        labels: w.labels,
-                        audioFiles: w.audioFiles,
-                      },
-                      ...findTranslationsForWord(w, subTopic, languagesToFind),
-                    ],
-                    topicId: topic.id,
-                    subTopicId: subTopic.id,
-                  };
-
-                  return searchResult;
-                });
-            }
-            return [];
-          })
-          .flat();
-      })
-      .flat()
-      .filter(Boolean);
-
-    const resWordsWithoutDuplicates = [
-      ...new Map(resWords?.map(w => [w.id, w])).values(),
-    ];
-
-    return resWordsWithoutDuplicates ?? [];
-  };
+  const findWords = (s: string):SearchResult[] => {
+    return searchForWord(s, langCode, topicsFromDB, ["eng", "isl"])
+  }
 
   const [searchResult, setSearchResult] = React.useState<SearchResult[]>(
-    currSearch ? searchForWord(currSearch) : [],
+    currSearch ? findWords(currSearch) : [],
   );
 
   const deferredSearchResult = useDeferredValue(searchResult);
@@ -135,7 +42,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
       if (value.length < 2) {
         return;
       }
-      const res = searchForWord(value);
+      const res = findWords(value);
       setSearchResult(res);
     }, 400),
   ).current;
