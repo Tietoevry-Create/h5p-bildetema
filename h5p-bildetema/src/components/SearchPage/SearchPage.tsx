@@ -10,15 +10,15 @@ import {
 import debounce from "debounce";
 import { LanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
-import SearchResultView from "./SearchResultView";
-import SearchField from "./SearchField";
-import styles from "./SearchView.module.scss";
+import SearchResultView from "./SearchResultView/SearchResultView";
+import SearchView from "./SearchView/SearchView";
+import styles from "./SearchPage.module.scss";
 
-type SearchViewProps = {
+type SearchPageProps = {
   setIsTopicRouteFalse: () => void;
 };
 
-const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
+const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   setIsTopicRouteFalse();
   const { topics: topicsFromDB } = useDBContext() || {};
   const langCode = useCurrentLanguageCode();
@@ -153,11 +153,11 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
     debouncedSearch(value);
   };
   return (
-    <div className={styles.searchView}>
-      <div className={styles.searchFieldBackground}>
-        <div className={`${styles.searchFieldWrapper} ${styles.grid}`}>
-          <div className={styles.searchField}>
-            <SearchField handleSearch={handleSearch} search={currSearch} />
+    <div className={styles.searchPage}>
+      <div className={styles.searchViewBackground}>
+        <div className={`${styles.searchViewWrapper} ${styles.grid}`}>
+          <div className={styles.searchView}>
+            <SearchView handleSearch={handleSearch} search={currSearch} />
           </div>
         </div>
       </div>
@@ -170,4 +170,4 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
   );
 };
 
-export default SearchView;
+export default SearchPage;

@@ -1,7 +1,7 @@
 import React, { RefObject, useMemo, useState } from "react";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
-import { SearchResultCard } from "./SearchResultCard";
+import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 
 export type SearchResultViewProps = {
   searchResults: SearchResult[];

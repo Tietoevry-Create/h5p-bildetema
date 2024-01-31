@@ -9,9 +9,8 @@ import { Image } from "common/components/Image/Image";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
-import { useL10n } from "../../hooks/useL10n";
+import { useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
-import "common/styles/SwiperOverride.scss";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;

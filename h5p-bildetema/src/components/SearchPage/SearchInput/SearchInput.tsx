@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./SearchInput.module.scss";
 
 export type SearchInputProps = {

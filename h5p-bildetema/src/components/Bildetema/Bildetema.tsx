@@ -12,7 +12,7 @@ import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { TopicRouteController } from "../TopicRouteController/TopicRouteController";
 import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
-import SearchView from "../SearchView/SearchView";
+import SearchView from "../SearchPage/SearchPage";
 
 type BildetemaProps = {
   defaultLanguages: string[];

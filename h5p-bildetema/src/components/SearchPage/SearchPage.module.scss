@@ -1,12 +1,12 @@
-@use "../../../../common/abstracts" as *;
+@use "common/abstracts" as *;
 
-.searchView {
+.searchPage {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.searchFieldBackground {
+.searchViewBackground {
   background-color: $dark-beige;
 }
 
@@ -21,17 +21,14 @@
   }
 }
 
-.searchFieldWrapper {
+.searchViewWrapper {
   padding: 1rem 0rem;
 }
 
-.searchField {
+.searchView {
   max-width: $x-small;
 
   @include breakpoint-min(700px) {
     grid-column-start: 2;
   }
-}
-
-.searchResultWrapper {
 }

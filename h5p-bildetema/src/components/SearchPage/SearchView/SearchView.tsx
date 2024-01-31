@@ -1,13 +1,12 @@
-import React from "react";
-import styles from "./SearchField.module.scss";
-import SearchInput from "./SearchInput";
+import styles from "./SearchView.module.scss";
+import SearchInput from "../SearchInput/SearchInput";
 
 export type SearchFieldPros = {
   handleSearch: (value: string) => void;
   search: string;
 };
 
-const SearchField = ({
+const SearchResultView = ({
   handleSearch,
   search,
 }: SearchFieldPros): JSX.Element => {
@@ -20,4 +19,4 @@ const SearchField = ({
   );
 };
 
-export default SearchField;
+export default SearchResultView;
