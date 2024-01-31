@@ -18,7 +18,9 @@ const SearchInput = ({
         onChange={e => handleSearch(e.target.value)}
         className={styles.searchInput}
       />
-      <span className={styles.searchInputText}>Søk</span>
+      <span className={styles.searchInputText}>
+        <span className={styles.text}>Søk</span>
+      </span>
     </div>
   );
 };

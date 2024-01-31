@@ -1,5 +1,5 @@
 import { useDBContext } from "common/hooks/useDBContext";
-import React, { useRef } from "react";
+import React, { useDeferredValue, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   SearchResult,
@@ -126,10 +126,15 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
     currSearch ? searchForWord(currSearch) : [],
   );
 
+  const deferredSearchResult = useDeferredValue(searchResult);
+
   const debouncedSearch = useRef(
     debounce((value: string) => {
       if (value === "") {
         setSearchResult([]);
+        return;
+      }
+      if (value.length < 2) {
         return;
       }
       const res = searchForWord(value);
@@ -149,7 +154,6 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
     setSearchParams(searchParams);
     debouncedSearch(value);
   };
-
   return (
     <div className={styles.searchView}>
       <div className={styles.searchFieldBackground}>
@@ -162,7 +166,7 @@ const SearchView = ({ setIsTopicRouteFalse }: SearchViewProps): JSX.Element => {
 
       <div className={`${styles.searchResultWrapper} ${styles.grid}`}>
         <div>left menu</div>
-        <SearchResultView searchResults={searchResult} />
+        <SearchResultView searchResults={deferredSearchResult.slice(0, 20)} />
       </div>
     </div>
   );

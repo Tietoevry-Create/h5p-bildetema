@@ -166,7 +166,6 @@ export const Bildetema: FC<BildetemaProps> = ({
         <div
           id="bildetemaMain"
           className={styles.bildetemaMain}
-          // className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
           aria-label={mainContentAriaLabel}
         >
           {isLoadingData

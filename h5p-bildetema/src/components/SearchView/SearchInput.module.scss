@@ -2,9 +2,10 @@
 
 .searchInputWrapper {
   position: relative;
+  display: inline-block;
 }
 .searchInput {
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 4rem 1rem 1rem;
   width: 100%;
   border: 2px solid $burgundy;
   border-radius: 0.5rem;
@@ -15,10 +16,19 @@
   position: absolute;
   right: 0;
   height: 100%;
-  padding: 0.8rem 1rem;
   background-color: $burgundy;
   color: $white;
   border: 2px solid $burgundy;
   border-top-right-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
+  text-align: center;
+}
+
+.text {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  line-height: 1;
 }

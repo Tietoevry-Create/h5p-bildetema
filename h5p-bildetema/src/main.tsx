@@ -12,6 +12,7 @@ import semantics from "../semantics.json";
 import { H5PWrapper } from "./h5p/H5PWrapper";
 import { Params } from "./types/Params";
 import { App } from "./components/App/App";
+import "./index.scss";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +32,6 @@ const h5pInstance = new H5PWrapper(
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* <DBContext.Provider value={data}> */}
       <HashRouter>
         <H5PContext.Provider value={h5pInstance}>
           <L10nContext.Provider value={l10n}>
@@ -44,7 +44,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           </L10nContext.Provider>
         </H5PContext.Provider>
       </HashRouter>
-      {/* </DBContext.Provider> */}
     </QueryClientProvider>
   </React.StrictMode>,
 );

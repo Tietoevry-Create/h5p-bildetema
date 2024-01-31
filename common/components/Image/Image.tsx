@@ -29,6 +29,7 @@ export const Image: FC<ImageProps> = ({
 
   return (
     <img
+      loading="lazy"
       className={styles.img}
       src={src}
       alt=""

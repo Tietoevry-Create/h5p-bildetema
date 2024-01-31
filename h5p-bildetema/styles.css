@@ -17,6 +17,10 @@ BlankSlate WordPress Theme © 2011-2023 TidyThemes
 BlankSlate is distributed under the terms of the GNU GPL
 */
 
+* {
+  font-family: sans-serif !important;
+}
+
 html {
   scrollbar-gutter: stable;
 }
@@ -193,7 +197,6 @@ dd {
 }
 kbd,
 tt {
-  font-family: courier;
   font-size: 12px;
 }
 ins {
