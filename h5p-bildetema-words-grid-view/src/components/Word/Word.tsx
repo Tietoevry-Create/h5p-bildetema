@@ -97,11 +97,6 @@ export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
     <li role="listitem" className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && (
-        // <WordAudio
-        //   word={word}
-        //   textVisible={textVisible}
-        //   showArticles={showArticles}
-        // />
         <Audio
           lang={lang}
           stopAudioLabel={stopAudioLabel}

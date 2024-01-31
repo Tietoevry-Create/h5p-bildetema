@@ -1,8 +1,6 @@
 import React, { RefObject, useMemo, useState } from "react";
 import { SearchResult } from "common/types/types";
-// import { WordAudio } from "common/components/WordAudio/WordAudio";
 import { AudioRefContext } from "common/context/AudioContext";
-// import { useL10n } from "../../hooks/useL10n";
 import { SearchResultCard } from "./SearchResultCard";
 
 export type SearchResultViewProps = {
