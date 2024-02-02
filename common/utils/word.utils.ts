@@ -1,5 +1,12 @@
 import { LanguageCode } from "../types/LanguageCode";
-import { Labels, SearchResult, Topic, TopicWord, Word, searchResultTranslations } from "../types/types";
+import {
+  Labels,
+  SearchResult,
+  Topic,
+  TopicWord,
+  Word,
+  searchResultTranslations,
+} from "../types/types";
 
 export const toSingleLabel = (
   labels: Labels,
@@ -38,8 +45,6 @@ export const wordsIncludesArticles = (words: Word[]): boolean => {
   });
 };
 
-
-
 const findTranslationsForWord = (
   word: Word,
   topic: Topic,
@@ -62,7 +67,6 @@ const findTranslationsForWord = (
 
   return results;
 };
-
 
 export const searchForWord = (
   s: string,
@@ -103,7 +107,9 @@ export const searchForWord = (
           if (subTopicWords?.length) {
             return subTopicWords
               .filter(w => {
-                return w.labels.some(label => label.label.includes(searchQuery));
+                return w.labels.some(label =>
+                  label.label.includes(searchQuery),
+                );
               })
               .map(w => {
                 const searchResult: SearchResult = {

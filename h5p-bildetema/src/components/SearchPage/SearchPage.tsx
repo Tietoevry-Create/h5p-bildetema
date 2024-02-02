@@ -1,9 +1,8 @@
 import { useDBContext } from "common/hooks/useDBContext";
 import React, { useDeferredValue, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  SearchResult,
-} from "common/types/types";
+import { SearchResult } from "common/types/types";
+import { orderSearchBylevenshtein } from "common/utils/searchResults.utils";
 import debounce from "debounce";
 import { searchForWord } from "common/utils/word.utils";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
@@ -23,36 +22,57 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const currSearch = searchParams.get("search") ?? "";
 
-  const findWords = (s: string):SearchResult[] => {
-    return searchForWord(s, langCode, topicsFromDB, ["eng", "isl"])
-  }
+  const amountVisible = 20;
+
+  const findWords = (s: string): SearchResult[] => {
+    return searchForWord(s, langCode, topicsFromDB, ["eng", "isl"]);
+  };
 
   const [searchResult, setSearchResult] = React.useState<SearchResult[]>(
     currSearch ? findWords(currSearch) : [],
   );
 
-  const deferredSearchResult = useDeferredValue(searchResult);
+  const [visibleSearchResult, setVisibleSearchResult] = React.useState<
+    SearchResult[]
+  >(searchResult.slice(0, amountVisible));
+
+  const deferredSearchResult = useDeferredValue(visibleSearchResult);
+
+  const loadMore = (): void => {
+    setVisibleSearchResult(prev => {
+      const visibleSearch = [
+        ...prev,
+        ...searchResult.slice(prev.length, prev.length + amountVisible),
+      ];
+      return visibleSearch;
+    });
+  };
 
   const debouncedSearch = useRef(
     debounce((value: string) => {
       if (value === "") {
         setSearchResult([]);
+        setVisibleSearchResult([]);
         return;
       }
       if (value.length < 2) {
         return;
       }
       const res = findWords(value);
-      setSearchResult(res);
+      // setSearchResult(res);
+      const ordered = orderSearchBylevenshtein(value, res);
+      setSearchResult(ordered);
+      setVisibleSearchResult(ordered.slice(0, amountVisible));
     }, 400),
   ).current;
 
   const handleSearch = (value: string): void => {
     if (value === "") {
       searchParams.delete("search");
+      debouncedSearch.clear();
       setSearchParams(searchParams);
       setSearchResult([]);
-      debouncedSearch.clear();
+      setVisibleSearchResult([]);
       return;
     }
     searchParams.set("search", value);
@@ -68,10 +88,16 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
           </div>
         </div>
       </div>
-
-      <div className={`${styles.searchResultWrapper} ${styles.grid}`}>
-        <div>left menu</div>
-        <SearchResultView searchResults={deferredSearchResult.slice(0, 20)} />
+      <div className={styles.searchResultBackground}>
+        <div className={`${styles.grid}`}>
+          <div>left menu</div>
+          <SearchResultView
+            searchResults={deferredSearchResult}
+            search={currSearch}
+            loadMore={loadMore}
+            searchResultAmount={searchResult.length}
+          />
+        </div>
       </div>
     </div>
   );

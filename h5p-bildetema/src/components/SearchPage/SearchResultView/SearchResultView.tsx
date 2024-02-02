@@ -1,13 +1,21 @@
 import React, { RefObject, useMemo, useState } from "react";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
+import useInfiniteScroll from "react-infinite-scroll-hook";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
+import styles from "./SearchResultView.module.scss";
 
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
+  search: string;
+  loadMore: () => void;
+  searchResultAmount: number;
 };
 const SearchResultView = ({
   searchResults,
+  search,
+  loadMore,
+  searchResultAmount,
 }: SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -19,22 +27,50 @@ const SearchResultView = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
+  const hasNextPage = searchResults.length < searchResultAmount;
+  const [sentryRef] = useInfiniteScroll({
+    loading: false,
+    hasNextPage,
+    onLoadMore: loadMore,
+    // When there is an error, we stop infinite loading.
+    // It can be reactivated by setting "error" state as undefined.
+    // disabled: !!error,
+    // `rootMargin` is passed to `IntersectionObserver`.
+    // We can use it to trigger 'onLoadMore' when the sentry comes near to become
+    // visible, instead of becoming fully visible on the screen.
+    rootMargin: "0px 0px 600px 0px",
+  });
+
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <ul
-      role="list"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
-        gap: "10px",
-      }}
-    >
-      <AudioRefContext.Provider value={audioContextValue}>
-        {searchResults?.map(w => {
-          return <SearchResultCard key={w.id} searchResult={w} />;
-        })}
-      </AudioRefContext.Provider>
-    </ul>
+    <div className={styles.searchResultView}>
+      <div className={styles.searchViewHeading}>
+        <div>
+          Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
+        </div>
+        <div>
+          <span>Sorter etter</span>
+          <select>
+            <option value="someOption">Some option</option>
+            <option value="otherOption">Other option</option>
+          </select>
+        </div>
+      </div>
+
+      <ul
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
+          gap: "10px",
+        }}
+      >
+        <AudioRefContext.Provider value={audioContextValue}>
+          {searchResults?.map(w => {
+            return <SearchResultCard key={w.id} searchResult={w} />;
+          })}
+          {hasNextPage && <span ref={sentryRef} />}
+        </AudioRefContext.Provider>
+      </ul>
+    </div>
   );
 };
 
