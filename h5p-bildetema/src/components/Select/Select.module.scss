@@ -1,0 +1,53 @@
+@use "common/abstracts" as *;
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.selectButton {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 7rem;
+  border-radius: 0.5rem;
+  background-color: $white;
+  border: 2px solid $dark-beige;
+}
+
+.options {
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  position: absolute;
+  margin-top: 2.5rem;
+  z-index: $fav-language-selector-z-index;
+  background-color: $white;
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+  overflow-y: auto;
+  max-height: calc(100vh - 11rem);
+  color: black;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.option {
+  padding: 0.5rem 1rem;
+
+  cursor: default;
+
+  &:hover,
+  &:focus {
+    background: $beige;
+  }
+}
+.active {
+  background: $beige;
+}

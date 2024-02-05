@@ -35,6 +35,7 @@ export type SearchResult = {
   topicId?: string;
   subTopicId?: string;
   translations: searchResultTranslations[];
+  order?: number;
 };
 
 export type ImageUrl = {

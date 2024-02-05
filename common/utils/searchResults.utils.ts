@@ -8,7 +8,7 @@ const findLabelClosestToSearch = (search: string, labels: Labels): string => {
   return closest(search, labelsArray);
 };
 
-export const orderSearchBylevenshtein = (
+export const sortSearchBylevenshtein = (
   search: string,
   results: SearchResult[],
 ): SearchResult[] => {
@@ -17,4 +17,8 @@ export const orderSearchBylevenshtein = (
     const closestB = findLabelClosestToSearch(search, b.translations[0].labels);
     return distance(search, closestA) - distance(search, closestB);
   });
+};
+
+export const sortSearchByTopic = (results: SearchResult[]): SearchResult[] => {
+  return results.toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0));
 };

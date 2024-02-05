@@ -141,5 +141,7 @@ export const searchForWord = (
     ...new Map(resWords?.map(w => [w.id, w])).values(),
   ];
 
-  return resWordsWithoutDuplicates ?? [];
+  return (
+    resWordsWithoutDuplicates.map((w, index) => ({ ...w, order: index })) ?? []
+  );
 };

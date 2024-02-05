@@ -2,7 +2,10 @@ import { useDBContext } from "common/hooks/useDBContext";
 import React, { useDeferredValue, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SearchResult } from "common/types/types";
-import { orderSearchBylevenshtein } from "common/utils/searchResults.utils";
+import {
+  sortSearchByTopic,
+  sortSearchBylevenshtein,
+} from "common/utils/searchResults.utils";
 import debounce from "debounce";
 import { searchForWord } from "common/utils/word.utils";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
@@ -24,19 +27,57 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const amountVisible = 20;
 
+  const sortOptions = ["Relevans", "Tema"] as const;
+
+  type sortOptions = (typeof sortOptions)[number];
+
+  const [resultSortType, setResultSortType] = React.useState<sortOptions>(
+    sortOptions[0],
+  );
+
   const findWords = (s: string): SearchResult[] => {
     return searchForWord(s, langCode, topicsFromDB, ["eng", "isl"]);
   };
 
-  const [searchResult, setSearchResult] = React.useState<SearchResult[]>(
-    currSearch ? findWords(currSearch) : [],
-  );
+  const sortResults = (
+    sortOption: sortOptions,
+    search: string,
+    searchResults: SearchResult[],
+  ): SearchResult[] => {
+    switch (sortOption) {
+      case "Relevans":
+        return sortSearchBylevenshtein(search, searchResults);
+      case "Tema":
+        return sortSearchByTopic(searchResults);
+      default:
+        return [];
+    }
+  };
+
+  const [searchResult, setSearchResult] = React.useState<SearchResult[]>(() => {
+    if (currSearch) {
+      const res = findWords(currSearch);
+      return sortResults(resultSortType, currSearch, res);
+    }
+    return [];
+  });
 
   const [visibleSearchResult, setVisibleSearchResult] = React.useState<
     SearchResult[]
   >(searchResult.slice(0, amountVisible));
 
   const deferredSearchResult = useDeferredValue(visibleSearchResult);
+
+  const setResults = (results: SearchResult[]): void => {
+    setSearchResult(results);
+    setVisibleSearchResult(results.slice(0, amountVisible));
+  };
+
+  const handleOrderChange = (option: string): void => {
+    setResultSortType(option as sortOptions);
+    const res = sortResults(option as sortOptions, currSearch, searchResult);
+    setResults(res);
+  };
 
   const loadMore = (): void => {
     setVisibleSearchResult(prev => {
@@ -49,7 +90,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   };
 
   const debouncedSearch = useRef(
-    debounce((value: string) => {
+    debounce((value: string, sortType: sortOptions) => {
       if (value === "") {
         setSearchResult([]);
         setVisibleSearchResult([]);
@@ -59,10 +100,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
         return;
       }
       const res = findWords(value);
-      // setSearchResult(res);
-      const ordered = orderSearchBylevenshtein(value, res);
-      setSearchResult(ordered);
-      setVisibleSearchResult(ordered.slice(0, amountVisible));
+      setResults(sortResults(sortType, value, res));
     }, 400),
   ).current;
 
@@ -77,8 +115,9 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     }
     searchParams.set("search", value);
     setSearchParams(searchParams);
-    debouncedSearch(value);
+    debouncedSearch(value, resultSortType);
   };
+
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
@@ -90,12 +129,14 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
       </div>
       <div className={styles.searchResultBackground}>
         <div className={`${styles.grid}`}>
-          <div>left menu</div>
+          <div>Test</div>
           <SearchResultView
             searchResults={deferredSearchResult}
             search={currSearch}
             loadMore={loadMore}
             searchResultAmount={searchResult.length}
+            sortOptions={[...sortOptions]}
+            handleOrderChange={handleOrderChange}
           />
         </div>
       </div>

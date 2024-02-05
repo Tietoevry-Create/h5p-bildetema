@@ -6,4 +6,11 @@
 .searchViewHeading {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.orderWrap {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
 }

@@ -4,18 +4,24 @@ import { AudioRefContext } from "common/context/AudioContext";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
+import Select from "../../Select/Select";
 
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
   loadMore: () => void;
   searchResultAmount: number;
+  handleOrderChange: (option: string) => void;
+  sortOptions: string[];
 };
+
 const SearchResultView = ({
   searchResults,
   search,
   loadMore,
   searchResultAmount,
+  handleOrderChange,
+  sortOptions,
 }: SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -47,12 +53,9 @@ const SearchResultView = ({
         <div>
           Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
         </div>
-        <div>
+        <div className={styles.orderWrap}>
           <span>Sorter etter</span>
-          <select>
-            <option value="someOption">Some option</option>
-            <option value="otherOption">Other option</option>
-          </select>
+          <Select options={sortOptions} handleChange={handleOrderChange} />
         </div>
       </div>
 
