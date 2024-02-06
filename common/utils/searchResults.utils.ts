@@ -25,7 +25,7 @@ export const sortSearchByTopic = (results: SearchResult[]): SearchResult[] => {
   return results.toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0));
 };
 
-const getPositionValue = (search: string, labels: Labels): number => {
+const getSearchPositionValue = (search: string, labels: Labels): number => {
   const equal = 0;
   const endsWith = 1;
   const startsWith = 3;
@@ -46,8 +46,8 @@ export const sortSearchByPosition = (
   const res = sortSearchByTopic(results);
   return res.toSorted((a, b) => {
     return (
-      getPositionValue(search, a.translations[0].labels) -
-      getPositionValue(search, b.translations[0].labels)
+      getSearchPositionValue(search, a.translations[0].labels) -
+      getSearchPositionValue(search, b.translations[0].labels)
     );
   });
 };

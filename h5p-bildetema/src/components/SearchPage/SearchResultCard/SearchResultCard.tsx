@@ -1,4 +1,3 @@
-// import { Word as WordType } from "common/types/types";
 import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -86,7 +85,6 @@ export const SearchResultCard = ({
     );
   };
 
-  // const hasAudio = word.audioFiles && word.audioFiles.length > 0;
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
   const stopAudioLabel = useL10n("stopAudio");

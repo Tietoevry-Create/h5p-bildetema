@@ -17,16 +17,16 @@
   border-radius: 0.5rem;
 }
 
-.default {
+.secondary {
   color: black;
   background-color: $white;
   border: 2px solid $dark-beige;
 }
 
-.dark {
+.primary {
   color: $white;
-  background-color: #007271;
-  border: 2px solid #007271;
+  background-color: $dark-teal;
+  border: 2px solid $dark-teal;
 }
 
 .options {
@@ -40,7 +40,6 @@
     hsl(206 22% 7% / 35%) 0 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   overflow-y: auto;
-  // max-height: calc(100vh - 40rem);
   max-height: clamp(20vh, 50vh, 60vh);
   color: black;
 

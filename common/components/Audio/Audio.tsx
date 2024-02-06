@@ -1,4 +1,3 @@
-// import React from "react";
 import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { FC, useEffect, useRef, useState } from "react";
@@ -24,8 +23,6 @@ export const Audio: FC<AudioProps> = ({
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
   const textVisible = !!label;
-
-  // const text = extractWordLabel(word, showArticles);
 
   const handleAudioEnded = (): void => {
     setPlaying(false);

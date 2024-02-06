@@ -12,7 +12,7 @@ import { MainContentLink } from "../MainContentLink/MainContentLink";
 import { TopicRouteController } from "../TopicRouteController/TopicRouteController";
 import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
-import SearchView from "../SearchPage/SearchPage";
+import SearchPage from "../SearchPage/SearchPage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -132,7 +132,7 @@ export const Bildetema: FC<BildetemaProps> = ({
         <Route
           path="/sok"
           element={
-            <SearchView setIsTopicRouteFalse={() => setIsTopicRoute(false)} />
+            <SearchPage setIsTopicRouteFalse={() => setIsTopicRoute(false)} />
           }
         />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />

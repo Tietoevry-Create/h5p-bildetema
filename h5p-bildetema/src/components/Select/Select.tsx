@@ -8,9 +8,8 @@ type Option = {
 
 export type OptionType<T extends Option> = T;
 
-type variants = "default" | "dark";
+type variants = "primary" | "secondary";
 
-// export type SelectProps = {
 export type SelectProps<T extends Option> = {
   options: OptionType<T>[];
   handleChange: (option: OptionType<T>) => void;
@@ -18,12 +17,11 @@ export type SelectProps<T extends Option> = {
   variant?: variants;
 };
 
-// eslint-disable-next-line react/function-component-definition
 const Select = <T extends Option>({
   options,
   handleChange,
   selectedOption,
-  variant = "default",
+  variant = "primary",
 }: SelectProps<T>): JSX.Element => {
   return (
     <Listbox

@@ -26,7 +26,6 @@ const SearchResultView = ({
         options={languages}
         handleChange={handleLanguageChange}
         selectedOption={currLang}
-        variant="dark"
       />
     </div>
   );
