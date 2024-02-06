@@ -3,6 +3,7 @@ import React, { useDeferredValue, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language, SearchResult } from "common/types/types";
 import {
+  sortSearchByPosition,
   sortSearchByTopic,
   sortSearchBylevenshtein,
 } from "common/utils/searchResults.utils";
@@ -34,7 +35,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const amountVisible = 20;
 
-  const sortOptions = ["Relevans", "Tema"] as const;
+  const sortOptions = ["Prioritet", "Likhet", "Tema"] as const;
 
   type sortOptions = (typeof sortOptions)[number];
 
@@ -52,8 +53,10 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     searchResults: SearchResult[],
   ): SearchResult[] => {
     switch (sortOption) {
-      case "Relevans":
+      case "Likhet":
         return sortSearchBylevenshtein(search, searchResults);
+      case "Prioritet":
+        return sortSearchByPosition(search, searchResults);
       case "Tema":
         return sortSearchByTopic(searchResults);
       default:
