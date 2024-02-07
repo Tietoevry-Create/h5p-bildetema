@@ -14,6 +14,7 @@ const HeaderLink = ({ href }: HeaderLinkProps): JSX.Element => {
         <SearchIcon />
       </span>
 
+      {/* TODO translate */}
       <span>Søk</span>
     </Link>
   );

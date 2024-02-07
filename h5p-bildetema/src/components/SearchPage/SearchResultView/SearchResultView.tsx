@@ -47,9 +47,11 @@ const SearchResultView = ({
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
         <div>
+          {/* TODO Translate */}
           Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
         </div>
         <div className={styles.orderWrap}>
+          {/* TODO Translate */}
           <span>Sorter etter</span>
           <Select
             options={sortOptions.map(o => ({ label: o }))}
@@ -60,13 +62,7 @@ const SearchResultView = ({
         </div>
       </div>
 
-      <ul
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
-          gap: "10px",
-        }}
-      >
+      <ul className={styles.searchResultList}>
         <AudioRefContext.Provider value={audioContextValue}>
           {searchResults?.map(w => {
             return <SearchResultCard key={w.id} searchResult={w} />;

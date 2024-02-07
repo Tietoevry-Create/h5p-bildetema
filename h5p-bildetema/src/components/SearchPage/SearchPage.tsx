@@ -27,6 +27,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const [currLang, setCurrLang] = React.useState<Language>(
     languages?.find(l => l.code === langCode) ||
+      // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
   );
 
@@ -35,11 +36,12 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const amountVisible = 20;
 
+  // TODO translate / change
   const sortOptions = ["Prioritet", "Likhet", "Tema"] as const;
 
-  type sortOptions = (typeof sortOptions)[number];
+  type SortOptions = (typeof sortOptions)[number];
 
-  const [resultSortType, setResultSortType] = React.useState<sortOptions>(
+  const [resultSortType, setResultSortType] = React.useState<SortOptions>(
     sortOptions[0],
   );
 
@@ -48,7 +50,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   };
 
   const sortResults = (
-    sortOption: sortOptions,
+    sortOption: SortOptions,
     search: string,
     searchResults: SearchResult[],
   ): SearchResult[] => {
@@ -84,9 +86,9 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   };
 
   const handleOrderChange = (option: OptionType<{ label: string }>): void => {
-    setResultSortType(option.label as sortOptions);
+    setResultSortType(option.label as SortOptions);
     const res = sortResults(
-      option.label as sortOptions,
+      option.label as SortOptions,
       currSearch,
       searchResult,
     );
@@ -104,7 +106,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   };
 
   const debouncedSearch = useRef(
-    debounce((value: string, sortType: sortOptions, lCode: LanguageCode) => {
+    debounce((value: string, sortType: SortOptions, lCode: LanguageCode) => {
       if (value === "") {
         setSearchResult([]);
         setVisibleSearchResult([]);
