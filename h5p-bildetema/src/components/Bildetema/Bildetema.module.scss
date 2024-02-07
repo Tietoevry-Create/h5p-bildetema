@@ -22,6 +22,11 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  scroll-margin-top: 6rem; // Compensate for mobile header height
+
+  @include breakpoint-min($medium) {
+    scroll-margin-top: 11rem; // Compensate for header height
+  }
 }
 
 .body {

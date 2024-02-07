@@ -9,11 +9,6 @@
   margin: $main-content-margin;
   max-width: $main-content-max-width;
   width: $main-content-width;
-  scroll-margin-top: 6rem; // Compensate for mobile header height
-
-  @include breakpoint-min($medium) {
-    scroll-margin-top: 11rem; // Compensate for header height
-  }
 
   &:focus {
     outline: none !important;
