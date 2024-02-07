@@ -15,16 +15,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: $spacing--32;
   min-height: 100vh;
-
-  @media print {
-    gap: 0;
-  }
-
-  @include breakpoint-min($medium) {
-    gap: 0rem; // Todo fixes issue with header on the search page on large screens
-  }
 }
 
 .bildetemaMain {
