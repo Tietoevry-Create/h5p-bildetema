@@ -9,8 +9,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
+import styles from "./TopicRouteController.module.scss";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 import {
   findTopic,
@@ -18,27 +19,26 @@ import {
   validRoute,
 } from "../../utils/router/router.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
+import { SubHeader } from "../SubHeader/SubHeader";
+import { SearchParameters } from "../../enums/SearchParameters";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
-export type RouteControllerProps = {
-  showWrittenWords: boolean;
-  setIsWordView: Dispatch<SetStateAction<boolean>>;
+export type TopicRouteControllerProps = {
   setTopicIds: Dispatch<SetStateAction<TopicIds>>;
-  topicsSize: TopicGridSizes;
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
-  toggleShowTopicImageView: (value: boolean) => void;
-  showArticles: boolean;
+  topicIds: TopicIds;
+  rtl: boolean;
+  setIsTopicRouteTrue: () => void;
 };
 
-export const RouteController: FC<RouteControllerProps> = ({
-  showWrittenWords,
-  setIsWordView,
-  topicsSize,
+export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   setTopicIds,
   addFavoriteLanguage,
   favLanguages,
-  toggleShowTopicImageView,
-  showArticles,
+  topicIds,
+  rtl,
+  setIsTopicRouteTrue,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const { langId, topicLabel, subTopicId } = useParams();
@@ -131,19 +131,98 @@ export const RouteController: FC<RouteControllerProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage, h5pInstance, subTopicId, topicLabel, topics]);
 
+  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+  const [topicsSize, setTopicsSize] = useState(
+    smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
+  );
+  const [isWordView, setIsWordView] = useState(false);
+  const [showTopicImageView, setShowTopicImageView] = useState(true);
+
+  const toggleShowTopicImageView = (value: boolean): void => {
+    setShowTopicImageView(value);
+  };
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handleSearchParams = (
+    search: SearchParameters,
+    value: boolean,
+    defaultValue: boolean,
+  ): void => {
+    if (defaultValue === value) {
+      searchParams.delete(search);
+      setSearchParams(searchParams);
+      return;
+    }
+    searchParams.set(search, value.toString());
+    setSearchParams(searchParams);
+  };
+
+  const defaultShowWrittenWords = true;
+  const defaultShowArticles = false;
+
+  const [showWrittenWords, setShowWrittenWords] = useState(
+    searchParams.get(SearchParameters.wordsVisible) !== null
+      ? searchParams.get(SearchParameters.wordsVisible) === "true"
+      : defaultShowWrittenWords,
+  );
+
+  const [showArticles, setShowArticles] = useState(
+    searchParams.get(SearchParameters.articlesVisible) !== null
+      ? searchParams.get(SearchParameters.articlesVisible) === "true"
+      : defaultShowArticles,
+  );
+
+  const handleToggleArticles = (value: boolean): void => {
+    handleSearchParams(
+      SearchParameters.articlesVisible,
+      value,
+      defaultShowArticles,
+    );
+    setShowArticles(value);
+  };
+
+  const handleToggleChange = (value: boolean): void => {
+    handleSearchParams(
+      SearchParameters.wordsVisible,
+      value,
+      defaultShowWrittenWords,
+    );
+    setShowWrittenWords(value);
+  };
+
+  const currentLang = useCurrentLanguage();
+
+  setIsTopicRouteTrue();
+
   if ((words && language) || (topics && language)) {
     return (
-      <TopicGrid
-        topics={topics}
-        words={words}
-        topicsSize={topicsSize}
-        currentLanguage={language}
-        showWrittenWords={showWrittenWords}
-        setIsWordView={setIsWordView}
-        currentTopic={currentTopic}
-        toggleShowTopicImageView={toggleShowTopicImageView}
-        showArticles={showArticles}
-      />
+      <div className={`${styles.body} ${rtl ? styles.rtl : ""}`}>
+        <SubHeader
+          topicIds={topicIds}
+          topicsSize={topicsSize}
+          setTopicsSize={setTopicsSize}
+          isWordView={isWordView}
+          handleToggleChange={handleToggleChange}
+          toggleChecked={showWrittenWords}
+          showTopicImageView={showTopicImageView}
+          rtl={rtl}
+          handleToggleArticles={handleToggleArticles}
+          articlesToggleChecked={showArticles}
+        />
+        <div lang={currentLang}>
+          <TopicGrid
+            topics={topics}
+            words={words}
+            topicsSize={topicsSize}
+            currentLanguage={language}
+            showWrittenWords={showWrittenWords}
+            setIsWordView={setIsWordView}
+            currentTopic={currentTopic}
+            toggleShowTopicImageView={toggleShowTopicImageView}
+            showArticles={showArticles}
+          />
+        </div>
+      </div>
     );
   }
 

@@ -5,11 +5,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Audio } from "common/components/Audio/Audio";
+import { extractWordLabel } from "common/utils/word.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
-import { WordAudio } from "../WordAudio/WordAudio";
-import "./SwiperOverride.scss";
 import styles from "./Word.module.scss";
 
 type WordProps = {
@@ -87,16 +87,22 @@ export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
   };
 
   const hasAudio = word.audioFiles && word.audioFiles.length > 0;
+  const lang = useL10n("htmlLanguageCode");
+  const playAudioLabel = useL10n("playAudio");
+  const stopAudioLabel = useL10n("stopAudio");
+  const label = textVisible ? extractWordLabel(word, showArticles) : "";
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.word}>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && (
-        <WordAudio
-          word={word}
-          textVisible={textVisible}
-          showArticles={showArticles}
+        <Audio
+          lang={lang}
+          stopAudioLabel={stopAudioLabel}
+          playAudioLabel={playAudioLabel}
+          audioFiles={word.audioFiles}
+          label={label}
         />
       )}
     </li>

@@ -1,0 +1,20 @@
+@use "../../../../common/abstracts" as *;
+
+.body {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: $spacing--32;
+  margin: $main-content-margin;
+  max-width: $main-content-max-width;
+  width: $main-content-width;
+
+  &:focus {
+    outline: none !important;
+  }
+}
+
+.rtl {
+  direction: rtl;
+}

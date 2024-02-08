@@ -47,6 +47,14 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
 
   const isVertical = aspectRatio < 1;
 
+  // Hack to show topic image when running locally in vite dev
+  const svgImage =
+    typeof process === "undefined"
+      ? image
+      : `http://localhost:8090/wp-content/uploads/h5p/${image
+          .split("//")
+          .at(2)}`;
+
   return (
     <div className={styles.imageContainer}>
       {topicImageType === "vectorImageWithHotspots" && (
@@ -55,7 +63,7 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
       {topicImageType === "nonVectorImageWithHotspots" && (
         <img
           className={isVertical ? styles.imageVertical : styles.imageHorizontal}
-          src={image}
+          src={svgImage}
           alt=""
         />
       )}

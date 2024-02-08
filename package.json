@@ -12,6 +12,8 @@
     "lint:check": "turbo run lint:check",
     "lint:fix": "turbo run lint:fix",
     "start": "turbo run start",
+    "start:dev": "turbo run start:dev",
+    "start:dev-mobile": "turbo run start:dev-mobile",
     "build": "turbo run build",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",

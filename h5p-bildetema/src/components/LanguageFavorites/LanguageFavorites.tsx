@@ -13,11 +13,13 @@ import styles from "./LanguageFavorites.module.scss";
 export type LanguageFavoritesProps = {
   topicIds: TopicIds;
   favLanguages: Language[];
+  hidden: boolean;
 };
 
 export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   favLanguages,
   topicIds,
+  hidden,
 }) => {
   const { topics: topicsFromDB, languages: languagesFromDB } =
     useDBContext() || {};
@@ -42,7 +44,10 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   );
 
   return (
-    <nav aria-label={navAriaLabel} className={styles.languageWrapper}>
+    <nav
+      aria-label={navAriaLabel}
+      className={hidden ? styles.hidden : styles.languageWrapper}
+    >
       <ul role="list" className={styles.languages}>
         {sanitizedFavLanguages
           .sort(

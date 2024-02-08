@@ -1,0 +1,36 @@
+@use "common/abstracts" as *;
+
+.searchPage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  margin: $main-content-margin;
+  width: $main-content-width;
+  max-width: $main-content-max-width;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include breakpoint-min(700px) {
+    grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
+  }
+}
+
+.searchResultBackground {
+  background-color: #f7f7f7;
+  padding: 1rem 0;
+  flex: 1 1 0%;
+}
+
+.searchViewWrapper {
+  padding: 1rem 0rem;
+}
+
+.searchView {
+  max-width: $x-small;
+
+  @include breakpoint-min(700px) {
+    grid-column-start: 2;
+  }
+}

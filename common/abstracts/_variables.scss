@@ -25,6 +25,7 @@ $white: #ffffff;
 $grey: #eee;
 $beige: #f6f5f4;
 $dark-beige: #ebeae8;
+$dark-teal: #007271;
 $burgundy: #99002b;
 $blue-magenta: #000064;
 $orange: hsla(39, 100%, 50%, 1);
@@ -71,6 +72,8 @@ $toggle-focus-color: $black;
 $main-content-margin: 0 auto;
 $main-content-max-width: 90rem;
 $main-content-width: calc(100% - 2rem);
+
+$search-content-max-width: 50rem;
 
 $topic-card-big-width: 18.75rem;
 $topic-card-compact-width: 23.5rem;

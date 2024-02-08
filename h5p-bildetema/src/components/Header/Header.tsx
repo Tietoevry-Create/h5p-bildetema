@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages } from "common/constants/languages";
 import { useDBContext } from "common/hooks/useDBContext";
-import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
+import { LanguageCodeString } from "common/types/LanguageCode";
 import { Language, TopicIds } from "common/types/types";
 import { getLanguagePath } from "common/utils/router.utils";
 import {
@@ -19,6 +19,8 @@ import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
+import HeaderLink from "../HeaderLink/HeaderLink";
+import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 
 export type HeaderProps = {
   topicIds: TopicIds;
@@ -26,6 +28,7 @@ export type HeaderProps = {
   firstTime: boolean;
   setFirstTime: Dispatch<SetStateAction<boolean>>;
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
+  hideLanguageSelectors: boolean;
 };
 
 export const Header: FC<HeaderProps> = ({
@@ -34,6 +37,7 @@ export const Header: FC<HeaderProps> = ({
   firstTime,
   setFirstTime,
   handleToggleFavoriteLanguage,
+  hideLanguageSelectors,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
@@ -54,10 +58,7 @@ export const Header: FC<HeaderProps> = ({
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
 
-  const currentLanguageCode: LanguageCode =
-    pathname.split("/").length >= 2
-      ? (pathname.split("/")[1] as LanguageCode)
-      : "nob";
+  const currentLanguageCode = useCurrentLanguageCode();
 
   const titleLabel = headerTitle;
   const subTitleLabel = headerSubtitle;
@@ -123,7 +124,11 @@ export const Header: FC<HeaderProps> = ({
           <span className={styles.logo_labels_title}>{titleLabel}</span>
           <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
         </Link>
-        <div className={styles.language_container}>
+        <div
+          className={
+            hideLanguageSelectors ? styles.hidden : styles.nav_container
+          }
+        >
           <nav aria-label={navAriaLabel} className={styles.languages_nav}>
             <ul role="list" className={styles.languages}>
               {sanitizedFavLanguages
@@ -175,6 +180,8 @@ export const Header: FC<HeaderProps> = ({
             currentLanguageCode={currentLanguageCode}
             firstTime={firstTime}
           />
+
+          <HeaderLink href={`/sok?lang=${currentLanguageCode}`} />
         </div>
       </div>
     </div>

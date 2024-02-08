@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
 
-  :focus {
+  :focus-visible {
     outline: $outline-on-light-background;
     z-index: $outline-z-index; // prevent adjacent elements from overlapping the outline
   }
@@ -15,11 +15,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: $spacing--32;
   min-height: 100vh;
+}
 
-  @media print {
-    gap: 0;
+.bildetemaMain {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  scroll-margin-top: 6rem; // Compensate for mobile header height
+
+  @include breakpoint-min($medium) {
+    scroll-margin-top: 11rem; // Compensate for header height
   }
 }
 
