@@ -28,6 +28,12 @@
   }
 }
 
+.headerLinkLabel {
+  @include breakpoint-max($small) {
+    display: none;
+  }
+}
+
 .icon,
 .icon svg {
   height: 1.5rem;
