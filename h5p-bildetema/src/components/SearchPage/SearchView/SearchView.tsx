@@ -8,27 +8,38 @@ export type SearchFieldPros = {
   search: string;
   languages: OptionType<Language>[];
   handleLanguageChange: (lang: OptionType<Language>) => void;
+  handleViewLanguageChange: (lang: OptionType<Language>) => void;
   currLang: OptionType<Language>;
+  viewLanguage: OptionType<Language>;
 };
 
-const SearchResultView = ({
+const SearchView = ({
   handleSearch,
   search,
   languages,
   handleLanguageChange,
+  handleViewLanguageChange,
   currLang,
+  viewLanguage,
 }: SearchFieldPros): JSX.Element => {
   return (
     <div className={styles.searchField}>
       <h1 className={styles.title}>Søk etter ord</h1>
       <SearchInput handleSearch={handleSearch} search={search} />
-      <Select
-        options={languages}
-        handleChange={handleLanguageChange}
-        selectedOption={currLang}
-      />
+      <div className={styles.languageSelectors}>
+        <Select
+          options={languages}
+          handleChange={handleLanguageChange}
+          selectedOption={currLang}
+        />
+        <Select
+          options={languages}
+          handleChange={handleViewLanguageChange}
+          selectedOption={viewLanguage}
+        />
+      </div>
     </div>
   );
 };
 
-export default SearchResultView;
+export default SearchView;
