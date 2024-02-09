@@ -27,8 +27,8 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const [currLang, setCurrLang] = React.useState<Language>(
     languages?.find(l => l.code === langCode) ||
-      // TODO should not be static
-      ({ code: langCode, label: "Bokmål" } as Language),
+    // TODO should not be static
+    ({ code: langCode, label: "Bokmål" } as Language),
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
