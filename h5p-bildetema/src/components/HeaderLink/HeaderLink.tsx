@@ -15,7 +15,7 @@ const HeaderLink = ({ href }: HeaderLinkProps): JSX.Element => {
       </span>
 
       {/* TODO translate */}
-      <span>Søk</span>
+      <span className={styles.headerLinkLabel}>Søk</span>
     </Link>
   );
 };
