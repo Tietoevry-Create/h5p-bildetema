@@ -27,8 +27,8 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const [currLang, setCurrLang] = React.useState<Language>(
     languages?.find(l => l.code === langCode) ||
-    // TODO should not be static
-    ({ code: langCode, label: "Bokmål" } as Language),
+      // TODO should not be static
+      ({ code: langCode, label: "Bokmål" } as Language),
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
@@ -48,7 +48,11 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     sortOptions[0],
   );
 
-  const findWords = (s: string, lCode: LanguageCode, vlCode: LanguageCode): SearchResult[] => {
+  const findWords = (
+    s: string,
+    lCode: LanguageCode,
+    vlCode: LanguageCode,
+  ): SearchResult[] => {
     return searchForWord(s, lCode, topicsFromDB, [vlCode]);
   };
 
@@ -109,21 +113,33 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   };
 
   const debouncedSearch = useRef(
-    debounce((value: string, sortType: SortOptions, lCode: LanguageCode, vlCode: LanguageCode) => {
-      if (value === "") {
-        setSearchResult([]);
-        setVisibleSearchResult([]);
-        return;
-      }
-      if (value.length < 2) {
-        return;
-      }
-      const res = findWords(value, lCode, vlCode);
-      setResults(sortResults(sortType, value, res));
-    }, 400),
+    debounce(
+      (
+        value: string,
+        sortType: SortOptions,
+        lCode: LanguageCode,
+        vlCode: LanguageCode,
+      ) => {
+        if (value === "") {
+          setSearchResult([]);
+          setVisibleSearchResult([]);
+          return;
+        }
+        if (value.length < 2) {
+          return;
+        }
+        const res = findWords(value, lCode, vlCode);
+        setResults(sortResults(sortType, value, res));
+      },
+      400,
+    ),
   ).current;
 
-  const handleSearch = (value: string, lCode?: LanguageCode, vlCode?: LanguageCode): void => {
+  const handleSearch = (
+    value: string,
+    lCode?: LanguageCode,
+    vlCode?: LanguageCode,
+  ): void => {
     if (value === "") {
       searchParams.delete("search");
       debouncedSearch.clear();
@@ -134,7 +150,12 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     }
     searchParams.set("search", value);
     setSearchParams(searchParams);
-    debouncedSearch(value, resultSortType, lCode ?? langCode, vlCode ?? viewLanguage.code);
+    debouncedSearch(
+      value,
+      resultSortType,
+      lCode ?? langCode,
+      vlCode ?? viewLanguage.code,
+    );
   };
 
   const handleLanguageChange = (lang: OptionType<Language>): void => {
@@ -149,7 +170,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     setSearchParams(searchParams);
     setViewLanguage(lang);
     handleSearch(currSearch ?? "", currLang.code, lang.code);
-  }
+  };
 
   return (
     <div className={styles.searchPage}>
