@@ -30,6 +30,12 @@
   overflow-y: auto;
   z-index: $fav-language-selector-z-index;
 
+  @include breakpoint-max($x-small) {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+  }
+
   p {
     font-size: $font-size-16 !important;
     line-height: 1.4;
