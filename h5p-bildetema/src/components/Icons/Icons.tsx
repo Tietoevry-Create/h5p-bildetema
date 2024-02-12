@@ -51,6 +51,38 @@ export const BreadcrumbsArrowIcon: FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
+export const LeftRightArrow: FC<IconProps & IconSizeProps> = ({
+  iconColor="currentColor",
+  width=16,
+  height=16,
+}) => (
+  // <svg
+  //   width="10"
+  //   height="17"
+  //   fill="none"
+  //   viewBox="0 0 10 17"
+  //   xmlns="http://www.w3.org/2000/svg"
+  // >
+  //   <path
+  //     d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
+  //     fill="currentcolor"
+  //   />
+  // </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    fill={iconColor}
+    // class="bi bi-arrow-left-right"
+    viewBox="0 0 16 16"
+  >
+    <path
+      // fill-rule="evenodd"
+      d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"
+    />
+  </svg>
+);
+
 export const BreadcrumbsArrowLeftIcon: FC<IconProps & IconSizeProps> = ({
   iconColor,
   width,

@@ -1,10 +1,25 @@
 @use "common/abstracts" as *;
 
 .searchField {
+  // flex: 1;
+  // width: 100%;
   display: flex;
   gap: 1rem;
   flex-direction: column;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.searchInputWrapper {
+  display: flex;
+  width: 100%;
+  max-width: $x-small;
+}
+
 
 .title {
   font-size: $font-size-24;
@@ -16,4 +31,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.arrowButton {
+  all: unset;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  // cursor: pointer;
+  
+  &:hover {
+    // color: grey;
+  }
 }

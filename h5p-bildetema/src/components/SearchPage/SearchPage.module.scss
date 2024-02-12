@@ -12,9 +12,22 @@
   max-width: $main-content-max-width;
   display: grid;
   grid-template-columns: 1fr;
-  @include breakpoint-min(700px) {
-    grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
-  }
+  // @include breakpoint-min(700px) {
+  //   grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
+  // }
+}
+
+.flex {
+  margin: $main-content-margin;
+  width: $main-content-width;
+  max-width: $main-content-max-width;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // grid-template-columns: 1fr;
+    // @include breakpoint-min(700px) {
+    //   grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
+    // }
 }
 
 .searchResultBackground {
@@ -28,9 +41,9 @@
 }
 
 .searchView {
-  max-width: $x-small;
+  // max-width: $x-small;
 
-  @include breakpoint-min(700px) {
-    grid-column-start: 2;
-  }
+  // @include breakpoint-min(700px) {
+  //   grid-column-start: 2;
+  // }
 }
