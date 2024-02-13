@@ -52,9 +52,9 @@ export const BreadcrumbsArrowIcon: FC<IconProps & IconSizeProps> = ({
 );
 
 export const LeftRightArrow: FC<IconProps & IconSizeProps> = ({
-  iconColor="currentColor",
-  width=16,
-  height=16,
+  iconColor = "currentColor",
+  width = 16,
+  height = 16,
 }) => (
   // <svg
   //   width="10"
@@ -253,8 +253,8 @@ export const LanguageIcon: FC<
 
 export const SearchIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
   iconColor,
-  width=16,
-  height=16,
+  width = 16,
+  height = 16,
   transform,
   transformOrigin,
 }) => (
