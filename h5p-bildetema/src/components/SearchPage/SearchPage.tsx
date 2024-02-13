@@ -175,7 +175,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
-        <div className={`${styles.searchViewWrapper} ${styles.flex}`}>
+        <div className={`${styles.searchViewWrapper} ${styles.mainSize}`}>
           <div className={styles.searchView}>
             <SearchView
               handleSearch={handleSearch}
@@ -190,8 +190,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
         </div>
       </div>
       <div className={styles.searchResultBackground}>
-        <div className={`${styles.grid}`}>
-          {/* <div>Test</div> */}
+        <div className={`${styles.grid} ${styles.mainSize}`}>
           <SearchResultView
             searchResults={deferredSearchResult}
             search={currSearch}
