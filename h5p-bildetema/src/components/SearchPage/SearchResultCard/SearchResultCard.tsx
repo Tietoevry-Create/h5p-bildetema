@@ -57,7 +57,7 @@ export const SearchResultCard = ({
                   srcSets={image.srcSets}
                   sizes={gridImageSizes}
                   width="250"
-                  height="250"
+                  height="300"
                 />
               </div>
             </SwiperSlide>

@@ -5,25 +5,30 @@
   width: 100%;
 }
 
-.searchInput {
+// HACK use id to override default h5p styles
+#searchInput {
   padding: 1rem;
-  padding-right: 6rem;
+  padding-right: 4rem;
   width: 100%;
-  border: 2px solid $burgundy;
+  border: 2px solid $dark-beige;
+  background-color: $beige;
   border-radius: 0.5rem;
   box-shadow: none;
+
+  &:focus-visible {
+    outline: $outline-on-light-background !important;
+  }
 }
 
-.searchInputText {
+.searchInputIcon {
   position: absolute;
+  padding: 0.5rem 1.25rem;
+  justify-content: center;
+  align-items: center;
   right: 0;
+  bottom: 0;
   height: 100%;
-  background-color: $burgundy;
-  color: $white;
-  border: 2px solid $burgundy;
-  border-top-right-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem;
-  text-align: center;
+  display: flex;
 }
 
 .text {

@@ -253,15 +253,15 @@ export const LanguageIcon: FC<
 
 export const SearchIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
   iconColor,
-  width,
-  height,
+  width=16,
+  height=16,
   transform,
   transformOrigin,
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="16"
-    width="16"
+    height={height}
+    width={width}
     fill="currentColor"
     viewBox="0 0 16 16"
   >

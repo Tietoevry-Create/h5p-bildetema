@@ -7,43 +7,24 @@
 }
 
 .grid {
-  margin: $main-content-margin;
-  width: $main-content-width;
-  max-width: $main-content-max-width;
   display: grid;
   grid-template-columns: 1fr;
-  // @include breakpoint-min(700px) {
-  //   grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
-  // }
 }
 
-.flex {
+.mainSize {
   margin: $main-content-margin;
   width: $main-content-width;
   max-width: $main-content-max-width;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // grid-template-columns: 1fr;
-    // @include breakpoint-min(700px) {
-    //   grid-template-columns: clamp(15rem, 25%, 20rem) 1fr;
-    // }
 }
 
 .searchResultBackground {
-  background-color: #f7f7f7;
-  padding: 1rem 0;
+  background-color: $beige;
+  border-top: 2px solid $dark-beige;
+  border-bottom: 2px solid $dark-beige;
+  padding: 2rem 0;
   flex: 1 1 0%;
 }
 
 .searchViewWrapper {
-  padding: 1rem 0rem;
-}
-
-.searchView {
-  // max-width: $x-small;
-
-  // @include breakpoint-min(700px) {
-  //   grid-column-start: 2;
-  // }
+  padding: 2rem 0rem;
 }
