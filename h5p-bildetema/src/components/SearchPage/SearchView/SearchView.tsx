@@ -39,7 +39,6 @@ const SearchView = ({
         <h1 className={styles.title}>Søk i Bildetema</h1>
         <div className={styles.searchInputWrapper}>
           <SearchInput handleSearch={handleSearch} search={search} />
-
         </div>
         <div className={styles.languageSelectors}>
           <Select
@@ -48,7 +47,7 @@ const SearchView = ({
             selectedOption={currLang}
           />
           <button type="button" className={styles.arrowButton}>
-            <LeftRightArrow width={24} height={24}/>
+            <LeftRightArrow width={24} height={24} />
           </button>
           <Select
             options={languages}

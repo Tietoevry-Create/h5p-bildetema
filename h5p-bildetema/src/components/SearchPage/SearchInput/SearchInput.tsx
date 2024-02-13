@@ -21,7 +21,7 @@ const SearchInput = ({
         onChange={e => handleSearch(e.target.value)}
       />
       <span className={styles.searchInputIcon}>
-        <SearchIcon width={20} height={20}/>
+        <SearchIcon width={20} height={20} />
       </span>
     </div>
   );
