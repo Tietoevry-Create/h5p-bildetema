@@ -1,4 +1,3 @@
-import { LanguageCode } from "../types/LanguageCode";
 import {
   Labels,
   SearchResult,
@@ -6,6 +5,7 @@ import {
   TopicWord,
   Word,
   searchResultTranslations,
+  Language
 } from "../types/types";
 
 export const toSingleLabel = (
@@ -48,36 +48,35 @@ export const wordsIncludesArticles = (words: Word[]): boolean => {
 const findTranslationsForWord = (
   word: Word,
   topic: Topic,
-  languagesToFind: LanguageCode[],
+  languagesToFind: Language[],
 ): searchResultTranslations[] => {
   if (languagesToFind.length === 0) {
     return [];
   }
   const results: searchResultTranslations[] = [];
-  languagesToFind.forEach(lc => {
-    const translation = topic.words.get(lc)?.find(w => w.id === word.id);
+  languagesToFind.forEach(lang => {
+    const translation = topic.words.get(lang.code)?.find(w => w.id === word.id);
     if (translation) {
       results.push({
-        langCode: lc,
+        lang,
         audioFiles: translation.audioFiles,
         labels: translation.labels,
       });
     }
   });
-
   return results;
 };
 
 export const searchForWord = (
   s: string,
-  langCode: LanguageCode,
+  lang: Language,
   topicsFromDB?: Topic[],
-  languagesToFind: LanguageCode[] = [],
+  languagesToFind: Language[] = [],
 ): SearchResult[] => {
   const searchQuery = s.toLowerCase();
   const resWords = topicsFromDB
     ?.map(topic => {
-      const topicWords = topic.words.get(langCode);
+      const topicWords = topic.words.get(lang.code);
       if (topicWords?.length) {
         const p = topicWords
           .filter(w => {
@@ -89,7 +88,7 @@ export const searchForWord = (
               images: w.images,
               translations: [
                 {
-                  langCode,
+                  lang,
                   labels: w.labels,
                   audioFiles: w.audioFiles,
                 },
@@ -103,7 +102,7 @@ export const searchForWord = (
       }
       return topic.subTopics
         .map(subTopic => {
-          const subTopicWords = subTopic.words.get(langCode);
+          const subTopicWords = subTopic.words.get(lang.code);
           if (subTopicWords?.length) {
             return subTopicWords
               .filter(w => {
@@ -117,7 +116,7 @@ export const searchForWord = (
                   images: w.images,
                   translations: [
                     {
-                      langCode,
+                      lang,
                       labels: w.labels,
                       audioFiles: w.audioFiles,
                     },

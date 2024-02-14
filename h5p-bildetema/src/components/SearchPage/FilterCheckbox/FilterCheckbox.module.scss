@@ -2,7 +2,7 @@
 
 .container {
   box-sizing: border-box;
-  display: inline-flex;
+  display: flex;
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
@@ -36,15 +36,17 @@
       content: none;
     }
   }
-}
 
-.icon {
   & svg {
+    position: absolute;
     color: white;
-    background-color: $dark-teal;
     width: 100%;
     height: 100%;
   }
+}
+
+.backgroundDarkTeal {
+  background-color: $dark-teal;
 }
 
 .textLabel {

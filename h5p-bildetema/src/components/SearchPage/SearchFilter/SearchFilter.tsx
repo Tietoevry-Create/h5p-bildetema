@@ -23,7 +23,7 @@ const SearchFilter = ({
         className={style.filterDropdownButton}
         onClick={() => setOpen(!open)}
       >
-        <h2>
+        <h2 className={style.title}>
           <b>Filtrer etter tema</b>
         </h2>
         <LanguageMenuArrowIcon

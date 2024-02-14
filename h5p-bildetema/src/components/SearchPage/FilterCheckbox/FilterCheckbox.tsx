@@ -19,7 +19,11 @@ export const FilterCheckbox: FC<CheckboxProps> = ({
 }) => {
   return (
     <label className={styles.container} htmlFor={id}>
-      <span className={styles.wrapper}>
+      <span
+        className={`${
+          checked ? `${styles.wrapper} ${styles.backgroundDarkTeal}` : styles.wrapper
+        }`}
+      >
         <input
           id={id}
           type="checkbox"
@@ -27,11 +31,7 @@ export const FilterCheckbox: FC<CheckboxProps> = ({
           onChange={e => handleChange(e.target.checked)}
           disabled={disabled}
         />
-        {checked && (
-          <span className={styles.icon} aria-hidden="true">
-            <CheckIcon />
-          </span>
-        )}
+        {checked && <CheckIcon />}
       </span>
       <span className={styles.textLabel}>{label}</span>
     </label>

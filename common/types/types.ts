@@ -112,7 +112,7 @@ export type Translation = {
 };
 
 export type searchResultTranslations = {
-  langCode: LanguageCode;
+  lang: Language;
   labels: Labels;
   audioFiles?: Array<AudioFile>;
 };

@@ -7,7 +7,7 @@ import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { LeftRightArrow } from "../../Icons/Icons";
 import SearchFilter from "../SearchFilter/SearchFilter";
 
-export type SearchFieldPros = {
+export type SearchViewProps = {
   handleFilterChange: (topicId: string, add: boolean) => void;
   handleSearch: (value: string) => void;
   search: string;
@@ -29,7 +29,7 @@ const SearchView = ({
   handleViewLanguageChange,
   currLang,
   viewLanguage,
-}: SearchFieldPros): JSX.Element => {
+}: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
   return (

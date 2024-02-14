@@ -71,8 +71,8 @@ export const SearchResultCard = ({
             <div className={styles.image_placeholder}>
               <Image
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
-                width="220"
-                height="220"
+                width="250"
+                height="300"
               />
             </div>
           </SwiperSlide>
@@ -109,11 +109,11 @@ export const SearchResultCard = ({
             className={styles.translation}
             // Todo fix key when we never can have multiple of same language
             // eslint-disable-next-line react/no-array-index-key
-            key={`${translation.langCode}-${index}`}
+            key={`${translation.lang.code}-${index}`}
           >
             <span className={styles.translationLang}>
               {translatedLabel(
-                translation.langCode,
+                translation.lang.code,
                 translations,
               ).toUpperCase()}
             </span>
@@ -123,6 +123,7 @@ export const SearchResultCard = ({
               playAudioLabel={playAudioLabel}
               stopAudioLabel={stopAudioLabel}
               audioFiles={translation.audioFiles}
+              rtl={translation.lang.rtl}
             />
           </div>
         ))}
