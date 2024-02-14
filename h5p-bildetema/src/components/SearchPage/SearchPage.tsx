@@ -17,10 +17,12 @@ import styles from "./SearchPage.module.scss";
 import { OptionType } from "../Select/Select";
 
 const SearchPage = (): JSX.Element => {
-  // setIsTopicRouteFalse();
   const { topics: topicsFromDB, languages } = useDBContext() || {};
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const langCode = useCurrentLanguageCode();
+
+  const viewLangCode = searchParams.get("viewLang");
 
   const [currLang, setCurrLang] = React.useState<Language>(
     languages?.find(l => l.code === langCode) ||
@@ -29,9 +31,16 @@ const SearchPage = (): JSX.Element => {
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguage, setViewLanguage] = React.useState<Language>(currLang);
+  const [viewLanguage, setViewLanguage] = React.useState<Language>(() => {
+    if (viewLangCode) {
+      return languages?.find(l => l.code === viewLangCode) || currLang;
+    }
+    if (currLang.code !== "nob") {
+      return languages?.find(l => l.code === "nob") || currLang;
+    }
+    return languages?.find(l => l.code === "eng") || currLang;;
+  });
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const currSearch = searchParams.get("search") ?? "";
   const filter = searchParams.get("filter")?.split(",") ?? [];
 
