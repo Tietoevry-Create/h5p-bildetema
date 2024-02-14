@@ -17,7 +17,6 @@ export const Checkbox: FC<CheckboxProps> = ({
   disabled,
   label,
 }) => {
-
   return (
     <label className={styles.container} htmlFor={id}>
       <span className={styles.wrapper}>

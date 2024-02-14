@@ -14,7 +14,7 @@ export const FilterCheckbox: FC<CheckboxProps> = ({
   id,
   handleChange,
   checked,
-  disabled=false,
+  disabled = false,
   label,
 }) => {
   return (

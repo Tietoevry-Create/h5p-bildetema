@@ -16,7 +16,7 @@ export type SearchFieldPros = {
   handleViewLanguageChange: (lang: OptionType<Language>) => void;
   currLang: OptionType<Language>;
   viewLanguage: OptionType<Language>;
-  filter: string[],
+  filter: string[];
 };
 
 const SearchView = ({
@@ -62,10 +62,7 @@ const SearchView = ({
           />
         </div>
       </div>
-      <SearchFilter 
-        handleFilterChange={handleFilterChange}
-        filter={filter}
-      />
+      <SearchFilter handleFilterChange={handleFilterChange} filter={filter} />
     </div>
   );
 };
