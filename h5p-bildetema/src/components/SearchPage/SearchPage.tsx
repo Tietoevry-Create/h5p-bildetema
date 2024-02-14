@@ -35,10 +35,11 @@ const SearchPage = (): JSX.Element => {
     if (viewLangCode) {
       return languages?.find(l => l.code === viewLangCode) || currLang;
     }
+    // TODO should change based on page language (no / se / de ....)
     if (currLang.code !== "nob") {
       return languages?.find(l => l.code === "nob") || currLang;
     }
-    return languages?.find(l => l.code === "eng") || currLang;;
+    return languages?.find(l => l.code === "eng") || currLang;
   });
 
   const currSearch = searchParams.get("search") ?? "";
