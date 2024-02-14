@@ -5,7 +5,7 @@ import {
   TopicWord,
   Word,
   searchResultTranslations,
-  Language
+  Language,
 } from "../types/types";
 
 export const toSingleLabel = (

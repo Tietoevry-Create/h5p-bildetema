@@ -21,7 +21,9 @@ export const FilterCheckbox: FC<CheckboxProps> = ({
     <label className={styles.container} htmlFor={id}>
       <span
         className={`${
-          checked ? `${styles.wrapper} ${styles.backgroundDarkTeal}` : styles.wrapper
+          checked
+            ? `${styles.wrapper} ${styles.backgroundDarkTeal}`
+            : styles.wrapper
         }`}
       >
         <input
