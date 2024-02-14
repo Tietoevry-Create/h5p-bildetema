@@ -93,9 +93,11 @@ export const SearchResultCard = ({
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.searchResultCard}>
       <div className={styles.image_container}>{renderImages()}</div>
-      {searchResult.translations.map(translation => (
+      {searchResult.translations.map((translation, index) => (
         <Audio
-          key={translation.langCode}
+          // Todo fix key when we never can have multiple of same language
+          // eslint-disable-next-line react/no-array-index-key
+          key={`${translation.langCode}-${index}`}
           label={toSingleLabel(translation.labels)}
           lang={lang}
           playAudioLabel={playAudioLabel}

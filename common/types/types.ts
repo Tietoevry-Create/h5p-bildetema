@@ -32,7 +32,7 @@ export interface WordSearchResults extends Word {
 export type SearchResult = {
   id: string;
   images: ImageUrl[];
-  topicId?: string;
+  topicId: string;
   subTopicId?: string;
   translations: searchResultTranslations[];
   order?: number;

@@ -29,7 +29,6 @@ export type TopicRouteControllerProps = {
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
   topicIds: TopicIds;
   rtl: boolean;
-  setIsTopicRouteTrue: () => void;
 };
 
 export const TopicRouteController: FC<TopicRouteControllerProps> = ({
@@ -38,7 +37,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   favLanguages,
   topicIds,
   rtl,
-  setIsTopicRouteTrue,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const { langId, topicLabel, subTopicId } = useParams();
@@ -191,8 +189,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   };
 
   const currentLang = useCurrentLanguage();
-
-  setIsTopicRouteTrue();
 
   if ((words && language) || (topics && language)) {
     return (

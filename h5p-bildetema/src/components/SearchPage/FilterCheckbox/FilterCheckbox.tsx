@@ -1,23 +1,22 @@
 import { FC } from "react";
-import { StarFilledIcon, StarOutlineIcon } from "../Icons/Icons";
-import styles from "./Checkbox.module.scss";
+import { CheckIcon } from "../../Icons/Icons";
+import styles from "./FilterCheckbox.module.scss";
 
 type CheckboxProps = {
   id: string;
   handleChange: (checked: boolean) => void;
   checked: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   label: string;
 };
 
-export const Checkbox: FC<CheckboxProps> = ({
+export const FilterCheckbox: FC<CheckboxProps> = ({
   id,
   handleChange,
   checked,
-  disabled,
+  disabled=false,
   label,
 }) => {
-
   return (
     <label className={styles.container} htmlFor={id}>
       <span className={styles.wrapper}>
@@ -28,11 +27,13 @@ export const Checkbox: FC<CheckboxProps> = ({
           onChange={e => handleChange(e.target.checked)}
           disabled={disabled}
         />
-        <span className={styles.starIcon} aria-hidden="true">
-          {checked ? <StarFilledIcon /> : <StarOutlineIcon />}
-        </span>
+        {checked && (
+          <span className={styles.icon} aria-hidden="true">
+            <CheckIcon />
+          </span>
+        )}
       </span>
-      <span className={styles.visuallyHidden}>{label}</span>
+      <span className={styles.textLabel}>{label}</span>
     </label>
   );
 };

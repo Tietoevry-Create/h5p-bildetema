@@ -18,6 +18,7 @@ const SearchInput = ({
         // TODO fix static Søk value
         placeholder="Søk"
         value={search}
+        autoComplete="off"
         onChange={e => handleSearch(e.target.value)}
       />
       <span className={styles.searchInputIcon}>

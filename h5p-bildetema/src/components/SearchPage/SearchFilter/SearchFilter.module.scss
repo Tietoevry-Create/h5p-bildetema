@@ -1,0 +1,36 @@
+@use "common/abstracts" as *;
+
+.wrapper {
+  background-color: $beige;
+  border: 2px solid $dark-beige;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchFilterBorderTop{
+  border-top: 2px solid $dark-beige;
+}
+
+.searchFilter {
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  justify-items: start;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.25rem;
+}
+
+.headerBorder {
+  border-bottom: 2px solid $dark-beige;
+}
+
+.filterDropdownButton {
+  all: unset;
+  cursor: pointer;
+  padding: 1.25rem 2rem;
+  font-size: $font-size-20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -16,13 +16,10 @@ import SearchView from "./SearchView/SearchView";
 import styles from "./SearchPage.module.scss";
 import { OptionType } from "../Select/Select";
 
-type SearchPageProps = {
-  setIsTopicRouteFalse: () => void;
-};
-
-const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
-  setIsTopicRouteFalse();
+const SearchPage = (): JSX.Element => {
+  // setIsTopicRouteFalse();
   const { topics: topicsFromDB, languages } = useDBContext() || {};
+
   const langCode = useCurrentLanguageCode();
 
   const [currLang, setCurrLang] = React.useState<Language>(
@@ -36,6 +33,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const currSearch = searchParams.get("search") ?? "";
+  const filter = searchParams.get("filter")?.split(",") ?? [];
 
   const amountVisible = 20;
 
@@ -73,6 +71,18 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     }
   };
 
+  const filterSearchResults = (
+    currFilter: string[],
+    currSearchResults: SearchResult[],
+  ): SearchResult[] => {
+    if (currFilter.length === 0) {
+      return currSearchResults;
+    }
+    return currSearchResults.filter(result =>
+      currFilter.includes(result.topicId),
+    );
+  };
+
   const [searchResult, setSearchResult] = React.useState<SearchResult[]>(() => {
     if (currSearch) {
       const res = findWords(currSearch, langCode, viewLanguage.code);
@@ -81,15 +91,28 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     return [];
   });
 
+  const [filteredSearchResult, setFilteredSearchResult] = React.useState<
+    SearchResult[]
+  >(filterSearchResults(filter, searchResult));
+
   const [visibleSearchResult, setVisibleSearchResult] = React.useState<
     SearchResult[]
-  >(searchResult.slice(0, amountVisible));
+  >(filteredSearchResult.slice(0, amountVisible));
 
   const deferredSearchResult = useDeferredValue(visibleSearchResult);
 
-  const setResults = (results: SearchResult[]): void => {
+  const setFilteredVisibleResults = (
+    currFilter: string[],
+    results: SearchResult[],
+  ): void => {
+    const filtered = filterSearchResults(currFilter, results);
+    setFilteredSearchResult(filtered);
+    setVisibleSearchResult(filtered.slice(0, amountVisible));
+  };
+
+  const setResults = (results: SearchResult[], currFilter: string[]): void => {
     setSearchResult(results);
-    setVisibleSearchResult(results.slice(0, amountVisible));
+    setFilteredVisibleResults(currFilter, results);
   };
 
   const handleOrderChange = (option: OptionType<{ label: string }>): void => {
@@ -99,14 +122,14 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
       currSearch,
       searchResult,
     );
-    setResults(res);
+    setResults(res, filter);
   };
 
   const loadMore = (): void => {
     setVisibleSearchResult(prev => {
       const visibleSearch = [
         ...prev,
-        ...searchResult.slice(prev.length, prev.length + amountVisible),
+        ...filteredSearchResult.slice(prev.length, prev.length + amountVisible),
       ];
       return visibleSearch;
     });
@@ -119,17 +142,19 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
         sortType: SortOptions,
         lCode: LanguageCode,
         vlCode: LanguageCode,
+        currFilter: string[],
       ) => {
         if (value === "") {
           setSearchResult([]);
           setVisibleSearchResult([]);
+          setFilteredSearchResult([]);
           return;
         }
         if (value.length < 2) {
           return;
         }
         const res = findWords(value, lCode, vlCode);
-        setResults(sortResults(sortType, value, res));
+        setResults(sortResults(sortType, value, res), currFilter);
       },
       400,
     ),
@@ -146,6 +171,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
       setSearchParams(searchParams);
       setSearchResult([]);
       setVisibleSearchResult([]);
+      setFilteredSearchResult([]);
       return;
     }
     searchParams.set("search", value);
@@ -155,6 +181,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
       resultSortType,
       lCode ?? langCode,
       vlCode ?? viewLanguage.code,
+      filter,
     );
   };
 
@@ -172,13 +199,33 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
     handleSearch(currSearch ?? "", currLang.code, lang.code);
   };
 
+  const handleFilterChange = (topicId: string, add: boolean): void => {
+    let newFilter: string[];
+    if (add) {
+      newFilter = [...filter, topicId];
+    } else {
+      newFilter = filter.filter(id => id !== topicId);
+    }
+    if (newFilter.length === 0) {
+      searchParams.delete("filter");
+      setSearchParams(searchParams);
+      setFilteredVisibleResults(newFilter, searchResult);
+      return;
+    }
+    searchParams.set("filter", newFilter.join(","));
+    setSearchParams(searchParams);
+    setFilteredVisibleResults(newFilter, searchResult);
+  };
+
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
         <div className={`${styles.searchViewWrapper} ${styles.mainSize}`}>
           <div className={styles.searchView}>
             <SearchView
+              filter={filter}
               handleSearch={handleSearch}
+              handleFilterChange={handleFilterChange}
               search={currSearch}
               languages={languages ?? []}
               currLang={currLang}
@@ -195,7 +242,7 @@ const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
             searchResults={deferredSearchResult}
             search={currSearch}
             loadMore={loadMore}
-            searchResultAmount={searchResult.length}
+            searchResultAmount={filteredSearchResult.length}
             sortOptions={[...sortOptions]}
             handleOrderChange={handleOrderChange}
             resultSortType={{ label: resultSortType }}

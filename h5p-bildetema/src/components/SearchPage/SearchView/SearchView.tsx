@@ -5,8 +5,10 @@ import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { LeftRightArrow } from "../../Icons/Icons";
+import SearchFilter from "../SearchFilter/SearchFilter";
 
 export type SearchFieldPros = {
+  handleFilterChange: (topicId: string, add: boolean) => void;
   handleSearch: (value: string) => void;
   search: string;
   languages: OptionType<Language>[];
@@ -14,9 +16,12 @@ export type SearchFieldPros = {
   handleViewLanguageChange: (lang: OptionType<Language>) => void;
   currLang: OptionType<Language>;
   viewLanguage: OptionType<Language>;
+  filter: string[],
 };
 
 const SearchView = ({
+  filter,
+  handleFilterChange,
   handleSearch,
   search,
   languages,
@@ -26,6 +31,7 @@ const SearchView = ({
   viewLanguage,
 }: SearchFieldPros): JSX.Element => {
   const langCode = useCurrentLanguageCode();
+
   return (
     <div className={styles.searchField}>
       <Breadcrumbs
@@ -56,6 +62,10 @@ const SearchView = ({
           />
         </div>
       </div>
+      <SearchFilter 
+        handleFilterChange={handleFilterChange}
+        filter={filter}
+      />
     </div>
   );
 };
