@@ -28,6 +28,7 @@ const SearchResultView = ({
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
+
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);

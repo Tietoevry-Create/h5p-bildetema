@@ -8,8 +8,12 @@ import { Image } from "common/components/Image/Image";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
+import { useL10ns } from "use-h5p";
+import { LanguageCodeString } from "common/types/LanguageCode";
+import { languages as languagesConst } from "common/constants/languages";
 import { useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
+import { translatedLabel } from "../../../utils/language.utils";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
@@ -85,6 +89,12 @@ export const SearchResultCard = ({
     );
   };
 
+  const translations = useL10ns(
+    ...(languagesConst.map(
+      lang => `lang_${lang}`,
+    ) as Array<LanguageCodeString>),
+  );
+
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
   const stopAudioLabel = useL10n("stopAudio");
@@ -93,18 +103,30 @@ export const SearchResultCard = ({
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.searchResultCard}>
       <div className={styles.image_container}>{renderImages()}</div>
-      {searchResult.translations.map((translation, index) => (
-        <Audio
-          // Todo fix key when we never can have multiple of same language
-          // eslint-disable-next-line react/no-array-index-key
-          key={`${translation.langCode}-${index}`}
-          label={toSingleLabel(translation.labels)}
-          lang={lang}
-          playAudioLabel={playAudioLabel}
-          stopAudioLabel={stopAudioLabel}
-          audioFiles={translation.audioFiles}
-        />
-      ))}
+      <div className={styles.translations}>
+        {searchResult.translations.map((translation, index) => (
+          <div
+            className={styles.translation}
+            // Todo fix key when we never can have multiple of same language
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${translation.langCode}-${index}`}
+          >
+            <span className={styles.translationLang}>
+              {translatedLabel(
+                translation.langCode,
+                translations,
+              ).toUpperCase()}
+            </span>
+            <Audio
+              label={toSingleLabel(translation.labels)}
+              lang={lang}
+              playAudioLabel={playAudioLabel}
+              stopAudioLabel={stopAudioLabel}
+              audioFiles={translation.audioFiles}
+            />
+          </div>
+        ))}
+      </div>
     </li>
   );
 };
