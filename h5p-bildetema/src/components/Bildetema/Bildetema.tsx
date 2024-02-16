@@ -19,11 +19,12 @@ type BildetemaProps = {
   isLoadingData: boolean;
 };
 
+const staticPaths = ["/sok"];
+
 export const Bildetema: FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
-  const staticPaths = ["/sok"];
   const { languages: languagesFromDB } = useDBContext() || {};
   const { pathname } = useLocation();
 
