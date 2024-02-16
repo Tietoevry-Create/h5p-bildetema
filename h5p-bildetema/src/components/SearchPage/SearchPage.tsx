@@ -1,8 +1,8 @@
 import { useDBContext } from "common/hooks/useDBContext";
-import React, { useDeferredValue, useRef } from "react";
+import React, { useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
-import debounce from "debounce";
+import { useDebouncedCallback } from "use-debounce";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -82,66 +82,46 @@ const SearchPage = (): JSX.Element => {
     dispatch({ type: ActionType.LOAD_MORE });
   };
 
-  const debouncedSearch = useRef(
-    debounce(
-      (
-        search: string,
-        searchLang: Language,
-        viewLang: Language,
-        currFilter: string[],
-      ) => {
-        if (search.length < 2) {
-          return;
-        }
-        dispatch({
-          type: ActionType.SEARCH,
-          payload: {
-            search,
-            searchLanguage: searchLang,
-            filter: currFilter,
-            topics: topicsFromDB,
-            viewLanguage: [viewLang],
-          },
-        });
+  const debouncedSearch = useDebouncedCallback((search: string) => {
+    dispatch({
+      type: ActionType.SEARCH,
+      payload: {
+        search,
+        topics: topicsFromDB,
+        searchLanguage,
+        filter,
+        viewLanguage: [viewLanguage],
       },
-      400,
-    ),
-  ).current;
+    });
+  }, 400);
 
-  const handleSearch = (
-    value: string,
-    searchLang?: Language,
-    viewLang?: Language,
-  ): void => {
-    if (value === "") {
-      searchParams.delete("search");
-      debouncedSearch.clear();
+  const handleSearch = (search: string): void => {
+    if (search === "") {
+      searchParams.delete(SearchParamKeys.SEARCH);
+      debouncedSearch.cancel();
       setSearchParams(searchParams);
       dispatch({ type: ActionType.RESET });
       return;
     }
-    searchParams.set("search", value);
+    searchParams.set(SearchParamKeys.SEARCH, search);
     setSearchParams(searchParams);
-    debouncedSearch(
-      value,
-      searchLang ?? searchLanguage,
-      viewLang ?? viewLanguage,
-      filter,
-    );
+    if (search.length < 2) return;
+
+    debouncedSearch(search);
   };
 
   const handleSearchLanguageChange = (lang: OptionType<Language>): void => {
     searchParams.set("lang", lang.code);
     setSearchParams(searchParams);
     setSearchLanguage(lang);
-    handleSearch(currSearch ?? "", lang, viewLanguage);
+    handleSearch(currSearch);
   };
 
   const handleViewLanguageChange = (lang: OptionType<Language>): void => {
     searchParams.set("viewLang", lang.code);
     setSearchParams(searchParams);
     setViewLanguage(lang);
-    handleSearch(currSearch ?? "", searchLanguage, lang);
+    handleSearch(currSearch);
   };
 
   const handleFilterChange = (topicId: string, add: boolean): void => {

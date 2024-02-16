@@ -32,6 +32,12 @@ const SearchView = ({
 }: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
+  const handleSwitchLangs = (): void => {
+    handleSearchLanguageChange(viewLanguage);
+    handleViewLanguageChange(searchLanguage);
+    handleSearch("");
+  };
+
   return (
     <div className={styles.searchField}>
       <Breadcrumbs
@@ -53,7 +59,11 @@ const SearchView = ({
             handleChange={handleSearchLanguageChange}
             selectedOption={searchLanguage}
           />
-          <button type="button" className={styles.arrowButton}>
+          <button
+            type="button"
+            className={styles.arrowButton}
+            onClick={handleSwitchLangs}
+          >
             <LeftRightArrow width={24} height={24} />
           </button>
           <Select
