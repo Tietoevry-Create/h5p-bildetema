@@ -12,9 +12,9 @@ export type SearchViewProps = {
   handleSearch: (value: string) => void;
   search: string;
   languages: OptionType<Language>[];
-  handleLanguageChange: (lang: OptionType<Language>) => void;
+  handleSearchLanguageChange: (lang: OptionType<Language>) => void;
   handleViewLanguageChange: (lang: OptionType<Language>) => void;
-  currLang: OptionType<Language>;
+  searchLanguage: OptionType<Language>;
   viewLanguage: OptionType<Language>;
   filter: string[];
 };
@@ -25,17 +25,24 @@ const SearchView = ({
   handleSearch,
   search,
   languages,
-  handleLanguageChange,
+  handleSearchLanguageChange,
   handleViewLanguageChange,
-  currLang,
+  searchLanguage,
   viewLanguage,
 }: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
+  const handleSwitchLangs = (): void => {
+    handleSearchLanguageChange(viewLanguage);
+    handleViewLanguageChange(searchLanguage);
+    handleSearch("");
+  };
+
   return (
     <div className={styles.searchField}>
       <Breadcrumbs
-        currentLanguageCode={currLang.code}
+        currentLanguageCode={searchLanguage.code}
+        // TODO: translate search label
         breadCrumbs={[
           { label: "Home", path: `/${langCode}` },
           { label: "Søk", path: `/sok` },
@@ -49,10 +56,14 @@ const SearchView = ({
         <div className={styles.languageSelectors}>
           <Select
             options={languages}
-            handleChange={handleLanguageChange}
-            selectedOption={currLang}
+            handleChange={handleSearchLanguageChange}
+            selectedOption={searchLanguage}
           />
-          <button type="button" className={styles.arrowButton}>
+          <button
+            type="button"
+            className={styles.arrowButton}
+            onClick={handleSwitchLangs}
+          >
             <LeftRightArrow width={24} height={24} />
           </button>
           <Select

@@ -4,16 +4,17 @@ import { AudioRefContext } from "common/context/AudioContext";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
-import Select, { OptionType } from "../../Select/Select";
+import Select from "../../Select/Select";
+import { SearchOrderOption } from "../useSearchResults";
 
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
   loadMore: () => void;
   searchResultAmount: number;
-  handleOrderChange: (option: OptionType<{ label: string }>) => void;
-  sortOptions: string[];
-  resultSortType: OptionType<{ label: string }>;
+  handleOrderChange: (option: SearchOrderOption) => void;
+  sortOptions: SearchOrderOption[];
+  resultSortType: SearchOrderOption;
 };
 
 const SearchResultView = ({
@@ -55,7 +56,7 @@ const SearchResultView = ({
           {/* TODO Translate */}
           <span>Sorter etter</span>
           <Select
-            options={sortOptions.map(o => ({ label: o }))}
+            options={sortOptions}
             handleChange={handleOrderChange}
             selectedOption={resultSortType}
             variant="secondary"
