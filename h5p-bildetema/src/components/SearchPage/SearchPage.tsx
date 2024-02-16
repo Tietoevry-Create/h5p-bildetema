@@ -8,21 +8,26 @@ import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
 import styles from "./SearchPage.module.scss";
 import { OptionType } from "../Select/Select";
-import { ActionType, SearchOrderOption, SortOptions, useSearchResults } from "./useSearchResults";
+import {
+  ActionType,
+  SearchOrderOption,
+  SortOptions,
+  useSearchResults,
+} from "./useSearchResults";
 
 // TODO TRANSLATE LABELS
 const searchOrderOptions: SearchOrderOption[] = [
   { label: "Prioritet", option: SortOptions.PRIORITY },
   { label: "Likhet", option: SortOptions.SIMILARITY },
   { label: "Tema", option: SortOptions.TOPIC },
-]
+];
 
 const SearchParamKeys = {
   SEARCH: "search",
   FILTER: "filter",
   VIEW_LANG: "viewLang",
-  SEARCH_LANG: "lang"
-}
+  SEARCH_LANG: "lang",
+};
 
 const SearchPage = (): JSX.Element => {
   const { topics: topicsFromDB = [], languages = [] } = useDBContext() || {};
@@ -67,7 +72,10 @@ const SearchPage = (): JSX.Element => {
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
   const handleOrderChange = (option: SearchOrderOption): void => {
-    dispatch({type: ActionType.SORT, payload: {searchOrderOption: option, search: currSearch}})
+    dispatch({
+      type: ActionType.SORT,
+      payload: { searchOrderOption: option, search: currSearch },
+    });
   };
 
   const loadMore = (): void => {

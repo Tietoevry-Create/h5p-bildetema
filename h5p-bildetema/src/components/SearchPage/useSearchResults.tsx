@@ -124,6 +124,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         visibleSearchResults: filtered.slice(0, resultAmount),
       };
     }
+
     case ActionType.RESET:
       return {
         ...state,
@@ -154,6 +155,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         visibleSearchResults: filteredSearchRes.slice(0, resultAmount),
       };
     }
+
     case ActionType.FILTER: {
       const { payload } = action;
       const filteredSearchRes =
@@ -166,6 +168,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         visibleSearchResults: filteredSearchRes.slice(0, resultAmount),
       };
     }
+
     case ActionType.LOAD_MORE: {
       const currentAmount = state.visibleSearchResults.length;
       const newVisibleResults = state.filteredSearchResults.slice(
