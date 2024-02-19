@@ -46,14 +46,20 @@
   flex: 1;
   color: $base-font-color;
   display: flex;
+  flex-wrap: wrap;
   font-size: $font-size-18;
   cursor: pointer;
   justify-content: space-between;
-  gap: $spacing--16;
+  gap: $spacing--8 $spacing--16;
   height: 100%;
   align-items: center;
   line-height: 1.4;
   padding: $spacing--8;
+
+  @include breakpoint-min($x-small) {
+    flex-wrap: nowrap;
+    gap: $spacing--16;
+  }
 
   @include breakpoint-min($small) {
     width: max-content;
