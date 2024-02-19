@@ -6,14 +6,37 @@
   flex-direction: column;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+.searchInputWrapper {
+  display: flex;
+  width: 100%;
+  max-width: $x-small;
+}
+
 .title {
   font-size: $font-size-24;
   font-weight: bold;
   line-height: 1.4;
+
+  // override default styles
+  margin-block-end: 0;
+  margin-block-start: 0;
 }
 
 .languageSelectors {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.arrowButton {
+  all: unset;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
 }

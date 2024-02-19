@@ -19,6 +19,8 @@ type BildetemaProps = {
   isLoadingData: boolean;
 };
 
+const staticPaths = ["/sok"];
+
 export const Bildetema: FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
@@ -102,8 +104,6 @@ export const Bildetema: FC<BildetemaProps> = ({
     }
   });
 
-  const [isTopicRoute, setIsTopicRoute] = useState(true);
-
   const routes = useMemo(() => {
     const paths = [
       "/:langId",
@@ -124,17 +124,11 @@ export const Bildetema: FC<BildetemaProps> = ({
                 setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
-                setIsTopicRouteTrue={() => setIsTopicRoute(true)}
               />
             }
           />
         ))}
-        <Route
-          path="/sok"
-          element={
-            <SearchPage setIsTopicRouteFalse={() => setIsTopicRoute(false)} />
-          }
-        />
+        <Route path="/sok" element={<SearchPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
@@ -156,12 +150,12 @@ export const Bildetema: FC<BildetemaProps> = ({
           firstTime={firstTime}
           setFirstTime={setFirstTime}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-          hideLanguageSelectors={!isTopicRoute}
+          hideLanguageSelectors={staticPaths.includes(pathname)}
         />
         <LanguageFavorites
           topicIds={topicIds}
           favLanguages={favLanguages}
-          hidden={!isTopicRoute}
+          hidden={staticPaths.includes(pathname)}
         />
         <div
           id="bildetemaMain"

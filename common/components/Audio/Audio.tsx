@@ -10,6 +10,7 @@ type AudioProps = {
   playAudioLabel: string;
   audioFiles?: AudioFile[];
   label?: string;
+  rtl?: boolean;
 };
 
 export const Audio: FC<AudioProps> = ({
@@ -18,6 +19,7 @@ export const Audio: FC<AudioProps> = ({
   lang,
   stopAudioLabel,
   playAudioLabel,
+  rtl,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -70,7 +72,11 @@ export const Audio: FC<AudioProps> = ({
           <source key={file.mimeType} src={file.url} type={file.mimeType} />
         ))}
       </audio>
-      <button type="button" onClick={toggleAudio}>
+      <button
+        type="button"
+        onClick={toggleAudio}
+        className={rtl ? styles.rtl : ""}
+      >
         {textVisible && (
           <h2 className={styles.word_label}>
             {label}

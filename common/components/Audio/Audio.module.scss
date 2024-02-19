@@ -9,13 +9,13 @@
       display: none;
     }
   }
+}
 
-  [class*="rtl"] & {
-    direction: rtl;
-    svg g {
-      transform: scale(-1, 1);
-      transform-origin: center center;
-    }
+.rtl {
+  direction: rtl;
+  svg g {
+    transform: scale(-1, 1);
+    transform-origin: center center;
   }
 }
 

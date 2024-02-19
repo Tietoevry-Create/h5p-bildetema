@@ -1,11 +1,14 @@
 import { languagesOriginal } from "common/constants/languages";
-import { LanguageCodeString } from "common/types/LanguageCode";
+import { LanguageCode, LanguageCodeString } from "common/types/LanguageCode";
 import { Language } from "common/types/types";
 
 export const translatedLabel = (
-  language: Language,
+  language: Language | LanguageCode,
   translations: Record<LanguageCodeString, string>,
 ): string => {
+  if (typeof language === "string") {
+    return translations[`lang_${language}`];
+  }
   return translations[`lang_${language.code}`];
 };
 

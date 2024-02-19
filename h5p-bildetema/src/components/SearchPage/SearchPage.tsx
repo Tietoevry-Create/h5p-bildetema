@@ -1,205 +1,176 @@
 import { useDBContext } from "common/hooks/useDBContext";
-import React, { useDeferredValue, useRef } from "react";
+import React, { useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Language, SearchResult } from "common/types/types";
-import {
-  sortSearchByPosition,
-  sortSearchByTopic,
-  sortSearchBylevenshtein,
-} from "common/utils/searchResults.utils";
-import debounce from "debounce";
-import { searchForWord } from "common/utils/word.utils";
-import { LanguageCode } from "common/types/LanguageCode";
+import { Language } from "common/types/types";
+import { useDebouncedCallback } from "use-debounce";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
 import styles from "./SearchPage.module.scss";
 import { OptionType } from "../Select/Select";
+import {
+  ActionType,
+  SearchOrderOption,
+  SortOptions,
+  useSearchResults,
+} from "./useSearchResults";
 
-type SearchPageProps = {
-  setIsTopicRouteFalse: () => void;
+// TODO TRANSLATE LABELS
+const searchOrderOptions: SearchOrderOption[] = [
+  { label: "Prioritet", option: SortOptions.PRIORITY },
+  { label: "Likhet", option: SortOptions.SIMILARITY },
+  { label: "Tema", option: SortOptions.TOPIC },
+];
+
+const SearchParamKeys = {
+  SEARCH: "search",
+  FILTER: "filter",
+  VIEW_LANG: "viewLang",
+  SEARCH_LANG: "lang",
 };
 
-const SearchPage = ({ setIsTopicRouteFalse }: SearchPageProps): JSX.Element => {
-  setIsTopicRouteFalse();
-  const { topics: topicsFromDB, languages } = useDBContext() || {};
+const SearchPage = (): JSX.Element => {
+  const { topics: topicsFromDB = [], languages = [] } = useDBContext() || {};
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const langCode = useCurrentLanguageCode();
 
-  const [currLang, setCurrLang] = React.useState<Language>(
+  const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
+
+  const [searchLanguage, setSearchLanguage] = React.useState<Language>(
     languages?.find(l => l.code === langCode) ||
       // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguage, setViewLanguage] = React.useState<Language>(currLang);
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currSearch = searchParams.get("search") ?? "";
-
-  const amountVisible = 20;
-
-  // TODO translate / change
-  const sortOptions = ["Prioritet", "Likhet", "Tema"] as const;
-
-  type SortOptions = (typeof sortOptions)[number];
-
-  const [resultSortType, setResultSortType] = React.useState<SortOptions>(
-    sortOptions[0],
-  );
-
-  const findWords = (
-    s: string,
-    lCode: LanguageCode,
-    vlCode: LanguageCode,
-  ): SearchResult[] => {
-    return searchForWord(s, lCode, topicsFromDB, [vlCode]);
-  };
-
-  const sortResults = (
-    sortOption: SortOptions,
-    search: string,
-    searchResults: SearchResult[],
-  ): SearchResult[] => {
-    switch (sortOption) {
-      case "Likhet":
-        return sortSearchBylevenshtein(search, searchResults);
-      case "Prioritet":
-        return sortSearchByPosition(search, searchResults);
-      case "Tema":
-        return sortSearchByTopic(searchResults);
-      default:
-        return [];
+  const [viewLanguage, setViewLanguage] = React.useState<Language>(() => {
+    if (viewLangCode) {
+      return languages?.find(l => l.code === viewLangCode) || searchLanguage;
     }
-  };
-
-  const [searchResult, setSearchResult] = React.useState<SearchResult[]>(() => {
-    if (currSearch) {
-      const res = findWords(currSearch, langCode, viewLanguage.code);
-      return sortResults(resultSortType, currSearch, res);
+    // TODO should change based on page language (no / se / de ....)
+    if (searchLanguage.code !== "nob") {
+      return languages?.find(l => l.code === "nob") || searchLanguage;
     }
-    return [];
+    return languages?.find(l => l.code === "eng") || searchLanguage;
   });
 
-  const [visibleSearchResult, setVisibleSearchResult] = React.useState<
-    SearchResult[]
-  >(searchResult.slice(0, amountVisible));
+  const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
 
-  const deferredSearchResult = useDeferredValue(visibleSearchResult);
+  const filter = searchParams.get(SearchParamKeys.FILTER)?.split(",") ?? [];
 
-  const setResults = (results: SearchResult[]): void => {
-    setSearchResult(results);
-    setVisibleSearchResult(results.slice(0, amountVisible));
-  };
+  const { state, dispatch } = useSearchResults({
+    filter,
+    search: currSearch,
+    searchLanguage,
+    topics: topicsFromDB,
+    order: searchOrderOptions[0],
+    viewLanguage: [viewLanguage],
+  });
 
-  const handleOrderChange = (option: OptionType<{ label: string }>): void => {
-    setResultSortType(option.label as SortOptions);
-    const res = sortResults(
-      option.label as SortOptions,
-      currSearch,
-      searchResult,
-    );
-    setResults(res);
-  };
+  const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
-  const loadMore = (): void => {
-    setVisibleSearchResult(prev => {
-      const visibleSearch = [
-        ...prev,
-        ...searchResult.slice(prev.length, prev.length + amountVisible),
-      ];
-      return visibleSearch;
+  const handleOrderChange = (option: SearchOrderOption): void => {
+    dispatch({
+      type: ActionType.SORT,
+      payload: { searchOrderOption: option, search: currSearch },
     });
   };
 
-  const debouncedSearch = useRef(
-    debounce(
-      (
-        value: string,
-        sortType: SortOptions,
-        lCode: LanguageCode,
-        vlCode: LanguageCode,
-      ) => {
-        if (value === "") {
-          setSearchResult([]);
-          setVisibleSearchResult([]);
-          return;
-        }
-        if (value.length < 2) {
-          return;
-        }
-        const res = findWords(value, lCode, vlCode);
-        setResults(sortResults(sortType, value, res));
-      },
-      400,
-    ),
-  ).current;
-
-  const handleSearch = (
-    value: string,
-    lCode?: LanguageCode,
-    vlCode?: LanguageCode,
-  ): void => {
-    if (value === "") {
-      searchParams.delete("search");
-      debouncedSearch.clear();
-      setSearchParams(searchParams);
-      setSearchResult([]);
-      setVisibleSearchResult([]);
-      return;
-    }
-    searchParams.set("search", value);
-    setSearchParams(searchParams);
-    debouncedSearch(
-      value,
-      resultSortType,
-      lCode ?? langCode,
-      vlCode ?? viewLanguage.code,
-    );
+  const loadMore = (): void => {
+    dispatch({ type: ActionType.LOAD_MORE });
   };
 
-  const handleLanguageChange = (lang: OptionType<Language>): void => {
+  const debouncedSearch = useDebouncedCallback((search: string) => {
+    dispatch({
+      type: ActionType.SEARCH,
+      payload: {
+        search,
+        topics: topicsFromDB,
+        searchLanguage,
+        filter,
+        viewLanguage: [viewLanguage],
+      },
+    });
+  }, 400);
+
+  const handleSearch = (search: string): void => {
+    if (search === "") {
+      searchParams.delete(SearchParamKeys.SEARCH);
+      debouncedSearch.cancel();
+      setSearchParams(searchParams);
+      dispatch({ type: ActionType.RESET });
+      return;
+    }
+    searchParams.set(SearchParamKeys.SEARCH, search);
+    setSearchParams(searchParams);
+    if (search.length < 2) return;
+
+    debouncedSearch(search);
+  };
+
+  const handleSearchLanguageChange = (lang: OptionType<Language>): void => {
     searchParams.set("lang", lang.code);
     setSearchParams(searchParams);
-    setCurrLang(lang);
-    handleSearch(currSearch ?? "", lang.code, viewLanguage.code);
+    setSearchLanguage(lang);
+    handleSearch(currSearch);
   };
 
   const handleViewLanguageChange = (lang: OptionType<Language>): void => {
     searchParams.set("viewLang", lang.code);
     setSearchParams(searchParams);
     setViewLanguage(lang);
-    handleSearch(currSearch ?? "", currLang.code, lang.code);
+    handleSearch(currSearch);
+  };
+
+  const handleFilterChange = (topicId: string, add: boolean): void => {
+    let newFilter: string[];
+    if (add) {
+      newFilter = [...filter, topicId];
+    } else {
+      newFilter = filter.filter(id => id !== topicId);
+    }
+    if (newFilter.length === 0) {
+      searchParams.delete("filter");
+      setSearchParams(searchParams);
+      dispatch({ type: ActionType.FILTER, payload: newFilter });
+      return;
+    }
+    searchParams.set("filter", newFilter.join(","));
+    setSearchParams(searchParams);
+    dispatch({ type: ActionType.FILTER, payload: newFilter });
   };
 
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
-        <div className={`${styles.searchViewWrapper} ${styles.grid}`}>
+        <div className={`${styles.searchViewWrapper} ${styles.mainSize}`}>
           <div className={styles.searchView}>
             <SearchView
+              filter={filter}
               handleSearch={handleSearch}
+              handleFilterChange={handleFilterChange}
               search={currSearch}
-              languages={languages ?? []}
-              currLang={currLang}
+              languages={languages}
+              searchLanguage={searchLanguage}
               viewLanguage={viewLanguage}
-              handleLanguageChange={handleLanguageChange}
+              handleSearchLanguageChange={handleSearchLanguageChange}
               handleViewLanguageChange={handleViewLanguageChange}
             />
           </div>
         </div>
       </div>
       <div className={styles.searchResultBackground}>
-        <div className={`${styles.grid}`}>
-          <div>Test</div>
+        <div className={`${styles.grid} ${styles.mainSize}`}>
           <SearchResultView
             searchResults={deferredSearchResult}
             search={currSearch}
             loadMore={loadMore}
-            searchResultAmount={searchResult.length}
-            sortOptions={[...sortOptions]}
+            searchResultAmount={state.filteredSearchResults.length}
+            sortOptions={searchOrderOptions}
             handleOrderChange={handleOrderChange}
-            resultSortType={{ label: resultSortType }}
+            resultSortType={state.order}
           />
         </div>
       </div>
