@@ -3,10 +3,13 @@
   gap: 1rem;
   flex-direction: column;
 }
+
 .searchViewHeading {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
 .orderWrap {
@@ -19,4 +22,5 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 10px;
+  padding-inline-start: 0; // Remove default padding
 }
