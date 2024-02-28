@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { TopicIds } from "common/types/types";
+import { CurrentTopics } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
 import { FC, ReactPortal } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useL10n } from "../../hooks/useL10n";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
@@ -24,20 +24,21 @@ export type BreadcrumbsProps = {
     path: string;
   }[];
   currentLanguageCode: LanguageCode;
-  topicIds?: TopicIds;
+  currentTopics?: CurrentTopics;
 };
 
 export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   breadCrumbs,
   currentLanguageCode,
-  topicIds,
+  currentTopics,
 }) => {
   const lang = useSiteLanguage();
   const currentLang = useCurrentLanguage();
-  const { translations, topics } = useDBContext() || {};
+  const { translations } = useNewDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
   );
+  
   const l10nLabel = useL10n("breadcrumbsTopic");
   const topicLabel = labelFromDb.length > 0 ? labelFromDb : l10nLabel;
   const homeLabel = useL10n("breadcrumbsHome");
@@ -52,25 +53,24 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
         const urlComponent = `${decodeURIComponent(
           (breadcrumb as ReactPortal).props.children,
         )}`;
-        if (!topicIds) {
+        if (!currentTopics) {
           return urlComponent;
         }
-
-        const { topicId, subTopicId } = topicIds || {};
-        const topic = topics?.find(t => t.id === topicId);
-        const tLabel = topic?.labelTranslations.get(currentLanguageCode)?.label;
+        const { topic, subTopic } = currentTopics;
+        const tLabel = topic?.translations
+          .get(currentLanguageCode)
+          ?.labels.at(0)?.label;
 
         const isTopicLabel =
           !!tLabel &&
           labelToUrlComponent(tLabel) === labelToUrlComponent(urlComponent);
-
         if (isTopicLabel) {
           return tLabel;
         }
 
-        const sTopic = topic?.subTopics.find(s => s.id === subTopicId);
-        const sLabel =
-          sTopic?.labelTranslations.get(currentLanguageCode)?.label;
+        const sLabel = subTopic?.translations
+          .get(currentLanguageCode)
+          ?.labels.at(0)?.label;
 
         const isSubTopicLabel =
           !!sLabel &&
@@ -79,6 +79,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
         if (isSubTopicLabel) {
           return sLabel;
         }
+        
         return urlComponent;
       })();
 

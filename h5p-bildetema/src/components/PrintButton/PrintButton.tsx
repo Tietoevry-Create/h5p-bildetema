@@ -1,4 +1,4 @@
-import { TopicIds } from "common/types/types";
+// import { TopicIds } from "common/types/types";
 import { FC, FocusEvent, useEffect, useRef, useState } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import { useReactToPrint } from "react-to-print";
@@ -8,7 +8,7 @@ import { PrintWords } from "../PrintWords/PrintWords";
 import styles from "./PrintButton.module.scss";
 
 type PrintProps = {
-  topicIds: TopicIds;
+  // topicIds: TopicIds;
   showWrittenWords: boolean;
   showTopicImageView: boolean;
   isWordView: boolean;
@@ -16,7 +16,7 @@ type PrintProps = {
 };
 
 export const PrintButton: FC<PrintProps> = ({
-  topicIds,
+  // topicIds,
   showWrittenWords,
   isWordView,
   showTopicImageView,
@@ -142,10 +142,10 @@ export const PrintButton: FC<PrintProps> = ({
         <div className={styles.printWordsWrapper}>
           <PrintWords
             ref={printRef}
-            topicIds={topicIds}
+            // topicIds={topicIds}
             showWrittenWords={showWrittenWords}
             imagesPrRow={imagesPrRow}
-            isWordView={isWordView}
+            // isWordView={isWordView}
             showArticles={showArticles}
           />
         </div>

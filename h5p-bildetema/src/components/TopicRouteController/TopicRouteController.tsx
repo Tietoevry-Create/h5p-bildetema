@@ -1,10 +1,8 @@
 import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Language, TopicGridSizes, TopicIds } from "common/types/types";
+import { CurrentTopics, Language, TopicGridSizes } from "common/types/types";
 import {
-  Dispatch,
   FC,
-  SetStateAction,
   useEffect,
   useMemo,
   useState,
@@ -22,24 +20,26 @@ import { TopicGrid } from "../TopicGrid/TopicGrid";
 import { SubHeader } from "../SubHeader/SubHeader";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
+import { useCurrentWords } from "../../hooks/useCurrentWords";
+// import { useCurrentWords } from "../../hooks/useCurrentWords";
 
 export type TopicRouteControllerProps = {
-  setTopicIds: Dispatch<SetStateAction<TopicIds>>;
+  // setTopicIds: Dispatch<SetStateAction<TopicIds>>;
   favLanguages: Language[];
   addFavoriteLanguage: (language: Language, favorite: boolean) => void;
-  topicIds: TopicIds;
   rtl: boolean;
+  currentTopics: CurrentTopics;
 };
 
 export const TopicRouteController: FC<TopicRouteControllerProps> = ({
-  setTopicIds,
+  // setTopicIds,
   addFavoriteLanguage,
   favLanguages,
-  topicIds,
   rtl,
+  currentTopics,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
-  const { langId, topicLabel, subTopicId } = useParams();
+  const { langCodeParam, topicLabelParam, subTopicLabelParam } = useParams();
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
   const { topics: topicsFromDB, languages: languagesFromDB } =
@@ -50,31 +50,32 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
         topicsFromDB,
         languagesFromDB,
         favLanguages,
-        setTopicIds,
-        langId as LanguageCode,
-        topicLabel,
-        subTopicId,
+        // setTopicIds,
+        langCodeParam as LanguageCode,
+        topicLabelParam,
+        subTopicLabelParam,
         addFavoriteLanguage,
       ),
     [
       addFavoriteLanguage,
       favLanguages,
-      langId,
+      langCodeParam,
       languagesFromDB,
-      setTopicIds,
-      subTopicId,
-      topicLabel,
+      // setTopicIds,
+      subTopicLabelParam,
+      topicLabelParam,
       topicsFromDB,
     ],
   );
 
+
   const currentLanguage = useMemo(() => {
-    if (!langId || !languagesFromDB) {
+    if (!langCodeParam || !languagesFromDB) {
       return undefined;
     }
 
-    return langIdToLanguage(langId as LanguageCode, languagesFromDB);
-  }, [langId, languagesFromDB]);
+    return langIdToLanguage(langCodeParam as LanguageCode, languagesFromDB);
+  }, [langCodeParam, languagesFromDB]);
 
   useEffect(() => {
     // Scroll into view if topic and/or sub topic changes (or are reset - i.e. the user visits the frontpage)
@@ -83,7 +84,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
       return;
     }
 
-    const isFrontpage = !topicLabel;
+    const isFrontpage = !topicLabelParam;
     const previousPageWasFrontpage = !currentTopicId && !currentSubTopicId;
 
     let newTopicId: string | undefined;
@@ -93,18 +94,18 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     let subTopicHasChanged = false;
 
     if (!isFrontpage) {
-      const topic = findTopic(topicsFromDB, currentLanguage, topicLabel);
+      const topic = findTopic(topicsFromDB, currentLanguage, topicLabelParam);
       newTopicId = topic?.id;
 
       topicHasChanged = newTopicId !== currentTopicId;
 
       const topicHasSubTopics = !!topic?.subTopics;
-      const subTopicIsSetInUrl = !!subTopicId;
+      const subTopicIsSetInUrl = !!subTopicLabelParam;
 
       if (topicHasSubTopics && subTopicIsSetInUrl) {
         const { subTopics } = topic;
 
-        const subTopic = findTopic(subTopics, currentLanguage, subTopicId);
+        const subTopic = findTopic(subTopics, currentLanguage, subTopicLabelParam);
         newSubTopicId = subTopic?.id;
       }
     }
@@ -127,7 +128,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
     // Avoid depending on `currentTopicId` and `currentSubTopicId` as they are set by the effect
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentLanguage, h5pInstance, subTopicId, topicLabel, topics]);
+  }, [currentLanguage, h5pInstance, subTopicLabelParam, topicLabelParam, topics]);
 
   const smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const [topicsSize, setTopicsSize] = useState(
@@ -190,11 +191,17 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
   const currentLang = useCurrentLanguage();
 
+  // todo send in newWords to TopicGrid and make topics accept newWord
+  
+  // if type topics make topics accept newWords
+  // if type words convert newWords to wordType
+
+  const newWords = useCurrentWords()
+
   if ((words && language) || (topics && language)) {
     return (
       <div className={`${styles.body} ${rtl ? styles.rtl : ""}`}>
         <SubHeader
-          topicIds={topicIds}
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
           isWordView={isWordView}
@@ -204,9 +211,11 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
           rtl={rtl}
           handleToggleArticles={handleToggleArticles}
           articlesToggleChecked={showArticles}
+          currentTopics={currentTopics}
         />
         <div lang={currentLang}>
           <TopicGrid
+            newWords={newWords}
             topics={topics}
             words={words}
             topicsSize={topicsSize}

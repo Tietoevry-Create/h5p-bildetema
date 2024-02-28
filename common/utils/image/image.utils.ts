@@ -7,4 +7,15 @@ export const sizes = {
   xlarge: 1000,
 } as const;
 
+type sizes = typeof sizes
 export const gridImageSizes = [`${sizes.medium}px`] as const;
+
+export const getImageSrc = (
+  imgName: string,
+  backedUrl: string,
+  size: "small" | "medium" | "large" | "xlarge" = "medium",
+  // width: number,
+  // height: number,
+): string => {
+  return `${backedUrl}images/${size}/${imgName}`;
+};

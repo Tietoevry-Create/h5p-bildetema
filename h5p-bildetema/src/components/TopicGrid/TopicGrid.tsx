@@ -1,6 +1,7 @@
 import { AudioRefContext } from "common/context/AudioContext";
 import {
   Language,
+  NewWord,
   Topic,
   TopicGridSizes,
   TopicIds,
@@ -31,6 +32,7 @@ export type TopicGridProps = {
   currentTopic?: TopicIds;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
+  newWords: NewWord[]
 };
 
 export const TopicGrid: FC<TopicGridProps> = ({
@@ -43,7 +45,9 @@ export const TopicGrid: FC<TopicGridProps> = ({
   currentTopic,
   toggleShowTopicImageView,
   showArticles,
+  newWords
 }) => {
+
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
@@ -64,7 +68,9 @@ export const TopicGrid: FC<TopicGridProps> = ({
     }
   }, [words, setIsWordView, setSearchParams, searchParams]);
 
-  if (topics) {
+  const wordsIsTopics = newWords.some(w => w.id.charAt(0) === "T")
+
+  if (wordsIsTopics) {
     return (
       // eslint-disable-next-line jsx-a11y/no-redundant-roles
       <ul
@@ -76,18 +82,13 @@ export const TopicGrid: FC<TopicGridProps> = ({
         }`}
       >
         <AudioRefContext.Provider value={audioContextValue}>
-          {topics?.map(topic => {
+          {newWords?.map(topic => {
             return (
               <TopicGridElement
                 key={topic.id}
-                title={
-                  topic.labelTranslations.get(currentLanguage.code)?.label ||
-                  topic.id
-                }
-                images={topic.images}
+                topic={topic}
                 topicSize={topicsSize}
                 languageCode={currentLanguage.code}
-                topic={topic}
               />
             );
           })}

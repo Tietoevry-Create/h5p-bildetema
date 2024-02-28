@@ -1,19 +1,19 @@
-import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { TopicGridSizes, TopicIds } from "common/types/types";
+import { CurrentTopics, TopicGridSizes } from "common/types/types";
 import { Dispatch, FC, SetStateAction, useMemo } from "react";
-import { useLocation } from "react-router-dom";
 import { useContentId } from "use-h5p";
-import { wordsIncludesArticles } from "common/utils/word.utils";
+import { newWordsIncludesArticles } from "common/utils/word.utils";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { getNewWordsFromId } from "common/utils/data.utils";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { PrintButton } from "../PrintButton/PrintButton";
 import { Toggle } from "../Toggle/Toggle";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import styles from "./SubHeader.module.scss";
+import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 
 export type SubHeaderProps = {
-  topicIds: TopicIds;
   topicsSize: TopicGridSizes;
   setTopicsSize: Dispatch<SetStateAction<TopicGridSizes>>;
   isWordView: boolean;
@@ -23,10 +23,10 @@ export type SubHeaderProps = {
   articlesToggleChecked: boolean;
   showTopicImageView: boolean;
   rtl: boolean;
+  currentTopics: CurrentTopics;
 };
 
 export const SubHeader: FC<SubHeaderProps> = ({
-  topicIds,
   topicsSize,
   setTopicsSize,
   isWordView,
@@ -36,30 +36,28 @@ export const SubHeader: FC<SubHeaderProps> = ({
   rtl,
   handleToggleArticles,
   articlesToggleChecked,
+  currentTopics
 }) => {
-  const { topics } = useDBContext() || {};
+  const { idToContent, idToWords } = useNewDBContext() || {};
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
   const { showArticlesLabel } = useL10ns("showArticlesLabel");
 
   const contentId = useContentId();
-  const { pathname } = useLocation();
 
-  const currentLanguageCode =
-    pathname.split("/").length >= 2 ? pathname.split("/")[1] : "nob";
+  const currentLanguageCode = useCurrentLanguageCode();
 
   const showArticlesToggle = useMemo(() => {
-    const { topicId, subTopicId } = topicIds;
-    const words = subTopicId
-      ? topics
-          ?.find(t => t.id === topicId)
-          ?.subTopics?.find(s => s.id === subTopicId)
-          ?.words?.get(currentLanguageCode as LanguageCode)
-      : topics
-          ?.find(t => t.id === topicId)
-          ?.words?.get(currentLanguageCode as LanguageCode);
-    if (!words) return false;
-    return wordsIncludesArticles(words);
-  }, [currentLanguageCode, topicIds, topics]);
+    const { topic, subTopic } = currentTopics;
+    if(subTopic) {
+      const words = getNewWordsFromId(subTopic.id, idToWords, idToContent);
+      return newWordsIncludesArticles(words, currentLanguageCode)
+    }
+    if(topic) {
+      const words = getNewWordsFromId(topic.id, idToWords, idToContent);
+      return newWordsIncludesArticles(words, currentLanguageCode)
+    }
+    return false
+  }, [currentLanguageCode, currentTopics, idToContent, idToWords]);
 
   const renderLeftMenu = (): JSX.Element => {
     const element = isWordView ? (
@@ -87,7 +85,6 @@ export const SubHeader: FC<SubHeaderProps> = ({
       <span className={styles.tools}>
         {isWordView && (
           <PrintButton
-            topicIds={topicIds}
             showWrittenWords={toggleChecked}
             isWordView={isWordView}
             showTopicImageView={showTopicImageView}
@@ -107,7 +104,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
     >
       <Breadcrumbs
         currentLanguageCode={currentLanguageCode as LanguageCode}
-        topicIds={topicIds}
+        currentTopics={currentTopics}
       />
       {renderLeftMenu()}
     </div>

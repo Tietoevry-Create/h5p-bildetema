@@ -1,3 +1,4 @@
+import { LanguageCode } from "../types/LanguageCode";
 import {
   Labels,
   SearchResult,
@@ -6,17 +7,17 @@ import {
   Word,
   searchResultTranslations,
   Language,
+  NewWord,
 } from "../types/types";
 
 export const toSingleLabel = (
-  labels: Labels,
+  labels?: Labels,
   includeArticle = false,
 ): string => {
-  return labels
-    .map(el =>
+  return labels?.map(el =>
       el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
     )
-    .join(" / ");
+    .join(" / ") || ""
 };
 
 export const extractWordLabel = (
@@ -44,6 +45,14 @@ export const wordsIncludesArticles = (words: Word[]): boolean => {
     return word.labels?.some(el => el.article);
   });
 };
+
+export const newWordsIncludesArticles = (words: NewWord[], langCode: LanguageCode): boolean => {
+  return words.some(word => {
+    const isTopicWord = word.id.includes("T");
+    if (isTopicWord) return false;
+    return word.translations.get(langCode)?.labels.some(el => el.article);
+  });
+}
 
 const findTranslationsForWord = (
   word: Word,

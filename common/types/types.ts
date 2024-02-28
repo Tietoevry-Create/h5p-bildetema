@@ -118,3 +118,46 @@ export type searchResultTranslations = {
 };
 
 export type Translations = Record<LanguageCode, Record<string, Translation>>;
+
+
+
+export type NewTranslation = {
+  languageCode: LanguageCode;
+  labels: {
+    label: string,
+    article?: string
+  }[]
+}
+
+export type NewWord = {
+  id: string;
+  images: string[];
+  translations: Map<LanguageCode, NewTranslation>;
+  topicId: string
+  order?: number; // TODO: use this for ordering in the "backend" not needed client side
+  subTopicId?: string
+}
+
+export type NewData = {
+  langCodeTolanguages: Map<LanguageCode, Language>;
+  languages: Language[]
+
+  // TODO
+  // Id to Item
+  idToWords: Map<string, NewWord>
+  
+  // TODO (root topics are at key "root" maybe move this to its own object property)
+  // TopicId to content
+  idToContent: Map<string, string[]>;
+  
+  translations: Translations;
+
+  // TODO
+  // urlcomponent to topicid
+  topicPaths: Map<string, string>;
+}
+
+export type CurrentTopics = {
+  topic?: NewWord
+  subTopic?: NewWord
+}

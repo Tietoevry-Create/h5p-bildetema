@@ -175,6 +175,7 @@ export const Words: FC<WordsProps> = ({
   }, [contentId, topicViewRef, gridViewRef]);
 
   useEffect(() => {
+    console.log(words)
     topicViewInstance?.trigger("change-params", {
       words,
       showWrittenWords,

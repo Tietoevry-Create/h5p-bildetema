@@ -8,6 +8,7 @@ import {
   Data,
   Translations,
   TopicWord,
+  NewWord,
 } from "../types/types";
 
 const languages: Language[] = [];
@@ -85,3 +86,16 @@ export const getData = async (databaseUrl: string): Promise<Data> => {
   }
   return { topics, languages, translations };
 };
+
+export const getNewWordsFromId = (
+  id: string,
+  idToWords?: Map<string, NewWord>,
+  idToContent?: Map<string, string[]>,
+): NewWord[] => {
+  const content = idToContent?.get(id);
+  if (!content) return []
+
+  return content
+    .map(item => idToWords?.get(item))
+    .filter((item): item is NewWord => item !== undefined);
+}

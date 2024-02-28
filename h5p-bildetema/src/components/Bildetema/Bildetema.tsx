@@ -1,8 +1,9 @@
-import { useDBContext } from "common/hooks/useDBContext";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Language, TopicIds } from "common/types/types";
+import { CurrentTopics, Language } from "common/types/types";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -13,19 +14,24 @@ import { TopicRouteController } from "../TopicRouteController/TopicRouteControll
 import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 import SearchPage from "../SearchPage/SearchPage";
+import CustomViewPage from "../CustomViewPage/CustomViewPage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
   isLoadingData: boolean;
 };
 
-const staticPaths = ["/sok"];
+const STATIC_PATHS = {
+  SEARCH: "/sok",
+  CUSTOM_VIEW: "/customview",
+} as const;
 
 export const Bildetema: FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
-  const { languages: languagesFromDB } = useDBContext() || {};
+  const { languages: languagesFromDB, topicPaths, idToWords } =
+    useNewDBContext() || {};
   const { pathname } = useLocation();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
@@ -42,7 +48,7 @@ export const Bildetema: FC<BildetemaProps> = ({
   const loadingLabel = useL10n("pageIsLoading");
   const pageTitle = useL10n("headerTitle");
   const mainContentAriaLabel = useL10n("mainContentAriaLabel");
-  const [topicIds, setTopicIds] = useState<TopicIds>({});
+  // const [topicIds, setTopicIds] = useState<TopicIds>({});
   const [firstTime, setFirstTime] = useState(false);
 
   const [userData, setUserData] = useUserData();
@@ -75,6 +81,21 @@ export const Bildetema: FC<BildetemaProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favLanguages, pathname]);
 
+  const currTopics = useMemo((): CurrentTopics => {
+    const [topicUriComponent, subTopicUriComponent] = pathname
+      .split("/")
+      .slice(2);
+
+    const topicId =
+      topicPaths?.get(uriComponentToTopicPath(topicUriComponent)) || ""
+    const topic = idToWords?.get(topicId);
+
+    const subTopicId =
+      topicPaths?.get(uriComponentToTopicPath(subTopicUriComponent)) || "";
+    const subTopic = idToWords?.get(subTopicId);
+    return { topic, subTopic };
+  }, [idToWords, pathname, topicPaths]);
+
   const handleToggleFavoriteLanguage = useCallback(
     (language: Language, favorite: boolean): void => {
       if (favorite) {
@@ -106,9 +127,9 @@ export const Bildetema: FC<BildetemaProps> = ({
 
   const routes = useMemo(() => {
     const paths = [
-      "/:langId",
-      "/:langId/:topicLabel",
-      "/:langId/:topicLabel/:subTopicId",
+      "/:langCodeParam",
+      "/:langCodeParam/:topicLabelParam",
+      "/:langCodeParam/:topicLabelParam/:subTopicLabelParam",
     ];
 
     return (
@@ -120,15 +141,17 @@ export const Bildetema: FC<BildetemaProps> = ({
             element={
               <TopicRouteController
                 rtl={directionRtl}
-                topicIds={topicIds}
-                setTopicIds={setTopicIds}
+                // topicIds={topicIds}
+                // setTopicIds={setTopicIds}
                 addFavoriteLanguage={handleToggleFavoriteLanguage}
                 favLanguages={favLanguages}
+                currentTopics={currTopics}
               />
             }
           />
         ))}
         <Route path="/sok" element={<SearchPage />} />
+        <Route path="/customview" element={<CustomViewPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
@@ -136,8 +159,9 @@ export const Bildetema: FC<BildetemaProps> = ({
     defaultLanguages,
     favLanguages,
     handleToggleFavoriteLanguage,
-    topicIds,
+    // topicIds,
     directionRtl,
+    currTopics
   ]);
 
   return (
@@ -145,17 +169,17 @@ export const Bildetema: FC<BildetemaProps> = ({
       <MainContentLink />
       <div className={styles.container}>
         <Header
-          topicIds={topicIds}
           favLanguages={favLanguages}
           firstTime={firstTime}
           setFirstTime={setFirstTime}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-          hideLanguageSelectors={staticPaths.includes(pathname)}
+          hideLanguageSelectors={pathname === STATIC_PATHS.SEARCH}
+          currentTopics={currTopics}
         />
         <LanguageFavorites
-          topicIds={topicIds}
+          currentTopics={currTopics}
           favLanguages={favLanguages}
-          hidden={staticPaths.includes(pathname)}
+          hidden={pathname === STATIC_PATHS.SEARCH}
         />
         <div
           id="bildetemaMain"

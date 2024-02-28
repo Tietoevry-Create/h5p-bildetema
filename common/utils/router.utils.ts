@@ -1,4 +1,4 @@
-import { Language, Topic, TopicIds } from "../types/types";
+import { CurrentTopics, Language, Topic, TopicIds } from "../types/types";
 import { labelToUrlComponent } from "./string.utils";
 
 export const getLanguagePath = (
@@ -28,4 +28,27 @@ export const getLanguagePath = (
       ? labelToUrlComponent(subTopicWord.label)
       : labelToUrlComponent(subTopicWord.id);
   return `/${language.code}/${topicPath}/${subTopicPath}${search}`;
+};
+
+export const getPath = ({
+  language,
+  search,
+  currentTopics
+}: {
+  currentTopics: CurrentTopics
+  language: Language;
+  search: string;
+}): string => {
+  // TODO FIX SOMALI BUG
+  const {topic, subTopic} = currentTopics
+  const topicPath = labelToUrlComponent(topic?.translations.get(language.code)?.labels.at(0)?.label)
+  if(!topicPath) return `/${language.code}${search}`
+  const subTopicPath = labelToUrlComponent(subTopic?.translations.get(language.code)?.labels.at(0)?.label)
+  if(!subTopicPath) return `/${language.code}/${topicPath}${search}`;
+  return `/${language.code}/${topicPath}/${subTopicPath}${search}`
+};
+
+export const uriComponentToTopicPath = (uriComponent?: string): string => {
+  if (!uriComponent) return "";
+  return labelToUrlComponent(decodeURIComponent(uriComponent))
 };

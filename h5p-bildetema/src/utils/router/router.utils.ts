@@ -1,5 +1,5 @@
 import { LanguageCode } from "common/types/LanguageCode";
-import { Language, Topic, TopicIds } from "common/types/types";
+import { Language, Topic } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
 import { TopicsAndWords } from "../../types/TopicsAndWords";
 
@@ -49,7 +49,7 @@ export const validRoute = (
   topicsFromDB: Array<Topic> | undefined,
   languagesFromDB: Array<Language> | undefined,
   favLanguages: Array<Language>,
-  setTopicIds: (topicIds: TopicIds) => void,
+  // setTopicIds: (topicIds: TopicIds) => void,
   langId: LanguageCode | undefined,
   topicLabel: string | undefined,
   subTopicId: string | undefined,
@@ -60,13 +60,13 @@ export const validRoute = (
   }
 
   if (!languagesFromDB) {
-    setTopicIds({});
+    // setTopicIds({});
     return { loading: true };
   }
 
   const language = langIdToLanguage(langId, languagesFromDB);
   if (!language) {
-    setTopicIds({});
+    // setTopicIds({});
     return { loading: false };
   }
 
@@ -79,20 +79,20 @@ export const validRoute = (
   }
 
   if (!topicLabel) {
-    setTopicIds({});
+    // setTopicIds({});
     return { topics: topicsFromDB, language, loading: false };
   }
 
   const topic = findTopic(topicsFromDB, language, topicLabel);
   if (!topic) {
-    setTopicIds({});
+    // setTopicIds({});
     return { loading: false };
   }
 
   const { subTopics } = topic;
 
   if (!subTopicId) {
-    setTopicIds({ topicId: topic.id });
+    // setTopicIds({ topicId: topic.id });
 
     if (subTopics.length)
       return { topics: subTopics, language, loading: false };
@@ -106,7 +106,7 @@ export const validRoute = (
 
   const subTopic = findTopic(subTopics, language, subTopicId);
 
-  setTopicIds({ topicId: topic.id, subTopicId: subTopic?.id });
+  // setTopicIds({ topicId: topic.id, subTopicId: subTopic?.id });
   return {
     words: subTopic?.words.get(language.code),
     language,

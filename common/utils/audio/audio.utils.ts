@@ -22,3 +22,12 @@ export const getAudioURLs = (
     url: `${audioPath}.${fileType.extension}`,
   }));
 };
+
+export const getAudioFiles = (
+  wordId: string,
+  backedUrl: string,
+  languageCode: LanguageCode,
+): Array<AudioFile> => {
+  const audioFile: AudioFile = {mimeType: "audio/mp3", url: `${backedUrl}audio/${languageCode}/${wordId}.mp3`}
+  return [audioFile]
+};

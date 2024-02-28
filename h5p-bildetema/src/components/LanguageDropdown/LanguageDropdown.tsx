@@ -1,4 +1,4 @@
-import { Language, TopicIds } from "common/types/types";
+import { CurrentTopics, Language } from "common/types/types";
 import {
   Dispatch,
   FC,
@@ -20,8 +20,8 @@ export type LanguageDropdownProps = {
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   currentLanguageCode: string;
   search: string;
-  topicIds: TopicIds;
   firstTime: boolean;
+  currentTopics: CurrentTopics;
 };
 
 export const LanguageDropdown: FC<LanguageDropdownProps> = ({
@@ -33,7 +33,7 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
   currentLanguageCode,
   search,
   firstTime,
-  topicIds,
+  currentTopics
 }) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -96,11 +96,11 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
       </button>
       {langSelectorIsShown && (
         <LanguageSelector
-          topicIds={topicIds}
           search={search}
           currentLanguageCode={currentLanguageCode}
           favLanguages={favLanguages}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+          currentTopics={currentTopics}
         />
       )}
     </div>

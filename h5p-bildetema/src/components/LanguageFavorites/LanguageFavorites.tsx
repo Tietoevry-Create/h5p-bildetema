@@ -1,28 +1,28 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages as languagesConst } from "common/constants/languages";
-import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
-import { Language, TopicIds } from "common/types/types";
-import { getLanguagePath } from "common/utils/router.utils";
+import { CurrentTopics, Language } from "common/types/types";
+import {  getPath } from "common/utils/router.utils";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import styles from "./LanguageFavorites.module.scss";
 
 export type LanguageFavoritesProps = {
-  topicIds: TopicIds;
   favLanguages: Language[];
   hidden: boolean;
+  currentTopics: CurrentTopics;
 };
 
 export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   favLanguages,
-  topicIds,
   hidden,
+  currentTopics
 }) => {
-  const { topics: topicsFromDB, languages: languagesFromDB } =
-    useDBContext() || {};
+  const { languages: languagesFromDB } =
+    useNewDBContext() || {};
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
@@ -66,7 +66,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
                 }
               >
                 <Link
-                  to={getLanguagePath(language, topicIds, search, topicsFromDB)}
+                  to={getPath({language, search, currentTopics})}
                   className={`${styles.languageButton} ${
                     currentLanguageCode === language.code
                       ? styles.languageButton_active
