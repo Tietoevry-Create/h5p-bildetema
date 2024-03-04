@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
-    "@tanstack/react-query": "^4.35.3",
+    "@tanstack/react-query": "^5.24.8",
     "common": "*",
     "fastest-levenshtein": "^1.0.16",
     "react-detect-click-outside": "^1.1.7",
