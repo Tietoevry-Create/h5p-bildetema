@@ -1,4 +1,4 @@
-import { useDBContext } from "common/hooks/useDBContext";
+// import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { DisplayView, TopicIds, Word } from "common/types/types";
 import { getLibraryName } from "common/utils/library/library.utils";
@@ -57,15 +57,18 @@ export const Words: FC<WordsProps> = ({
       : true,
   );
   const l10n = useContext(L10nContext);
-  const { topics } = useDBContext() || {};
-  const onlyTopicImage = useMemo(() => {
-    if (topic?.subTopicId) {
-      return topics
-        ?.find(t => t.id === topic?.topicId)
-        ?.subTopics.find(s => s.id === topic?.subTopicId)?.onlyTopicImage;
-    }
-    return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
-  }, [topic?.subTopicId, topic?.topicId, topics]);
+  // const { topics } = useDBContext() || {};
+
+  // TODO fix only topic image
+  const onlyTopicImage = false
+  // const onlyTopicImage = useMemo(() => {
+  //   if (topic?.subTopicId) {
+  //     return topics
+  //       ?.find(t => t.id === topic?.topicId)
+  //       ?.subTopics.find(s => s.id === topic?.subTopicId)?.onlyTopicImage;
+  //   }
+  //   return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
+  // }, [topic?.subTopicId, topic?.topicId, topics]);
 
   useEffect(() => {
     toggleShowTopicImageView(showTopicImageView);
@@ -175,7 +178,6 @@ export const Words: FC<WordsProps> = ({
   }, [contentId, topicViewRef, gridViewRef]);
 
   useEffect(() => {
-    console.log(words)
     topicViewInstance?.trigger("change-params", {
       words,
       showWrittenWords,

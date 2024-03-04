@@ -15,14 +15,15 @@ type appProps = {
 };
 
 export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
-  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
-    getData(backendUrl),
-  );
+  // const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
+  //   getData(backendUrl),
+  // );
 
   // TODO
   const { isLoading, data: newData } = useQuery(["newData"], async () => {
     const res = await fetch(
-      "http://127.0.0.1:10000/devstoreaccount1/data/helloWorld.json.tar.gz",
+      "https://cdn-dev-bildetema.azureedge.net/data/dataTest.json.tar.gz",
+      // "http://127.0.0.1:10000/devstoreaccount1/data/helloWorld.json.tar.gz",
     );
     const text = await res.text();
     const dataObj = SuperJSON.parse(text) as NewData;
@@ -36,14 +37,14 @@ export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
 
   return (
     <BackendUrlContext.Provider value={baseBackendurl}>
-      <DBContext.Provider value={data}>
+      {/* <DBContext.Provider value={data}> */}
         <NewDBContext.Provider value={newData}>
           <Bildetema
             defaultLanguages={defaultLanguages}
-            isLoadingData={isLoadingData || isLoading}
+            isLoadingData={isLoading}
           />
         </NewDBContext.Provider>
-      </DBContext.Provider>
+      {/* </DBContext.Provider> */}
     </BackendUrlContext.Provider>
   );
 };

@@ -2,52 +2,50 @@ import { AudioRefContext } from "common/context/AudioContext";
 import {
   Language,
   NewWord,
-  Topic,
   TopicGridSizes,
   TopicIds,
   Word,
 } from "common/types/types";
 import {
-  Dispatch,
   FC,
   RefObject,
-  SetStateAction,
-  useEffect,
   useMemo,
   useState,
 } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SearchParameters } from "../../enums/SearchParameters";
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
+import { getImageUrl } from "common/utils/image/image.utils";
+import { getAudioFiles } from "common/utils/audio/audio.utils";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
+import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 
 export type TopicGridProps = {
-  topics?: Topic[];
-  words?: Word[];
+  // topics?: Topic[];
+  // words?: Word[];
   topicsSize: TopicGridSizes;
-  setIsWordView: Dispatch<SetStateAction<boolean>>;
+  // setIsWordView: Dispatch<SetStateAction<boolean>>;
   showWrittenWords: boolean;
   currentLanguage: Language;
-  currentTopic?: TopicIds;
+  // currentTopic?: TopicIds;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
   newWords: NewWord[]
 };
 
 export const TopicGrid: FC<TopicGridProps> = ({
-  topics,
-  words,
+  // topics,
+  // words: test,
   topicsSize,
-  setIsWordView,
+  // setIsWordView,
   showWrittenWords,
   currentLanguage,
-  currentTopic,
+  // currentTopic,
   toggleShowTopicImageView,
   showArticles,
   newWords
 }) => {
-
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
@@ -58,17 +56,34 @@ export const TopicGrid: FC<TopicGridProps> = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const backendUrl = useBackendUrlContext()
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const words = useMemo(() => {
+    return newWords.map(w => {
+      const labels = w.translations.get(currentLanguage.code)?.labels || [];
+      const images = w.images.map(i => getImageUrl(i, backendUrl))
+      const audioFiles = getAudioFiles(w.id, backendUrl, currentLanguage.code);
+      const word: Word = {
+        id: w.id,
+        labels,
+        images,
+        audioFiles
+      }
+      return word
+    })
+  },[backendUrl, currentLanguage.code, newWords])
 
-  useEffect(() => {
-    setIsWordView(!!words);
-    if (!words) {
-      searchParams.delete(SearchParameters.showTopicImageView);
-      setSearchParams(searchParams);
-    }
-  }, [words, setIsWordView, setSearchParams, searchParams]);
+  // useEffect(() => {
+  //   setIsWordView(!!words);
+  //   if (!words) {
+  //     searchParams.delete(SearchParameters.showTopicImageView);
+  //     setSearchParams(searchParams);
+  //   }
+  // }, [words, setIsWordView, setSearchParams, searchParams]);
+  
+  const wordsIsTopics = newWords.at(0)?.id.charAt(0) === "T"
 
-  const wordsIsTopics = newWords.some(w => w.id.charAt(0) === "T")
+  const topicIds: TopicIds = {subTopicId: newWords.at(0)?.subTopicId, topicId: newWords.at(0)?.topicId}
 
   if (wordsIsTopics) {
     return (
@@ -101,7 +116,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
     return (
       <Words
         words={words}
-        topic={currentTopic}
+        topic={topicIds}
         showWrittenWords={showWrittenWords}
         currentLanguage={currentLanguage.code}
         toggleShowTopicImageView={toggleShowTopicImageView}

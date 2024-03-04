@@ -1,5 +1,4 @@
 import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -15,6 +14,7 @@ import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 import SearchPage from "../SearchPage/SearchPage";
 import CustomViewPage from "../CustomViewPage/CustomViewPage";
+import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -64,17 +64,15 @@ export const Bildetema: FC<BildetemaProps> = ({
     setFavLanguages([...languages]);
   }
 
-  const getCurrentLanguage = (): Language => {
-    const currentLanguageCode: LanguageCode =
-      pathname.split("/").length >= 2
-        ? (pathname.split("/")[1] as LanguageCode)
-        : "nob";
+  const currentLanguageCode = useCurrentLanguageCode()
 
+  const getCurrentLanguage = (): Language => {
     const currentLanguage: Language | undefined = favLanguages.find(
       language => language.code === currentLanguageCode,
     );
     return currentLanguage as Language;
   };
+
 
   const directionRtl: boolean = useMemo(() => {
     return !!getCurrentLanguage()?.rtl;
@@ -111,6 +109,18 @@ export const Bildetema: FC<BildetemaProps> = ({
     [favLanguages, setFavLanguages],
   );
 
+  // Set lang as favorite if it is not already
+  useEffect(() => {
+    const languageIsAlreadyFavorited = favLanguages.find(
+      el => currentLanguageCode === el.code,
+    );
+    const language = languagesFromDB?.find(el => el.code === currentLanguageCode)
+      
+    if (!languageIsAlreadyFavorited && language) {
+      handleToggleFavoriteLanguage(language, true);
+    }
+  }, [currentLanguageCode, favLanguages, handleToggleFavoriteLanguage, languagesFromDB])
+
   useEffect(() => {
     userData.favoriteLanguages = sanitizeLanguages(
       favLanguages,
@@ -143,26 +153,25 @@ export const Bildetema: FC<BildetemaProps> = ({
                 rtl={directionRtl}
                 // topicIds={topicIds}
                 // setTopicIds={setTopicIds}
-                addFavoriteLanguage={handleToggleFavoriteLanguage}
-                favLanguages={favLanguages}
+                // addFavoriteLanguage={handleToggleFavoriteLanguage}
+                // favLanguages={favLanguages}
                 currentTopics={currTopics}
               />
             }
           />
         ))}
-        <Route path="/sok" element={<SearchPage />} />
+        {/* <Route path="/sok" element={<SearchPage />} /> */}
         <Route path="/customview" element={<CustomViewPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
-  }, [
-    defaultLanguages,
-    favLanguages,
-    handleToggleFavoriteLanguage,
-    // topicIds,
-    directionRtl,
-    currTopics
-  ]);
+  }, [currTopics, defaultLanguages, directionRtl]);
+  // defaultLanguages,
+  // favLanguages,
+  // handleToggleFavoriteLanguage,
+  // topicIds,
+  // directionRtl,
+  // currTopics
 
   return (
     <div className={styles.wrapper}>
