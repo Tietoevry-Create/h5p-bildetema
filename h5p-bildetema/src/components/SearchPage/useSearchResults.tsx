@@ -153,10 +153,8 @@ const sortResults = (
 ): NewWord[] => {
   switch (sortOption) {
     case SortOptions.SIMILARITY:
-      // return sortSearchBylevenshtein(search, searchResults);
       return sortNewWordsBylevenshtein(search, searchResults, langCode);
     case SortOptions.PRIORITY:
-      // return sortSearchByPosition(search, searchResults);
       return sortNewWordsByPosition(search, searchResults, langCode);
     case SortOptions.TOPIC:
       return sortSearchByTopic(searchResults);
@@ -282,7 +280,6 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
 export const useSearchResults = ({
   search,
   filter,
-  // topics,
   viewLanguage,
   searchLanguage,
   order,
@@ -290,7 +287,6 @@ export const useSearchResults = ({
   order: SearchOrderOption;
   search: string;
   filter: string[];
-  // topics: Topic[];
   viewLanguage: Language[];
   searchLanguage: Language;
 }): {

@@ -165,12 +165,14 @@ export const searchForNewWord = (
   langCode: LanguageCode,
   newWords: NewWord[],
 ): NewWord[] => {
+  const lowerCaseSearch = s.toLowerCase();
   const filteredNewWords = newWords.filter(word => {
     return word.translations.get(langCode)?.labels.some(label => {
       const reporductiveOrgansSubtopic = "T066";
+      const lowerCaseLabel = label.label.toLowerCase();
       if (word.subTopicId === reporductiveOrgansSubtopic)
-        return label.label === s;
-      return label.label.includes(s);
+        return lowerCaseLabel === lowerCaseSearch;
+      return lowerCaseLabel.includes(lowerCaseSearch);
     });
   });
 
