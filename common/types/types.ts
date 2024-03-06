@@ -34,7 +34,7 @@ export type SearchResult = {
   images: ImageUrl[];
   topicId: string;
   subTopicId?: string;
-  translations: searchResultTranslations[];
+  translations: SearchResultTranslations[];
   order?: number;
 };
 
@@ -111,7 +111,7 @@ export type Translation = {
   audioFiles?: Array<AudioFile>;
 };
 
-export type searchResultTranslations = {
+export type SearchResultTranslations = {
   lang: Language;
   labels: Labels;
   audioFiles?: Array<AudioFile>;
@@ -161,3 +161,6 @@ export type CurrentTopics = {
   topic?: NewWord
   subTopic?: NewWord
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Todo = any;

@@ -39,7 +39,6 @@ export const getPath = ({
   language: Language;
   search: string;
 }): string => {
-  // TODO FIX SOMALI BUG
   const {topic, subTopic} = currentTopics
   const topicPath = labelToUrlComponent(topic?.translations.get(language.code)?.labels.at(0)?.label)
   if(!topicPath) return `/${language.code}${search}`

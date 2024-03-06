@@ -20,6 +20,7 @@ import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
+import { newWordsIsTopics } from "common/utils/data.utils";
 
 export type TopicGridProps = {
   // topics?: Topic[];
@@ -81,7 +82,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
   //   }
   // }, [words, setIsWordView, setSearchParams, searchParams]);
   
-  const wordsIsTopics = newWords.at(0)?.id.charAt(0) === "T"
+  const wordsIsTopics = newWordsIsTopics(newWords)
 
   const topicIds: TopicIds = {subTopicId: newWords.at(0)?.subTopicId, topicId: newWords.at(0)?.topicId}
 

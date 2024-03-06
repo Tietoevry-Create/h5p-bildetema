@@ -141,7 +141,6 @@ export const Bildetema: FC<BildetemaProps> = ({
       "/:langCodeParam/:topicLabelParam",
       "/:langCodeParam/:topicLabelParam/:subTopicLabelParam",
     ];
-
     return (
       <Routes>
         {paths.map(path => (
@@ -160,7 +159,7 @@ export const Bildetema: FC<BildetemaProps> = ({
             }
           />
         ))}
-        {/* <Route path="/sok" element={<SearchPage />} /> */}
+        <Route path="/sok" element={<SearchPage />} />
         <Route path="/customview" element={<CustomViewPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>

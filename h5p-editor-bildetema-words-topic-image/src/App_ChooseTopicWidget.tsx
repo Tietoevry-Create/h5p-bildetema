@@ -1,7 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { Topic } from "common/types/types";
-import { getData } from "common/utils/data.utils";
-import { FC, useEffect, useState } from "react";
+import { NewWord } from "common/types/types";
+import {
+  getNewData,
+  getNewWordsFromId,
+  newWordsIsTopics,
+} from "common/utils/data.utils";
+import { FC, useEffect, useMemo, useState } from "react";
 import { TopicChooser } from "./components/TopicChooser/TopicChooser";
 import { Params as ChooseTopicWidgetParams } from "./h5p/ChooseTopicH5PWrapper";
 
@@ -19,29 +23,43 @@ export const AppChooseTopicWidget: FC<Params> = ({
   subTopicId,
 }) => {
   const { data } = useQuery(["topicsFromDB", backendUrl], () =>
-    getData(backendUrl),
+    getNewData(backendUrl),
+    {
+      refetchOnWindowFocus: false
+    }
   );
-  const topics = data?.topics;
 
-  const [currentTopic, setCurrentTopic] = useState<Topic | undefined>(
+  const [currentTopic, setCurrentTopic] = useState<NewWord | undefined>(
     undefined,
   );
-  const [currentSubTopic, setCurrentSubTopic] = useState<Topic | undefined>(
+
+  const [currentSubTopic, setCurrentSubTopic] = useState<NewWord | undefined>(
     undefined,
   );
+
+  const topics = useMemo(() => {
+    return getNewWordsFromId("root", data?.idToWords, data?.idToContent);
+  }, [data]);
+
+  const subTopics = useMemo(() => {
+    if(!currentTopic || !data) return undefined
+    const newCurrentSubTopics = getNewWordsFromId(currentTopic.id, data.idToWords, data.idToContent)
+    if(!(newCurrentSubTopics.length > 0)) return undefined
+    if(!newWordsIsTopics(newCurrentSubTopics)) return undefined
+    return newCurrentSubTopics
+  }, [currentTopic, data]);
 
   useEffect(() => {
-    if (topics && topicId) {
-      const newCurrentTopic = topics.find(topic => topic.id === topicId);
+    if (data && topicId) {
+      const newCurrentTopic = data.idToWords.get(topicId);
       setCurrentTopic(newCurrentTopic);
 
       if (subTopicId) {
-        setCurrentSubTopic(
-          newCurrentTopic?.subTopics.find(s => s.id === subTopicId),
-        );
+        const newCurrentSubTopic = data.idToWords.get(subTopicId);
+        setCurrentSubTopic(newCurrentSubTopic);
       }
     }
-  }, [topics, topicId, subTopicId]);
+  }, [topics, topicId, subTopicId, data]);
 
   useEffect(() => {
     if (currentTopic) {
@@ -49,17 +67,22 @@ export const AppChooseTopicWidget: FC<Params> = ({
     }
   }, [currentTopic, setValue, currentSubTopic]);
 
-  const onTopicChange = (topic: Topic): void => {
+  const onTopicChange = (topic: NewWord): void => {
     setCurrentTopic(topic);
+  };
+
+  const onSubTopicChange = (subTopic: NewWord | undefined): void => {
+    setCurrentSubTopic(subTopic);
   };
 
   return (
     <TopicChooser
       setCurrentTopic={onTopicChange}
-      setCurrentSubTopic={setCurrentSubTopic}
+      setCurrentSubTopic={onSubTopicChange}
       topic={currentTopic}
       subTopic={currentSubTopic}
-      items={topics}
+      subTopics={subTopics}
+      topics={topics}
     />
   );
 };

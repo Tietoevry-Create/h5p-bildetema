@@ -1,8 +1,8 @@
-import { useDBContext } from "common/hooks/useDBContext";
 import React, { useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -30,7 +30,7 @@ const SearchParamKeys = {
 };
 
 const SearchPage = (): JSX.Element => {
-  const { topics: topicsFromDB = [], languages = [] } = useDBContext() || {};
+  const { languages = [] } = useNewDBContext() || {};
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -64,7 +64,6 @@ const SearchPage = (): JSX.Element => {
     filter,
     search: currSearch,
     searchLanguage,
-    topics: topicsFromDB,
     order: searchOrderOptions[0],
     viewLanguage: [viewLanguage],
   });
@@ -74,12 +73,12 @@ const SearchPage = (): JSX.Element => {
   const handleOrderChange = (option: SearchOrderOption): void => {
     dispatch({
       type: ActionType.SORT,
-      payload: { searchOrderOption: option, search: currSearch },
+      payload: { searchOrderOption: option, search: currSearch, langCode, languages: [searchLanguage, viewLanguage] },
     });
   };
 
   const loadMore = (): void => {
-    dispatch({ type: ActionType.LOAD_MORE });
+    dispatch({ type: ActionType.LOAD_MORE, payload: { languages: [searchLanguage, viewLanguage] } });
   };
 
   const debouncedSearch = useDebouncedCallback((search: string) => {
@@ -87,7 +86,6 @@ const SearchPage = (): JSX.Element => {
       type: ActionType.SEARCH,
       payload: {
         search,
-        topics: topicsFromDB,
         searchLanguage,
         filter,
         viewLanguage: [viewLanguage],
@@ -134,12 +132,12 @@ const SearchPage = (): JSX.Element => {
     if (newFilter.length === 0) {
       searchParams.delete("filter");
       setSearchParams(searchParams);
-      dispatch({ type: ActionType.FILTER, payload: newFilter });
+      dispatch({ type: ActionType.FILTER, payload: { filter: newFilter , languages: [searchLanguage, viewLanguage]} });
       return;
     }
     searchParams.set("filter", newFilter.join(","));
     setSearchParams(searchParams);
-    dispatch({ type: ActionType.FILTER, payload: newFilter });
+    dispatch({ type: ActionType.FILTER, payload: { filter: newFilter , languages: [searchLanguage, viewLanguage]} });
   };
 
   return (

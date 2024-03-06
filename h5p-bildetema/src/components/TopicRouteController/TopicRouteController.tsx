@@ -200,11 +200,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
   const currentLang = useCurrentLanguage();
 
-  // todo send in newWords to TopicGrid and make topics accept newWord
-
-  // if type topics make topics accept newWords
-  // if type words convert newWords to wordType
-
   const newWords = useCurrentWords();
   const isWordView = useMemo(() => {
     return newWords.at(0)?.id.charAt(0) !== "T";
@@ -228,12 +223,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
         <div lang={currentLang}>
           <TopicGrid
             newWords={newWords}
-            // topics={topics}
-            // words={words}
             topicsSize={topicsSize}
             currentLanguage={currentLanguage}
             showWrittenWords={showWrittenWords}
-            // currentTopic={currentTopic}
             toggleShowTopicImageView={toggleShowTopicImageView}
             showArticles={showArticles}
           />

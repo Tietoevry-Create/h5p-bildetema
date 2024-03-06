@@ -1,10 +1,10 @@
 // import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { DisplayView, TopicIds, Word } from "common/types/types";
+import { DisplayView, Todo, TopicIds, Word } from "common/types/types";
 import { getLibraryName } from "common/utils/library/library.utils";
 import type { H5PLibrary, IH5PContentType } from "h5p-types";
 import { H5P } from "h5p-utils";
-import { FC, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { L10nContext, useContentId } from "use-h5p";
 import { SearchParameters } from "../../enums/SearchParameters";
@@ -44,6 +44,7 @@ export const Words: FC<WordsProps> = ({
   toggleShowTopicImageView,
   showArticles,
 }) => {
+  const [hotspots, setHotspots] = useState<Todo[]>([]);
   const topicViewRef = useRef<HTMLDivElement>(null);
   const gridViewRef = useRef<HTMLDivElement>(null);
   const [topicViewInstance, setTopicViewInstance] = useState<IH5PContentType>();
@@ -60,7 +61,7 @@ export const Words: FC<WordsProps> = ({
   // const { topics } = useDBContext() || {};
 
   // TODO fix only topic image
-  const onlyTopicImage = false
+  const onlyTopicImage = false;
   // const onlyTopicImage = useMemo(() => {
   //   if (topic?.subTopicId) {
   //     return topics
@@ -124,12 +125,29 @@ export const Words: FC<WordsProps> = ({
           setIsTopicImageView(true);
 
           const content = existingContent[0];
+          const savedParams = JSON.parse(content.json_content);
+          const hotspotsWithTranslatedWords = savedParams.hotspots
+            .filter(hotspot => hotspot != null && hotspot.points?.length > 0)
+            .map(hotspot => {
+              const word = words?.find(w => w.id === hotspot.word.id);
+              if (!word) {
+                return hotspot;
+              }
+
+              return {
+                ...hotspot,
+                word,
+              };
+            });
+          setHotspots(hotspotsWithTranslatedWords);
+
           const params = {
-            ...JSON.parse(content.json_content),
+            ...savedParams,
             currentLanguage,
             l10n,
             showWrittenWords,
             showArticles,
+            hotspots: hotspotsWithTranslatedWords,
           };
 
           const topicView = H5P.newRunnable(
@@ -177,9 +195,34 @@ export const Words: FC<WordsProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentId, topicViewRef, gridViewRef]);
 
+  // const getHotspots = useCallback(() => {
+  //   hotspots.map(hotspot => {
+  //     const word = words?.find(w => w.id === hotspot.word.id);
+  //     if (!word) {
+  //       return hotspot;
+  //     }
+
+  //     return {
+  //       ...hotspot,
+  //       word,
+  //     };
+  //   });
+  // }, [hotspots, words]);
+
   useEffect(() => {
+    const h = hotspots.map(hotspot => {
+      const word = words?.find(w => w.id === hotspot.word.id);
+      if (!word) {
+        return hotspot;
+      }
+
+      return {
+        ...hotspot,
+        word,
+      };
+    });
     topicViewInstance?.trigger("change-params", {
-      words,
+      hotspots: h,
       showWrittenWords,
       currentLanguage,
       showArticles,
@@ -191,14 +234,8 @@ export const Words: FC<WordsProps> = ({
       showArticles,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
-  }, [
-    words,
-    showWrittenWords,
-    topicViewInstance,
-    gridViewInstance,
-    currentLanguage,
-    showArticles,
-  ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [words, showWrittenWords, currentLanguage, showArticles, hotspots]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { LanguageCode } from "common/types/LanguageCode";
+// import { LanguageCode } from "common/types/LanguageCode";
 import { Word } from "common/types/types";
 import type { H5PImage } from "h5p-types";
 import { FC } from "react";
@@ -8,16 +8,16 @@ import { Hotspot } from "./types/Hotspot";
 
 export type AppProps = {
   image: H5PImage | undefined;
-  words: Map<LanguageCode, Word[]> | undefined;
+  words: Array<Word> | undefined;
   initialHotspots: Array<Hotspot>;
 };
 
-export const App: FC<AppProps> = ({ image, words, initialHotspots }) => {
+export const App: FC<AppProps> = ({ image, words = [], initialHotspots }) => {
   const noImagePlaceholder = t("noImagePlaceholder");
   return image ? (
     <Editor
       image={image}
-      words={words?.get("nob") ?? []}
+      words={words}
       initialHotspots={initialHotspots}
     />
   ) : (

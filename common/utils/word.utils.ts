@@ -5,7 +5,6 @@ import {
   Topic,
   TopicWord,
   Word,
-  searchResultTranslations,
   Language,
   NewWord,
 } from "../types/types";
@@ -14,10 +13,13 @@ export const toSingleLabel = (
   labels?: Labels,
   includeArticle = false,
 ): string => {
-  return labels?.map(el =>
-      el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
-    )
-    .join(" / ") || ""
+  return (
+    labels
+      ?.map(el =>
+        el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
+      )
+      .join(" / ") || ""
+  );
 };
 
 export const extractWordLabel = (
@@ -46,13 +48,16 @@ export const wordsIncludesArticles = (words: Word[]): boolean => {
   });
 };
 
-export const newWordsIncludesArticles = (words: NewWord[], langCode: LanguageCode): boolean => {
+export const newWordsIncludesArticles = (
+  words: NewWord[],
+  langCode: LanguageCode,
+): boolean => {
   return words.some(word => {
     const isTopicWord = word.id.includes("T");
     if (isTopicWord) return false;
     return word.translations.get(langCode)?.labels.some(el => el.article);
   });
-}
+};
 
 const findTranslationsForWord = (
   word: Word,
@@ -152,4 +157,27 @@ export const searchForWord = (
   return (
     resWordsWithoutDuplicates.map((w, index) => ({ ...w, order: index })) ?? []
   );
+};
+
+export const searchForNewWord = (
+  s: string,
+  langCode: LanguageCode,
+  newWords: NewWord[],
+): NewWord[] => {
+  const filteredNewWords = newWords.filter(word => {
+    return word.translations.get(langCode)?.labels.some(label => {
+      const reporductiveOrgansSubtopic = "T066"
+      if (word.subTopicId === reporductiveOrgansSubtopic) return label.label === s;
+      return label.label.includes(s);
+    });
+  });
+
+  const withoutDuplicates = [
+    ...new Map(filteredNewWords?.map(w => [w.id, w])).values(),
+  ];
+
+  const withOriginalOrder =
+    withoutDuplicates.map((w, index) => ({ ...w, order: index })) ?? [];
+
+  return withOriginalOrder;
 };

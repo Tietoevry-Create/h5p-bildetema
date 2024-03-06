@@ -1,6 +1,6 @@
 import { LanguageCode } from "common/types/LanguageCode";
 import { Word } from "common/types/types";
-import { getData } from "common/utils/data.utils";
+import { getData, getNewData, getNewWordsFromId, newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
 import type {
   H5PField,
   H5PGroup,
@@ -30,7 +30,9 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
 
   private backendUrl = "";
 
-  private words: Map<LanguageCode, Array<Word>> = new Map();
+  // private words: Map<LanguageCode, Array<Word>> = new Map();
+  private words: Array<Word> = []
+
 
   appendTo($container: JQuery<HTMLElement>): void {
     const backendUrlField = this.findField<H5PGroup<string>>(
@@ -86,7 +88,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
         subTopicId,
         this.backendUrl,
       );
-
       this.words = newWords;
       this.render();
     });
@@ -117,17 +118,20 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     topicId: string,
     subTopicId: string | undefined,
     backendUrl: string,
-  ): Promise<Map<LanguageCode, Word[]>> {
-    const { topics } = await getData(backendUrl);
-    const topic = topics.find(t => t.id === topicId);
-
-    if (subTopicId) {
-      return (
-        topic?.subTopics.find(s => s.id === subTopicId)?.words ??
-        new Map<LanguageCode, Word[]>()
-      );
+  ): Promise<Array<Word>> {
+  // ): Promise<Map<LanguageCode, Word[]>> {
+    
+    // TODO new Data
+    const res = await getNewData(backendUrl)
+    if(!res) return []
+    if(subTopicId){
+      const newWords = getNewWordsFromId(subTopicId, res.idToWords, res.idToContent)
+      return newWordsToWords(newWords, "nob", backendUrl)
     }
-    return topic?.words ?? new Map<LanguageCode, Word[]>();
+    const newWords = getNewWordsFromId(topicId, res.idToWords, res.idToContent)
+    // When the words are topics we dont want them to show in the image
+    if(newWordsIsTopics(newWords)) return []
+    return newWordsToWords(newWords, "nob", backendUrl)
   }
 
   private render(): void {

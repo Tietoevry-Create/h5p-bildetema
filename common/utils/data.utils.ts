@@ -1,3 +1,6 @@
+import SuperJSON from "superjson"
+import { getAudioFiles } from "common/utils/audio/audio.utils";
+import { getImageUrl } from "common/utils/image/image.utils";
 import { LanguageCode } from "../types/LanguageCode";
 import {
   Language,
@@ -9,6 +12,7 @@ import {
   Translations,
   TopicWord,
   NewWord,
+  NewData,
 } from "../types/types";
 
 const languages: Language[] = [];
@@ -87,6 +91,17 @@ export const getData = async (databaseUrl: string): Promise<Data> => {
   return { topics, languages, translations };
 };
 
+export const getNewData = async (databaseUrl: string): Promise<NewData> => {
+  if (databaseUrl !== "") backendURL = databaseUrl;
+  const res = await fetch(backendURL);
+  const text = await res.text();
+    const dataObj = SuperJSON.parse(text) as NewData;
+    return {
+      ...dataObj,
+      languages: Array.from(dataObj.langCodeTolanguages.values()),
+    } as NewData;
+}
+
 export const getNewWordsFromId = (
   id: string,
   idToWords?: Map<string, NewWord>,
@@ -98,4 +113,24 @@ export const getNewWordsFromId = (
   return content
     .map(item => idToWords?.get(item))
     .filter((item): item is NewWord => item !== undefined);
+}
+
+export const newWordsToWords = (newWords: NewWord[], languageCode: LanguageCode, backendUrl: string): Word[] =>
+newWords.map(w => {
+  const labels = w.translations.get(languageCode)?.labels || [];
+  const images = w.images.map(i => getImageUrl(i, backendUrl))
+  const audioFiles = getAudioFiles(w.id, backendUrl, languageCode);
+  const word: Word = {
+    id: w.id,
+    labels,
+    images,
+    audioFiles
+  }
+  return word
+})
+
+export const newWordsIsTopics = (newWords: NewWord[]): boolean => {
+  return newWords.some(word => {
+    return word.id.charAt(0) ===("T");
+  });
 }
