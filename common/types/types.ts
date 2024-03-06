@@ -136,9 +136,9 @@ export type NewWord = {
   subTopicId?: string;
 };
 
-type WordId = string
-type TopicId = string
-type UrlPath = string
+type WordId = string;
+type TopicId = string;
+type UrlPath = string;
 
 export type NewData = {
   langCodeTolanguages: Map<LanguageCode, Language>;
@@ -150,7 +150,7 @@ export type NewData = {
 };
 
 // TODO: Remove all old / unused types
-// TODO: Change "new types" to the old name after the old types are removed 
+// TODO: Change "new types" to the old name after the old types are removed
 
 // TODO: could be removed but requires some refactoring
 export type CurrentTopics = {
