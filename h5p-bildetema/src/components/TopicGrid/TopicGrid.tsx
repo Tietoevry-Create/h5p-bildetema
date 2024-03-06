@@ -6,21 +6,14 @@ import {
   TopicIds,
   Word,
 } from "common/types/types";
-import {
-  FC,
-  RefObject,
-  useMemo,
-  useState,
-} from "react";
-import { useSearchParams } from "react-router-dom";
+import { FC, RefObject, useMemo, useState } from "react";
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { getImageUrl } from "common/utils/image/image.utils";
 import { getAudioFiles } from "common/utils/audio/audio.utils";
+import { newWordsIsTopics } from "common/utils/data.utils";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
-import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
-import { newWordsIsTopics } from "common/utils/data.utils";
 
 export type TopicGridProps = {
   // topics?: Topic[];
@@ -32,20 +25,16 @@ export type TopicGridProps = {
   // currentTopic?: TopicIds;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
-  newWords: NewWord[]
+  newWords: NewWord[];
 };
 
 export const TopicGrid: FC<TopicGridProps> = ({
-  // topics,
-  // words: test,
   topicsSize,
-  // setIsWordView,
   showWrittenWords,
   currentLanguage,
-  // currentTopic,
   toggleShowTopicImageView,
   showArticles,
-  newWords
+  newWords,
 }) => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -57,34 +46,28 @@ export const TopicGrid: FC<TopicGridProps> = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const backendUrl = useBackendUrlContext()
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const backendUrl = useBackendUrlContext();
   const words = useMemo(() => {
     return newWords.map(w => {
       const labels = w.translations.get(currentLanguage.code)?.labels || [];
-      const images = w.images.map(i => getImageUrl(i, backendUrl))
+      const images = w.images.map(i => getImageUrl(i, backendUrl));
       const audioFiles = getAudioFiles(w.id, backendUrl, currentLanguage.code);
       const word: Word = {
         id: w.id,
         labels,
         images,
-        audioFiles
-      }
-      return word
-    })
-  },[backendUrl, currentLanguage.code, newWords])
+        audioFiles,
+      };
+      return word;
+    });
+  }, [backendUrl, currentLanguage.code, newWords]);
 
-  // useEffect(() => {
-  //   setIsWordView(!!words);
-  //   if (!words) {
-  //     searchParams.delete(SearchParameters.showTopicImageView);
-  //     setSearchParams(searchParams);
-  //   }
-  // }, [words, setIsWordView, setSearchParams, searchParams]);
-  
-  const wordsIsTopics = newWordsIsTopics(newWords)
+  const wordsIsTopics = newWordsIsTopics(newWords);
 
-  const topicIds: TopicIds = {subTopicId: newWords.at(0)?.subTopicId, topicId: newWords.at(0)?.topicId}
+  const topicIds: TopicIds = {
+    subTopicId: newWords.at(0)?.subTopicId,
+    topicId: newWords.at(0)?.topicId,
+  };
 
   if (wordsIsTopics) {
     return (

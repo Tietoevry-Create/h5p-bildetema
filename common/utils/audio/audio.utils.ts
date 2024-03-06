@@ -28,6 +28,9 @@ export const getAudioFiles = (
   backedUrl: string,
   languageCode: LanguageCode,
 ): Array<AudioFile> => {
-  const audioFile: AudioFile = {mimeType: "audio/mp3", url: `${backedUrl}audio/${languageCode}/${wordId}.mp3`}
-  return [audioFile]
+  const audioFile: AudioFile = {
+    mimeType: "audio/mp3",
+    url: `${backedUrl}audio/${languageCode}/${wordId}.mp3`,
+  };
+  return [audioFile];
 };

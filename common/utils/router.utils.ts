@@ -33,21 +33,25 @@ export const getLanguagePath = (
 export const getPath = ({
   language,
   search,
-  currentTopics
+  currentTopics,
 }: {
-  currentTopics: CurrentTopics
+  currentTopics: CurrentTopics;
   language: Language;
   search: string;
 }): string => {
-  const {topic, subTopic} = currentTopics
-  const topicPath = labelToUrlComponent(topic?.translations.get(language.code)?.labels.at(0)?.label)
-  if(!topicPath) return `/${language.code}${search}`
-  const subTopicPath = labelToUrlComponent(subTopic?.translations.get(language.code)?.labels.at(0)?.label)
-  if(!subTopicPath) return `/${language.code}/${topicPath}${search}`;
-  return `/${language.code}/${topicPath}/${subTopicPath}${search}`
+  const { topic, subTopic } = currentTopics;
+  const topicPathLabel = topic?.translations.get(language.code)?.labels.at(0)
+    ?.label;
+  if (!topicPathLabel) return `/${language.code}${search}`;
+  const topicPath = labelToUrlComponent(topicPathLabel);
+  const subTopicPathLabel = subTopic?.translations
+    .get(language.code)
+    ?.labels.at(0)?.label;
+  if (!subTopicPathLabel) return `/${language.code}/${topicPath}${search}`;
+  const subTopicPath = labelToUrlComponent(subTopicPathLabel);
+  return `/${language.code}/${topicPath}/${subTopicPath}${search}`;
 };
 
-export const uriComponentToTopicPath = (uriComponent?: string): string => {
-  if (!uriComponent) return "";
-  return labelToUrlComponent(decodeURIComponent(uriComponent))
+export const uriComponentToTopicPath = (uriComponent: string): string => {
+  return labelToUrlComponent(decodeURIComponent(uriComponent));
 };

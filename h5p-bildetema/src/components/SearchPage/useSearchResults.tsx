@@ -1,4 +1,9 @@
-import { Language, NewWord, SearchResult, SearchResultTranslations } from "common/types/types";
+import {
+  Language,
+  NewWord,
+  SearchResult,
+  SearchResultTranslations,
+} from "common/types/types";
 import {
   sortNewWordsByPosition,
   sortNewWordsBylevenshtein,
@@ -62,7 +67,7 @@ type LoadMoreAction = {
   type: typeof ActionType.LOAD_MORE;
   payload: {
     languages: Language[];
-  }
+  };
 };
 
 type FilterAction = {
@@ -92,27 +97,30 @@ type SearchState = {
 
 const resultAmount = 20;
 
-const getTranslations = (word: NewWord, languages: Language[], backendUrl: string): SearchResultTranslations[] => {
+const getTranslations = (
+  word: NewWord,
+  languages: Language[],
+  backendUrl: string,
+): SearchResultTranslations[] => {
   return languages.map(lang => {
     const labels = word.translations.get(lang.code)?.labels || [];
     const audioFiles = getAudioFiles(word.id, backendUrl, lang.code);
     const searchResultTranslations: SearchResultTranslations = {
       lang,
       labels,
-      audioFiles
-    }
-    return searchResultTranslations
-  })
-  
-}
+      audioFiles,
+    };
+    return searchResultTranslations;
+  });
+};
 
 const newWordsToSearchResult = (
   newWords: NewWord[],
   languages: Language[],
   backendUrl: string,
-):SearchResult[] => {
+): SearchResult[] => {
   return newWords.map(word => {
-    const images = word.images.map(i => getImageUrl(i, backendUrl))
+    const images = word.images.map(i => getImageUrl(i, backendUrl));
     const translations = getTranslations(word, languages, backendUrl);
 
     const result: SearchResult = {
@@ -120,11 +128,11 @@ const newWordsToSearchResult = (
       images,
       translations,
       topicId: word.topicId,
-      subTopicId: word.subTopicId
-    }
-    return result
-  })
-}
+      subTopicId: word.subTopicId,
+    };
+    return result;
+  });
+};
 
 const filterSearchResults = (
   searchResults: NewWord[],
@@ -166,23 +174,24 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         payload.search,
         payload.searchLanguage.code,
         state.newWords,
-      )
-      // payload.
-      // const res = searchForWord(
-      //   payload.search,
-      //   payload.searchLanguage,
-      //   payload.topics,
-      //   payload.viewLanguage,
-      // );
-      // const sortedRes = sortResults(state.order.option, payload.search, res);
-      const sortedRes = sortResults(state.order.option, payload.search, res, payload.searchLanguage.code);
+      );
+      const sortedRes = sortResults(
+        state.order.option,
+        payload.search,
+        res,
+        payload.searchLanguage.code,
+      );
       const filtered = filterSearchResults(sortedRes, payload.filter);
-      const visibleSearchResults = newWordsToSearchResult(filtered.slice(0, resultAmount), [payload.searchLanguage, ...payload.viewLanguage], state.backendUrl)
+      const visibleSearchResults = newWordsToSearchResult(
+        filtered.slice(0, resultAmount),
+        [payload.searchLanguage, ...payload.viewLanguage],
+        state.backendUrl,
+      );
       return {
         ...state,
         searchResults: sortedRes,
         filteredSearchResults: filtered,
-        visibleSearchResults
+        visibleSearchResults,
       };
     }
 
@@ -209,8 +218,12 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         state.filteredSearchResults,
         payload.langCode,
       );
-      
-      const visibleSearchResults = newWordsToSearchResult(filteredSearchRes.slice(0, resultAmount), payload.languages, state.backendUrl)
+
+      const visibleSearchResults = newWordsToSearchResult(
+        filteredSearchRes.slice(0, resultAmount),
+        payload.languages,
+        state.backendUrl,
+      );
       return {
         ...state,
         order: payload.searchOrderOption,
@@ -226,8 +239,12 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         payload.filter.length === 0
           ? state.searchResults
           : filterSearchResults(state.searchResults, payload.filter);
-      
-      const visibleSearchResults = newWordsToSearchResult(filteredSearchRes.slice(0, resultAmount), payload.languages, state.backendUrl)
+
+      const visibleSearchResults = newWordsToSearchResult(
+        filteredSearchRes.slice(0, resultAmount),
+        payload.languages,
+        state.backendUrl,
+      );
       return {
         ...state,
         filteredSearchResults: filteredSearchRes,
@@ -242,7 +259,11 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         currentAmount,
         currentAmount + resultAmount,
       );
-      const newVisibleSearchResults = newWordsToSearchResult(newVisibleResults, payload.languages, state.backendUrl)
+      const newVisibleSearchResults = newWordsToSearchResult(
+        newVisibleResults,
+        payload.languages,
+        state.backendUrl,
+      );
 
       return {
         ...state,
@@ -276,9 +297,9 @@ export const useSearchResults = ({
   state: SearchState;
   dispatch: React.Dispatch<Action>;
 } => {
-  const { idToWords, langCodeTolanguages } = useNewDBContext() || {}
-  const backendUrl = useBackendUrlContext()
-  const langMap = langCodeTolanguages || new Map<LanguageCode, Language>()
+  const { idToWords, langCodeTolanguages } = useNewDBContext() || {};
+  const backendUrl = useBackendUrlContext();
+  const langMap = langCodeTolanguages || new Map<LanguageCode, Language>();
 
   const defaultState: SearchState = {
     searchResults: [],
@@ -287,7 +308,7 @@ export const useSearchResults = ({
     order,
     newWords: idToWords ? [...idToWords.values()] : [],
     backendUrl,
-    langCodeTolanguages : langMap,
+    langCodeTolanguages: langMap,
   };
 
   const initialState = ((): SearchState => {
@@ -295,21 +316,34 @@ export const useSearchResults = ({
       return defaultState;
     }
 
-    const res = searchForNewWord(search, searchLanguage.code, defaultState.newWords);
+    const res = searchForNewWord(
+      search,
+      searchLanguage.code,
+      defaultState.newWords,
+    );
     if (res.length === 0) {
       return defaultState;
     }
 
-    const sortedRes = sortResults(order.option, search, res, searchLanguage.code);
+    const sortedRes = sortResults(
+      order.option,
+      search,
+      res,
+      searchLanguage.code,
+    );
     const filteredRes = filterSearchResults(sortedRes, filter);
 
-    const visibleSearchResults = newWordsToSearchResult(filteredRes.slice(0, resultAmount), [searchLanguage, ...viewLanguage], backendUrl)
+    const visibleSearchResults = newWordsToSearchResult(
+      filteredRes.slice(0, resultAmount),
+      [searchLanguage, ...viewLanguage],
+      backendUrl,
+    );
 
     return {
       ...defaultState,
       searchResults: sortedRes,
       filteredSearchResults: filteredRes,
-      visibleSearchResults
+      visibleSearchResults,
     };
   })();
 

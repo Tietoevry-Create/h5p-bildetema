@@ -30,8 +30,11 @@ export const Bildetema: FC<BildetemaProps> = ({
   defaultLanguages,
   isLoadingData,
 }) => {
-  const { languages: languagesFromDB, topicPaths, idToWords } =
-    useNewDBContext() || {};
+  const {
+    languages: languagesFromDB,
+    topicPaths,
+    idToWords,
+  } = useNewDBContext() || {};
   const { pathname } = useLocation();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
@@ -48,7 +51,6 @@ export const Bildetema: FC<BildetemaProps> = ({
   const loadingLabel = useL10n("pageIsLoading");
   const pageTitle = useL10n("headerTitle");
   const mainContentAriaLabel = useL10n("mainContentAriaLabel");
-  // const [topicIds, setTopicIds] = useState<TopicIds>({});
   const [firstTime, setFirstTime] = useState(false);
 
   const [userData, setUserData] = useUserData();
@@ -64,7 +66,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     setFavLanguages([...languages]);
   }
 
-  const currentLanguageCode = useCurrentLanguageCode()
+  const currentLanguageCode = useCurrentLanguageCode();
 
   const getCurrentLanguage = (): Language => {
     const currentLanguage: Language | undefined = favLanguages.find(
@@ -72,7 +74,6 @@ export const Bildetema: FC<BildetemaProps> = ({
     );
     return currentLanguage as Language;
   };
-
 
   const directionRtl: boolean = useMemo(() => {
     return !!getCurrentLanguage()?.rtl;
@@ -85,7 +86,7 @@ export const Bildetema: FC<BildetemaProps> = ({
       .slice(2);
 
     const topicId =
-      topicPaths?.get(uriComponentToTopicPath(topicUriComponent)) || ""
+      topicPaths?.get(uriComponentToTopicPath(topicUriComponent)) || "";
     const topic = idToWords?.get(topicId);
 
     const subTopicId =
@@ -114,12 +115,19 @@ export const Bildetema: FC<BildetemaProps> = ({
     const languageIsAlreadyFavorited = favLanguages.find(
       el => currentLanguageCode === el.code,
     );
-    const language = languagesFromDB?.find(el => el.code === currentLanguageCode)
-      
+    const language = languagesFromDB?.find(
+      el => el.code === currentLanguageCode,
+    );
+
     if (!languageIsAlreadyFavorited && language) {
       handleToggleFavoriteLanguage(language, true);
     }
-  }, [currentLanguageCode, favLanguages, handleToggleFavoriteLanguage, languagesFromDB])
+  }, [
+    currentLanguageCode,
+    favLanguages,
+    handleToggleFavoriteLanguage,
+    languagesFromDB,
+  ]);
 
   useEffect(() => {
     userData.favoriteLanguages = sanitizeLanguages(
@@ -150,10 +158,6 @@ export const Bildetema: FC<BildetemaProps> = ({
             element={
               <TopicRouteController
                 rtl={directionRtl}
-                // topicIds={topicIds}
-                // setTopicIds={setTopicIds}
-                // addFavoriteLanguage={handleToggleFavoriteLanguage}
-                // favLanguages={favLanguages}
                 currentTopics={currTopics}
               />
             }
@@ -165,12 +169,6 @@ export const Bildetema: FC<BildetemaProps> = ({
       </Routes>
     );
   }, [currTopics, defaultLanguages, directionRtl]);
-  // defaultLanguages,
-  // favLanguages,
-  // handleToggleFavoriteLanguage,
-  // topicIds,
-  // directionRtl,
-  // currTopics
 
   return (
     <div className={styles.wrapper}>

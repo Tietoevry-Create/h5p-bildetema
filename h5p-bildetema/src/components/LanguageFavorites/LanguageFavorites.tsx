@@ -2,7 +2,7 @@
 import { languages as languagesConst } from "common/constants/languages";
 import { LanguageCodeString, LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
-import {  getPath } from "common/utils/router.utils";
+import { getPath } from "common/utils/router.utils";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
@@ -19,10 +19,9 @@ export type LanguageFavoritesProps = {
 export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   favLanguages,
   hidden,
-  currentTopics
+  currentTopics,
 }) => {
-  const { languages: languagesFromDB } =
-    useNewDBContext() || {};
+  const { languages: languagesFromDB } = useNewDBContext() || {};
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
@@ -66,7 +65,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
                 }
               >
                 <Link
-                  to={getPath({language, search, currentTopics})}
+                  to={getPath({ language, search, currentTopics })}
                   className={`${styles.languageButton} ${
                     currentLanguageCode === language.code
                       ? styles.languageButton_active

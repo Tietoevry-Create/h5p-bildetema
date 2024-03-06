@@ -38,7 +38,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   const labelFromDb = getLabelFromTranslationRecord(
     translations?.[currentLanguageCode],
   );
-  
+
   const l10nLabel = useL10n("breadcrumbsTopic");
   const topicLabel = labelFromDb.length > 0 ? labelFromDb : l10nLabel;
   const homeLabel = useL10n("breadcrumbsHome");
@@ -79,7 +79,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
         if (isSubTopicLabel) {
           return sLabel;
         }
-        
+
         return urlComponent;
       })();
 

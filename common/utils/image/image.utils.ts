@@ -17,13 +17,11 @@ export const getImageSrc = (
   imgName: string,
   backedUrl: string,
   size: "small" | "medium" | "large" | "xlarge" = "medium",
-  // width: number,
-  // height: number,
 ): string => {
   return `${backedUrl}images/${size}/${imgName}`;
 };
 
-export const getImageSrcSet = (
+const getImageSrcSet = (
   imgName: string,
   backedUrl: string,
 ): { src: string; width: number }[] => {

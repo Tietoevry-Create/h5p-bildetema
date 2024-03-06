@@ -36,7 +36,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
   rtl,
   handleToggleArticles,
   articlesToggleChecked,
-  currentTopics
+  currentTopics,
 }) => {
   const { idToContent, idToWords } = useNewDBContext() || {};
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
@@ -48,15 +48,15 @@ export const SubHeader: FC<SubHeaderProps> = ({
 
   const showArticlesToggle = useMemo(() => {
     const { topic, subTopic } = currentTopics;
-    if(subTopic) {
+    if (subTopic) {
       const words = getNewWordsFromId(subTopic.id, idToWords, idToContent);
-      return newWordsIncludesArticles(words, currentLanguageCode)
+      return newWordsIncludesArticles(words, currentLanguageCode);
     }
-    if(topic) {
+    if (topic) {
       const words = getNewWordsFromId(topic.id, idToWords, idToContent);
-      return newWordsIncludesArticles(words, currentLanguageCode)
+      return newWordsIncludesArticles(words, currentLanguageCode);
     }
-    return false
+    return false;
   }, [currentLanguageCode, currentTopics, idToContent, idToWords]);
 
   const renderLeftMenu = (): JSX.Element => {

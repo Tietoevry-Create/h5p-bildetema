@@ -15,7 +15,6 @@ export const sortSearchBylevenshtein = (
   search: string,
   results: SearchResult[],
 ): SearchResult[] => {
-
   return results.toSorted((a, b) => {
     const closestA = findLabelClosestToSearch(search, a.translations[0].labels);
     const closestB = findLabelClosestToSearch(search, b.translations[0].labels);
@@ -26,9 +25,8 @@ export const sortSearchBylevenshtein = (
 export const sortNewWordsBylevenshtein = (
   search: string,
   results: NewWord[],
-  langCode: LanguageCode
+  langCode: LanguageCode,
 ): NewWord[] => {
-
   return results.toSorted((a, b) => {
     const aLabels = a.translations.get(langCode)?.labels || [];
     const bLabels = b.translations.get(langCode)?.labels || [];
@@ -56,7 +54,6 @@ const getSearchPositionValue = (search: string, labels: Labels): number => {
   return contains;
 };
 
-
 export const sortSearchByPosition = (
   search: string,
   results: SearchResult[],
@@ -73,7 +70,7 @@ export const sortSearchByPosition = (
 export const sortNewWordsByPosition = (
   search: string,
   results: NewWord[],
-  langCode: LanguageCode
+  langCode: LanguageCode,
 ): NewWord[] => {
   const res = sortSearchByTopic(results);
   return res.toSorted((a, b) => {
