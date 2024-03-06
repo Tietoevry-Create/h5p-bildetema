@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { LanguageCode } from "common/types/LanguageCode";
-import { Topic, TopicWord, Word } from "common/types/types";
+import { NewTranslation, NewWord } from "common/types/types";
 import { TopicChooser } from "./TopicChooser";
 
 export default {
@@ -10,35 +10,27 @@ export default {
 
 type Story = StoryObj<typeof TopicChooser>;
 
-const baseTopic: Topic = {
-  id: "1",
-  label: "",
-  subTopics: [],
-  words: new Map<LanguageCode, Word[]>(),
-  labelTranslations: new Map<LanguageCode, TopicWord>(),
-  onlyTopicImage: false,
-  images: [
-    {
-      src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
-    },
-  ],
+const getTopic = (id: string): NewWord => {
+  const map = new Map<LanguageCode, NewTranslation>();
+
+  map.set("nob", {
+    labels: [{ label: "Topic 1" }],
+    languageCode: "nob",
+  });
+
+  const w: NewWord = {
+    id,
+    images: [],
+    translations: map,
+    topicId: id,
+  };
+  return w;
 };
-const subTopics: Topic[] = [];
-subTopics.push({ ...baseTopic, id: "1", label: "Subtopic 1.1" });
+
+const topics = ["T001", "T002", "T003", "T004"].map(id => getTopic(id));
 
 export const ThemesGrid: Story = {
   args: {
-    items: [
-      { ...baseTopic, label: "test1", tema1: "test1", subTopics } as Topic,
-      { ...baseTopic, label: "test2", tema1: "test2" } as Topic,
-      { ...baseTopic, label: "test3", tema1: "test3" } as Topic,
-      { ...baseTopic, label: "test4", tema1: "test4" } as Topic,
-      { ...baseTopic, label: "test5", tema1: "test5" } as Topic,
-      { ...baseTopic, label: "test6", tema1: "test6" } as Topic,
-      { ...baseTopic, label: "test7", tema1: "test7" } as Topic,
-      { ...baseTopic, label: "test8", tema1: "test8" } as Topic,
-      { ...baseTopic, label: "test9", tema1: "test9" } as Topic,
-    ],
-    topic: { ...baseTopic, label: "test1", tema1: "test1", subTopics } as Topic,
+    topics,
   },
 };

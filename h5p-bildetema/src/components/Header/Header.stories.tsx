@@ -10,7 +10,8 @@ type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
   args: {
-    topicIds: {},
+    currentTopics: {},
+    hideLanguageSelectors: false,
     favLanguages: [
       {
         label: "Norsk (bokmål)",

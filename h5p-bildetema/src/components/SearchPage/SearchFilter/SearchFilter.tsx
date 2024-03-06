@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useDBContext } from "common/hooks/useDBContext";
+import React, { useMemo, useState } from "react";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { getNewWordsFromId } from "common/utils/data.utils";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import style from "./SearchFilter.module.scss";
 import { LanguageMenuArrowIcon } from "../../Icons/Icons";
@@ -14,7 +15,10 @@ const SearchFilter = ({
   filter,
 }: SearchFilterProps): JSX.Element => {
   const [open, setOpen] = useState(true);
-  const { topics } = useDBContext() || {};
+  const { idToContent, idToWords } = useNewDBContext() || {};
+  const topics = useMemo(() => {
+    return getNewWordsFromId("root", idToWords, idToContent);
+  }, [idToContent, idToWords]);
 
   return (
     <div className={style.wrapper}>
@@ -42,7 +46,7 @@ const SearchFilter = ({
                   handleFilterChange(topic.id, bool)
                 }
                 checked={filter.includes(topic.id)}
-                label={topic.labelTranslations.get("nob")?.label || ""}
+                label={topic.translations.get("nob")?.labels[0].label || ""}
               />
             ))}
           </div>

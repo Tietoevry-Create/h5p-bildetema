@@ -4,25 +4,18 @@ import {
   NewWord,
   TopicGridSizes,
   TopicIds,
-  Word,
 } from "common/types/types";
 import { FC, RefObject, useMemo, useState } from "react";
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
-import { getImageUrl } from "common/utils/image/image.utils";
-import { getAudioFiles } from "common/utils/audio/audio.utils";
-import { newWordsIsTopics } from "common/utils/data.utils";
+import { newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
 
 export type TopicGridProps = {
-  // topics?: Topic[];
-  // words?: Word[];
   topicsSize: TopicGridSizes;
-  // setIsWordView: Dispatch<SetStateAction<boolean>>;
   showWrittenWords: boolean;
   currentLanguage: Language;
-  // currentTopic?: TopicIds;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
   newWords: NewWord[];
@@ -48,18 +41,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
 
   const backendUrl = useBackendUrlContext();
   const words = useMemo(() => {
-    return newWords.map(w => {
-      const labels = w.translations.get(currentLanguage.code)?.labels || [];
-      const images = w.images.map(i => getImageUrl(i, backendUrl));
-      const audioFiles = getAudioFiles(w.id, backendUrl, currentLanguage.code);
-      const word: Word = {
-        id: w.id,
-        labels,
-        images,
-        audioFiles,
-      };
-      return word;
-    });
+    return newWordsToWords(newWords, currentLanguage.code, backendUrl);
   }, [backendUrl, currentLanguage.code, newWords]);
 
   const wordsIsTopics = newWordsIsTopics(newWords);

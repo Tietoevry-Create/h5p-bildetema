@@ -14,7 +14,7 @@ export default {
 
     return (
       <SubHeader
-        topicIds={{}}
+        currentTopics={{}}
         setTopicsSize={setTopicsSize}
         topicsSize={topicSize}
         isWordView={isWordView}

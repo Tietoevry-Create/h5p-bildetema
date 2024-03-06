@@ -12,7 +12,7 @@ export const Default: Story = {
   args: {
     search: "",
     currentLanguageCode: "nob",
-    topicIds: {},
+    currentTopics: {},
     handleSelectorVisibility: () => null,
     handleToggleFavoriteLanguage: () => null,
     langSelectorIsShown: true,

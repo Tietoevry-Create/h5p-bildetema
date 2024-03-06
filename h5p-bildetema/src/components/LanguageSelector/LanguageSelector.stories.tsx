@@ -11,7 +11,7 @@ type Story = StoryObj<typeof LanguageSelector>;
 
 export const Default: Story = {
   args: {
-    topicIds: {},
+    currentTopics: {},
     search: "",
     favLanguages: [
       {
