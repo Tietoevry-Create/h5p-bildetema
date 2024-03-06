@@ -1,8 +1,4 @@
-// import { useDBContext } from "common/hooks/useDBContext";
-// import { LanguageCode } from "common/types/LanguageCode";
-// import { Topic, TopicIds, TopicWord, Word } from "common/types/types";
 import { forwardRef } from "react";
-// import { useLocation } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { toSingleLabel } from "common/utils/word.utils";
 import { getImageSrc } from "common/utils/image/image.utils";
