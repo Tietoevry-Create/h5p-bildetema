@@ -10,7 +10,6 @@ type Story = StoryObj<typeof PrintButton>;
 
 export const Default: Story = {
   args: {
-    topicIds: {},
     showWrittenWords: true,
     isWordView: false,
     showTopicImageView: true,

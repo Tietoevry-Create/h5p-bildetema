@@ -60,11 +60,8 @@ export class H5PWrapper
       ...this.params,
       ...overrideParams,
     };
-    const { topicImage, l10n, backendUrl, showWrittenWords, showArticles } =
-      params;
-    const backendUrlWithoutTrailingSlash = backendUrl?.endsWith("/")
-      ? backendUrl.slice(0, -1)
-      : backendUrl;
+
+    const { topicImage, l10n, showWrittenWords, showArticles } = params;
 
     this.root?.render(
       <H5PContext.Provider value={this}>
@@ -78,7 +75,6 @@ export class H5PWrapper
                 )}
                 aspectRatio={(topicImage.width ?? 1) / (topicImage.height ?? 1)}
                 params={params}
-                backendUrl={backendUrlWithoutTrailingSlash ?? ""}
                 showWrittenWords={showWrittenWords}
                 showArticles={showArticles}
               />

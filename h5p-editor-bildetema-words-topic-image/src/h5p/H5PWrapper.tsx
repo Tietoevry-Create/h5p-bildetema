@@ -1,6 +1,10 @@
-import { LanguageCode } from "common/types/LanguageCode";
 import { Word } from "common/types/types";
-import { getData, getNewData, getNewWordsFromId, newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
+import {
+  getNewData,
+  getNewWordsFromId,
+  newWordsIsTopics,
+  newWordsToWords,
+} from "common/utils/data.utils";
 import type {
   H5PField,
   H5PGroup,
@@ -30,9 +34,7 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
 
   private backendUrl = "";
 
-  // private words: Map<LanguageCode, Array<Word>> = new Map();
-  private words: Array<Word> = []
-
+  private words: Array<Word> = [];
 
   appendTo($container: JQuery<HTMLElement>): void {
     const backendUrlField = this.findField<H5PGroup<string>>(
@@ -119,19 +121,23 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     subTopicId: string | undefined,
     backendUrl: string,
   ): Promise<Array<Word>> {
-  // ): Promise<Map<LanguageCode, Word[]>> {
-    
+    // ): Promise<Map<LanguageCode, Word[]>> {
+
     // TODO new Data
-    const res = await getNewData(backendUrl)
-    if(!res) return []
-    if(subTopicId){
-      const newWords = getNewWordsFromId(subTopicId, res.idToWords, res.idToContent)
-      return newWordsToWords(newWords, "nob", backendUrl)
+    const res = await getNewData(backendUrl);
+    if (!res) return [];
+    if (subTopicId) {
+      const newWords = getNewWordsFromId(
+        subTopicId,
+        res.idToWords,
+        res.idToContent,
+      );
+      return newWordsToWords(newWords, "nob", backendUrl);
     }
-    const newWords = getNewWordsFromId(topicId, res.idToWords, res.idToContent)
+    const newWords = getNewWordsFromId(topicId, res.idToWords, res.idToContent);
     // When the words are topics we dont want them to show in the image
-    if(newWordsIsTopics(newWords)) return []
-    return newWordsToWords(newWords, "nob", backendUrl)
+    if (newWordsIsTopics(newWords)) return [];
+    return newWordsToWords(newWords, "nob", backendUrl);
   }
 
   private render(): void {

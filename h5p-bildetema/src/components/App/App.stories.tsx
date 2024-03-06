@@ -12,6 +12,6 @@ export const Default: Story = {
   args: {
     defaultLanguages: ["nob"],
     backendUrl:
-      "https://cdn-prod-bildetema.azureedge.net/data/database.json.tar.gz",
+      "https://cdn-dev-bildetema.azureedge.net/data/dataTest.json.tar.gz",
   },
 };

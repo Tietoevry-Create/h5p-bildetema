@@ -73,12 +73,20 @@ const SearchPage = (): JSX.Element => {
   const handleOrderChange = (option: SearchOrderOption): void => {
     dispatch({
       type: ActionType.SORT,
-      payload: { searchOrderOption: option, search: currSearch, langCode, languages: [searchLanguage, viewLanguage] },
+      payload: {
+        searchOrderOption: option,
+        search: currSearch,
+        langCode,
+        languages: [searchLanguage, viewLanguage],
+      },
     });
   };
 
   const loadMore = (): void => {
-    dispatch({ type: ActionType.LOAD_MORE, payload: { languages: [searchLanguage, viewLanguage] } });
+    dispatch({
+      type: ActionType.LOAD_MORE,
+      payload: { languages: [searchLanguage, viewLanguage] },
+    });
   };
 
   const debouncedSearch = useDebouncedCallback((search: string) => {
@@ -132,12 +140,21 @@ const SearchPage = (): JSX.Element => {
     if (newFilter.length === 0) {
       searchParams.delete("filter");
       setSearchParams(searchParams);
-      dispatch({ type: ActionType.FILTER, payload: { filter: newFilter , languages: [searchLanguage, viewLanguage]} });
+      dispatch({
+        type: ActionType.FILTER,
+        payload: {
+          filter: newFilter,
+          languages: [searchLanguage, viewLanguage],
+        },
+      });
       return;
     }
     searchParams.set("filter", newFilter.join(","));
     setSearchParams(searchParams);
-    dispatch({ type: ActionType.FILTER, payload: { filter: newFilter , languages: [searchLanguage, viewLanguage]} });
+    dispatch({
+      type: ActionType.FILTER,
+      payload: { filter: newFilter, languages: [searchLanguage, viewLanguage] },
+    });
   };
 
   return (

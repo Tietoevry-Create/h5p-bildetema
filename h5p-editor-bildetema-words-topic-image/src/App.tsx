@@ -15,11 +15,7 @@ export type AppProps = {
 export const App: FC<AppProps> = ({ image, words = [], initialHotspots }) => {
   const noImagePlaceholder = t("noImagePlaceholder");
   return image ? (
-    <Editor
-      image={image}
-      words={words}
-      initialHotspots={initialHotspots}
-    />
+    <Editor image={image} words={words} initialHotspots={initialHotspots} />
   ) : (
     <p>{noImagePlaceholder}</p>
   );

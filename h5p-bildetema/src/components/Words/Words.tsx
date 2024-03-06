@@ -1,12 +1,12 @@
-// import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
-import { DisplayView, Todo, TopicIds, Word } from "common/types/types";
+import { DisplayView, TopicIds, Word } from "common/types/types";
 import { getLibraryName } from "common/utils/library/library.utils";
 import type { H5PLibrary, IH5PContentType } from "h5p-types";
 import { H5P } from "h5p-utils";
-import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { L10nContext, useContentId } from "use-h5p";
+import { TopicImageHotspot } from "common/types/TopicImageHotspot";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 import styles from "./Words.module.scss";
@@ -44,7 +44,7 @@ export const Words: FC<WordsProps> = ({
   toggleShowTopicImageView,
   showArticles,
 }) => {
-  const [hotspots, setHotspots] = useState<Todo[]>([]);
+  const [hotspots, setHotspots] = useState<TopicImageHotspot[]>([]);
   const topicViewRef = useRef<HTMLDivElement>(null);
   const gridViewRef = useRef<HTMLDivElement>(null);
   const [topicViewInstance, setTopicViewInstance] = useState<IH5PContentType>();
@@ -58,18 +58,9 @@ export const Words: FC<WordsProps> = ({
       : true,
   );
   const l10n = useContext(L10nContext);
-  // const { topics } = useDBContext() || {};
 
-  // TODO fix only topic image
+  // TODO fix only topic image set this in the h5p topicimage type...
   const onlyTopicImage = false;
-  // const onlyTopicImage = useMemo(() => {
-  //   if (topic?.subTopicId) {
-  //     return topics
-  //       ?.find(t => t.id === topic?.topicId)
-  //       ?.subTopics.find(s => s.id === topic?.subTopicId)?.onlyTopicImage;
-  //   }
-  //   return topics?.find(t => t.id === topic?.topicId)?.onlyTopicImage;
-  // }, [topic?.subTopicId, topic?.topicId, topics]);
 
   useEffect(() => {
     toggleShowTopicImageView(showTopicImageView);
@@ -126,7 +117,10 @@ export const Words: FC<WordsProps> = ({
 
           const content = existingContent[0];
           const savedParams = JSON.parse(content.json_content);
-          const hotspotsWithTranslatedWords = savedParams.hotspots
+          const paramHotspots = savedParams.hotspots as TopicImageHotspot[];
+          if (!paramHotspots || paramHotspots.length < 0) return;
+
+          const hotspotsWithTranslatedWords = paramHotspots
             .filter(hotspot => hotspot != null && hotspot.points?.length > 0)
             .map(hotspot => {
               const word = words?.find(w => w.id === hotspot.word.id);
@@ -195,20 +189,6 @@ export const Words: FC<WordsProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentId, topicViewRef, gridViewRef]);
 
-  // const getHotspots = useCallback(() => {
-  //   hotspots.map(hotspot => {
-  //     const word = words?.find(w => w.id === hotspot.word.id);
-  //     if (!word) {
-  //       return hotspot;
-  //     }
-
-  //     return {
-  //       ...hotspot,
-  //       word,
-  //     };
-  //   });
-  // }, [hotspots, words]);
-
   useEffect(() => {
     const h = hotspots.map(hotspot => {
       const word = words?.find(w => w.id === hotspot.word.id);
@@ -234,7 +214,7 @@ export const Words: FC<WordsProps> = ({
       showArticles,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, showWrittenWords, currentLanguage, showArticles, hotspots]);
 
   return (

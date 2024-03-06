@@ -3,7 +3,9 @@ import { distance, closest } from "fastest-levenshtein";
 import { LanguageCode } from "../types/LanguageCode";
 
 const getLabelsArray = (labels: Labels): string[] => {
-  return labels.map(el => el.label.split("/").map(l => l.trim())).flat();
+  return labels
+    .map(el => el.label.split("/").map(l => l.trim().toLowerCase()))
+    .flat();
 };
 
 const findLabelClosestToSearch = (search: string, labels: Labels): string => {
@@ -15,7 +17,6 @@ export const sortSearchBylevenshtein = (
   search: string,
   results: SearchResult[],
 ): SearchResult[] => {
-
   return results.toSorted((a, b) => {
     const closestA = findLabelClosestToSearch(search, a.translations[0].labels);
     const closestB = findLabelClosestToSearch(search, b.translations[0].labels);
@@ -26,9 +27,8 @@ export const sortSearchBylevenshtein = (
 export const sortNewWordsBylevenshtein = (
   search: string,
   results: NewWord[],
-  langCode: LanguageCode
+  langCode: LanguageCode,
 ): NewWord[] => {
-
   return results.toSorted((a, b) => {
     const aLabels = a.translations.get(langCode)?.labels || [];
     const bLabels = b.translations.get(langCode)?.labels || [];
@@ -44,18 +44,22 @@ export const sortSearchByTopic = (results: NewWord[]): NewWord[] => {
 
 const getSearchPositionValue = (search: string, labels: Labels): number => {
   const equal = 0;
-  const endsWith = 1;
+  const equalWithin = 1;
+  const endsWith = 2;
   const startsWith = 3;
   const contains = 5;
 
+  const lowerCaseSearch = search.toLowerCase();
   const labelsArray = getLabelsArray(labels);
-  if (labelsArray.includes(search)) return equal;
-  if (labelsArray.filter(l => l.endsWith(search)).length > 0) return endsWith;
-  if (labelsArray.filter(l => l.startsWith(search)).length > 0)
+  const labelsSplitBySpace = labelsArray.join(" ").split(" ");
+  if (labelsArray.includes(lowerCaseSearch)) return equal;
+  if (labelsSplitBySpace.includes(lowerCaseSearch)) return equalWithin;
+  if (labelsArray.filter(l => l.endsWith(lowerCaseSearch)).length > 0)
+    return endsWith;
+  if (labelsArray.filter(l => l.startsWith(lowerCaseSearch)).length > 0)
     return startsWith;
   return contains;
 };
-
 
 export const sortSearchByPosition = (
   search: string,
@@ -73,7 +77,7 @@ export const sortSearchByPosition = (
 export const sortNewWordsByPosition = (
   search: string,
   results: NewWord[],
-  langCode: LanguageCode
+  langCode: LanguageCode,
 ): NewWord[] => {
   const res = sortSearchByTopic(results);
   return res.toSorted((a, b) => {

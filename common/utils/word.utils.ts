@@ -7,6 +7,7 @@ import {
   Word,
   Language,
   NewWord,
+  SearchResultTranslations,
 } from "../types/types";
 
 export const toSingleLabel = (
@@ -63,11 +64,11 @@ const findTranslationsForWord = (
   word: Word,
   topic: Topic,
   languagesToFind: Language[],
-): searchResultTranslations[] => {
+): SearchResultTranslations[] => {
   if (languagesToFind.length === 0) {
     return [];
   }
-  const results: searchResultTranslations[] = [];
+  const results: SearchResultTranslations[] = [];
   languagesToFind.forEach(lang => {
     const translation = topic.words.get(lang.code)?.find(w => w.id === word.id);
     if (translation) {
@@ -164,11 +165,14 @@ export const searchForNewWord = (
   langCode: LanguageCode,
   newWords: NewWord[],
 ): NewWord[] => {
+  const lowerCaseSearch = s.toLowerCase();
   const filteredNewWords = newWords.filter(word => {
     return word.translations.get(langCode)?.labels.some(label => {
-      const reporductiveOrgansSubtopic = "T066"
-      if (word.subTopicId === reporductiveOrgansSubtopic) return label.label === s;
-      return label.label.includes(s);
+      const reporductiveOrgansSubtopic = "T066";
+      const lowerCaseLabel = label.label.toLowerCase();
+      if (word.subTopicId === reporductiveOrgansSubtopic)
+        return lowerCaseLabel === lowerCaseSearch;
+      return lowerCaseLabel.includes(lowerCaseSearch);
     });
   });
 

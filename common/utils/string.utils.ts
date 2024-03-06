@@ -1,7 +1,6 @@
 import replaceSpecialCharacters from "replace-special-characters";
 
-export const labelToUrlComponent = (label?: string): string | undefined => {
-  if(!label) return undefined
+export const labelToUrlComponent = (label: string): string => {
   return replaceSpecialCharacters(
     label
       .toLowerCase()

@@ -35,7 +35,7 @@ export const useCurrentLanguageCode = (): LanguageCode => {
 };
 
 export const useLanguage = (): Language | undefined => {
-  const {languages} = useNewDBContext() || {};
+  const { languages } = useNewDBContext() || {};
   const langCode = useCurrentLanguageCode();
   const language = languages?.find(el => el.code === langCode);
   return language;

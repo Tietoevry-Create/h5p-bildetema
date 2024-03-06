@@ -1,22 +1,17 @@
-// import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, TopicGridSizes } from "common/types/types";
-import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { useH5PInstance } from "use-h5p";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import styles from "./TopicRouteController.module.scss";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
-import {
-  langIdToLanguage,
-} from "../../utils/router/router.utils";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import { SubHeader } from "../SubHeader/SubHeader";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
-// import { useCurrentWords } from "../../hooks/useCurrentWords";
 
 export type TopicRouteControllerProps = {
   rtl: boolean;
@@ -31,46 +26,15 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const { langCodeParam, topicLabelParam, subTopicLabelParam } = useParams();
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
-  // const { topics: topicsFromDB, languages: languagesFromDB } =
-  //   useDBContext() || {};
-  const {
-    topicPaths,
-    languages: languagesFromDB,
-    idToContent,
-  } = useNewDBContext() || {};
-
-  // const { words, topics, language, currentTopic } = useMemo(
-  //   () =>
-  //     validRoute(
-  //       topicsFromDB,
-  //       languagesFromDB,
-  //       favLanguages,
-  //       // setTopicIds,
-  //       langCodeParam as LanguageCode,
-  //       topicLabelParam,
-  //       subTopicLabelParam,
-  //       addFavoriteLanguage,
-  //     ),
-  //   [
-  //     addFavoriteLanguage,
-  //     favLanguages,
-  //     langCodeParam,
-  //     languagesFromDB,
-  //     // setTopicIds,
-  //     subTopicLabelParam,
-  //     topicLabelParam,
-  //     topicsFromDB,
-  //   ],
-  // );
-  const ref = useRef<HTMLDivElement>(null);
+  const { topicPaths, idToContent, langCodeTolanguages } =
+    useNewDBContext() || {};
 
   const currentLanguage = useMemo(() => {
-    if (!langCodeParam || !languagesFromDB) {
+    if (!langCodeParam || !langCodeTolanguages) {
       return undefined;
     }
-
-    return langIdToLanguage(langCodeParam as LanguageCode, languagesFromDB);
-  }, [langCodeParam, languagesFromDB]);
+    return langCodeTolanguages?.get(langCodeParam as LanguageCode);
+  }, [langCodeParam, langCodeTolanguages]);
 
   const isValidRoute = useMemo(() => {
     if (subTopicLabelParam) {
@@ -111,12 +75,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
       const subTopicIsSetInUrl = !!subTopicLabelParam;
 
       if (topicHasSubTopics && subTopicIsSetInUrl) {
-        // const { subTopics } = topic;
         newSubTopicId = topicPaths?.get(
           uriComponentToTopicPath(subTopicLabelParam),
         );
-        // // const subTopic = findTopic(subTopics, currentLanguage, subTopicLabelParam);
-        // newSubTopicId = subTopic?.id;
       }
     }
     subTopicHasChanged = newSubTopicId !== currentSubTopicId;
@@ -143,7 +104,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const [topicsSize, setTopicsSize] = useState(
     smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
   );
-  // const [isWordView, setIsWordView] = useState(false);
   const [showTopicImageView, setShowTopicImageView] = useState(true);
 
   const toggleShowTopicImageView = (value: boolean): void => {
@@ -207,7 +167,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
   if (currentLanguage && isValidRoute) {
     return (
-      <div className={`${styles.body} ${rtl ? styles.rtl : ""}`} ref={ref}>
+      <div className={`${styles.body} ${rtl ? styles.rtl : ""}`}>
         <SubHeader
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}

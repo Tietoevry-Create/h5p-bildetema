@@ -22,11 +22,12 @@ export const AppChooseTopicWidget: FC<Params> = ({
   topicId,
   subTopicId,
 }) => {
-  const { data } = useQuery(["topicsFromDB", backendUrl], () =>
-    getNewData(backendUrl),
+  const { data } = useQuery(
+    ["topicsFromDB", backendUrl],
+    () => getNewData(backendUrl),
     {
-      refetchOnWindowFocus: false
-    }
+      refetchOnWindowFocus: false,
+    },
   );
 
   const [currentTopic, setCurrentTopic] = useState<NewWord | undefined>(
@@ -42,11 +43,15 @@ export const AppChooseTopicWidget: FC<Params> = ({
   }, [data]);
 
   const subTopics = useMemo(() => {
-    if(!currentTopic || !data) return undefined
-    const newCurrentSubTopics = getNewWordsFromId(currentTopic.id, data.idToWords, data.idToContent)
-    if(!(newCurrentSubTopics.length > 0)) return undefined
-    if(!newWordsIsTopics(newCurrentSubTopics)) return undefined
-    return newCurrentSubTopics
+    if (!currentTopic || !data) return undefined;
+    const newCurrentSubTopics = getNewWordsFromId(
+      currentTopic.id,
+      data.idToWords,
+      data.idToContent,
+    );
+    if (!(newCurrentSubTopics.length > 0)) return undefined;
+    if (!newWordsIsTopics(newCurrentSubTopics)) return undefined;
+    return newCurrentSubTopics;
   }, [currentTopic, data]);
 
   useEffect(() => {

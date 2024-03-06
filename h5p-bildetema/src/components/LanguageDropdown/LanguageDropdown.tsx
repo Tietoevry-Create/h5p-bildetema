@@ -33,7 +33,7 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
   currentLanguageCode,
   search,
   firstTime,
-  currentTopics
+  currentTopics,
 }) => {
   const [isActive, setIsActive] = useState(false);
 

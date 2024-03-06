@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages } from "common/constants/languages";
-// import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
 import { getPath } from "common/utils/router.utils";
@@ -38,14 +37,13 @@ export const Header: FC<HeaderProps> = ({
   setFirstTime,
   handleToggleFavoriteLanguage,
   hideLanguageSelectors,
-  currentTopics
+  currentTopics,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
-  const { langCodeTolanguages: languagesFromDB } =
-    useNewDBContext() || {};
+  const { langCodeTolanguages: languagesFromDB } = useNewDBContext() || {};
 
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
@@ -151,7 +149,7 @@ export const Header: FC<HeaderProps> = ({
                       }
                     >
                       <Link
-                        to={getPath({language, search, currentTopics})}
+                        to={getPath({ language, search, currentTopics })}
                         className={`${styles.languageButton} ${
                           currentLanguageCode === language.code
                             ? styles.languageButton_active

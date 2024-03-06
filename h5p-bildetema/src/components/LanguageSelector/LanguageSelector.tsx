@@ -3,10 +3,9 @@ import {
   languages as languagesConst,
   languagesOriginal,
 } from "common/constants/languages";
-// import { useDBContext } from "common/hooks/useDBContext";
 import { CurrentTopics, Language } from "common/types/types";
 import { LanguageCodeString } from "common/types/LanguageCode";
-import {  getPath } from "common/utils/router.utils";
+import { getPath } from "common/utils/router.utils";
 import { FC } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { useL10ns, useL10n } from "../../hooks/useL10n";
@@ -27,7 +26,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   currentLanguageCode,
   handleToggleFavoriteLanguage,
   search,
-  currentTopics
+  currentTopics,
 }) => {
   const { languages } = useNewDBContext() || {};
 
@@ -55,8 +54,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
           )
           ?.map((language, index) => (
             <LanguageSelectorElement
-              path={getPath({language, search, currentTopics})}
-              // path={getLanguagePath(language, topicIds, search, topicsFromDB)}
+              path={getPath({ language, search, currentTopics })}
               key={language.code}
               language={language}
               bottomElementAt2Col={
