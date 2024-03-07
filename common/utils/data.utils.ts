@@ -13,6 +13,8 @@ import {
   TopicWord,
   NewWord,
   NewData,
+  WordId,
+  TopicId,
 } from "../types/types";
 
 const languages: Language[] = [];
@@ -113,6 +115,13 @@ export const getNewWordsFromId = (
   return content
     .map(item => idToWords?.get(item))
     .filter((item): item is NewWord => item !== undefined);
+};
+
+export const getMainTopics = (
+  idToWords?: Map<WordId, NewWord>,
+  idToContent?: Map<TopicId, WordId[]>,
+): NewWord[] => {
+  return getNewWordsFromId("root", idToWords, idToContent);
 };
 
 export const newWordsToWords = (

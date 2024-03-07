@@ -1,5 +1,6 @@
 import { AudioRefContext } from "common/context/AudioContext";
 import {
+  CurrentTopics,
   Language,
   NewWord,
   TopicGridSizes,
@@ -19,6 +20,7 @@ export type TopicGridProps = {
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
   newWords: NewWord[];
+  currentTopics: CurrentTopics;
 };
 
 export const TopicGrid: FC<TopicGridProps> = ({
@@ -28,6 +30,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
   toggleShowTopicImageView,
   showArticles,
   newWords,
+  currentTopics,
 }) => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -47,8 +50,8 @@ export const TopicGrid: FC<TopicGridProps> = ({
   const wordsIsTopics = newWordsIsTopics(newWords);
 
   const topicIds: TopicIds = {
-    subTopicId: newWords.at(0)?.subTopicId,
-    topicId: newWords.at(0)?.topicId,
+    subTopicId: currentTopics?.subTopic?.id,
+    topicId: currentTopics?.topic?.id,
   };
 
   if (wordsIsTopics) {

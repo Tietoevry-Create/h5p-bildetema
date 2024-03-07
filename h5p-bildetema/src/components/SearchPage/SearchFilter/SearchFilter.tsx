@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { getNewWordsFromId } from "common/utils/data.utils";
+import { getMainTopics } from "common/utils/data.utils";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import style from "./SearchFilter.module.scss";
 import { LanguageMenuArrowIcon } from "../../Icons/Icons";
@@ -17,7 +17,7 @@ const SearchFilter = ({
   const [open, setOpen] = useState(true);
   const { idToContent, idToWords } = useNewDBContext() || {};
   const topics = useMemo(() => {
-    return getNewWordsFromId("root", idToWords, idToContent);
+    return getMainTopics(idToWords, idToContent);
   }, [idToContent, idToWords]);
 
   return (

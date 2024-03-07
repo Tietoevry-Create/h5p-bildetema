@@ -188,6 +188,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
             showWrittenWords={showWrittenWords}
             toggleShowTopicImageView={toggleShowTopicImageView}
             showArticles={showArticles}
+            currentTopics={currentTopics}
           />
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { NewWord } from "common/types/types";
 import {
+  getMainTopics,
   getNewData,
   getNewWordsFromId,
   newWordsIsTopics,
@@ -39,7 +40,7 @@ export const AppChooseTopicWidget: FC<Params> = ({
   );
 
   const topics = useMemo(() => {
-    return getNewWordsFromId("root", data?.idToWords, data?.idToContent);
+    return getMainTopics(data?.idToWords, data?.idToContent);
   }, [data]);
 
   const subTopics = useMemo(() => {

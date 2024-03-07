@@ -136,23 +136,22 @@ export type NewWord = {
   subTopicId?: string;
 };
 
-type WordId = string;
-type TopicId = string;
-type UrlPath = string;
+export type WordId = string;
+export type TopicId = string;
+export type UrlPath = string;
 
 export type NewData = {
   langCodeTolanguages: Map<LanguageCode, Language>;
   languages: Language[];
   idToWords: Map<WordId, NewWord>;
-  idToContent: Map<TopicId, string[]>;
-  translations: Translations;
+  idToContent: Map<TopicId, WordId[]>;
+  translations: Map<WordId, Map<LanguageCode, NewTranslation>>;
   topicPaths: Map<UrlPath, TopicId>;
 };
 
 // TODO: Remove all old / unused types
 // TODO: Change "new types" to the old name after the old types are removed
 
-// TODO: could be removed but requires some refactoring
 export type CurrentTopics = {
   topic?: NewWord;
   subTopic?: NewWord;

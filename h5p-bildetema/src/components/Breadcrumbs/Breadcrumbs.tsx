@@ -36,7 +36,8 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   const currentLang = useCurrentLanguage();
   const { translations } = useNewDBContext() || {};
   const labelFromDb = getLabelFromTranslationRecord(
-    translations?.[currentLanguageCode],
+    currentLanguageCode,
+    translations?.get("F001"),
   );
 
   const l10nLabel = useL10n("breadcrumbsTopic");

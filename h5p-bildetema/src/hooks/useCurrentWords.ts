@@ -1,6 +1,6 @@
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { CurrentTopics, NewWord } from "common/types/types";
-import { getNewWordsFromId } from "common/utils/data.utils";
+import { getMainTopics, getNewWordsFromId } from "common/utils/data.utils";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
@@ -32,5 +32,5 @@ export const useCurrentWords = (): NewWord[] => {
     return getNewWordsFromId(currTopics.topic?.id, idToWords, idToContent);
   }
 
-  return getNewWordsFromId("root", idToWords, idToContent);
+  return getMainTopics(idToWords, idToContent);
 };
