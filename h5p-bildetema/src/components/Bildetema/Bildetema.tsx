@@ -14,7 +14,10 @@ import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 import SearchPage from "../SearchPage/SearchPage";
 import CustomViewPage from "../CustomViewPage/CustomViewPage";
-import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import {
+  useCurrentLanguage,
+  useCurrentLanguageCode,
+} from "../../hooks/useCurrentLanguage";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -34,7 +37,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     languages: languagesFromDB,
     topicPaths,
     idToWords,
-  } = useNewDBContext() || {};
+  } = useNewDBContext();
   const { pathname } = useLocation();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
@@ -67,18 +70,11 @@ export const Bildetema: FC<BildetemaProps> = ({
   }
 
   const currentLanguageCode = useCurrentLanguageCode();
-
-  const getCurrentLanguage = (): Language => {
-    const currentLanguage: Language | undefined = favLanguages.find(
-      language => language.code === currentLanguageCode,
-    );
-    return currentLanguage as Language;
-  };
+  const currentLanguage = useCurrentLanguage();
 
   const directionRtl: boolean = useMemo(() => {
-    return !!getCurrentLanguage()?.rtl;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favLanguages, pathname]);
+    return !!currentLanguage?.rtl;
+  }, [currentLanguage]);
 
   const currTopics = useMemo((): CurrentTopics => {
     const [topicUriComponent, subTopicUriComponent] = pathname

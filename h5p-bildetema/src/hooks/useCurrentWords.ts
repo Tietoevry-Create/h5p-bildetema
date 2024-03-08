@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 export const useCurrentWords = (): NewWord[] => {
-  const { topicPaths, idToWords, idToContent } = useNewDBContext() || {};
+  const { topicPaths, idToWords, idToContent } = useNewDBContext();
 
   const { pathname } = useLocation();
 

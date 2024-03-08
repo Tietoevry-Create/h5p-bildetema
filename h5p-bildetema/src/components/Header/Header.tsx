@@ -43,7 +43,7 @@ export const Header: FC<HeaderProps> = ({
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
-  const { langCodeTolanguages: languagesFromDB } = useNewDBContext() || {};
+  const { languages: languagesFromDB } = useNewDBContext();
 
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
@@ -106,7 +106,7 @@ export const Header: FC<HeaderProps> = ({
 
   const sanitizedFavLanguages = sanitizeLanguages(
     favLanguages,
-    Array.from(languagesFromDB?.values() || []),
+    languagesFromDB,
   );
 
   return (

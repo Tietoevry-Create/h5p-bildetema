@@ -38,7 +38,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
   articlesToggleChecked,
   currentTopics,
 }) => {
-  const { idToContent, idToWords } = useNewDBContext() || {};
+  const { idToContent, idToWords } = useNewDBContext();
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
   const { showArticlesLabel } = useL10ns("showArticlesLabel");
 

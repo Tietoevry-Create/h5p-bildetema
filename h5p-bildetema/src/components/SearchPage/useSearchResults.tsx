@@ -293,9 +293,8 @@ export const useSearchResults = ({
   state: SearchState;
   dispatch: React.Dispatch<Action>;
 } => {
-  const { idToWords, langCodeTolanguages } = useNewDBContext() || {};
+  const { idToWords, langCodeTolanguages } = useNewDBContext();
   const backendUrl = useBackendUrlContext();
-  const langMap = langCodeTolanguages || new Map<LanguageCode, Language>();
 
   const defaultState: SearchState = {
     searchResults: [],
@@ -304,7 +303,7 @@ export const useSearchResults = ({
     order,
     newWords: idToWords ? [...idToWords.values()] : [],
     backendUrl,
-    langCodeTolanguages: langMap,
+    langCodeTolanguages,
   };
 
   const initialState = ((): SearchState => {

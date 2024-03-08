@@ -15,7 +15,7 @@ type PrintWordsProps = {
 
 export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
   ({ showWrittenWords, imagesPrRow, showArticles }, ref) => {
-    const { idToWords } = useNewDBContext() || {};
+    const { idToWords } = useNewDBContext();
     const words = useCurrentWords();
     const backendUrl = useBackendUrlContext();
 

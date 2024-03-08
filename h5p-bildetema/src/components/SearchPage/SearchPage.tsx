@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { isLanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -30,7 +31,7 @@ const SearchParamKeys = {
 };
 
 const SearchPage = (): JSX.Element => {
-  const { languages = [] } = useNewDBContext() || {};
+  const { langCodeTolanguages, languages } = useNewDBContext();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -39,7 +40,7 @@ const SearchPage = (): JSX.Element => {
   const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
-    languages?.find(l => l.code === langCode) ||
+    langCodeTolanguages.get(langCode) ||
       // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
   );
@@ -47,13 +48,15 @@ const SearchPage = (): JSX.Element => {
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
   const [viewLanguage, setViewLanguage] = React.useState<Language>(() => {
     if (viewLangCode) {
-      return languages?.find(l => l.code === viewLangCode) || searchLanguage;
+      if (isLanguageCode(viewLangCode))
+        return langCodeTolanguages.get(viewLangCode) || searchLanguage;
     }
     // TODO should change based on page language (no / se / de ....)
     if (searchLanguage.code !== "nob") {
-      return languages?.find(l => l.code === "nob") || searchLanguage;
+      return langCodeTolanguages.get("nob") || searchLanguage;
     }
-    return languages?.find(l => l.code === "eng") || searchLanguage;
+    return langCodeTolanguages.get("eng") || searchLanguage;
+    // return languages?.find(l => l.code === "eng") || searchLanguage;
   });
 
   const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";

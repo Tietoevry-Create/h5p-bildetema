@@ -10,7 +10,7 @@ import { H5PWrapper } from "../../h5p/H5PWrapper";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import { SubHeader } from "../SubHeader/SubHeader";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
+import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
 
 export type TopicRouteControllerProps = {
@@ -26,8 +26,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const { langCodeParam, topicLabelParam, subTopicLabelParam } = useParams();
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
-  const { topicPaths, idToContent, langCodeTolanguages } =
-    useNewDBContext() || {};
+  const { topicPaths, idToContent, langCodeTolanguages } = useNewDBContext();
 
   const currentLanguage = useMemo(() => {
     if (!langCodeParam || !langCodeTolanguages) {
@@ -158,7 +157,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     setShowWrittenWords(value);
   };
 
-  const currentLang = useCurrentLanguage();
+  const currentLang = useCurrentLanguageAttribute();
 
   const newWords = useCurrentWords();
   const isWordView = useMemo(() => {

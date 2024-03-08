@@ -28,7 +28,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   search,
   currentTopics,
 }) => {
-  const { languages } = useNewDBContext() || {};
+  const { languages } = useNewDBContext();
 
   const getAmountOfRows = (columns: number): number => {
     return Math.max(1, Math.ceil(languages ? languages.length / columns : 0));

@@ -15,7 +15,7 @@ const SearchFilter = ({
   filter,
 }: SearchFilterProps): JSX.Element => {
   const [open, setOpen] = useState(true);
-  const { idToContent, idToWords } = useNewDBContext() || {};
+  const { idToContent, idToWords } = useNewDBContext();
   const topics = useMemo(() => {
     return getMainTopics(idToWords, idToContent);
   }, [idToContent, idToWords]);

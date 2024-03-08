@@ -21,7 +21,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
   hidden,
   currentTopics,
 }) => {
-  const { languages: languagesFromDB } = useNewDBContext() || {};
+  const { languages: languagesFromDB } = useNewDBContext();
   const languageKeys = languagesConst.map(
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;

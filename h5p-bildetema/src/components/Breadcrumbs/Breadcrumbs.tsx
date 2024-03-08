@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useL10n } from "../../hooks/useL10n";
-import { useCurrentLanguage } from "../../hooks/useCurrentLanguage";
+import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
 import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import {
@@ -33,8 +33,8 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   currentTopics,
 }) => {
   const lang = useSiteLanguage();
-  const currentLang = useCurrentLanguage();
-  const { translations } = useNewDBContext() || {};
+  const currentLang = useCurrentLanguageAttribute();
+  const { translations } = useNewDBContext();
   const labelFromDb = getLabelFromTranslationRecord(
     currentLanguageCode,
     translations?.get("F001"),
