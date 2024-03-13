@@ -49,20 +49,22 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
-            // const wordLabel = extractWordLabel(word, showArticles);
             const wordLabel = toSingleLabel(
               word.translations.get(currentLanguageCode)?.labels || [],
               showArticles,
             );
 
-            // TODO: Change method to find correct image from Swiper
-            // const activeImage = word.images?.find(image => {
-            //   return document.querySelector(
-            //     `div.swiper-slide-active img[src="${image?.src}"]`,
-            //   );
-            // });
+            const activeImage =
+              word.images?.find(image => {
+                const imgSrc = getImageSrc(image, backendUrl);
+                return document.querySelector(
+                  `div.swiper-slide-active img[src="${imgSrc}"]`,
+                );
+              }) ||
+              word.images?.at(0) ||
+              "";
 
-            const img = getImageSrc(word.images?.at(0) || "", backendUrl);
+            const img = getImageSrc(activeImage, backendUrl);
             return (
               <td key={word.id}>
                 <div className={styles.imgWrapper}>
