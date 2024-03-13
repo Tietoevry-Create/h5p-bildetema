@@ -1,4 +1,4 @@
-import { Labels, NewWord, SearchResult } from "common/types/types";
+import { Labels, NewWord } from "common/types/types";
 import { distance, closest } from "fastest-levenshtein";
 import { LanguageCode } from "../types/LanguageCode";
 
@@ -11,17 +11,6 @@ const getLabelsArray = (labels: Labels): string[] => {
 const findLabelClosestToSearch = (search: string, labels: Labels): string => {
   const labelsArray = getLabelsArray(labels);
   return closest(search, labelsArray);
-};
-
-export const sortSearchBylevenshtein = (
-  search: string,
-  results: SearchResult[],
-): SearchResult[] => {
-  return results.toSorted((a, b) => {
-    const closestA = findLabelClosestToSearch(search, a.translations[0].labels);
-    const closestB = findLabelClosestToSearch(search, b.translations[0].labels);
-    return distance(search, closestA) - distance(search, closestB);
-  });
 };
 
 export const sortNewWordsBylevenshtein = (
@@ -59,19 +48,6 @@ const getSearchPositionValue = (search: string, labels: Labels): number => {
   if (labelsArray.filter(l => l.startsWith(lowerCaseSearch)).length > 0)
     return startsWith;
   return contains;
-};
-
-export const sortSearchByPosition = (
-  search: string,
-  results: SearchResult[],
-): SearchResult[] => {
-  // const res = sortSearchByTopic(results);
-  return results.toSorted((a, b) => {
-    return (
-      getSearchPositionValue(search, a.translations[0].labels) -
-      getSearchPositionValue(search, b.translations[0].labels)
-    );
-  });
 };
 
 export const sortNewWordsByPosition = (

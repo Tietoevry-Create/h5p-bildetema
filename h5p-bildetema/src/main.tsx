@@ -39,7 +39,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               <App
                 defaultLanguages={["nob"]}
                 backendUrl="https://cdn-dev-bildetema.azureedge.net/data/data.json.tar.gz"
-                // backendUrl="https://cdn-prod-bildetema.azureedge.net/data/database.json.tar.gz"
               />
             </ContentIdContext.Provider>
           </L10nContext.Provider>

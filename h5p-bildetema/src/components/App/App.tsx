@@ -14,7 +14,6 @@ type appProps = {
 export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
   const { isLoading, data: newData } = useQuery(["newData"], async () => {
     return getNewData(backendUrl);
-    // return getNewData("http://127.0.0.1:10000/devstoreaccount1/data/newData.json.tar.gz");
   });
 
   const baseBackendurl = backendUrl.split("data/").at(0) || "";

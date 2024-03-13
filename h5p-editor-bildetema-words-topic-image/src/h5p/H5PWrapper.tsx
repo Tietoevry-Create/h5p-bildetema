@@ -121,9 +121,6 @@ export class H5PWrapper extends H5PWidget<Field, Params> implements IH5PWidget {
     subTopicId: string | undefined,
     backendUrl: string,
   ): Promise<Array<Word>> {
-    // ): Promise<Map<LanguageCode, Word[]>> {
-
-    // TODO new Data
     const res = await getNewData(backendUrl);
     if (!res) return [];
     if (subTopicId) {

@@ -1,4 +1,3 @@
-// import { LanguageCode } from "common/types/LanguageCode";
 import { Word } from "common/types/types";
 import type { H5PImage } from "h5p-types";
 import { FC } from "react";
