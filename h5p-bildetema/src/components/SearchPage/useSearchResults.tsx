@@ -73,6 +73,7 @@ type LoadMoreAction = {
 type FilterAction = {
   type: typeof ActionType.FILTER;
   payload: {
+    search: string;
     filter: string[];
     languages: Language[];
   };
@@ -147,7 +148,6 @@ const filterSearchResults = (
 const sortResults = (
   sortOption: SortOptions,
   search: string,
-  // searchResults: SearchResult[],
   searchResults: NewWord[],
   langCode: LanguageCode,
 ): NewWord[] => {
@@ -233,10 +233,15 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
 
     case ActionType.FILTER: {
       const { payload } = action;
-      const filteredSearchRes =
-        payload.filter.length === 0
-          ? state.searchResults
-          : filterSearchResults(state.searchResults, payload.filter);
+      const filteredSearchRes = (() => {
+        if (payload.filter.length === 0) {
+          return state.searchResults;
+        }
+        if (payload.search === "")
+          return filterSearchResults(state.newWords, payload.filter);
+
+        return filterSearchResults(state.searchResults, payload.filter);
+      })();
 
       const visibleSearchResults = newWordsToSearchResult(
         filteredSearchRes.slice(0, resultAmount),

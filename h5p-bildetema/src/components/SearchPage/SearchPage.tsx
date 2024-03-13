@@ -110,6 +110,17 @@ const SearchPage = (): JSX.Element => {
       debouncedSearch.cancel();
       setSearchParams(searchParams);
       dispatch({ type: ActionType.RESET });
+
+      if (filter.length > 0) {
+        dispatch({
+          type: ActionType.FILTER,
+          payload: {
+            search: "",
+            filter,
+            languages: [searchLanguage, viewLanguage],
+          },
+        });
+      }
       return;
     }
     searchParams.set(SearchParamKeys.SEARCH, search);
@@ -146,6 +157,7 @@ const SearchPage = (): JSX.Element => {
       dispatch({
         type: ActionType.FILTER,
         payload: {
+          search: currSearch,
           filter: newFilter,
           languages: [searchLanguage, viewLanguage],
         },
@@ -156,7 +168,11 @@ const SearchPage = (): JSX.Element => {
     setSearchParams(searchParams);
     dispatch({
       type: ActionType.FILTER,
-      payload: { filter: newFilter, languages: [searchLanguage, viewLanguage] },
+      payload: {
+        search: currSearch,
+        filter: newFilter,
+        languages: [searchLanguage, viewLanguage],
+      },
     });
   };
 
