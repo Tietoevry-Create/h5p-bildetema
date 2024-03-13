@@ -3,6 +3,7 @@ import { CurrentTopics, Language } from "common/types/types";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
+import { LanguageCode } from "common/types/LanguageCode";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -35,6 +36,7 @@ export const Bildetema: FC<BildetemaProps> = ({
 }) => {
   const {
     languages: languagesFromDB,
+    langCodeTolanguages,
     topicPaths,
     idToWords,
   } = useNewDBContext();
@@ -59,11 +61,11 @@ export const Bildetema: FC<BildetemaProps> = ({
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
 
-  if (!favLanguages.length && languagesFromDB) {
+  if (!favLanguages.length && langCodeTolanguages.size > 0 && !firstTime) {
     const languages: Language[] = [];
     setFirstTime(true);
     defaultLanguages.forEach(code => {
-      const lang = languagesFromDB.find(el => el.code === code);
+      const lang = langCodeTolanguages.get(code as LanguageCode);
       if (lang) languages.push(lang);
     });
     setFavLanguages([...languages]);
