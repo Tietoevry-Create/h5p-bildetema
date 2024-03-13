@@ -46,17 +46,16 @@ const SearchFilter = ({
           <div className={style.searchFilter}>
             {topics?.map(topic => (
               <div key={topic.id} className={style.checkBoxWrapper}>
-
-              <FilterCheckbox
-                key={topic.id}
-                id={topic.id}
-                handleChange={(bool: boolean) =>
-                  handleFilterChange(topic.id, bool)
-                }
-                checked={filter.includes(topic.id)}
-                label={toSingleLabel(topic.translations.get("nob")?.labels)}
+                <FilterCheckbox
+                  key={topic.id}
+                  id={topic.id}
+                  handleChange={(bool: boolean) =>
+                    handleFilterChange(topic.id, bool)
+                  }
+                  checked={filter.includes(topic.id)}
+                  label={toSingleLabel(topic.translations.get("nob")?.labels)}
                 />
-                </div>
+              </div>
             ))}
           </div>
         </div>
