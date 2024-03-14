@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { DBContext } from "common/context/DBContext";
-import { getData } from "common/utils/data.utils";
+import { BackendUrlContext } from "common/context/BackendUrlContext";
+import { NewDBContext } from "common/context/NewDBContext";
+import { getNewData } from "common/utils/data.utils";
 import { FC } from "react";
 import { Bildetema } from "../Bildetema/Bildetema";
 import "common/styles/SwiperOverride.scss";
@@ -11,16 +12,20 @@ type appProps = {
 };
 
 export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
-  const { isLoading: isLoadingData, data } = useQuery(["dataFromDB"], () =>
-    getData(backendUrl),
-  );
+  const { isLoading, data: newData } = useQuery(["newData"], async () => {
+    return getNewData(backendUrl);
+  });
+
+  const baseBackendurl = backendUrl.split("data/").at(0) || "";
 
   return (
-    <DBContext.Provider value={data}>
-      <Bildetema
-        defaultLanguages={defaultLanguages}
-        isLoadingData={isLoadingData}
-      />
-    </DBContext.Provider>
+    <BackendUrlContext.Provider value={baseBackendurl}>
+      <NewDBContext.Provider value={newData}>
+        <Bildetema
+          defaultLanguages={defaultLanguages}
+          isLoadingData={isLoading}
+        />
+      </NewDBContext.Provider>
+    </BackendUrlContext.Provider>
   );
 };

@@ -1,92 +1,43 @@
-import { useDBContext } from "common/hooks/useDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
-import { Topic, TopicIds, TopicWord, Word } from "common/types/types";
 import { forwardRef } from "react";
-import { useLocation } from "react-router-dom";
-import { extractWordLabel } from "common/utils/word.utils";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { toSingleLabel } from "common/utils/word.utils";
+import { getImageSrc } from "common/utils/image/image.utils";
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
+import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import styles from "./PrintWords.module.scss";
+import { useCurrentWords } from "../../hooks/useCurrentWords";
 
 type PrintWordsProps = {
-  topicIds: TopicIds;
   showWrittenWords: boolean;
   imagesPrRow: number;
-  isWordView: boolean;
   showArticles: boolean;
 };
 
 export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
-  (
-    {
-      topicIds: { topicId, subTopicId },
-      showWrittenWords,
-      imagesPrRow,
-      isWordView,
-      showArticles,
-    },
-    ref,
-  ) => {
-    const { topics } = useDBContext() || {};
-    const { pathname } = useLocation();
-    const currentLanguageCode =
-      pathname.split("/").length >= 2
-        ? (pathname.split("/")[1] as LanguageCode)
-        : ("nob" as LanguageCode);
+  ({ showWrittenWords, imagesPrRow, showArticles }, ref) => {
+    const { idToWords } = useNewDBContext();
+    const words = useCurrentWords();
+    const backendUrl = useBackendUrlContext();
 
-    const topicsToWords = (
-      inputTopics: Topic[] | undefined,
-    ): TopicWord[] | undefined => {
-      return inputTopics?.map(t => {
-        const topicWords =
-          t.labelTranslations.get(currentLanguageCode) ?? ({} as TopicWord);
-        return topicWords;
-      });
-    };
+    const currentLanguageCode = useCurrentLanguageCode();
 
     const getHeader = (): string => {
-      if (subTopicId && topicId) {
-        return (
-          topics
-            ?.find(topic => topic.id === topicId)
-            ?.subTopics.find(s => s.id === subTopicId)
-            ?.labelTranslations.get(currentLanguageCode)?.label ?? ""
+      const subTopic = idToWords?.get(words.at(0)?.subTopicId || "");
+      if (subTopic) {
+        return toSingleLabel(
+          subTopic.translations.get(currentLanguageCode)?.labels || [],
         );
       }
-      if (topicId) {
-        return (
-          topics
-            ?.find(topic => topic.id === topicId)
-            ?.labelTranslations.get(currentLanguageCode)?.label ?? ""
+      const topic = idToWords?.get(words.at(0)?.topicId || "");
+      if (topic) {
+        return toSingleLabel(
+          topic.translations.get(currentLanguageCode)?.labels || [],
         );
       }
       return "";
     };
 
     const renderTable = (): JSX.Element[] => {
-      const findWords = (): Word[] | TopicWord[] | undefined => {
-        if (isWordView) {
-          return subTopicId
-            ? topics
-                ?.find(t => t.id === topicId)
-                ?.subTopics?.find(s => s.id === subTopicId)
-                ?.words?.get(currentLanguageCode)
-            : topics
-                ?.find(t => t.id === topicId)
-                ?.words?.get(currentLanguageCode);
-        }
-
-        if (!topicId) {
-          return topicsToWords(topics);
-        }
-
-        const subTopics = topics?.find(t => t.id === topicId)?.subTopics;
-        if (subTopics) {
-          return topicsToWords(subTopics);
-        }
-
-        return undefined;
-      };
-      const words = findWords();
-
       const wordsCopy = [...(words ?? [])];
       const chunksOfWords = [];
 
@@ -98,16 +49,22 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
       return chunksOfWords.map((chunk, index) => (
         <tr key={chunk.at(0)?.id} className={styles.tableRow}>
           {chunk.map(word => {
-            const wordLabel = extractWordLabel(word, showArticles);
+            const wordLabel = toSingleLabel(
+              word.translations.get(currentLanguageCode)?.labels || [],
+              showArticles,
+            );
 
-            // TODO: Change method to find correct image from Swiper
-            const activeImage = word.images?.find(image => {
-              return document.querySelector(
-                `div.swiper-slide-active img[src="${image?.src}"]`,
-              );
-            });
+            const activeImage =
+              word.images?.find(image => {
+                const imgSrc = getImageSrc(image, backendUrl);
+                return document.querySelector(
+                  `div.swiper-slide-active img[src="${imgSrc}"]`,
+                );
+              }) ||
+              word.images?.at(0) ||
+              "";
 
-            const img = activeImage?.src ?? word.images?.at(0)?.src;
+            const img = getImageSrc(activeImage, backendUrl);
             return (
               <td key={word.id}>
                 <div className={styles.imgWrapper}>

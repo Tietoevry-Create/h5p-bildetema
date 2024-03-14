@@ -3,11 +3,11 @@ import {
   languages as languagesConst,
   languagesOriginal,
 } from "common/constants/languages";
-import { useDBContext } from "common/hooks/useDBContext";
-import { Language, TopicIds } from "common/types/types";
+import { CurrentTopics, Language } from "common/types/types";
 import { LanguageCodeString } from "common/types/LanguageCode";
-import { getLanguagePath } from "common/utils/router.utils";
+import { getPath } from "common/utils/router.utils";
 import { FC } from "react";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { useL10ns, useL10n } from "../../hooks/useL10n";
 import { translatedLabel } from "../../utils/language.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
@@ -18,7 +18,7 @@ export type LanguageSelectorProps = {
   favLanguages: Language[];
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   search: string;
-  topicIds: TopicIds;
+  currentTopics: CurrentTopics;
 };
 
 export const LanguageSelector: FC<LanguageSelectorProps> = ({
@@ -26,9 +26,9 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   currentLanguageCode,
   handleToggleFavoriteLanguage,
   search,
-  topicIds,
+  currentTopics,
 }) => {
-  const { topics: topicsFromDB, languages } = useDBContext() || {};
+  const { languages } = useNewDBContext();
 
   const getAmountOfRows = (columns: number): number => {
     return Math.max(1, Math.ceil(languages ? languages.length / columns : 0));
@@ -54,7 +54,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
           )
           ?.map((language, index) => (
             <LanguageSelectorElement
-              path={getLanguagePath(language, topicIds, search, topicsFromDB)}
+              path={getPath({ language, search, currentTopics })}
               key={language.code}
               language={language}
               bottomElementAt2Col={

@@ -1,27 +1,35 @@
 import { LanguageCode } from "common/types/LanguageCode";
-import { ImageUrl, Topic, TopicGridSizes } from "common/types/types";
+import { NewWord, TopicGridSizes } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
+import { getImageSrc } from "common/utils/image/image.utils";
+import { getAudioFiles } from "common/utils/audio/audio.utils";
+import { toSingleLabel } from "common/utils/word.utils";
 import styles from "./TopicGridElement.module.scss";
+import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
 
 export type TopicGridElementProps = {
-  topic: Topic;
-  title: string;
-  images: ImageUrl[];
   topicSize: TopicGridSizes;
   languageCode: LanguageCode;
+  topic: NewWord;
 };
 
 export const TopicGridElement: FC<TopicGridElementProps> = ({
   topic,
-  title,
-  images,
   topicSize,
   languageCode,
 }) => {
-  const audioFiles = topic.labelTranslations.get(languageCode)?.audioFiles;
+  const backendUrl = useBackendUrlContext();
+
+  const { audioFiles, imageSrc, title } = useMemo(() => {
+    const a = getAudioFiles(topic.id, backendUrl, languageCode);
+    const i = getImageSrc(topic.images.at(0) || "", backendUrl);
+    const t = toSingleLabel(topic.translations.get(languageCode)?.labels || []);
+    return { audioFiles: a, imageSrc: i, title: t };
+  }, [topic.id, topic.images, topic.translations, backendUrl, languageCode]);
+
   const topicCardClassName =
     topicSize === TopicGridSizes.Big
       ? styles.topicCardBig
@@ -31,10 +39,7 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
       ? styles.gridElementBig
       : styles.gridElementCompact;
   const linkTo = labelToUrlComponent(title);
-  // TODO: remove hardcoded src url after getting access to the images
-  const imageSrc =
-    images.at(0)?.src ??
-    "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb";
+
   const { search } = useLocation();
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles

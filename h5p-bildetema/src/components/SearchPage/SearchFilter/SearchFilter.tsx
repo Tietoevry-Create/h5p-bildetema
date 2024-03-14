@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { useDBContext } from "common/hooks/useDBContext";
+import React, { useMemo, useState } from "react";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { getMainTopics } from "common/utils/data.utils";
+import { toSingleLabel } from "common/utils/word.utils";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import style from "./SearchFilter.module.scss";
 import { LanguageMenuArrowIcon } from "../../Icons/Icons";
@@ -14,7 +16,15 @@ const SearchFilter = ({
   filter,
 }: SearchFilterProps): JSX.Element => {
   const [open, setOpen] = useState(true);
-  const { topics } = useDBContext() || {};
+  const { idToContent, idToWords } = useNewDBContext();
+  const topics = useMemo(() => {
+    return getMainTopics(idToWords, idToContent).toSorted((a, b) => {
+      // TODO NOT HARDCODE "NOB"
+      const labelA = toSingleLabel(a.translations.get("nob")?.labels);
+      const labelB = toSingleLabel(b.translations.get("nob")?.labels);
+      return labelA.localeCompare(labelB);
+    });
+  }, [idToContent, idToWords]);
 
   return (
     <div className={style.wrapper}>
@@ -35,15 +45,17 @@ const SearchFilter = ({
         <div className={style.searchFilterBorderTop}>
           <div className={style.searchFilter}>
             {topics?.map(topic => (
-              <FilterCheckbox
-                key={topic.id}
-                id={topic.id}
-                handleChange={(bool: boolean) =>
-                  handleFilterChange(topic.id, bool)
-                }
-                checked={filter.includes(topic.id)}
-                label={topic.labelTranslations.get("nob")?.label || ""}
-              />
+              <div key={topic.id} className={style.checkBoxWrapper}>
+                <FilterCheckbox
+                  key={topic.id}
+                  id={topic.id}
+                  handleChange={(bool: boolean) =>
+                    handleFilterChange(topic.id, bool)
+                  }
+                  checked={filter.includes(topic.id)}
+                  label={toSingleLabel(topic.translations.get("nob")?.labels)}
+                />
+              </div>
             ))}
           </div>
         </div>

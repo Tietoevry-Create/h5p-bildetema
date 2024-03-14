@@ -13,13 +13,35 @@
 
 .searchFilter {
   padding: 1rem 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  justify-items: start;
-  align-items: center;
+  display: block;
+  column-count: 1;
   gap: 1rem;
   font-size: $font-size-20;
   line-height: 1;
+
+  @include breakpoint-min($x-small) {
+    column-count: 1;
+  }
+
+  @include breakpoint-min($small) {
+    column-count: 2;
+  }
+  @include breakpoint-min($medium) {
+    column-count: 3;
+  }
+  @include breakpoint-min($large) {
+    column-count: 4;
+  }
+  @include breakpoint-min($x-large) {
+    column-count: 5;
+  }
+}
+
+.checkBoxWrapper {
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  padding: 0.5rem 0;
 }
 
 .headerBorder {

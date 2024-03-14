@@ -1,10 +1,13 @@
-import { Translation } from "common/types/types";
+import { LanguageCode } from "common/types/LanguageCode";
+import { NewTranslation } from "common/types/types";
+import { toSingleLabel } from "common/utils/word.utils";
 
 export function getLabelFromTranslationRecord(
-  tr: Record<string, Translation> | undefined,
+  langCode: LanguageCode,
+  tr: Map<LanguageCode, NewTranslation> | undefined,
 ): string {
-  if (tr && tr.F001.label.length > 0) {
-    return tr.F001.label;
-  }
-  return "";
+  if (!tr) return "";
+  const labels = tr.get(langCode)?.labels;
+  if (!labels || labels.length === 0) return "";
+  return toSingleLabel(labels);
 }

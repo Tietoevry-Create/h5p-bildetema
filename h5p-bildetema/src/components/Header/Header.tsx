@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages } from "common/constants/languages";
-import { useDBContext } from "common/hooks/useDBContext";
 import { LanguageCodeString } from "common/types/LanguageCode";
-import { Language, TopicIds } from "common/types/types";
-import { getLanguagePath } from "common/utils/router.utils";
+import { CurrentTopics, Language } from "common/types/types";
+import { getPath } from "common/utils/router.utils";
 import {
   Dispatch,
   FC,
@@ -13,6 +12,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { Link, useLocation } from "react-router-dom";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
@@ -23,29 +23,28 @@ import HeaderLink from "../HeaderLink/HeaderLink";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 
 export type HeaderProps = {
-  topicIds: TopicIds;
   favLanguages: Language[];
   firstTime: boolean;
   setFirstTime: Dispatch<SetStateAction<boolean>>;
   handleToggleFavoriteLanguage: (language: Language, favorite: boolean) => void;
   hideLanguageSelectors: boolean;
+  currentTopics: CurrentTopics;
 };
 
 export const Header: FC<HeaderProps> = ({
   favLanguages,
-  topicIds,
   firstTime,
   setFirstTime,
   handleToggleFavoriteLanguage,
   hideLanguageSelectors,
+  currentTopics,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
+  const { languages: languagesFromDB } = useNewDBContext();
 
-  const { topics: topicsFromDB, languages: languagesFromDB } =
-    useDBContext() || {};
   const { selectLanguage, headerTitle, headerSubtitle, ...langs } = useL10ns(
     "selectLanguage",
     "headerTitle",
@@ -150,12 +149,7 @@ export const Header: FC<HeaderProps> = ({
                       }
                     >
                       <Link
-                        to={getLanguagePath(
-                          language,
-                          topicIds,
-                          search,
-                          topicsFromDB,
-                        )}
+                        to={getPath({ language, search, currentTopics })}
                         className={`${styles.languageButton} ${
                           currentLanguageCode === language.code
                             ? styles.languageButton_active
@@ -174,11 +168,11 @@ export const Header: FC<HeaderProps> = ({
             langSelectorIsShown={langSelectorIsShown}
             selectLanguageLabel={selectLanguage}
             favLanguages={favLanguages}
-            topicIds={topicIds}
             search={search}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
             currentLanguageCode={currentLanguageCode}
             firstTime={firstTime}
+            currentTopics={currentTopics}
           />
 
           <HeaderLink href={`/sok?lang=${currentLanguageCode}`} />

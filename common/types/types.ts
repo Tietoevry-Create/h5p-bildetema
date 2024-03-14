@@ -34,7 +34,7 @@ export type SearchResult = {
   images: ImageUrl[];
   topicId: string;
   subTopicId?: string;
-  translations: searchResultTranslations[];
+  translations: SearchResultTranslations[];
   order?: number;
 };
 
@@ -111,10 +111,48 @@ export type Translation = {
   audioFiles?: Array<AudioFile>;
 };
 
-export type searchResultTranslations = {
+export type SearchResultTranslations = {
   lang: Language;
   labels: Labels;
   audioFiles?: Array<AudioFile>;
 };
 
 export type Translations = Record<LanguageCode, Record<string, Translation>>;
+
+export type NewTranslation = {
+  languageCode: LanguageCode;
+  labels: {
+    label: string;
+    article?: string;
+  }[];
+};
+
+export type NewWord = {
+  id: string;
+  images: string[];
+  translations: Map<LanguageCode, NewTranslation>;
+  topicId: string;
+  order?: number;
+  subTopicId?: string;
+};
+
+export type WordId = string;
+export type TopicId = string;
+export type UrlPath = string;
+
+export type NewData = {
+  langCodeTolanguages: Map<LanguageCode, Language>;
+  languages: Language[];
+  idToWords: Map<WordId, NewWord>;
+  idToContent: Map<TopicId, WordId[]>;
+  translations: Map<WordId, Map<LanguageCode, NewTranslation>>;
+  topicPaths: Map<UrlPath, TopicId>;
+};
+
+// TODO: Remove all old / unused types
+// TODO: Change "new types" to the old name after the old types are removed
+
+export type CurrentTopics = {
+  topic?: NewWord;
+  subTopic?: NewWord;
+};

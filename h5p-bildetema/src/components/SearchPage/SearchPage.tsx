@@ -1,8 +1,9 @@
-import { useDBContext } from "common/hooks/useDBContext";
 import React, { useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { isLanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -30,7 +31,7 @@ const SearchParamKeys = {
 };
 
 const SearchPage = (): JSX.Element => {
-  const { topics: topicsFromDB = [], languages = [] } = useDBContext() || {};
+  const { langCodeTolanguages, languages } = useNewDBContext();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -39,7 +40,7 @@ const SearchPage = (): JSX.Element => {
   const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
-    languages?.find(l => l.code === langCode) ||
+    langCodeTolanguages.get(langCode) ||
       // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
   );
@@ -47,13 +48,15 @@ const SearchPage = (): JSX.Element => {
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
   const [viewLanguage, setViewLanguage] = React.useState<Language>(() => {
     if (viewLangCode) {
-      return languages?.find(l => l.code === viewLangCode) || searchLanguage;
+      if (isLanguageCode(viewLangCode))
+        return langCodeTolanguages.get(viewLangCode) || searchLanguage;
     }
     // TODO should change based on page language (no / se / de ....)
     if (searchLanguage.code !== "nob") {
-      return languages?.find(l => l.code === "nob") || searchLanguage;
+      return langCodeTolanguages.get("nob") || searchLanguage;
     }
-    return languages?.find(l => l.code === "eng") || searchLanguage;
+    return langCodeTolanguages.get("eng") || searchLanguage;
+    // return languages?.find(l => l.code === "eng") || searchLanguage;
   });
 
   const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
@@ -64,7 +67,6 @@ const SearchPage = (): JSX.Element => {
     filter,
     search: currSearch,
     searchLanguage,
-    topics: topicsFromDB,
     order: searchOrderOptions[0],
     viewLanguage: [viewLanguage],
   });
@@ -74,12 +76,20 @@ const SearchPage = (): JSX.Element => {
   const handleOrderChange = (option: SearchOrderOption): void => {
     dispatch({
       type: ActionType.SORT,
-      payload: { searchOrderOption: option, search: currSearch },
+      payload: {
+        searchOrderOption: option,
+        search: currSearch,
+        langCode,
+        languages: [searchLanguage, viewLanguage],
+      },
     });
   };
 
   const loadMore = (): void => {
-    dispatch({ type: ActionType.LOAD_MORE });
+    dispatch({
+      type: ActionType.LOAD_MORE,
+      payload: { languages: [searchLanguage, viewLanguage] },
+    });
   };
 
   const debouncedSearch = useDebouncedCallback((search: string) => {
@@ -87,7 +97,6 @@ const SearchPage = (): JSX.Element => {
       type: ActionType.SEARCH,
       payload: {
         search,
-        topics: topicsFromDB,
         searchLanguage,
         filter,
         viewLanguage: [viewLanguage],
@@ -101,6 +110,17 @@ const SearchPage = (): JSX.Element => {
       debouncedSearch.cancel();
       setSearchParams(searchParams);
       dispatch({ type: ActionType.RESET });
+
+      if (filter.length > 0) {
+        dispatch({
+          type: ActionType.FILTER,
+          payload: {
+            search: "",
+            filter,
+            languages: [searchLanguage, viewLanguage],
+          },
+        });
+      }
       return;
     }
     searchParams.set(SearchParamKeys.SEARCH, search);
@@ -134,12 +154,26 @@ const SearchPage = (): JSX.Element => {
     if (newFilter.length === 0) {
       searchParams.delete("filter");
       setSearchParams(searchParams);
-      dispatch({ type: ActionType.FILTER, payload: newFilter });
+      dispatch({
+        type: ActionType.FILTER,
+        payload: {
+          search: currSearch,
+          filter: newFilter,
+          languages: [searchLanguage, viewLanguage],
+        },
+      });
       return;
     }
     searchParams.set("filter", newFilter.join(","));
     setSearchParams(searchParams);
-    dispatch({ type: ActionType.FILTER, payload: newFilter });
+    dispatch({
+      type: ActionType.FILTER,
+      payload: {
+        search: currSearch,
+        filter: newFilter,
+        languages: [searchLanguage, viewLanguage],
+      },
+    });
   };
 
   return (

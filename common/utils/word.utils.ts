@@ -1,22 +1,26 @@
+import { LanguageCode } from "../types/LanguageCode";
 import {
   Labels,
   SearchResult,
   Topic,
   TopicWord,
   Word,
-  searchResultTranslations,
   Language,
+  NewWord,
+  SearchResultTranslations,
 } from "../types/types";
 
 export const toSingleLabel = (
-  labels: Labels,
+  labels?: Labels,
   includeArticle = false,
 ): string => {
-  return labels
-    .map(el =>
-      el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
-    )
-    .join(" / ");
+  return (
+    labels
+      ?.map(el =>
+        el.article && includeArticle ? `${el.article} ${el.label}` : el.label,
+      )
+      .join(" / ") || ""
+  );
 };
 
 export const extractWordLabel = (
@@ -45,15 +49,26 @@ export const wordsIncludesArticles = (words: Word[]): boolean => {
   });
 };
 
+export const newWordsIncludesArticles = (
+  words: NewWord[],
+  langCode: LanguageCode,
+): boolean => {
+  return words.some(word => {
+    const isTopicWord = word.id.includes("T");
+    if (isTopicWord) return false;
+    return word.translations.get(langCode)?.labels.some(el => el.article);
+  });
+};
+
 const findTranslationsForWord = (
   word: Word,
   topic: Topic,
   languagesToFind: Language[],
-): searchResultTranslations[] => {
+): SearchResultTranslations[] => {
   if (languagesToFind.length === 0) {
     return [];
   }
-  const results: searchResultTranslations[] = [];
+  const results: SearchResultTranslations[] = [];
   languagesToFind.forEach(lang => {
     const translation = topic.words.get(lang.code)?.find(w => w.id === word.id);
     if (translation) {
@@ -143,4 +158,30 @@ export const searchForWord = (
   return (
     resWordsWithoutDuplicates.map((w, index) => ({ ...w, order: index })) ?? []
   );
+};
+
+export const searchForNewWord = (
+  s: string,
+  langCode: LanguageCode,
+  newWords: NewWord[],
+): NewWord[] => {
+  const lowerCaseSearch = s.toLowerCase();
+  const filteredNewWords = newWords.filter(word => {
+    return word.translations.get(langCode)?.labels.some(label => {
+      const reporductiveOrgansSubtopic = "T066";
+      const lowerCaseLabel = label.label.toLowerCase();
+      if (word.subTopicId === reporductiveOrgansSubtopic)
+        return lowerCaseLabel === lowerCaseSearch;
+      return lowerCaseLabel.includes(lowerCaseSearch);
+    });
+  });
+
+  const withoutDuplicates = [
+    ...new Map(filteredNewWords?.map(w => [w.id, w])).values(),
+  ];
+
+  const withOriginalOrder =
+    withoutDuplicates.map((w, index) => ({ ...w, order: index })) ?? [];
+
+  return withOriginalOrder;
 };
