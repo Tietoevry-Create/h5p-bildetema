@@ -168,18 +168,20 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
   switch (type) {
     case ActionType.SEARCH: {
       const { payload } = action;
-      const res = searchForNewWord(
+      let res = searchForNewWord(
         payload.search,
         payload.searchLanguage.code,
         state.newWords,
       );
-      const sortedRes = sortResults(
-        state.order.option,
-        payload.search,
-        res,
-        payload.searchLanguage.code,
-      );
-      const filtered = filterSearchResults(sortedRes, payload.filter);
+      if(payload.search !== ""){
+        res = sortResults(
+          state.order.option,
+          payload.search,
+          res,
+          payload.searchLanguage.code,
+        );
+      }
+      const filtered = filterSearchResults(res, payload.filter);
       const visibleSearchResults = newWordsToSearchResult(
         filtered.slice(0, resultAmount),
         [payload.searchLanguage, ...payload.viewLanguage],
@@ -187,7 +189,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       );
       return {
         ...state,
-        searchResults: sortedRes,
+        searchResults: res,
         filteredSearchResults: filtered,
         visibleSearchResults,
       };
@@ -312,11 +314,8 @@ export const useSearchResults = ({
   };
 
   const initialState = ((): SearchState => {
-    if (search === "") {
-      return defaultState;
-    }
 
-    const res = searchForNewWord(
+    let res = searchForNewWord(
       search,
       searchLanguage.code,
       defaultState.newWords,
@@ -325,13 +324,16 @@ export const useSearchResults = ({
       return defaultState;
     }
 
-    const sortedRes = sortResults(
-      order.option,
-      search,
-      res,
-      searchLanguage.code,
-    );
-    const filteredRes = filterSearchResults(sortedRes, filter);
+    if(search !== "") {
+      res = sortResults(
+          order.option,
+          search,
+          res,
+          searchLanguage.code,
+        );
+    }
+
+    const filteredRes = filterSearchResults(res, filter);
 
     const visibleSearchResults = newWordsToSearchResult(
       filteredRes.slice(0, resultAmount),
@@ -341,7 +343,7 @@ export const useSearchResults = ({
 
     return {
       ...defaultState,
-      searchResults: sortedRes,
+      searchResults: res,
       filteredSearchResults: filteredRes,
       visibleSearchResults,
     };
