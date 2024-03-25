@@ -7,20 +7,19 @@ export type SearchInputProps = {
   search: string;
 };
 
-
 const SearchInput = ({
   handleSearch,
   search,
 }: SearchInputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {  
-    ref.current?.focus()
-  }, [])
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
 
   const handleEnter = (): void => {
     ref.current?.blur();
-  }
+  };
 
   return (
     <div className={`${styles.searchInputWrapper}`}>

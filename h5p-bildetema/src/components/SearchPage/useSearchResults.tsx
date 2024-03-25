@@ -173,7 +173,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         payload.searchLanguage.code,
         state.newWords,
       );
-      if(payload.search !== ""){
+      if (payload.search !== "") {
         res = sortResults(
           state.order.option,
           payload.search,
@@ -314,7 +314,6 @@ export const useSearchResults = ({
   };
 
   const initialState = ((): SearchState => {
-
     let res = searchForNewWord(
       search,
       searchLanguage.code,
@@ -324,13 +323,8 @@ export const useSearchResults = ({
       return defaultState;
     }
 
-    if(search !== "") {
-      res = sortResults(
-          order.option,
-          search,
-          res,
-          searchLanguage.code,
-        );
+    if (search !== "") {
+      res = sortResults(order.option, search, res, searchLanguage.code);
     }
 
     const filteredRes = filterSearchResults(res, filter);

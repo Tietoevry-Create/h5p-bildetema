@@ -22,10 +22,10 @@ const SearchResultView = ({
   search,
   loadMore,
   searchResultAmount,
-  // handleOrderChange,
-  // sortOptions,
-  // resultSortType,
-}: SearchResultViewProps): JSX.Element => {
+} // handleOrderChange,
+// sortOptions,
+// resultSortType,
+: SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );

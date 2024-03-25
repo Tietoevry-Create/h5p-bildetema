@@ -170,7 +170,10 @@ export const searchForNewWord = (
     return word.translations.get(langCode)?.labels.some(label => {
       const reporductiveOrgansSubtopic = "T066";
       const lowerCaseLabel = label.label.toLowerCase();
-      if (word.subTopicId === reporductiveOrgansSubtopic || word.id === reporductiveOrgansSubtopic)
+      if (
+        word.subTopicId === reporductiveOrgansSubtopic ||
+        word.id === reporductiveOrgansSubtopic
+      )
         return lowerCaseLabel === lowerCaseSearch;
       return lowerCaseLabel.includes(lowerCaseSearch);
     });

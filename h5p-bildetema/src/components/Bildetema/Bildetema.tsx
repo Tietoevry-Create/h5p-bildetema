@@ -110,7 +110,7 @@ export const Bildetema: FC<BildetemaProps> = ({
 
   // Set lang as favorite if it is not already
   useEffect(() => {
-    if(pathname.includes(STATIC_PATHS.SEARCH)) return;
+    if (pathname.includes(STATIC_PATHS.SEARCH)) return;
 
     const languageIsAlreadyFavorited = favLanguages.find(
       el => currentLanguageCode === el.code,
@@ -122,7 +122,13 @@ export const Bildetema: FC<BildetemaProps> = ({
     if (!languageIsAlreadyFavorited && language) {
       handleToggleFavoriteLanguage(language, true);
     }
-  }, [currentLanguageCode, favLanguages, handleToggleFavoriteLanguage, languagesFromDB, pathname]);
+  }, [
+    currentLanguageCode,
+    favLanguages,
+    handleToggleFavoriteLanguage,
+    languagesFromDB,
+    pathname,
+  ]);
 
   useEffect(() => {
     userData.favoriteLanguages = sanitizeLanguages(
