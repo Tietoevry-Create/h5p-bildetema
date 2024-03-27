@@ -99,7 +99,7 @@ const SearchPage = (): JSX.Element => {
         search: search.trim(),
         searchLanguage,
         filter,
-        
+
         viewLanguage: [viewLanguage],
       },
     });

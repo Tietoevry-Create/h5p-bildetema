@@ -28,7 +28,7 @@ const CustomViewPage = (): JSX.Element => {
   const myViews = [
     {
       title: "Sofa",
-      words: ["T001","T002","T003","V0627","V0200","V0201","V0200"],
+      words: ["T001", "T002", "T003", "V0627", "V0200", "V0201", "V0200"],
     },
   ];
 
@@ -48,7 +48,7 @@ const CustomViewPage = (): JSX.Element => {
         </>
       );
     }
-    return <MyCustomView/>;
+    return <MyCustomView />;
   };
 
   return (
