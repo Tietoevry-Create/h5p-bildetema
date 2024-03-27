@@ -1,0 +1,47 @@
+@use "common/abstracts" as *;
+
+// .words {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//   gap: 10px;
+//   padding-inline-start: 0; // Remove default padding
+// }
+
+// @use "../../../../common/abstracts" as *;
+
+$gap: $spacing--24;
+
+.words {
+  align-items: flex-start;
+  direction: ltr;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $gap;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  [class*="rtl"] & {
+    justify-content: flex-end;
+  }
+
+  & > li {
+    box-sizing: border-box;
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+
+    @include breakpoint-min(700px) {
+      width: calc((100% - #{$gap}) / 2);
+    }
+
+    @include breakpoint-min(1040px) {
+      width: calc((100% - (#{$gap} * 2)) / 3);
+    }
+
+    @include breakpoint-min(1390px) {
+      width: calc((100% - (#{$gap} * 3)) / 4);
+    }
+  }
+}
