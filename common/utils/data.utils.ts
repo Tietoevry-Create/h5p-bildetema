@@ -15,6 +15,8 @@ import {
   NewData,
   WordId,
   TopicId,
+  SearchResultTranslations,
+  SearchResult,
 } from "../types/types";
 
 const languages: Language[] = [];
@@ -145,5 +147,42 @@ export const newWordsToWords = (
 export const newWordsIsTopics = (newWords: NewWord[]): boolean => {
   return newWords.some(word => {
     return word.id.charAt(0) === "T";
+  });
+};
+
+const getTranslations = (
+  word: NewWord,
+  langs: Language[],
+  backendUrl: string,
+): SearchResultTranslations[] => {
+  return langs.map(lang => {
+    const labels = word.translations.get(lang.code)?.labels || [];
+    const audioFiles = getAudioFiles(word.id, backendUrl, lang.code);
+    const searchResultTranslations: SearchResultTranslations = {
+      lang,
+      labels,
+      audioFiles,
+    };
+    return searchResultTranslations;
+  });
+};
+
+export const newWordsToSearchResult = (
+  newWords: NewWord[],
+  langs: Language[],
+  backendUrl: string,
+): SearchResult[] => {
+  return newWords.map(word => {
+    const images = word.images.map(i => getImageUrl(i, backendUrl));
+    const t = getTranslations(word, langs, backendUrl);
+
+    const result: SearchResult = {
+      id: word.id,
+      images,
+      translations: t,
+      topicId: word.topicId,
+      subTopicId: word.subTopicId,
+    };
+    return result;
   });
 };

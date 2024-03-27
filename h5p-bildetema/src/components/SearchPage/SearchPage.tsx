@@ -56,7 +56,6 @@ const SearchPage = (): JSX.Element => {
       return langCodeTolanguages.get("nob") || searchLanguage;
     }
     return langCodeTolanguages.get("eng") || searchLanguage;
-    // return languages?.find(l => l.code === "eng") || searchLanguage;
   });
 
   const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
@@ -65,7 +64,7 @@ const SearchPage = (): JSX.Element => {
 
   const { state, dispatch } = useSearchResults({
     filter,
-    search: currSearch,
+    search: currSearch.trim(),
     searchLanguage,
     order: searchOrderOptions[0],
     viewLanguage: [viewLanguage],
@@ -73,17 +72,18 @@ const SearchPage = (): JSX.Element => {
 
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
-  const handleOrderChange = (option: SearchOrderOption): void => {
-    dispatch({
-      type: ActionType.SORT,
-      payload: {
-        searchOrderOption: option,
-        search: currSearch,
-        langCode,
-        languages: [searchLanguage, viewLanguage],
-      },
-    });
-  };
+  // TODO: Remove if not needed
+  // const handleOrderChange = (option: SearchOrderOption): void => {
+  //   dispatch({
+  //     type: ActionType.SORT,
+  //     payload: {
+  //       searchOrderOption: option,
+  //       search: currSearch,
+  //       langCode,
+  //       languages: [searchLanguage, viewLanguage],
+  //     },
+  //   });
+  // };
 
   const loadMore = (): void => {
     dispatch({
@@ -96,37 +96,18 @@ const SearchPage = (): JSX.Element => {
     dispatch({
       type: ActionType.SEARCH,
       payload: {
-        search,
+        search: search.trim(),
         searchLanguage,
         filter,
+
         viewLanguage: [viewLanguage],
       },
     });
   }, 400);
 
   const handleSearch = (search: string): void => {
-    if (search === "") {
-      searchParams.delete(SearchParamKeys.SEARCH);
-      debouncedSearch.cancel();
-      setSearchParams(searchParams);
-      dispatch({ type: ActionType.RESET });
-
-      if (filter.length > 0) {
-        dispatch({
-          type: ActionType.FILTER,
-          payload: {
-            search: "",
-            filter,
-            languages: [searchLanguage, viewLanguage],
-          },
-        });
-      }
-      return;
-    }
     searchParams.set(SearchParamKeys.SEARCH, search);
     setSearchParams(searchParams);
-    if (search.length < 2) return;
-
     debouncedSearch(search);
   };
 
@@ -157,7 +138,7 @@ const SearchPage = (): JSX.Element => {
       dispatch({
         type: ActionType.FILTER,
         payload: {
-          search: currSearch,
+          search: currSearch.trim(),
           filter: newFilter,
           languages: [searchLanguage, viewLanguage],
         },
@@ -169,7 +150,7 @@ const SearchPage = (): JSX.Element => {
     dispatch({
       type: ActionType.FILTER,
       payload: {
-        search: currSearch,
+        search: currSearch.trim(),
         filter: newFilter,
         languages: [searchLanguage, viewLanguage],
       },
@@ -202,9 +183,11 @@ const SearchPage = (): JSX.Element => {
             search={currSearch}
             loadMore={loadMore}
             searchResultAmount={state.filteredSearchResults.length}
-            sortOptions={searchOrderOptions}
-            handleOrderChange={handleOrderChange}
-            resultSortType={state.order}
+
+            // TODO: Remove if not needed
+            // sortOptions={searchOrderOptions}
+            // handleOrderChange={handleOrderChange}
+            // resultSortType={state.order}
           />
         </div>
       </div>

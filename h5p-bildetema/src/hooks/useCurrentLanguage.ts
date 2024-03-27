@@ -29,9 +29,12 @@ export const useCurrentLanguageAttribute = (): string => {
   return attributeLanguages[currentLanguageCode];
 };
 
-export const useCurrentLanguage = (): Language | undefined => {
+export const useCurrentLanguage = (): Language => {
   const { langCodeTolanguages } = useNewDBContext();
   const langCode = useCurrentLanguageCode();
   const language = langCodeTolanguages.get(langCode);
+  if (!language) {
+    return { code: langCode, label: "Bokmål", rtl: false } as Language;
+  }
   return language;
 };

@@ -110,6 +110,8 @@ export const Bildetema: FC<BildetemaProps> = ({
 
   // Set lang as favorite if it is not already
   useEffect(() => {
+    if (pathname.includes(STATIC_PATHS.SEARCH)) return;
+
     const languageIsAlreadyFavorited = favLanguages.find(
       el => currentLanguageCode === el.code,
     );
@@ -125,6 +127,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     favLanguages,
     handleToggleFavoriteLanguage,
     languagesFromDB,
+    pathname,
   ]);
 
   useEffect(() => {
@@ -162,6 +165,7 @@ export const Bildetema: FC<BildetemaProps> = ({
           />
         ))}
         <Route path="/sok" element={<SearchPage />} />
+        <Route path="/customview/:view" element={<CustomViewPage />} />
         <Route path="/customview" element={<CustomViewPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
