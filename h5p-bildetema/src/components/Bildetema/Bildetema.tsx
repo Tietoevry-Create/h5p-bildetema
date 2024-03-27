@@ -166,6 +166,7 @@ export const Bildetema: FC<BildetemaProps> = ({
           />
         ))}
         <Route path="/sok" element={<SearchPage />} />
+        <Route path="/customview/:view" element={<CustomViewPage />} />
         <Route path="/customview" element={<CustomViewPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>

@@ -137,6 +137,7 @@ export const Header: FC<HeaderProps> = ({
           />
 
           <HeaderLink href={`/sok?lang=${currentLanguageCode}`} />
+          <HeaderLink href={`/customview?lang=${currentLanguageCode}`} />
         </div>
       </div>
     </div>
