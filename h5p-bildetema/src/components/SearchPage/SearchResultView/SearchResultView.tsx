@@ -21,9 +21,8 @@ const SearchResultView = ({
   searchResults,
   search,
   loadMore,
-  searchResultAmount,
-} // handleOrderChange,
-// sortOptions,
+  searchResultAmount, // handleOrderChange,
+} // sortOptions,
 // resultSortType,
 : SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
