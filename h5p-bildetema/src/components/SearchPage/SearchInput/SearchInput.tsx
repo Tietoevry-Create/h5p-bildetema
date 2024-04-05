@@ -5,11 +5,13 @@ import styles from "./SearchInput.module.scss";
 export type SearchInputProps = {
   handleSearch: (value: string) => void;
   search: string;
+  placeholder?: string;
 };
 
 const SearchInput = ({
   handleSearch,
   search,
+  placeholder
 }: SearchInputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
 
@@ -28,7 +30,7 @@ const SearchInput = ({
         // TODO needs a label
         id={styles.searchInput}
         // TODO fix static Søk value
-        placeholder="Søk"
+        placeholder={placeholder ?? "Søk"}
         value={search}
         autoComplete="off"
         onChange={e => handleSearch(e.target.value)}

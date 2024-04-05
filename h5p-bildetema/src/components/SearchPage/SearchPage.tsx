@@ -156,6 +156,9 @@ const SearchPage = (): JSX.Element => {
     });
   };
 
+  // TODO: translate
+  const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`
+
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
@@ -171,6 +174,7 @@ const SearchPage = (): JSX.Element => {
               viewLanguage={viewLanguage}
               handleSearchLanguageChange={handleSearchLanguageChange}
               handleViewLanguageChange={handleViewLanguageChange}
+              searchInputPlaceholder={searchInputPlaceholder}
             />
           </div>
         </div>

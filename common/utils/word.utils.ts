@@ -166,18 +166,23 @@ export const searchForNewWord = (
   newWords: NewWord[],
 ): NewWord[] => {
   const lowerCaseSearch = s.toLowerCase();
-  const filteredNewWords = newWords.filter(word => {
-    return word.translations.get(langCode)?.labels.some(label => {
-      const reporductiveOrgansSubtopic = "T066";
-      const lowerCaseLabel = label.label.toLowerCase();
-      if (
-        word.subTopicId === reporductiveOrgansSubtopic ||
-        word.id === reporductiveOrgansSubtopic
-      )
-        return lowerCaseLabel === lowerCaseSearch;
-      return lowerCaseLabel.includes(lowerCaseSearch);
+  let filteredNewWords: NewWord[] = newWords;
+
+  // if the search is empty, return all words
+  if(lowerCaseSearch !== ""){
+    filteredNewWords = newWords.filter(word => {
+      return word.translations.get(langCode)?.labels.some(label => {
+        const reporductiveOrgansSubtopic = "T066";
+        const lowerCaseLabel = label.label.toLowerCase();
+        if (
+          word.subTopicId === reporductiveOrgansSubtopic ||
+          word.id === reporductiveOrgansSubtopic
+        )
+          return lowerCaseLabel === lowerCaseSearch;
+        return lowerCaseLabel.includes(lowerCaseSearch);
+      });
     });
-  });
+  }
 
   const withoutDuplicates = [
     ...new Map(filteredNewWords?.map(w => [w.id, w])).values(),
