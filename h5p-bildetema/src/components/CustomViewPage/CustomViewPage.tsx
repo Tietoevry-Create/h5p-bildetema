@@ -27,7 +27,7 @@ const CustomViewPage = (): JSX.Element => {
 
   const myViews = [
     {
-      title: "Sofa",
+      title: "Visning 1",
       words: ["T001", "T002", "T003", "V0627", "V0200", "V0201", "V0200"],
     },
   ];
