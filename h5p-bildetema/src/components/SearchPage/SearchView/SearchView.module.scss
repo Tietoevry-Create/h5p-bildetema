@@ -14,8 +14,9 @@
 }
 .searchInputWrapper {
   display: flex;
+  gap: 1rem;
   width: 100%;
-  max-width: $x-small;
+  max-width: $small;
 }
 
 .title {

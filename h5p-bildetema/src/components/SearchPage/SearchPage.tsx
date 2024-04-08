@@ -15,6 +15,7 @@ import {
   SortOptions,
   useSearchResults,
 } from "./useSearchResults";
+import { useLanguagesWithTranslatedLabels } from "../../hooks/useLanguagesWithTranslatedLabels";
 
 // TODO TRANSLATE LABELS
 const searchOrderOptions: SearchOrderOption[] = [
@@ -31,7 +32,9 @@ const SearchParamKeys = {
 };
 
 const SearchPage = (): JSX.Element => {
-  const { langCodeTolanguages, languages } = useNewDBContext();
+  const { langCodeTolanguages } = useNewDBContext();
+  
+  const languages = useLanguagesWithTranslatedLabels()
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -46,7 +49,7 @@ const SearchPage = (): JSX.Element => {
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguage, setViewLanguage] = React.useState<Language>(() => {
+  const [viewLanguage] = React.useState<Language>(() => {
     if (viewLangCode) {
       if (isLanguageCode(viewLangCode))
         return langCodeTolanguages.get(viewLangCode) || searchLanguage;
@@ -117,12 +120,12 @@ const SearchPage = (): JSX.Element => {
     handleSearch(currSearch);
   };
 
-  const handleViewLanguageChange = (lang: OptionType<Language>): void => {
-    searchParams.set("viewLang", lang.code);
-    setSearchParams(searchParams);
-    setViewLanguage(lang);
-    handleSearch(currSearch);
-  };
+  // const handleViewLanguageChange = (lang: OptionType<Language>): void => {
+  //   searchParams.set("viewLang", lang.code);
+  //   setSearchParams(searchParams);
+  //   setViewLanguage(lang);
+  //   handleSearch(currSearch);
+  // };
 
   const handleFilterChange = (topicId: string, add: boolean): void => {
     let newFilter: string[];
@@ -157,7 +160,7 @@ const SearchPage = (): JSX.Element => {
   };
 
   // TODO: translate
-  const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`
+  const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`;
 
   return (
     <div className={styles.searchPage}>
@@ -171,9 +174,9 @@ const SearchPage = (): JSX.Element => {
               search={currSearch}
               languages={languages}
               searchLanguage={searchLanguage}
-              viewLanguage={viewLanguage}
+              // viewLanguage={viewLanguage}
               handleSearchLanguageChange={handleSearchLanguageChange}
-              handleViewLanguageChange={handleViewLanguageChange}
+              // handleViewLanguageChange={handleViewLanguageChange}
               searchInputPlaceholder={searchInputPlaceholder}
             />
           </div>

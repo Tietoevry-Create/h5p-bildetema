@@ -4,7 +4,7 @@ import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
-import { LeftRightArrow } from "../../Icons/Icons";
+// import { LeftRightArrow } from "../../Icons/Icons";
 import SearchFilter from "../SearchFilter/SearchFilter";
 
 export type SearchViewProps = {
@@ -13,9 +13,8 @@ export type SearchViewProps = {
   search: string;
   languages: OptionType<Language>[];
   handleSearchLanguageChange: (lang: OptionType<Language>) => void;
-  handleViewLanguageChange: (lang: OptionType<Language>) => void;
   searchLanguage: OptionType<Language>;
-  viewLanguage: OptionType<Language>;
+  // viewLanguage: OptionType<Language>;
   filter: string[];
   searchInputPlaceholder: string
 };
@@ -27,18 +26,11 @@ const SearchView = ({
   search,
   languages,
   handleSearchLanguageChange,
-  handleViewLanguageChange,
   searchLanguage,
-  viewLanguage,
+  // viewLanguage,
   searchInputPlaceholder
 }: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
-
-  const handleSwitchLangs = (): void => {
-    handleSearchLanguageChange(viewLanguage);
-    handleViewLanguageChange(searchLanguage);
-    handleSearch("");
-  };
 
   return (
     <div className={styles.searchField}>
@@ -51,11 +43,21 @@ const SearchView = ({
         ]}
       />
       <div className={styles.wrapper}>
+        {/* // TODO: translate */}
         <h1 className={styles.title}>Søk i Bildetema</h1>
         <div className={styles.searchInputWrapper}>
           <SearchInput handleSearch={handleSearch} search={search} placeholder={searchInputPlaceholder}/>
+          <Select
+            options={languages}
+            handleChange={handleSearchLanguageChange}
+            selectedOption={searchLanguage}
+            variant="secondary"
+
+            // TODO: translate
+            labelPrefix="Søk på"
+          />
         </div>
-        <div className={styles.languageSelectors}>
+        {/* <div className={styles.languageSelectors}>
           <Select
             options={languages}
             handleChange={handleSearchLanguageChange}
@@ -73,7 +75,7 @@ const SearchView = ({
             handleChange={handleViewLanguageChange}
             selectedOption={viewLanguage}
           />
-        </div>
+        </div> */}
       </div>
       <SearchFilter handleFilterChange={handleFilterChange} filter={filter} />
     </div>
