@@ -64,7 +64,9 @@ const Select = <T extends Option>({
                     }`}
                   >
                     <span>{option.label}</span>
-                    {option.secondaryLabel && <span>{option.secondaryLabel}</span>}
+                    {option.secondaryLabel && (
+                      <span>{option.secondaryLabel}</span>
+                    )}
                   </div>
                 )}
               </Listbox.Option>

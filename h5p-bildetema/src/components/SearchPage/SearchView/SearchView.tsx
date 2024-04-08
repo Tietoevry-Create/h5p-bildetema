@@ -16,7 +16,7 @@ export type SearchViewProps = {
   searchLanguage: OptionType<Language>;
   // viewLanguage: OptionType<Language>;
   filter: string[];
-  searchInputPlaceholder: string
+  searchInputPlaceholder: string;
 };
 
 const SearchView = ({
@@ -28,7 +28,7 @@ const SearchView = ({
   handleSearchLanguageChange,
   searchLanguage,
   // viewLanguage,
-  searchInputPlaceholder
+  searchInputPlaceholder,
 }: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
@@ -46,13 +46,16 @@ const SearchView = ({
         {/* // TODO: translate */}
         <h1 className={styles.title}>Søk i Bildetema</h1>
         <div className={styles.searchInputWrapper}>
-          <SearchInput handleSearch={handleSearch} search={search} placeholder={searchInputPlaceholder}/>
+          <SearchInput
+            handleSearch={handleSearch}
+            search={search}
+            placeholder={searchInputPlaceholder}
+          />
           <Select
             options={languages}
             handleChange={handleSearchLanguageChange}
             selectedOption={searchLanguage}
             variant="secondary"
-
             // TODO: translate
             labelPrefix="Søk på"
           />

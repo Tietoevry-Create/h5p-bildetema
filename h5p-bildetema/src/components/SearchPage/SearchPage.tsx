@@ -33,8 +33,8 @@ const SearchParamKeys = {
 
 const SearchPage = (): JSX.Element => {
   const { langCodeTolanguages } = useNewDBContext();
-  
-  const languages = useLanguagesWithTranslatedLabels()
+
+  const languages = useLanguagesWithTranslatedLabels();
 
   const [searchParams, setSearchParams] = useSearchParams();
 

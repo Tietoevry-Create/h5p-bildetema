@@ -169,7 +169,7 @@ export const searchForNewWord = (
   let filteredNewWords: NewWord[] = newWords;
 
   // if the search is empty, return all words
-  if(lowerCaseSearch !== ""){
+  if (lowerCaseSearch !== "") {
     filteredNewWords = newWords.filter(word => {
       return word.translations.get(langCode)?.labels.some(label => {
         const reporductiveOrgansSubtopic = "T066";

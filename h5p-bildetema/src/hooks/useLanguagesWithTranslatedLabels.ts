@@ -12,12 +12,14 @@ export const useLanguagesWithTranslatedLabels = (): Language[] => {
       lang => `lang_${lang}`,
     ) as Array<LanguageCodeString>),
   );
-  const languagesWithTranslatedLabels: Language[] = languages.map(lang => {
-    const label = translatedLabel(lang.code, translations);
-    return {
-      ...lang,
-      label,
-    };
-  }).sort((a, b) => a.label.localeCompare(b.label));
+  const languagesWithTranslatedLabels: Language[] = languages
+    .map(lang => {
+      const label = translatedLabel(lang.code, translations);
+      return {
+        ...lang,
+        label,
+      };
+    })
+    .sort((a, b) => a.label.localeCompare(b.label));
   return languagesWithTranslatedLabels;
 };

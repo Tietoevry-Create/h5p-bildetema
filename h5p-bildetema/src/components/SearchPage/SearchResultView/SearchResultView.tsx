@@ -22,8 +22,8 @@ const SearchResultView = ({
   search,
   loadMore,
   searchResultAmount, // handleOrderChange,
-  // sortOptions,
-} // resultSortType,
+  // resultSortType,
+} // sortOptions,
 : SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -44,9 +44,16 @@ const SearchResultView = ({
     rootMargin: "0px 0px 600px 0px",
   });
 
-  const searchLabel = search.trim() === ""
-    ? <div>Viser <b>{searchResultAmount}</b> ord.</div>
-    : <div>Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.</div>;
+  const searchLabel =
+    search.trim() === "" ? (
+      <div>
+        Viser <b>{searchResultAmount}</b> ord.
+      </div>
+    ) : (
+      <div>
+        Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
+      </div>
+    );
 
   return (
     <div className={styles.searchResultView}>

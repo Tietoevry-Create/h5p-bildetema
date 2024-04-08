@@ -11,7 +11,7 @@ export type SearchInputProps = {
 const SearchInput = ({
   handleSearch,
   search,
-  placeholder
+  placeholder,
 }: SearchInputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
 
