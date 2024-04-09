@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { isLanguageCode } from "common/types/LanguageCode";
+// import { isLanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -40,7 +40,7 @@ const SearchPage = (): JSX.Element => {
 
   const langCode = useCurrentLanguageCode();
 
-  const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
+  // const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
     langCodeTolanguages.get(langCode) ||
@@ -49,16 +49,20 @@ const SearchPage = (): JSX.Element => {
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguage] = React.useState<Language>(() => {
-    if (viewLangCode) {
-      if (isLanguageCode(viewLangCode))
-        return langCodeTolanguages.get(viewLangCode) || searchLanguage;
-    }
-    // TODO should change based on page language (no / se / de ....)
-    if (searchLanguage.code !== "nob") {
-      return langCodeTolanguages.get("nob") || searchLanguage;
-    }
-    return langCodeTolanguages.get("eng") || searchLanguage;
+  const [viewLanguages] = React.useState<Language[]>(() => {
+    const viewLangs: Language[] = []
+    // if (viewLangCode) {
+    //   if (isLanguageCode(viewLangCode))
+    //     viewLangs.push(langCodeTolanguages.get(viewLangCode) || searchLanguage);
+    //     return viewLangs;
+    // }
+    // // TODO should change based on page language (no / se / de ....)
+    // if (searchLanguage.code !== "nob") {
+    //   viewLangs.push(langCodeTolanguages.get("nob") || searchLanguage);
+    //   return viewLangs;
+    // }
+    // viewLangs.push(langCodeTolanguages.get("eng") || searchLanguage);
+    return viewLangs;
   });
 
   const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
@@ -70,7 +74,7 @@ const SearchPage = (): JSX.Element => {
     search: currSearch.trim(),
     searchLanguage,
     order: searchOrderOptions[0],
-    viewLanguage: [viewLanguage],
+    viewLanguage: viewLanguages,
   });
 
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
@@ -91,7 +95,7 @@ const SearchPage = (): JSX.Element => {
   const loadMore = (): void => {
     dispatch({
       type: ActionType.LOAD_MORE,
-      payload: { languages: [searchLanguage, viewLanguage] },
+      payload: { languages: [searchLanguage, ...viewLanguages] },
     });
   };
 
@@ -102,7 +106,7 @@ const SearchPage = (): JSX.Element => {
         search: search.trim(),
         searchLanguage,
         filter,
-        viewLanguage: [viewLanguage],
+        viewLanguage: viewLanguages,
       },
     });
   }, 400);
@@ -142,7 +146,7 @@ const SearchPage = (): JSX.Element => {
         payload: {
           search: currSearch.trim(),
           filter: newFilter,
-          languages: [searchLanguage, viewLanguage],
+          languages: [searchLanguage, ...viewLanguages],
         },
       });
       return;
@@ -154,10 +158,23 @@ const SearchPage = (): JSX.Element => {
       payload: {
         search: currSearch.trim(),
         filter: newFilter,
-        languages: [searchLanguage, viewLanguage],
+        languages: [searchLanguage, ...viewLanguages],
       },
     });
   };
+
+  const resetFilter = (): void => {
+    searchParams.delete("filter");
+    setSearchParams(searchParams);
+    dispatch({
+      type: ActionType.FILTER,
+      payload: {
+        search: currSearch.trim(),
+        filter: [],
+        languages: [searchLanguage, ...viewLanguages],
+      },
+    });
+  }
 
   // TODO: translate
   const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`;
@@ -174,6 +191,7 @@ const SearchPage = (): JSX.Element => {
               search={currSearch}
               languages={languages}
               searchLanguage={searchLanguage}
+              resetFilter={resetFilter}
               // viewLanguage={viewLanguage}
               handleSearchLanguageChange={handleSearchLanguageChange}
               // handleViewLanguageChange={handleViewLanguageChange}

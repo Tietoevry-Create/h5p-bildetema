@@ -14,9 +14,22 @@
 }
 .searchInputWrapper {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   width: 100%;
   max-width: $small;
+
+  @include breakpoint-min($x-small) {
+    flex-direction: row;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;  
+  overflow: hidden;
 }
 
 .title {

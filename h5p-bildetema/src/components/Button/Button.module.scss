@@ -1,0 +1,45 @@
+@use "common/abstracts" as *;
+
+.button {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  width: fit-content;
+  border-radius: 0.5rem;
+  font-family: sans-serif;
+  font-size: $font-size-14;
+  padding: .25rem .5rem;
+  gap: .25rem;
+  cursor: pointer;
+
+  @include breakpoint-min($x-small) {
+    font-size: $font-size-16;
+    gap: $spacing--8;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.secondary {
+  color: black;
+  background-color: $white;
+  border: 2px solid $dark-beige;
+}
+
+.primary {
+  color: $white;
+  background-color: $dark-teal;
+  border: 2px solid $dark-teal;
+}
+
+.underline {
+  padding: 0rem;
+  border-radius: 0;
+  text-decoration: underline;
+}
+
+.disabled {
+  cursor: default;
+  opacity: 0.4;
+}

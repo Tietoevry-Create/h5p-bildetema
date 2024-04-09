@@ -5,7 +5,10 @@ import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 // import { LeftRightArrow } from "../../Icons/Icons";
-import SearchFilter from "../SearchFilter/SearchFilter";
+// import SearchFilter from "../SearchFilter/SearchFilter";
+import Button from "../../Button/Button";
+import { LanguageIcon } from "../../Icons/Icons";
+import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 
 export type SearchViewProps = {
   handleFilterChange: (topicId: string, add: boolean) => void;
@@ -17,6 +20,7 @@ export type SearchViewProps = {
   // viewLanguage: OptionType<Language>;
   filter: string[];
   searchInputPlaceholder: string;
+  resetFilter: () => void;
 };
 
 const SearchView = ({
@@ -29,6 +33,7 @@ const SearchView = ({
   searchLanguage,
   // viewLanguage,
   searchInputPlaceholder,
+  resetFilter
 }: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
@@ -60,27 +65,20 @@ const SearchView = ({
             labelPrefix="Søk på"
           />
         </div>
-        {/* <div className={styles.languageSelectors}>
-          <Select
-            options={languages}
-            handleChange={handleSearchLanguageChange}
-            selectedOption={searchLanguage}
-          />
-          <button
-            type="button"
-            className={styles.arrowButton}
-            onClick={handleSwitchLangs}
-          >
-            <LeftRightArrow width={24} height={24} />
-          </button>
-          <Select
-            options={languages}
-            handleChange={handleViewLanguageChange}
-            selectedOption={viewLanguage}
-          />
-        </div> */}
+        <div className={styles.buttonWrapper}>
+
+          <SearchFilterDialog handleFilterChange={handleFilterChange} filter={filter} resetFilter={resetFilter}/>
+          {/* <Button variant="secondary" disabled> */}
+
+          <Button variant="secondary" disabled>
+            <b>
+              <LanguageIcon />
+            </b>
+            {/* TODO: translate */}
+            <b>Vis på flere språk</b>
+          </Button>
+        </div>
       </div>
-      <SearchFilter handleFilterChange={handleFilterChange} filter={filter} />
     </div>
   );
 };

@@ -46,7 +46,6 @@ const Select = <T extends Option>({
           <Listbox.Button
             className={`${styles.selectButton} ${styles[variant]}`}
           >
-            {/* {label ?? selectedOption.label} */}
             {label}
 
             <LanguageMenuArrowIcon
@@ -57,10 +56,10 @@ const Select = <T extends Option>({
           <Listbox.Options className={styles.options}>
             {options.map(option => (
               <Listbox.Option key={option.label} value={option}>
-                {({ selected }) => (
+                {({ active }) => (
                   <div
                     className={`${styles.option} ${
-                      selected ? styles.active : ""
+                      active || active? styles.active : ""
                     }`}
                   >
                     <span>{option.label}</span>
