@@ -43,9 +43,9 @@ const getSearchPositionValue = (search: string, labels: Labels): number => {
   const labelsSplitBySpace = labelsArray.join(" ").split(" ");
   if (labelsArray.includes(lowerCaseSearch)) return equal;
   if (labelsSplitBySpace.includes(lowerCaseSearch)) return equalWithin;
-  if (labelsArray.filter(l => l.endsWith(lowerCaseSearch)).length > 0)
+  if (labelsSplitBySpace.filter(l => l.endsWith(lowerCaseSearch)).length > 0)
     return endsWith;
-  if (labelsArray.filter(l => l.startsWith(lowerCaseSearch)).length > 0)
+  if (labelsSplitBySpace.filter(l => l.startsWith(lowerCaseSearch)).length > 0)
     return startsWith;
   return contains;
 };
