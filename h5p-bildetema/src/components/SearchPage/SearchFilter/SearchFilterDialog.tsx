@@ -43,7 +43,11 @@ const SearchFilterDialog = ({
         </b>
         {/* TODO: translate */}
         <b>Filtrer etter tema</b>
-        {checkedTopicsAmount > 0 && `(${checkedTopicsAmount})`}
+        {checkedTopicsAmount > 0 && (
+          <div className={styles.amount}>
+            {checkedTopicsAmount}
+          </div>
+        )}
       </Button>
       <Dialog
         className={styles.dialog}

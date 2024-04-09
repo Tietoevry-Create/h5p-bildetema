@@ -3,7 +3,6 @@
 .dialog {
   z-index: 50;
   position: relative;
-  max-height: 200px;
 }
 .backdrop {
   position: fixed;
@@ -15,7 +14,7 @@
   font-size: $font-size-20;
   display: flex;
   justify-content: space-between;
-  gap: 5rem;
+  gap: 3rem;
   line-height: 0;
 }
 
@@ -34,7 +33,7 @@
 }
 
 .panel {
-  max-height: 60vh;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -79,4 +78,15 @@
 .closeButton {
   all: unset;
   cursor: pointer;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  background-color: $dark-teal;
 }

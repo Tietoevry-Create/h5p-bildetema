@@ -17,7 +17,7 @@
   @include breakpoint-min($x-small) {
     font-size: $font-size-16;
     gap: $spacing--8;
-    padding: 1rem 1.5rem;
+    padding: .75rem 1.25rem;
   }
 }
 
