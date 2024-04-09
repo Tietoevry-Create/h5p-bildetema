@@ -50,7 +50,7 @@ const SearchPage = (): JSX.Element => {
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
   const [viewLanguages] = React.useState<Language[]>(() => {
-    const viewLangs: Language[] = []
+    const viewLangs: Language[] = [];
     // if (viewLangCode) {
     //   if (isLanguageCode(viewLangCode))
     //     viewLangs.push(langCodeTolanguages.get(viewLangCode) || searchLanguage);
@@ -174,7 +174,7 @@ const SearchPage = (): JSX.Element => {
         languages: [searchLanguage, ...viewLanguages],
       },
     });
-  }
+  };
 
   // TODO: translate
   const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`;

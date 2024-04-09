@@ -33,7 +33,7 @@ const SearchView = ({
   searchLanguage,
   // viewLanguage,
   searchInputPlaceholder,
-  resetFilter
+  resetFilter,
 }: SearchViewProps): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
@@ -66,8 +66,11 @@ const SearchView = ({
           />
         </div>
         <div className={styles.buttonWrapper}>
-
-          <SearchFilterDialog handleFilterChange={handleFilterChange} filter={filter} resetFilter={resetFilter}/>
+          <SearchFilterDialog
+            handleFilterChange={handleFilterChange}
+            filter={filter}
+            resetFilter={resetFilter}
+          />
           {/* <Button variant="secondary" disabled> */}
 
           <Button variant="secondary" disabled>
