@@ -70,15 +70,6 @@ const SearchFilterDialog = ({
                 <Close />
               </button>
             </Dialog.Title>
-            {/* <Dialog.Description>
-            This will permanently deactivate your account XDXD
-          </Dialog.Description> */}
-
-            {/* <p>
-            Are you sure you want to deactivate your account? All of your data
-            will be permanently removed. This action cannot be undone.
-          </p> */}
-            {/* {open && ( */}
             <div className={styles.searchFilterBorderTop}>
               <div className={styles.searchFilter}>
                 {topics?.map(topic => (
@@ -98,11 +89,8 @@ const SearchFilterDialog = ({
                 ))}
               </div>
             </div>
-            {/* )} */}
-
-            {/* <button type="button" onClick={() => setIsOpen(false)}>Deactivate</button>
-          <button type="button" onClick={() => setIsOpen(false)}>Cancel</button> */}
             <Button variant="underline" onClick={resetFilter}>
+              {/* TODO: translate */}
               Nullstill valg
             </Button>
           </Dialog.Panel>

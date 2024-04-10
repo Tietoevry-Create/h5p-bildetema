@@ -110,6 +110,7 @@ export const Bildetema: FC<BildetemaProps> = ({
 
   // Set lang as favorite if it is not already
   useEffect(() => {
+    // we dont want to set the language as favorite if we are on the search page
     if (pathname.includes(STATIC_PATHS.SEARCH)) return;
 
     const languageIsAlreadyFavorited = favLanguages.find(

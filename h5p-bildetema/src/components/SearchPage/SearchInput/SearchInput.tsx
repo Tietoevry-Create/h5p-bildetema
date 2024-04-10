@@ -31,9 +31,8 @@ const SearchInput = ({
         ref={ref}
         // TODO needs a label
         id={styles.searchInput}
-        // TODO fix static Søk value
         className={`${rlt ? styles.rtl : ""}`}
-        placeholder={placeholder ?? "Søk"}
+        placeholder={placeholder ?? ""}
         value={search}
         autoComplete="off"
         onChange={e => handleSearch(e.target.value)}
