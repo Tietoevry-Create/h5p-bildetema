@@ -100,7 +100,14 @@ export const Header: FC<HeaderProps> = ({
   }, [handleIsMobile]);
 
   return (
-    <div ref={headerRef} className={`${styles.header} ${hideLanguageSelectors ? styles.langFavoritesHidden : styles.langFavoritesVisible}`}>
+    <div
+      ref={headerRef}
+      className={`${styles.header} ${
+        hideLanguageSelectors
+          ? styles.langFavoritesHidden
+          : styles.langFavoritesVisible
+      }`}
+    >
       <div className={styles.header_content}>
         <div className={styles.logo_oslomet}>
           <OsloMetLogo role="img" ariaLabel={osloMetLogoAria} />
