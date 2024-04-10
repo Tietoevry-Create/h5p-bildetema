@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages } from "common/constants/languages";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
