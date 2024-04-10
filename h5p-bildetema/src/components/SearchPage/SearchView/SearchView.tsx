@@ -3,7 +3,7 @@ import styles from "./SearchView.module.scss";
 import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
-import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
+import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 // import { LeftRightArrow } from "../../Icons/Icons";
 // import SearchFilter from "../SearchFilter/SearchFilter";
 import Button from "../../Button/Button";
@@ -35,7 +35,10 @@ const SearchView = ({
   searchInputPlaceholder,
   resetFilter,
 }: SearchViewProps): JSX.Element => {
-  const langCode = useCurrentLanguageCode();
+  const currentLang = useCurrentLanguage()
+  const langCode = currentLang?.code
+  const isRtl = !!(currentLang?.rtl && search !== "");
+
 
   return (
     <div className={styles.searchField}>
@@ -55,6 +58,8 @@ const SearchView = ({
             handleSearch={handleSearch}
             search={search}
             placeholder={searchInputPlaceholder}
+            rlt={isRtl}
+            // rlt
           />
           <Select
             options={languages}

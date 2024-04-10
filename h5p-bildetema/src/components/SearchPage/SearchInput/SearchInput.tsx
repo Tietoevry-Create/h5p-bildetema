@@ -6,12 +6,14 @@ export type SearchInputProps = {
   handleSearch: (value: string) => void;
   search: string;
   placeholder?: string;
+  rlt?: boolean
 };
 
 const SearchInput = ({
   handleSearch,
   search,
   placeholder,
+  rlt,
 }: SearchInputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
 
@@ -30,6 +32,7 @@ const SearchInput = ({
         // TODO needs a label
         id={styles.searchInput}
         // TODO fix static Søk value
+        className={`${rlt ? styles.rtl : ""}`}
         placeholder={placeholder ?? "Søk"}
         value={search}
         autoComplete="off"
