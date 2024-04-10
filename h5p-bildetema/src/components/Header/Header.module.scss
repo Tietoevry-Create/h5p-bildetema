@@ -57,18 +57,6 @@
   position: relative;
 }
 
-.languages_nav {
-  display: none;
-
-  @include breakpoint-min($medium) {
-    display: block;
-  }
-
-  @media print {
-    display: block;
-  }
-}
-
 .logo_oslomet {
   display: flex;
   justify-self: flex-start;
@@ -137,79 +125,7 @@
   height: 100%;
 }
 
-.languages {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  gap: $spacing--8;
-  flex-wrap: wrap;
-  margin: 0;
-
-  li {
-    list-style-type: none;
-    margin: 0;
-  }
-}
-
-.languageButton {
-  background-color: transparent;
-  border-bottom: 0.1rem solid $white;
-  color: $white;
-  cursor: pointer;
-  font-size: $font-size-18;
-  line-height: 1;
-  margin: 0.35rem 0.5rem 0.25rem;
-  padding: 0;
-  text-decoration: none;
-  white-space: nowrap;
-
-  &:hover {
-    color: $white;
-    border-color: transparent;
-    text-decoration: none;
-  }
-
-  &:focus {
-    box-shadow: none;
-    color: $white;
-    outline: $outline-on-dark-background !important;
-    outline-offset: 2px;
-  }
-
-  &_active,
-  &.active {
-    background-color: $white;
-    border-color: transparent;
-    border-radius: 0.5rem;
-    color: $burgundy;
-    margin: 0;
-    padding: 0.35rem 0.5rem 0.25rem;
-    text-decoration: none;
-
-    &:hover {
-      color: $burgundy;
-    }
-
-    &:focus {
-      color: $burgundy;
-      outline: $outline-on-dark-background !important;
-    }
-
-    @media print {
-      background-color: transparent;
-      color: $white;
-    }
-  }
-
-  &:not(.languageButton_active) {
-    @media print {
-      display: none;
-    }
-  }
-}
-
-.logos,
-.languages {
+.logos {
   :focus {
     outline: $outline-on-dark-background !important;
   }
