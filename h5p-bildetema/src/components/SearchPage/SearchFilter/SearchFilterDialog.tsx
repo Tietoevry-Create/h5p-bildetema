@@ -44,9 +44,7 @@ const SearchFilterDialog = ({
         {/* TODO: translate */}
         <b>Filtrer etter tema</b>
         {checkedTopicsAmount > 0 && (
-          <div className={styles.amount}>
-            {checkedTopicsAmount}
-          </div>
+          <div className={styles.amount}>{checkedTopicsAmount}</div>
         )}
       </Button>
       <Dialog

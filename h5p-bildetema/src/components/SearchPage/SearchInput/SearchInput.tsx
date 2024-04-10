@@ -6,7 +6,7 @@ export type SearchInputProps = {
   handleSearch: (value: string) => void;
   search: string;
   placeholder?: string;
-  rlt?: boolean
+  rlt?: boolean;
 };
 
 const SearchInput = ({

@@ -35,10 +35,9 @@ const SearchView = ({
   searchInputPlaceholder,
   resetFilter,
 }: SearchViewProps): JSX.Element => {
-  const currentLang = useCurrentLanguage()
-  const langCode = currentLang?.code
+  const currentLang = useCurrentLanguage();
+  const langCode = currentLang?.code;
   const isRtl = !!(currentLang?.rtl && search !== "");
-
 
   return (
     <div className={styles.searchField}>
