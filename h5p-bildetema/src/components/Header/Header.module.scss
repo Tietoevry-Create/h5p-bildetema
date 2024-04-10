@@ -7,24 +7,10 @@
   top: 0;
   z-index: $header-z-index;
 
-  @include breakpoint-min($x-small) {
-    padding: $spacing--24 0 $spacing--16;
-  }
-
-  @include breakpoint-min($medium) {
-    display: block;
-    padding: $spacing--32 0;
-    position: sticky;
-  }
-
   @media print {
     display: none;
     padding: $spacing--32 0;
     position: relative;
-  }
-
-  @include breakpoint-min($x-large) {
-    padding: $spacing--40 0;
   }
 
   &_content {
@@ -42,6 +28,18 @@
       align-items: center;
       flex-wrap: nowrap;
     }
+  }
+}
+
+.langFavoritesVisible {
+  @include breakpoint-min($x-small) {
+    padding: $spacing--32 0 $spacing--16;
+  }
+}
+
+.langFavoritesHidden {
+  @include breakpoint-min($x-small) {
+    padding: $spacing--32 0;
   }
 }
 
