@@ -1,54 +1,44 @@
 // import { useSelectedWords } from "../../hooks/useSelectedWords";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMemo } from "react";
+import { useMyCollections } from "common/hooks/useMyCollections";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import styles from "./CustomViewPage.module.scss";
-import MycustomView from "./MyCustomView.tsx/MycustomView";
-import MyCustomView from "./MyCustomView.tsx/MycustomView";
+import MyCustomView from "./MyCustomView/MyCustomView";
+import CollectionElement from "./CollectionLink/CollectionElement";
 
 const CustomViewPage = (): JSX.Element => {
   // const newWords = useSelectedWords();
   // console.log(newWords)
-  const { view } = useParams();
+  const { collection } = useParams();
   const langCode = useCurrentLanguageCode();
 
   const breadCrumbs = useMemo(() => {
     const crumbs = [
       { label: "Home", path: `/${langCode}` },
-      { label: "Egne visninger", path: `/customview?lang=${langCode}` },
+      { label: "Egne visninger", path: `/my-collections?lang=${langCode}` },
     ];
-    if (!view) return crumbs;
+    if (!collection) return crumbs;
     return [
       ...crumbs,
-      { label: view, path: `/customview/${view}?lang=${langCode}` },
+      { label: collection, path: `/my-collections/${collection}?lang=${langCode}` },
     ];
-  }, [langCode, view]);
+  }, [langCode, collection]);
 
-  const myViews = [
-    {
-      title: "Visning 1",
-      words: ["T001", "T002", "T003", "V0627", "V0200", "V0201", "V0200"],
-    },
-  ];
+  const {myCollections} = useMyCollections()
 
   const currentPage = (): JSX.Element => {
-    if (!view) {
+    if (!collection) {
       return (
-        <>
-          {myViews.map(v => (
-            <div key={v.title} className={styles.customView}>
-              <Link
-                to={`/customview/${v.title}?lang=${langCode}&words=${v.words}`}
-              >
-                {v.title}
-              </Link>
-            </div>
+        <div className={styles.container}>
+          {myCollections.map(v => (
+            <CollectionElement amountOfCollectionItems={v.wordsIds.length} label={v.title} href={`/my-collections/${v.title}?lang=${langCode}&words=${v.wordsIds}`}/>
           ))}
-        </>
+        </div>
       );
     }
-    return <MyCustomView />;
+    return <MyCustomView collectionTitle={collection}/>;
   };
 
   return (

@@ -14,3 +14,23 @@
 .menuWrapper {
   padding: 2rem 0rem;
 }
+
+.container {
+  display: grid;
+  gap: 1rem;
+  // grid-template-columns: 1fr 1fr;
+  // flex-direction: column;
+
+  // display: grid;
+
+  // display: block;
+  // flex-direction: column;
+  // column-count: 2;
+  // gap: 2rem;
+}
+
+.customView {
+  background-color: $beige;
+  padding: 1rem;
+  // border: 1px solid red;
+}

@@ -11,6 +11,7 @@ type appProps = {
   backendUrl: string;
 };
 
+
 export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
   const { isLoading, data: newData } = useQuery(["newData"], async () => {
     return getNewData(backendUrl);
@@ -25,6 +26,7 @@ export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
           defaultLanguages={defaultLanguages}
           isLoadingData={isLoading}
         />
+        
       </NewDBContext.Provider>
     </BackendUrlContext.Provider>
   );

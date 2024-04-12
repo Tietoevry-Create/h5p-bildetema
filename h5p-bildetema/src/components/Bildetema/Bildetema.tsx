@@ -4,6 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
+import { useMyCollections } from "common/hooks/useMyCollections";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -166,12 +167,14 @@ export const Bildetema: FC<BildetemaProps> = ({
           />
         ))}
         <Route path="/sok" element={<SearchPage />} />
-        <Route path="/customview/:view" element={<CustomViewPage />} />
-        <Route path="/customview" element={<CustomViewPage />} />
+        <Route path="/my-collections/:collection" element={<CustomViewPage />} />
+        <Route path="/my-collections" element={<CustomViewPage />} />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
-    );
+    ); 
   }, [currTopics, defaultLanguages, directionRtl]);
+
+  const {myCollections, setMyCollections} = useMyCollections();
 
   return (
     <div className={styles.wrapper}>
@@ -190,6 +193,12 @@ export const Bildetema: FC<BildetemaProps> = ({
           favLanguages={favLanguages}
           hidden={pathname === STATIC_PATHS.SEARCH}
         />
+        <button type="button" onClick={() => setMyCollections(prev => [...prev, {title: `Test ${prev.length+1}`, wordsIds: ["T001", "T002", "T003"]}])}>
+          add
+        </button>
+        <button type="button" onClick={() => setMyCollections(prev => prev.slice(0, -1))}>
+          remove
+        </button>
         <div
           id="bildetemaMain"
           className={styles.bildetemaMain}

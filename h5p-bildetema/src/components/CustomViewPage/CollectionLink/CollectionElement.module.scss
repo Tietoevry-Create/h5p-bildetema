@@ -1,0 +1,76 @@
+@use "common/abstracts" as *;
+
+.collectionElementWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: $beige;
+  padding: 1.5rem 2rem;
+  border: 1px solid $dark-beige;
+
+  &:hover {
+    background-color: $dark-beige;
+  }
+}
+
+.label {
+  display: flex;
+  gap: 0.5rem;
+  font-size: $font-size-18;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+
+.link {
+  position: absolute;
+  inset: 0;
+
+  & span {
+    @include visually-hidden;
+  }
+}
+
+.button {
+  all: unset;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 1.5rem;
+  cursor: pointer;
+
+  padding: .5rem;
+  border-radius: 1000%;
+  
+  &:hover {
+    background-color: $darker-beige;
+    // background-color: #858585;
+  }
+}
+
+.menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  right: 2.6rem;
+  top: 2.8rem;
+  text-align:left;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  background-color: $white;
+}
+
+.menuItemButton {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.active {
+  background-color: $beige;
+}
+
+
