@@ -3,6 +3,7 @@
 .dialog {
   z-index: 50;
   position: relative;
+  font-family: sans-serif;
 }
 .backdrop {
   position: fixed;
@@ -22,6 +23,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: sans-serif;
 }
 
 .panelContainer {
@@ -39,7 +41,7 @@
   gap: 1.5rem;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
-  background-color: $beige;
+  background-color: $white;
   overflow-y: auto;
 }
 
@@ -89,4 +91,5 @@
   height: 2rem;
   border-radius: 100%;
   background-color: $dark-teal;
+  line-height: 1;
 }

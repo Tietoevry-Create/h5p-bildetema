@@ -38,9 +38,7 @@ const SearchFilterDialog = ({
   return (
     <>
       <Button variant="secondary" onClick={() => setIsOpen(true)}>
-        <b>
-          <Filter />
-        </b>
+        <Filter />
         {/* TODO: translate */}
         <b>Filtrer etter tema</b>
         {checkedTopicsAmount > 0 && (

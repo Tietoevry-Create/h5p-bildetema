@@ -59,7 +59,7 @@ const Select = <T extends Option>({
                 {({ active }) => (
                   <div
                     className={`${styles.option} ${
-                      active || active ? styles.active : ""
+                      active ? styles.active : ""
                     }`}
                   >
                     <span>{option.label}</span>
