@@ -7,23 +7,26 @@
   justify-content: center;
   inset: 0;
   padding: 1rem;
+  z-index: 10;
 }
 
 .backdrop {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .panel {
   max-height: 85vh;
+  min-width: 24rem;
   display: flex;
   flex-direction: column;
   // gap: 2rem;
   padding: 2rem;
   border-radius: 0.5rem;
-  background-color: $beige;
-  overflow-y: auto
+  background-color: $white;
+  // overflow-y: auto
 };
 
 .title {

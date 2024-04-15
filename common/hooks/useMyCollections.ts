@@ -14,9 +14,54 @@ export const useMyCollections = () => {
     setMyCollections(newCollections);
   }
 
+  const addCollection = (title: string): void => {
+    setMyCollections([...myCollections, {title, wordsIds: []}])
+  }
+
+  const addItemToCollection = (title: string, wordId: string): void => {
+    setMyCollections(prev => {
+      const updatedCollection = prev.map((collection) => {
+        if (collection.title === title) {
+          if (collection.wordsIds.includes(wordId)) return collection
+          return {...collection, wordsIds: [...collection.wordsIds, wordId]}
+        }
+        return collection
+      }) 
+      return updatedCollection
+    });
+  }
+
+  const removeItemFromCollection = (title: string, wordId: string): void => {
+    setMyCollections(prev => {
+      const updatedCollection = prev.map((collection) => {
+        if (collection.title === title) {
+          return {...collection, wordsIds: collection.wordsIds.filter(id => id !== wordId)}
+        }
+        return collection
+      }) 
+      return updatedCollection
+    });
+  }
+
+  const changeCollectionTitle = (title: string, newTitle: string): void => {
+    setMyCollections(prev => {
+      const updatedCollection = prev.map((collection) => {
+        if (collection.title === title) {
+          return {...collection, title: newTitle}
+        }
+        return collection
+      }) 
+      return updatedCollection
+    });
+  }
+
   return {
     myCollections,
     setMyCollections,
-    deleteCollection
+    deleteCollection,
+    addCollection,
+    addItemToCollection,
+    removeItemFromCollection,
+    changeCollectionTitle
   }
 };

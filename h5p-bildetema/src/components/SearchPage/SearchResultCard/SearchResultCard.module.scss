@@ -1,12 +1,25 @@
 @use "common/abstracts" as *;
 
 .searchResultCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   background: $white;
   border: 2px solid $dark-beige;
+}
+
+.bookmarkButton {
+  position: absolute;
+  z-index: 10;
+  right: 1rem;
+
+  & button {
+    all: unset;
+    padding: .5rem;
+    cursor: pointer;
+  }
 }
 
 .image_container {

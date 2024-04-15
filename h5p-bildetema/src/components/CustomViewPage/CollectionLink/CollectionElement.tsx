@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
+import { useMyCollections } from "common/hooks/useMyCollections";
 import styles from "./CollectionElement.module.scss";
 import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
-import { useMyCollections } from "common/hooks/useMyCollections";
-import { Dialog as HeadlessDialog } from "@headlessui/react";
 import Dialog from "../../Dialog/Dialog";
+import Button from "../../Button/Button";
+
+const OpenDialog = {
+  DELETE_DIALOG: "DELETE_DIALOG",
+  EDIT_DIALOG: "EDIT_DIALOG",
+  NONE: "NONE",
+} as const;
+
+type OpenDialog = (typeof OpenDialog)[keyof typeof OpenDialog];
 
 type CollectionElementProps = {
   href: string;
@@ -17,8 +25,11 @@ const CollectionElement = ({
   label,
   amountOfCollectionItems,
 }: CollectionElementProps): React.JSX.Element => {
+  const [openDialog, setOpenDialog] = React.useState<OpenDialog>(
+    OpenDialog.NONE,
+  );
   const { deleteCollection } = useMyCollections();
-  const [open, setIsOpen] = React.useState(false);
+
   return (
     <div className={styles.collectionElementWrapper}>
       <span className={styles.label}>
@@ -27,10 +38,34 @@ const CollectionElement = ({
       <Link to={href} className={styles.link}>
         <span className={styles.linkLabel}>{label}</span>
       </Link>
-      <Dialog open={open} onClose={() => setIsOpen(false)}>
-        <div className={styles.test}>
-          <button>hei</button>
-          <button>hei</button>
+      <Dialog
+        open={openDialog === OpenDialog.DELETE_DIALOG}
+        onClose={() => setOpenDialog(OpenDialog.NONE)}
+        // TODO: TRANSLATE
+        title="Slett samling"
+        description="Er du sikker på at du vil slette samlingen:"
+      >
+        <div className={styles.deleteDialog}>
+          <span>{label}</span>
+          <div>
+            <Button
+              className={styles.dialogButton}
+              variant="secondary"
+              onClick={() => setOpenDialog(OpenDialog.NONE)}
+            >
+              Nei
+            </Button>
+            <Button
+              className={styles.dialogButton}
+              variant="primary"
+              onClick={() => {
+                deleteCollection(label);
+                setOpenDialog(OpenDialog.NONE);
+              }}
+            >
+              Ja
+            </Button>
+          </div>
         </div>
       </Dialog>
       <Menu>
@@ -50,7 +85,7 @@ const CollectionElement = ({
                 <EditIcon />
                 <span>
                   {/* TODO: Translate */}
-                  Endre navn på samlingen
+                  Endre navn
                 </span>
               </button>
             )}
@@ -63,12 +98,12 @@ const CollectionElement = ({
                   active && styles.active
                 }`}
                 // onClick={() => deleteCollection(label)}
-                onClick={() => setIsOpen(true)}
+                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
               >
                 <DeleteIcon />
                 <span>
                   {/* TODO: Translate */}
-                  Slett samling
+                  Slett
                 </span>
               </button>
             )}

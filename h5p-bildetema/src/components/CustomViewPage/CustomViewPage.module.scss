@@ -10,14 +10,16 @@
   margin: $main-content-margin;
   width: $main-content-width;
   max-width: $main-content-max-width;
+  margin-bottom: 2rem;
 }
 .menuWrapper {
   padding: 2rem 0rem;
 }
 
 .container {
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   // grid-template-columns: 1fr 1fr;
   // flex-direction: column;
 
@@ -33,4 +35,34 @@
   background-color: $beige;
   padding: 1rem;
   // border: 1px solid red;
+}
+
+.addButton {
+  font-size: $font-size-18;
+  fill: $white;
+}
+
+.dialogContentWrapper {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.dialogButtonWrapper {
+  display: flex;
+  gap: 1rem;
+
+  & button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.collectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
 }

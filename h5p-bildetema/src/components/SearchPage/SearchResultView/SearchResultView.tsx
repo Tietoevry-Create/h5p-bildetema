@@ -4,6 +4,11 @@ import { AudioRefContext } from "common/context/AudioContext";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
+import Dialog from "../../Dialog/Dialog";
+import Button from "../../Button/Button";
+import Select from "../../Select/Select";
+import Collectionselecter from "../../CollectionSelecter/Collectionselecter";
+import CollectionSelecter from "../../CollectionSelecter/Collectionselecter";
 // import Select from "../../Select/Select";
 // import { SearchOrderOption } from "../useSearchResults";
 
@@ -52,7 +57,8 @@ const SearchResultView = ({
         Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
       </div>
     );
-
+  const [open, setOpen] = React.useState(false)
+  
   return (
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
@@ -67,6 +73,23 @@ const SearchResultView = ({
             variant="secondary"
           />
         </div> */}
+      </div>
+      <button type="button" onClick={() => setOpen(true)}>test </button>
+      <div className={styles.dialogContainer}>
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          title="Legg til ord"
+          description="Velg en samling"
+        >
+          <div className={styles.dialogContentWrapper}>
+              <CollectionSelecter />
+            <div className={styles.dialogButtonWrapper}>
+              <Button variant="secondary">Avbryt</Button>
+              <Button variant="primary">Ok</Button>
+            </div>
+          </div>
+        </Dialog>
       </div>
 
       <ul className={styles.searchResultList}>

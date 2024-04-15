@@ -5,6 +5,7 @@
   align-items: center;
   position: relative;
   background-color: $beige;
+  max-width: $small;
   padding: 1.5rem 2rem;
   border: 1px solid $dark-beige;
 
@@ -38,9 +39,9 @@
   right: 1.5rem;
   cursor: pointer;
 
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 1000%;
-  
+
   &:hover {
     background-color: $darker-beige;
     // background-color: #858585;
@@ -54,7 +55,7 @@
   z-index: 10;
   right: 2.6rem;
   top: 2.8rem;
-  text-align:left;
+  text-align: left;
   border-radius: 5px;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
   background-color: $white;
@@ -73,4 +74,26 @@
   background-color: $beige;
 }
 
+.deleteDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  & span {
+    font-size: $font-size-20;
+  }
+  & div {
+    display: flex;
+    gap: 1rem;
 
+    & button {
+      flex: 1;
+    }
+  }
+}
+
+.dialogButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
