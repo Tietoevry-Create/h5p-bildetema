@@ -2,7 +2,6 @@ import React, { useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
 // import { isLanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
@@ -32,8 +31,6 @@ const SearchParamKeys = {
 };
 
 const SearchPage = (): JSX.Element => {
-  const { langCodeTolanguages } = useNewDBContext();
-
   const languages = useLanguagesWithTranslatedLabels();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +40,7 @@ const SearchPage = (): JSX.Element => {
   // const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
-    langCodeTolanguages.get(langCode) ||
+    languages.find(lang => lang.code === langCode) ||
       // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
   );

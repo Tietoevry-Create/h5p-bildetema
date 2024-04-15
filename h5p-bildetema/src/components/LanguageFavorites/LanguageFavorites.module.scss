@@ -4,10 +4,32 @@
   background-color: $burgundy;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: $spacing--16 0;
   position: sticky;
   top: 0;
   z-index: $language-favorites-z-index;
+
+  @media print {
+    display: none; // Show favorites in header component instead
+  }
+}
+
+.hidden {
+  display: none;
+  position: relative;
+}
+
+.languages {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: $spacing--8;
+  flex-wrap: nowrap;
+
+  margin: $main-content-margin;
+  max-width: $main-content-max-width;
+  width: $main-content-width;
+  overflow-x: auto;
+  padding: $spacing--16 0;
 
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -30,39 +52,6 @@
   /* Styling for Firefox */
   scrollbar-width: 0.75rem;
   scrollbar-color: rgba(255, 255, 255, 0.6);
-
-  @include breakpoint-min($medium) {
-    display: none;
-    position: relative;
-  }
-
-  @media print {
-    display: none; // Show favorites in header component instead
-  }
-}
-
-.hidden {
-  display: none;
-  position: relative;
-}
-
-.languages {
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-  gap: $spacing--8;
-  flex-wrap: nowrap;
-  width: max-content;
-  margin: 0;
-  padding: 0 $spacing--16;
-
-  @media print {
-    // Allow many languages and stil be scrollable on mobile when not print
-    // but use margins for instances where print is scaled down
-    margin: $main-content-margin;
-    max-width: $main-content-max-width;
-    width: $main-content-width;
-  }
 
   li {
     list-style-type: none;
