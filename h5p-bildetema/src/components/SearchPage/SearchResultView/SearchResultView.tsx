@@ -4,17 +4,17 @@ import { AudioRefContext } from "common/context/AudioContext";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
-import Select from "../../Select/Select";
-import { SearchOrderOption } from "../useSearchResults";
+// import Select from "../../Select/Select";
+// import { SearchOrderOption } from "../useSearchResults";
 
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
   loadMore: () => void;
   searchResultAmount: number;
-  handleOrderChange: (option: SearchOrderOption) => void;
-  sortOptions: SearchOrderOption[];
-  resultSortType: SearchOrderOption;
+  // handleOrderChange: (option: SearchOrderOption) => void;
+  // sortOptions: SearchOrderOption[];
+  // resultSortType: SearchOrderOption;
 };
 
 const SearchResultView = ({
@@ -22,9 +22,6 @@ const SearchResultView = ({
   search,
   loadMore,
   searchResultAmount,
-  handleOrderChange,
-  sortOptions,
-  resultSortType,
 }: SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -45,15 +42,23 @@ const SearchResultView = ({
     rootMargin: "0px 0px 600px 0px",
   });
 
+  const searchLabel =
+    search.trim() === "" ? (
+      <div>
+        Viser <b>{searchResultAmount}</b> ord.
+      </div>
+    ) : (
+      <div>
+        Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
+      </div>
+    );
+
   return (
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
-        <div>
-          {/* TODO Translate */}
-          Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
-        </div>
-        <div className={styles.orderWrap}>
-          {/* TODO Translate */}
+        {searchLabel}
+        {/* TODO REMOVE ? */}
+        {/* <div className={styles.orderWrap}>
           <span>Sorter etter</span>
           <Select
             options={sortOptions}
@@ -61,7 +66,7 @@ const SearchResultView = ({
             selectedOption={resultSortType}
             variant="secondary"
           />
-        </div>
+        </div> */}
       </div>
 
       <ul className={styles.searchResultList}>

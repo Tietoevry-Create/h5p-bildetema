@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { isLanguageCode } from "common/types/LanguageCode";
+// import { isLanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -15,6 +15,7 @@ import {
   SortOptions,
   useSearchResults,
 } from "./useSearchResults";
+import { useLanguagesWithTranslatedLabels } from "../../hooks/useLanguagesWithTranslatedLabels";
 
 // TODO TRANSLATE LABELS
 const searchOrderOptions: SearchOrderOption[] = [
@@ -31,13 +32,15 @@ const SearchParamKeys = {
 };
 
 const SearchPage = (): JSX.Element => {
-  const { langCodeTolanguages, languages } = useNewDBContext();
+  const { langCodeTolanguages } = useNewDBContext();
+
+  const languages = useLanguagesWithTranslatedLabels();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const langCode = useCurrentLanguageCode();
 
-  const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
+  // const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
     langCodeTolanguages.get(langCode) ||
@@ -46,17 +49,20 @@ const SearchPage = (): JSX.Element => {
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguage, setViewLanguage] = React.useState<Language>(() => {
-    if (viewLangCode) {
-      if (isLanguageCode(viewLangCode))
-        return langCodeTolanguages.get(viewLangCode) || searchLanguage;
-    }
-    // TODO should change based on page language (no / se / de ....)
-    if (searchLanguage.code !== "nob") {
-      return langCodeTolanguages.get("nob") || searchLanguage;
-    }
-    return langCodeTolanguages.get("eng") || searchLanguage;
-    // return languages?.find(l => l.code === "eng") || searchLanguage;
+  const [viewLanguages] = React.useState<Language[]>(() => {
+    const viewLangs: Language[] = [];
+    // if (viewLangCode) {
+    //   if (isLanguageCode(viewLangCode))
+    //     viewLangs.push(langCodeTolanguages.get(viewLangCode) || searchLanguage);
+    //     return viewLangs;
+    // }
+    // // TODO should change based on page language (no / se / de ....)
+    // if (searchLanguage.code !== "nob") {
+    //   viewLangs.push(langCodeTolanguages.get("nob") || searchLanguage);
+    //   return viewLangs;
+    // }
+    // viewLangs.push(langCodeTolanguages.get("eng") || searchLanguage);
+    return viewLangs;
   });
 
   const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
@@ -65,30 +71,31 @@ const SearchPage = (): JSX.Element => {
 
   const { state, dispatch } = useSearchResults({
     filter,
-    search: currSearch,
+    search: currSearch.trim(),
     searchLanguage,
     order: searchOrderOptions[0],
-    viewLanguage: [viewLanguage],
+    viewLanguage: viewLanguages,
   });
 
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
-  const handleOrderChange = (option: SearchOrderOption): void => {
-    dispatch({
-      type: ActionType.SORT,
-      payload: {
-        searchOrderOption: option,
-        search: currSearch,
-        langCode,
-        languages: [searchLanguage, viewLanguage],
-      },
-    });
-  };
+  // TODO: Remove if not needed
+  // const handleOrderChange = (option: SearchOrderOption): void => {
+  //   dispatch({
+  //     type: ActionType.SORT,
+  //     payload: {
+  //       searchOrderOption: option,
+  //       search: currSearch,
+  //       langCode,
+  //       languages: [searchLanguage, viewLanguage],
+  //     },
+  //   });
+  // };
 
   const loadMore = (): void => {
     dispatch({
       type: ActionType.LOAD_MORE,
-      payload: { languages: [searchLanguage, viewLanguage] },
+      payload: { languages: [searchLanguage, ...viewLanguages] },
     });
   };
 
@@ -96,37 +103,17 @@ const SearchPage = (): JSX.Element => {
     dispatch({
       type: ActionType.SEARCH,
       payload: {
-        search,
+        search: search.trim(),
         searchLanguage,
         filter,
-        viewLanguage: [viewLanguage],
+        viewLanguage: viewLanguages,
       },
     });
   }, 400);
 
   const handleSearch = (search: string): void => {
-    if (search === "") {
-      searchParams.delete(SearchParamKeys.SEARCH);
-      debouncedSearch.cancel();
-      setSearchParams(searchParams);
-      dispatch({ type: ActionType.RESET });
-
-      if (filter.length > 0) {
-        dispatch({
-          type: ActionType.FILTER,
-          payload: {
-            search: "",
-            filter,
-            languages: [searchLanguage, viewLanguage],
-          },
-        });
-      }
-      return;
-    }
     searchParams.set(SearchParamKeys.SEARCH, search);
     setSearchParams(searchParams);
-    if (search.length < 2) return;
-
     debouncedSearch(search);
   };
 
@@ -137,12 +124,12 @@ const SearchPage = (): JSX.Element => {
     handleSearch(currSearch);
   };
 
-  const handleViewLanguageChange = (lang: OptionType<Language>): void => {
-    searchParams.set("viewLang", lang.code);
-    setSearchParams(searchParams);
-    setViewLanguage(lang);
-    handleSearch(currSearch);
-  };
+  // const handleViewLanguageChange = (lang: OptionType<Language>): void => {
+  //   searchParams.set("viewLang", lang.code);
+  //   setSearchParams(searchParams);
+  //   setViewLanguage(lang);
+  //   handleSearch(currSearch);
+  // };
 
   const handleFilterChange = (topicId: string, add: boolean): void => {
     let newFilter: string[];
@@ -157,9 +144,9 @@ const SearchPage = (): JSX.Element => {
       dispatch({
         type: ActionType.FILTER,
         payload: {
-          search: currSearch,
+          search: currSearch.trim(),
           filter: newFilter,
-          languages: [searchLanguage, viewLanguage],
+          languages: [searchLanguage, ...viewLanguages],
         },
       });
       return;
@@ -169,12 +156,28 @@ const SearchPage = (): JSX.Element => {
     dispatch({
       type: ActionType.FILTER,
       payload: {
-        search: currSearch,
+        search: currSearch.trim(),
         filter: newFilter,
-        languages: [searchLanguage, viewLanguage],
+        languages: [searchLanguage, ...viewLanguages],
       },
     });
   };
+
+  const resetFilter = (): void => {
+    searchParams.delete("filter");
+    setSearchParams(searchParams);
+    dispatch({
+      type: ActionType.FILTER,
+      payload: {
+        search: currSearch.trim(),
+        filter: [],
+        languages: [searchLanguage, ...viewLanguages],
+      },
+    });
+  };
+
+  // TODO: translate
+  const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`;
 
   return (
     <div className={styles.searchPage}>
@@ -188,9 +191,11 @@ const SearchPage = (): JSX.Element => {
               search={currSearch}
               languages={languages}
               searchLanguage={searchLanguage}
-              viewLanguage={viewLanguage}
+              resetFilter={resetFilter}
+              // viewLanguage={viewLanguage}
               handleSearchLanguageChange={handleSearchLanguageChange}
-              handleViewLanguageChange={handleViewLanguageChange}
+              // handleViewLanguageChange={handleViewLanguageChange}
+              searchInputPlaceholder={searchInputPlaceholder}
             />
           </div>
         </div>
@@ -202,9 +207,11 @@ const SearchPage = (): JSX.Element => {
             search={currSearch}
             loadMore={loadMore}
             searchResultAmount={state.filteredSearchResults.length}
-            sortOptions={searchOrderOptions}
-            handleOrderChange={handleOrderChange}
-            resultSortType={state.order}
+
+            // TODO: Remove if not needed
+            // sortOptions={searchOrderOptions}
+            // handleOrderChange={handleOrderChange}
+            // resultSortType={state.order}
           />
         </div>
       </div>

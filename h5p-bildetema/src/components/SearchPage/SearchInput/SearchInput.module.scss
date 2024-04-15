@@ -8,17 +8,21 @@
 // HACK use id to override default h5p styles
 #searchInput {
   padding: 1rem;
-  padding-right: 4rem;
+  padding-left: 4rem;
   width: 100%;
   border: 2px solid $dark-beige;
   background-color: $beige;
   border-radius: 0.5rem;
   box-shadow: none;
-  font-size: 1.125rem;
+  font-size: $font-size-16;
 
   &:focus-visible {
     outline: $outline-on-light-background !important;
   }
+}
+
+.rtl {
+  direction: rtl;
 }
 
 .searchInputIcon {
@@ -26,7 +30,7 @@
   padding: 0.5rem 1.25rem;
   justify-content: center;
   align-items: center;
-  right: 0;
+  left: 0;
   bottom: 0;
   height: 100%;
   display: flex;

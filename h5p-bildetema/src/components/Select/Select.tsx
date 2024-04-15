@@ -4,6 +4,7 @@ import styles from "./Select.module.scss";
 
 type Option = {
   label: string;
+  secondaryLabel?: string;
 };
 
 export type OptionType<T extends Option> = T;
@@ -15,6 +16,7 @@ export type SelectProps<T extends Option> = {
   handleChange: (option: OptionType<T>) => void;
   selectedOption: OptionType<T>;
   variant?: variants;
+  labelPrefix?: string;
 };
 
 const Select = <T extends Option>({
@@ -22,7 +24,16 @@ const Select = <T extends Option>({
   handleChange,
   selectedOption,
   variant = "primary",
+  labelPrefix,
 }: SelectProps<T>): JSX.Element => {
+  const label = labelPrefix ? (
+    <>
+      {labelPrefix} <b>{selectedOption.label}</b>
+    </>
+  ) : (
+    selectedOption.label
+  );
+
   return (
     <Listbox
       value={selectedOption}
@@ -35,7 +46,7 @@ const Select = <T extends Option>({
           <Listbox.Button
             className={`${styles.selectButton} ${styles[variant]}`}
           >
-            {selectedOption.label}
+            {label}
 
             <LanguageMenuArrowIcon
               transform={open ? "scale(1) rotate(180)" : "scale(1)"}
@@ -51,7 +62,10 @@ const Select = <T extends Option>({
                       active ? styles.active : ""
                     }`}
                   >
-                    {option.label}
+                    <span>{option.label}</span>
+                    {option.secondaryLabel && (
+                      <span>{option.secondaryLabel}</span>
+                    )}
                   </div>
                 )}
               </Listbox.Option>

@@ -3,9 +3,12 @@ import styles from "./SearchView.module.scss";
 import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
-import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
-import { LeftRightArrow } from "../../Icons/Icons";
-import SearchFilter from "../SearchFilter/SearchFilter";
+import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+// import { LeftRightArrow } from "../../Icons/Icons";
+// import SearchFilter from "../SearchFilter/SearchFilter";
+import Button from "../../Button/Button";
+import { LanguageIcon } from "../../Icons/Icons";
+import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 
 export type SearchViewProps = {
   handleFilterChange: (topicId: string, add: boolean) => void;
@@ -13,10 +16,11 @@ export type SearchViewProps = {
   search: string;
   languages: OptionType<Language>[];
   handleSearchLanguageChange: (lang: OptionType<Language>) => void;
-  handleViewLanguageChange: (lang: OptionType<Language>) => void;
   searchLanguage: OptionType<Language>;
-  viewLanguage: OptionType<Language>;
+  // viewLanguage: OptionType<Language>;
   filter: string[];
+  searchInputPlaceholder: string;
+  resetFilter: () => void;
 };
 
 const SearchView = ({
@@ -26,17 +30,14 @@ const SearchView = ({
   search,
   languages,
   handleSearchLanguageChange,
-  handleViewLanguageChange,
   searchLanguage,
-  viewLanguage,
+  // viewLanguage,
+  searchInputPlaceholder,
+  resetFilter,
 }: SearchViewProps): JSX.Element => {
-  const langCode = useCurrentLanguageCode();
-
-  const handleSwitchLangs = (): void => {
-    handleSearchLanguageChange(viewLanguage);
-    handleViewLanguageChange(searchLanguage);
-    handleSearch("");
-  };
+  const currentLang = useCurrentLanguage();
+  const langCode = currentLang?.code;
+  const isRtl = !!(currentLang?.rtl && search !== "");
 
   return (
     <div className={styles.searchField}>
@@ -49,31 +50,42 @@ const SearchView = ({
         ]}
       />
       <div className={styles.wrapper}>
+        {/* // TODO: translate */}
         <h1 className={styles.title}>Søk i Bildetema</h1>
         <div className={styles.searchInputWrapper}>
-          <SearchInput handleSearch={handleSearch} search={search} />
-        </div>
-        <div className={styles.languageSelectors}>
+          <SearchInput
+            handleSearch={handleSearch}
+            search={search}
+            placeholder={searchInputPlaceholder}
+            rlt={isRtl}
+            // rlt
+          />
           <Select
             options={languages}
             handleChange={handleSearchLanguageChange}
             selectedOption={searchLanguage}
-          />
-          <button
-            type="button"
-            className={styles.arrowButton}
-            onClick={handleSwitchLangs}
-          >
-            <LeftRightArrow width={24} height={24} />
-          </button>
-          <Select
-            options={languages}
-            handleChange={handleViewLanguageChange}
-            selectedOption={viewLanguage}
+            variant="secondary"
+            // TODO: translate
+            labelPrefix="Søk på"
           />
         </div>
+        <div className={styles.buttonWrapper}>
+          <SearchFilterDialog
+            handleFilterChange={handleFilterChange}
+            filter={filter}
+            resetFilter={resetFilter}
+          />
+          {/* <Button variant="secondary" disabled> */}
+
+          <Button variant="secondary" disabled>
+            <b>
+              <LanguageIcon />
+            </b>
+            {/* TODO: translate */}
+            <b>Vis på flere språk</b>
+          </Button>
+        </div>
       </div>
-      <SearchFilter handleFilterChange={handleFilterChange} filter={filter} />
     </div>
   );
 };
