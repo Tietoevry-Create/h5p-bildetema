@@ -21,5 +21,6 @@ export const useLanguagesWithTranslatedLabels = (): Language[] => {
       };
     })
     .sort((a, b) => a.label.localeCompare(b.label));
+
   return languagesWithTranslatedLabels;
 };
