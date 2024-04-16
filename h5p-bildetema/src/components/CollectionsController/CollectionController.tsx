@@ -4,15 +4,16 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { STATIC_PATH } from "common/constants/paths";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
-import styles from "./CustomViewPage.module.scss";
-import MyCustomView from "./MyCustomView/MyCustomView";
+import styles from "./CollectionController.module.scss";
+import MyCollectionPage from "./MyCollection/MyCollectionPage";
 import CollectionElement from "./CollectionLink/CollectionElement";
 import Button from "../Button/Button";
 import { AddIcon } from "../Icons/Icons";
 import Dialog from "../Dialog/Dialog";
 import TextInput from "../TextInput/TextInput";
 
-const CustomViewPage = (): JSX.Element => {
+// TODO: could be refactored to only include routing logic
+const CollectionController = (): JSX.Element => {
   const { collection } = useParams();
   const langCode = useCurrentLanguageCode();
 
@@ -43,7 +44,7 @@ const CustomViewPage = (): JSX.Element => {
 
   const [textInput, setTextInput] = useState("");
 
-  const handleSubmit = (): void => {
+  const handleCreateNewCollection = (): void => {
     addCollection({ title: textInput });
     setTextInput("");
     setCreateCollectionDialogOpen(false);
@@ -68,7 +69,7 @@ const CustomViewPage = (): JSX.Element => {
             <div className={styles.dialogContentWrapper}>
               <TextInput
                 handleChange={(e: string) => setTextInput(e)}
-                handleEnter={handleSubmit}
+                handleEnter={handleCreateNewCollection}
                 value={textInput}
               />
               <div className={styles.dialogButtonWrapper}>
@@ -82,7 +83,7 @@ const CustomViewPage = (): JSX.Element => {
                 <Button
                   className={styles.dialogButton}
                   variant="primary"
-                  onClick={handleSubmit}
+                  onClick={handleCreateNewCollection}
                 >
                   Ok
                 </Button>
@@ -113,21 +114,22 @@ const CustomViewPage = (): JSX.Element => {
         </div>
       );
     }
-    return <MyCustomView collectionTitle={collection} />;
+    return <MyCollectionPage collectionTitle={collection} />;
   };
 
   return (
-    <div className={`${styles.customViewPage} ${styles.mainSize}`}>
+    <div className={`${styles.CollectionController} ${styles.mainSize}`}>
       <div className={styles.menuWrapper}>
         <Breadcrumbs
           currentLanguageCode={langCode}
           // TODO: translate search label
           breadCrumbs={breadCrumbs}
         />
+        div hei
       </div>
       <div className={styles.contentWrapper}>{currentPage()}</div>
     </div>
   );
 };
 
-export default CustomViewPage;
+export default CollectionController;

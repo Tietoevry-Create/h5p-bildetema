@@ -3,14 +3,14 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { Link } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
-import styles from "./MyCustomView.module.scss";
+import styles from "./MyCollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 
-type MyCustomViewProps = {
+type MyCollection = {
   collectionTitle: string;
 };
 
-const MyCustomView = ({ collectionTitle }: MyCustomViewProps): JSX.Element => {
+const MyCollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
   const { addCollection } = useMyCollections();
 
@@ -41,4 +41,4 @@ const MyCustomView = ({ collectionTitle }: MyCustomViewProps): JSX.Element => {
   );
 };
 
-export default MyCustomView;
+export default MyCollectionPage;

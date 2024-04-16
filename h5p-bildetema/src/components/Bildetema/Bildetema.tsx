@@ -15,7 +15,7 @@ import { TopicRouteController } from "../TopicRouteController/TopicRouteControll
 import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 import SearchPage from "../SearchPage/SearchPage";
-import CustomViewPage from "../CustomViewPage/CustomViewPage";
+import CollectionsController from "../CollectionsController/CollectionController";
 import {
   useCurrentLanguage,
   useCurrentLanguageCode,
@@ -162,14 +162,14 @@ export const Bildetema: FC<BildetemaProps> = ({
           />
         ))}
         <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
-        {/* <Route path="/${/:collection" element={<CustomViewPage />} /> */}
+        {/* <Route path="/${/:collection" element={<CollectionsController />} /> */}
         <Route
           path={`${STATIC_PATH.COLLECTIONS}`}
-          element={<CustomViewPage />}
+          element={<CollectionsController />}
         />
         <Route
           path={`${STATIC_PATH.COLLECTIONS}/:collection`}
-          element={<CustomViewPage />}
+          element={<CollectionsController />}
         />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
