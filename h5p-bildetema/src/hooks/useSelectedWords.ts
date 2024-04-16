@@ -1,6 +1,6 @@
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { SearchResult } from "common/types/types";
+import { NewWord, SearchResult } from "common/types/types";
 import { newWordsToSearchResult } from "common/utils/data.utils";
 import { useLocation } from "react-router-dom";
 import { useCurrentLanguage } from "./useCurrentLanguage";
@@ -21,7 +21,9 @@ export const useSelectedWords = (): SearchResult[] => {
       })
       .filter(el => el !== undefined);
 
-    return newWordsToSearchResult(newWords, [lang], backedUrl);
+    // newWords as NewWord[] should not be necessary, because we filter out all undefined elements
+    // but we get some build errors if we do not do this...
+    return newWordsToSearchResult(newWords as NewWord[], [lang], backedUrl);
   }
   return [];
 };
