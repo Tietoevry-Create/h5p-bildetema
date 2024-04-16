@@ -5,12 +5,13 @@ import { STATIC_PATH } from "common/constants/paths";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import styles from "./CollectionController.module.scss";
-import MyCollectionPage from "./MyCollection/MyCollectionPage";
-import CollectionElement from "./CollectionLink/CollectionElement";
+import CollectionPage from "./CollectionPage/CollectionPage";
+import CollectionElement from "./CollectionElement/CollectionElement";
 import Button from "../Button/Button";
 import { AddIcon } from "../Icons/Icons";
 import Dialog from "../Dialog/Dialog";
 import TextInput from "../TextInput/TextInput";
+import CollectionsPage from "./CollectionsPage/CollectionsPage";
 
 // TODO: could be refactored to only include routing logic
 const CollectionController = (): JSX.Element => {
@@ -51,70 +52,76 @@ const CollectionController = (): JSX.Element => {
   };
 
   const currentPage = (): JSX.Element => {
-    if (!collection) {
-      // TODO: Own component?
+    // if (!collection) 
+    //   {
+    //   // TODO: Own component?
 
-      // TODO: translate
-      const title = "Lag en samling";
-      // TODO: translate
-      const description = "Navn på samlingen";
+    //   // TODO: translate
+    //   const title = "Lag en samling";
+    //   // TODO: translate
+    //   const description = "Navn på samlingen";
+    //   return (
+    //     <div className={styles.container}>
+    //       <Dialog
+    //         title={title}
+    //         description={description}
+    //         open={createCollectionDialogOpen}
+    //         onClose={() => setCreateCollectionDialogOpen(false)}
+    //       >
+    //         <div className={styles.dialogContentWrapper}>
+    //           <TextInput
+    //             handleChange={(e: string) => setTextInput(e)}
+    //             handleEnter={handleCreateNewCollection}
+    //             value={textInput}
+    //           />
+    //           <div className={styles.dialogButtonWrapper}>
+    //             <Button
+    //               className={styles.dialogButton}
+    //               variant="secondary"
+    //               onClick={() => setCreateCollectionDialogOpen(false)}
+    //             >
+    //               Avbryt
+    //             </Button>
+    //             <Button
+    //               className={styles.dialogButton}
+    //               variant="primary"
+    //               onClick={handleCreateNewCollection}
+    //             >
+    //               Ok
+    //             </Button>
+    //           </div>
+    //         </div>
+    //       </Dialog>
+    //       <div className={styles.description}>
+    //         Her kan du se alle samlingene du har laget.
+    //       </div>
+    //       <Button
+    //         className={styles.addButton}
+    //         variant="primary"
+    //         onClick={() => setCreateCollectionDialogOpen(true)}
+    //       >
+    //         <AddIcon />
+    //         <span>Lag en samling</span>
+    //       </Button>
+    //       <div className={styles.collectionWrapper}>
+    //         {myCollections.map(v => (
+    //           <CollectionElement
+    //             key={v.title}
+    //             amountOfCollectionItems={v.wordsIds.length}
+    //             label={v.title}
+    //             href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&words=${v.wordsIds}`}
+    //           />
+    //         ))}
+    //       </div>
+    //     </div>
+    //   );
+    // }
+    if(!collection) {
       return (
-        <div className={styles.container}>
-          <Dialog
-            title={title}
-            description={description}
-            open={createCollectionDialogOpen}
-            onClose={() => setCreateCollectionDialogOpen(false)}
-          >
-            <div className={styles.dialogContentWrapper}>
-              <TextInput
-                handleChange={(e: string) => setTextInput(e)}
-                handleEnter={handleCreateNewCollection}
-                value={textInput}
-              />
-              <div className={styles.dialogButtonWrapper}>
-                <Button
-                  className={styles.dialogButton}
-                  variant="secondary"
-                  onClick={() => setCreateCollectionDialogOpen(false)}
-                >
-                  Avbryt
-                </Button>
-                <Button
-                  className={styles.dialogButton}
-                  variant="primary"
-                  onClick={handleCreateNewCollection}
-                >
-                  Ok
-                </Button>
-              </div>
-            </div>
-          </Dialog>
-          <div className={styles.description}>
-            Her kan du se alle samlingene du har laget.
-          </div>
-          <Button
-            className={styles.addButton}
-            variant="primary"
-            onClick={() => setCreateCollectionDialogOpen(true)}
-          >
-            <AddIcon />
-            <span>Lag en samling</span>
-          </Button>
-          <div className={styles.collectionWrapper}>
-            {myCollections.map(v => (
-              <CollectionElement
-                key={v.title}
-                amountOfCollectionItems={v.wordsIds.length}
-                label={v.title}
-                href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&words=${v.wordsIds}`}
-              />
-            ))}
-          </div>
-        </div>
-      );
+        <CollectionsPage />
+      )
     }
-    return <MyCollectionPage collectionTitle={collection} />;
+    return <CollectionPage collectionTitle={collection} />;
   };
 
   return (

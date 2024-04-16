@@ -1,38 +1,11 @@
 @use "common/abstracts" as *;
 
-.CollectionController {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.mainSize {
-  margin: $main-content-margin;
-  width: $main-content-width;
-  max-width: $main-content-max-width;
-  margin-bottom: 2rem;
-}
-.menuWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 0rem;
-}
-
-// remove
 .container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-// remove
-.addButton {
-  font-size: $font-size-18;
-  fill: $white;
-}
-
-// remove
 .dialogContentWrapper {
   margin-top: 0.5rem;
   display: flex;
@@ -40,7 +13,6 @@
   gap: 3rem;
 }
 
-// remove
 .dialogButtonWrapper {
   display: flex;
   gap: 1rem;
@@ -53,7 +25,12 @@
   }
 }
 
-// remove
+.addButton {
+  font-size: $font-size-18;
+  fill: $white;
+}
+
+
 .collectionWrapper {
   display: flex;
   flex-direction: column;

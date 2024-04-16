@@ -3,14 +3,14 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { Link } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
-import styles from "./MyCollectionPage.module.scss";
+import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 
 type MyCollection = {
   collectionTitle: string;
 };
 
-const MyCollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
+const CollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
   const { addCollection } = useMyCollections();
 
@@ -41,4 +41,4 @@ const MyCollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
   );
 };
 
-export default MyCollectionPage;
+export default CollectionPage;
