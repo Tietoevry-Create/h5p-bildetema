@@ -21,8 +21,6 @@ export const useSelectedWords = (): SearchResult[] => {
       })
       .filter(el => el !== undefined);
 
-    // return newWordsToSearchResult(newWords, [lang, {code: "pol", label: "Polski", rtl: false}], backedUrl);
-    // return newWordsToSearchResult(newWords, [lang, {code: "pol", label: "Polski", rtl: false}, {code: "nob", label: "Bokmål", rtl: false}], backedUrl);
     return newWordsToSearchResult(newWords, [lang], backedUrl);
   }
   return [];

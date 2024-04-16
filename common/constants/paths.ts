@@ -1,6 +1,6 @@
 export const STATIC_PATH = {
-  SEARCH: "/sok",
+  SEARCH: "/search",
   COLLECTIONS: "/collections",
 } as const;
 
-export const STATIC_PATHS: string[] = Object.values(STATIC_PATH)
+export const STATIC_PATHS: string[] = Object.values(STATIC_PATH);

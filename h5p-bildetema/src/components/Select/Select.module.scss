@@ -48,7 +48,7 @@
   overflow-x: hidden;
   left: 0;
   right: 0;
-  
+
   &:focus-visible {
     outline: none;
   }
@@ -59,7 +59,6 @@
 }
 
 .option {
-  // width: 400px;
   white-space: nowrap;
   display: flex;
   justify-content: space-between;

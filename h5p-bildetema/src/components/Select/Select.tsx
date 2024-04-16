@@ -28,7 +28,7 @@ const Select = <T extends Option>({
   variant = "primary",
   labelPrefix,
   placeholder,
-  fixed
+  fixed,
 }: SelectProps<T>): JSX.Element => {
   const label = labelPrefix ? (
     <>
@@ -42,7 +42,7 @@ const Select = <T extends Option>({
     <Listbox
       value={selectedOption}
       onChange={o => {
-        if(o === null) return
+        if (o === null) return;
         handleChange(o);
       }}
     >
@@ -51,16 +51,16 @@ const Select = <T extends Option>({
           <Listbox.Button
             className={`${styles.selectButton} ${styles[variant]}`}
           >
-            {label === undefined ? 
-              placeholder : label
-            }
+            {label === undefined ? placeholder : label}
 
             <LanguageMenuArrowIcon
               transform={open ? "scale(1) rotate(180)" : "scale(1)"}
               transformOrigin="50% 50%"
             />
           </Listbox.Button>
-          <Listbox.Options className={`${styles.options} ${fixed && styles.fixed}`}>
+          <Listbox.Options
+            className={`${styles.options} ${fixed && styles.fixed}`}
+          >
             {options.map(option => (
               <Listbox.Option key={option.label} value={option}>
                 {({ active }) => (

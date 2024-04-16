@@ -1,14 +1,4 @@
 @use "common/abstracts" as *;
-
-// .words {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-//   gap: 10px;
-//   padding-inline-start: 0; // Remove default padding
-// }
-
-// @use "../../../../common/abstracts" as *;
-
 $gap: $spacing--24;
 
 .words {

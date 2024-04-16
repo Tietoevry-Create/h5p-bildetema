@@ -121,12 +121,7 @@ export const Header: FC<HeaderProps> = ({
           <span className={styles.logo_labels_title}>{titleLabel}</span>
           <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
         </Link>
-        <div
-          className={
-            // hideLanguageSelectors ? styles.hidden : styles.nav_container
-            styles.nav_container
-          }
-        >
+        <div className={styles.nav_container}>
           {!hideLanguageSelectors && (
             <LanguageDropdown
               handleSelectorVisibility={setLangSelectorIsShown}

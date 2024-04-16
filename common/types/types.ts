@@ -159,5 +159,5 @@ export type CurrentTopics = {
 
 export type Collection = {
   title: string;
-  wordsIds: string[]
-}
+  wordsIds: string[];
+};

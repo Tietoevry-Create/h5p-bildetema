@@ -35,17 +35,17 @@ export const getPath = ({
   language,
   search,
   currentTopics,
-  pathname
+  pathname,
 }: {
   currentTopics: CurrentTopics;
   language: Language;
   search: string;
-  pathname: string
+  pathname: string;
 }): string => {
-  if(pathname.includes(STATIC_PATH.COLLECTIONS)) {
+  if (pathname.includes(STATIC_PATH.COLLECTIONS)) {
     // Regex replaces lang=currentLangCode with lang=langCode
-    const query = search.replace(/lang=.*?(?=&|$)/g, `lang=${language.code}`)
-    return pathname + query
+    const query = search.replace(/lang=.*?(?=&|$)/g, `lang=${language.code}`);
+    return pathname + query;
   }
   const { topic, subTopic } = currentTopics;
   const topicPathLabel = topic?.translations.get(language.code)?.labels.at(0)

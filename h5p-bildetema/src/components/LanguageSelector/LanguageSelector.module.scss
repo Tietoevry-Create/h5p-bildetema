@@ -30,7 +30,7 @@
   overflow-y: auto;
   z-index: $fav-language-selector-z-index;
   right: -9rem;
-  
+
   @include breakpoint-max($medium) {
     right: 0;
   }

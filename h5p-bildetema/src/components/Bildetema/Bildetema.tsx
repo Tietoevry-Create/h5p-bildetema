@@ -161,7 +161,7 @@ export const Bildetema: FC<BildetemaProps> = ({
             }
           />
         ))}
-        <Route path="/sok" element={<SearchPage />} />
+        <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
         {/* <Route path="/${/:collection" element={<CustomViewPage />} /> */}
         <Route
           path={`${STATIC_PATH.COLLECTIONS}`}
@@ -176,7 +176,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     );
   }, [currTopics, defaultLanguages, directionRtl]);
 
-  const hidden = STATIC_PATHS.includes(pathname)
+  const hidden = STATIC_PATHS.includes(pathname);
 
   return (
     <div className={styles.wrapper}>

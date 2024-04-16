@@ -30,7 +30,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   currentTopics,
 }) => {
   const { languages } = useNewDBContext();
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   const getAmountOfRows = (columns: number): number => {
     return Math.max(1, Math.ceil(languages ? languages.length / columns : 0));

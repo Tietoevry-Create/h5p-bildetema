@@ -15,8 +15,8 @@ const Button = ({
 }: ButtonProps): React.JSX.Element => {
   return (
     <button
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
       // eslint-disable-next-line react/button-has-type
       type={props.type}
       className={`${styles.button} ${styles[variant]} ${

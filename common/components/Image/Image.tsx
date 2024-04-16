@@ -9,7 +9,7 @@ export type srcSet = {
 export type ImageProps = {
   src: string;
   width: string;
-  height?: string;
+  height: string;
   srcSets?: srcSet[];
   sizes?: ReadonlyArray<string>;
 };

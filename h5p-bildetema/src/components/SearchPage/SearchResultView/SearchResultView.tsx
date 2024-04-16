@@ -50,16 +50,6 @@ const SearchResultView = ({
     rootMargin: "0px 0px 600px 0px",
   });
 
-  const searchLabel =
-    search.trim() === "" ? (
-      <div>
-        Viser <b>{searchResultAmount}</b> ord.
-      </div>
-    ) : (
-      <div>
-        Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
-      </div>
-    );
   const { myCollections, addItemToCollection } = useMyCollections();
 
   const options = myCollections.map(collection => {
@@ -75,7 +65,7 @@ const SearchResultView = ({
   const handleCollectionSelectorChange = (option: collectionOption): void => {
     setSelectedCollection(option);
   };
-  
+
   const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
 
   const handleCloseDialog = (): void => {
@@ -89,10 +79,24 @@ const SearchResultView = ({
   };
 
   const handleAddBookmark = (): void => {
-    if(!selectedWordId || !selectedCollection) return;
-    addItemToCollection({title: selectedCollection.label, wordId: selectedWordId});
+    if (!selectedWordId || !selectedCollection) return;
+    addItemToCollection({
+      title: selectedCollection.label,
+      wordId: selectedWordId,
+    });
     handleCloseDialog();
-  }
+  };
+
+  const searchLabel =
+    search.trim() === "" ? (
+      <div>
+        Viser <b>{searchResultAmount}</b> ord.
+      </div>
+    ) : (
+      <div>
+        Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
+      </div>
+    );
 
   return (
     <div className={styles.searchResultView}>

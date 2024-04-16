@@ -22,8 +22,16 @@ const Dialog = ({
       <div className={styles.backdrop} aria-hidden />
       <div className={styles.panelContainer}>
         <HeadlessDialog.Panel className={styles.panel}>
-          {title && <HeadlessDialog.Title className={styles.title}><b>{title}</b></HeadlessDialog.Title>}
-          {description && <HeadlessDialog.Description>{description}</HeadlessDialog.Description>}
+          {title && (
+            <HeadlessDialog.Title className={styles.title}>
+              <b>{title}</b>
+            </HeadlessDialog.Title>
+          )}
+          {description && (
+            <HeadlessDialog.Description>
+              {description}
+            </HeadlessDialog.Description>
+          )}
           {children}
         </HeadlessDialog.Panel>
       </div>

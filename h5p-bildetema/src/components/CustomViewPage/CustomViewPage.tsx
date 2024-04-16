@@ -1,4 +1,3 @@
-// import { useSelectedWords } from "../../hooks/useSelectedWords";
 import { useParams } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
@@ -14,16 +13,15 @@ import Dialog from "../Dialog/Dialog";
 import TextInput from "../TextInput/TextInput";
 
 const CustomViewPage = (): JSX.Element => {
-  // const newWords = useSelectedWords();
-  // console.log(newWords)
   const { collection } = useParams();
   const langCode = useCurrentLanguageCode();
 
   const breadCrumbs = useMemo(() => {
     const crumbs = [
-      { label: "Home", path: `/${langCode}` },
       // TODO: translate
+      { label: "Home", path: `/${langCode}` },
       {
+        // TODO: translate
         label: "Mine samlinger",
         path: `${STATIC_PATH.COLLECTIONS}?lang=${langCode}`,
       },
@@ -105,6 +103,7 @@ const CustomViewPage = (): JSX.Element => {
           <div className={styles.collectionWrapper}>
             {myCollections.map(v => (
               <CollectionElement
+                key={v.title}
                 amountOfCollectionItems={v.wordsIds.length}
                 label={v.title}
                 href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&words=${v.wordsIds}`}

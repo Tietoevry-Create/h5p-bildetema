@@ -107,7 +107,10 @@ export const SearchResultCard = ({
     <li role="listitem" className={styles.searchResultCard}>
       {handleBookmarkClick && (
         <div className={styles.bookmarkButton}>
-          <button type="button" onClick={() => handleBookmarkClick(searchResult.id)}>
+          <button
+            type="button"
+            onClick={() => handleBookmarkClick(searchResult.id)}
+          >
             <BookmarkIcon />
           </button>
         </div>

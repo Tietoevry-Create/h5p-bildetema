@@ -77,7 +77,7 @@ const CollectionElement = ({
                 deleteCollection(label);
                 setOpenDialog(OpenDialog.NONE);
               }}
-              >
+            >
               {/* TODO: TRANSLATE */}
               Ja
             </Button>
@@ -93,7 +93,11 @@ const CollectionElement = ({
         description="Navn på samlingen"
       >
         <div className={styles.deleteDialog}>
-          <TextInput handleChange={handleEditCollectionTitle} value={title} handleEnter={handleNewTitle} />
+          <TextInput
+            handleChange={handleEditCollectionTitle}
+            value={title}
+            handleEnter={handleNewTitle}
+          />
           <div>
             <Button
               className={styles.dialogButton}
@@ -107,7 +111,7 @@ const CollectionElement = ({
               className={styles.dialogButton}
               variant="primary"
               onClick={handleNewTitle}
-              >
+            >
               {/* TODO: TRANSLATE */}
               Lagre Endring
             </Button>
@@ -116,7 +120,6 @@ const CollectionElement = ({
       </Dialog>
       <Menu>
         <Menu.Button className={styles.button}>
-          {" "}
           <MoreVertIcon />
         </Menu.Button>
         <Menu.Items className={styles.menu}>
@@ -144,7 +147,6 @@ const CollectionElement = ({
                 className={`${styles.menuItemButton} ${
                   active && styles.active
                 }`}
-                // onClick={() => deleteCollection(label)}
                 onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
               >
                 <DeleteIcon />

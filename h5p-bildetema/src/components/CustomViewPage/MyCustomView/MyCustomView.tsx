@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Link } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
@@ -22,6 +22,7 @@ const MyCustomView = ({ collectionTitle }: MyCustomViewProps): JSX.Element => {
   }, []);
 
   if (words.length === 0) {
+    // TODO: What to show when there are no words?
     return (
       <div>
         Denne samlingen er tom. Du kan legge til ord fra &nbsp;
@@ -34,7 +35,6 @@ const MyCustomView = ({ collectionTitle }: MyCustomViewProps): JSX.Element => {
   return (
     <div className={styles.words}>
       {words.map(word => (
-        // <SearchResultCard searchResult={word}/>
         <MultiLanguageWord searchResult={word} />
       ))}
     </div>
