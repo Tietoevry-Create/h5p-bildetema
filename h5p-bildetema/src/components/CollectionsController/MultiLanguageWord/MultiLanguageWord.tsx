@@ -118,7 +118,7 @@ export const MultiLanguageWord = ({
               ).toUpperCase()}
             </span>
             <Audio
-              label={toSingleLabel(translation.labels)}
+              label={toSingleLabel(translation.labels, false)}
               lang={lang}
               playAudioLabel={playAudioLabel}
               stopAudioLabel={stopAudioLabel}
