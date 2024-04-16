@@ -14,7 +14,7 @@ type variants = "primary" | "secondary";
 export type SelectProps<T extends Option> = {
   options: OptionType<T>[];
   handleChange: (option: OptionType<T>) => void;
-  selectedOption: OptionType<T>;
+  selectedOption: OptionType<T> | null;
   variant?: variants;
   labelPrefix?: string;
   placeholder?: string;
@@ -32,16 +32,17 @@ const Select = <T extends Option>({
 }: SelectProps<T>): JSX.Element => {
   const label = labelPrefix ? (
     <>
-      {labelPrefix} <b>{selectedOption.label}</b>
+      {labelPrefix} <b>{selectedOption?.label}</b>
     </>
   ) : (
-    selectedOption.label
+    selectedOption?.label
   );
 
   return (
     <Listbox
       value={selectedOption}
       onChange={o => {
+        if(o === null) return
         handleChange(o);
       }}
     >
@@ -50,7 +51,7 @@ const Select = <T extends Option>({
           <Listbox.Button
             className={`${styles.selectButton} ${styles[variant]}`}
           >
-            {label === "" ? 
+            {label === undefined ? 
               placeholder : label
             }
 

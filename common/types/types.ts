@@ -157,7 +157,7 @@ export type CurrentTopics = {
   subTopic?: NewWord;
 };
 
-export type Collections = {
+export type Collection = {
   title: string;
   wordsIds: string[]
 }

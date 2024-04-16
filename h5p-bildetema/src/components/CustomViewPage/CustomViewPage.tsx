@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { STATIC_PATH } from "common/constants/paths";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import styles from "./CustomViewPage.module.scss";
@@ -21,14 +22,18 @@ const CustomViewPage = (): JSX.Element => {
   const breadCrumbs = useMemo(() => {
     const crumbs = [
       { label: "Home", path: `/${langCode}` },
-      { label: "Egne visninger", path: `/my-collections?lang=${langCode}` },
+      // TODO: translate
+      {
+        label: "Mine samlinger",
+        path: `${STATIC_PATH.COLLECTIONS}?lang=${langCode}`,
+      },
     ];
     if (!collection) return crumbs;
     return [
       ...crumbs,
       {
         label: collection,
-        path: `/my-collections/${collection}?lang=${langCode}`,
+        path: `${STATIC_PATH.COLLECTIONS}/${collection}?lang=${langCode}`,
       },
     ];
   }, [langCode, collection]);
@@ -41,7 +46,7 @@ const CustomViewPage = (): JSX.Element => {
   const [textInput, setTextInput] = useState("");
 
   const handleSubmit = (): void => {
-    addCollection(textInput);
+    addCollection({ title: textInput });
     setTextInput("");
     setCreateCollectionDialogOpen(false);
   };
@@ -76,7 +81,11 @@ const CustomViewPage = (): JSX.Element => {
                 >
                   Avbryt
                 </Button>
-                <Button className={styles.dialogButton} variant="primary" onClick={handleSubmit}>
+                <Button
+                  className={styles.dialogButton}
+                  variant="primary"
+                  onClick={handleSubmit}
+                >
                   Ok
                 </Button>
               </div>
@@ -94,14 +103,13 @@ const CustomViewPage = (): JSX.Element => {
             <span>Lag en samling</span>
           </Button>
           <div className={styles.collectionWrapper}>
-
-          {myCollections.map(v => (
-            <CollectionElement
-            amountOfCollectionItems={v.wordsIds.length}
-            label={v.title}
-            href={`/my-collections/${v.title}?lang=${langCode}&words=${v.wordsIds}`}
-            />
-          ))}
+            {myCollections.map(v => (
+              <CollectionElement
+                amountOfCollectionItems={v.wordsIds.length}
+                label={v.title}
+                href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&words=${v.wordsIds}`}
+              />
+            ))}
           </div>
         </div>
       );

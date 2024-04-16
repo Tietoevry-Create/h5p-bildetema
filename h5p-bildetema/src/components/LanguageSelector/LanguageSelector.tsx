@@ -8,6 +8,7 @@ import { LanguageCodeString } from "common/types/LanguageCode";
 import { getPath } from "common/utils/router.utils";
 import { FC } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { useLocation } from "react-router-dom";
 import { useL10ns, useL10n } from "../../hooks/useL10n";
 import { translatedLabel } from "../../utils/language.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
@@ -29,6 +30,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   currentTopics,
 }) => {
   const { languages } = useNewDBContext();
+  const {pathname} = useLocation();
 
   const getAmountOfRows = (columns: number): number => {
     return Math.max(1, Math.ceil(languages ? languages.length / columns : 0));
@@ -54,7 +56,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
           )
           ?.map((language, index) => (
             <LanguageSelectorElement
-              path={getPath({ language, search, currentTopics })}
+              path={getPath({ language, search, currentTopics, pathname })}
               key={language.code}
               language={language}
               bottomElementAt2Col={

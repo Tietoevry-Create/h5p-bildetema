@@ -14,17 +14,17 @@ import { languages as languagesConst } from "common/constants/languages";
 import { useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import { StarFilledIcon } from "../../Icons/Icons";
-import { useMyCollections } from "common/hooks/useMyCollections";
+import { BookmarkIcon } from "../../Icons/Icons";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
+  handleBookmarkClick?: (id: string) => void;
 };
 
 export const SearchResultCard = ({
   searchResult,
+  handleBookmarkClick,
 }: SearchResultCardProps): JSX.Element => {
-  const { addItemToCollection } = useMyCollections();
   const { images } = searchResult;
 
   const prevLabel = useL10n("prevImageLabel");
@@ -105,11 +105,13 @@ export const SearchResultCard = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.searchResultCard}>
-      <div className={styles.bookmarkButton}>
-        <button type="button" onClick={() => addItemToCollection("Far", searchResult.id)}>
-          <StarFilledIcon />
-        </button>
-      </div>
+      {handleBookmarkClick && (
+        <div className={styles.bookmarkButton}>
+          <button type="button" onClick={() => handleBookmarkClick(searchResult.id)}>
+            <BookmarkIcon />
+          </button>
+        </div>
+      )}
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
         {searchResult.translations.map((translation, index) => (
