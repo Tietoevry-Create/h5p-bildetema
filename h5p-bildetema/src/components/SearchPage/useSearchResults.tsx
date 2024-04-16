@@ -1,9 +1,4 @@
-import {
-  Language,
-  NewWord,
-  SearchResult,
-  // SearchResultTranslations,
-} from "common/types/types";
+import { Language, NewWord, SearchResult } from "common/types/types";
 import {
   sortNewWordsByPosition,
   sortNewWordsBylevenshtein,
@@ -14,8 +9,6 @@ import { useReducer } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
-// import { getImageUrl } from "common/utils/image/image.utils";
-// import { getAudioFiles } from "common/utils/audio/audio.utils";
 import { newWordsToSearchResult } from "common/utils/data.utils";
 import { OptionType } from "../Select/Select";
 
