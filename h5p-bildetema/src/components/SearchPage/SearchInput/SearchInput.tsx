@@ -39,7 +39,7 @@ const SearchInput = ({
         onKeyDown={e => e.key === "Enter" && handleEnter()}
       />
       <span className={styles.searchInputIcon}>
-        <SearchIcon width={20} height={20} />
+        <SearchIcon />
       </span>
     </div>
   );
