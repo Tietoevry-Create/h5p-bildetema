@@ -1,0 +1,50 @@
+@use "common/abstracts" as *;
+
+.panelContainer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  padding: 1rem;
+  z-index: $dialog-z-index;
+
+  :focus-visible {
+    outline: $outline-on-light-background;
+    z-index: $outline-z-index; // prevent adjacent elements from overlapping the outline
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: $backdrop-z-index;
+}
+
+.panel {
+  max-height: 85vh;
+  min-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: $white;
+}
+
+.title {
+  font-size: $font-size-20;
+  font-family: sans-serif;
+
+  // Wordpress overrides
+  margin-block-start: 0;
+  margin-block-end: 0;
+
+  margin-bottom: 2rem;
+}
+
+.description {
+  // Wordpress overrides
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

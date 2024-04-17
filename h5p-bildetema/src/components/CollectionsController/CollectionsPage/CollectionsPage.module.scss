@@ -1,0 +1,37 @@
+@use "common/abstracts" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dialogContentWrapper {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.dialogButtonWrapper {
+  display: flex;
+  gap: 1rem;
+
+  & button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.addButton {
+  font-size: $font-size-18;
+  fill: $white;
+}
+
+.collectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

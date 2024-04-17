@@ -1,11 +1,10 @@
 import { Language } from "common/types/types";
+import { STATIC_PATH } from "common/constants/paths";
 import styles from "./SearchView.module.scss";
 import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
-// import { LeftRightArrow } from "../../Icons/Icons";
-// import SearchFilter from "../SearchFilter/SearchFilter";
 import Button from "../../Button/Button";
 import { LanguageIcon } from "../../Icons/Icons";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
@@ -46,7 +45,7 @@ const SearchView = ({
         // TODO: translate search label
         breadCrumbs={[
           { label: "Home", path: `/${langCode}` },
-          { label: "Søk", path: `/sok` },
+          { label: "Søk", path: `${STATIC_PATH.SEARCH}` },
         ]}
       />
       <div className={styles.wrapper}>
@@ -75,7 +74,6 @@ const SearchView = ({
             filter={filter}
             resetFilter={resetFilter}
           />
-          {/* <Button variant="secondary" disabled> */}
 
           <Button variant="secondary" disabled>
             <b>

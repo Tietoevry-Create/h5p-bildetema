@@ -1,9 +1,4 @@
-import {
-  Language,
-  NewWord,
-  SearchResult,
-  SearchResultTranslations,
-} from "common/types/types";
+import { Language, NewWord, SearchResult } from "common/types/types";
 import {
   sortNewWordsByPosition,
   sortNewWordsBylevenshtein,
@@ -14,8 +9,7 @@ import { useReducer } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
-import { getImageUrl } from "common/utils/image/image.utils";
-import { getAudioFiles } from "common/utils/audio/audio.utils";
+import { newWordsToSearchResult } from "common/utils/data.utils";
 import { OptionType } from "../Select/Select";
 
 export const ActionType = {
@@ -97,43 +91,6 @@ type SearchState = {
 };
 
 const resultAmount = 20;
-
-const getTranslations = (
-  word: NewWord,
-  languages: Language[],
-  backendUrl: string,
-): SearchResultTranslations[] => {
-  return languages.map(lang => {
-    const labels = word.translations.get(lang.code)?.labels || [];
-    const audioFiles = getAudioFiles(word.id, backendUrl, lang.code);
-    const searchResultTranslations: SearchResultTranslations = {
-      lang,
-      labels,
-      audioFiles,
-    };
-    return searchResultTranslations;
-  });
-};
-
-const newWordsToSearchResult = (
-  newWords: NewWord[],
-  languages: Language[],
-  backendUrl: string,
-): SearchResult[] => {
-  return newWords.map(word => {
-    const images = word.images.map(i => getImageUrl(i, backendUrl));
-    const translations = getTranslations(word, languages, backendUrl);
-
-    const result: SearchResult = {
-      id: word.id,
-      images,
-      translations,
-      topicId: word.topicId,
-      subTopicId: word.subTopicId,
-    };
-    return result;
-  });
-};
 
 const filterSearchResults = (
   searchResults: NewWord[],

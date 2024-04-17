@@ -13,7 +13,7 @@
 }
 
 .languageLabel {
-  @include breakpoint-max($small) {
+  @include breakpoint-max($medium) {
     display: none;
   }
 }

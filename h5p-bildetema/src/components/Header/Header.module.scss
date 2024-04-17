@@ -48,8 +48,15 @@
   display: flex;
   flex-grow: 1;
   font-size: $font-size-24;
-  gap: $spacing--40;
+  gap: $spacing--16;
   justify-content: flex-end;
+
+  @include breakpoint-min($small) {
+    gap: $spacing--24;
+  }
+  @include breakpoint-min($medium) {
+    gap: $spacing--32;
+  }
 }
 
 .hidden {

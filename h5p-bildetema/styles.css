@@ -21,10 +21,6 @@ BlankSlate is distributed under the terms of the GNU GPL
   font-family: sans-serif !important;
 }
 
-html {
-  scrollbar-gutter: stable;
-}
-
 html,
 body,
 div,

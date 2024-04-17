@@ -11,7 +11,9 @@ import {
   useState,
 } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { STATIC_PATH } from "common/constants/paths";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
+import { BookmarkIcon, SearchIcon } from "../Icons/Icons";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
@@ -119,24 +121,32 @@ export const Header: FC<HeaderProps> = ({
           <span className={styles.logo_labels_title}>{titleLabel}</span>
           <span className={styles.logo_labels_subtitle}>{subTitleLabel}</span>
         </Link>
-        <div
-          className={
-            hideLanguageSelectors ? styles.hidden : styles.nav_container
-          }
-        >
-          <LanguageDropdown
-            handleSelectorVisibility={setLangSelectorIsShown}
-            langSelectorIsShown={langSelectorIsShown}
-            selectLanguageLabel={selectLanguage}
-            favLanguages={favLanguages}
-            search={search}
-            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-            currentLanguageCode={currentLanguageCode}
-            firstTime={firstTime}
-            currentTopics={currentTopics}
-          />
+        <div className={styles.nav_container}>
+          {!hideLanguageSelectors && (
+            <LanguageDropdown
+              handleSelectorVisibility={setLangSelectorIsShown}
+              langSelectorIsShown={langSelectorIsShown}
+              selectLanguageLabel={selectLanguage}
+              favLanguages={favLanguages}
+              search={search}
+              handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+              currentLanguageCode={currentLanguageCode}
+              firstTime={firstTime}
+              currentTopics={currentTopics}
+            />
+          )}
 
-          <HeaderLink href={`/sok?lang=${currentLanguageCode}`} />
+          {/* TODO: Translate */}
+          <HeaderLink
+            icon={<SearchIcon />}
+            label="Søk"
+            href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
+          />
+          <HeaderLink
+            label="Samlinger"
+            icon={<BookmarkIcon />}
+            href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
+          />
         </div>
       </div>
     </div>

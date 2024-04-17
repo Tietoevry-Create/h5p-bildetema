@@ -1,0 +1,19 @@
+@use "common/abstracts" as *;
+
+@use "common/abstracts" as *;
+
+// HACK use id to override default h5p styles
+#TextInput {
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  border: 3px solid $dark-beige;
+  background-color: $beige;
+  border-radius: 0.5rem;
+  box-shadow: none;
+  font-size: $font-size-18;
+
+  &:focus-visible {
+    outline: $outline-on-light-background !important;
+    // outline: none !important;
+  }
+}

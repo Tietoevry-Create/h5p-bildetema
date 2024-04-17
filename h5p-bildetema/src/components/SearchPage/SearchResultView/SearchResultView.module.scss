@@ -24,3 +24,19 @@
   gap: 10px;
   padding-inline-start: 0; // Remove default padding
 }
+
+.dialogContentWrapper {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dialogButtonWrapper {
+  display: flex;
+  gap: 1rem;
+
+  & button {
+    flex: 1;
+  }
+}

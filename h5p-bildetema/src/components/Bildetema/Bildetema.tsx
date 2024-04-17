@@ -4,6 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
+import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -14,7 +15,7 @@ import { TopicRouteController } from "../TopicRouteController/TopicRouteControll
 import { sanitizeLanguages } from "../../utils/language.utils";
 import styles from "./Bildetema.module.scss";
 import SearchPage from "../SearchPage/SearchPage";
-import CustomViewPage from "../CustomViewPage/CustomViewPage";
+import CollectionsController from "../CollectionsController/CollectionController";
 import {
   useCurrentLanguage,
   useCurrentLanguageCode,
@@ -24,11 +25,6 @@ type BildetemaProps = {
   defaultLanguages: string[];
   isLoadingData: boolean;
 };
-
-const STATIC_PATHS = {
-  SEARCH: "/sok",
-  CUSTOM_VIEW: "/customview",
-} as const;
 
 export const Bildetema: FC<BildetemaProps> = ({
   defaultLanguages,
@@ -111,7 +107,7 @@ export const Bildetema: FC<BildetemaProps> = ({
   // Set lang as favorite if it is not already
   useEffect(() => {
     // we dont want to set the language as favorite if we are on the search page
-    if (pathname.includes(STATIC_PATHS.SEARCH)) return;
+    if (pathname.includes(STATIC_PATH.SEARCH)) return;
 
     const languageIsAlreadyFavorited = favLanguages.find(
       el => currentLanguageCode === el.code,
@@ -165,12 +161,21 @@ export const Bildetema: FC<BildetemaProps> = ({
             }
           />
         ))}
-        <Route path="/sok" element={<SearchPage />} />
-        <Route path="/customview" element={<CustomViewPage />} />
+        <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
+        <Route
+          path={`${STATIC_PATH.COLLECTIONS}`}
+          element={<CollectionsController />}
+        />
+        <Route
+          path={`${STATIC_PATH.COLLECTIONS}/:collection`}
+          element={<CollectionsController />}
+        />
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
   }, [currTopics, defaultLanguages, directionRtl]);
+
+  const hidden = STATIC_PATHS.includes(pathname);
 
   return (
     <div className={styles.wrapper}>
@@ -181,13 +186,13 @@ export const Bildetema: FC<BildetemaProps> = ({
           firstTime={firstTime}
           setFirstTime={setFirstTime}
           handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-          hideLanguageSelectors={pathname === STATIC_PATHS.SEARCH}
+          hideLanguageSelectors={hidden}
           currentTopics={currTopics}
         />
         <LanguageFavorites
           currentTopics={currTopics}
           favLanguages={favLanguages}
-          hidden={pathname === STATIC_PATHS.SEARCH}
+          hidden={hidden}
         />
         <div
           id="bildetemaMain"

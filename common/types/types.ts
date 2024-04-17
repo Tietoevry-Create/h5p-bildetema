@@ -156,3 +156,8 @@ export type CurrentTopics = {
   topic?: NewWord;
   subTopic?: NewWord;
 };
+
+export type Collection = {
+  title: string;
+  wordsIds: string[];
+};

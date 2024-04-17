@@ -12,18 +12,15 @@ import { useL10ns } from "use-h5p";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
 import { useL10n } from "../../../hooks/useL10n";
-import styles from "./SearchResultCard.module.scss";
+import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import { BookmarkIcon } from "../../Icons/Icons";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
-  handleBookmarkClick?: (id: string) => void;
 };
 
-export const SearchResultCard = ({
+export const MultiLanguageWord = ({
   searchResult,
-  handleBookmarkClick,
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
 
@@ -64,7 +61,7 @@ export const SearchResultCard = ({
                   srcSets={image.srcSets}
                   sizes={gridImageSizes}
                   width="250"
-                  height="300"
+                  height="250"
                 />
               </div>
             </SwiperSlide>
@@ -75,7 +72,7 @@ export const SearchResultCard = ({
               <Image
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
                 width="250"
-                height="300"
+                height="250"
               />
             </div>
           </SwiperSlide>
@@ -105,16 +102,6 @@ export const SearchResultCard = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.searchResultCard}>
-      {handleBookmarkClick && (
-        <div className={styles.bookmarkButton}>
-          <button
-            type="button"
-            onClick={() => handleBookmarkClick(searchResult.id)}
-          >
-            <BookmarkIcon />
-          </button>
-        </div>
-      )}
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
         {searchResult.translations.map((translation, index) => (
@@ -131,7 +118,7 @@ export const SearchResultCard = ({
               ).toUpperCase()}
             </span>
             <Audio
-              label={toSingleLabel(translation.labels)}
+              label={toSingleLabel(translation.labels, false)}
               lang={lang}
               playAudioLabel={playAudioLabel}
               stopAudioLabel={stopAudioLabel}

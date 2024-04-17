@@ -2,8 +2,12 @@ import React, { RefObject, useMemo, useState } from "react";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
 import useInfiniteScroll from "react-infinite-scroll-hook";
+import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
+import Dialog from "../../Dialog/Dialog";
+import Button from "../../Button/Button";
+import Select from "../../Select/Select";
 // import Select from "../../Select/Select";
 // import { SearchOrderOption } from "../useSearchResults";
 
@@ -15,6 +19,10 @@ export type SearchResultViewProps = {
   // handleOrderChange: (option: SearchOrderOption) => void;
   // sortOptions: SearchOrderOption[];
   // resultSortType: SearchOrderOption;
+};
+
+type collectionOption = {
+  label: string;
 };
 
 const SearchResultView = ({
@@ -42,6 +50,43 @@ const SearchResultView = ({
     rootMargin: "0px 0px 600px 0px",
   });
 
+  const { myCollections, addItemToCollection } = useMyCollections();
+
+  const options = myCollections.map(collection => {
+    return {
+      label: collection.title,
+    };
+  });
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedCollection, setSelectedCollection] =
+    React.useState<collectionOption | null>(null);
+
+  const handleCollectionSelectorChange = (option: collectionOption): void => {
+    setSelectedCollection(option);
+  };
+
+  const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
+
+  const handleCloseDialog = (): void => {
+    setOpen(false);
+    setSelectedWordId(null);
+  };
+
+  const handleBookmarkClick = (id: string): void => {
+    setOpen(true);
+    setSelectedWordId(id);
+  };
+
+  const handleAddBookmark = (): void => {
+    if (!selectedWordId || !selectedCollection) return;
+    addItemToCollection({
+      title: selectedCollection.label,
+      wordId: selectedWordId,
+    });
+    handleCloseDialog();
+  };
+
   const searchLabel =
     search.trim() === "" ? (
       <div>
@@ -68,11 +113,44 @@ const SearchResultView = ({
           />
         </div> */}
       </div>
+      <div className={styles.dialogContainer}>
+        <Dialog
+          open={open}
+          onClose={handleCloseDialog}
+          title="Legg til ord"
+          description="Velg en samling"
+        >
+          <div className={styles.dialogContentWrapper}>
+            <Select
+              fixed
+              placeholder="Velg samling"
+              variant="secondary"
+              options={options}
+              handleChange={handleCollectionSelectorChange}
+              selectedOption={selectedCollection}
+            />
+            <div className={styles.dialogButtonWrapper}>
+              <Button variant="secondary" onClick={handleCloseDialog}>
+                Avbryt
+              </Button>
+              <Button variant="primary" onClick={handleAddBookmark}>
+                Ok
+              </Button>
+            </div>
+          </div>
+        </Dialog>
+      </div>
 
       <ul className={styles.searchResultList}>
         <AudioRefContext.Provider value={audioContextValue}>
           {searchResults?.map(w => {
-            return <SearchResultCard key={w.id} searchResult={w} />;
+            return (
+              <SearchResultCard
+                key={w.id}
+                searchResult={w}
+                handleBookmarkClick={handleBookmarkClick}
+              />
+            );
           })}
           {hasNextPage && <span ref={sentryRef} />}
         </AudioRefContext.Provider>

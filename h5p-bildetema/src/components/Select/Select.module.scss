@@ -13,11 +13,11 @@
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  width: fit-content;
   border-radius: 0.5rem;
   font-family: sans-serif;
   font-size: $font-size-16;
   gap: $spacing--8;
+  width: 100%;
 }
 
 .secondary {
@@ -45,17 +45,20 @@
   overflow-y: auto;
   max-height: clamp(20vh, 50vh, 60vh);
   color: black;
-
-  // overflow-y: hidden;
   overflow-x: hidden;
-  width: fit-content;
+  left: 0;
+  right: 0;
+
   &:focus-visible {
     outline: none;
   }
 }
 
+.fixed {
+  position: absolute;
+}
+
 .option {
-  // width: 400px;
   white-space: nowrap;
   display: flex;
   justify-content: space-between;

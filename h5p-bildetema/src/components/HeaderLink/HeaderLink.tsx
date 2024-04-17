@@ -1,21 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeaderLink.module.scss";
-import { SearchIcon } from "../Icons/Icons";
 
 type HeaderLinkProps = {
   href: string;
+  label: string;
+  icon: React.JSX.Element;
 };
 
-const HeaderLink = ({ href }: HeaderLinkProps): JSX.Element => {
+const HeaderLink = ({ href, label, icon }: HeaderLinkProps): JSX.Element => {
   return (
     <Link className={styles.headerLink} to={href} key={href}>
       <span className={styles.icon} aria-hidden="true">
-        <SearchIcon />
+        {icon}
       </span>
 
       {/* TODO translate */}
-      <span className={styles.headerLinkLabel}>Søk</span>
+      <span className={styles.headerLinkLabel}>{label}</span>
     </Link>
   );
 };

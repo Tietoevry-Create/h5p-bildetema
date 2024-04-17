@@ -1,7 +1,7 @@
 @use "common/abstracts" as *;
 
 .dialog {
-  z-index: 50;
+  z-index: $dialog-z-index;
   position: relative;
   font-family: sans-serif;
 }
@@ -17,6 +17,10 @@
   justify-content: space-between;
   gap: 3rem;
   line-height: 0;
+
+  // Wordpress overrides
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 .title {
@@ -32,6 +36,11 @@
   align-items: center;
   justify-content: center;
   inset: 0;
+
+  :focus-visible {
+    outline: $outline-on-light-background;
+    z-index: $outline-z-index; // prevent adjacent elements from overlapping the outline
+  }
 }
 
 .panel {
