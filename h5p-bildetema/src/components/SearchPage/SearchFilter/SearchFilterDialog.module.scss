@@ -1,7 +1,7 @@
 @use "common/abstracts" as *;
 
 .dialog {
-  z-index: 50;
+  z-index: $dialog-z-index;
   position: relative;
   font-family: sans-serif;
 }
@@ -32,6 +32,11 @@
   align-items: center;
   justify-content: center;
   inset: 0;
+
+  :focus-visible {
+    outline: $outline-on-light-background;
+    z-index: $outline-z-index; // prevent adjacent elements from overlapping the outline
+  }
 }
 
 .panel {

@@ -51,7 +51,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  z-index: 10;
+  z-index: $dialog-z-index;
   right: 2.6rem;
   top: 2.8rem;
   text-align: left;

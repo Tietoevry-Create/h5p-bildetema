@@ -7,14 +7,19 @@
   justify-content: center;
   inset: 0;
   padding: 1rem;
-  z-index: 10;
+  z-index: $dialog-z-index;
+
+  :focus-visible {
+    outline: $outline-on-light-background;
+    z-index: $outline-z-index; // prevent adjacent elements from overlapping the outline
+  }
 }
 
 .backdrop {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  z-index: $backdrop-z-index;
 }
 
 .panel {

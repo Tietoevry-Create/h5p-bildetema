@@ -37,7 +37,7 @@
   padding: 0.25rem;
   position: absolute;
   margin-top: 3rem;
-  z-index: 11;
+  z-index: $fav-language-selector-z-index;
   background-color: $white;
   box-shadow:
     hsl(206 22% 7% / 35%) 0 10px 38px -10px,

@@ -29,7 +29,6 @@
   width: 100%;
   justify-content: center;
   gap: 0.5rem;
-  overflow: hidden;
 
   @include breakpoint-min($x-small) {
     gap: 1rem;
