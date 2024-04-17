@@ -25,9 +25,8 @@ const CollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
     // TODO: What to show when there are no words?
     return (
       <div>
-        Denne samlingen er tom. Du kan legge til ord fra &nbsp;
-        <Link to={STATIC_PATH.SEARCH}>søke</Link>
-        &nbsp;siden
+        Denne samlingen er tom. Du kan legge til ord via{" "}
+        <Link to={STATIC_PATH.SEARCH}>søk</Link>
       </div>
     );
   }
