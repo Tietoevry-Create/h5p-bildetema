@@ -28,7 +28,7 @@ const Dialog = ({
             </HeadlessDialog.Title>
           )}
           {description && (
-            <HeadlessDialog.Description>
+            <HeadlessDialog.Description className={styles.description}>
               {description}
             </HeadlessDialog.Description>
           )}
