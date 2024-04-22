@@ -124,12 +124,14 @@ export const SearchResultCard = ({
             // eslint-disable-next-line react/no-array-index-key
             key={`${translation.lang.code}-${index}`}
           >
-            <span className={styles.translationLang}>
-              {translatedLabel(
-                translation.lang.code,
-                translations,
-              ).toUpperCase()}
-            </span>
+            {searchResult.translations.length > 1 && (
+              <span className={styles.translationLang}>
+                {translatedLabel(
+                  translation.lang.code,
+                  translations,
+                ).toUpperCase()}
+              </span>
+            )}
             <Audio
               label={toSingleLabel(translation.labels)}
               lang={lang}
