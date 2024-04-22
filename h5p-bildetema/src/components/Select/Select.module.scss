@@ -37,7 +37,7 @@
   padding: 0.25rem;
   position: absolute;
   margin-top: 3.5rem;
-  z-index: $fav-language-selector-z-index;
+  z-index: $select-z-index;
   background-color: $white;
   box-shadow:
     hsl(206 22% 7% / 35%) 0 10px 38px -10px,
@@ -60,9 +60,6 @@
 
 .option {
   white-space: nowrap;
-  display: flex;
-  justify-content: space-between;
-  gap: 2.5rem;
 
   padding: 0.5rem 1rem;
 
@@ -73,6 +70,22 @@
     background: $beige;
   }
 }
+
+.selected {
+  font-weight: bold;
+}
+
+.withCheckIcon {
+  position: relative;
+  stroke: $dark-teal;
+  padding: 0.5rem 2.5rem;
+}
+
 .active {
   background: $beige;
+}
+
+.icon {
+  position: absolute;
+  left: 0.75rem;
 }

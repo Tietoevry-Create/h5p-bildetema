@@ -2,7 +2,7 @@ import React, { useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
-// import { isLanguageCode } from "common/types/LanguageCode";
+import { isLanguageCode } from "common/types/LanguageCode";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -37,7 +37,7 @@ const SearchPage = (): JSX.Element => {
 
   const langCode = useCurrentLanguageCode();
 
-  // const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
+  const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
     languages.find(lang => lang.code === langCode) ||
@@ -46,22 +46,17 @@ const SearchPage = (): JSX.Element => {
   );
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguages] = React.useState<Language[]>(() => {
+  const [viewLanguages, setViewLanguages] = React.useState<Language[]>(() => {
     const viewLangs: Language[] = [];
-    // if (viewLangCode) {
-    //   if (isLanguageCode(viewLangCode))
-    //     viewLangs.push(langCodeTolanguages.get(viewLangCode) || searchLanguage);
-    //     return viewLangs;
-    // }
-    // // TODO should change based on page language (no / se / de ....)
-    // if (searchLanguage.code !== "nob") {
-    //   viewLangs.push(langCodeTolanguages.get("nob") || searchLanguage);
-    //   return viewLangs;
-    // }
-    // viewLangs.push(langCodeTolanguages.get("eng") || searchLanguage);
+    if (viewLangCode) {
+      if (isLanguageCode(viewLangCode))
+        viewLangs.push(
+          languages.find(lang => lang.code === viewLangCode) || searchLanguage,
+        );
+      return viewLangs;
+    }
     return viewLangs;
   });
-
   const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
 
   const filter = searchParams.get(SearchParamKeys.FILTER)?.split(",") ?? [];
@@ -121,12 +116,19 @@ const SearchPage = (): JSX.Element => {
     handleSearch(currSearch);
   };
 
-  // const handleViewLanguageChange = (lang: OptionType<Language>): void => {
-  //   searchParams.set("viewLang", lang.code);
-  //   setSearchParams(searchParams);
-  //   setViewLanguage(lang);
-  //   handleSearch(currSearch);
-  // };
+  const handleViewLanguageChange = (lang: OptionType<Language>): void => {
+    if (lang.code === viewLanguages[0]?.code) {
+      searchParams.delete("viewLang");
+      setSearchParams(searchParams);
+      setViewLanguages([]);
+      handleSearch(currSearch);
+      return;
+    }
+    searchParams.set("viewLang", lang.code);
+    setSearchParams(searchParams);
+    setViewLanguages([lang]);
+    handleSearch(currSearch);
+  };
 
   const handleFilterChange = (topicId: string, add: boolean): void => {
     let newFilter: string[];
@@ -189,9 +191,10 @@ const SearchPage = (): JSX.Element => {
               languages={languages}
               searchLanguage={searchLanguage}
               resetFilter={resetFilter}
-              // viewLanguage={viewLanguage}
+              // Todo handle multiple languages
+              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
               handleSearchLanguageChange={handleSearchLanguageChange}
-              // handleViewLanguageChange={handleViewLanguageChange}
+              handleViewLanguageChange={handleViewLanguageChange}
               searchInputPlaceholder={searchInputPlaceholder}
             />
           </div>
