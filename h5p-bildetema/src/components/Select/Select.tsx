@@ -75,7 +75,7 @@ const Select = <T extends Option>({
                     >
                       {withSelectedIcon && (
                         <span className={styles.icon}>
-                          {selected ? <CheckIcon /> : null}
+                          {selected && <CheckIcon />}
                         </span>
                       )}
                       <span>{option.label}</span>
