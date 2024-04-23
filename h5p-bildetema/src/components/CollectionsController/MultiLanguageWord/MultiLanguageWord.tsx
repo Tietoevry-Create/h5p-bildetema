@@ -126,6 +126,7 @@ export const MultiLanguageWord = ({
               stopAudioLabel={stopAudioLabel}
               audioFiles={translation.audioFiles}
               rtl={translation.lang.rtl}
+              lowerCaseLabel
             />
           </div>
         ))}
