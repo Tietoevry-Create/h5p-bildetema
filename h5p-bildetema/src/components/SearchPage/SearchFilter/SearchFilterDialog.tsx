@@ -40,7 +40,7 @@ const SearchFilterDialog = ({
       <Button variant="secondary" onClick={() => setIsOpen(true)}>
         <Filter />
         {/* TODO: translate */}
-        <b>Filtrer etter tema</b>
+        <span className={styles.label}>Filtrer etter tema</span>
         {checkedTopicsAmount > 0 && (
           <div className={styles.amount}>{checkedTopicsAmount}</div>
         )}
@@ -57,7 +57,7 @@ const SearchFilterDialog = ({
               <div className={styles.title}>
                 <Filter />
                 {/* TODO: translate */}
-                <b>Filtrer etter tema</b>
+                <span className={styles.label}>Filtrer etter tema</span>
               </div>
 
               <button
