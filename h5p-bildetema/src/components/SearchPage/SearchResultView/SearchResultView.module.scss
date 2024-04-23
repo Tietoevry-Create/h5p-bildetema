@@ -40,3 +40,9 @@
     flex: 1;
   }
 }
+
+.searchLabel {
+  & b {
+    font-weight: bold;
+  }
+}

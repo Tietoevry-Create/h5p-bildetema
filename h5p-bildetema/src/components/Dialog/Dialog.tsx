@@ -24,7 +24,7 @@ const Dialog = ({
         <HeadlessDialog.Panel className={styles.panel}>
           {title && (
             <HeadlessDialog.Title className={styles.title}>
-              <b>{title}</b>
+              {title}
             </HeadlessDialog.Title>
           )}
           {description && (

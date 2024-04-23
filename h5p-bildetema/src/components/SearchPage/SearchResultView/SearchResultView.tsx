@@ -89,19 +89,19 @@ const SearchResultView = ({
 
   const searchLabel =
     search.trim() === "" ? (
-      <div>
+      <>
         Viser <b>{searchResultAmount}</b> ord.
-      </div>
+      </>
     ) : (
-      <div>
+      <>
         Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
-      </div>
+      </>
     );
 
   return (
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
-        {searchLabel}
+        <div className={styles.searchLabel}>{searchLabel}</div>
         {/* TODO REMOVE ? */}
         {/* <div className={styles.orderWrap}>
           <span>Sorter etter</span>

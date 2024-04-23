@@ -20,6 +20,10 @@
   font-size: $font-size-18;
   overflow: hidden;
   text-wrap: nowrap;
+
+  & b {
+    font-weight: bold;
+  }
 }
 
 .link {
