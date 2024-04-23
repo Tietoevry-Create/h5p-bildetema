@@ -39,6 +39,10 @@
   word-break: break-word;
 }
 
+.lowerCaseLabel {
+  text-transform: lowercase;
+}
+
 .audioIconSpan {
   align-items: center;
   display: flex;

@@ -11,6 +11,7 @@ type AudioProps = {
   audioFiles?: AudioFile[];
   label?: string;
   rtl?: boolean;
+  lowerCaseLabel?: boolean;
 };
 
 export const Audio: FC<AudioProps> = ({
@@ -20,6 +21,7 @@ export const Audio: FC<AudioProps> = ({
   stopAudioLabel,
   playAudioLabel,
   rtl,
+  lowerCaseLabel = false,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -78,7 +80,11 @@ export const Audio: FC<AudioProps> = ({
         className={rtl ? styles.rtl : ""}
       >
         {textVisible && (
-          <h2 className={styles.word_label}>
+          <h2
+            className={`${styles.word_label} ${
+              lowerCaseLabel && styles.lowerCaseLabel
+            }`}
+          >
             {label}
             &nbsp;
           </h2>

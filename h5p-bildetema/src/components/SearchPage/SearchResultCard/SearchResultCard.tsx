@@ -139,6 +139,7 @@ export const SearchResultCard = ({
               stopAudioLabel={stopAudioLabel}
               audioFiles={translation.audioFiles}
               rtl={translation.lang.rtl}
+              lowerCaseLabel
             />
           </div>
         ))}
