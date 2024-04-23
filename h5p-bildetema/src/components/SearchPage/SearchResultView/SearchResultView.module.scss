@@ -37,6 +37,8 @@
   gap: 1rem;
 
   & button {
+    display: flex;
+    justify-content: center;
     flex: 1;
   }
 }
