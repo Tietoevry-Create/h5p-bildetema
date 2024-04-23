@@ -1,5 +1,5 @@
 import { Listbox } from "@headlessui/react";
-import { LanguageMenuArrowIcon } from "../Icons/Icons";
+import { CheckIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
 import styles from "./Select.module.scss";
 
 type Option = {
@@ -19,6 +19,7 @@ export type SelectProps<T extends Option> = {
   labelPrefix?: string;
   placeholder?: string;
   fixed?: boolean;
+  withSelectedIcon?: boolean;
 };
 
 const Select = <T extends Option>({
@@ -29,6 +30,7 @@ const Select = <T extends Option>({
   labelPrefix,
   placeholder,
   fixed,
+  withSelectedIcon,
 }: SelectProps<T>): JSX.Element => {
   const label = labelPrefix ? (
     <>
@@ -37,7 +39,6 @@ const Select = <T extends Option>({
   ) : (
     selectedOption?.label
   );
-
   return (
     <Listbox
       value={selectedOption}
@@ -45,6 +46,7 @@ const Select = <T extends Option>({
         if (o === null) return;
         handleChange(o);
       }}
+      by={(a: Option | null, b: Option | null) => a?.label === b?.label}
     >
       {({ open }) => (
         <div className={styles.selectWrapper}>
@@ -63,18 +65,23 @@ const Select = <T extends Option>({
           >
             {options.map(option => (
               <Listbox.Option key={option.label} value={option}>
-                {({ active }) => (
-                  <div
-                    className={`${styles.option} ${
-                      active ? styles.active : ""
-                    }`}
-                  >
-                    <span>{option.label}</span>
-                    {option.secondaryLabel && (
-                      <span>{option.secondaryLabel}</span>
-                    )}
-                  </div>
-                )}
+                {({ active, selected }) => {
+                  return (
+                    <div
+                      className={`${styles.option} ${active && styles.active} 
+                      ${withSelectedIcon && styles.withCheckIcon} ${
+                        selected && styles.selected
+                      }`}
+                    >
+                      {withSelectedIcon && (
+                        <span className={styles.icon}>
+                          {selected && <CheckIcon />}
+                        </span>
+                      )}
+                      <span>{option.label}</span>
+                    </div>
+                  );
+                }}
               </Listbox.Option>
             ))}
           </Listbox.Options>

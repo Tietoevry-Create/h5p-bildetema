@@ -5,8 +5,6 @@ import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
-import Button from "../../Button/Button";
-import { LanguageIcon } from "../../Icons/Icons";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 
 export type SearchViewProps = {
@@ -16,10 +14,11 @@ export type SearchViewProps = {
   languages: OptionType<Language>[];
   handleSearchLanguageChange: (lang: OptionType<Language>) => void;
   searchLanguage: OptionType<Language>;
-  // viewLanguage: OptionType<Language>;
+  viewLanguage: OptionType<Language> | null;
   filter: string[];
   searchInputPlaceholder: string;
   resetFilter: () => void;
+  handleViewLanguageChange: (lang: OptionType<Language>) => void;
 };
 
 const SearchView = ({
@@ -30,9 +29,10 @@ const SearchView = ({
   languages,
   handleSearchLanguageChange,
   searchLanguage,
-  // viewLanguage,
+  viewLanguage,
   searchInputPlaceholder,
   resetFilter,
+  handleViewLanguageChange,
 }: SearchViewProps): JSX.Element => {
   const currentLang = useCurrentLanguage();
   const langCode = currentLang?.code;
@@ -75,13 +75,15 @@ const SearchView = ({
             resetFilter={resetFilter}
           />
 
-          <Button variant="secondary" disabled>
-            <b>
-              <LanguageIcon />
-            </b>
-            {/* TODO: translate */}
-            <b>Vis på flere språk</b>
-          </Button>
+          <Select
+            options={languages}
+            handleChange={handleViewLanguageChange}
+            selectedOption={viewLanguage}
+            variant="secondary"
+            // TODO: translate
+            labelPrefix="Vis på flere språk"
+            withSelectedIcon
+          />
         </div>
       </div>
     </div>
