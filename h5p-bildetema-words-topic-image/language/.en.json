@@ -114,6 +114,14 @@
     {
       "label": "Show articles",
       "default": false
+    },
+    {
+      "label": "Show only topic image",
+      "default": false
+    },
+    {
+      "label": "Published",
+      "default": false
     }
   ]
 }

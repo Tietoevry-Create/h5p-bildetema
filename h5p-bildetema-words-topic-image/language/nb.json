@@ -112,7 +112,15 @@
       "default": true
     },
     {
-      "label": "Vis artikkler",
+      "label": "Vis artikler",
+      "default": false
+    },
+    {
+      "label": "Vis bare temabilde",
+      "default": false
+    },
+    {
+      "label": "Publisert",
       "default": false
     }
   ]
