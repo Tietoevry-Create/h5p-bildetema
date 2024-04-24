@@ -224,7 +224,7 @@
     "default": false
   },
   {
-    "label": "Is published",
+    "label": "Publish",
     "name": "isPublished",
     "type": "boolean",
     "default": false
