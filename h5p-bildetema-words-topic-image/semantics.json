@@ -216,5 +216,17 @@
     "type": "boolean",
     "default": false,
     "importance": "low"
+  },
+  {
+    "label": "Show only topic image",
+    "name": "showOnlyTopicImage",
+    "type": "boolean",
+    "default": false
+  },
+  {
+    "label": "Is published",
+    "name": "isPublished",
+    "type": "boolean",
+    "default": false
   }
 ]

@@ -51,6 +51,8 @@ export const Words: FC<WordsProps> = ({
   const [gridViewInstance, setGridViewInstance] = useState<IH5PContentType>();
   const contentId = useContentId();
   const [isTopicImageView, setIsTopicImageView] = useState(false);
+  const [onlyTopicImage, setOnlyTopicImage] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [showTopicImageView, setTopicImageView] = useState(
     searchParams.get(SearchParameters.showTopicImageView) !== null
@@ -58,9 +60,6 @@ export const Words: FC<WordsProps> = ({
       : true,
   );
   const l10n = useContext(L10nContext);
-
-  // TODO fix only topic image set this in the h5p topicimage type...
-  const onlyTopicImage = false;
 
   useEffect(() => {
     toggleShowTopicImageView(showTopicImageView);
@@ -109,13 +108,17 @@ export const Words: FC<WordsProps> = ({
           );
         });
 
-        const currentTopicHasTopicImage =
-          existingContent && existingContent.length > 0;
+        const publishedTopicImage = existingContent?.find(content => {
+          const params = JSON.parse(content.json_content);
+          return params?.isPublished;
+        });
+
+        const currentTopicHasTopicImage = !!publishedTopicImage;
 
         if (currentTopicHasTopicImage) {
           setIsTopicImageView(true);
 
-          const content = existingContent[0];
+          const content = publishedTopicImage;
           const savedParams = JSON.parse(content.json_content);
           const paramHotspots = savedParams.hotspots as TopicImageHotspot[];
           if (!paramHotspots || paramHotspots.length < 0) return;
@@ -144,19 +147,22 @@ export const Words: FC<WordsProps> = ({
             hotspots: hotspotsWithTranslatedWords,
           };
 
-          const topicView = H5P.newRunnable(
-            {
-              library: getLibraryName({
-                machineName: content.machine_name,
-                majorVersion: content.major_version,
-                minorVersion: content.minor_version,
-              } as H5PLibrary),
-              params,
-            },
-            content.content_id,
-            H5P.jQuery(topicRootElement),
-          );
-          setTopicViewInstance(topicView);
+          if (params?.isPublished) {
+            if (params?.showOnlyTopicImage) setOnlyTopicImage(true);
+            const topicView = H5P.newRunnable(
+              {
+                library: getLibraryName({
+                  machineName: content.machine_name,
+                  majorVersion: content.major_version,
+                  minorVersion: content.minor_version,
+                } as H5PLibrary),
+                params,
+              },
+              content.content_id,
+              H5P.jQuery(topicRootElement),
+            );
+            setTopicViewInstance(topicView);
+          }
         } else {
           setIsTopicImageView(false);
           setTopicImageView(false);

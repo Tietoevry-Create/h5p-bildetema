@@ -139,7 +139,7 @@ export const Header: FC<HeaderProps> = ({
           )}
 
           {/* TODO: Translate */}
-          {env === environment.prod && (
+          {env !== environment.prod && (
             <>
               <HeaderLink
                 icon={<SearchIcon />}
