@@ -20,6 +20,7 @@ import {
   useCurrentLanguage,
   useCurrentLanguageCode,
 } from "../../hooks/useCurrentLanguage";
+import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -37,6 +38,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     idToWords,
   } = useNewDBContext();
   const { pathname } = useLocation();
+  const env = useEnvironment();
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -161,19 +163,23 @@ export const Bildetema: FC<BildetemaProps> = ({
             }
           />
         ))}
-        <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
-        <Route
-          path={`${STATIC_PATH.COLLECTIONS}`}
-          element={<CollectionsController />}
-        />
-        <Route
-          path={`${STATIC_PATH.COLLECTIONS}/:collection`}
-          element={<CollectionsController />}
-        />
+        {env !== environment.prod && (
+          <>
+            <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
+            <Route
+              path={`${STATIC_PATH.COLLECTIONS}`}
+              element={<CollectionsController />}
+            />
+            <Route
+              path={`${STATIC_PATH.COLLECTIONS}/:collection`}
+              element={<CollectionsController />}
+            />
+          </>
+        )}
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
-  }, [currTopics, defaultLanguages, directionRtl]);
+  }, [currTopics, defaultLanguages, directionRtl, env]);
 
   const hidden = STATIC_PATHS.includes(pathname);
 

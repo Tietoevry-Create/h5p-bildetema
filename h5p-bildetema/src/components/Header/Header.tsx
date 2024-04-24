@@ -19,6 +19,7 @@ import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
 import HeaderLink from "../HeaderLink/HeaderLink";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 export type HeaderProps = {
   favLanguages: Language[];
@@ -37,6 +38,7 @@ export const Header: FC<HeaderProps> = ({
   hideLanguageSelectors,
   currentTopics,
 }) => {
+  const env = useEnvironment();
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -137,16 +139,20 @@ export const Header: FC<HeaderProps> = ({
           )}
 
           {/* TODO: Translate */}
-          <HeaderLink
-            icon={<SearchIcon />}
-            label="Søk"
-            href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
-          />
-          <HeaderLink
-            label="Samlinger"
-            icon={<BookmarkIcon />}
-            href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
-          />
+          {env === environment.prod && (
+            <>
+              <HeaderLink
+                icon={<SearchIcon />}
+                label="Søk"
+                href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
+              />
+              <HeaderLink
+                label="Samlinger"
+                icon={<BookmarkIcon />}
+                href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
