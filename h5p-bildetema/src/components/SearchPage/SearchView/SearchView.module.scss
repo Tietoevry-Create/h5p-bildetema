@@ -21,6 +21,7 @@
 
   @include breakpoint-min($x-small) {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
