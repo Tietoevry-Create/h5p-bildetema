@@ -88,7 +88,15 @@
 
 .closeButton {
   all: unset;
+  background-color: $white;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
+  padding: 0.5rem;
+
+  &:hover {
+    background-color: $beige;
+  }
 }
 
 .amount {
