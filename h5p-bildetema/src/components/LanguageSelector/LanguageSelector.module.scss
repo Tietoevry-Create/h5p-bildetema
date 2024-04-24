@@ -29,11 +29,7 @@
   max-height: calc(100vh - 11rem);
   overflow-y: auto;
   z-index: $fav-language-selector-z-index;
-  right: -9rem;
-
-  @include breakpoint-max($medium) {
-    right: 0;
-  }
+  right: 0;
 
   @include breakpoint-max($x-small) {
     position: fixed;
@@ -53,5 +49,13 @@
         text-decoration: none;
       }
     }
+  }
+}
+
+.allignmentRight {
+  right: -9rem;
+
+  @include breakpoint-max($medium) {
+    right: 0;
   }
 }
