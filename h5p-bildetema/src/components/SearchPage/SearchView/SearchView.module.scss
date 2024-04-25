@@ -28,14 +28,14 @@
 
 .buttonWrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
   max-width: 100%;
 
-  @include breakpoint-min($x-small) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  & > * {
+    max-width: 100%;
   }
 }
 
