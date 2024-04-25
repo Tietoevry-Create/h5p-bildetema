@@ -38,6 +38,23 @@
   text-decoration: underline;
 }
 
+.filter {
+  color: black;
+  background-color: $white;
+  border: 2px solid $dark-beige;
+  gap: $spacing--8;
+  padding: 0.5785rem 1.25rem;
+  width: auto;
+
+  span {
+    line-height: 2rem;
+  }
+
+  svg {
+    flex: 0 0 auto; // prevent svg from shrinking
+  }
+}
+
 .disabled {
   cursor: default;
   opacity: 0.4;

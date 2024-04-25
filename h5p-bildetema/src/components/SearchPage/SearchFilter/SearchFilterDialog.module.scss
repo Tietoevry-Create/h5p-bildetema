@@ -101,6 +101,7 @@
 
 .amount {
   display: flex;
+  flex: 0 0 auto; // prevent item from shrinking
   align-items: center;
   justify-content: center;
   color: $white;
@@ -113,4 +114,10 @@
 
 .label {
   font-weight: bold;
+}
+
+.buttonLabel {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -22,17 +22,20 @@
   @include breakpoint-min($x-small) {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 .buttonWrapper {
   display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
 
   @include breakpoint-min($x-small) {
-    gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
