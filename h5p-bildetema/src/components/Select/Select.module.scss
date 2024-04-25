@@ -22,6 +22,10 @@
   & b {
     font-weight: bold;
   }
+
+  svg {
+    overflow: visible;
+  }
 }
 
 .secondary {
@@ -98,4 +102,9 @@
   svg {
     vertical-align: middle;
   }
+}
+
+.buttonText {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

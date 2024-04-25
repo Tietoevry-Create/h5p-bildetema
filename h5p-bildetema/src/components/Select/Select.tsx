@@ -34,7 +34,7 @@ const Select = <T extends Option>({
 }: SelectProps<T>): JSX.Element => {
   const labelWithPrefix = (
     <>
-      {labelPrefix} <b>{selectedOption?.label}</b>
+      {labelPrefix} <b className={styles.buttonText}>{selectedOption?.label}</b>
     </>
   );
   const labelWithPrefixOnly = <b>{labelPrefix}</b>;
