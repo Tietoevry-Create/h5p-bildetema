@@ -32,13 +32,18 @@ const Select = <T extends Option>({
   fixed,
   withSelectedIcon,
 }: SelectProps<T>): JSX.Element => {
-  const label = labelPrefix ? (
+  const labelWithPrefix = (
     <>
       {labelPrefix} <b>{selectedOption?.label}</b>
     </>
-  ) : (
-    selectedOption?.label
   );
+  const labelWithPrefixOnly = <b>{labelPrefix}</b>;
+
+  const label = labelPrefix
+    ? selectedOption === null
+      ? labelWithPrefixOnly
+      : labelWithPrefix
+    : selectedOption?.label;
   return (
     <Listbox
       value={selectedOption}
