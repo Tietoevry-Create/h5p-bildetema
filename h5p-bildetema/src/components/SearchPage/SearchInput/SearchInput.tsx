@@ -1,20 +1,21 @@
 import { useEffect, useRef } from "react";
-import { SearchIcon } from "../../Icons/Icons";
+import { Close, SearchIcon } from "../../Icons/Icons";
 import styles from "./SearchInput.module.scss";
 
 export type SearchInputProps = {
   handleSearch: (value: string) => void;
   search: string;
   placeholder?: string;
-  rlt?: boolean;
+  rtl?: boolean;
 };
 
 const SearchInput = ({
   handleSearch,
   search,
   placeholder,
-  rlt,
+  rtl,
 }: SearchInputProps): JSX.Element => {
+  const hasSearchValue = search !== "";
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const SearchInput = ({
         ref={ref}
         // TODO needs a label
         id={styles.searchInput}
-        className={`${rlt ? styles.rtl : ""}`}
+        className={rtl ? styles.rtl : ""}
         placeholder={placeholder ?? ""}
         value={search}
         autoComplete="off"
@@ -41,6 +42,17 @@ const SearchInput = ({
       <span className={styles.searchInputIcon}>
         <SearchIcon />
       </span>
+      {hasSearchValue && (
+        <button
+          type="button"
+          className={`${styles.clearButton} ${rtl ? styles.rtl : ""}`}
+          onClick={() => handleSearch("")}
+          // TODO translate
+          aria-label="Fjern søkeord"
+        >
+          <Close />
+        </button>
+      )}
     </div>
   );
 };
