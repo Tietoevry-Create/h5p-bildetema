@@ -3,6 +3,8 @@ import { CurrentTopics, TopicGridSizes } from "common/types/types";
 import { FC, useEffect, useMemo, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
+import { getNewWordsFromId } from "common/utils/data.utils";
+import { newWordsIncludesArticles } from "common/utils/word.utils";
 import { useH5PInstance } from "use-h5p";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import styles from "./TopicRouteController.module.scss";
@@ -10,8 +12,15 @@ import { H5PWrapper } from "../../h5p/H5PWrapper";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import { SubHeader } from "../SubHeader/SubHeader";
 import { SearchParameters } from "../../enums/SearchParameters";
-import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
+import {
+  useCurrentLanguageAttribute,
+  useCurrentLanguageCode,
+} from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
+import { useToggleSearchParam } from "../../hooks/useToggleSearchParam";
+
+const defaultShowWrittenWords = true;
+const defaultShowArticles = false;
 
 export type TopicRouteControllerProps = {
   rtl: boolean;
@@ -23,10 +32,47 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   currentTopics,
 }) => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
+  const currentLang = useCurrentLanguageAttribute();
+  const currentLanguageCode = useCurrentLanguageCode();
+  const newWords = useCurrentWords();
+  const { topicPaths, idToContent, idToWords, langCodeTolanguages } =
+    useNewDBContext();
+
   const { langCodeParam, topicLabelParam, subTopicLabelParam } = useParams();
+  const [searchParams] = useSearchParams();
+
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
-  const { topicPaths, idToContent, langCodeTolanguages } = useNewDBContext();
+  const [showTopicImageView, setShowTopicImageView] = useState(true);
+
+  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+  const [topicsSize, setTopicsSize] = useState(
+    smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
+  );
+
+  const [showWrittenWords, setShowWrittenWords] = useState(
+    searchParams.get(SearchParameters.wordsVisible) !== null
+      ? searchParams.get(SearchParameters.wordsVisible) === "true"
+      : defaultShowWrittenWords,
+  );
+
+  const [showArticles, setShowArticles] = useState(
+    searchParams.get(SearchParameters.articlesVisible) !== null
+      ? searchParams.get(SearchParameters.articlesVisible) === "true"
+      : defaultShowArticles,
+  );
+
+  const handleShowArticlesChange = useToggleSearchParam(
+    SearchParameters.articlesVisible,
+    defaultShowArticles,
+    setShowArticles,
+  );
+
+  const handleShowWrittenWordsChange = useToggleSearchParam(
+    SearchParameters.wordsVisible,
+    defaultShowWrittenWords,
+    setShowWrittenWords,
+  );
 
   const currentLanguage = useMemo(() => {
     if (!langCodeParam || !langCodeTolanguages) {
@@ -44,7 +90,11 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     }
     return true;
   }, [subTopicLabelParam, topicLabelParam, topicPaths]);
-  // TODO
+
+  const isWordView = useMemo(() => {
+    return newWords.at(0)?.id.charAt(0) !== "T";
+  }, [newWords]);
+
   useEffect(() => {
     // Scroll into view if topic and/or sub topic changes (or are reset - i.e. the user visits the frontpage)
 
@@ -99,70 +149,22 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage, h5pInstance, subTopicLabelParam, topicLabelParam]);
 
-  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
-  const [topicsSize, setTopicsSize] = useState(
-    smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
-  );
-  const [showTopicImageView, setShowTopicImageView] = useState(true);
-
   const toggleShowTopicImageView = (value: boolean): void => {
     setShowTopicImageView(value);
   };
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const handleSearchParams = (
-    search: SearchParameters,
-    value: boolean,
-    defaultValue: boolean,
-  ): void => {
-    if (defaultValue === value) {
-      searchParams.delete(search);
-      setSearchParams(searchParams);
-      return;
+  const showArticlesToggle = useMemo(() => {
+    const { topic, subTopic } = currentTopics;
+    if (subTopic) {
+      const words = getNewWordsFromId(subTopic.id, idToWords, idToContent);
+      return newWordsIncludesArticles(words, currentLanguageCode);
     }
-    searchParams.set(search, value.toString());
-    setSearchParams(searchParams);
-  };
-
-  const defaultShowWrittenWords = true;
-  const defaultShowArticles = false;
-
-  const [showWrittenWords, setShowWrittenWords] = useState(
-    searchParams.get(SearchParameters.wordsVisible) !== null
-      ? searchParams.get(SearchParameters.wordsVisible) === "true"
-      : defaultShowWrittenWords,
-  );
-
-  const [showArticles, setShowArticles] = useState(
-    searchParams.get(SearchParameters.articlesVisible) !== null
-      ? searchParams.get(SearchParameters.articlesVisible) === "true"
-      : defaultShowArticles,
-  );
-
-  const handleToggleArticles = (value: boolean): void => {
-    handleSearchParams(
-      SearchParameters.articlesVisible,
-      value,
-      defaultShowArticles,
-    );
-    setShowArticles(value);
-  };
-
-  const handleToggleChange = (value: boolean): void => {
-    handleSearchParams(
-      SearchParameters.wordsVisible,
-      value,
-      defaultShowWrittenWords,
-    );
-    setShowWrittenWords(value);
-  };
-
-  const currentLang = useCurrentLanguageAttribute();
-
-  const newWords = useCurrentWords();
-  const isWordView = useMemo(() => {
-    return newWords.at(0)?.id.charAt(0) !== "T";
-  }, [newWords]);
+    if (topic) {
+      const words = getNewWordsFromId(topic.id, idToWords, idToContent);
+      return newWordsIncludesArticles(words, currentLanguageCode);
+    }
+    return false;
+  }, [currentLanguageCode, currentTopics, idToContent, idToWords]);
 
   if (currentLanguage && isValidRoute) {
     return (
@@ -171,13 +173,14 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
           isWordView={isWordView}
-          handleToggleChange={handleToggleChange}
-          toggleChecked={showWrittenWords}
+          showWrittenWords={showWrittenWords}
           showTopicImageView={showTopicImageView}
           rtl={rtl}
-          handleToggleArticles={handleToggleArticles}
-          articlesToggleChecked={showArticles}
+          showArticlesToggle={showArticlesToggle}
+          showArticles={showArticles}
           currentTopics={currentTopics}
+          onShowWrittenWordsChange={handleShowWrittenWordsChange}
+          onShowArticlesChange={handleShowArticlesChange}
         />
         <div lang={currentLang}>
           <TopicGrid
