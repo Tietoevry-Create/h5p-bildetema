@@ -26,6 +26,11 @@ const SearchInput = ({
     ref.current?.blur();
   };
 
+  const handleClear = (): void => {
+    handleSearch("");
+    ref.current?.focus();
+  }
+
   return (
     <div className={`${styles.searchInputWrapper}`}>
       <input
@@ -46,7 +51,7 @@ const SearchInput = ({
         <button
           type="button"
           className={`${styles.clearButton} ${rtl ? styles.rtl : ""}`}
-          onClick={() => handleSearch("")}
+          onClick={handleClear}
           // TODO translate
           aria-label="Fjern søkeord"
         >
