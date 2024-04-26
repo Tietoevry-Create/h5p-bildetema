@@ -23,6 +23,7 @@ export type SearchResultViewProps = {
 
 type collectionOption = {
   label: string;
+  id: string;
 };
 
 const SearchResultView = ({
@@ -55,6 +56,7 @@ const SearchResultView = ({
   const options = myCollections.map(collection => {
     return {
       label: collection.title,
+      id: collection.id,
     };
   });
 
@@ -81,7 +83,7 @@ const SearchResultView = ({
   const handleAddBookmark = (): void => {
     if (!selectedWordId || !selectedCollection) return;
     addItemToCollection({
-      title: selectedCollection.label,
+      id: selectedCollection.id,
       wordId: selectedWordId,
     });
     handleCloseDialog();

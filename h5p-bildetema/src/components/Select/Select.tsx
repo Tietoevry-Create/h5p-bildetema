@@ -5,6 +5,7 @@ import styles from "./Select.module.scss";
 type Option = {
   label: string;
   secondaryLabel?: string;
+  id?: string;
 };
 
 export type OptionType<T extends Option> = T;
@@ -58,7 +59,10 @@ const Select = <T extends Option>({
         if (o === null) return;
         handleChange(o);
       }}
-      by={(a: Option | null, b: Option | null) => a?.label === b?.label}
+      by={(a: Option | null, b: Option | null) => {
+        if (a?.id && b?.id) return a.id === b.id;
+        return a?.label === b?.label;
+      }}
     >
       {({ open }) => (
         <div className={styles.selectWrapper}>
@@ -76,7 +80,7 @@ const Select = <T extends Option>({
             className={`${styles.options} ${fixed && styles.fixed}`}
           >
             {options.map(option => (
-              <Listbox.Option key={option.label} value={option}>
+              <Listbox.Option key={option.id ?? option.label} value={option}>
                 {({ active, selected }) => {
                   return (
                     <div
