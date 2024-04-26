@@ -29,7 +29,7 @@ const SearchInput = ({
   const handleClear = (): void => {
     handleSearch("");
     ref.current?.focus();
-  }
+  };
 
   return (
     <div className={`${styles.searchInputWrapper}`}>
