@@ -32,13 +32,25 @@ const Select = <T extends Option>({
   fixed,
   withSelectedIcon,
 }: SelectProps<T>): JSX.Element => {
-  const label = labelPrefix ? (
-    <>
-      {labelPrefix} <b>{selectedOption?.label}</b>
-    </>
-  ) : (
-    selectedOption?.label
-  );
+  const getLabel = (label: string | undefined): string | JSX.Element => {
+    switch (label) {
+      case undefined:
+        if (labelPrefix) {
+          return <b>{labelPrefix}</b>;
+        }
+        return placeholder || "";
+      default:
+        if (labelPrefix) {
+          return (
+            <>
+              {labelPrefix} <b className={styles.buttonText}>{label}</b>
+            </>
+          );
+        }
+        return label;
+    }
+  };
+
   return (
     <Listbox
       value={selectedOption}
@@ -53,7 +65,7 @@ const Select = <T extends Option>({
           <Listbox.Button
             className={`${styles.selectButton} ${styles[variant]}`}
           >
-            {label === undefined ? placeholder : label}
+            {getLabel(selectedOption?.label)}
 
             <LanguageMenuArrowIcon
               transform={open ? "scale(1) rotate(180)" : "scale(1)"}

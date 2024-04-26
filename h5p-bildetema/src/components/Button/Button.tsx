@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-type variants = "primary" | "secondary" | "underline";
+type variants = "primary" | "secondary" | "underline" | "filter";
 
 export interface ButtonProps extends React.ComponentProps<"button"> {
   children: React.ReactNode;
