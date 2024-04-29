@@ -12,12 +12,10 @@ export const useToggleSearchParam = (
   return (value: boolean) => {
     if (defaultValue === value) {
       searchParams.delete(search);
-      setSearchParams(searchParams);
-      setState(value);
-      return;
+    } else {
+      searchParams.set(search, String(value));
     }
 
-    searchParams.set(search, value.toString());
     setSearchParams(searchParams);
     setState(value);
   };

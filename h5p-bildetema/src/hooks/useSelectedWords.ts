@@ -27,3 +27,22 @@ export const useSelectedWords = (): SearchResult[] => {
   }
   return [];
 };
+
+export const useSelectedNewWords = (): NewWord[] => {
+  const { idToWords } = useNewDBContext();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const words = params.get("words")?.split(",");
+
+  if (words?.length && words.length > 0) {
+    const newWords = words
+      .map(wordId => {
+        const newWord = idToWords.get(wordId);
+        return newWord;
+      })
+      .filter(el => el !== undefined);
+
+    return newWords;
+  }
+  return [];
+};

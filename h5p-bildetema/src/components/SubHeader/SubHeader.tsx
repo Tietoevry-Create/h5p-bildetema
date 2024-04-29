@@ -11,14 +11,14 @@ import styles from "./SubHeader.module.scss";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 
 export type SubHeaderProps = {
-  topicsSize: TopicGridSizes;
-  setTopicsSize: Dispatch<SetStateAction<TopicGridSizes>>;
-  currentTopics: CurrentTopics;
+  topicsSize?: TopicGridSizes;
+  setTopicsSize?: Dispatch<SetStateAction<TopicGridSizes>>;
+  currentTopics?: CurrentTopics;
   breadCrumbs?: {
     label: string;
     path: string;
   }[];
-  showTopicImageView: boolean;
+  showTopicImageView?: boolean;
   rtl: boolean;
   isWordView: boolean;
   showArticlesToggle: boolean;
@@ -34,7 +34,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
   currentTopics,
   isWordView,
   showWrittenWords,
-  showTopicImageView,
+  showTopicImageView = false,
   rtl,
   showArticles,
   showArticlesToggle,
@@ -47,6 +47,9 @@ export const SubHeader: FC<SubHeaderProps> = ({
   const currentLanguageCode = useCurrentLanguageCode();
 
   const contentId = useContentId();
+
+  const showTopicSizeButtons =
+    topicsSize !== undefined && setTopicsSize !== undefined;
 
   const renderRightMenu = (): JSX.Element => {
     return (
@@ -74,12 +77,14 @@ export const SubHeader: FC<SubHeaderProps> = ({
               />
             )}
           </>
-        ) : (
+        ) : null}
+
+        {showTopicSizeButtons && !isWordView ? (
           <TopicSizeButtons
             topicsSize={topicsSize}
             setTopicsSize={setTopicsSize}
           />
-        )}
+        ) : null}
       </div>
     );
   };

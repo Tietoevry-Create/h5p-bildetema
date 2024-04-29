@@ -4,9 +4,11 @@ import { getMainTopics, getNewWordsFromId } from "common/utils/data.utils";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelectedNewWords } from "./useSelectedWords";
 
 export const useCurrentWords = (): NewWord[] => {
   const { topicPaths, idToWords, idToContent } = useNewDBContext();
+  const selectedWords = useSelectedNewWords();
 
   const { pathname } = useLocation();
 
@@ -25,6 +27,9 @@ export const useCurrentWords = (): NewWord[] => {
     return { topic, subTopic };
   }, [idToWords, pathname, topicPaths]);
 
+  if (selectedWords && selectedWords.length > 0) {
+    return selectedWords;
+  }
   if (currTopics.subTopic?.id) {
     return getNewWordsFromId(currTopics.subTopic?.id, idToWords, idToContent);
   }

@@ -60,6 +60,19 @@ export const newWordsIncludesArticles = (
   });
 };
 
+export const searchResultsIncludesArticles = (
+  words: SearchResult[],
+  langCode: LanguageCode,
+): boolean => {
+  return words.some(word => {
+    const isTopicWord = word.id.includes("T");
+    if (isTopicWord) return false;
+    return word.translations
+      .find(x => x.lang.code === langCode)
+      ?.labels.some(el => el.article);
+  });
+};
+
 const findTranslationsForWord = (
   word: Word,
   topic: Topic,
