@@ -5,7 +5,6 @@ import { useL10ns } from "../../hooks/useL10n";
 import { LanguageMenuArrowIcon, PrintIcon } from "../Icons/Icons";
 import { PrintWords } from "../PrintWords/PrintWords";
 import styles from "./PrintButton.module.scss";
-import { useCurrentWords } from "../../hooks/useCurrentWords";
 
 type PrintProps = {
   showWrittenWords: boolean;
@@ -25,7 +24,6 @@ export const PrintButton: FC<PrintProps> = ({
   const [viewPrintDropDown, setViewPrintDropDown] = useState(false);
   const [renderPrintWords, setRenderPrintWords] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const currentWords = useCurrentWords();
 
   const handleOnClickOutside = (): void => {
     setViewPrintDropDown(false);
@@ -144,7 +142,6 @@ export const PrintButton: FC<PrintProps> = ({
             showWrittenWords={showWrittenWords}
             imagesPrRow={imagesPrRow}
             showArticles={showArticles}
-            words={currentWords}
           />
         </div>
       )}
