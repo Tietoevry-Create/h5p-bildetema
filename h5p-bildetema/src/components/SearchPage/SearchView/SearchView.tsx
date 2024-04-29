@@ -81,7 +81,9 @@ const SearchView = ({
             selectedOption={viewLanguage}
             variant="secondary"
             // TODO: translate
-            labelPrefix="Vis på flere språk"
+            labelPrefix={`${
+              viewLanguage == null ? "Vis på flere språk" : "Vis på"
+            }`}
             withSelectedIcon
           />
         </div>
