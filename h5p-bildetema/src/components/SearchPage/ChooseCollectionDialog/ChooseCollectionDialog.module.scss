@@ -1,0 +1,23 @@
+.dialogContentWrapper {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dialogSelectWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dialogButtonWrapper {
+  display: flex;
+  gap: 1rem;
+
+  & button {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+}
