@@ -1,6 +1,6 @@
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, TopicGridSizes } from "common/types/types";
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useContentId } from "use-h5p";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
@@ -9,6 +9,7 @@ import { Toggle } from "../Toggle/Toggle";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import styles from "./SubHeader.module.scss";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 
 export type SubHeaderProps = {
   topicsSize?: TopicGridSizes;
@@ -22,10 +23,6 @@ export type SubHeaderProps = {
   rtl: boolean;
   isWordView: boolean;
   showArticlesToggle: boolean;
-  showWrittenWords: boolean;
-  showArticles: boolean;
-  onShowWrittenWordsChange: (value: boolean) => void;
-  onShowArticlesChange: (value: boolean) => void;
 };
 
 export const SubHeader: FC<SubHeaderProps> = ({
@@ -33,20 +30,30 @@ export const SubHeader: FC<SubHeaderProps> = ({
   setTopicsSize,
   currentTopics,
   isWordView,
-  showWrittenWords,
   showTopicImageView = false,
   rtl,
-  showArticles,
   showArticlesToggle,
-  onShowWrittenWordsChange,
-  onShowArticlesChange,
   breadCrumbs,
 }) => {
   const { showWrittenWordsLabel } = useL10ns("showWrittenWordsLabel");
   const { showArticlesLabel } = useL10ns("showArticlesLabel");
   const currentLanguageCode = useCurrentLanguageCode();
 
+  const {
+    showArticles,
+    showWrittenWords,
+    handleShowArticlesChange,
+    handleShowWrittenWordsChange,
+    syncStateWithParams,
+  } = useSearchParamContext();
+
   const contentId = useContentId();
+
+  useEffect(() => {
+    if (isWordView) {
+      syncStateWithParams();
+    }
+  }, [isWordView, syncStateWithParams]);
 
   const showTopicSizeButtons =
     topicsSize !== undefined && setTopicsSize !== undefined;
@@ -65,14 +72,14 @@ export const SubHeader: FC<SubHeaderProps> = ({
             <Toggle
               label={showWrittenWordsLabel}
               checked={showWrittenWords}
-              handleChange={onShowWrittenWordsChange}
+              handleChange={handleShowWrittenWordsChange}
               id={`toggle-${contentId}`}
             />
             {showArticlesToggle && (
               <Toggle
                 label={showArticlesLabel}
                 checked={showArticles}
-                handleChange={onShowArticlesChange}
+                handleChange={handleShowArticlesChange}
                 id={`toggle-articles-${contentId}`}
               />
             )}

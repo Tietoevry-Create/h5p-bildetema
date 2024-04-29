@@ -1,9 +1,8 @@
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, TopicGridSizes } from "common/types/types";
 import { FC, useEffect, useMemo, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
-import { getNewWordsFromId } from "common/utils/data.utils";
 import { newWordsIncludesArticles } from "common/utils/word.utils";
 import { useH5PInstance } from "use-h5p";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
@@ -11,16 +10,12 @@ import styles from "./TopicRouteController.module.scss";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 import { TopicGrid } from "../TopicGrid/TopicGrid";
 import { SubHeader } from "../SubHeader/SubHeader";
-import { SearchParameters } from "../../enums/SearchParameters";
 import {
   useCurrentLanguageAttribute,
   useCurrentLanguageCode,
 } from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
-import { useToggleSearchParam } from "../../hooks/useToggleSearchParam";
-
-const defaultShowWrittenWords = true;
-const defaultShowArticles = false;
+import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 
 export type TopicRouteControllerProps = {
   rtl: boolean;
@@ -35,11 +30,10 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const currentLang = useCurrentLanguageAttribute();
   const currentLanguageCode = useCurrentLanguageCode();
   const newWords = useCurrentWords();
-  const { topicPaths, idToContent, idToWords, langCodeTolanguages } =
-    useNewDBContext();
+  const { topicPaths, idToContent, langCodeTolanguages } = useNewDBContext();
+  const { showArticles, showWrittenWords } = useSearchParamContext();
 
   const { langCodeParam, topicLabelParam, subTopicLabelParam } = useParams();
-  const [searchParams] = useSearchParams();
 
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
@@ -48,30 +42,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const [topicsSize, setTopicsSize] = useState(
     smallScreen ? TopicGridSizes.Compact : TopicGridSizes.Big,
-  );
-
-  const [showWrittenWords, setShowWrittenWords] = useState(
-    searchParams.get(SearchParameters.wordsVisible) !== null
-      ? searchParams.get(SearchParameters.wordsVisible) === "true"
-      : defaultShowWrittenWords,
-  );
-
-  const [showArticles, setShowArticles] = useState(
-    searchParams.get(SearchParameters.articlesVisible) !== null
-      ? searchParams.get(SearchParameters.articlesVisible) === "true"
-      : defaultShowArticles,
-  );
-
-  const handleShowArticlesChange = useToggleSearchParam(
-    SearchParameters.articlesVisible,
-    defaultShowArticles,
-    setShowArticles,
-  );
-
-  const handleShowWrittenWordsChange = useToggleSearchParam(
-    SearchParameters.wordsVisible,
-    defaultShowWrittenWords,
-    setShowWrittenWords,
   );
 
   const currentLanguage = useMemo(() => {
@@ -154,17 +124,8 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   };
 
   const showArticlesToggle = useMemo(() => {
-    const { topic, subTopic } = currentTopics;
-    if (subTopic) {
-      const words = getNewWordsFromId(subTopic.id, idToWords, idToContent);
-      return newWordsIncludesArticles(words, currentLanguageCode);
-    }
-    if (topic) {
-      const words = getNewWordsFromId(topic.id, idToWords, idToContent);
-      return newWordsIncludesArticles(words, currentLanguageCode);
-    }
-    return false;
-  }, [currentLanguageCode, currentTopics, idToContent, idToWords]);
+    return newWordsIncludesArticles(newWords, currentLanguageCode);
+  }, [currentLanguageCode, newWords]);
 
   if (currentLanguage && isValidRoute) {
     return (
@@ -173,14 +134,10 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
           topicsSize={topicsSize}
           setTopicsSize={setTopicsSize}
           isWordView={isWordView}
-          showWrittenWords={showWrittenWords}
           showTopicImageView={showTopicImageView}
           rtl={rtl}
           showArticlesToggle={showArticlesToggle}
-          showArticles={showArticles}
           currentTopics={currentTopics}
-          onShowWrittenWordsChange={handleShowWrittenWordsChange}
-          onShowArticlesChange={handleShowArticlesChange}
         />
         <div lang={currentLang}>
           <TopicGrid

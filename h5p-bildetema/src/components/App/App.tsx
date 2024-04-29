@@ -5,6 +5,7 @@ import { getNewData } from "common/utils/data.utils";
 import { FC } from "react";
 import { Bildetema } from "../Bildetema/Bildetema";
 import "common/styles/SwiperOverride.scss";
+import { SearchParamProvider } from "../../context/SearchParamContext";
 
 type appProps = {
   defaultLanguages: string[];
@@ -21,10 +22,12 @@ export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
   return (
     <BackendUrlContext.Provider value={baseBackendurl}>
       <NewDBContext.Provider value={newData}>
-        <Bildetema
-          defaultLanguages={defaultLanguages}
-          isLoadingData={isLoading}
-        />
+        <SearchParamProvider>
+          <Bildetema
+            defaultLanguages={defaultLanguages}
+            isLoadingData={isLoading}
+          />
+        </SearchParamProvider>
       </NewDBContext.Provider>
     </BackendUrlContext.Provider>
   );
