@@ -60,7 +60,7 @@ const ChooseCollectionDialog = ({
       wordId: selectedWordId,
     });
     setTextInput("");
-    onClose();
+    handleClose();
   };
 
   // TODO: translate all text
