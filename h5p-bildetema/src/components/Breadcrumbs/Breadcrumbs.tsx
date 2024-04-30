@@ -3,7 +3,7 @@ import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
 import { FC, ReactPortal } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useL10n } from "../../hooks/useL10n";
@@ -45,7 +45,6 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   const homeLabel = useL10n("breadcrumbsHome");
   const routes = [{ path: `/${currentLanguageCode}`, breadcrumb: topicLabel }];
   const routeBreadCrumbs = useBreadcrumbs(routes);
-  const { search } = useLocation();
 
   const breadCrumbsToRender =
     breadCrumbs ??
@@ -85,7 +84,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
       })();
 
       return {
-        path: `${key}${search}`,
+        path: `${key}`,
         label,
       };
     });

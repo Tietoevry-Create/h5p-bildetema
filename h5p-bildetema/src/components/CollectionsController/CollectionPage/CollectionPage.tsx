@@ -8,11 +8,17 @@ import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 
 type MyCollection = {
   collectionTitle: string;
+  showArticles: boolean;
+  showWrittenWords: boolean;
 };
 
-const CollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
-  const words = useSelectedWords();
+const CollectionPage = ({
+  collectionTitle,
+  showWrittenWords,
+  showArticles,
+}: MyCollection): JSX.Element => {
   const { addCollection } = useMyCollections();
+  const words = useSelectedWords();
 
   useEffect(() => {
     if (collectionTitle === undefined) return;
@@ -34,7 +40,12 @@ const CollectionPage = ({ collectionTitle }: MyCollection): JSX.Element => {
   return (
     <div className={styles.words}>
       {words.map(word => (
-        <MultiLanguageWord searchResult={word} />
+        <MultiLanguageWord
+          key={word.id}
+          searchResult={word}
+          showWrittenWords={showWrittenWords}
+          showArticles={showArticles}
+        />
       ))}
     </div>
   );
