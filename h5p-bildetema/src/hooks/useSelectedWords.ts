@@ -42,7 +42,7 @@ export const useSelectedNewWords = (): NewWord[] => {
       })
       .filter(el => el !== undefined);
 
-    return newWords;
+    return newWords as NewWord[];
   }
   return [];
 };
