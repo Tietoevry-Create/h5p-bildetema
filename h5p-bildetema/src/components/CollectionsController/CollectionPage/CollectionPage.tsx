@@ -8,30 +8,15 @@ import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 
 type MyCollection = {
-  collectionTitle: string;
   showArticles: boolean;
   showWrittenWords: boolean;
 };
 
 const CollectionPage = ({
-  collectionTitle,
   showWrittenWords,
   showArticles,
 }: MyCollection): JSX.Element => {
-  const { addCollection } = useMyCollections();
   const words = useSelectedWords();
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    const id = searchParams.get("id") || uuid();
-    if (collectionTitle === undefined) return;
-    addCollection({
-      id,
-      title: collectionTitle,
-      wordIds: words.map(v => v.id),
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   if (words.length === 0) {
     // TODO: What to show when there are no words?
