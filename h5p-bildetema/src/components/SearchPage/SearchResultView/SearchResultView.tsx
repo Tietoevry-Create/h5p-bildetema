@@ -4,10 +4,8 @@ import { AudioRefContext } from "common/context/AudioContext";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
+import ChooseCollectionDialog from "../ChooseCollectionDialog/ChooseCollectionDialog";
 import styles from "./SearchResultView.module.scss";
-import Dialog from "../../Dialog/Dialog";
-import Button from "../../Button/Button";
-import Select from "../../Select/Select";
 // import Select from "../../Select/Select";
 // import { SearchOrderOption } from "../useSearchResults";
 
@@ -115,33 +113,16 @@ const SearchResultView = ({
           />
         </div> */}
       </div>
-      <div className={styles.dialogContainer}>
-        <Dialog
-          open={open}
-          onClose={handleCloseDialog}
-          title="Legg til ord"
-          description="Velg en samling"
-        >
-          <div className={styles.dialogContentWrapper}>
-            <Select
-              fixed
-              placeholder="Velg samling"
-              variant="secondary"
-              options={options}
-              handleChange={handleCollectionSelectorChange}
-              selectedOption={selectedCollection}
-            />
-            <div className={styles.dialogButtonWrapper}>
-              <Button variant="secondary" onClick={handleCloseDialog}>
-                Avbryt
-              </Button>
-              <Button variant="primary" onClick={handleAddBookmark}>
-                Ok
-              </Button>
-            </div>
-          </div>
-        </Dialog>
-      </div>
+      <ChooseCollectionDialog
+        open={open}
+        options={options}
+        selected={selectedCollection}
+        selectedWordId={selectedWordId}
+        setSelected={setSelectedCollection}
+        onClose={handleCloseDialog}
+        onChange={handleCollectionSelectorChange}
+        onAddBookmark={handleAddBookmark}
+      />
 
       <ul className={styles.searchResultList}>
         <AudioRefContext.Provider value={audioContextValue}>

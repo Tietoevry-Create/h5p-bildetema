@@ -17,10 +17,14 @@ import { translatedLabel } from "../../../utils/language.utils";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
+  showArticles: boolean;
+  showWrittenWords: boolean;
 };
 
 export const MultiLanguageWord = ({
   searchResult,
+  showArticles,
+  showWrittenWords,
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
 
@@ -120,7 +124,11 @@ export const MultiLanguageWord = ({
               </span>
             )}
             <Audio
-              label={toSingleLabel(translation.labels, false)}
+              label={
+                showWrittenWords
+                  ? toSingleLabel(translation.labels, showArticles)
+                  : ""
+              }
               lang={lang}
               playAudioLabel={playAudioLabel}
               stopAudioLabel={stopAudioLabel}

@@ -168,11 +168,11 @@ export const Bildetema: FC<BildetemaProps> = ({
             <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
             <Route
               path={`${STATIC_PATH.COLLECTIONS}`}
-              element={<CollectionsController />}
+              element={<CollectionsController rtl={directionRtl} />}
             />
             <Route
               path={`${STATIC_PATH.COLLECTIONS}/:collection`}
-              element={<CollectionsController />}
+              element={<CollectionsController rtl={directionRtl} />}
             />
           </>
         )}

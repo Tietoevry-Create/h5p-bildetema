@@ -8,26 +8,17 @@ export default {
   title: "Components/Sub header",
   component: SubHeader,
   render: ({ isWordView, rtl }) => {
-    const [checked, setChecked] = useState(true);
-    const [articlesChecked, setArticlesChecked] = useState(true);
-    const [topicSize, setTopicsSize] = useState(TopicGridSizes.Big);
+    const [topicsSize, setTopicsSize] = useState(TopicGridSizes.Big);
+    const [showArticlesToggle] = useState(true);
 
     return (
       <SubHeader
-        currentTopics={{}}
+        topicsSize={topicsSize}
         setTopicsSize={setTopicsSize}
-        topicsSize={topicSize}
         isWordView={isWordView}
-        handleToggleChange={(value: boolean) => {
-          setChecked(value);
-        }}
-        toggleChecked={checked}
         showTopicImageView={false}
         rtl={rtl}
-        handleToggleArticles={(value: boolean): void => {
-          setArticlesChecked(value);
-        }}
-        articlesToggleChecked={articlesChecked}
+        showArticlesToggle={showArticlesToggle}
       />
     );
   },
