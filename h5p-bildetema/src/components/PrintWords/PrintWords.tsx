@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { useParams } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { toSingleLabel } from "common/utils/word.utils";
 import { getImageSrc } from "common/utils/image/image.utils";
@@ -18,10 +19,14 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
     const { idToWords } = useNewDBContext();
     const words = useCurrentWords();
     const backendUrl = useBackendUrlContext();
+    const { collection } = useParams();
 
     const currentLanguageCode = useCurrentLanguageCode();
 
     const getHeader = (): string => {
+      if (collection) {
+        return collection;
+      }
       const subTopic = idToWords?.get(words.at(0)?.subTopicId || "");
       if (subTopic) {
         return toSingleLabel(
