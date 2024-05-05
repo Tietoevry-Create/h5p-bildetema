@@ -31,7 +31,7 @@
     "react-to-print": "^2.14.13",
     "react-toggle": "^4.1.3",
     "superjson": "^1.13.3",
-    "swiper": "^9.3.2",
+    "swiper": "^11.1.1",
     "use-debounce": "^10.0.0",
     "use-h5p": "^2.0.0",
     "use-react-router-breadcrumbs": "^4.0.1"
