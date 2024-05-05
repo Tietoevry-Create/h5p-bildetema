@@ -193,6 +193,14 @@
           "default": "Enkeltbilete"
         },
         {
+          "label": "Lukk filter-knapp",
+          "default": "Lukk filteret"
+        },
+        {
+          "label": "Bokmerk søkeresultat-knapp",
+          "default": "Bokmerk søkeresultat"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

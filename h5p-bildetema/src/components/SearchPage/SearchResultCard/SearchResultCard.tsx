@@ -8,10 +8,9 @@ import { Image } from "common/components/Image/Image";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
-import { useL10ns } from "use-h5p";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { useL10n } from "../../../hooks/useL10n";
+import { useL10n, useL10ns, useTranslation } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import { BookmarkIcon } from "../../Icons/Icons";
@@ -25,6 +24,7 @@ export const SearchResultCard = ({
   searchResult,
   handleBookmarkClick,
 }: SearchResultCardProps): JSX.Element => {
+  const { t } = useTranslation();
   const { images } = searchResult;
 
   const prevLabel = useL10n("prevImageLabel");
@@ -112,6 +112,7 @@ export const SearchResultCard = ({
             onClick={() => handleBookmarkClick(searchResult.id)}
           >
             <BookmarkIcon />
+            <span className={styles.visuallyHidden}>{t("bookmarkSearchResult")}</span>
           </button>
         </div>
       )}

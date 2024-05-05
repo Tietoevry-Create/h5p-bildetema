@@ -193,6 +193,14 @@
           "default": "Grid"
         },
         {
+          "label": "Stäng filter-knapp",
+          "default": "Stäng filteret"
+        },
+        {
+          "label": "Bokmärk sökresultat-knapp",
+          "default": "Bokmärk sökresultat"
+        },
+        {
           "label": "Arabiska",
           "default": "Arabiska"
         },

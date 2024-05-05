@@ -193,6 +193,14 @@
           "default": "Reitir"
         },
         {
+          "label": "Close filter button",
+          "default": "Loka síu"
+        },
+        {
+          "label": "Bókamerkja leitarniðurstöðu",
+          "default": "Bókamerkja leitarniðurstöðu"
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },

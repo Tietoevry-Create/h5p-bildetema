@@ -7,6 +7,8 @@ import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import styles from "./SearchFilterDialog.module.scss";
 import { Close, Filter } from "../../Icons/Icons";
 import Button from "../../Button/Button";
+import { useTranslation } from "../../../hooks/useL10n";
+
 
 export type SearchFilterProps = {
   handleFilterChange: (topicId: string, checked: boolean) => void;
@@ -19,6 +21,8 @@ const SearchFilterDialog = ({
   resetFilter,
   filter,
 }: SearchFilterProps): JSX.Element => {
+  const { t } = useTranslation();
+
   const { idToContent, idToWords } = useNewDBContext();
   const topics = useMemo(() => {
     return getMainTopics(idToWords, idToContent).toSorted((a, b) => {
@@ -65,6 +69,9 @@ const SearchFilterDialog = ({
                 className={styles.closeButton}
                 onClick={() => setIsOpen(false)}
               >
+                <span className={styles.visuallyHidden}>
+                  {t("closeFilter")}
+                </span>
                 <Close />
               </button>
             </Dialog.Title>

@@ -121,3 +121,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.visuallyHidden {
+  @include visually-hidden;
+}

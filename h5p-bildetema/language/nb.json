@@ -193,6 +193,14 @@
           "default": "Enkeltbilder"
         },
         {
+          "label": "Lukk filter-knapp",
+          "default": "Lukk filter"
+        },
+        {
+          "label": "Bokmerk søkeresultat-knapp",
+          "default": "Bokmerk søkeresultat"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },
