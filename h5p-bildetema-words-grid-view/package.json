@@ -9,7 +9,7 @@
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc",
     "lint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest run",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "common": "*",
-    "swiper": "^11.1.1",
+    "swiper": "^9.3.2",
     "use-h5p": "^2.0.0"
   },
   "devDependencies": {

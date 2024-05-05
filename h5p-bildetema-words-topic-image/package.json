@@ -9,7 +9,7 @@
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc",
     "build:only": "vite build",
     "lint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "npm run lint:check -- --fix",
