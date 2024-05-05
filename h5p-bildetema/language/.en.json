@@ -193,6 +193,14 @@
           "default": "Single photos"
         },
         {
+          "label": "Close filter button",
+          "default": "Close filter"
+        },
+        {
+          "label": "Bookmark search result button",
+          "default": "Bookmark search result"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

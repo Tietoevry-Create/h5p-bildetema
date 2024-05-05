@@ -14,5 +14,5 @@ README.md
 semantics.json.d.ts
 tsconfig.json
 typings.d.ts
-vite.config.ts
+vite.config.mts
 webpack.config.js

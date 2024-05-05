@@ -7,7 +7,7 @@ declare const $defaultExport: [
 	{
 		label: "Backend Url",
 		name: "backendUrl",
-		"default": "https://cdn-prod-bildetema.azureedge.net/data/database.json.tar.gz",
+		"default": "https://cdn-prod-bildetema.azureedge.net/data/data.json.tar.gz",
 		description: "The Url to the json database",
 		type: "text"
 	},
@@ -217,6 +217,18 @@ declare const $defaultExport: [
 		type: "boolean",
 		"default": false,
 		importance: "low"
+	},
+	{
+		label: "Show only topic image",
+		name: "showOnlyTopicImage",
+		type: "boolean",
+		"default": false
+	},
+	{
+		label: "Publish",
+		name: "isPublished",
+		type: "boolean",
+		"default": false
 	}
 ];
 export default $defaultExport;

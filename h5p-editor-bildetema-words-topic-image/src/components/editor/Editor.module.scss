@@ -1,3 +1,5 @@
+@use "../../../../common/abstracts" as *;
+
 .editor {
   display: flex;
   flex-direction: column;
@@ -86,4 +88,8 @@
   height: 28rem;
   overflow-y: auto;
   padding-right: 1rem; // move the scrollbar a bit to the right
+}
+
+.visuallyHidden {
+  @include visually-hidden;
 }

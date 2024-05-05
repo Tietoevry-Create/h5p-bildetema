@@ -12,4 +12,4 @@ postcss.config.js
 README.md
 tsconfig.json
 typings.d.ts
-vite.config.ts
+vite.config.mts

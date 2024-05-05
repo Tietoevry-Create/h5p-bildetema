@@ -289,6 +289,18 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Close filter button",
+				name: "closeFilter",
+				"default": "Close filter",
+				type: "text"
+			},
+			{
+				label: "Bookmark search result button",
+				name: "bookmarkSearchResult",
+				"default": "Bookmark search result",
+				type: "text"
+			},
+			{
 				label: "Arabic",
 				name: "lang_ara",
 				"default": "Arabic",

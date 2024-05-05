@@ -193,6 +193,14 @@
           "default": "Grid"
         },
         {
+          "label": "Luk filter-knap",
+          "default": "Luk filter"
+        },
+        {
+          "label": "Bokmærk søgeresultat",
+          "default": "Bokmærk søgeresultat"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

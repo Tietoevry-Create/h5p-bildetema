@@ -23,13 +23,11 @@ export const AppChooseTopicWidget: FC<Params> = ({
   topicId,
   subTopicId,
 }) => {
-  const { data } = useQuery(
-    ["topicsFromDB", backendUrl],
-    () => getNewData(backendUrl),
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
+  const { data } = useQuery({
+    queryKey: ["topicsFromDB", backendUrl],
+    queryFn: () => getNewData(backendUrl),
+    refetchOnWindowFocus: false,
+  });
 
   const [currentTopic, setCurrentTopic] = useState<NewWord | undefined>(
     undefined,

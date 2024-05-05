@@ -13,8 +13,9 @@ type appProps = {
 };
 
 export const App: FC<appProps> = ({ defaultLanguages, backendUrl }) => {
-  const { isLoading, data: newData } = useQuery(["newData"], async () => {
-    return getNewData(backendUrl);
+  const { isLoading, data: newData } = useQuery({
+    queryKey: ["newData"],
+    queryFn: () => getNewData(backendUrl),
   });
 
   const baseBackendurl = backendUrl.split("data/").at(0) || "";
