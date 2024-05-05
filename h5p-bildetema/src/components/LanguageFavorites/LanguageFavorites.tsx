@@ -48,11 +48,8 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
     >
       <ul role="list" className={styles.languages}>
         {sanitizedFavLanguages
-          .sort(
-            (a, b) =>
-              translatedLabel(a, langs)?.localeCompare(
-                translatedLabel(b, langs),
-              ),
+          .sort((a, b) =>
+            translatedLabel(a, langs)?.localeCompare(translatedLabel(b, langs)),
           )
           .map(language => {
             return (

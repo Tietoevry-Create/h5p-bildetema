@@ -48,8 +48,9 @@ export const getPath = ({
     return pathname + query;
   }
   const { topic, subTopic } = currentTopics;
-  const topicPathLabel = topic?.translations.get(language.code)?.labels.at(0)
-    ?.label;
+  const topicPathLabel = topic?.translations
+    .get(language.code)
+    ?.labels.at(0)?.label;
   if (!topicPathLabel) return `/${language.code}${search}`;
   const topicPath = labelToUrlComponent(topicPathLabel);
   const subTopicPathLabel = subTopic?.translations
