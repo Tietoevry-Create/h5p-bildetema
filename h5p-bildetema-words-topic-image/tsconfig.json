@@ -6,7 +6,7 @@
   "include": [
     "./src/**/*",
     "typings.d.ts",
-    "vite.config.ts",
+    "vite.config.mts",
     ".storybook/**/*",
     "../common/**/*"
   ]
