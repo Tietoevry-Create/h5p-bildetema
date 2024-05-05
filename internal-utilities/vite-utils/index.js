@@ -1,7 +1,7 @@
 // @ts-check
 
-const react = require("@vitejs/plugin-react").default;
-const unpluginJsonDts = require("unplugin-json-dts/vite");
+import react from "@vitejs/plugin-react";
+import unpluginJsonDts from "unplugin-json-dts/vite";
 
 /**
  * @param {string} libName
@@ -42,7 +42,7 @@ const define = {
  * @param {string} name
  * @param {"happy-dom" | "jsdom"} testEnvironment
  */
-const defineConfig = (name, testEnvironment) => ({
+export const defineConfig = (name, testEnvironment) => ({
   plugins: [react(), unpluginJsonDts()],
   build: getBuildConfig(name),
   define,
@@ -50,7 +50,3 @@ const defineConfig = (name, testEnvironment) => ({
     environment: testEnvironment,
   },
 });
-
-module.exports = {
-  defineConfig,
-};

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "types": "index.d.ts",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@vitejs/plugin-react": "^4.2.1",
