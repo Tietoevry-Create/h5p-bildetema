@@ -422,6 +422,9 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
                     transform="scale(0.9) rotate(180)"
                     transformOrigin="50% 50%"
                   />
+                  <span className={styles.visuallyHidden}>
+                    {t("moveHotspotUp")}
+                  </span>
                 </button>
                 <button
                   className={styles.button}
@@ -429,6 +432,10 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
                   onClick={moveHotspotDown}
                 >
                   <ArrowIcon transform="scale(0.9)" transformOrigin="50% 50%" />
+                  <span className={styles.visuallyHidden}>
+                    {t("moveHotspotDown")}
+                    Move hotspot down
+                  </span>
                 </button>
 
                 <button
@@ -462,6 +469,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
             })}
           </div>
         </div>
+        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
         <div
           tabIndex={0}
           ref={canvasRef}
