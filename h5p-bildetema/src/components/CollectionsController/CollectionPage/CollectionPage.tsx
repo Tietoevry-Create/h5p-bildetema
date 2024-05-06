@@ -1,8 +1,5 @@
-import { useEffect } from "react";
-import { useMyCollections } from "common/hooks/useMyCollections";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
-import { v4 as uuid } from "uuid";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
