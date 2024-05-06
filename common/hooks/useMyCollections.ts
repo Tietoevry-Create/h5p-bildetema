@@ -1,18 +1,21 @@
 import { Collection } from "common/types/types";
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+import { useEffect } from "react";
+import { v4 as uuid } from "uuid";
 
 type ModifyCollection = {
-  title: string;
+  id: string;
   wordId: string;
 };
 type ChangeCollectionTitle = {
-  title: string;
   newTitle: string;
+  id: string;
 };
 
 type AddCollection = {
   title: string;
+  id?: string;
   wordIds?: string[];
 };
 
@@ -24,26 +27,38 @@ const storedCollectionsAtom = atomWithStorage<Collection[]>(
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useMyCollections = () => {
   const [myCollections, setMyCollections] = useAtom(storedCollectionsAtom);
+  useEffect(() => {
+    setMyCollections(prev => {
+      if (prev.length === 0) return prev;
+      return prev.map(collection => {
+        if (collection.id !== undefined) return collection;
+        return { ...collection, id: uuid() };
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const deleteCollection = (title: string): void => {
+  const deleteCollection = (id: string): void => {
     const newCollections = myCollections.filter(
-      collection => collection.title !== title,
+      collection => collection.id !== id,
     );
     setMyCollections(newCollections);
   };
 
-  const addCollection = ({ title, wordIds }: AddCollection): void => {
+  const addCollection = ({ title, wordIds, id }: AddCollection): void => {
     setMyCollections(prev => {
-      const hasCollectionWithTitle = prev.some(v => v.title === title);
-      if (hasCollectionWithTitle) return prev;
-      return [...prev, { title, wordsIds: wordIds || [] }];
+      const isExistingCollection = prev.some(
+        collection => collection.id === id,
+      );
+      if (isExistingCollection) return prev;
+      return [...prev, { id: id || uuid(), title, wordsIds: wordIds || [] }];
     });
   };
 
-  const addItemToCollection = ({ title, wordId }: ModifyCollection): void => {
+  const addItemToCollection = ({ id, wordId }: ModifyCollection): void => {
     setMyCollections(prev => {
       const updatedCollection = prev.map(collection => {
-        if (collection.title === title) {
+        if (collection.id === id) {
           if (collection.wordsIds.includes(wordId)) return collection;
           return { ...collection, wordsIds: [...collection.wordsIds, wordId] };
         }
@@ -54,12 +69,12 @@ export const useMyCollections = () => {
   };
 
   const removeItemFromCollection = ({
-    title,
+    id: collectionId,
     wordId,
   }: ModifyCollection): void => {
     setMyCollections(prev => {
       const updatedCollection = prev.map(collection => {
-        if (collection.title === title) {
+        if (collection.id === collectionId) {
           return {
             ...collection,
             wordsIds: collection.wordsIds.filter(id => id !== wordId),
@@ -72,12 +87,12 @@ export const useMyCollections = () => {
   };
 
   const changeCollectionTitle = ({
-    title,
     newTitle,
+    id,
   }: ChangeCollectionTitle): void => {
     setMyCollections(prev => {
       const updatedCollection = prev.map(collection => {
-        if (collection.title === title) {
+        if (collection.id === id) {
           return { ...collection, title: newTitle };
         }
         return collection;

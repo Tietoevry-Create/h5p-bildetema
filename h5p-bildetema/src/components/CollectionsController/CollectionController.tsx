@@ -56,7 +56,6 @@ const CollectionController = ({
     }
     return (
       <CollectionPage
-        collectionTitle={collection}
         showWrittenWords={showWrittenWords}
         showArticles={showArticles}
       />

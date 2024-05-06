@@ -1,35 +1,32 @@
 import { useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { v4 as uuid } from "uuid";
+
 import Dialog from "../../Dialog/Dialog";
 import Button from "../../Button/Button";
 import Select from "../../Select/Select";
 import TextInput from "../../TextInput/TextInput";
 import { AddIcon } from "../../Icons/Icons";
 import styles from "./ChooseCollectionDialog.module.scss";
-
-type CollectionOption = {
-  label: string;
-};
+import { CollectionOption } from "../SearchResultView/SearchResultView";
 
 export type ChooseCollectionDialogProps = {
   open: boolean;
   options: CollectionOption[];
-  selected: CollectionOption | null;
+  selectedCollection: CollectionOption | null;
   selectedWordId: string | null;
-  setSelected: (option: CollectionOption) => void;
+  onSelectCollection: (collection: CollectionOption) => void;
   onClose: () => void;
-  onChange: (option: CollectionOption) => void;
   onAddBookmark: () => void;
 };
 
 const ChooseCollectionDialog = ({
   open,
   options,
-  selected,
+  selectedCollection,
   selectedWordId,
-  setSelected,
+  onSelectCollection,
   onClose,
-  onChange,
   onAddBookmark,
 }: ChooseCollectionDialogProps): JSX.Element => {
   const { addItemToCollection, addCollection } = useMyCollections();
@@ -53,10 +50,20 @@ const ChooseCollectionDialog = ({
     if (textInput === "") return;
     if (selectedWordId === null) return;
 
-    addCollection({ title: textInput });
-    setSelected({ label: textInput });
-    addItemToCollection({
+    const newCollection = {
       title: textInput,
+      id: uuid(),
+    };
+
+    addCollection(newCollection);
+
+    onSelectCollection({
+      label: newCollection.title,
+      id: newCollection.id,
+    });
+
+    addItemToCollection({
+      id: newCollection.id,
       wordId: selectedWordId,
     });
     setTextInput("");
@@ -87,8 +94,8 @@ const ChooseCollectionDialog = ({
                 placeholder="Velg samling"
                 variant="secondary"
                 options={options}
-                handleChange={onChange}
-                selectedOption={selected}
+                handleChange={onSelectCollection}
+                selectedOption={selectedCollection}
               />
               <Button
                 variant="secondary"
