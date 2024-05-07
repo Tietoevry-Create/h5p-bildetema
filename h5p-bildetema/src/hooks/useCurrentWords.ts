@@ -5,10 +5,12 @@ import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelectedNewWords } from "./useSelectedWords";
+import { useCurrentLanguageCode } from "./useCurrentLanguage";
 
 export const useCurrentWords = (): NewWord[] => {
   const { topicPaths, idToWords, idToContent } = useNewDBContext();
   const selectedWords = useSelectedNewWords();
+  const currentLanguageCode = useCurrentLanguageCode();
 
   const { pathname } = useLocation();
 
@@ -17,15 +19,19 @@ export const useCurrentWords = (): NewWord[] => {
       .split("/")
       .slice(2);
 
-    const topicId =
-      topicPaths?.get(uriComponentToTopicPath(topicUriComponent)) || "";
+    const topicKey = `${uriComponentToTopicPath(
+      topicUriComponent,
+    )}-${currentLanguageCode}`;
+    const topicId = topicPaths?.get(topicKey) || "";
     const topic = idToWords?.get(topicId);
 
-    const subTopicId =
-      topicPaths?.get(uriComponentToTopicPath(subTopicUriComponent)) || "";
+    const subTopicKey = `${uriComponentToTopicPath(
+      subTopicUriComponent,
+    )}-${currentLanguageCode}`;
+    const subTopicId = topicPaths?.get(subTopicKey) || "";
     const subTopic = idToWords?.get(subTopicId);
     return { topic, subTopic };
-  }, [idToWords, pathname, topicPaths]);
+  }, [currentLanguageCode, idToWords, pathname, topicPaths]);
 
   if (selectedWords && selectedWords.length > 0) {
     return selectedWords;
