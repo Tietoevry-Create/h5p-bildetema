@@ -95,7 +95,7 @@ export const Bildetema: FC<BildetemaProps> = ({
       ) || "";
     const subTopic = idToWords?.get(subTopicId);
     return { topic, subTopic };
-  }, [idToWords, pathname, topicPaths]);
+  }, [currentLanguageCode, idToWords, pathname, topicPaths]);
 
   const handleToggleFavoriteLanguage = useCallback(
     (language: Language, favorite: boolean): void => {
