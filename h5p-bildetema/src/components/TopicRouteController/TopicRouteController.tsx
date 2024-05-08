@@ -82,7 +82,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
     if (!isFrontpage) {
       newTopicId =
-        topicPaths.get(uriComponentToTopicPath(topicLabelParam)) || "";
+        topicPaths.get(
+          `${uriComponentToTopicPath(topicLabelParam)}-${currentLanguageCode}`,
+        ) || "";
       topicHasChanged = newTopicId !== currentTopicId;
 
       const subTopics = idToContent.get(newTopicId);
@@ -95,7 +97,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
       if (topicHasSubTopics && subTopicIsSetInUrl) {
         newSubTopicId = topicPaths?.get(
-          uriComponentToTopicPath(subTopicLabelParam),
+          `${uriComponentToTopicPath(
+            subTopicLabelParam,
+          )}-${currentLanguageCode}`,
         );
       }
     }
