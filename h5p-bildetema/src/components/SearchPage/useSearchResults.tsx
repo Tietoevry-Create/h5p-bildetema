@@ -140,7 +140,8 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       }
       const filtered = filterSearchResults(res, payload.filter);
       const visibleSearchResults = newWordsToSearchResult(
-        filtered.slice(0, resultAmount),
+        // filtered.slice(0, resultAmount),
+        filtered,
         [payload.searchLanguage, ...payload.viewLanguage],
         state.backendUrl,
       );
@@ -177,7 +178,8 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       );
 
       const visibleSearchResults = newWordsToSearchResult(
-        filteredSearchRes.slice(0, resultAmount),
+        // filteredSearchRes.slice(0, resultAmount),
+        filteredSearchRes,
         payload.languages,
         state.backendUrl,
       );
@@ -203,7 +205,8 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       })();
 
       const visibleSearchResults = newWordsToSearchResult(
-        filteredSearchRes.slice(0, resultAmount),
+        // filteredSearchRes.slice(0, resultAmount),
+        filteredSearchRes,
         payload.languages,
         state.backendUrl,
       );
@@ -287,7 +290,8 @@ export const useSearchResults = ({
     const filteredRes = filterSearchResults(res, filter);
 
     const visibleSearchResults = newWordsToSearchResult(
-      filteredRes.slice(0, resultAmount),
+      // filteredRes.slice(0, resultAmount),
+      filteredRes,
       [searchLanguage, ...viewLanguage],
       backendUrl,
     );

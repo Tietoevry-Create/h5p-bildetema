@@ -84,6 +84,7 @@ const SearchPage = (): JSX.Element => {
   //   });
   // };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loadMore = (): void => {
     dispatch({
       type: ActionType.LOAD_MORE,
@@ -205,7 +206,6 @@ const SearchPage = (): JSX.Element => {
           <SearchResultView
             searchResults={deferredSearchResult}
             search={currSearch}
-            loadMore={loadMore}
             searchResultAmount={state.filteredSearchResults.length}
 
             // TODO: Remove if not needed
