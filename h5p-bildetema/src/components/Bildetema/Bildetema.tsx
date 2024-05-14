@@ -82,14 +82,20 @@ export const Bildetema: FC<BildetemaProps> = ({
       .slice(2);
 
     const topicId =
-      topicPaths?.get(uriComponentToTopicPath(topicUriComponent)) || "";
+      topicPaths?.get(
+        `${uriComponentToTopicPath(topicUriComponent)}-${currentLanguageCode}`,
+      ) || "";
     const topic = idToWords?.get(topicId);
 
     const subTopicId =
-      topicPaths?.get(uriComponentToTopicPath(subTopicUriComponent)) || "";
+      topicPaths?.get(
+        `${uriComponentToTopicPath(
+          subTopicUriComponent,
+        )}-${currentLanguageCode}`,
+      ) || "";
     const subTopic = idToWords?.get(subTopicId);
     return { topic, subTopic };
-  }, [idToWords, pathname, topicPaths]);
+  }, [currentLanguageCode, idToWords, pathname, topicPaths]);
 
   const handleToggleFavoriteLanguage = useCallback(
     (language: Language, favorite: boolean): void => {

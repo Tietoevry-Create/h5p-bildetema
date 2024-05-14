@@ -9,6 +9,11 @@ import styles from "./SearchResultView.module.scss";
 // import Select from "../../Select/Select";
 // import { SearchOrderOption } from "../useSearchResults";
 
+export type CollectionOption = {
+  id: string;
+  label: string;
+};
+
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
@@ -17,10 +22,6 @@ export type SearchResultViewProps = {
   // handleOrderChange: (option: SearchOrderOption) => void;
   // sortOptions: SearchOrderOption[];
   // resultSortType: SearchOrderOption;
-};
-
-type collectionOption = {
-  label: string;
 };
 
 const SearchResultView = ({
@@ -53,16 +54,13 @@ const SearchResultView = ({
   const options = myCollections.map(collection => {
     return {
       label: collection.title,
+      id: collection.id,
     };
   });
 
   const [open, setOpen] = React.useState(false);
   const [selectedCollection, setSelectedCollection] =
-    React.useState<collectionOption | null>(null);
-
-  const handleCollectionSelectorChange = (option: collectionOption): void => {
-    setSelectedCollection(option);
-  };
+    useState<CollectionOption | null>(null);
 
   const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
 
@@ -79,10 +77,14 @@ const SearchResultView = ({
   const handleAddBookmark = (): void => {
     if (!selectedWordId || !selectedCollection) return;
     addItemToCollection({
-      title: selectedCollection.label,
+      id: selectedCollection.id,
       wordId: selectedWordId,
     });
     handleCloseDialog();
+  };
+
+  const handleSelectCollection = (collection: CollectionOption): void => {
+    setSelectedCollection(collection);
   };
 
   const searchLabel =
@@ -114,11 +116,10 @@ const SearchResultView = ({
       <ChooseCollectionDialog
         open={open}
         options={options}
-        selected={selectedCollection}
+        selectedCollection={selectedCollection}
         selectedWordId={selectedWordId}
-        setSelected={setSelectedCollection}
+        onSelectCollection={handleSelectCollection}
         onClose={handleCloseDialog}
-        onChange={handleCollectionSelectorChange}
         onAddBookmark={handleAddBookmark}
       />
 

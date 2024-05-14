@@ -68,10 +68,11 @@ const CollectionsPage = (): React.JSX.Element => {
       <div className={styles.collectionWrapper}>
         {myCollections.map(v => (
           <CollectionElement
-            key={v.title}
+            key={v?.id}
+            id={v.id}
             amountOfCollectionItems={v.wordsIds.length}
             label={v.title}
-            href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&words=${v.wordsIds}`}
+            href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${v.id}&words=${v.wordsIds}`}
           />
         ))}
       </div>

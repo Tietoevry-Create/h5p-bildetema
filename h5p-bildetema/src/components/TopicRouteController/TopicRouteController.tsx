@@ -53,13 +53,17 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
   const isValidRoute = useMemo(() => {
     if (subTopicLabelParam) {
-      return topicPaths?.has(uriComponentToTopicPath(subTopicLabelParam));
+      return topicPaths?.has(
+        `${uriComponentToTopicPath(subTopicLabelParam)}-${currentLanguageCode}`,
+      );
     }
     if (topicLabelParam) {
-      return topicPaths?.has(uriComponentToTopicPath(topicLabelParam));
+      return topicPaths?.has(
+        `${uriComponentToTopicPath(topicLabelParam)}-${currentLanguageCode}`,
+      );
     }
     return true;
-  }, [subTopicLabelParam, topicLabelParam, topicPaths]);
+  }, [currentLanguageCode, subTopicLabelParam, topicLabelParam, topicPaths]);
 
   const isWordView = useMemo(() => {
     return newWords.at(0)?.id.charAt(0) !== "T";
@@ -82,7 +86,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
     if (!isFrontpage) {
       newTopicId =
-        topicPaths.get(uriComponentToTopicPath(topicLabelParam)) || "";
+        topicPaths.get(
+          `${uriComponentToTopicPath(topicLabelParam)}-${currentLanguageCode}`,
+        ) || "";
       topicHasChanged = newTopicId !== currentTopicId;
 
       const subTopics = idToContent.get(newTopicId);
@@ -95,7 +101,9 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
       if (topicHasSubTopics && subTopicIsSetInUrl) {
         newSubTopicId = topicPaths?.get(
-          uriComponentToTopicPath(subTopicLabelParam),
+          `${uriComponentToTopicPath(
+            subTopicLabelParam,
+          )}-${currentLanguageCode}`,
         );
       }
     }

@@ -20,11 +20,13 @@ type CollectionElementProps = {
   href: string;
   label: string;
   amountOfCollectionItems: number;
+  id: string;
 };
 const CollectionElement = ({
   href,
   label,
   amountOfCollectionItems,
+  id,
 }: CollectionElementProps): React.JSX.Element => {
   const [openDialog, setOpenDialog] = React.useState<OpenDialog>(
     OpenDialog.NONE,
@@ -39,7 +41,7 @@ const CollectionElement = ({
 
   const handleNewTitle = (): void => {
     if (title) {
-      changeCollectionTitle({ title: label, newTitle: title });
+      changeCollectionTitle({ newTitle: title, id });
       setOpenDialog(OpenDialog.NONE);
     }
   };
@@ -74,7 +76,7 @@ const CollectionElement = ({
               className={styles.dialogButton}
               variant="primary"
               onClick={() => {
-                deleteCollection(label);
+                deleteCollection(id);
                 setOpenDialog(OpenDialog.NONE);
               }}
             >
