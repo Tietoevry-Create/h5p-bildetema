@@ -148,6 +148,10 @@ const SearchResultView = ({
       <AudioRefContext.Provider value={audioContextValue}>
         <VirtuosoGrid
           useWindowScroll
+          overscan={{
+            main: 1000,
+            reverse: 1000,
+          }}
           data={searchResults}
           components={gridComponents}
           itemContent={(_, w) => (

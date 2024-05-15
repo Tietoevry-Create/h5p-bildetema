@@ -207,7 +207,6 @@ const SearchPage = (): JSX.Element => {
             searchResults={deferredSearchResult}
             search={currSearch}
             searchResultAmount={state.filteredSearchResults.length}
-
             // TODO: Remove if not needed
             // sortOptions={searchOrderOptions}
             // handleOrderChange={handleOrderChange}
