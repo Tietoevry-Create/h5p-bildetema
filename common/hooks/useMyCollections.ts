@@ -45,6 +45,23 @@ export const useMyCollections = () => {
     setMyCollections(newCollections);
   };
 
+  const deleteWordFromCollection = (
+    collectionId: string,
+    wordId: string,
+  ): void => {
+    setMyCollections(prevCollections =>
+      prevCollections.map(collection => {
+        if (collection.id === collectionId) {
+          return {
+            ...collection,
+            wordsIds: collection.wordsIds.filter(id => id !== wordId),
+          };
+        }
+        return collection;
+      }),
+    );
+  };
+
   const addCollection = ({ title, wordIds, id }: AddCollection): void => {
     setMyCollections(prev => {
       const isExistingCollection = prev.some(
@@ -104,6 +121,7 @@ export const useMyCollections = () => {
   return {
     myCollections,
     deleteCollection,
+    deleteWordFromCollection,
     addCollection,
     addItemToCollection,
     removeItemFromCollection,

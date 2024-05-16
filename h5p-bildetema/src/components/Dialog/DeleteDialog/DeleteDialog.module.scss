@@ -1,0 +1,29 @@
+@use "common/abstracts" as *;
+
+.deleteDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  & span {
+    font-size: $font-size-16;
+  }
+  & div {
+    display: flex;
+    gap: 1rem;
+
+    & button {
+      flex: 1;
+    }
+  }
+}
+
+.dialogButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemToDeleteTitle {
+  font-weight: bold;
+}
