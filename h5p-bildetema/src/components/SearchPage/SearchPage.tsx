@@ -84,14 +84,6 @@ const SearchPage = (): JSX.Element => {
   //   });
   // };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const loadMore = (): void => {
-    dispatch({
-      type: ActionType.LOAD_MORE,
-      payload: { languages: [searchLanguage, ...viewLanguages] },
-    });
-  };
-
   const debouncedSearch = useDebouncedCallback((search: string) => {
     dispatch({
       type: ActionType.SEARCH,

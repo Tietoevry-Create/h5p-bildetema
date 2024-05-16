@@ -51,7 +51,7 @@ export const Image: FC<ImageProps> = ({
             ?.map(image => `${image.src} ${image.width}w`)
             .join(",") || "";
       }}
-      alt="fallback"
+      alt=""
       srcSet={srcSets?.map(image => `${image.src} ${image.width}w`).join(",")}
       sizes={sizes}
       width={width}
