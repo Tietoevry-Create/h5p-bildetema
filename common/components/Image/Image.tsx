@@ -16,8 +16,6 @@ export type ImageProps = {
   sizes?: ReadonlyArray<string>;
 };
 
- 
-
 export const Image: FC<ImageProps> = ({
   src,
   width,
