@@ -84,13 +84,6 @@ const SearchPage = (): JSX.Element => {
   //   });
   // };
 
-  const loadMore = (): void => {
-    dispatch({
-      type: ActionType.LOAD_MORE,
-      payload: { languages: [searchLanguage, ...viewLanguages] },
-    });
-  };
-
   const debouncedSearch = useDebouncedCallback((search: string) => {
     dispatch({
       type: ActionType.SEARCH,
@@ -205,9 +198,7 @@ const SearchPage = (): JSX.Element => {
           <SearchResultView
             searchResults={deferredSearchResult}
             search={currSearch}
-            loadMore={loadMore}
             searchResultAmount={state.filteredSearchResults.length}
-
             // TODO: Remove if not needed
             // sortOptions={searchOrderOptions}
             // handleOrderChange={handleOrderChange}

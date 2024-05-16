@@ -17,7 +17,6 @@ export const ActionType = {
   RESET: "RESET_SEARCH_RESULTS",
   SORT: "SORT",
   FILTER: "FILTER",
-  LOAD_MORE: "LOAD_MORE",
 } as const;
 
 export const SortOptions = {
@@ -57,13 +56,6 @@ type ResetAction = {
   type: typeof ActionType.RESET;
 };
 
-type LoadMoreAction = {
-  type: typeof ActionType.LOAD_MORE;
-  payload: {
-    languages: Language[];
-  };
-};
-
 type FilterAction = {
   type: typeof ActionType.FILTER;
   payload: {
@@ -73,12 +65,7 @@ type FilterAction = {
   };
 };
 
-type Action =
-  | SearchAction
-  | ResetAction
-  | SortAction
-  | FilterAction
-  | LoadMoreAction;
+type Action = SearchAction | ResetAction | SortAction | FilterAction;
 
 type SearchState = {
   searchResults: NewWord[];
@@ -89,8 +76,6 @@ type SearchState = {
   backendUrl: string;
   langCodeTolanguages: Map<LanguageCode, Language>;
 };
-
-const resultAmount = 20;
 
 const filterSearchResults = (
   searchResults: NewWord[],
@@ -140,7 +125,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       }
       const filtered = filterSearchResults(res, payload.filter);
       const visibleSearchResults = newWordsToSearchResult(
-        filtered.slice(0, resultAmount),
+        filtered,
         [payload.searchLanguage, ...payload.viewLanguage],
         state.backendUrl,
       );
@@ -177,7 +162,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       );
 
       const visibleSearchResults = newWordsToSearchResult(
-        filteredSearchRes.slice(0, resultAmount),
+        filteredSearchRes,
         payload.languages,
         state.backendUrl,
       );
@@ -203,7 +188,7 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
       })();
 
       const visibleSearchResults = newWordsToSearchResult(
-        filteredSearchRes.slice(0, resultAmount),
+        filteredSearchRes,
         payload.languages,
         state.backendUrl,
       );
@@ -211,28 +196,6 @@ const searchReducer = (state: SearchState, action: Action): SearchState => {
         ...state,
         filteredSearchResults: filteredSearchRes,
         visibleSearchResults,
-      };
-    }
-
-    case ActionType.LOAD_MORE: {
-      const { payload } = action;
-      const currentAmount = state.visibleSearchResults.length;
-      const newVisibleResults = state.filteredSearchResults.slice(
-        currentAmount,
-        currentAmount + resultAmount,
-      );
-      const newVisibleSearchResults = newWordsToSearchResult(
-        newVisibleResults,
-        payload.languages,
-        state.backendUrl,
-      );
-
-      return {
-        ...state,
-        visibleSearchResults: [
-          ...state.visibleSearchResults,
-          ...newVisibleSearchResults,
-        ],
       };
     }
 
@@ -287,7 +250,7 @@ export const useSearchResults = ({
     const filteredRes = filterSearchResults(res, filter);
 
     const visibleSearchResults = newWordsToSearchResult(
-      filteredRes.slice(0, resultAmount),
+      filteredRes,
       [searchLanguage, ...viewLanguage],
       backendUrl,
     );
