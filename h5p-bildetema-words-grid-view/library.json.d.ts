@@ -2,7 +2,7 @@ export const title : "H5P Bildetema Words Grid View";
 export const machineName : "H5P.BildetemaWordsGridView";
 export const majorVersion : 1;
 export const minorVersion : 0;
-export const patchVersion : 91;
+export const patchVersion : 92;
 export const runnable : 1;
 export const preloadedJs : [
 	{

@@ -1,13 +1,46 @@
-import React, { RefObject, useMemo, useState } from "react";
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/jsx-props-no-spreading */
+
+import React, {
+  forwardRef,
+  ReactNode,
+  Ref,
+  RefObject,
+  useMemo,
+  useState,
+} from "react";
+import { VirtuosoGrid } from "react-virtuoso";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
-import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import ChooseCollectionDialog from "../ChooseCollectionDialog/ChooseCollectionDialog";
 import styles from "./SearchResultView.module.scss";
-// import Select from "../../Select/Select";
-// import { SearchOrderOption } from "../useSearchResults";
+
+type ListProps = {
+  style?: React.CSSProperties;
+  children?: ReactNode;
+};
+
+const gridComponents = {
+  List: forwardRef(
+    ({ style, children, ...props }: ListProps, ref: Ref<HTMLDivElement>) => (
+      <div
+        ref={ref}
+        {...props}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "1.5rem",
+          paddingInlineStart: "0",
+          ...style,
+        }}
+      >
+        {children}
+      </div>
+    ),
+  ),
+};
 
 export type CollectionOption = {
   id: string;
@@ -17,7 +50,6 @@ export type CollectionOption = {
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
-  loadMore: () => void;
   searchResultAmount: number;
   // handleOrderChange: (option: SearchOrderOption) => void;
   // sortOptions: SearchOrderOption[];
@@ -27,7 +59,6 @@ export type SearchResultViewProps = {
 const SearchResultView = ({
   searchResults,
   search,
-  loadMore,
   searchResultAmount,
 }: SearchResultViewProps): JSX.Element => {
   const [contextAudioRef, setAudioRef] = useState(
@@ -40,14 +71,6 @@ const SearchResultView = ({
     };
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
-
-  const hasNextPage = searchResults.length < searchResultAmount;
-  const [sentryRef] = useInfiniteScroll({
-    loading: false,
-    hasNextPage,
-    onLoadMore: loadMore,
-    rootMargin: "0px 0px 600px 0px",
-  });
 
   const { myCollections, addItemToCollection } = useMyCollections();
 
@@ -122,21 +145,24 @@ const SearchResultView = ({
         onClose={handleCloseDialog}
         onAddBookmark={handleAddBookmark}
       />
-
-      <ul className={styles.searchResultList}>
-        <AudioRefContext.Provider value={audioContextValue}>
-          {searchResults?.map(w => {
-            return (
-              <SearchResultCard
-                key={w.id}
-                searchResult={w}
-                handleBookmarkClick={handleBookmarkClick}
-              />
-            );
-          })}
-          {hasNextPage && <span ref={sentryRef} />}
-        </AudioRefContext.Provider>
-      </ul>
+      <AudioRefContext.Provider value={audioContextValue}>
+        <VirtuosoGrid
+          useWindowScroll
+          overscan={{
+            main: 1000,
+            reverse: 1000,
+          }}
+          data={searchResults}
+          components={gridComponents}
+          itemContent={(_, w) => (
+            <SearchResultCard
+              key={w.id}
+              searchResult={w}
+              handleBookmarkClick={handleBookmarkClick}
+            />
+          )}
+        />
+      </AudioRefContext.Provider>
     </div>
   );
 };
