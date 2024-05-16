@@ -16,7 +16,7 @@ export type ImageProps = {
   sizes?: ReadonlyArray<string>;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 
 export const Image: FC<ImageProps> = ({
   src,
