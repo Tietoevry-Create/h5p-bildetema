@@ -60,6 +60,7 @@ const CollectionElement = ({
       <Link to={href} className={styles.link}>
         <span className={styles.linkLabel}>{label}</span>
       </Link>
+      {/* TODO: Add translations */}
       <DeleteDialog
         open={openDialog === OpenDialog.DELETE_DIALOG}
         title="Slett samling"

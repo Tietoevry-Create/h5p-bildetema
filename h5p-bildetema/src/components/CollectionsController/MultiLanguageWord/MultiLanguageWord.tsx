@@ -18,7 +18,7 @@ import { languages as languagesConst } from "common/constants/languages";
 import { useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import { DeleteIcon, MoreHorizIcon } from "../../Icons/Icons";
+import { DeleteIcon, MoreVertIcon } from "../../Icons/Icons";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 
@@ -86,7 +86,7 @@ export const MultiLanguageWord = ({
         {isCollectionOwner ? (
           <Menu>
             <Menu.Button className={styles.button}>
-              <MoreHorizIcon />
+              <MoreVertIcon />
             </Menu.Button>
             <Menu.Items className={styles.menu}>
               <Menu.Item>
