@@ -58,14 +58,23 @@ export const MultiLanguageWord = ({
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
 
+  const removeWordFromUrlParams = (wordId: string): void => {
+    const param = "words";
+    const words = searchParams.get(param)?.split(",") ?? [];
+    const filteredWords = words.filter(word => word !== wordId);
+
+    if (filteredWords.length === 0) {
+      searchParams.delete(param);
+    } else {
+      searchParams.set(param, filteredWords.join(","));
+    }
+
+    setSearchParams(searchParams);
+  };
+
   const handleDeleteWord = (): void => {
     deleteWordFromCollection(collectionId, searchResult.id);
-
-    // Remove word from url
-    const words = searchParams.get("words")?.split(",") ?? [];
-    const filteredWords = words.filter(word => word !== searchResult.id);
-    searchParams.set("words", filteredWords.join(","));
-    setSearchParams(searchParams);
+    removeWordFromUrlParams(searchResult.id);
   };
 
   const renderImages = (): JSX.Element => {
