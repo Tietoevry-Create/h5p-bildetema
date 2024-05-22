@@ -72,7 +72,10 @@ const CollectionsPage = (): React.JSX.Element => {
             id={v.id}
             amountOfCollectionItems={v.wordsIds.length}
             label={v.title}
-            href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${v.id}&words=${v.wordsIds}`}
+            // href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${v.id}&words=${v.wordsIds}`}
+            href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${
+              v.id
+            }${v.wordsIds.length > 0 ? `&words=${v.wordsIds}` : ""}`}
           />
         ))}
       </div>
