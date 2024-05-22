@@ -35,3 +35,16 @@ $gap: $spacing--24;
     }
   }
 }
+
+.link {
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.icon {
+  transition: 0.2s ease-in-out transform;
+}
+
+.link:hover icon {
+  transform: translateX(500px);
+}

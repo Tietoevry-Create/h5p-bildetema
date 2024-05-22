@@ -112,7 +112,7 @@ const ChooseCollectionDialog = ({
               Avbryt
             </Button>
             <Button
-              variant="primary"
+              variant="default"
               onClick={
                 showCreateNewCollection
                   ? handleCreateNewCollection
