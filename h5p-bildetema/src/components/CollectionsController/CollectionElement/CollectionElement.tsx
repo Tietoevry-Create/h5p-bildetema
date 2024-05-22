@@ -7,6 +7,7 @@ import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
 import Dialog from "../../Dialog/Dialog";
 import Button from "../../Button/Button";
 import TextInput from "../../TextInput/TextInput";
+import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -46,6 +47,11 @@ const CollectionElement = ({
     }
   };
 
+  const handleDeleteCollection = (): void => {
+    deleteCollection(id);
+    setOpenDialog(OpenDialog.NONE);
+  };
+
   return (
     <div className={styles.collectionElementWrapper}>
       <span className={styles.label}>
@@ -54,38 +60,15 @@ const CollectionElement = ({
       <Link to={href} className={styles.link}>
         <span className={styles.linkLabel}>{label}</span>
       </Link>
-      <Dialog
+      {/* TODO: Add translations */}
+      <DeleteDialog
         open={openDialog === OpenDialog.DELETE_DIALOG}
-        onClose={() => setOpenDialog(OpenDialog.NONE)}
-        // TODO: TRANSLATE
         title="Slett samling"
         description="Er du sikker på at du vil slette samlingen:"
-      >
-        <div className={styles.deleteDialog}>
-          <span>{label}</span>
-          <div>
-            <Button
-              className={styles.dialogButton}
-              variant="secondary"
-              onClick={() => setOpenDialog(OpenDialog.NONE)}
-            >
-              {/* TODO: TRANSLATE */}
-              Nei
-            </Button>
-            <Button
-              className={styles.dialogButton}
-              variant="default"
-              onClick={() => {
-                deleteCollection(id);
-                setOpenDialog(OpenDialog.NONE);
-              }}
-            >
-              {/* TODO: TRANSLATE */}
-              Ja
-            </Button>
-          </div>
-        </div>
-      </Dialog>
+        itemToDeleteTitle={label}
+        onClose={() => setOpenDialog(OpenDialog.NONE)}
+        onDelete={handleDeleteCollection}
+      />
       <Dialog
         open={openDialog === OpenDialog.EDIT_DIALOG}
         onClose={() => setOpenDialog(OpenDialog.NONE)}
