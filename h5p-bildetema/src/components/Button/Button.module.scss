@@ -20,21 +20,6 @@
   }
 }
 
-.link {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.link:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 .secondary {
   color: black;
   background-color: $white;

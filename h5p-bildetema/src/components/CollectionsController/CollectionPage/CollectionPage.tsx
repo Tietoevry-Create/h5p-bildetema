@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
-import Button from "../../Button/Button";
-import { AddIcon, ArrowRight } from "../../Icons/Icons";
+import { ArrowRight } from "../../Icons/Icons";
 
 type MyCollection = {
   showArticles: boolean;
@@ -16,23 +15,12 @@ const CollectionPage = ({
   showArticles,
 }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
-  const navigate = useNavigate();
 
   return (
     <div>
-      <div>
-        <Button
-          variant="link"
-          aria-label="Go to search to add words to collection"
-          onClick={() => navigate(STATIC_PATH.SEARCH)}
-          className={styles.link}
-        >
-          Legg til ord
-          <span className={styles.icon}>
-            <ArrowRight />
-          </span>
-        </Button>
-      </div>
+      <Link to={STATIC_PATH.SEARCH} className={styles.iconLink}>
+        Legg til ord <ArrowRight className={styles.icon} />
+      </Link>
       <div className={styles.words}>
         {words.map(word => (
           <MultiLanguageWord

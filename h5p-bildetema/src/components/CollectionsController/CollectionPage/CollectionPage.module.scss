@@ -36,15 +36,28 @@ $gap: $spacing--24;
   }
 }
 
-.link {
+.iconLink {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
   margin-bottom: 1rem;
-  padding: 0;
+  text-underline-offset: 0.25em;
+  color: $base-font-color;
+}
+
+.iconLink:visited {
+  color: $base-font-color;
+}
+
+.iconLink:hover {
+  opacity: 75%;
 }
 
 .icon {
+  fill: $base-font-color;
   transition: 0.2s ease-in-out transform;
 }
 
-.link:hover icon {
-  transform: translateX(500px);
+.iconLink:hover .icon {
+  transform: translate3d(0.25em, 0, 0);
 }

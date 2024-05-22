@@ -1,35 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import React from "react";
-// import styles from "./Button.module.scss";
-
-// type variants = "primary" | "secondary" | "underline" | "filter";
-
-// export interface ButtonProps extends React.ComponentProps<"button"> {
-//   children: React.ReactNode;
-//   variant: variants;
-// }
-
-// const Button = ({
-//   children,
-//   variant = "primary",
-//   ...props
-// }: ButtonProps): React.JSX.Element => {
-//   return (
-//     <button
-//       // eslint-disable-next-line react/jsx-props-no-spreading
-//       {...props}
-//       // eslint-disable-next-line react/button-has-type
-//       type={props.type}
-//       className={`${styles.button} ${styles[variant]} ${
-//         props.disabled ? styles.disabled : ""
-//       } ${props.className}`}
-//     >
-//       {children}
-//     </button>
-//   );
-// };
-
-// export default Button;
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import styles from "./Button.module.scss";
@@ -42,7 +11,6 @@ const buttonVariants = {
       outline: `${styles.button}`,
       secondary: `${styles.button} ${styles.secondary}`,
       ghost: `${styles.button}`,
-      link: `${styles.button} ${styles.link}`,
       underline: `${styles.button} ${styles.underline}`,
       filter: `${styles.button} ${styles.filter}`,
     },
@@ -84,11 +52,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const combinedClassName = `${variantClass} ${sizeClass} ${
       className || ""
     }`.trim();
-    const role = variant === "link" ? "link" : "button";
 
-    return (
-      <Comp className={combinedClassName} role={role} ref={ref} {...props} />
-    );
+    return <Comp className={combinedClassName} ref={ref} {...props} />;
   },
 );
 
