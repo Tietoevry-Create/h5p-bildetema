@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
+import { useMyCollections } from "common/hooks/useMyCollections";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
@@ -16,11 +17,23 @@ const CollectionPage = ({
 }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
 
+  const { myCollections } = useMyCollections();
+  const [searchParams] = useSearchParams();
+  const collectionId = searchParams.get("id") ?? "";
+
+  const isCollectionOwner =
+    myCollections.findIndex(collection => collection.id === collectionId) !==
+    -1;
+
   return (
     <div>
-      <Link to={STATIC_PATH.SEARCH} className={styles.iconLink}>
-        Legg til ord <ArrowRight className={styles.icon} />
-      </Link>
+      {isCollectionOwner ? (
+        <Link to={STATIC_PATH.SEARCH} className={styles.iconLink}>
+          Legg til ord <ArrowRight className={styles.icon} />
+        </Link>
+      ) : (
+        ""
+      )}
       <div className={styles.words}>
         {words.map(word => (
           <MultiLanguageWord

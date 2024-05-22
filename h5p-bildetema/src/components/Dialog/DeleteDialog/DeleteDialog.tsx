@@ -39,7 +39,7 @@ const DeleteDialog = ({
           </Button>
           <Button
             className={styles.dialogButton}
-            variant="primary"
+            variant="default"
             onClick={() => {
               onDelete();
               onClose();
