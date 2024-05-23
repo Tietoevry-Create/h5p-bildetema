@@ -23,6 +23,7 @@ const CollectionPage = ({
         <div className={styles.bookmarkIcon}>
           <BookmarkIcon />
         </div>
+        {/* TODO: add translation */}
         <p>Klikk på bokmerket for ord du vil legge til i denne samlingen.</p>
         <Button
           variant="default"
@@ -30,6 +31,7 @@ const CollectionPage = ({
           aria-label="button-link to front page to add more words"
           onClick={() => navigate("/")}
         >
+          {/* TODO: add translation */}
           Oppdag ord
         </Button>
       </div>
