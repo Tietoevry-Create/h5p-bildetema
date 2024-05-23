@@ -42,7 +42,11 @@ $gap: $spacing--24;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+
+  @include breakpoint-min($small) {
+    gap: 2rem;
+  }
 }
 
 .bookmarkIcon {
