@@ -1,10 +1,9 @@
-import { Link, useSearchParams } from "react-router-dom";
-import { STATIC_PATH } from "common/constants/paths";
-import { useMyCollections } from "common/hooks/useMyCollections";
+import { useNavigate } from "react-router-dom";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
-import { ArrowRight } from "../../Icons/Icons";
+import { BookmarkIcon } from "../../Icons/Icons";
+import Button from "../../Button/Button";
 
 type MyCollection = {
   showArticles: boolean;
@@ -16,34 +15,37 @@ const CollectionPage = ({
   showArticles,
 }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
+  const navigate = useNavigate();
 
-  const { myCollections } = useMyCollections();
-  const [searchParams] = useSearchParams();
-  const collectionId = searchParams.get("id") ?? "";
-
-  const isCollectionOwner =
-    myCollections.findIndex(collection => collection.id === collectionId) !==
-    -1;
+  if (words.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.bookmarkIcon}>
+          <BookmarkIcon />
+        </div>
+        <p>Klikk på bokmerket for ord du vil legge til i denne samlingen.</p>
+        <Button
+          variant="default"
+          role="link"
+          aria-label="button-link to front page to add more words"
+          onClick={() => navigate("/")}
+        >
+          Oppdag ord
+        </Button>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      {isCollectionOwner ? (
-        <Link to={STATIC_PATH.SEARCH} className={styles.iconLink}>
-          Legg til ord <ArrowRight className={styles.icon} />
-        </Link>
-      ) : (
-        ""
-      )}
-      <div className={styles.words}>
-        {words.map(word => (
-          <MultiLanguageWord
-            key={word.id}
-            searchResult={word}
-            showWrittenWords={showWrittenWords}
-            showArticles={showArticles}
-          />
-        ))}
-      </div>
+    <div className={styles.words}>
+      {words.map(word => (
+        <MultiLanguageWord
+          key={word.id}
+          searchResult={word}
+          showWrittenWords={showWrittenWords}
+          showArticles={showArticles}
+        />
+      ))}
     </div>
   );
 };
