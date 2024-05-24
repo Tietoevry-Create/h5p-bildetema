@@ -50,7 +50,7 @@ const CollectionsPage = (): React.JSX.Element => {
             >
               Avbryt
             </Button>
-            <Button variant="primary" onClick={handleCreateNewCollection}>
+            <Button variant="default" onClick={handleCreateNewCollection}>
               Ok
             </Button>
           </div>
@@ -59,7 +59,7 @@ const CollectionsPage = (): React.JSX.Element => {
       <div>Her kan du se alle samlingene du har laget.</div>
       <Button
         className={styles.addButton}
-        variant="primary"
+        variant="default"
         onClick={() => setCreateCollectionDialogOpen(true)}
       >
         <AddIcon />

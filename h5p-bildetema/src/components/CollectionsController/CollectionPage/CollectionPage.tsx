@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import { STATIC_PATH } from "common/constants/paths";
+import { useNavigate } from "react-router-dom";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
+import { BookmarkIcon } from "../../Icons/Icons";
+import Button from "../../Button/Button";
 
 type MyCollection = {
   showArticles: boolean;
@@ -14,13 +15,25 @@ const CollectionPage = ({
   showArticles,
 }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
+  const navigate = useNavigate();
 
   if (words.length === 0) {
-    // TODO: What to show when there are no words?
     return (
-      <div>
-        Denne samlingen er tom. Du kan legge til ord via{" "}
-        <Link to={STATIC_PATH.SEARCH}>søk</Link>
+      <div className={styles.container}>
+        <div className={styles.bookmarkIcon}>
+          <BookmarkIcon />
+        </div>
+        {/* TODO: add translation */}
+        <p>Klikk på bokmerket for ord du vil legge til i denne samlingen.</p>
+        <Button
+          variant="default"
+          role="link"
+          aria-label="button-link to front page to add more words"
+          onClick={() => navigate("/")}
+        >
+          {/* TODO: add translation */}
+          Oppdag ord
+        </Button>
       </div>
     );
   }

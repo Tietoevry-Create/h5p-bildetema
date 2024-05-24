@@ -94,7 +94,7 @@ const CollectionElement = ({
             </Button>
             <Button
               className={styles.dialogButton}
-              variant="primary"
+              variant="default"
               onClick={handleNewTitle}
             >
               {/* TODO: TRANSLATE */}

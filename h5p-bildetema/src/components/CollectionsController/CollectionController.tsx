@@ -72,7 +72,7 @@ const CollectionController = ({
           showArticlesToggle={showArticlesToggle}
         />
       </div>
-      <div className={styles.contentWrapper}>{currentPage()}</div>
+      {currentPage()}
     </div>
   );
 };

@@ -35,3 +35,26 @@ $gap: $spacing--24;
     }
   }
 }
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include breakpoint-min($small) {
+    gap: 2rem;
+  }
+}
+
+.bookmarkIcon {
+  border-radius: 50%;
+  fill: #403933;
+  background-color: $beige;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
