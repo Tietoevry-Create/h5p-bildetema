@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
 import styles from "./Button.module.scss";
 
 const buttonVariants = {
@@ -35,25 +34,15 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = "default",
-      size = "default",
-      asChild = false,
-      ...props
-    },
-    ref,
-  ) => {
-    const Comp = asChild ? Slot : "button";
-
+  ({ className, variant = "default", size = "default", ...props }, ref) => {
     const variantClass = buttonVariants.variants.variant[variant];
     const sizeClass = buttonVariants.variants.size[size];
     const combinedClassName = `${variantClass} ${sizeClass} ${
       className || ""
     }`.trim();
 
-    return <Comp className={combinedClassName} ref={ref} {...props} />;
+    // eslint-disable-next-line react/button-has-type
+    return <button className={combinedClassName} ref={ref} {...props} />;
   },
 );
 

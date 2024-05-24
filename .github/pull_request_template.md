@@ -17,9 +17,6 @@
 <!--
   ⚠️ IMPORTANT ⚠️
   - DELETE EVERYTHING FROM THIS COMMENT ONWARDS BEFORE MERGING PR
-  - Squash merge with the following message:
-    <type>(<epicCode>): [<ticketCode>] (scope) - shortText
-    i.e.: feat(er-324): [er-2563] (AvtaleGiro) - Agreement summary screen
 -->
 
 ## Visuals
@@ -37,6 +34,7 @@
 - [ ] I have updated the documentation (created stories where apply) accordingly
 - [ ] I updated the ticket status
 - [ ] I confirm that new and existing tests passed
+- [ ] I have updated necessary library patch versions
 
 ## TODOs:
 
