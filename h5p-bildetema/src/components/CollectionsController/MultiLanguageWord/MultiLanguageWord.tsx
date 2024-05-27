@@ -11,7 +11,6 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
-import { Menu } from "@headlessui/react";
 import { useL10ns } from "use-h5p";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
@@ -21,6 +20,8 @@ import { translatedLabel } from "../../../utils/language.utils";
 import { DeleteIcon, MoreVertIcon } from "../../Icons/Icons";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
+import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
+import Button from "../../Button/Button";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -85,25 +86,18 @@ export const MultiLanguageWord = ({
       <div>
         {isCollectionOwner ? (
           <Menu>
-            <Menu.Button className={styles.button}>
-              <MoreVertIcon />
-            </Menu.Button>
-            <Menu.Items className={styles.menu}>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="button"
-                    className={`${styles.menuItemButton} ${
-                      active && styles.active
-                    }`}
-                    onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-                  >
-                    <DeleteIcon />
-                    <span>Slett</span>
-                  </button>
-                )}
-              </Menu.Item>
-            </Menu.Items>
+            <MenuButton className={styles.menuButton}>
+              <Button variant="circle">
+                <MoreVertIcon />
+              </Button>
+            </MenuButton>
+            <MenuItems anchor="bottom end">
+              <MenuItem
+                label="Slett"
+                icon={<DeleteIcon />}
+                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
+              />
+            </MenuItems>
           </Menu>
         ) : (
           ""

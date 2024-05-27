@@ -1,0 +1,25 @@
+@use "common/abstracts" as *;
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  z-index: $dialog-z-index;
+  text-align: left;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  background-color: $white;
+}
+
+.menuItemButton {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+
+  &:hover {
+    background-color: $grey;
+    border-radius: 5px;
+  }
+}

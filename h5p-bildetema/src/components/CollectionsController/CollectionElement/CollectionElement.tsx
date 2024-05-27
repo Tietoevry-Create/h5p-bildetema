@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "@headlessui/react";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
 import Dialog from "../../Dialog/Dialog";
@@ -104,45 +104,23 @@ const CollectionElement = ({
         </div>
       </Dialog>
       <Menu>
-        <Menu.Button className={styles.button}>
-          <MoreVertIcon />
-        </Menu.Button>
-        <Menu.Items className={styles.menu}>
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                type="button"
-                className={`${styles.menuItemButton} ${
-                  active && styles.active
-                }`}
-                onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
-              >
-                <EditIcon />
-                <span>
-                  {/* TODO: Translate */}
-                  Endre navn
-                </span>
-              </button>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                type="button"
-                className={`${styles.menuItemButton} ${
-                  active && styles.active
-                }`}
-                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-              >
-                <DeleteIcon />
-                <span>
-                  {/* TODO: Translate */}
-                  Slett
-                </span>
-              </button>
-            )}
-          </Menu.Item>
-        </Menu.Items>
+        <MenuButton className={styles.menuButton}>
+          <Button variant="circle">
+            <MoreVertIcon />
+          </Button>
+        </MenuButton>
+        <MenuItems anchor="bottom end">
+          <MenuItem
+            label="Endre navn"
+            icon={<EditIcon />}
+            onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
+          />
+          <MenuItem
+            label="Slett"
+            icon={<DeleteIcon />}
+            onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
+          />
+        </MenuItems>
       </Menu>
     </div>
   );

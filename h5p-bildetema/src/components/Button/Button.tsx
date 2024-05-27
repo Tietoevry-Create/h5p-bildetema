@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import * as React from "react";
+import React from "react";
+import { Button as OriginalButton } from "@headlessui/react";
 import styles from "./Button.module.scss";
 
 const buttonVariants = {
@@ -9,9 +10,10 @@ const buttonVariants = {
       destructive: `${styles.button}`,
       outline: `${styles.button}`,
       secondary: `${styles.button} ${styles.secondary}`,
-      ghost: `${styles.button}`,
+      ghost: `${styles.button} ${styles.ghost}`,
       underline: `${styles.button} ${styles.underline}`,
       filter: `${styles.button} ${styles.filter}`,
+      circle: `${styles.button} ${styles.circle}`,
     },
     size: {
       default: "",
@@ -42,7 +44,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }`.trim();
 
     // eslint-disable-next-line react/button-has-type
-    return <button className={combinedClassName} ref={ref} {...props} />;
+    return (
+      <OriginalButton className={combinedClassName} ref={ref} {...props} />
+    );
   },
 );
 

@@ -15,6 +15,7 @@ import { useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import { BookmarkIcon } from "../../Icons/Icons";
+import Button from "../../Button/Button";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
@@ -107,12 +108,12 @@ export const SearchResultCard = ({
     <li role="listitem" className={styles.searchResultCard}>
       {handleBookmarkClick && (
         <div className={styles.bookmarkButton}>
-          <button
-            type="button"
+          <Button
+            variant="circle"
             onClick={() => handleBookmarkClick(searchResult.id)}
           >
             <BookmarkIcon />
-          </button>
+          </Button>
         </div>
       )}
       <div className={styles.image_container}>{renderImages()}</div>
