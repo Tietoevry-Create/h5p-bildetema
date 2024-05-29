@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "common/components/Button";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { BookmarkIcon } from "../../Icons/Icons";
-import Button from "../../Button/Button";
 
 type MyCollection = {
   showArticles: boolean;

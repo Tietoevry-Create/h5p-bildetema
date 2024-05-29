@@ -11,6 +11,7 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
+import { Button } from "common/components/Button";
 import { useL10ns } from "use-h5p";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
@@ -21,7 +22,6 @@ import { DeleteIcon, MoreVertIcon } from "../../Icons/Icons";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
-import Button from "../../Button/Button";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",

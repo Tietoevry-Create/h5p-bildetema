@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { forwardRef, Fragment } from "react";
+import { Button } from "common/components/Button";
 import {
   type MenuProps as OriginalMenuProps,
   type MenuButtonProps as OriginalMenuButtonProps,
@@ -18,7 +19,6 @@ import {
 } from "@headlessui/react";
 
 import styles from "./Menu.module.scss";
-import Button from "../Button/Button";
 
 export type MenuProps = OriginalMenuProps;
 export type MenuButtonProps = OriginalMenuButtonProps;

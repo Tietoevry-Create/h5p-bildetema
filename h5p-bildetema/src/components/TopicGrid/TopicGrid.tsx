@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable no-nested-ternary */
 import { AudioRefContext } from "common/context/AudioContext";
 import {
   CurrentTopics,
@@ -12,6 +14,8 @@ import { newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
+import ChooseCollectionDialog from "../SearchPage/ChooseCollectionDialog/ChooseCollectionDialog";
+import { useChooseCollectionDialog } from "../../hooks/useChooseCollectionDialog";
 
 export type TopicGridProps = {
   topicsSize: TopicGridSizes;
@@ -35,6 +39,18 @@ export const TopicGrid: FC<TopicGridProps> = ({
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
+
+  const {
+    isOpen,
+    options,
+    selectedCollection,
+    selectedWordId,
+    handleOpenDialog,
+    handleCloseDialog,
+    handleAddBookmark,
+    handleSelectCollection,
+  } = useChooseCollectionDialog();
+
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);
@@ -54,45 +70,52 @@ export const TopicGrid: FC<TopicGridProps> = ({
     topicId: currentTopics?.topic?.id,
   };
 
-  if (wordsIsTopics) {
-    return (
-      // eslint-disable-next-line jsx-a11y/no-redundant-roles
-      <ul
-        role="list"
-        className={`${
-          topicsSize === TopicGridSizes.Big
-            ? styles.gridBig
-            : styles.gridCompact
-        }`}
-      >
-        <AudioRefContext.Provider value={audioContextValue}>
-          {newWords?.map(topic => {
-            return (
-              <TopicGridElement
-                key={topic.id}
-                topic={topic}
-                topicSize={topicsSize}
-                languageCode={currentLanguage.code}
-              />
-            );
-          })}
-        </AudioRefContext.Provider>
-      </ul>
-    );
-  }
-
-  if (words) {
-    return (
-      <Words
-        words={words}
-        topic={topicIds}
-        showWrittenWords={showWrittenWords}
-        currentLanguage={currentLanguage.code}
-        toggleShowTopicImageView={toggleShowTopicImageView}
-        showArticles={showArticles}
+  return (
+    <>
+      <ChooseCollectionDialog
+        open={isOpen}
+        options={options}
+        selectedCollection={selectedCollection}
+        selectedWordId={selectedWordId}
+        onSelectCollection={handleSelectCollection}
+        onClose={handleCloseDialog}
+        onAddBookmark={handleAddBookmark}
       />
-    );
-  }
-
-  return <h1>No topics</h1>;
+      {wordsIsTopics ? (
+        <ul
+          role="list"
+          className={`${
+            topicsSize === TopicGridSizes.Big
+              ? styles.gridBig
+              : styles.gridCompact
+          }`}
+        >
+          <AudioRefContext.Provider value={audioContextValue}>
+            {newWords?.map(topic => {
+              return (
+                <TopicGridElement
+                  key={topic.id}
+                  topic={topic}
+                  topicSize={topicsSize}
+                  languageCode={currentLanguage.code}
+                />
+              );
+            })}
+          </AudioRefContext.Provider>
+        </ul>
+      ) : words ? (
+        <Words
+          words={words}
+          topic={topicIds}
+          showWrittenWords={showWrittenWords}
+          currentLanguage={currentLanguage.code}
+          toggleShowTopicImageView={toggleShowTopicImageView}
+          showArticles={showArticles}
+          onOpenDialog={handleOpenDialog}
+        />
+      ) : (
+        <h1>No topics</h1>
+      )}
+    </>
+  );
 };

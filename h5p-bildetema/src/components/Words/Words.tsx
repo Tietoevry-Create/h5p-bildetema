@@ -22,6 +22,7 @@ type WordsProps = {
   currentLanguage: LanguageCode;
   toggleShowTopicImageView: (value: boolean) => void;
   showArticles: boolean;
+  onOpenDialog: (id: string) => void;
 };
 
 type H5PContent = {
@@ -43,6 +44,7 @@ export const Words: FC<WordsProps> = ({
   currentLanguage,
   toggleShowTopicImageView,
   showArticles,
+  onOpenDialog,
 }) => {
   const [hotspots, setHotspots] = useState<TopicImageHotspot[]>([]);
   const topicViewRef = useRef<HTMLDivElement>(null);
@@ -181,6 +183,7 @@ export const Words: FC<WordsProps> = ({
               showWrittenWords,
               showArticles,
               l10n,
+              onOpenDialog,
             },
           },
           contentId,
@@ -218,6 +221,7 @@ export const Words: FC<WordsProps> = ({
       showWrittenWords,
       currentLanguage,
       showArticles,
+      onOpenDialog,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
     // eslint-disable-next-line react-hooks/exhaustive-deps

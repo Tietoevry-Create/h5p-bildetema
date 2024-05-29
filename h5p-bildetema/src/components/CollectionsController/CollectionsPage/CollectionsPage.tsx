@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { STATIC_PATH } from "common/constants/paths";
+import { Button } from "common/components/Button";
 import Dialog from "../../Dialog/Dialog";
 import styles from "./CollectionsPage.module.scss";
 import TextInput from "../../TextInput/TextInput";
-import Button from "../../Button/Button";
 import { AddIcon } from "../../Icons/Icons";
 import CollectionElement from "../CollectionElement/CollectionElement";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";

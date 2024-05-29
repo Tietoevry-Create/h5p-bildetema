@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { Button } from "common/components/Button";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
 import Dialog from "../../Dialog/Dialog";
-import Button from "../../Button/Button";
 import TextInput from "../../TextInput/TextInput";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 

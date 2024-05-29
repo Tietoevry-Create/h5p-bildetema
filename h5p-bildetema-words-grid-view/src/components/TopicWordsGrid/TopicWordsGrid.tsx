@@ -8,12 +8,14 @@ type TopicWordsGridProps = {
   words: WordType[];
   showWrittenWords: boolean;
   showArticles: boolean;
+  onOpenDialog: (id: string) => void;
 };
 
 export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
   words,
   showWrittenWords,
   showArticles,
+  onOpenDialog,
 }) => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -35,6 +37,7 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
             word={word}
             textVisible={showWrittenWords}
             showArticles={showArticles}
+            onOpenDialog={onOpenDialog}
           />
         ))}
       </AudioRefContext.Provider>

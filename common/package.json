@@ -16,7 +16,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "replace-special-characters": "^1.2.7",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "@headlessui/react": "^2.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.22",

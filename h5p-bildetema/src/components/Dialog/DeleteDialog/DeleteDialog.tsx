@@ -1,5 +1,5 @@
+import { Button } from "common/components/Button";
 import styles from "./DeleteDialog.module.scss";
-import Button from "../../Button/Button";
 import Dialog from "../Dialog";
 
 type DeleteDialogProps = {

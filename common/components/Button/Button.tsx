@@ -35,7 +35,7 @@ export interface ButtonProps
   size?: keyof (typeof buttonVariants)["variants"]["size"];
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", ...props }, ref) => {
     const variantClass = buttonVariants.variants.variant[variant];
     const sizeClass = buttonVariants.variants.size[size];
@@ -51,5 +51,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
-
-export default Button;

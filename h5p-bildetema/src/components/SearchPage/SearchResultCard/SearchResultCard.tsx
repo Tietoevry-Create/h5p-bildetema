@@ -8,6 +8,7 @@ import { Image } from "common/components/Image/Image";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
+import { Button } from "common/components/Button";
 import { useL10ns } from "use-h5p";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
@@ -15,7 +16,6 @@ import { useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import { BookmarkIcon } from "../../Icons/Icons";
-import Button from "../../Button/Button";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
