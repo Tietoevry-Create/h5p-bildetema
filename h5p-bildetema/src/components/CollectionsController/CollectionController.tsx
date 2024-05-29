@@ -67,7 +67,7 @@ const CollectionController = ({
       <div className={styles.menuWrapper}>
         <SubHeader
           breadCrumbs={breadCrumbs}
-          isWordView={!!collection}
+          isWordView={!!collection && words.length > 0}
           rtl={rtl}
           showArticlesToggle={showArticlesToggle}
         />
