@@ -181,9 +181,12 @@ export const searchForNewWord = (
   const lowerCaseSearch = s.toLowerCase();
   let filteredNewWords: NewWord[] = newWords;
 
+  // Filter out topics and only search for words
+  filteredNewWords = newWords.filter(word => !word.id.includes("T"));
+
   // if the search is empty, return all words
   if (lowerCaseSearch !== "") {
-    filteredNewWords = newWords.filter(word => {
+    filteredNewWords = filteredNewWords.filter(word => {
       return word.translations.get(langCode)?.labels.some(label => {
         const reporductiveOrgansSubtopic = "T066";
         const lowerCaseLabel = label.label.toLowerCase();
