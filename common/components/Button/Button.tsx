@@ -43,7 +43,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className || ""
     }`.trim();
 
-     
     return (
       <OriginalButton className={combinedClassName} ref={ref} {...props} />
     );
