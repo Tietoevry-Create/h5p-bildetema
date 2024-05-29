@@ -43,7 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className || ""
     }`.trim();
 
-    // eslint-disable-next-line react/button-has-type
+     
     return (
       <OriginalButton className={combinedClassName} ref={ref} {...props} />
     );
