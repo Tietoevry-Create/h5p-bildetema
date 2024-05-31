@@ -72,3 +72,8 @@ $gap: $spacing--24;
   gap: 2rem;
   align-items: center;
 }
+
+.description {
+  all: unset;
+  font-size: $font-size-16;
+}

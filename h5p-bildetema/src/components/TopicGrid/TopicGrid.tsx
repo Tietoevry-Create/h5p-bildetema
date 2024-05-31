@@ -14,8 +14,6 @@ import { newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
-import ChooseCollectionDialog from "../SearchPage/ChooseCollectionDialog/ChooseCollectionDialog";
-import { useChooseCollectionDialog } from "../../hooks/useChooseCollectionDialog";
 
 export type TopicGridProps = {
   topicsSize: TopicGridSizes;
@@ -40,17 +38,6 @@ export const TopicGrid: FC<TopicGridProps> = ({
     {} as RefObject<HTMLAudioElement>,
   );
 
-  const {
-    isOpen,
-    options,
-    selectedCollection,
-    selectedWordId,
-    handleOpenDialog,
-    handleCloseDialog,
-    handleAddBookmark,
-    handleSelectCollection,
-  } = useChooseCollectionDialog();
-
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);
@@ -70,52 +57,46 @@ export const TopicGrid: FC<TopicGridProps> = ({
     topicId: currentTopics?.topic?.id,
   };
 
+  const renderTopics = (): JSX.Element => (
+    <ul
+      role="list"
+      className={
+        topicsSize === TopicGridSizes.Big ? styles.gridBig : styles.gridCompact
+      }
+    >
+      <AudioRefContext.Provider value={audioContextValue}>
+        {newWords?.map(topic => (
+          <TopicGridElement
+            key={topic.id}
+            topic={topic}
+            topicSize={topicsSize}
+            languageCode={currentLanguage.code}
+          />
+        ))}
+      </AudioRefContext.Provider>
+    </ul>
+  );
+
+  const renderWords = (): JSX.Element => (
+    <Words
+      words={words}
+      topic={topicIds}
+      showWrittenWords={showWrittenWords}
+      currentLanguage={currentLanguage.code}
+      toggleShowTopicImageView={toggleShowTopicImageView}
+      showArticles={showArticles}
+    />
+  );
+
   return (
-    <>
-      <ChooseCollectionDialog
-        open={isOpen}
-        options={options}
-        selectedCollection={selectedCollection}
-        selectedWordId={selectedWordId}
-        onSelectCollection={handleSelectCollection}
-        onClose={handleCloseDialog}
-        onAddBookmark={handleAddBookmark}
-      />
+    <div>
       {wordsIsTopics ? (
-        <ul
-          role="list"
-          className={`${
-            topicsSize === TopicGridSizes.Big
-              ? styles.gridBig
-              : styles.gridCompact
-          }`}
-        >
-          <AudioRefContext.Provider value={audioContextValue}>
-            {newWords?.map(topic => {
-              return (
-                <TopicGridElement
-                  key={topic.id}
-                  topic={topic}
-                  topicSize={topicsSize}
-                  languageCode={currentLanguage.code}
-                />
-              );
-            })}
-          </AudioRefContext.Provider>
-        </ul>
+        renderTopics()
       ) : words ? (
-        <Words
-          words={words}
-          topic={topicIds}
-          showWrittenWords={showWrittenWords}
-          currentLanguage={currentLanguage.code}
-          toggleShowTopicImageView={toggleShowTopicImageView}
-          showArticles={showArticles}
-          onOpenDialog={handleOpenDialog}
-        />
+        renderWords()
       ) : (
         <h1>No topics</h1>
       )}
-    </>
+    </div>
   );
 };

@@ -2,70 +2,69 @@
 import { forwardRef, Fragment } from "react";
 import { Button } from "common/components/Button";
 import {
-  type MenuProps as OriginalMenuProps,
-  type MenuButtonProps as OriginalMenuButtonProps,
-  type MenuItemsProps as OriginalMenuItemsProps,
-  type MenuItemProps as OriginalMenuItemProps,
-  type MenuSectionProps as OriginalMenuSectionProps,
-  type MenuHeadingProps as OriginalMenuHeadingProps,
-  type MenuSeparatorProps as OriginalMenuSeparatorProps,
-  Menu as OriginalMenu,
-  MenuButton as OriginalMenuButton,
-  MenuItems as OriginalMenuItems,
-  MenuItem as OriginalMenuItem,
-  MenuSection as OriginalMenuSection,
-  MenuHeading as OriginalMenuHeading,
-  MenuSeparator as OriginalMenuSeparator,
+  type MenuProps as HMenuProps,
+  type MenuButtonProps as HMenuButtonProps,
+  type MenuItemsProps as HMenuItemsProps,
+  type MenuItemProps as HMenuItemProps,
+  type MenuSectionProps as HMenuSectionProps,
+  type MenuHeadingProps as HMenuHeadingProps,
+  type MenuSeparatorProps as HMenuSeparatorProps,
+  Menu as HMenu,
+  MenuButton as HMenuButton,
+  MenuItems as HMenuItems,
+  MenuItem as HMenuItem,
+  MenuSection as HMenuSection,
+  MenuHeading as HMenuHeading,
+  MenuSeparator as HMenuSeparator,
 } from "@headlessui/react";
 
 import styles from "./Menu.module.scss";
 
-export type MenuProps = OriginalMenuProps;
-export type MenuButtonProps = OriginalMenuButtonProps;
-export type MenuItemsProps = OriginalMenuItemsProps;
-export type MenuItemProps = OriginalMenuItemProps & {
+export type MenuProps = HMenuProps;
+export type MenuButtonProps = HMenuButtonProps;
+export type MenuItemsProps = HMenuItemsProps;
+export type MenuItemProps = HMenuItemProps & {
   label: string;
   icon: React.ReactNode;
   onClick: () => void;
 };
-export type MenuSectionProps = OriginalMenuSectionProps;
-export type MenuHeadingProps = OriginalMenuHeadingProps;
-export type MenuSeparatorProps = OriginalMenuSeparatorProps;
+export type MenuSectionProps = HMenuSectionProps;
+export type MenuHeadingProps = HMenuHeadingProps;
+export type MenuSeparatorProps = HMenuSeparatorProps;
 
 export const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => (
-  <OriginalMenu {...props} ref={ref} />
+  <HMenu {...props} ref={ref} />
 ));
 
 export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
-  (props, ref) => <OriginalMenuButton as={Fragment} {...props} ref={ref} />,
+  (props, ref) => <HMenuButton as={Fragment} {...props} ref={ref} />,
 );
 
 export const MenuItems = forwardRef<HTMLElement, MenuItemsProps>(
   (props, ref) => (
-    <OriginalMenuItems className={styles.menuItems} {...props} ref={ref} />
+    <HMenuItems className={styles.menuItems} {...props} ref={ref} />
   ),
 );
 
 export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(
   ({ label, icon, onClick, ...props }, ref) => (
-    <OriginalMenuItem {...props} ref={ref}>
+    <HMenuItem {...props} ref={ref}>
       <Button onClick={onClick} className={styles.menuItemButton}>
         {icon}
         {label}
       </Button>
-    </OriginalMenuItem>
+    </HMenuItem>
   ),
 );
 
 export const MenuSection = forwardRef<HTMLElement, MenuSectionProps>(
-  (props, ref) => <OriginalMenuSection {...props} ref={ref} />,
+  (props, ref) => <HMenuSection {...props} ref={ref} />,
 );
 
 export const MenuHeading = forwardRef<HTMLElement, MenuHeadingProps>(
-  (props, ref) => <OriginalMenuHeading {...props} ref={ref} />,
+  (props, ref) => <HMenuHeading {...props} ref={ref} />,
 );
 
-export const MenuSeparator = forwardRef<
-  HTMLElement,
-  OriginalMenuSeparatorProps
->((props, ref) => <OriginalMenuSeparator {...props} ref={ref} />);
+export const MenuSeparator = forwardRef<HTMLElement, HMenuSeparatorProps>(
+  (props, ref) => <HMenuSeparator {...props} ref={ref} />,
+);

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
+import Dialog from "common/components/Dialog/Dialog";
+import TextInput from "common/components/TextInput/TextInput";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
-import Dialog from "../../Dialog/Dialog";
-import TextInput from "../../TextInput/TextInput";
-import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
+import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -110,11 +110,13 @@ const CollectionElement = ({
           </Button>
         </MenuButton>
         <MenuItems anchor="bottom end">
+          {/* TODO: translate label */}
           <MenuItem
             label="Endre navn"
             icon={<EditIcon />}
             onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
           />
+          {/* TODO: translate label */}
           <MenuItem
             label="Slett"
             icon={<DeleteIcon />}

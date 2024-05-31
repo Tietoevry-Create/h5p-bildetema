@@ -12,10 +12,11 @@ import React, {
 import { VirtuosoGrid } from "react-virtuoso";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
+import { useDialogContext } from "common/hooks/useDialogContext";
+import ChooseCollectionDialog from "common/components/ChooseCollectionDialog/ChooseCollectionDialog";
+import { useChooseCollectionDialog } from "common/hooks/useChooseCollectionDialog";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
-import ChooseCollectionDialog from "../ChooseCollectionDialog/ChooseCollectionDialog";
 import styles from "./SearchResultView.module.scss";
-import { useChooseCollectionDialog } from "../../../hooks/useChooseCollectionDialog";
 
 type ListProps = {
   style?: React.CSSProperties;
@@ -67,15 +68,13 @@ const SearchResultView = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
+  const { isOpen, selectedId, handleCloseDialog, handleOpenDialog } =
+    useDialogContext();
   const {
-    isOpen,
     options,
     selectedCollection,
-    selectedWordId,
-    handleOpenDialog,
-    handleCloseDialog,
-    handleAddBookmark,
     handleSelectCollection,
+    handleAddToCollection,
   } = useChooseCollectionDialog();
 
   const searchLabel =
@@ -108,10 +107,12 @@ const SearchResultView = ({
         open={isOpen}
         options={options}
         selectedCollection={selectedCollection}
-        selectedWordId={selectedWordId}
+        selectedWordId={selectedId}
         onSelectCollection={handleSelectCollection}
         onClose={handleCloseDialog}
-        onAddBookmark={handleAddBookmark}
+        onAddBookmark={() =>
+          handleAddToCollection(selectedId, handleCloseDialog)
+        }
       />
       <AudioRefContext.Provider value={audioContextValue}>
         <VirtuosoGrid

@@ -11,7 +11,6 @@ export type Params = {
   showWrittenWords?: boolean;
   showArticles?: boolean;
   l10n: Record<TranslationKey, string>;
-  onOpenDialog: (id: string) => void;
 };
 
 export class H5PWrapper
@@ -61,7 +60,6 @@ export class H5PWrapper
               words={params.words ?? []}
               showWrittenWords={params.showWrittenWords ?? true}
               showArticles={params.showArticles ?? false}
-              onOpenDialog={params.onOpenDialog}
             />
           </ContentIdContext.Provider>
         </L10nContext.Provider>

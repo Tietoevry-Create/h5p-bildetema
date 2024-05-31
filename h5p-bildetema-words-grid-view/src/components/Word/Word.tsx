@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import { Word as WordType } from "common/types/types";
 import { FC } from "react";
 import { Navigation, Pagination } from "swiper";
@@ -8,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Audio } from "common/components/Audio/Audio";
 import { extractWordLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
+import { MoreVertIcon } from "common/components/Icons/Icons";
 import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
@@ -100,21 +102,13 @@ export const Word: FC<WordProps> = ({
   const label = textVisible ? extractWordLabel(word, showArticles) : "";
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.word}>
       <Button
         variant="circle"
         className={styles.bookmarkButton}
         onClick={() => onOpenDialog(word.id)}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 -960 960 960"
-          width="24"
-        >
-          <path d="m480-240-168 72q-40 17-76-6.5T200-241v-519q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v519q0 43-36 66.5t-76 6.5l-168-72Zm0-88 200 86v-518H280v518l200-86Zm0-432H280h400-200Z" />
-        </svg>
+        <MoreVertIcon />
       </Button>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && (

@@ -8,11 +8,8 @@ export type CollectionOption = {
 };
 
 export const useChooseCollectionDialog = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [selectedCollection, setSelectedCollection] =
     useState<CollectionOption | null>(null);
-  const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
-
   const { myCollections, addItemToCollection } = useMyCollections();
 
   const options = useMemo(() => {
@@ -22,23 +19,16 @@ export const useChooseCollectionDialog = () => {
     }));
   }, [myCollections]);
 
-  const handleOpenDialog = (id: string): void => {
-    setIsOpen(true);
-    setSelectedWordId(id);
-  };
-
-  const handleCloseDialog = (): void => {
-    setIsOpen(false);
-    setSelectedWordId(null);
-  };
-
-  const handleAddBookmark = (): void => {
-    if (!selectedWordId || !selectedCollection) return;
+  const handleAddToCollection = (
+    wordId: string | null,
+    onCloseDialog: () => void,
+  ): void => {
+    if (!wordId || !selectedCollection) return;
     addItemToCollection({
       id: selectedCollection.id,
-      wordId: selectedWordId,
+      wordId,
     });
-    handleCloseDialog();
+    onCloseDialog();
   };
 
   const handleSelectCollection = (collection: CollectionOption): void => {
@@ -46,13 +36,9 @@ export const useChooseCollectionDialog = () => {
   };
 
   return {
-    isOpen,
     options,
     selectedCollection,
-    selectedWordId,
-    handleOpenDialog,
-    handleCloseDialog,
-    handleAddBookmark,
+    handleAddToCollection,
     handleSelectCollection,
   };
 };

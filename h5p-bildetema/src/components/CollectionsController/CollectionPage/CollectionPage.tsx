@@ -28,24 +28,18 @@ const CollectionPage = ({
           <BookmarkIcon />
         </div>
         {/* TODO: add translation */}
-        <p>Denne samlingen er tom.</p>
-        <p>{description}</p>
+        <p className={styles.description}>Denne samlingen er tom.</p>
+        <p className={styles.description}>{description}</p>
         <div className={styles.navButtons}>
           <Button
             variant="default"
             role="link"
-            aria-label="button-link to front page to add more words"
             onClick={() => navigate(STATIC_PATH.SEARCH)}
           >
             {/* TODO: add translation */}
             Gå til søk
           </Button>
-          <Button
-            variant="default"
-            role="link"
-            aria-label="button-link to front page to add more words"
-            onClick={() => navigate("/")}
-          >
+          <Button variant="default" role="link" onClick={() => navigate("/")}>
             {/* TODO: add translation */}
             Gå til tema
           </Button>
@@ -66,7 +60,7 @@ const CollectionPage = ({
           />
         ))}
       </div>
-      <p>{description}</p>
+      <p className={styles.description}>{description}</p>
     </div>
   );
 };

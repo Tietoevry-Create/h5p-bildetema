@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
+import { CollectionOption } from "common/types/types";
 import { v4 as uuid } from "uuid";
 
-import Dialog from "../../Dialog/Dialog";
-import Select from "../../Select/Select";
-import TextInput from "../../TextInput/TextInput";
-import { AddIcon } from "../../Icons/Icons";
+import Dialog from "../Dialog/Dialog";
+import Select from "../Select/Select";
+import TextInput from "../TextInput/TextInput";
+import { AddIcon } from "../Icons/Icons";
 import styles from "./ChooseCollectionDialog.module.scss";
-import { CollectionOption } from "../../../hooks/useChooseCollectionDialog";
 
 export type ChooseCollectionDialogProps = {
   open: boolean;

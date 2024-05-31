@@ -1,5 +1,10 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import { AudioRefContext } from "common/context/AudioContext";
 import { Word as WordType } from "common/types/types";
+import { useDialogContext } from "common/hooks/useDialogContext";
+import { useChooseCollectionDialog } from "common/hooks/useChooseCollectionDialog";
+import ChooseCollectionDialog from "common/components/ChooseCollectionDialog/ChooseCollectionDialog";
+
 import { FC, RefObject, useMemo, useState } from "react";
 import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
@@ -8,14 +13,12 @@ type TopicWordsGridProps = {
   words: WordType[];
   showWrittenWords: boolean;
   showArticles: boolean;
-  onOpenDialog: (id: string) => void;
 };
 
 export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
   words,
   showWrittenWords,
   showArticles,
-  onOpenDialog,
 }) => {
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -27,20 +30,41 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
+  const { isOpen, selectedId, handleCloseDialog, handleOpenDialog } =
+    useDialogContext();
+  const {
+    options,
+    selectedCollection,
+    handleAddToCollection,
+    handleSelectCollection,
+  } = useChooseCollectionDialog();
+
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <ul role="list" className={styles.topicgrid}>
-      <AudioRefContext.Provider value={audioContextValue}>
-        {words.map(word => (
-          <Word
-            key={word.id}
-            word={word}
-            textVisible={showWrittenWords}
-            showArticles={showArticles}
-            onOpenDialog={onOpenDialog}
-          />
-        ))}
-      </AudioRefContext.Provider>
-    </ul>
+    <>
+      <ChooseCollectionDialog
+        open={isOpen}
+        options={options}
+        selectedCollection={selectedCollection}
+        selectedWordId={selectedId}
+        onSelectCollection={handleSelectCollection}
+        onClose={handleCloseDialog}
+        onAddBookmark={() =>
+          handleAddToCollection(selectedId, handleCloseDialog)
+        }
+      />
+      <ul role="list" className={styles.topicgrid}>
+        <AudioRefContext.Provider value={audioContextValue}>
+          {words.map(word => (
+            <Word
+              key={word.id}
+              word={word}
+              textVisible={showWrittenWords}
+              showArticles={showArticles}
+              onOpenDialog={handleOpenDialog}
+            />
+          ))}
+        </AudioRefContext.Provider>
+      </ul>
+    </>
   );
 };

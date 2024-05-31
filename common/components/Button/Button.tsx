@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
-import { Button as OriginalButton } from "@headlessui/react";
+import { Button as HButton } from "@headlessui/react";
 import styles from "./Button.module.scss";
 
 const buttonVariants = {
@@ -43,9 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className || ""
     }`.trim();
 
-    return (
-      <OriginalButton className={combinedClassName} ref={ref} {...props} />
-    );
+    return <HButton className={combinedClassName} ref={ref} {...props} />;
   },
 );
 

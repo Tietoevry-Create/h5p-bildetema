@@ -19,7 +19,7 @@ import { useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import { DeleteIcon, MoreVertIcon } from "../../Icons/Icons";
-import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
+import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 
@@ -92,6 +92,7 @@ export const MultiLanguageWord = ({
               </Button>
             </MenuButton>
             <MenuItems anchor="bottom end">
+              {/* TODO: translate label */}
               <MenuItem
                 label="Slett"
                 icon={<DeleteIcon />}
@@ -102,6 +103,7 @@ export const MultiLanguageWord = ({
         ) : (
           ""
         )}
+        {/* TODO: translate title and description */}
         <DeleteDialog
           open={openDialog === OpenDialog.DELETE_DIALOG}
           title="Slett ord"
