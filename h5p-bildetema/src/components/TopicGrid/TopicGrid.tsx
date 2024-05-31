@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable no-nested-ternary */
 import { AudioRefContext } from "common/context/AudioContext";
 import {
   CurrentTopics,
@@ -35,6 +37,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
+
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);
@@ -54,45 +57,46 @@ export const TopicGrid: FC<TopicGridProps> = ({
     topicId: currentTopics?.topic?.id,
   };
 
-  if (wordsIsTopics) {
-    return (
-      // eslint-disable-next-line jsx-a11y/no-redundant-roles
-      <ul
-        role="list"
-        className={`${
-          topicsSize === TopicGridSizes.Big
-            ? styles.gridBig
-            : styles.gridCompact
-        }`}
-      >
-        <AudioRefContext.Provider value={audioContextValue}>
-          {newWords?.map(topic => {
-            return (
-              <TopicGridElement
-                key={topic.id}
-                topic={topic}
-                topicSize={topicsSize}
-                languageCode={currentLanguage.code}
-              />
-            );
-          })}
-        </AudioRefContext.Provider>
-      </ul>
-    );
-  }
+  const renderTopics = (): JSX.Element => (
+    <ul
+      role="list"
+      className={
+        topicsSize === TopicGridSizes.Big ? styles.gridBig : styles.gridCompact
+      }
+    >
+      <AudioRefContext.Provider value={audioContextValue}>
+        {newWords?.map(topic => (
+          <TopicGridElement
+            key={topic.id}
+            topic={topic}
+            topicSize={topicsSize}
+            languageCode={currentLanguage.code}
+          />
+        ))}
+      </AudioRefContext.Provider>
+    </ul>
+  );
 
-  if (words) {
-    return (
-      <Words
-        words={words}
-        topic={topicIds}
-        showWrittenWords={showWrittenWords}
-        currentLanguage={currentLanguage.code}
-        toggleShowTopicImageView={toggleShowTopicImageView}
-        showArticles={showArticles}
-      />
-    );
-  }
+  const renderWords = (): JSX.Element => (
+    <Words
+      words={words}
+      topic={topicIds}
+      showWrittenWords={showWrittenWords}
+      currentLanguage={currentLanguage.code}
+      toggleShowTopicImageView={toggleShowTopicImageView}
+      showArticles={showArticles}
+    />
+  );
 
-  return <h1>No topics</h1>;
+  return (
+    <div>
+      {wordsIsTopics ? (
+        renderTopics()
+      ) : words ? (
+        renderWords()
+      ) : (
+        <h1>No topics</h1>
+      )}
+    </div>
+  );
 };

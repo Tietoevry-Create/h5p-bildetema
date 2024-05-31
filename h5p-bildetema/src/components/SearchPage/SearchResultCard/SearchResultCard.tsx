@@ -8,12 +8,13 @@ import { Image } from "common/components/Image/Image";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
+import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
+import { BookmarkIcon } from "common/components/Icons/Icons";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import { BookmarkIcon } from "../../Icons/Icons";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
@@ -106,12 +107,12 @@ export const SearchResultCard = ({
     <li role="listitem" className={styles.searchResultCard}>
       {handleBookmarkClick && (
         <div className={styles.bookmarkButton}>
-          <button
-            type="button"
+          <Button
+            variant="circle"
             onClick={() => handleBookmarkClick(searchResult.id)}
           >
             <BookmarkIcon />
-          </button>
+          </Button>
         </div>
       )}
       <div className={styles.image_container}>{renderImages()}</div>

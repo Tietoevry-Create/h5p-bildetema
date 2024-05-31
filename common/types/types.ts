@@ -162,3 +162,8 @@ export type Collection = {
   id: string;
   wordsIds: string[];
 };
+
+export type CollectionOption = {
+  id: string;
+  label: string;
+};

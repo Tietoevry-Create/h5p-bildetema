@@ -35,49 +35,6 @@
   }
 }
 
-.button {
-  all: unset;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  right: 1.5rem;
-  cursor: pointer;
-
-  padding: 0.5rem;
-  border-radius: 1000%;
-
-  &:hover {
-    background-color: $darker-beige;
-  }
-}
-
-.menu {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  z-index: $dialog-z-index;
-  right: 2.6rem;
-  top: 2.8rem;
-  text-align: left;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-  background-color: $white;
-}
-
-.menuItemButton {
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 2rem;
-}
-
-.active {
-  background-color: $beige;
-  border-radius: 5px;
-}
-
 .deleteDialog {
   display: flex;
   flex-direction: column;
@@ -100,4 +57,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.menuButton {
+  position: absolute;
+  right: 1.5rem;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $darker-beige;
+  }
 }

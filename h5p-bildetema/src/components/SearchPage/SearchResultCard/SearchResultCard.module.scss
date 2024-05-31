@@ -15,25 +15,6 @@
   z-index: $fav-language-selector-z-index;
   right: 0.5rem;
   top: 0.5rem;
-
-  & button {
-    all: unset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    padding: 0.5rem;
-    background-color: $beige;
-    cursor: pointer;
-
-    // TODO: change color or store as variable?
-    fill: #403933;
-
-    &:hover {
-      background-color: $burgundy;
-      fill: white;
-    }
-  }
 }
 
 .image_container {

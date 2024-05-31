@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import * as React from "react";
+import React from "react";
+import { Button as HButton } from "@headlessui/react";
 import styles from "./Button.module.scss";
 
 const buttonVariants = {
@@ -9,9 +10,10 @@ const buttonVariants = {
       destructive: `${styles.button}`,
       outline: `${styles.button}`,
       secondary: `${styles.button} ${styles.secondary}`,
-      ghost: `${styles.button}`,
+      ghost: `${styles.button} ${styles.ghost}`,
       underline: `${styles.button} ${styles.underline}`,
       filter: `${styles.button} ${styles.filter}`,
+      circle: `${styles.button} ${styles.circle}`,
     },
     size: {
       default: "",
@@ -33,7 +35,7 @@ export interface ButtonProps
   size?: keyof (typeof buttonVariants)["variants"]["size"];
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", ...props }, ref) => {
     const variantClass = buttonVariants.variants.variant[variant];
     const sizeClass = buttonVariants.variants.size[size];
@@ -41,11 +43,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className || ""
     }`.trim();
 
-    // eslint-disable-next-line react/button-has-type
-    return <button className={combinedClassName} ref={ref} {...props} />;
+    return <HButton className={combinedClassName} ref={ref} {...props} />;
   },
 );
 
 Button.displayName = "Button";
-
-export default Button;

@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
 import { isLanguageCode } from "common/types/LanguageCode";
+import { DialogProvider } from "common/context/DialogContext";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -195,15 +196,17 @@ const SearchPage = (): JSX.Element => {
       </div>
       <div className={styles.searchResultBackground}>
         <div className={`${styles.grid} ${styles.mainSize}`}>
-          <SearchResultView
-            searchResults={deferredSearchResult}
-            search={currSearch}
-            searchResultAmount={state.filteredSearchResults.length}
-            // TODO: Remove if not needed
-            // sortOptions={searchOrderOptions}
-            // handleOrderChange={handleOrderChange}
-            // resultSortType={state.order}
-          />
+          <DialogProvider>
+            <SearchResultView
+              searchResults={deferredSearchResult}
+              search={currSearch}
+              searchResultAmount={state.filteredSearchResults.length}
+              // TODO: Remove if not needed
+              // sortOptions={searchOrderOptions}
+              // handleOrderChange={handleOrderChange}
+              // resultSortType={state.order}
+            />
+          </DialogProvider>
         </div>
       </div>
     </div>

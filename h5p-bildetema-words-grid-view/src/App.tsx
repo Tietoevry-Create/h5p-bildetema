@@ -1,4 +1,5 @@
 import { Word } from "common/types/types";
+import { DialogProvider } from "common/context/DialogContext";
 import { FC } from "react";
 import { TopicWordsGrid } from "./components/TopicWordsGrid/TopicWordsGrid";
 
@@ -10,11 +11,13 @@ export type AppProps = {
 
 const App: FC<AppProps> = ({ words, showWrittenWords, showArticles }) => {
   return (
-    <TopicWordsGrid
-      words={words}
-      showWrittenWords={showWrittenWords}
-      showArticles={showArticles}
-    />
+    <DialogProvider>
+      <TopicWordsGrid
+        words={words}
+        showWrittenWords={showWrittenWords}
+        showArticles={showArticles}
+      />
+    </DialogProvider>
   );
 };
 

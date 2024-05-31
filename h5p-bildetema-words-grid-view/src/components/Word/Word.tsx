@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import { Word as WordType } from "common/types/types";
 import { FC } from "react";
 import { Navigation, Pagination } from "swiper";
@@ -7,6 +8,8 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Audio } from "common/components/Audio/Audio";
 import { extractWordLabel } from "common/utils/word.utils";
+import { Button } from "common/components/Button";
+import { BookmarkIcon } from "common/components/Icons/Icons";
 import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
@@ -16,9 +19,15 @@ type WordProps = {
   word: WordType;
   textVisible: boolean;
   showArticles: boolean;
+  onOpenDialog: (id: string) => void;
 };
 
-export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
+export const Word: FC<WordProps> = ({
+  textVisible,
+  word,
+  showArticles,
+  onOpenDialog,
+}) => {
   const { images } = word;
 
   const prevLabel = useL10n("prevImageLabel");
@@ -93,8 +102,14 @@ export const Word: FC<WordProps> = ({ textVisible, word, showArticles }) => {
   const label = textVisible ? extractWordLabel(word, showArticles) : "";
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className={styles.word}>
+      <Button
+        variant="circle"
+        className={styles.bookmarkButton}
+        onClick={() => onOpenDialog(word.id)}
+      >
+        <BookmarkIcon />
+      </Button>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && (
         <Audio

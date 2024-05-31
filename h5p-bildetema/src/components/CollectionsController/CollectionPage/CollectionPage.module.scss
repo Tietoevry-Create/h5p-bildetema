@@ -58,3 +58,22 @@ $gap: $spacing--24;
   align-items: center;
   justify-content: center;
 }
+
+.navButtons {
+  display: flex;
+  gap: 2rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.description {
+  all: unset;
+  font-size: $font-size-18;
+}

@@ -1,7 +1,10 @@
 import { TopicGridSizes } from "common/types/types";
+import {
+  BigTopicsIcon,
+  CompactTopicsIcon,
+} from "common/components/Icons/Icons";
 import { Dispatch, FC, SetStateAction } from "react";
 import { useL10n } from "../../hooks/useL10n";
-import { BigTopicsIcon, CompactTopicsIcon } from "../Icons/Icons";
 import styles from "./TopicSizeButtons.module.scss";
 
 export type TopicSizeButtonsProps = {

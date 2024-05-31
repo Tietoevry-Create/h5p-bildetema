@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "@headlessui/react";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { Button } from "common/components/Button";
+import Dialog from "common/components/Dialog/Dialog";
+import TextInput from "common/components/TextInput/TextInput";
+import {
+  DeleteIcon,
+  EditIcon,
+  MoreVertIcon,
+} from "common/components/Icons/Icons";
+import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
-import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
-import Dialog from "../../Dialog/Dialog";
-import Button from "../../Button/Button";
-import TextInput from "../../TextInput/TextInput";
-import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
+import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -104,45 +108,25 @@ const CollectionElement = ({
         </div>
       </Dialog>
       <Menu>
-        <Menu.Button className={styles.button}>
-          <MoreVertIcon />
-        </Menu.Button>
-        <Menu.Items className={styles.menu}>
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                type="button"
-                className={`${styles.menuItemButton} ${
-                  active && styles.active
-                }`}
-                onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
-              >
-                <EditIcon />
-                <span>
-                  {/* TODO: Translate */}
-                  Endre navn
-                </span>
-              </button>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                type="button"
-                className={`${styles.menuItemButton} ${
-                  active && styles.active
-                }`}
-                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-              >
-                <DeleteIcon />
-                <span>
-                  {/* TODO: Translate */}
-                  Slett
-                </span>
-              </button>
-            )}
-          </Menu.Item>
-        </Menu.Items>
+        <MenuButton className={styles.menuButton}>
+          <Button variant="circle">
+            <MoreVertIcon />
+          </Button>
+        </MenuButton>
+        <MenuItems anchor="bottom end">
+          {/* TODO: translate label */}
+          <MenuItem
+            label="Endre navn"
+            icon={<EditIcon />}
+            onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
+          />
+          {/* TODO: translate label */}
+          <MenuItem
+            label="Slett"
+            icon={<DeleteIcon />}
+            onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
+          />
+        </MenuItems>
       </Menu>
     </div>
   );

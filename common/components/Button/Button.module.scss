@@ -1,7 +1,6 @@
 @use "common/abstracts" as *;
 
 .button {
-  all: unset;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +16,12 @@
   @include breakpoint-min($x-small) {
     gap: $spacing--8;
     padding: 0.75rem 1.25rem;
+  }
+}
+
+.ghost {
+  &:hover {
+    background-color: $beige;
   }
 }
 
@@ -59,4 +64,20 @@
 .disabled {
   cursor: default;
   opacity: 0.4;
+}
+
+.circle {
+  border-radius: 50%;
+  padding: 0.5rem;
+  background-color: $beige;
+  border: none;
+  cursor: pointer;
+
+  // TODO: change color or store as variable?
+  fill: #403933;
+
+  &:hover {
+    background-color: $burgundy;
+    fill: white;
+  }
 }

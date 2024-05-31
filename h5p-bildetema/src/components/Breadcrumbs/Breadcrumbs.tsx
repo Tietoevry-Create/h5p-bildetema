@@ -5,17 +5,17 @@ import { labelToUrlComponent } from "common/utils/string.utils";
 import { FC, ReactPortal } from "react";
 import { Link } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
-import useBreadcrumbs from "use-react-router-breadcrumbs";
-import { useL10n } from "../../hooks/useL10n";
-import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
-import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import {
   BackIcon,
   BreadcrumbsArrowIcon,
   BreadcrumbsArrowLeftIcon,
   HomeIcon,
-} from "../Icons/Icons";
+} from "common/components/Icons/Icons";
+import useBreadcrumbs from "use-react-router-breadcrumbs";
+import { useL10n } from "../../hooks/useL10n";
+import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import styles from "./Breadcrumbs.module.scss";
 
 export type BreadcrumbsProps = {

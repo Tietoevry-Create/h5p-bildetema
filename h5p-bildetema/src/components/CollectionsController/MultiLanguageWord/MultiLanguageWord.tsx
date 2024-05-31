@@ -11,15 +11,16 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
-import { Menu } from "@headlessui/react";
+import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
+import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import { DeleteIcon, MoreVertIcon } from "../../Icons/Icons";
-import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
+import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
+import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -84,29 +85,24 @@ export const MultiLanguageWord = ({
       <div>
         {isCollectionOwner ? (
           <Menu>
-            <Menu.Button className={styles.button}>
-              <MoreVertIcon />
-            </Menu.Button>
-            <Menu.Items className={styles.menu}>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="button"
-                    className={`${styles.menuItemButton} ${
-                      active && styles.active
-                    }`}
-                    onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-                  >
-                    <DeleteIcon />
-                    <span>Slett</span>
-                  </button>
-                )}
-              </Menu.Item>
-            </Menu.Items>
+            <MenuButton className={styles.menuButton}>
+              <Button variant="circle">
+                <MoreVertIcon />
+              </Button>
+            </MenuButton>
+            <MenuItems anchor="bottom end">
+              {/* TODO: translate label */}
+              <MenuItem
+                label="Slett"
+                icon={<DeleteIcon />}
+                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
+              />
+            </MenuItems>
           </Menu>
         ) : (
           ""
         )}
+        {/* TODO: translate title and description */}
         <DeleteDialog
           open={openDialog === OpenDialog.DELETE_DIALOG}
           title="Slett ord"

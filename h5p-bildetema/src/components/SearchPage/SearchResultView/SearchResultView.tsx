@@ -12,9 +12,10 @@ import React, {
 import { VirtuosoGrid } from "react-virtuoso";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
-import { useMyCollections } from "common/hooks/useMyCollections";
+import { useDialogContext } from "common/hooks/useDialogContext";
+import ChooseCollectionDialog from "common/components/ChooseCollectionDialog/ChooseCollectionDialog";
+import { useChooseCollectionDialog } from "common/hooks/useChooseCollectionDialog";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
-import ChooseCollectionDialog from "../ChooseCollectionDialog/ChooseCollectionDialog";
 import styles from "./SearchResultView.module.scss";
 
 type ListProps = {
@@ -42,11 +43,6 @@ const gridComponents = {
   ),
 };
 
-export type CollectionOption = {
-  id: string;
-  label: string;
-};
-
 export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
@@ -72,43 +68,14 @@ const SearchResultView = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const { myCollections, addItemToCollection } = useMyCollections();
-
-  const options = myCollections.map(collection => {
-    return {
-      label: collection.title,
-      id: collection.id,
-    };
-  });
-
-  const [open, setOpen] = React.useState(false);
-  const [selectedCollection, setSelectedCollection] =
-    useState<CollectionOption | null>(null);
-
-  const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
-
-  const handleCloseDialog = (): void => {
-    setOpen(false);
-    setSelectedWordId(null);
-  };
-
-  const handleBookmarkClick = (id: string): void => {
-    setOpen(true);
-    setSelectedWordId(id);
-  };
-
-  const handleAddBookmark = (): void => {
-    if (!selectedWordId || !selectedCollection) return;
-    addItemToCollection({
-      id: selectedCollection.id,
-      wordId: selectedWordId,
-    });
-    handleCloseDialog();
-  };
-
-  const handleSelectCollection = (collection: CollectionOption): void => {
-    setSelectedCollection(collection);
-  };
+  const { isOpen, selectedId, handleCloseDialog, handleOpenDialog } =
+    useDialogContext();
+  const {
+    options,
+    selectedCollection,
+    handleSelectCollection,
+    handleAddToCollection,
+  } = useChooseCollectionDialog();
 
   const searchLabel =
     search.trim() === "" ? (
@@ -137,13 +104,15 @@ const SearchResultView = ({
         </div> */}
       </div>
       <ChooseCollectionDialog
-        open={open}
+        open={isOpen}
         options={options}
         selectedCollection={selectedCollection}
-        selectedWordId={selectedWordId}
+        selectedWordId={selectedId}
         onSelectCollection={handleSelectCollection}
         onClose={handleCloseDialog}
-        onAddBookmark={handleAddBookmark}
+        onAddBookmark={() =>
+          handleAddToCollection(selectedId, handleCloseDialog)
+        }
       />
       <AudioRefContext.Provider value={audioContextValue}>
         <VirtuosoGrid
@@ -158,7 +127,7 @@ const SearchResultView = ({
             <SearchResultCard
               key={w.id}
               searchResult={w}
-              handleBookmarkClick={handleBookmarkClick}
+              handleBookmarkClick={handleOpenDialog}
             />
           )}
         />
