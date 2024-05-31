@@ -4,7 +4,7 @@ import {
   sortNewWordsBylevenshtein,
   sortSearchByTopic,
 } from "common/utils/searchResults.utils";
-import { searchForNewWord } from "common/utils/word.utils";
+import { filterOutTopics, searchForNewWord } from "common/utils/word.utils";
 import { useReducer } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
@@ -228,7 +228,7 @@ export const useSearchResults = ({
     filteredSearchResults: [],
     visibleSearchResults: [],
     order,
-    newWords: idToWords ? [...idToWords.values()] : [],
+    newWords: idToWords ? filterOutTopics([...idToWords.values()]) : [],
     backendUrl,
     langCodeTolanguages,
   };
