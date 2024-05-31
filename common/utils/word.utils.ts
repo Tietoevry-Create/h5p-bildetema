@@ -60,6 +60,10 @@ export const newWordsIncludesArticles = (
   });
 };
 
+export const filterOutTopics = (words: NewWord[]): NewWord[] => {
+  return words.filter(word => !word.id.includes("T"));
+};
+
 export const searchResultsIncludesArticles = (
   words: SearchResult[],
   langCode: LanguageCode,
@@ -180,9 +184,6 @@ export const searchForNewWord = (
 ): NewWord[] => {
   const lowerCaseSearch = s.toLowerCase();
   let filteredNewWords: NewWord[] = newWords;
-
-  // Filter out topics and only search for words
-  filteredNewWords = newWords.filter(word => !word.id.includes("T"));
 
   // if the search is empty, return all words
   if (lowerCaseSearch !== "") {
