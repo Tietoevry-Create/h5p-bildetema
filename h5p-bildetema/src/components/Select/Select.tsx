@@ -1,5 +1,8 @@
 import { Listbox } from "@headlessui/react";
-import { CheckIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
+import {
+  CheckIcon,
+  LanguageMenuArrowIcon,
+} from "common/components/Icons/Icons";
 import styles from "./Select.module.scss";
 
 type Option = {

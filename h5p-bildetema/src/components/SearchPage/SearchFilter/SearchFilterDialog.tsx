@@ -3,10 +3,10 @@ import { Button } from "common/components/Button";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { getMainTopics } from "common/utils/data.utils";
 import { toSingleLabel } from "common/utils/word.utils";
+import { Close, Filter } from "common/components/Icons/Icons";
 import { Dialog } from "@headlessui/react";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import styles from "./SearchFilterDialog.module.scss";
-import { Close, Filter } from "../../Icons/Icons";
 
 export type SearchFilterProps = {
   handleFilterChange: (topicId: string, checked: boolean) => void;

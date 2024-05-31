@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
+import { BookmarkIcon } from "common/components/Icons/Icons";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
-import { BookmarkIcon } from "../../Icons/Icons";
 
 type MyCollection = {
   showArticles: boolean;

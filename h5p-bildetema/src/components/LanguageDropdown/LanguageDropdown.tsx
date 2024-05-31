@@ -8,7 +8,10 @@ import {
   useState,
 } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { LanguageIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
+import {
+  LanguageIcon,
+  LanguageMenuArrowIcon,
+} from "common/components/Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 

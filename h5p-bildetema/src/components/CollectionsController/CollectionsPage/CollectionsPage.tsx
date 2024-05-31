@@ -4,8 +4,8 @@ import { STATIC_PATH } from "common/constants/paths";
 import { Button } from "common/components/Button";
 import TextInput from "common/components/TextInput/TextInput";
 import Dialog from "common/components/Dialog/Dialog";
+import { AddIcon } from "common/components/Icons/Icons";
 import styles from "./CollectionsPage.module.scss";
-import { AddIcon } from "../../Icons/Icons";
 import CollectionElement from "../CollectionElement/CollectionElement";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 

@@ -4,9 +4,13 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
 import Dialog from "common/components/Dialog/Dialog";
 import TextInput from "common/components/TextInput/TextInput";
+import {
+  DeleteIcon,
+  EditIcon,
+  MoreVertIcon,
+} from "common/components/Icons/Icons";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
-import { DeleteIcon, EditIcon, MoreVertIcon } from "../../Icons/Icons";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 
 const OpenDialog = {

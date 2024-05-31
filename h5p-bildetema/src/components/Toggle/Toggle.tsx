@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import ReactToggle from "react-toggle";
-import { CheckedIcon, UncheckedIcon } from "../Icons/Icons";
+import { CheckedIcon, UncheckedIcon } from "common/components/Icons/Icons";
 import "./ReactToggle.scss";
 import styles from "./Toggle.module.scss";
 

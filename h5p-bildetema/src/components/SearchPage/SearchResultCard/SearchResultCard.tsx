@@ -11,10 +11,10 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
+import { BookmarkIcon } from "common/components/Icons/Icons";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import { BookmarkIcon } from "../../Icons/Icons";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;

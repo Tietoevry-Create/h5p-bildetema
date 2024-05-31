@@ -12,8 +12,8 @@ import {
 } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { STATIC_PATH } from "common/constants/paths";
+import { BookmarkIcon, SearchIcon } from "common/components/Icons/Icons";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
-import { BookmarkIcon, SearchIcon } from "../Icons/Icons";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
