@@ -2,9 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { getMainTopics } from "common/utils/data.utils";
 import { toSingleLabel } from "common/utils/word.utils";
+import { LanguageMenuArrowIcon } from "common/components/Icons/Icons";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import style from "./SearchFilter.module.scss";
-import { LanguageMenuArrowIcon } from "../../Icons/Icons";
 
 export type SearchFilterProps = {
   handleFilterChange: (topicId: string, checked: boolean) => void;
