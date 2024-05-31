@@ -56,8 +56,8 @@ const SearchView = ({
             handleSearch={handleSearch}
             search={search}
             placeholder={searchInputPlaceholder}
-            rlt={isRtl}
-            // rlt
+            rtl={isRtl}
+            // rtl
           />
           <Select
             options={languages}
