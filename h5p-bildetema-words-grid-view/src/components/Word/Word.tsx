@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Audio } from "common/components/Audio/Audio";
 import { extractWordLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
-import { MoreVertIcon } from "common/components/Icons/Icons";
+import { BookmarkIcon } from "common/components/Icons/Icons";
 import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
@@ -108,7 +108,7 @@ export const Word: FC<WordProps> = ({
         className={styles.bookmarkButton}
         onClick={() => onOpenDialog(word.id)}
       >
-        <MoreVertIcon />
+        <BookmarkIcon />
       </Button>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && (
