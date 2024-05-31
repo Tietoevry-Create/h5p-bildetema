@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
@@ -6,7 +7,6 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
-import { useMemo } from "react";
 
 type MyCollection = {
   showArticles: boolean;
