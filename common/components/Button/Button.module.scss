@@ -61,6 +61,26 @@
   }
 }
 
+.capsule {
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  font-size: $font-size-18;
+  padding: 0.375rem 1rem;
+
+  &:hover {
+    background-color: $white;
+    border-color: $burgundy;
+    color: $burgundy;
+    fill: $burgundy;
+  }
+
+  span {
+    @include breakpoint-max($small) {
+      display: none;
+    }
+  }
+}
+
 .disabled {
   cursor: default;
   opacity: 0.4;
