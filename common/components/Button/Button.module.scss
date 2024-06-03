@@ -73,12 +73,6 @@
     color: $burgundy;
     fill: $burgundy;
   }
-
-  span {
-    @include breakpoint-max($small) {
-      display: none;
-    }
-  }
 }
 
 .disabled {

@@ -1,5 +1,5 @@
 import { Button } from "common/components/Button";
-import { ShareIcon } from "common/components/Icons/Icons";
+import { SuccessIcon, LinkIcon } from "common/components/Icons/Icons";
 import { useState } from "react";
 
 const ShareButton = (): JSX.Element => {
@@ -7,8 +7,13 @@ const ShareButton = (): JSX.Element => {
 
   const copyMe = async (): Promise<void> => {
     const url = window.location.href;
-    await navigator.clipboard.writeText(url);
-    setIsCopied(true);
+    try {
+      await navigator.clipboard.writeText(url);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 3000);
+    } catch (error) {
+      /* TODO: Show error message to user in for example a toast */
+    }
   };
 
   return (
@@ -18,8 +23,9 @@ const ShareButton = (): JSX.Element => {
         copyMe();
       }}
     >
-      <ShareIcon />
-      <span>Del</span>
+      {isCopied ? <SuccessIcon /> : <LinkIcon />}
+      {/* TODO: Translate text */}
+      <span>{isCopied ? "Kopiert" : "Kopier"}</span>
     </Button>
   );
 };
