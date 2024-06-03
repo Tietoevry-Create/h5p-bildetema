@@ -70,6 +70,7 @@ const CollectionController = ({
           isWordView={!!collection && words.length > 0}
           rtl={rtl}
           showArticlesToggle={showArticlesToggle}
+          includeShareButton
         />
       </div>
       {currentPage()}

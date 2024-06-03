@@ -14,6 +14,7 @@ const buttonVariants = {
       underline: `${styles.button} ${styles.underline}`,
       filter: `${styles.button} ${styles.filter}`,
       circle: `${styles.button} ${styles.circle}`,
+      capsule: `${styles.button} ${styles.capsule}`,
     },
     size: {
       default: "",

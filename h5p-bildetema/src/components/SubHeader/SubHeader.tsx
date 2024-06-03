@@ -10,6 +10,7 @@ import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import styles from "./SubHeader.module.scss";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
+import ShareButton from "../ShareButton/ShareButton";
 
 export type SubHeaderProps = {
   topicsSize?: TopicGridSizes;
@@ -20,6 +21,7 @@ export type SubHeaderProps = {
     path: string;
   }[];
   showTopicImageView?: boolean;
+  includeShareButton?: boolean;
   rtl: boolean;
   isWordView: boolean;
   showArticlesToggle: boolean;
@@ -31,6 +33,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
   currentTopics,
   isWordView,
   showTopicImageView = false,
+  includeShareButton = false,
   rtl,
   showArticlesToggle,
   breadCrumbs,
@@ -63,6 +66,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
       <div className={styles.tools}>
         {isWordView ? (
           <>
+            {includeShareButton && <ShareButton />}
             <PrintButton
               showWrittenWords={showWrittenWords}
               isWordView={isWordView}
