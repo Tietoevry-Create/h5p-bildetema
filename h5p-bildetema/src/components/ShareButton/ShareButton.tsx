@@ -25,7 +25,7 @@ const ShareButton = (): JSX.Element => {
     >
       {isCopied ? <SuccessIcon /> : <LinkIcon />}
       {/* TODO: Translate text */}
-      <span>{isCopied ? "Kopiert" : "Kopier"}</span>
+      <span>{isCopied ? "Lenke kopiert" : "Kopier lenke"}</span>
     </Button>
   );
 };
