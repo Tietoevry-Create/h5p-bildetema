@@ -29,7 +29,8 @@ const SaveSharedCollectionButton = (): JSX.Element => {
   return (
     <Button variant="capsule" onClick={() => handleSaveCollection()}>
       {isSaved ? <SuccessIcon /> : <DownloadIcon />}
-      <span>{isSaved ? "Lagret" : "Lagre samling"}</span>
+      {/* TODO: Add translations */}
+      <span>{isSaved ? "Samling Lagret" : "Lagre samling"}</span>
     </Button>
   );
 };
