@@ -25,6 +25,8 @@ const CollectionsPage = (): React.JSX.Element => {
   const [textInput, setTextInput] = useState("");
 
   const handleCreateNewCollection = (): void => {
+    if (!textInput) return;
+
     addCollection({ title: textInput });
     setTextInput("");
     setCreateCollectionDialogOpen(false);

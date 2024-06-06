@@ -11,6 +11,7 @@ import styles from "./SubHeader.module.scss";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import ShareButton from "../ShareButton/ShareButton";
+import SaveSharedCollectionButton from "../SaveSharedCollectionButton/SaveSharedCollectionButton";
 
 export type SubHeaderProps = {
   topicsSize?: TopicGridSizes;
@@ -22,6 +23,7 @@ export type SubHeaderProps = {
   }[];
   showTopicImageView?: boolean;
   includeShareButton?: boolean;
+  includeSaveButton?: boolean;
   rtl: boolean;
   isWordView: boolean;
   showArticlesToggle: boolean;
@@ -34,6 +36,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
   isWordView,
   showTopicImageView = false,
   includeShareButton = false,
+  includeSaveButton = false,
   rtl,
   showArticlesToggle,
   breadCrumbs,
@@ -66,6 +69,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
       <div className={styles.tools}>
         {isWordView ? (
           <>
+            {includeSaveButton && <SaveSharedCollectionButton />}
             {includeShareButton && <ShareButton />}
             <PrintButton
               showWrittenWords={showWrittenWords}
@@ -106,11 +110,17 @@ export const SubHeader: FC<SubHeaderProps> = ({
         isWordView ? styles.subHeaderWords : styles.subHeaderThemes
       } ${rtl ? styles.rtl : ""}`}
     >
-      <Breadcrumbs
-        currentLanguageCode={currentLanguageCode as LanguageCode}
-        currentTopics={currentTopics}
-        breadCrumbs={breadCrumbs}
-      />
+      {!includeSaveButton ? (
+        <Breadcrumbs
+          currentLanguageCode={currentLanguageCode as LanguageCode}
+          currentTopics={currentTopics}
+          breadCrumbs={breadCrumbs}
+        />
+      ) : (
+        <h1 className={styles.currentPage}>
+          {breadCrumbs ? breadCrumbs[breadCrumbs.length - 1].label : ""}
+        </h1>
+      )}
       {renderRightMenu()}
     </div>
   );

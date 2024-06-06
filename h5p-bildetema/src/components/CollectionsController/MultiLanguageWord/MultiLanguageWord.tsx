@@ -21,6 +21,7 @@ import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
+import useIsCollectionOwner from "../../../hooks/useIsCollectionOwner";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -42,7 +43,8 @@ export const MultiLanguageWord = ({
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
-  const { myCollections, deleteWordFromCollection } = useMyCollections();
+  const isCollectionOwner = useIsCollectionOwner();
+  const { deleteWordFromCollection } = useMyCollections();
   const [searchParams, setSearchParams] = useSearchParams();
   const langCode = useCurrentLanguageCode();
   const collectionId = searchParams.get("id") ?? "";
@@ -50,10 +52,6 @@ export const MultiLanguageWord = ({
     () => searchResult.translations.find(x => x.lang.code === langCode),
     [langCode, searchResult.translations],
   );
-
-  const isCollectionOwner =
-    myCollections.findIndex(collection => collection.id === collectionId) !==
-    -1;
 
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
