@@ -1,6 +1,5 @@
 import { Collection } from "common/types/types";
-import { useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import useLocalStorageState from "use-local-storage-state";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
@@ -19,14 +18,13 @@ type AddCollection = {
   wordIds?: string[];
 };
 
-const storedCollectionsAtom = atomWithStorage<Collection[]>(
-  "myCollections",
-  [],
-);
-
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useMyCollections = () => {
-  const [myCollections, setMyCollections] = useAtom(storedCollectionsAtom);
+  const [myCollections, setMyCollections] = useLocalStorageState<Collection[]>(
+    "myCollections",
+    { defaultValue: [] },
+  );
+
   useEffect(() => {
     setMyCollections(prev => {
       if (prev.length === 0) return prev;

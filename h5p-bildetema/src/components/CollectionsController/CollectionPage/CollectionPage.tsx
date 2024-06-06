@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { BookmarkIcon } from "common/components/Icons/Icons";
@@ -7,14 +7,12 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
+import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 
 type MyCollection = {
   showArticles: boolean;
   showWrittenWords: boolean;
 };
-
-const description =
-  "Legg til ord ved å klikke på bokmerket på bildene, enten via søk eller temavisning.";
 
 const CollectionPage = ({
   showWrittenWords,
@@ -22,6 +20,7 @@ const CollectionPage = ({
 }: MyCollection): JSX.Element => {
   const words = useSelectedWords();
   const navigate = useNavigate();
+  const lang = useCurrentLanguage();
 
   const { myCollections } = useMyCollections();
   const [searchParams] = useSearchParams();
@@ -42,7 +41,10 @@ const CollectionPage = ({
         </div>
         {/* TODO: add translation */}
         <p className={styles.description}>Denne samlingen er tom.</p>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>
+          Legg til ord ved å klikke på bokmerket på bildene, enten via søk eller
+          temavisning.
+        </p>
         <div className={styles.navButtons}>
           <Button
             variant="default"
@@ -74,7 +76,11 @@ const CollectionPage = ({
         ))}
       </div>
       {isCollectionOwner ? (
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>
+          Legg til ord ved å klikke på bokmerket på bildene, enten via{" "}
+          <Link to={STATIC_PATH.SEARCH}>søk</Link> eller{" "}
+          <Link to={`/${lang.code}`}>temavisning</Link>.
+        </p>
       ) : null}
     </div>
   );
