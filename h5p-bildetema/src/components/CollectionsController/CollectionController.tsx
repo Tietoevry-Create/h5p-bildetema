@@ -9,6 +9,7 @@ import CollectionsPage from "./CollectionsPage/CollectionsPage";
 import { SubHeader } from "../SubHeader/SubHeader";
 import { useSelectedWords } from "../../hooks/useSelectedWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
+import useIsCollectionOwner from "../../hooks/useIsCollectionOwner";
 
 type CollectionControllerProps = {
   rtl: boolean;
@@ -21,6 +22,7 @@ const CollectionController = ({
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
   const { showArticles, showWrittenWords } = useSearchParamContext();
+  const isCollectionOwner = useIsCollectionOwner();
 
   const showArticlesToggle = useMemo(() => {
     return searchResultsIncludesArticles(words, langCode);
@@ -71,6 +73,7 @@ const CollectionController = ({
           rtl={rtl}
           showArticlesToggle={showArticlesToggle}
           includeShareButton
+          includeSaveButton={!isCollectionOwner}
         />
       </div>
       {currentPage()}

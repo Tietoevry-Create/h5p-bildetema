@@ -1,13 +1,12 @@
-import { useMemo } from "react";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { BookmarkIcon } from "common/components/Icons/Icons";
-import { useMyCollections } from "common/hooks/useMyCollections";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+import useIsCollectionOwner from "../../../hooks/useIsCollectionOwner";
 
 type MyCollection = {
   showArticles: boolean;
@@ -21,17 +20,7 @@ const CollectionPage = ({
   const words = useSelectedWords();
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
-
-  const { myCollections } = useMyCollections();
-  const [searchParams] = useSearchParams();
-  const collectionId = searchParams.get("id") ?? "";
-
-  const isCollectionOwner = useMemo(
-    () =>
-      myCollections.findIndex(collection => collection.id === collectionId) !==
-      -1,
-    [collectionId, myCollections],
-  );
+  const isCollectionOwner = useIsCollectionOwner();
 
   if (words.length === 0) {
     return (
