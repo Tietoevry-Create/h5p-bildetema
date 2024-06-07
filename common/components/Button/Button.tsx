@@ -18,8 +18,8 @@ const buttonVariants = {
     },
     size: {
       default: "",
-      sm: "",
-      lg: "",
+      sm: `${styles.small}`,
+      lg: `${styles.large}`,
       icon: "",
     },
   },

@@ -119,7 +119,7 @@
 }
 
 .printLabel {
-  @include breakpoint-max($small) {
-    display: none;
-  }
+  // @include breakpoint-max($small) {
+  //   display: none;
+  // }
 }

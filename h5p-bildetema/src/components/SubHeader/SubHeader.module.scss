@@ -16,7 +16,7 @@
 }
 
 .tools {
-  column-gap: 2rem;
+  column-gap: 1rem;
   display: flex;
   flex-wrap: wrap;
   font-size: $font-size-18;
@@ -24,6 +24,10 @@
 
   @media print {
     display: none;
+  }
+
+  @include breakpoint-min($medium) {
+    column-gap: 2rem;
   }
 }
 

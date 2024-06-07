@@ -9,14 +9,18 @@
   border-radius: 0.5rem;
   font-family: sans-serif;
   font-size: $font-size-16;
-  padding: 0.25rem 0.5rem;
-  gap: 0.25rem;
+  padding: 0.75rem 1.25rem;
+  gap: $spacing--8;
   cursor: pointer;
+}
 
-  @include breakpoint-min($x-small) {
-    gap: $spacing--8;
-    padding: 0.75rem 1.25rem;
-  }
+.small {
+  font-size: $font-size-14;
+  padding: 0.25rem 0.5rem;
+}
+
+.large {
+  font-size: $font-size-18;
 }
 
 .ghost {
@@ -64,8 +68,8 @@
 .capsule {
   border: 2px solid transparent;
   border-radius: 1rem;
-  font-size: $font-size-18;
   padding: 0.375rem 1rem;
+  font-size: $font-size-18;
   background-color: $grey;
 
   &:hover {
