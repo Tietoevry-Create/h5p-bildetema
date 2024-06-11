@@ -193,6 +193,62 @@
           "default": "Single photos"
         },
         {
+          "label": "Search",
+          "default": "Search"
+        },
+        {
+          "label": "Collections",
+          "default": "Collections"
+        },
+        {
+          "label": "My collections",
+          "default": "My collections"
+        },
+        {
+          "label": "Create a collection",
+          "default": "Create a collection"
+        },
+        {
+          "label": "Change name",
+          "default": "Change name"
+        },
+        {
+          "label": "Delete",
+          "default": "Delete"
+        },
+        {
+          "label": "Name of the collection",
+          "default": "Name of the collection"
+        },
+        {
+          "label": "Cancel",
+          "default": "Cancel"
+        },
+        {
+          "label": "Save changes",
+          "default": "Save changes"
+        },
+        {
+          "label": "Copy link",
+          "default": "Copy link"
+        },
+        {
+          "label": "Link copied",
+          "default": "Link copied"
+        },
+        {
+          "label": "Description text for adding a word to a collection",
+          "default": "Add words by clicking on the bookmark on the images, either via search or theme view."
+        },
+        {
+          "label": "Search Bildetema",
+          "default": "Search"
+        },
+        {
+          "label": "Filter by theme",
+          "default": "Filter by theme"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },
