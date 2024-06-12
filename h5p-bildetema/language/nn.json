@@ -194,59 +194,123 @@
         },
         {
           "label": "Search",
-          "default": "Search"
+          "default": "Søk"
         },
         {
           "label": "Collections",
-          "default": "Collections"
+          "default": "Samlingar"
         },
         {
           "label": "My collections",
-          "default": "My collections"
+          "default": "Mine samlingar"
         },
         {
           "label": "Create a collection",
-          "default": "Create a collection"
+          "default": "Lag ei samling"
         },
         {
           "label": "Change name",
-          "default": "Change name"
+          "default": "Endre namn"
         },
         {
           "label": "Delete",
-          "default": "Delete"
+          "default": "Slett"
         },
         {
           "label": "Name of the collection",
-          "default": "Name of the collection"
+          "default": "Namn på samlinga"
         },
         {
           "label": "Cancel",
-          "default": "Cancel"
+          "default": "Avbryt"
         },
         {
           "label": "Save changes",
-          "default": "Save changes"
+          "default": "Lagre endringar"
         },
         {
           "label": "Copy link",
-          "default": "Copy link"
+          "default": "Kopier lenkje"
         },
         {
           "label": "Link copied",
-          "default": "Link copied"
+          "default": "Lenkje kopiert"
         },
         {
           "label": "Description text for adding a word to a collection",
-          "default": "Add words by clicking on the bookmark on the images, either via search or theme view."
-        },
-        {
-          "label": "Search Bildetema",
-          "default": "Search"
+          "default": "Legg til ord ved å klikke på bokmerket på bileta, anten via {{search}} eller {{topicView}}."
         },
         {
           "label": "Filter by theme",
-          "default": "Filter by theme"
+          "default": "Filtrer etter tema"
+        },
+        {
+          "label": "Collections Page Description",
+          "default": "Her kan du sjå alle samlingane du har laga."
+        },
+        {
+          "label": "Add word",
+          "default": "Legg til ord"
+        },
+        {
+          "label": "Choose a collection",
+          "default": "Vel ei samling"
+        },
+        {
+          "label": "Choose collection",
+          "default": "Vel samling"
+        },
+        {
+          "label": "Create new collection",
+          "default": "Opprett ny samling"
+        },
+        {
+          "label": "Delete word",
+          "default": "Slett ord"
+        },
+        {
+          "label": "Delete word confirmation",
+          "default": "Er du sikker på at du vil slette ordet"
+        },
+        {
+          "label": "Yes",
+          "default": "Ja"
+        },
+        {
+          "label": "No",
+          "default": "Nei"
+        },
+        {
+          "label": "Delete collection",
+          "default": "Slett samling"
+        },
+        {
+          "label": "Delete collection confirmation",
+          "default": "Er du sikker på at du vil slette samlinga?"
+        },
+        {
+          "label": "Topic view",
+          "default": "Temavisning"
+        },
+        {
+          "label": "This collection is empty",
+          "default": "Denne samlinga er tom"
+        },
+        {
+          "label": "Go to search",
+          "default": "Gå til søk"
+        },
+        {
+          "label": "Go to topic",
+          "default": "Gå til tema"
+        },
+        {
+          "label": "Save collection",
+          "default": "Lagre samling"
+        },
+        {
+          "label": "Collection saved",
+          "default": "Samling lagra"
         },
         {
           "label": "Arabisk",

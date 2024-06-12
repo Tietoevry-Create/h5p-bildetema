@@ -238,15 +238,79 @@
         },
         {
           "label": "Description text for adding a word to a collection",
-          "default": "Add words by clicking on the bookmark on the images, either via search or theme view."
-        },
-        {
-          "label": "Search Bildetema",
-          "default": "Search"
+          "default": "Add words by clicking on the bookmark on the images, either via {{search}} or {{topicView}}"
         },
         {
           "label": "Filter by theme",
           "default": "Filter by theme"
+        },
+        {
+          "label": "Collections Page Description",
+          "default": "Here you can see all the collections you have created."
+        },
+        {
+          "label": "Add word",
+          "default": "Add word"
+        },
+        {
+          "label": "Choose a collection",
+          "default": "Choose a collection"
+        },
+        {
+          "label": "Choose collection",
+          "default": "Choose collection"
+        },
+        {
+          "label": "Create new collection",
+          "default": "Create new collection"
+        },
+        {
+          "label": "Delete word",
+          "default": "Delete word"
+        },
+        {
+          "label": "Delete word confirmation",
+          "default": "Are you sure you want to delete the word"
+        },
+        {
+          "label": "Yes",
+          "default": "Yes"
+        },
+        {
+          "label": "No",
+          "default": "No"
+        },
+        {
+          "label": "Delete collection",
+          "default": "Delete collection"
+        },
+        {
+          "label": "Delete collection confirmation",
+          "default": "Are you sure you want to delete the collection"
+        },
+        {
+          "label": "Topic view",
+          "default": "Topic view"
+        },
+        {
+          "label": "This collection is empty",
+          "default": "This collection is empty"
+        },
+        {
+          "label": "Go to search",
+          "default": "Go to search"
+        },
+        {
+          "label": "Go to topic",
+          "default": "Go to topic"
+        },
+        {
+          "label": "Save collection",
+          "default": "Save collection"
+        },
+        {
+          "label": "Collection saved",
+          "default": "Collection saved"
         },
         {
           "label": "Arabic",

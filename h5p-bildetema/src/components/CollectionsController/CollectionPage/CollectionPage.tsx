@@ -2,11 +2,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { BookmarkIcon } from "common/components/Icons/Icons";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import useIsCollectionOwner from "../../../hooks/useIsCollectionOwner";
+import { useL10ns } from "../../../hooks/useL10n";
 
 type MyCollection = {
   showArticles: boolean;
@@ -21,6 +23,31 @@ const CollectionPage = ({
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
   const isCollectionOwner = useIsCollectionOwner();
+  const {
+    addWordsDescription,
+    search,
+    topicView,
+    goToSearch,
+    goToTopic,
+    thisCollectionIsEmpty,
+  } = useL10ns(
+    "addWordsDescription",
+    "search",
+    "topicView",
+    "goToSearch",
+    "goToTopic",
+    "thisCollectionIsEmpty",
+  );
+
+  const replacements = {
+    search: <Link to={STATIC_PATH.SEARCH}>{search.toLowerCase()}</Link>,
+    topicView: <Link to={`/${lang.code}`}>{topicView.toLowerCase()}</Link>,
+  };
+
+  const descriptionWithLinks = replacePlaceholders(
+    addWordsDescription,
+    replacements,
+  );
 
   if (words.length === 0) {
     return (
@@ -28,24 +55,18 @@ const CollectionPage = ({
         <div className={styles.bookmarkIcon}>
           <BookmarkIcon />
         </div>
-        {/* TODO: add translation */}
-        <p className={styles.description}>Denne samlingen er tom.</p>
-        <p className={styles.description}>
-          Legg til ord ved å klikke på bokmerket på bildene, enten via søk eller
-          temavisning.
-        </p>
+        <p className={styles.description}>{`${thisCollectionIsEmpty}.`}</p>
+        <p className={styles.description}>{descriptionWithLinks}</p>
         <div className={styles.navButtons}>
           <Button
             variant="default"
             role="link"
             onClick={() => navigate(STATIC_PATH.SEARCH)}
           >
-            {/* TODO: add translation */}
-            Gå til søk
+            {goToSearch}
           </Button>
           <Button variant="default" role="link" onClick={() => navigate("/")}>
-            {/* TODO: add translation */}
-            Gå til tema
+            {goToTopic}
           </Button>
         </div>
       </div>
@@ -65,11 +86,7 @@ const CollectionPage = ({
         ))}
       </div>
       {isCollectionOwner ? (
-        <p className={styles.description}>
-          Legg til ord ved å klikke på bokmerket på bildene, enten via{" "}
-          <Link to={STATIC_PATH.SEARCH}>søk</Link> eller{" "}
-          <Link to={`/${lang.code}`}>temavisning</Link>.
-        </p>
+        <p className={styles.description}>{descriptionWithLinks}</p>
       ) : null}
     </div>
   );

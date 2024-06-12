@@ -289,6 +289,186 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Search",
+				name: "search",
+				"default": "Search",
+				type: "text"
+			},
+			{
+				label: "Collections",
+				name: "collections",
+				"default": "Collections",
+				type: "text"
+			},
+			{
+				label: "My collections",
+				name: "myCollections",
+				"default": "My collections",
+				type: "text"
+			},
+			{
+				label: "Create a collection",
+				name: "createACollection",
+				"default": "Create a collection",
+				type: "text"
+			},
+			{
+				label: "Change name",
+				name: "changeName",
+				"default": "Change name",
+				type: "text"
+			},
+			{
+				label: "Delete",
+				name: "delete",
+				"default": "Delete",
+				type: "text"
+			},
+			{
+				label: "Name of the collection",
+				name: "nameOfTheCollection",
+				"default": "Name of the collection",
+				type: "text"
+			},
+			{
+				label: "Cancel",
+				name: "cancel",
+				"default": "Cancel",
+				type: "text"
+			},
+			{
+				label: "Save changes",
+				name: "saveChanges",
+				"default": "Save changes",
+				type: "text"
+			},
+			{
+				label: "Copy link",
+				name: "copyLink",
+				"default": "Copy link",
+				type: "text"
+			},
+			{
+				label: "Link copied",
+				name: "linkCopied",
+				"default": "Link copied",
+				type: "text"
+			},
+			{
+				label: "Description text for adding a word to a collection",
+				name: "addWordsDescription",
+				"default": "Add words by clicking on the bookmark on the images, either via {{search}} or {{topicView}}.",
+				type: "text"
+			},
+			{
+				label: "Filter by theme",
+				name: "filterByTheme",
+				"default": "Filter by theme",
+				type: "text"
+			},
+			{
+				label: "Collections Page Description",
+				name: "collectionsPageDescription",
+				"default": "Here you can see all the collections you have created.",
+				type: "text"
+			},
+			{
+				label: "Add word",
+				name: "addWord",
+				"default": "Add word",
+				type: "text"
+			},
+			{
+				label: "Choose a collection",
+				name: "chooseACollection",
+				"default": "Choose a collection",
+				type: "text"
+			},
+			{
+				label: "Choose collection",
+				name: "chooseCollection",
+				"default": "Choose collection",
+				type: "text"
+			},
+			{
+				label: "Create new collection",
+				name: "createNewCollection",
+				"default": "Create new collection",
+				type: "text"
+			},
+			{
+				label: "Delete word",
+				name: "deleteWord",
+				"default": "Delete word",
+				type: "text"
+			},
+			{
+				label: "Delete word confirmation",
+				name: "deleteWordConfirmation",
+				"default": "Are you sure you want to delete the word",
+				type: "text"
+			},
+			{
+				label: "Yes",
+				name: "yes",
+				"default": "Yes",
+				type: "text"
+			},
+			{
+				label: "No",
+				name: "no",
+				"default": "No",
+				type: "text"
+			},
+			{
+				label: "Delete collection",
+				name: "deleteCollection",
+				"default": "Delete collection",
+				type: "text"
+			},
+			{
+				label: "Delete collection confirmation",
+				name: "deleteCollectionConfirmation",
+				"default": "Are you sure you want to delete the collection",
+				type: "text"
+			},
+			{
+				label: "This collection is empty",
+				name: "thisCollectionIsEmpty",
+				"default": "This collection is empty",
+				type: "text"
+			},
+			{
+				label: "Go to search",
+				name: "goToSearch",
+				"default": "Go to search",
+				type: "text"
+			},
+			{
+				label: "Go to topic",
+				name: "goToTopic",
+				"default": "Go to topic",
+				type: "text"
+			},
+			{
+				label: "Topic view",
+				name: "topicView",
+				"default": "Topic view",
+				type: "text"
+			},
+			{
+				label: "Save collection",
+				name: "saveCollection",
+				"default": "Save collection",
+				type: "text"
+			},
+			{
+				label: "Collection saved",
+				name: "collectionSaved",
+				"default": "Collection saved",
+				type: "text"
+			},
+			{
 				label: "Arabic",
 				name: "lang_ara",
 				"default": "Arabic",
