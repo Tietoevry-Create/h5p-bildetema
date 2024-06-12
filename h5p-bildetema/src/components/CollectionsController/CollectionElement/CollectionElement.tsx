@@ -81,7 +81,7 @@ const CollectionElement = ({
         // TODO: TRANSLATE
         description="Navn på samlingen"
       >
-        <div className={styles.deleteDialog}>
+        <div className={styles.editDialog}>
           <TextInput
             handleChange={handleEditCollectionTitle}
             value={title}

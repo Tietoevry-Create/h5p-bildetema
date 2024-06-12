@@ -35,7 +35,7 @@
   }
 }
 
-.deleteDialog {
+.editDialog {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -46,10 +46,9 @@
   & div {
     display: flex;
     gap: 1rem;
-
-    & button {
-      flex: 1;
-    }
+  }
+  & button {
+    flex: 1;
   }
 }
 

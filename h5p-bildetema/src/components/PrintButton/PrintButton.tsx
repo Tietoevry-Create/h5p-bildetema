@@ -101,9 +101,7 @@ export const PrintButton: FC<PrintProps> = ({
             <span className={styles.printIcon} aria-hidden="true">
               <PrintIcon />
             </span>
-            {printLabel && (
-              <span className={styles.printLabel}>{printLabel}</span>
-            )}
+            {printLabel && <span>{printLabel}</span>}
             {(!showTopicImageView || !isWordView) && (
               <span className={styles.arrowIcon} aria-hidden="true">
                 <LanguageMenuArrowIcon
