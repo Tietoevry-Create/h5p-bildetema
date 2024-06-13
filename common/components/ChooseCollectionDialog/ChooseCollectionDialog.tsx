@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
 import { CollectionOption } from "common/types/types";
+import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
+
 import { v4 as uuid } from "uuid";
 
 import Dialog from "../Dialog/Dialog";
@@ -30,6 +32,21 @@ const ChooseCollectionDialog = ({
   onAddBookmark,
 }: ChooseCollectionDialogProps): JSX.Element => {
   const { addItemToCollection, addCollection } = useMyCollections();
+  const {
+    createACollection,
+    cancel,
+    addWord,
+    chooseCollection,
+    chooseACollection,
+    createNewCollection: l10nCreateNewCollection,
+  } = useL10ns(
+    "createACollection",
+    "cancel",
+    "addWord",
+    "chooseCollection",
+    "chooseACollection",
+    "createNewCollection",
+  );
 
   const [createNewCollection, setCreateNewCollection] = useState(false);
   const [textInput, setTextInput] = useState("");
@@ -37,8 +54,8 @@ const ChooseCollectionDialog = ({
   const noOptions = options.length === 0;
   const showCreateNewCollection = noOptions || createNewCollection;
   const description = showCreateNewCollection
-    ? "Lag en samling"
-    : "Velg en samling";
+    ? createACollection
+    : chooseACollection;
 
   const handleClose = (): void => {
     setCreateNewCollection(false);
@@ -70,14 +87,12 @@ const ChooseCollectionDialog = ({
     handleClose();
   };
 
-  // TODO: translate all text
-
   return (
     <div className={styles.dialogContainer}>
       <Dialog
         open={open}
         onClose={handleClose}
-        title="Legg til ord"
+        title={addWord}
         description={description}
       >
         <div className={styles.dialogContentWrapper}>
@@ -91,7 +106,7 @@ const ChooseCollectionDialog = ({
             <div className={styles.dialogSelectWrapper}>
               <Select
                 fixed
-                placeholder="Velg samling"
+                placeholder={chooseCollection}
                 variant="secondary"
                 options={options}
                 handleChange={onSelectCollection}
@@ -103,13 +118,13 @@ const ChooseCollectionDialog = ({
                 onClick={() => setCreateNewCollection(true)}
               >
                 <AddIcon />
-                Lag ny samling
+                {l10nCreateNewCollection}
               </Button>
             </div>
           )}
           <div className={styles.dialogButtonWrapper}>
             <Button variant="secondary" onClick={handleClose}>
-              Avbryt
+              {cancel}
             </Button>
             <Button
               variant="default"

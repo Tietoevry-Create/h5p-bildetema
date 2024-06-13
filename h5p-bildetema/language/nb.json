@@ -193,6 +193,126 @@
           "default": "Enkeltbilder"
         },
         {
+          "label": "Search",
+          "default": "Søk"
+        },
+        {
+          "label": "Collections",
+          "default": "Samlinger"
+        },
+        {
+          "label": "My collections",
+          "default": "Mine samlinger"
+        },
+        {
+          "label": "Create a collection",
+          "default": "Lag en samling"
+        },
+        {
+          "label": "Change name",
+          "default": "Endre navn"
+        },
+        {
+          "label": "Delete",
+          "default": "Slett"
+        },
+        {
+          "label": "Name of the collection",
+          "default": "Navnet på samlingen"
+        },
+        {
+          "label": "Cancel",
+          "default": "Avbryt"
+        },
+        {
+          "label": "Save changes",
+          "default": "Lagre endringer"
+        },
+        {
+          "label": "Copy link",
+          "default": "Kopier lenke"
+        },
+        {
+          "label": "Link copied",
+          "default": "Lenke kopiert"
+        },
+        {
+          "label": "Description text for adding a word to a collection",
+          "default": "Legg til ord ved å klikke på bokmerket på bildene, enten via {{search}} eller {{topicView}}."
+        },
+        {
+          "label": "Filter by theme",
+          "default": "Filtrer etter tema"
+        },
+        {
+          "label": "Collections Page Description",
+          "default": "Her kan du se alle samlingene du har laget."
+        },
+        {
+          "label": "Add word",
+          "default": "Legg til ord"
+        },
+        {
+          "label": "Choose a collection",
+          "default": "Velg en samling"
+        },
+        {
+          "label": "Choose collection",
+          "default": "Velg samling"
+        },
+        {
+          "label": "Create new collection",
+          "default": "Lag ny samling"
+        },
+        {
+          "label": "Delete word",
+          "default": "Slett ord"
+        },
+        {
+          "label": "Delete word confirmation",
+          "default": "Er du sikker på at du vil slette ordet"
+        },
+        {
+          "label": "Yes",
+          "default": "Ja"
+        },
+        {
+          "label": "No",
+          "default": "Nei"
+        },
+        {
+          "label": "Delete collection",
+          "default": "Slett samling"
+        },
+        {
+          "label": "Delete collection confirmation",
+          "default": "Er du sikker på at du vil slette samlingen"
+        },
+        {
+          "label": "This collection is empty",
+          "default": "Denne samlingen er tom"
+        },
+        {
+          "label": "Go to search",
+          "default": "Gå til søk"
+        },
+        {
+          "label": "Go to topic",
+          "default": "Gå til tema"
+        },
+        {
+          "label": "Topic view",
+          "default": "Temavisning"
+        },
+        {
+          "label": "Save collection",
+          "default": "Lagre samling"
+        },
+        {
+          "label": "Collection saved",
+          "default": "Samling lagret"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

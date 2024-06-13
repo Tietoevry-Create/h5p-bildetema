@@ -10,6 +10,7 @@ import { SubHeader } from "../SubHeader/SubHeader";
 import { useSelectedWords } from "../../hooks/useSelectedWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import useIsCollectionOwner from "../../hooks/useIsCollectionOwner";
+import { useL10ns } from "../../hooks/useL10n";
 
 type CollectionControllerProps = {
   rtl: boolean;
@@ -23,6 +24,10 @@ const CollectionController = ({
   const words = useSelectedWords();
   const { showArticles, showWrittenWords } = useSearchParamContext();
   const isCollectionOwner = useIsCollectionOwner();
+  const { breadcrumbsHome, myCollections } = useL10ns(
+    "breadcrumbsHome",
+    "myCollections",
+  );
 
   const showArticlesToggle = useMemo(() => {
     return searchResultsIncludesArticles(words, langCode);
@@ -30,14 +35,12 @@ const CollectionController = ({
 
   const breadCrumbs = useMemo(() => {
     const crumbs = [
-      // TODO: translate
       {
-        label: "Home",
+        label: breadcrumbsHome,
         path: `/${langCode}`,
       },
       {
-        // TODO: translate
-        label: "Mine samlinger",
+        label: myCollections,
         path: `${STATIC_PATH.COLLECTIONS}?lang=${langCode}`,
       },
     ];
@@ -50,7 +53,7 @@ const CollectionController = ({
         path: `${STATIC_PATH.COLLECTIONS}/${collection}?lang=${langCode}`,
       },
     ];
-  }, [langCode, collection]);
+  }, [breadcrumbsHome, langCode, myCollections, collection]);
 
   const currentPage = (): JSX.Element => {
     if (!collection) {

@@ -1,6 +1,7 @@
 import { Button } from "common/components/Button";
 import Dialog from "common/components/Dialog/Dialog";
 import styles from "./DeleteDialog.module.scss";
+import { useL10ns } from "../../hooks/useL10n";
 
 type DeleteDialogProps = {
   open: boolean;
@@ -19,6 +20,8 @@ const DeleteDialog = ({
   onClose,
   onDelete,
 }: DeleteDialogProps): JSX.Element => {
+  const { yes, no } = useL10ns("yes", "no");
+
   return (
     <Dialog
       open={open}
@@ -27,15 +30,14 @@ const DeleteDialog = ({
       description={description}
     >
       <div className={styles.deleteDialog}>
-        <span className={styles.itemToDeleteTitle}>{itemToDeleteTitle}</span>
+        <span className={styles.itemToDeleteTitle}>{itemToDeleteTitle}?</span>
         <div>
           <Button
             className={styles.dialogButton}
             variant="secondary"
             onClick={onClose}
           >
-            {/* TODO: TRANSLATE */}
-            Nei
+            {no}
           </Button>
           <Button
             className={styles.dialogButton}
@@ -45,7 +47,7 @@ const DeleteDialog = ({
               onClose();
             }}
           >
-            Ja
+            {yes}
           </Button>
         </div>
       </div>

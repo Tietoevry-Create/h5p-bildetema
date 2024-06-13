@@ -44,10 +44,18 @@ export const Header: FC<HeaderProps> = ({
     lang => `lang_${lang}`,
   ) as Array<LanguageCodeString>;
 
-  const { selectLanguage, headerTitle, headerSubtitle } = useL10ns(
+  const {
+    selectLanguage,
+    headerTitle,
+    headerSubtitle,
+    collections,
+    search: l10nsSearch,
+  } = useL10ns(
     "selectLanguage",
     "headerTitle",
     "headerSubtitle",
+    "collections",
+    "search",
     ...languageKeys,
   );
 
@@ -138,16 +146,15 @@ export const Header: FC<HeaderProps> = ({
             />
           )}
 
-          {/* TODO: Translate */}
           {env !== environment.prod && (
             <>
               <HeaderLink
                 icon={<SearchIcon />}
-                label="Søk"
+                label={l10nsSearch}
                 href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
               />
               <HeaderLink
-                label="Samlinger"
+                label={collections}
                 icon={<BookmarkIcon />}
                 href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
               />

@@ -53,8 +53,19 @@ export const MultiLanguageWord = ({
     [langCode, searchResult.translations],
   );
 
-  const prevLabel = useL10n("prevImageLabel");
-  const nextLabel = useL10n("nextImageLabel");
+  const {
+    prevImageLabel,
+    nextImageLabel,
+    delete: l10nDelete,
+    deleteWord,
+    deleteWordConfirmation,
+  } = useL10ns(
+    "prevImageLabel",
+    "nextImageLabel",
+    "delete",
+    "deleteWord",
+    "deleteWordConfirmation",
+  );
 
   const removeWordFromUrlParams = (wordId: string): void => {
     const param = "words";
@@ -89,9 +100,8 @@ export const MultiLanguageWord = ({
               </Button>
             </MenuButton>
             <MenuItems anchor="bottom end">
-              {/* TODO: translate label */}
               <MenuItem
-                label="Slett"
+                label={l10nDelete}
                 icon={<DeleteIcon />}
                 onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
               />
@@ -100,11 +110,10 @@ export const MultiLanguageWord = ({
         ) : (
           ""
         )}
-        {/* TODO: translate title and description */}
         <DeleteDialog
           open={openDialog === OpenDialog.DELETE_DIALOG}
-          title="Slett ord"
-          description="Er du sikker på at du vil slette ordet:"
+          title={deleteWord}
+          description={deleteWordConfirmation}
           itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
           onClose={() => setOpenDialog(OpenDialog.NONE)}
           onDelete={handleDeleteWord}
@@ -126,7 +135,7 @@ export const MultiLanguageWord = ({
             <button
               type="button"
               className="swiper-button-prev"
-              aria-label={prevLabel}
+              aria-label={prevImageLabel}
             />
           )}
           {numberOfImages !== 0 ? (
@@ -159,7 +168,7 @@ export const MultiLanguageWord = ({
             <button
               type="button"
               className="swiper-button-next"
-              aria-label={nextLabel}
+              aria-label={nextImageLabel}
             />
           )}
         </Swiper>

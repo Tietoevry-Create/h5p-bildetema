@@ -12,6 +12,7 @@ import {
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
+import { useL10ns } from "../../../hooks/useL10n";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -37,6 +38,23 @@ const CollectionElement = ({
     OpenDialog.NONE,
   );
   const { deleteCollection, changeCollectionTitle } = useMyCollections();
+  const {
+    changeName,
+    delete: l10nDelete,
+    cancel,
+    saveChanges,
+    nameOfTheCollection,
+    deleteCollection: l10nDeleteCollection,
+    deleteCollectionConfirmation,
+  } = useL10ns(
+    "changeName",
+    "delete",
+    "cancel",
+    "saveChanges",
+    "nameOfTheCollection",
+    "deleteCollection",
+    "deleteCollectionConfirmation",
+  );
 
   const [title, setTitle] = useState(label);
 
@@ -64,11 +82,10 @@ const CollectionElement = ({
       <Link to={href} className={styles.link}>
         <span className={styles.linkLabel}>{label}</span>
       </Link>
-      {/* TODO: Add translations */}
       <DeleteDialog
         open={openDialog === OpenDialog.DELETE_DIALOG}
-        title="Slett samling"
-        description="Er du sikker på at du vil slette samlingen:"
+        title={l10nDeleteCollection}
+        description={deleteCollectionConfirmation}
         itemToDeleteTitle={label}
         onClose={() => setOpenDialog(OpenDialog.NONE)}
         onDelete={handleDeleteCollection}
@@ -76,10 +93,8 @@ const CollectionElement = ({
       <Dialog
         open={openDialog === OpenDialog.EDIT_DIALOG}
         onClose={() => setOpenDialog(OpenDialog.NONE)}
-        // TODO: TRANSLATE
-        title="Endre navn"
-        // TODO: TRANSLATE
-        description="Navn på samlingen"
+        title={changeName}
+        description={nameOfTheCollection}
       >
         <div className={styles.editDialog}>
           <TextInput
@@ -93,16 +108,14 @@ const CollectionElement = ({
               variant="secondary"
               onClick={() => setOpenDialog(OpenDialog.NONE)}
             >
-              {/* TODO: TRANSLATE */}
-              Avbryt
+              {cancel}
             </Button>
             <Button
               className={styles.dialogButton}
               variant="default"
               onClick={handleNewTitle}
             >
-              {/* TODO: TRANSLATE */}
-              Lagre Endring
+              {saveChanges}
             </Button>
           </div>
         </div>
@@ -114,15 +127,13 @@ const CollectionElement = ({
           </Button>
         </MenuButton>
         <MenuItems anchor="bottom end">
-          {/* TODO: translate label */}
           <MenuItem
-            label="Endre navn"
+            label={changeName}
             icon={<EditIcon />}
             onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
           />
-          {/* TODO: translate label */}
           <MenuItem
-            label="Slett"
+            label={l10nDelete}
             icon={<DeleteIcon />}
             onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
           />

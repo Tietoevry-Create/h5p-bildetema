@@ -8,12 +8,20 @@ import { AddIcon } from "common/components/Icons/Icons";
 import styles from "./CollectionsPage.module.scss";
 import CollectionElement from "../CollectionElement/CollectionElement";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
+import { useL10ns } from "../../../hooks/useL10n";
 
 const CollectionsPage = (): React.JSX.Element => {
-  // TODO: translate
-  const title = "Lag en samling";
-  // TODO: translate
-  const description = "Navn på samlingen";
+  const {
+    nameOfTheCollection,
+    createACollection,
+    collectionsPageDescription,
+    cancel,
+  } = useL10ns(
+    "nameOfTheCollection",
+    "createACollection",
+    "collectionsPageDescription",
+    "cancel",
+  );
 
   const langCode = useCurrentLanguageCode();
 
@@ -34,8 +42,8 @@ const CollectionsPage = (): React.JSX.Element => {
   return (
     <div className={styles.container}>
       <Dialog
-        title={title}
-        description={description}
+        title={createACollection}
+        description={nameOfTheCollection}
         open={createCollectionDialogOpen}
         onClose={() => setCreateCollectionDialogOpen(false)}
       >
@@ -50,7 +58,7 @@ const CollectionsPage = (): React.JSX.Element => {
               variant="secondary"
               onClick={() => setCreateCollectionDialogOpen(false)}
             >
-              Avbryt
+              {cancel}
             </Button>
             <Button variant="default" onClick={handleCreateNewCollection}>
               Ok
@@ -58,14 +66,14 @@ const CollectionsPage = (): React.JSX.Element => {
           </div>
         </div>
       </Dialog>
-      <div>Her kan du se alle samlingene du har laget.</div>
+      <div>{collectionsPageDescription}</div>
       <Button
         className={styles.addButton}
         variant="default"
         onClick={() => setCreateCollectionDialogOpen(true)}
       >
         <AddIcon />
-        <span>Lag en samling</span>
+        <span>{createACollection}</span>
       </Button>
       <div className={styles.collectionWrapper}>
         {myCollections.map(v => (

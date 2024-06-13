@@ -193,6 +193,126 @@
           "default": "Grid"
         },
         {
+          "label": "Search",
+          "default": "Sök"
+        },
+        {
+          "label": "Collections",
+          "default": "Samlingar"
+        },
+        {
+          "label": "My collections",
+          "default": "Mina samlingar"
+        },
+        {
+          "label": "Create a collection",
+          "default": "Skapa en samling"
+        },
+        {
+          "label": "Change name",
+          "default": "Byt namn"
+        },
+        {
+          "label": "Delete",
+          "default": "Radera"
+        },
+        {
+          "label": "Name of the collection",
+          "default": "Namn på samlingen"
+        },
+        {
+          "label": "Cancel",
+          "default": "Avbryt"
+        },
+        {
+          "label": "Save changes",
+          "default": "Spara ändringar"
+        },
+        {
+          "label": "Copy link",
+          "default": "Kopiera länk"
+        },
+        {
+          "label": "Link copied",
+          "default": "Länk kopierad"
+        },
+        {
+          "label": "Description text for adding a word to a collection",
+          "default": "Lägg till ord genom att klicka på bokmärket på bilderna, antingen via {{search}} eller {{topicView}}."
+        },
+        {
+          "label": "Filter by theme",
+          "default": "Filtrera efter tema"
+        },
+        {
+          "label": "Collections Page Description",
+          "default": "Här kan du se alla samlingar du har skapat."
+        },
+        {
+          "label": "Add word",
+          "default": "Lägg till ord"
+        },
+        {
+          "label": "Choose a collection",
+          "default": "Välj en samling"
+        },
+        {
+          "label": "Choose collection",
+          "default": "Välj samling"
+        },
+        {
+          "label": "Create new collection",
+          "default": "Skapa ny samling"
+        },
+        {
+          "label": "Delete word",
+          "default": "Radera ord"
+        },
+        {
+          "label": "Delete word confirmation",
+          "default": "Är du säker på att du vill radera ordet"
+        },
+        {
+          "label": "Yes",
+          "default": "Ja"
+        },
+        {
+          "label": "No",
+          "default": "Nej"
+        },
+        {
+          "label": "Delete collection",
+          "default": "Radera samling"
+        },
+        {
+          "label": "Delete collection confirmation",
+          "default": "Är du säker på att du vill radera samlingen"
+        },
+        {
+          "label": "This collection is empty",
+          "default": "Denna samling är tom"
+        },
+        {
+          "label": "Go to search",
+          "default": "Gå till sök"
+        },
+        {
+          "label": "Go to topic",
+          "default": "Gå till tema"
+        },
+        {
+          "label": "Topic view",
+          "default": "Temavisning"
+        },
+        {
+          "label": "Save collection",
+          "default": "Spara samling"
+        },
+        {
+          "label": "Collection saved",
+          "default": "Samlingen sparad"
+        },
+        {
           "label": "Arabiska",
           "default": "Arabiska"
         },

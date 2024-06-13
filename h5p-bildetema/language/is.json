@@ -193,6 +193,126 @@
           "default": "Reitir"
         },
         {
+          "label": "Search",
+          "default": "Leita"
+        },
+        {
+          "label": "Collections",
+          "default": "Safn"
+        },
+        {
+          "label": "My collections",
+          "default": "Mín söfn"
+        },
+        {
+          "label": "Create a collection",
+          "default": "Búa til safn"
+        },
+        {
+          "label": "Change name",
+          "default": "Breyta nafni"
+        },
+        {
+          "label": "Delete",
+          "default": "Eyða"
+        },
+        {
+          "label": "Name of the collection",
+          "default": "Nafn safnsins"
+        },
+        {
+          "label": "Cancel",
+          "default": "Hætta við"
+        },
+        {
+          "label": "Save changes",
+          "default": "Vista breytingar"
+        },
+        {
+          "label": "Copy link",
+          "default": "Afrita hlekk"
+        },
+        {
+          "label": "Link copied",
+          "default": "Hlekkur afritaður"
+        },
+        {
+          "label": "Description text for adding a word to a collection",
+          "default": "Bættu orðum við með því að smella á bókamerkið á myndunum, annaðhvort í gegnum {{search}} eða {{topicView}}."
+        },
+        {
+          "label": "Filter by theme",
+          "default": "Sía eftir þema"
+        },
+        {
+          "label": "Collections Page Description",
+          "default": "Hér geturðu séð öll söfnin sem þú hefur búið til."
+        },
+        {
+          "label": "Add word",
+          "default": "Bættu við orði"
+        },
+        {
+          "label": "Choose a collection",
+          "default": "Veldu safn"
+        },
+        {
+          "label": "Choose collection",
+          "default": "Veldu safn"
+        },
+        {
+          "label": "Create new collection",
+          "default": "Búðu til nýtt safn"
+        },
+        {
+          "label": "Delete word",
+          "default": "Eyða orði"
+        },
+        {
+          "label": "Delete word confirmation",
+          "default": "Ertu viss um að þú viljir eyða orðinu"
+        },
+        {
+          "label": "Yes",
+          "default": "Já"
+        },
+        {
+          "label": "No",
+          "default": "Nei"
+        },
+        {
+          "label": "Delete collection",
+          "default": "Eyða safni"
+        },
+        {
+          "label": "Delete collection confirmation",
+          "default": "Ertu viss um að þú viljir eyða safninu"
+        },
+        {
+          "label": "This collection is empty",
+          "default": "Þetta safn er tómt"
+        },
+        {
+          "label": "Go to search",
+          "default": "Farðu í leit"
+        },
+        {
+          "label": "Go to topic",
+          "default": "Farðu í efni"
+        },
+        {
+          "label": "Topic view",
+          "default": "Þema skjár"
+        },
+        {
+          "label": "Save collection",
+          "default": "Vista safn"
+        },
+        {
+          "label": "Collection saved",
+          "default": "Safn vistað"
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },
