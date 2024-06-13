@@ -1,7 +1,9 @@
 import { Collection } from "common/types/types";
+import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
 import useLocalStorageState from "use-local-storage-state";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import { CollectionOption } from "./useChooseCollectionDialog";
 
 type ModifyCollection = {
   id: string;
@@ -21,9 +23,14 @@ type AddCollection = {
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useMyCollections = () => {
   const [myCollections, setMyCollections] = useLocalStorageState<Collection[]>(
-    "myCollections",
+    LOCAL_STORAGE_KEYS.MY_COLLECTIONS,
     { defaultValue: [] },
   );
+
+  const [selectedCollection, setSelectedCollection] =
+    useLocalStorageState<CollectionOption | null>(
+      LOCAL_STORAGE_KEYS.SELECTED_COLLECTION,
+    );
 
   useEffect(() => {
     setMyCollections(prev => {
@@ -41,6 +48,10 @@ export const useMyCollections = () => {
       collection => collection.id !== id,
     );
     setMyCollections(newCollections);
+
+    if (selectedCollection?.id === id) {
+      setSelectedCollection(null);
+    }
   };
 
   const deleteWordFromCollection = (
@@ -61,12 +72,18 @@ export const useMyCollections = () => {
   };
 
   const addCollection = ({ title, wordIds, id }: AddCollection): void => {
+    const newId = id || uuid();
     setMyCollections(prev => {
       const isExistingCollection = prev.some(
         collection => collection.id === id,
       );
       if (isExistingCollection) return prev;
-      return [...prev, { id: id || uuid(), title, wordsIds: wordIds || [] }];
+      return [...prev, { id: newId, title, wordsIds: wordIds || [] }];
+    });
+
+    setSelectedCollection({
+      id: newId,
+      label: title,
     });
   };
 

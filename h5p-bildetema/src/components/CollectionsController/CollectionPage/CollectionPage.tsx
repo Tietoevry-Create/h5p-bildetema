@@ -1,13 +1,17 @@
+import { useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { BookmarkIcon } from "common/components/Icons/Icons";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
+import { CollectionOption } from "common/hooks/useChooseCollectionDialog";
+import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
-import useIsCollectionOwner from "../../../hooks/useIsCollectionOwner";
+import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { useL10ns } from "../../../hooks/useL10n";
 
 type MyCollection = {
@@ -22,7 +26,24 @@ const CollectionPage = ({
   const words = useSelectedWords();
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
-  const isCollectionOwner = useIsCollectionOwner();
+  const { isCollectionOwner, collectionId, collectionName } =
+    useCurrentCollection();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setSelectedCollection] =
+    useLocalStorageState<CollectionOption | null>(
+      LOCAL_STORAGE_KEYS.SELECTED_COLLECTION,
+    );
+
+  useEffect(() => {
+    if (collectionId && collectionName) {
+      setSelectedCollection({
+        id: collectionId,
+        label: collectionName,
+      });
+    }
+  }, [collectionId, collectionName, setSelectedCollection]);
+
   const {
     addWordsDescription,
     search,

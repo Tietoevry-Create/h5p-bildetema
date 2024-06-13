@@ -15,7 +15,7 @@ import styles from "./ChooseCollectionDialog.module.scss";
 export type ChooseCollectionDialogProps = {
   open: boolean;
   options: CollectionOption[];
-  selectedCollection: CollectionOption | null;
+  selectedCollection: CollectionOption | null | undefined;
   selectedWordId: string | null;
   onSelectCollection: (collection: CollectionOption) => void;
   onClose: () => void;
