@@ -286,7 +286,7 @@
         },
         {
           "label": "Delete collection confirmation",
-          "default": "Er du sikker på at du vil slette samlinga?"
+          "default": "Er du sikker på at du vil slette samlinga"
         },
         {
           "label": "This collection is empty",

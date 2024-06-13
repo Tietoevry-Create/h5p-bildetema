@@ -238,7 +238,7 @@
         },
         {
           "label": "Description text for adding a word to a collection",
-          "default": "Tilføj ord ved at klikke på bogmærket på billederne, enten via {{search}} eller {{topicView}}"
+          "default": "Tilføj ord ved at klikke på bogmærket på billederne, enten via {{search}} eller {{topicView}}."
         },
         {
           "label": "Filter by theme",
@@ -270,7 +270,7 @@
         },
         {
           "label": "Delete word confirmation",
-          "default": "Er du sikker på, at du vil slette ordet"
+          "default": "Er du sikker på at du vil slette ordet"
         },
         {
           "label": "Yes",
@@ -286,7 +286,7 @@
         },
         {
           "label": "Delete collection confirmation",
-          "default": "Er du sikker på, at du vil slette samlingen"
+          "default": "Er du sikker på at du vil slette samlingen"
         },
         {
           "label": "This collection is empty",
@@ -298,7 +298,7 @@
         },
         {
           "label": "Go to topic",
-          "default": "Gå til emnet"
+          "default": "Gå til tema"
         },
         {
           "label": "Topic view",

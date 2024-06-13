@@ -294,11 +294,11 @@
         },
         {
           "label": "Go to search",
-          "default": "Gå till sökning"
+          "default": "Gå till sök"
         },
         {
           "label": "Go to topic",
-          "default": "Gå till ämnet"
+          "default": "Gå till tema"
         },
         {
           "label": "Topic view",
