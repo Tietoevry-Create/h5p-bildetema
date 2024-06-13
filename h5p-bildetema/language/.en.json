@@ -289,10 +289,6 @@
           "default": "Are you sure you want to delete the collection"
         },
         {
-          "label": "Topic view",
-          "default": "Topic view"
-        },
-        {
           "label": "This collection is empty",
           "default": "This collection is empty"
         },
@@ -303,6 +299,10 @@
         {
           "label": "Go to topic",
           "default": "Go to topic"
+        },
+        {
+          "label": "Topic view",
+          "default": "Topic view"
         },
         {
           "label": "Save collection",

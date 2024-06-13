@@ -289,10 +289,6 @@
           "default": "Er du sikker på at du vil slette samlingen"
         },
         {
-          "label": "Topic view",
-          "default": "Temavisning"
-        },
-        {
           "label": "This collection is empty",
           "default": "Denne samlingen er tom"
         },
@@ -303,6 +299,10 @@
         {
           "label": "Go to topic",
           "default": "Gå til tema"
+        },
+        {
+          "label": "Topic view",
+          "default": "Temavisning"
         },
         {
           "label": "Save collection",

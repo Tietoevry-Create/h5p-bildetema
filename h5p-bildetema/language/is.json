@@ -289,10 +289,6 @@
           "default": "Ertu viss um að þú viljir eyða safninu"
         },
         {
-          "label": "Topic view",
-          "default": "Þema skjár"
-        },
-        {
           "label": "This collection is empty",
           "default": "Þetta safn er tómt"
         },
@@ -303,6 +299,10 @@
         {
           "label": "Go to topic",
           "default": "Farðu í efni"
+        },
+        {
+          "label": "Topic view",
+          "default": "Þema skjár"
         },
         {
           "label": "Save collection",

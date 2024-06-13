@@ -238,7 +238,7 @@
         },
         {
           "label": "Description text for adding a word to a collection",
-          "default": "Lägg till ord genom att klicka på bokmärket på bilderna, antingen via {{Search}} eller {{topicView}}."
+          "default": "Lägg till ord genom att klicka på bokmärket på bilderna, antingen via {{search}} eller {{topicView}}."
         },
         {
           "label": "Filter by theme",
@@ -289,10 +289,6 @@
           "default": "Är du säker på att du vill radera samlingen"
         },
         {
-          "label": "Topic view",
-          "default": "Temavisning"
-        },
-        {
           "label": "This collection is empty",
           "default": "Denna samling är tom"
         },
@@ -303,6 +299,10 @@
         {
           "label": "Go to topic",
           "default": "Gå till ämnet"
+        },
+        {
+          "label": "Topic view",
+          "default": "Temavisning"
         },
         {
           "label": "Save collection",
