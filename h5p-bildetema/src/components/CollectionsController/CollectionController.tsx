@@ -9,7 +9,7 @@ import CollectionsPage from "./CollectionsPage/CollectionsPage";
 import { SubHeader } from "../SubHeader/SubHeader";
 import { useSelectedWords } from "../../hooks/useSelectedWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
-import useIsCollectionOwner from "../../hooks/useIsCollectionOwner";
+import useCurrentCollection from "../../hooks/useCurrentCollection";
 import { useL10ns } from "../../hooks/useL10n";
 
 type CollectionControllerProps = {
@@ -23,7 +23,7 @@ const CollectionController = ({
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
   const { showArticles, showWrittenWords } = useSearchParamContext();
-  const isCollectionOwner = useIsCollectionOwner();
+  const { isCollectionOwner } = useCurrentCollection();
   const { breadcrumbsHome, myCollections } = useL10ns(
     "breadcrumbsHome",
     "myCollections",

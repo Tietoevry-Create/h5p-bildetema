@@ -15,7 +15,7 @@ type variants = "primary" | "secondary";
 export type SelectProps<T extends Option> = {
   options: OptionType<T>[];
   handleChange: (option: OptionType<T>) => void;
-  selectedOption: OptionType<T> | null;
+  selectedOption: OptionType<T> | null | undefined;
   variant?: variants;
   labelPrefix?: string;
   placeholder?: string;

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
+import useLocalStorageState from "use-local-storage-state";
 
 export type CollectionOption = {
   id: string;
@@ -9,7 +11,9 @@ export type CollectionOption = {
 
 export const useChooseCollectionDialog = () => {
   const [selectedCollection, setSelectedCollection] =
-    useState<CollectionOption | null>(null);
+    useLocalStorageState<CollectionOption | null>(
+      LOCAL_STORAGE_KEYS.SELECTED_COLLECTION,
+    );
   const { myCollections, addItemToCollection } = useMyCollections();
 
   const options = useMemo(() => {

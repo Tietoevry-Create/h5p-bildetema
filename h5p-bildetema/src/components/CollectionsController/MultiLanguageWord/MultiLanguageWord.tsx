@@ -21,7 +21,7 @@ import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
-import useIsCollectionOwner from "../../../hooks/useIsCollectionOwner";
+import useCurrentCollection from "../../../hooks/useCurrentCollection";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -43,11 +43,10 @@ export const MultiLanguageWord = ({
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
-  const isCollectionOwner = useIsCollectionOwner();
+  const { isCollectionOwner, collectionId } = useCurrentCollection();
   const { deleteWordFromCollection } = useMyCollections();
   const [searchParams, setSearchParams] = useSearchParams();
   const langCode = useCurrentLanguageCode();
-  const collectionId = searchParams.get("id") ?? "";
   const searchResultTranslation = useMemo(
     () => searchResult.translations.find(x => x.lang.code === langCode),
     [langCode, searchResult.translations],
@@ -82,7 +81,7 @@ export const MultiLanguageWord = ({
   };
 
   const handleDeleteWord = (): void => {
-    deleteWordFromCollection(collectionId, searchResult.id);
+    deleteWordFromCollection(collectionId ?? "", searchResult.id);
     removeWordFromUrlParams(searchResult.id);
   };
 
