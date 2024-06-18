@@ -59,6 +59,9 @@ export const Header: FC<HeaderProps> = ({
     ...languageKeys,
   );
 
+  const shouldIncludeSearch =
+    env !== environment.prod && env !== environment.stage;
+
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
   const { pathname, search } = useLocation();
@@ -146,7 +149,7 @@ export const Header: FC<HeaderProps> = ({
             />
           )}
 
-          {env !== environment.prod && env !== environment.stage && (
+          {shouldIncludeSearch && (
             <HeaderLink
               icon={<SearchIcon />}
               label={l10nsSearch}

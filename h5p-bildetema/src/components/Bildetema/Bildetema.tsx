@@ -39,6 +39,8 @@ export const Bildetema: FC<BildetemaProps> = ({
   } = useNewDBContext();
   const { pathname } = useLocation();
   const env = useEnvironment();
+  const shouldIncludeSearch =
+    env !== environment.prod && env !== environment.stage;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -171,7 +173,7 @@ export const Bildetema: FC<BildetemaProps> = ({
         ))}
 
         <>
-          {env !== environment.prod && env !== environment.stage && (
+          {shouldIncludeSearch && (
             <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
           )}
 
