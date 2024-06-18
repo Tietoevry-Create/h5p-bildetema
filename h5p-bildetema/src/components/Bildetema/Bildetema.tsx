@@ -169,19 +169,21 @@ export const Bildetema: FC<BildetemaProps> = ({
             }
           />
         ))}
-        {env !== environment.prod && (
-          <>
+
+        <>
+          {env !== environment.prod && env !== environment.stage && (
             <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
-            <Route
-              path={`${STATIC_PATH.COLLECTIONS}`}
-              element={<CollectionsController rtl={directionRtl} />}
-            />
-            <Route
-              path={`${STATIC_PATH.COLLECTIONS}/:collection`}
-              element={<CollectionsController rtl={directionRtl} />}
-            />
-          </>
-        )}
+          )}
+
+          <Route
+            path={`${STATIC_PATH.COLLECTIONS}`}
+            element={<CollectionsController rtl={directionRtl} />}
+          />
+          <Route
+            path={`${STATIC_PATH.COLLECTIONS}/:collection`}
+            element={<CollectionsController rtl={directionRtl} />}
+          />
+        </>
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );

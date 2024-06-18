@@ -146,20 +146,19 @@ export const Header: FC<HeaderProps> = ({
             />
           )}
 
-          {env !== environment.prod && (
-            <>
-              <HeaderLink
-                icon={<SearchIcon />}
-                label={l10nsSearch}
-                href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
-              />
-              <HeaderLink
-                label={collections}
-                icon={<BookmarkIcon />}
-                href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
-              />
-            </>
+          {env !== environment.prod && env !== environment.stage && (
+            <HeaderLink
+              icon={<SearchIcon />}
+              label={l10nsSearch}
+              href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
+            />
           )}
+
+          <HeaderLink
+            label={collections}
+            icon={<BookmarkIcon />}
+            href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
+          />
         </div>
       </div>
     </div>

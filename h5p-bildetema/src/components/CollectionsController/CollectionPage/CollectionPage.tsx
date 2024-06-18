@@ -13,6 +13,7 @@ import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { useL10ns } from "../../../hooks/useL10n";
+import { useEnvironment, environment } from "../../../hooks/useEnvironment";
 
 type MyCollection = {
   showArticles: boolean;
@@ -28,6 +29,7 @@ const CollectionPage = ({
   const lang = useCurrentLanguage();
   const { isCollectionOwner, collectionId, collectionName } =
     useCurrentCollection();
+  const env = useEnvironment();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setSelectedCollection] =
@@ -46,6 +48,7 @@ const CollectionPage = ({
 
   const {
     addWordsDescription,
+    addWordsDescriptionWithoutSearch,
     search,
     topicView,
     goToSearch,
@@ -53,6 +56,7 @@ const CollectionPage = ({
     thisCollectionIsEmpty,
   } = useL10ns(
     "addWordsDescription",
+    "addWordsDescriptionWithoutSearch",
     "search",
     "topicView",
     "goToSearch",
@@ -60,15 +64,19 @@ const CollectionPage = ({
     "thisCollectionIsEmpty",
   );
 
+  const shouldIncludeSearch =
+    env !== environment.prod && env !== environment.stage;
+
   const replacements = {
     search: <Link to={STATIC_PATH.SEARCH}>{search.toLowerCase()}</Link>,
     topicView: <Link to={`/${lang.code}`}>{topicView.toLowerCase()}</Link>,
   };
 
-  const descriptionWithLinks = replacePlaceholders(
-    addWordsDescription,
-    replacements,
-  );
+  const description = shouldIncludeSearch
+    ? addWordsDescription
+    : addWordsDescriptionWithoutSearch;
+
+  const descriptionWithLinks = replacePlaceholders(description, replacements);
 
   if (words.length === 0) {
     return (
