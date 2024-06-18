@@ -189,7 +189,7 @@ export const Bildetema: FC<BildetemaProps> = ({
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
-  }, [currTopics, defaultLanguages, directionRtl, env]);
+  }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
 
   const hidden = STATIC_PATHS.includes(pathname);
 
