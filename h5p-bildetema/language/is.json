@@ -241,6 +241,10 @@
           "default": "Bættu orðum við með því að smella á bókamerkið á myndunum, annaðhvort í gegnum {{search}} eða {{topicView}}."
         },
         {
+          "label": "Description text for adding a word to a collection. (without search)",
+          "default": "Bættu við orðum með því að smella á bókamerkið á myndunum í gegnum {{topicView}}."
+        },
+        {
           "label": "Filter by theme",
           "default": "Sía eftir þema"
         },

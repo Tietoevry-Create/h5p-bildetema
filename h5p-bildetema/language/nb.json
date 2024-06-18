@@ -241,6 +241,10 @@
           "default": "Legg til ord ved å klikke på bokmerket på bildene, enten via {{search}} eller {{topicView}}."
         },
         {
+          "label": "Description text for adding a word to a collection. (without search)",
+          "default": "Legg til ord ved å klikke på bokmerket på bildene via {{topicView}}."
+        },
+        {
           "label": "Filter by theme",
           "default": "Filtrer etter tema"
         },

@@ -361,6 +361,12 @@
         "type": "text"
       },
       {
+        "label": "Description text for adding a word to a collection. (without search)",
+        "name": "addWordsDescriptionWithoutSearch",
+        "default": "Add words by clicking on the bookmark on the images via {{topicView}}.",
+        "type": "text"
+      },
+      {
         "label": "Filter by theme",
         "name": "filterByTheme",
         "default": "Filter by theme",

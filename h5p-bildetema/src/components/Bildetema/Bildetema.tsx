@@ -39,6 +39,8 @@ export const Bildetema: FC<BildetemaProps> = ({
   } = useNewDBContext();
   const { pathname } = useLocation();
   const env = useEnvironment();
+  const shouldIncludeSearch =
+    env !== environment.prod && env !== environment.stage;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
 
@@ -169,23 +171,25 @@ export const Bildetema: FC<BildetemaProps> = ({
             }
           />
         ))}
-        {env !== environment.prod && (
-          <>
+
+        <>
+          {shouldIncludeSearch && (
             <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
-            <Route
-              path={`${STATIC_PATH.COLLECTIONS}`}
-              element={<CollectionsController rtl={directionRtl} />}
-            />
-            <Route
-              path={`${STATIC_PATH.COLLECTIONS}/:collection`}
-              element={<CollectionsController rtl={directionRtl} />}
-            />
-          </>
-        )}
+          )}
+
+          <Route
+            path={`${STATIC_PATH.COLLECTIONS}`}
+            element={<CollectionsController rtl={directionRtl} />}
+          />
+          <Route
+            path={`${STATIC_PATH.COLLECTIONS}/:collection`}
+            element={<CollectionsController rtl={directionRtl} />}
+          />
+        </>
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
-  }, [currTopics, defaultLanguages, directionRtl, env]);
+  }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
 
   const hidden = STATIC_PATHS.includes(pathname);
 

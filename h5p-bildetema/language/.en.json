@@ -241,6 +241,10 @@
           "default": "Add words by clicking on the bookmark on the images, either via {{search}} or {{topicView}}"
         },
         {
+          "label": "Description text for adding a word to a collection. (without search)",
+          "default": "Add words by clicking on the bookmark on the images via {{topicView}}."
+        },
+        {
           "label": "Filter by theme",
           "default": "Filter by theme"
         },
