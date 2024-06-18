@@ -13,7 +13,6 @@ import { useL10ns, useL10n } from "../../hooks/useL10n";
 import { translatedLabel } from "../../utils/language.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 import styles from "./LanguageSelector.module.scss";
-import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 export type LanguageSelectorProps = {
   currentLanguageCode: string;
@@ -30,7 +29,6 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   search,
   currentTopics,
 }) => {
-  const env = useEnvironment();
   const { languages } = useNewDBContext();
   const { pathname } = useLocation();
 
