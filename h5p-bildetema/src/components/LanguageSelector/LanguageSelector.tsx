@@ -49,9 +49,7 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
   return (
     <nav
       aria-label={navAriaLabel}
-      className={`${styles.languageSelectorWrapper} ${
-        env !== environment.prod ? styles.allignmentRight : ""
-      }`}
+      className={`${styles.languageSelectorWrapper} ${styles.allignmentRight}`}
     >
       <ul role="list" className={styles.languageSelector}>
         {languages
