@@ -475,6 +475,18 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "More options aria label",
+				name: "moreOptionsAriaLabel",
+				"default": "More options",
+				type: "text"
+			},
+			{
+				label: "Open menu to add word to collection aria label",
+				name: "menuToAddWordAriaLabel",
+				"default": "Open menu to add word to collection",
+				type: "text"
+			},
+			{
 				label: "Arabic",
 				name: "lang_ara",
 				"default": "Arabic",

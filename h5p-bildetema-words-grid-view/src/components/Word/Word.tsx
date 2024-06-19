@@ -32,6 +32,7 @@ export const Word: FC<WordProps> = ({
 
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
+  const menuToAddWordAriaLabel = useL10n("menuToAddWordAriaLabel");
 
   const renderImages = (): JSX.Element => {
     const numberOfImages = images?.length ?? 0;
@@ -107,6 +108,7 @@ export const Word: FC<WordProps> = ({
         variant="circle"
         className={styles.bookmarkButton}
         onClick={() => onOpenDialog(word.id)}
+        aria-label={menuToAddWordAriaLabel}
       >
         <BookmarkIcon />
       </Button>
