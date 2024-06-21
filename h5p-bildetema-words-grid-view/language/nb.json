@@ -53,6 +53,14 @@
         {
           "label": "Språkkode",
           "default": "nb"
+        },
+        {
+          "label": "More options aria label",
+          "default": "Flere valg"
+        },
+        {
+          "label": "Open menu to add word to collection aria label",
+          "default": "Åpne menyen for å legge til ord i samlingen"
         }
       ]
     },

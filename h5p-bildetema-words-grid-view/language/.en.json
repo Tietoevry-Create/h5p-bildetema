@@ -53,6 +53,14 @@
         {
           "label": "Language code",
           "default": "en"
+        },
+        {
+          "label": "More options aria label",
+          "default": "More options"
+        },
+        {
+          "label": "Open menu to add word to collection aria label",
+          "default": "Open menu to add word to collection"
         }
       ]
     },

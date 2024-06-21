@@ -29,6 +29,7 @@ export const SearchResultCard = ({
 
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
+  const menuToAddWordAriaLabel = useL10n("menuToAddWordAriaLabel");
 
   const renderImages = (): JSX.Element => {
     const numberOfImages = images?.length ?? 0;
@@ -110,6 +111,7 @@ export const SearchResultCard = ({
           <Button
             variant="circle"
             onClick={() => handleBookmarkClick(searchResult.id)}
+            aria-label={menuToAddWordAriaLabel}
           >
             <BookmarkIcon />
           </Button>

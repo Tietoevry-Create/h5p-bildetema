@@ -46,6 +46,7 @@ const CollectionElement = ({
     nameOfTheCollection,
     deleteCollection: l10nDeleteCollection,
     deleteCollectionConfirmation,
+    moreOptionsAriaLabel,
   } = useL10ns(
     "changeName",
     "delete",
@@ -54,6 +55,7 @@ const CollectionElement = ({
     "nameOfTheCollection",
     "deleteCollection",
     "deleteCollectionConfirmation",
+    "moreOptionsAriaLabel",
   );
 
   const [title, setTitle] = useState(label);
@@ -122,7 +124,7 @@ const CollectionElement = ({
       </Dialog>
       <Menu>
         <MenuButton className={styles.menuButton}>
-          <Button variant="circle">
+          <Button variant="circle" aria-label={moreOptionsAriaLabel}>
             <MoreVertIcon />
           </Button>
         </MenuButton>

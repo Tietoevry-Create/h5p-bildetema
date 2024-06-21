@@ -80,6 +80,18 @@ declare const $defaultExport: [
 				description: "Two character language code, used for setting language in code (English: en, Norwegian Bokmål: nb)",
 				"default": "en",
 				type: "text"
+			},
+			{
+				label: "More options aria label",
+				name: "moreOptionsAriaLabel",
+				"default": "More options",
+				type: "text"
+			},
+			{
+				label: "Open menu to add word to collection aria label",
+				name: "menuToAddWordAriaLabel",
+				"default": "Open menu to add word to collection",
+				type: "text"
 			}
 		]
 	},

@@ -317,6 +317,14 @@
           "default": "Samlingen gemt"
         },
         {
+          "label": "More options aria label",
+          "default": "Flere valg"
+        },
+        {
+          "label": "Open menu to add word to collection aria label",
+          "default": "Åbn menu for at tilføje ord til samling"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

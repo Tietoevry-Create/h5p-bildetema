@@ -58,12 +58,14 @@ export const MultiLanguageWord = ({
     delete: l10nDelete,
     deleteWord,
     deleteWordConfirmation,
+    moreOptionsAriaLabel,
   } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
     "delete",
     "deleteWord",
     "deleteWordConfirmation",
+    "moreOptionsAriaLabel",
   );
 
   const removeWordFromUrlParams = (wordId: string): void => {
@@ -94,7 +96,7 @@ export const MultiLanguageWord = ({
         {isCollectionOwner ? (
           <Menu>
             <MenuButton className={styles.menuButton}>
-              <Button variant="circle">
+              <Button variant="circle" aria-label={moreOptionsAriaLabel}>
                 <MoreVertIcon />
               </Button>
             </MenuButton>

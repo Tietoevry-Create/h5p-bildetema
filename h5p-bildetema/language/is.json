@@ -317,6 +317,14 @@
           "default": "Safn vistað"
         },
         {
+          "label": "More options aria label",
+          "default": "nokkrir kostir"
+        },
+        {
+          "label": "Open menu to add word to collection aria label",
+          "default": "Opna valmynd til að bæta orði við safnið"
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },

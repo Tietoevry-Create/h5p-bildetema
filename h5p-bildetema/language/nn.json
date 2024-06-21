@@ -317,6 +317,14 @@
           "default": "Samling lagra"
         },
         {
+          "label": "More options aria label",
+          "default": "Fleire val"
+        },
+        {
+          "label": "Open menu to add word to collection aria label",
+          "default": "Opne menyen for å leggje til ord i samlinga"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },
