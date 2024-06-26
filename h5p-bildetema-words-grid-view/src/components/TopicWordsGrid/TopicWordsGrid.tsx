@@ -4,6 +4,7 @@ import { Word as WordType } from "common/types/types";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import { useChooseCollectionDialog } from "common/hooks/useChooseCollectionDialog";
 import ChooseCollectionDialog from "common/components/ChooseCollectionDialog/ChooseCollectionDialog";
+import { useMyCollections } from "common/hooks/useMyCollections";
 
 import { FC, RefObject, useMemo, useState } from "react";
 import { Word } from "../Word/Word";
@@ -39,6 +40,8 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
     handleSelectCollection,
   } = useChooseCollectionDialog();
 
+  const { wordIdsInCollections } = useMyCollections();
+
   return (
     <>
       <ChooseCollectionDialog
@@ -60,6 +63,7 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
               word={word}
               textVisible={showWrittenWords}
               showArticles={showArticles}
+              isInCollection={wordIdsInCollections.has(word.id)}
               onOpenDialog={handleOpenDialog}
             />
           ))}
