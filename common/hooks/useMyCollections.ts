@@ -1,7 +1,8 @@
+/* eslint-disable no-restricted-syntax */
 import { Collection } from "common/types/types";
 import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
 import useLocalStorageState from "use-local-storage-state";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { CollectionOption } from "./useChooseCollectionDialog";
 
@@ -26,6 +27,19 @@ export const useMyCollections = () => {
     LOCAL_STORAGE_KEYS.MY_COLLECTIONS,
     { defaultValue: [] },
   );
+
+  const getUniqueIds = useCallback(() => {
+    const wordIdsInCollections = new Set<string>();
+    for (const collection of myCollections) {
+      for (const wordId of collection.wordsIds) {
+        wordIdsInCollections.add(wordId);
+      }
+    }
+
+    return wordIdsInCollections;
+  }, [myCollections]);
+
+  const wordIdsInCollections = getUniqueIds();
 
   const [selectedCollection, setSelectedCollection] =
     useLocalStorageState<CollectionOption | null>(
@@ -135,6 +149,7 @@ export const useMyCollections = () => {
 
   return {
     myCollections,
+    wordIdsInCollections,
     deleteCollection,
     deleteWordFromCollection,
     addCollection,

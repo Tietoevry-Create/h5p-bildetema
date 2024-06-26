@@ -9,7 +9,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Audio } from "common/components/Audio/Audio";
 import { extractWordLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
-import { BookmarkIcon } from "common/components/Icons/Icons";
+import {
+  BookmarkFilledIcon,
+  BookmarkIcon,
+} from "common/components/Icons/Icons";
 import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";
@@ -19,6 +22,7 @@ type WordProps = {
   word: WordType;
   textVisible: boolean;
   showArticles: boolean;
+  isInCollection: boolean;
   onOpenDialog: (id: string) => void;
 };
 
@@ -26,6 +30,7 @@ export const Word: FC<WordProps> = ({
   textVisible,
   word,
   showArticles,
+  isInCollection,
   onOpenDialog,
 }) => {
   const { images } = word;
@@ -110,7 +115,7 @@ export const Word: FC<WordProps> = ({
         onClick={() => onOpenDialog(word.id)}
         aria-label={menuToAddWordAriaLabel}
       >
-        <BookmarkIcon />
+        {isInCollection ? <BookmarkFilledIcon /> : <BookmarkIcon />}
       </Button>
       <div className={styles.image_container}>{renderImages()}</div>
       {hasAudio && (
