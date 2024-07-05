@@ -1,0 +1,24 @@
+@use "common/abstracts" as *;
+
+.container {
+  display: flex;
+  border: 2px solid $grey;
+  border-radius: 8px;
+  padding: 0.75em 1.5em;
+}
+
+.container:hover {
+  border-color: $teal;
+  background-color: $light-teal;
+  cursor: pointer;
+
+  // custom checkbox
+  label > span {
+    border-color: #ddd;
+  }
+}
+
+.container:focus {
+  outline: none;
+  border-color: $teal;
+}

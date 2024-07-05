@@ -2,8 +2,8 @@
 import { AudioRefContext } from "common/context/AudioContext";
 import { Word as WordType } from "common/types/types";
 import { useDialogContext } from "common/hooks/useDialogContext";
-import { useChooseCollectionDialog } from "common/hooks/useChooseCollectionDialog";
-import ChooseCollectionDialog from "common/components/ChooseCollectionDialog/ChooseCollectionDialog";
+import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
+
 import { useMyCollections } from "common/hooks/useMyCollections";
 
 import { FC, RefObject, useMemo, useState } from "react";
@@ -31,30 +31,12 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const { isOpen, selectedId, handleCloseDialog, handleOpenDialog } =
-    useDialogContext();
-  const {
-    options,
-    selectedCollection,
-    handleAddToCollection,
-    handleSelectCollection,
-  } = useChooseCollectionDialog();
-
+  const { handleOpenDialog } = useDialogContext();
   const { wordIdsInCollections } = useMyCollections();
 
   return (
     <>
-      <ChooseCollectionDialog
-        open={isOpen}
-        options={options}
-        selectedCollection={selectedCollection}
-        selectedWordId={selectedId}
-        onSelectCollection={handleSelectCollection}
-        onClose={handleCloseDialog}
-        onAddBookmark={() =>
-          handleAddToCollection(selectedId, handleCloseDialog)
-        }
-      />
+      <ChooseCollectionsDialog />
       <ul role="list" className={styles.topicgrid}>
         <AudioRefContext.Provider value={audioContextValue}>
           {words.map(word => (

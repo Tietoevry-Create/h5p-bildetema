@@ -13,8 +13,7 @@ import { VirtuosoGrid } from "react-virtuoso";
 import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
 import { useDialogContext } from "common/hooks/useDialogContext";
-import ChooseCollectionDialog from "common/components/ChooseCollectionDialog/ChooseCollectionDialog";
-import { useChooseCollectionDialog } from "common/hooks/useChooseCollectionDialog";
+import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
 
@@ -68,14 +67,7 @@ const SearchResultView = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const { isOpen, selectedId, handleCloseDialog, handleOpenDialog } =
-    useDialogContext();
-  const {
-    options,
-    selectedCollection,
-    handleSelectCollection,
-    handleAddToCollection,
-  } = useChooseCollectionDialog();
+  const { handleOpenDialog } = useDialogContext();
 
   const searchLabel =
     search.trim() === "" ? (
@@ -103,17 +95,7 @@ const SearchResultView = ({
           />
         </div> */}
       </div>
-      <ChooseCollectionDialog
-        open={isOpen}
-        options={options}
-        selectedCollection={selectedCollection}
-        selectedWordId={selectedId}
-        onSelectCollection={handleSelectCollection}
-        onClose={handleCloseDialog}
-        onAddBookmark={() =>
-          handleAddToCollection(selectedId, handleCloseDialog)
-        }
-      />
+      <ChooseCollectionsDialog />
       <AudioRefContext.Provider value={audioContextValue}>
         <VirtuosoGrid
           useWindowScroll

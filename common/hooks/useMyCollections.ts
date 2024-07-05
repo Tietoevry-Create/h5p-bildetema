@@ -4,7 +4,6 @@ import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
 import useLocalStorageState from "use-local-storage-state";
 import { useCallback, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { CollectionOption } from "./useChooseCollectionDialog";
 
 type ModifyCollection = {
   id: string;
@@ -41,11 +40,6 @@ export const useMyCollections = () => {
 
   const wordIdsInCollections = getUniqueIds();
 
-  const [selectedCollection, setSelectedCollection] =
-    useLocalStorageState<CollectionOption | null>(
-      LOCAL_STORAGE_KEYS.SELECTED_COLLECTION,
-    );
-
   useEffect(() => {
     setMyCollections(prev => {
       if (prev.length === 0) return prev;
@@ -62,10 +56,6 @@ export const useMyCollections = () => {
       collection => collection.id !== id,
     );
     setMyCollections(newCollections);
-
-    if (selectedCollection?.id === id) {
-      setSelectedCollection(null);
-    }
   };
 
   const deleteWordFromCollection = (
@@ -94,11 +84,6 @@ export const useMyCollections = () => {
       if (isExistingCollection) return prev;
       return [...prev, { id: newId, title, wordsIds: wordIds || [] }];
     });
-
-    setSelectedCollection({
-      id: newId,
-      label: title,
-    });
   };
 
   const addItemToCollection = ({ id, wordId }: ModifyCollection): void => {
@@ -111,6 +96,36 @@ export const useMyCollections = () => {
         return collection;
       });
       return updatedCollection;
+    });
+  };
+
+  const updateCollectionsWithWord = (
+    wordId: string,
+    collections: string[],
+  ): void => {
+    setMyCollections(prevCollections => {
+      const collectionsSet = new Set(collections);
+
+      const updatedCollections = prevCollections.map(collection => {
+        if (collectionsSet.has(collection.id)) {
+          // Add wordId if it's not already in wordsIds
+          if (!collection.wordsIds.includes(wordId)) {
+            return {
+              ...collection,
+              wordsIds: [...collection.wordsIds, wordId],
+            };
+          }
+        } else {
+          // Remove wordId if it's in wordsIds
+          return {
+            ...collection,
+            wordsIds: collection.wordsIds.filter(id => id !== wordId),
+          };
+        }
+        return collection;
+      });
+
+      return updatedCollections;
     });
   };
 
@@ -153,6 +168,7 @@ export const useMyCollections = () => {
     deleteCollection,
     deleteWordFromCollection,
     addCollection,
+    updateCollectionsWithWord,
     addItemToCollection,
     removeItemFromCollection,
     changeCollectionTitle,
