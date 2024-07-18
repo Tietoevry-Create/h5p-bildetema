@@ -48,8 +48,16 @@ const CollectionPage = ({
     env !== environment.prod && env !== environment.stage;
 
   const replacements = {
-    search: <Link to={STATIC_PATH.SEARCH}>{search.toLowerCase()}</Link>,
-    topicView: <Link to={`/${lang.code}`}>{topicView.toLowerCase()}</Link>,
+    search: (
+      <Link key={1} to={STATIC_PATH.SEARCH}>
+        {search.toLowerCase()}
+      </Link>
+    ),
+    topicView: (
+      <Link key={2} to={`/${lang.code}`}>
+        {topicView.toLowerCase()}
+      </Link>
+    ),
   };
 
   const description = shouldIncludeSearch

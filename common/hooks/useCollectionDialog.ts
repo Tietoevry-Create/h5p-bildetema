@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Option } from "common/types/types";
+import { sortOptions } from "common/utils/sorting.utils";
 
 export const useCollectionDialog = () => {
   const { selectedId, handleCloseDialog, isOpen } = useDialogContext();
@@ -12,6 +13,7 @@ export const useCollectionDialog = () => {
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [showCreateNewOption, setShowCreateNewOption] = useState(false);
+
   const showCreate = showCreateNewOption || options.length === 0;
 
   const fetchOptions = useCallback(() => {
@@ -19,18 +21,23 @@ export const useCollectionDialog = () => {
       label: item.title,
       id: item.id,
     }));
-    setOptions(fetchedOptions);
 
     const selected = myCollections
       .filter(c => c.wordsIds.includes(selectedId ?? ""))
       .map(c => c.id);
 
     setSelectedOptions(selected);
+
+    const sortedOptions = sortOptions(fetchedOptions, selected);
+
+    setOptions(sortedOptions);
   }, [myCollections, selectedId]);
 
   useEffect(() => {
-    fetchOptions();
-  }, [fetchOptions]);
+    if (isOpen) {
+      fetchOptions();
+    }
+  }, [isOpen, fetchOptions]);
 
   useEffect(() => {
     if (!isOpen) {
