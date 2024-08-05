@@ -5,6 +5,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
 import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
+import { Toaster } from "react-hot-toast";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -225,6 +226,15 @@ export const Bildetema: FC<BildetemaProps> = ({
               )
             : routes}
         </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 99999999999999,
+            style: {
+              maxWidth: "500px",
+            },
+          }}
+        />
         <Footer />
       </div>
     </div>

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 2rem;
+}
