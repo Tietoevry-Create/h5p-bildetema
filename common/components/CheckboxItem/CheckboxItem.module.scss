@@ -5,12 +5,12 @@
   border: 2px solid $grey;
   border-radius: 8px;
   padding: 0.75em 1.5em;
+  font-size: 1rem;
 }
 
-.container:hover {
+.checked {
   border-color: $teal;
   background-color: $light-teal;
-  cursor: pointer;
 
   // custom checkbox
   label > span {
@@ -21,4 +21,9 @@
 .container:focus {
   outline: none;
   border-color: $teal;
+}
+
+.container:hover {
+  border-color: $teal;
+  cursor: pointer;
 }
