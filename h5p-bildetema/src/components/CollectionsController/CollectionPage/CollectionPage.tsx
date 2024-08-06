@@ -1,12 +1,8 @@
-import { useEffect } from "react";
-import useLocalStorageState from "use-local-storage-state";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { BookmarkIcon } from "common/components/Icons/Icons";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
-import { CollectionOption } from "common/hooks/useChooseCollectionDialog";
-import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
@@ -27,24 +23,8 @@ const CollectionPage = ({
   const words = useSelectedWords();
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
-  const { isCollectionOwner, collectionId, collectionName } =
-    useCurrentCollection();
+  const { isCollectionOwner } = useCurrentCollection();
   const env = useEnvironment();
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setSelectedCollection] =
-    useLocalStorageState<CollectionOption | null>(
-      LOCAL_STORAGE_KEYS.SELECTED_COLLECTION,
-    );
-
-  useEffect(() => {
-    if (collectionId && collectionName) {
-      setSelectedCollection({
-        id: collectionId,
-        label: collectionName,
-      });
-    }
-  }, [collectionId, collectionName, setSelectedCollection]);
 
   const {
     addWordsDescription,
@@ -68,8 +48,16 @@ const CollectionPage = ({
     env !== environment.prod && env !== environment.stage;
 
   const replacements = {
-    search: <Link to={STATIC_PATH.SEARCH}>{search.toLowerCase()}</Link>,
-    topicView: <Link to={`/${lang.code}`}>{topicView.toLowerCase()}</Link>,
+    search: (
+      <Link key={1} to={STATIC_PATH.SEARCH}>
+        {search.toLowerCase()}
+      </Link>
+    ),
+    topicView: (
+      <Link key={2} to={`/${lang.code}`}>
+        {topicView.toLowerCase()}
+      </Link>
+    ),
   };
 
   const description = shouldIncludeSearch
