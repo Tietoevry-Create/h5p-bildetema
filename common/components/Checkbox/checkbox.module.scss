@@ -2,7 +2,7 @@
 
 .task {
   width: 100%;
-  --size: 2em;
+  --size: 1.8em;
 }
 
 .checkbox {
@@ -24,7 +24,7 @@
   width: var(--size);
   height: var(--size);
   border: 2px solid $grey;
-  border-radius: 50%;
+  border-radius: 0.5rem;
   cursor: pointer;
 }
 

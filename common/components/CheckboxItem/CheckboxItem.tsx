@@ -12,7 +12,7 @@ type CheckboxItemProps = {
 const CheckboxItem = ({ option, isSelected, onToggle }: CheckboxItemProps) => {
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${isSelected ? styles.checked : ""}`}
       onClick={() => onToggle(option.id)}
       role="button"
       tabIndex={0}
