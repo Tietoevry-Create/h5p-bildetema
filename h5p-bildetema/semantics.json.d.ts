@@ -375,7 +375,7 @@ declare const $defaultExport: [
 			{
 				label: "Collections Page Description",
 				name: "collectionsPageDescription",
-				"default": "Here you can see all the collections you have created.",
+				"default": "Here you can save words in your own collections. The collections will only be stored in this browser. If you want to share the collection or view it elsewhere, you can copy the link to the collection.",
 				type: "text"
 			},
 			{

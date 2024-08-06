@@ -250,7 +250,7 @@
         },
         {
           "label": "Collections Page Description",
-          "default": "Hér geturðu séð öll söfnin sem þú hefur búið til."
+          "default": "Hér getur þú vistað orð í þínum eigin söfnum. Söfnin verða aðeins geymd í þessum vafra. Ef þú vilt deila safninu eða skoða það annars staðar geturðu afritað hlekkinn á safnið."
         },
         {
           "label": "Add word",
