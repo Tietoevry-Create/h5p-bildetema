@@ -197,10 +197,6 @@
           "default": "Søg"
         },
         {
-          "label": "Collections",
-          "default": "Samlinger"
-        },
-        {
           "label": "My collections",
           "default": "Mine samlinger"
         },
@@ -250,7 +246,7 @@
         },
         {
           "label": "Collections Page Description",
-          "default": "Her kan du se alle de kollektioner du har lavet."
+          "default": "Her kan du gemme ord i dine egne samlinger. Samlingerne vil kun blive gemt i denne browser. Hvis du vil dele samlingen eller se den andre steder, kan du kopiere linket til samlingen."
         },
         {
           "label": "Add word",
