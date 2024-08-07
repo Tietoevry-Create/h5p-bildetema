@@ -295,12 +295,6 @@
         "type": "text"
       },
       {
-        "label": "Collections",
-        "name": "collections",
-        "default": "Collections",
-        "type": "text"
-      },
-      {
         "label": "My collections",
         "name": "myCollections",
         "default": "My collections",

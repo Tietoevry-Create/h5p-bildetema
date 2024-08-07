@@ -197,10 +197,6 @@
           "default": "Search"
         },
         {
-          "label": "Collections",
-          "default": "Collections"
-        },
-        {
           "label": "My collections",
           "default": "My collections"
         },

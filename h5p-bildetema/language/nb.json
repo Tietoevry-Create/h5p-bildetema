@@ -197,10 +197,6 @@
           "default": "Søk"
         },
         {
-          "label": "Collections",
-          "default": "Samlinger"
-        },
-        {
           "label": "My collections",
           "default": "Mine samlinger"
         },

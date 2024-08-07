@@ -197,10 +197,6 @@
           "default": "Leita"
         },
         {
-          "label": "Collections",
-          "default": "Safn"
-        },
-        {
           "label": "My collections",
           "default": "Mín söfn"
         },

@@ -48,13 +48,13 @@ export const Header: FC<HeaderProps> = ({
     selectLanguage,
     headerTitle,
     headerSubtitle,
-    collections,
+    myCollections,
     search: l10nsSearch,
   } = useL10ns(
     "selectLanguage",
     "headerTitle",
     "headerSubtitle",
-    "collections",
+    "myCollections",
     "search",
     ...languageKeys,
   );
@@ -158,7 +158,7 @@ export const Header: FC<HeaderProps> = ({
           )}
 
           <HeaderLink
-            label={collections}
+            label={myCollections}
             icon={<BookmarkIcon />}
             href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
           />
