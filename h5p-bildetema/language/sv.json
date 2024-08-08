@@ -197,10 +197,6 @@
           "default": "Sök"
         },
         {
-          "label": "Collections",
-          "default": "Samlingar"
-        },
-        {
           "label": "My collections",
           "default": "Mina samlingar"
         },
@@ -250,7 +246,7 @@
         },
         {
           "label": "Collections Page Description",
-          "default": "Här kan du se alla samlingar du har skapat."
+          "default": "Här kan du spara ord i dina egna samlingar. Samlingarna kommer endast att lagras i den här webbläsaren. Om du vill dela samlingen eller se den någon annanstans kan du kopiera länken till samlingen."
         },
         {
           "label": "Add word",
