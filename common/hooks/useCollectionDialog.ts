@@ -46,7 +46,6 @@ export const useCollectionDialog = () => {
     }
   }, [isOpen]);
 
-   
   const getCollectionChangeDetails = useCallback(() => {
     if (!selectedId) return null;
 
