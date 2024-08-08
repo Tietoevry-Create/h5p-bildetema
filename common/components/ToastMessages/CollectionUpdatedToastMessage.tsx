@@ -7,7 +7,6 @@ import styles from "./CollectionUpdatedToastMessage.module.scss";
 type CollectionUpdatedToastMessageProps = {
   t: Toast;
   wasRemoved: boolean;
-  word: string;
   collection: string;
   href: string;
 };
@@ -15,20 +14,19 @@ type CollectionUpdatedToastMessageProps = {
 const CollectionUpdatedToastMessage = ({
   t,
   wasRemoved,
-  word,
   collection,
   href,
 }: CollectionUpdatedToastMessageProps): JSX.Element => {
   let message = (
     <p>
-      Ordet <b>{word}</b> ble lagret i samlingen <b>{collection}</b>.
+      Ordet ble lagret i <b>{collection}</b>.
     </p>
   );
 
   if (wasRemoved) {
     message = (
       <p>
-        Ordet <b>{word}</b> ble fjernet fra samlingen <b>{collection}</b>.
+        Ordet ble fjernet fra <b>{collection}</b>.
       </p>
     );
   }

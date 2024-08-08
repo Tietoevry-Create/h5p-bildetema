@@ -11,9 +11,14 @@ import { AddIcon } from "common/components/Icons/Icons";
 import { useCollectionDialog } from "common/hooks/useCollectionDialog";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 import toast from "react-hot-toast";
+import { STATIC_PATH } from "common/constants/paths";
+import { getCurrentLanguageCode } from "h5p-bildetema/src/hooks/useCurrentLanguage";
+import { useDialogContext } from "../../hooks/useDialogContext";
 
 const ChooseCollectionsDialog = () => {
   const [textInput, setTextInput] = useState("");
+  const currentLanguageCode = getCurrentLanguageCode();
+  const { selectedId } = useDialogContext();
   const {
     options,
     selectedOptions,
@@ -33,12 +38,34 @@ const ChooseCollectionsDialog = () => {
 
   const description = showCreate ? createACollection : chooseACollection;
 
+  const getURL = (): string => {
+    const details = getCollectionChangeDetails();
+    if (!details) {
+      return `${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`;
+    }
+
+    if (!details.collection) return "";
+    let words = [...details.collection.wordsIds];
+
+    let url = `${STATIC_PATH.COLLECTIONS}/${details.collection.title}?lang=${currentLanguageCode}&id=${details.collection.id}`;
+    if (!details.wasRemoved && selectedId) {
+      words.push(selectedId);
+    } else if (details.wasRemoved && selectedId) {
+      words = words.filter(w => w !== selectedId);
+    }
+
+    if (words.length > 0) {
+      url += `&words=${words}`;
+    }
+
+    return url;
+  };
+
   const confirm = () => {
     const details = getCollectionChangeDetails();
-
     if (!details) {
       toast(t => (
-        <CustomSuccessToastMessage t={t}>
+        <CustomSuccessToastMessage t={t} href={getURL()}>
           Endringer lagret
         </CustomSuccessToastMessage>
       ));
@@ -47,9 +74,8 @@ const ChooseCollectionsDialog = () => {
         <CollectionUpdatedToastMessage
           t={t}
           wasRemoved={details.wasRemoved}
-          word={details.wordName}
-          collection={details.collectionName}
-          href="/"
+          collection={details.collection?.title ?? ""}
+          href={getURL()}
         />
       ));
     }

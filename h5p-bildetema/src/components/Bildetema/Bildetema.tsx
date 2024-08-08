@@ -229,7 +229,6 @@ export const Bildetema: FC<BildetemaProps> = ({
         <Toaster
           position="top-right"
           toastOptions={{
-            duration: 99999999999999,
             style: {
               maxWidth: "500px",
             },

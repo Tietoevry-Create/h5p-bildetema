@@ -4,14 +4,12 @@ import { useDialogContext } from "common/hooks/useDialogContext";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Option } from "common/types/types";
 import { sortOptions } from "common/utils/sorting.utils";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { findDifference } from "common/utils/array.utils";
 
 export const useCollectionDialog = () => {
   const { selectedId, handleCloseDialog, isOpen } = useDialogContext();
   const { myCollections, updateCollectionsWithWord, addCollection } =
     useMyCollections();
-  const { idToWords } = useNewDBContext();
 
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
@@ -51,12 +49,6 @@ export const useCollectionDialog = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getCollectionChangeDetails = useCallback(() => {
     if (!selectedId) return null;
-    console.log("test 1");
-
-    const word = idToWords.get(selectedId);
-    console.log(word);
-    const wordName = word?.translations.get("nob")?.labels?.[0].label ?? "";
-    console.log("wordName", wordName);
 
     const originallySelected = myCollections
       .filter(c => c.wordsIds.includes(selectedId ?? ""))
@@ -66,38 +58,29 @@ export const useCollectionDialog = () => {
       originallySelected,
       selectedOptions,
     );
-    console.log("removed", removedElements, "added", addedElements);
 
-    console.log("test 2");
     if (removedElements.length + addedElements.length > 1) {
       return null;
     }
-    console.log("test 3");
 
     if (removedElements.length === 1 && addedElements.length === 0) {
-      const collectionName =
-        myCollections.find(c => c.id === removedElements[0])?.title ?? "";
+      const collection = myCollections.find(c => c.id === removedElements[0]);
       return {
         wasRemoved: true,
-        wordName,
-        collectionName,
+        collection,
       };
     }
-    console.log("test 4");
 
     if (removedElements.length === 0 && addedElements.length === 1) {
-      const collectionName =
-        myCollections.find(c => c.id === addedElements[0])?.title ?? "";
+      const collection = myCollections.find(c => c.id === addedElements[0]);
       return {
         wasRemoved: false,
-        wordName,
-        collectionName,
+        collection,
       };
     }
-    console.log("test 5");
 
     return null;
-  }, [idToWords, myCollections, selectedId, selectedOptions]);
+  }, [myCollections, selectedId, selectedOptions]);
 
   const handleCreateNewOption = (optionName: string) => {
     if (!selectedId) return;
