@@ -1,6 +1,8 @@
 import { Button } from "common/components/Button";
 import toast, { Toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 
 import styles from "./CollectionUpdatedToastMessage.module.scss";
 
@@ -17,25 +19,27 @@ const CollectionUpdatedToastMessage = ({
   collection,
   href,
 }: CollectionUpdatedToastMessageProps): JSX.Element => {
-  let message = (
-    <p>
-      Ordet ble lagret i <b>{collection}</b>.
-    </p>
+  const { wordSavedInCollection, wordRemovedFromCollection, show } = useL10ns(
+    "wordSavedInCollection",
+    "wordRemovedFromCollection",
+    "show",
   );
 
-  if (wasRemoved) {
-    message = (
-      <p>
-        Ordet ble fjernet fra <b>{collection}</b>.
-      </p>
-    );
-  }
+  const replacements = {
+    collection: <b>{collection}</b>,
+  };
+
+  const description = wasRemoved
+    ? wordRemovedFromCollection
+    : wordSavedInCollection;
+
+  const message = replacePlaceholders(description, replacements);
 
   return (
     <div className={styles.container}>
-      {message}
+      <p>{message}</p>
       <div className={styles.group}>
-        <Link to={href}>Vis</Link>
+        <Link to={href}>{show}</Link>
         <Button
           variant="icon"
           type="button"

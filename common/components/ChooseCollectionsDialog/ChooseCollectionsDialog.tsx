@@ -34,7 +34,13 @@ const ChooseCollectionsDialog = () => {
     createACollection,
     chooseACollection,
     createNewCollection: l10nCreateNewCollection,
-  } = useL10ns("createACollection", "chooseACollection", "createNewCollection");
+    changesSaved,
+  } = useL10ns(
+    "createACollection",
+    "chooseACollection",
+    "createNewCollection",
+    "changesSaved",
+  );
 
   const description = showCreate ? createACollection : chooseACollection;
 
@@ -66,7 +72,7 @@ const ChooseCollectionsDialog = () => {
     if (!details) {
       toast(t => (
         <CustomSuccessToastMessage t={t} href={getURL()}>
-          Endringer lagret
+          {changesSaved}
         </CustomSuccessToastMessage>
       ));
     } else {

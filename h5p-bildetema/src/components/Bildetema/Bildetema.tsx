@@ -1,3 +1,4 @@
+import { useMediaQuery } from "react-responsive";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { CurrentTopics, Language } from "common/types/types";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
@@ -44,6 +45,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     env !== environment.prod && env !== environment.stage;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
   useEffect(() => {
     setTimeout(() => {
@@ -227,7 +229,7 @@ export const Bildetema: FC<BildetemaProps> = ({
             : routes}
         </div>
         <Toaster
-          position="top-right"
+          position={isMobile ? "top-center" : "top-right"}
           toastOptions={{
             style: {
               maxWidth: "500px",

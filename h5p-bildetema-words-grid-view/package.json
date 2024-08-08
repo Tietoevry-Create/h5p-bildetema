@@ -21,7 +21,8 @@
   "dependencies": {
     "common": "*",
     "swiper": "^9.3.2",
-    "use-h5p": "^2.0.0"
+    "use-h5p": "^2.0.0",
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",

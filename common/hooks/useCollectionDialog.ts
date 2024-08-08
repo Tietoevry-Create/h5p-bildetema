@@ -46,7 +46,7 @@ export const useCollectionDialog = () => {
     }
   }, [isOpen]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const getCollectionChangeDetails = useCallback(() => {
     if (!selectedId) return null;
 
