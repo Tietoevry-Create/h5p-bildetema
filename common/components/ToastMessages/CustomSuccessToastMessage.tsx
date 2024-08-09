@@ -19,7 +19,7 @@ const CustomSuccessToastMessage = ({
 
   return (
     <div className={styles.container}>
-      {children}
+      <span>{children}</span>
       <div className={styles.group}>
         <a href={`/#${href}`}>{show}</a>
         <Button

@@ -61,7 +61,6 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
         position={isMobile ? "top-center" : "top-right"}
         closeButton={false}
         hideProgressBar
-        autoClose={false}
       />
     </>
   );
