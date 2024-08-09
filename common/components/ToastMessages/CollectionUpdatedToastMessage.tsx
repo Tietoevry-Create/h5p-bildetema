@@ -1,13 +1,12 @@
 import { Button } from "common/components/Button";
-import toast, { Toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { toast, ToastContentProps } from "react-toastify";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 
 import styles from "./CollectionUpdatedToastMessage.module.scss";
 
 type CollectionUpdatedToastMessageProps = {
-  t: Toast;
+  t: ToastContentProps<unknown>;
   wasRemoved: boolean;
   collection: string;
   href: string;
@@ -26,7 +25,7 @@ const CollectionUpdatedToastMessage = ({
   );
 
   const replacements = {
-    collection: <b>{collection}</b>,
+    collection: <b key={1}>{collection}</b>,
   };
 
   const description = wasRemoved
@@ -37,13 +36,13 @@ const CollectionUpdatedToastMessage = ({
 
   return (
     <div className={styles.container}>
-      <p>{message}</p>
+      <span>{message}</span>
       <div className={styles.group}>
-        <Link to={href}>{show}</Link>
+        <a href={`/#${href}`}>{show}</a>
         <Button
           variant="icon"
           type="button"
-          onClick={() => toast.dismiss(t.id)}
+          onClick={() => toast.dismiss(t.toastProps.toastId)}
         >
           &#x2715;
         </Button>

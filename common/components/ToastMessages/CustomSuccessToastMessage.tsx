@@ -1,11 +1,11 @@
 import { Button } from "common/components/Button";
-import toast, { Toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { toast, ToastContentProps } from "react-toastify";
+import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 
 import styles from "./CustomSuccessToastMessage.module.scss";
 
 type ToastMessageProps = {
-  t: Toast;
+  t: ToastContentProps<unknown>;
   href: string;
   children: React.ReactNode;
 };
@@ -15,15 +15,17 @@ const CustomSuccessToastMessage = ({
   href,
   children,
 }: ToastMessageProps): JSX.Element => {
+  const { show } = useL10ns("show");
+
   return (
     <div className={styles.container}>
       {children}
       <div className={styles.group}>
-        <Link to={href}>Vis</Link>
+        <a href={`/#${href}`}>{show}</a>
         <Button
           variant="icon"
           type="button"
-          onClick={() => toast.dismiss(t.id)}
+          onClick={() => toast.dismiss(t.toastProps.toastId)}
         >
           &#x2715;
         </Button>

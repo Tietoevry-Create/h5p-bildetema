@@ -10,7 +10,7 @@ import CollectionUpdatedToastMessage from "common/components/ToastMessages/Colle
 import { AddIcon } from "common/components/Icons/Icons";
 import { useCollectionDialog } from "common/hooks/useCollectionDialog";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { STATIC_PATH } from "common/constants/paths";
 import { getCurrentLanguageCode } from "h5p-bildetema/src/hooks/useCurrentLanguage";
 import { useDialogContext } from "../../hooks/useDialogContext";
