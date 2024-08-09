@@ -75,13 +75,15 @@ const CollectionPage = ({
         <p className={styles.description}>{`${thisCollectionIsEmpty}.`}</p>
         <p className={styles.description}>{descriptionWithLinks}</p>
         <div className={styles.navButtons}>
-          <Button
-            variant="default"
-            role="link"
-            onClick={() => navigate(STATIC_PATH.SEARCH)}
-          >
-            {goToSearch}
-          </Button>
+          {shouldIncludeSearch && (
+            <Button
+              variant="default"
+              role="link"
+              onClick={() => navigate(STATIC_PATH.SEARCH)}
+            >
+              {goToSearch}
+            </Button>
+          )}
           <Button variant="default" role="link" onClick={() => navigate("/")}>
             {goToTopic}
           </Button>
