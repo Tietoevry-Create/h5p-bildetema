@@ -4,6 +4,7 @@ import { useDialogContext } from "common/hooks/useDialogContext";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Option } from "common/types/types";
 import { sortOptions } from "common/utils/sorting.utils";
+import { findDifference } from "common/utils/array.utils";
 
 export const useCollectionDialog = () => {
   const { selectedId, handleCloseDialog, isOpen } = useDialogContext();
@@ -44,6 +45,41 @@ export const useCollectionDialog = () => {
       setShowCreateNewOption(false);
     }
   }, [isOpen]);
+
+  const getCollectionChangeDetails = useCallback(() => {
+    if (!selectedId) return null;
+
+    const originallySelected = myCollections
+      .filter(c => c.wordsIds.includes(selectedId ?? ""))
+      .map(c => c.id);
+
+    const [removedElements, addedElements] = findDifference(
+      originallySelected,
+      selectedOptions,
+    );
+
+    if (removedElements.length + addedElements.length > 1) {
+      return null;
+    }
+
+    if (removedElements.length === 1 && addedElements.length === 0) {
+      const collection = myCollections.find(c => c.id === removedElements[0]);
+      return {
+        wasRemoved: true,
+        collection,
+      };
+    }
+
+    if (removedElements.length === 0 && addedElements.length === 1) {
+      const collection = myCollections.find(c => c.id === addedElements[0]);
+      return {
+        wasRemoved: false,
+        collection,
+      };
+    }
+
+    return null;
+  }, [myCollections, selectedId, selectedOptions]);
 
   const handleCreateNewOption = (optionName: string) => {
     if (!selectedId) return;
@@ -94,5 +130,6 @@ export const useCollectionDialog = () => {
     handleConfirm,
     handleCancel,
     toggleOption,
+    getCollectionChangeDetails,
   };
 };

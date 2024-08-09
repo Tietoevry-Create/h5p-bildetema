@@ -38,3 +38,19 @@ export const useCurrentLanguage = (): Language => {
   }
   return language;
 };
+
+// Without react router
+export const getCurrentLanguageCode = (): LanguageCode => {
+  const pathname = window.location.hash;
+
+  // Extract language code from pathname
+  const pathSegments = pathname.split("/").filter(Boolean);
+  const langFromPath = pathSegments.length > 0 ? pathSegments[1] : "";
+
+  if (isLanguageCode(langFromPath)) {
+    return langFromPath;
+  }
+
+  // Default language code
+  return "nob";
+};

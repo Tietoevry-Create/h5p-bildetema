@@ -29,6 +29,16 @@
   }
 }
 
+.icon {
+  border: none;
+  background-color: transparent;
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    background-color: $beige;
+  }
+}
+
 .secondary {
   color: black;
   background-color: $white;

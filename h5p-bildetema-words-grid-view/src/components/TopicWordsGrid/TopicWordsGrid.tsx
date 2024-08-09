@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
+import { FC, RefObject, useMemo, useState } from "react";
+
 import { AudioRefContext } from "common/context/AudioContext";
 import { Word as WordType } from "common/types/types";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
+import { useMediaQuery } from "react-responsive";
 
 import { useMyCollections } from "common/hooks/useMyCollections";
 
-import { FC, RefObject, useMemo, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
 
@@ -33,6 +38,7 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
 
   const { handleOpenDialog } = useDialogContext();
   const { wordIdsInCollections } = useMyCollections();
+  const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
   return (
     <>
@@ -51,6 +57,11 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
           ))}
         </AudioRefContext.Provider>
       </ul>
+      <ToastContainer
+        position={isMobile ? "top-center" : "top-right"}
+        closeButton={false}
+        hideProgressBar
+      />
     </>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from "react";
 
@@ -39,6 +40,7 @@ export const SpeakerPlayingIcon: FC<SpeakerIconProps> = ({ className }) => (
 
 export type IconProps = {
   iconColor?: string;
+  size?: number;
 };
 
 export type IconSizeProps = {
@@ -465,12 +467,12 @@ export const ShareIcon: FC = () => (
   </svg>
 );
 
-export const SuccessIcon: FC = () => (
+export const SuccessIcon: FC<IconProps> = ({ size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24px"
+    height={`${size}px`}
     viewBox="0 -960 960 960"
-    width="24px"
+    width={`${size}px`}
   >
     <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
   </svg>

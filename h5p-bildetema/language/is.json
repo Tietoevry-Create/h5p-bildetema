@@ -321,6 +321,22 @@
           "default": "Opna valmynd til að bæta orði við safnið"
         },
         {
+          "label": "Changes saved",
+          "default": "Breytingar vistaðar"
+        },
+        {
+          "label": "The word was saved in collection",
+          "default": "Orðið var vistað í {{collection}}"
+        },
+        {
+          "label": "The word was removed from collection",
+          "default": "Orðið var fjarlægt úr {{collection}"
+        },
+        {
+          "label": "Show",
+          "default": "Sýna"
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },
