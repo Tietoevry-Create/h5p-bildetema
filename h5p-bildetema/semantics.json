@@ -481,6 +481,30 @@
         "type": "text"
       },
       {
+        "label": "Changes saved",
+        "name": "changesSaved",
+        "default": "Changes saved",
+        "type": "text"
+      },
+      {
+        "label": "The word was saved in collection",
+        "name": "wordSavedInCollection",
+        "default": "The word was saved in {{collection}}",
+        "type": "text"
+      },
+      {
+        "label": "The word was removed from collection",
+        "name": "wordRemovedFromCollection",
+        "default": "The word was removed from {{collection}}",
+        "type": "text"
+      },
+      {
+        "label": "Show",
+        "name": "show",
+        "default": "Show",
+        "type": "text"
+      },
+      {
         "label": "Arabic",
         "name": "lang_ara",
         "default": "Arabic",

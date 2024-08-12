@@ -321,6 +321,22 @@
           "default": "Åpne menyen for å legge til ord i samlingen"
         },
         {
+          "label": "Changes saved",
+          "default": "Endringer lagret"
+        },
+        {
+          "label": "The word was saved in collection",
+          "default": "Ordet ble lagret i {{collection}}"
+        },
+        {
+          "label": "The word was removed from collection",
+          "default": "Ordet ble fjernet fra {{collection}}"
+        },
+        {
+          "label": "Show",
+          "default": "Vis"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

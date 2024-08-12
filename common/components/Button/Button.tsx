@@ -15,6 +15,7 @@ const buttonVariants = {
       filter: `${styles.button} ${styles.filter}`,
       circle: `${styles.button} ${styles.circle}`,
       capsule: `${styles.button} ${styles.capsule}`,
+      icon: `${styles.button} ${styles.icon}`,
     },
     size: {
       default: "",

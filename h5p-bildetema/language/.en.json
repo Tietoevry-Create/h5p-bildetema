@@ -321,6 +321,22 @@
           "default": "Open menu to add word to collection"
         },
         {
+          "label": "Changes saved",
+          "default": "Changes saved"
+        },
+        {
+          "label": "The word was saved in collection",
+          "default": "The word was saved in {{collection}}"
+        },
+        {
+          "label": "The word was removed from collection",
+          "default": "The word was removed from {{collection}}"
+        },
+        {
+          "label": "Show",
+          "default": "Show"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },
