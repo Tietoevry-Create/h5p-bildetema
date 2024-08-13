@@ -1,4 +1,3 @@
- 
 import { SnackbarContent, CustomContentProps, useSnackbar } from "notistack";
 import React from "react";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
