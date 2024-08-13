@@ -5,6 +5,9 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
 import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
+import { SnackbarProvider } from "notistack";
+import { useMediaQuery } from "react-responsive";
+import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
 import { useL10n } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
@@ -43,6 +46,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     env !== environment.prod && env !== environment.stage;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
   useEffect(() => {
     setTimeout(() => {
@@ -194,39 +198,51 @@ export const Bildetema: FC<BildetemaProps> = ({
   const hidden = STATIC_PATHS.includes(pathname);
 
   return (
-    <div className={styles.wrapper}>
-      <MainContentLink />
-      <div className={styles.container}>
-        <Header
-          favLanguages={favLanguages}
-          firstTime={firstTime}
-          setFirstTime={setFirstTime}
-          handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-          hideLanguageSelectors={hidden}
-          currentTopics={currTopics}
-        />
-        <LanguageFavorites
-          currentTopics={currTopics}
-          favLanguages={favLanguages}
-          hidden={hidden}
-        />
-        <div
-          id="bildetemaMain"
-          className={styles.bildetemaMain}
-          aria-label={mainContentAriaLabel}
-        >
-          {isLoadingData
-            ? showLoadingLabel && (
-                <p
-                  className={`${styles.body} ${directionRtl ? styles.rtl : ""}`}
-                >
-                  {loadingLabel}
-                </p>
-              )
-            : routes}
+    <SnackbarProvider
+      anchorOrigin={{
+        horizontal: isMobile ? "center" : "right",
+        vertical: "top",
+      }}
+      Components={{
+        success: CustomSuccessToastMessage,
+      }}
+    >
+      <div className={styles.wrapper}>
+        <MainContentLink />
+        <div className={styles.container}>
+          <Header
+            favLanguages={favLanguages}
+            firstTime={firstTime}
+            setFirstTime={setFirstTime}
+            handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
+            hideLanguageSelectors={hidden}
+            currentTopics={currTopics}
+          />
+          <LanguageFavorites
+            currentTopics={currTopics}
+            favLanguages={favLanguages}
+            hidden={hidden}
+          />
+          <div
+            id="bildetemaMain"
+            className={styles.bildetemaMain}
+            aria-label={mainContentAriaLabel}
+          >
+            {isLoadingData
+              ? showLoadingLabel && (
+                  <p
+                    className={`${styles.body} ${
+                      directionRtl ? styles.rtl : ""
+                    }`}
+                  >
+                    {loadingLabel}
+                  </p>
+                )
+              : routes}
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
-    </div>
+    </SnackbarProvider>
   );
 };
