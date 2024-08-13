@@ -2,8 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 1rem;
   color: black;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px 0px;
 }
 
 .group {

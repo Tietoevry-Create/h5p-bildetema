@@ -5,15 +5,23 @@ import ConfirmationDialog from "common/components/ConfirmationDialog/Confirmatio
 import CheckboxItemList from "common/components/CheckboxItemList/CheckboxItemList";
 import NewOption from "common/components/NewOption/NewOption";
 import { Button } from "common/components/Button";
-import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
-import CollectionUpdatedToastMessage from "common/components/ToastMessages/CollectionUpdatedToastMessage";
 import { AddIcon } from "common/components/Icons/Icons";
 import { useCollectionDialog } from "common/hooks/useCollectionDialog";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
-import { toast } from "react-toastify";
+import { enqueueSnackbar } from "notistack";
 import { STATIC_PATH } from "common/constants/paths";
 import { getCurrentLanguageCode } from "h5p-bildetema/src/hooks/useCurrentLanguage";
 import { useDialogContext } from "../../hooks/useDialogContext";
+import { replacePlaceholders } from "../../utils/replacePlaceholders";
+
+declare module "notistack" {
+  interface VariantOverrides {
+    // "extra" props it takes in options of `enqueueSnackbar`
+    success: {
+      href: string;
+    };
+  }
+}
 
 const ChooseCollectionsDialog = () => {
   const [textInput, setTextInput] = useState("");
@@ -35,17 +43,21 @@ const ChooseCollectionsDialog = () => {
     chooseACollection,
     createNewCollection: l10nCreateNewCollection,
     changesSaved,
+    wordSavedInCollection,
+    wordRemovedFromCollection,
   } = useL10ns(
     "createACollection",
     "chooseACollection",
     "createNewCollection",
     "changesSaved",
+    "wordSavedInCollection",
+    "wordRemovedFromCollection",
   );
 
   const description = showCreate ? createACollection : chooseACollection;
 
-  const getURL = (): string => {
-    const details = getCollectionChangeDetails();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getURL = (details: any): string => {
     if (!details) {
       return `${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`;
     }
@@ -67,23 +79,33 @@ const ChooseCollectionsDialog = () => {
     return url;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getMessage = (details: any): React.ReactNode => {
+    const replacements = {
+      collection: <b key={1}>{details.collection?.title ?? ""}</b>,
+    };
+
+    const text = details.wasRemoved
+      ? wordRemovedFromCollection
+      : wordSavedInCollection;
+
+    const message = replacePlaceholders(text, replacements);
+    return <span>{message}</span>;
+  };
+
   const confirm = () => {
     const details = getCollectionChangeDetails();
     if (!details) {
-      toast(t => (
-        <CustomSuccessToastMessage t={t} href={getURL()}>
-          {changesSaved}
-        </CustomSuccessToastMessage>
-      ));
+      enqueueSnackbar(changesSaved, {
+        variant: "success",
+        href: getURL(details),
+      });
     } else {
-      toast(t => (
-        <CollectionUpdatedToastMessage
-          t={t}
-          wasRemoved={details.wasRemoved}
-          collection={details.collection?.title ?? ""}
-          href={getURL()}
-        />
-      ));
+      const message = getMessage(details);
+      enqueueSnackbar(message, {
+        variant: "success",
+        href: getURL(details),
+      });
     }
     handleConfirm(textInput);
   };

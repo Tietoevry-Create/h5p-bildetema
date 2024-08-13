@@ -5,12 +5,12 @@ import { AudioRefContext } from "common/context/AudioContext";
 import { Word as WordType } from "common/types/types";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
+import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
 import { useMediaQuery } from "react-responsive";
 
 import { useMyCollections } from "common/hooks/useMyCollections";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { SnackbarProvider } from "notistack";
 
 import { Word } from "../Word/Word";
 import styles from "./TopicWordsGrid.module.scss";
@@ -41,7 +41,15 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
   return (
-    <>
+    <SnackbarProvider
+      anchorOrigin={{
+        horizontal: isMobile ? "center" : "right",
+        vertical: "top",
+      }}
+      Components={{
+        success: CustomSuccessToastMessage,
+      }}
+    >
       <ChooseCollectionsDialog />
       <ul role="list" className={styles.topicgrid}>
         <AudioRefContext.Provider value={audioContextValue}>
@@ -57,11 +65,6 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
           ))}
         </AudioRefContext.Provider>
       </ul>
-      <ToastContainer
-        position={isMobile ? "top-center" : "top-right"}
-        closeButton={false}
-        hideProgressBar
-      />
-    </>
+    </SnackbarProvider>
   );
 };
