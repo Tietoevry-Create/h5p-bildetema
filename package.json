@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "react-responsive": "^10.0.0",
-    "react-toastify": "^10.0.5"
+    "notistack": "^3.0.1",
+    "react-responsive": "^10.0.0"
   },
   "devDependencies": {
     "@types/cli-interact": "^0.1.2",

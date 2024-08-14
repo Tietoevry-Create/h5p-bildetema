@@ -1,37 +1,38 @@
-import { Button } from "common/components/Button";
-import { toast, ToastContentProps } from "react-toastify";
+import { SnackbarContent, CustomContentProps, useSnackbar } from "notistack";
+import React from "react";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
-
+import { Button } from "common/components/Button";
 import styles from "./CustomSuccessToastMessage.module.scss";
 
-type ToastMessageProps = {
-  t: ToastContentProps<unknown>;
+interface CustomSuccessToastMessageProps extends CustomContentProps {
   href: string;
-  children: React.ReactNode;
-};
+}
 
-const CustomSuccessToastMessage = ({
-  t,
-  href,
-  children,
-}: ToastMessageProps): JSX.Element => {
+const CustomSuccessToastMessage = React.forwardRef<
+  HTMLDivElement,
+  CustomSuccessToastMessageProps
+>((props, ref) => {
+  const {
+    // You have access to notistack props and options 👇🏼
+    id,
+    message,
+    // as well as your own custom props 👇🏼
+    href,
+  } = props;
   const { show } = useL10ns("show");
+  const { closeSnackbar } = useSnackbar();
 
   return (
-    <div className={styles.container}>
-      <span>{children}</span>
+    <SnackbarContent ref={ref} className={styles.container}>
+      <span>{message}</span>
       <div className={styles.group}>
         <a href={`/#${href}`}>{show}</a>
-        <Button
-          variant="icon"
-          type="button"
-          onClick={() => toast.dismiss(t.toastProps.toastId)}
-        >
+        <Button variant="icon" type="button" onClick={() => closeSnackbar(id)}>
           &#x2715;
         </Button>
       </div>
-    </div>
+    </SnackbarContent>
   );
-};
+});
 
 export default CustomSuccessToastMessage;
