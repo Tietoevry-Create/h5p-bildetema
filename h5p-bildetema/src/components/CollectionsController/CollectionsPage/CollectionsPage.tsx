@@ -66,7 +66,7 @@ const CollectionsPage = (): React.JSX.Element => {
           </div>
         </div>
       </Dialog>
-      <div className={styles.description}>{collectionsPageDescription}</div>
+      <p className={styles.description}>{collectionsPageDescription}</p>
       <Button
         className={styles.addButton}
         variant="default"

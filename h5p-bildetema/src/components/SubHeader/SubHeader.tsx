@@ -12,6 +12,7 @@ import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import ShareButton from "../ShareButton/ShareButton";
 import SaveSharedCollectionButton from "../SaveSharedCollectionButton/SaveSharedCollectionButton";
+import useCurrentCollection from "../../hooks/useCurrentCollection";
 
 export type SubHeaderProps = {
   topicsSize?: TopicGridSizes;
@@ -52,6 +53,9 @@ export const SubHeader: FC<SubHeaderProps> = ({
     handleShowWrittenWordsChange,
     syncStateWithParams,
   } = useSearchParamContext();
+
+  const { isACollection, isCollectionOwner } = useCurrentCollection();
+  const hideBreadCrumbs = isACollection && !isCollectionOwner;
 
   const contentId = useContentId();
 
@@ -110,16 +114,16 @@ export const SubHeader: FC<SubHeaderProps> = ({
         isWordView ? styles.subHeaderWords : styles.subHeaderThemes
       } ${rtl ? styles.rtl : ""}`}
     >
-      {!includeSaveButton ? (
+      {hideBreadCrumbs ? (
+        <h1 className={styles.currentPage}>
+          {breadCrumbs ? breadCrumbs[breadCrumbs.length - 1].label : ""}
+        </h1>
+      ) : (
         <Breadcrumbs
           currentLanguageCode={currentLanguageCode as LanguageCode}
           currentTopics={currentTopics}
           breadCrumbs={breadCrumbs}
         />
-      ) : (
-        <h1 className={styles.currentPage}>
-          {breadCrumbs ? breadCrumbs[breadCrumbs.length - 1].label : ""}
-        </h1>
       )}
       {renderRightMenu()}
     </div>
