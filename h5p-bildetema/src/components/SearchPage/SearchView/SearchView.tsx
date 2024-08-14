@@ -49,8 +49,6 @@ const SearchView = ({
         ]}
       />
       <div className={styles.wrapper}>
-        {/* // TODO: translate */}
-        <h1 className={styles.title}>Søk i Bildetema</h1>
         <div className={styles.searchInputWrapper}>
           <SearchInput
             handleSearch={handleSearch}
