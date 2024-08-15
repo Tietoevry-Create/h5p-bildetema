@@ -169,6 +169,16 @@ const SearchPage = (): JSX.Element => {
     });
   };
 
+  React.useEffect(() => {
+    if (langCode !== searchLanguage.code) {
+      const updatedLanguage = languages.find(lang => lang.code === langCode);
+      if (updatedLanguage) {
+        setSearchLanguage(updatedLanguage);
+        handleSearch(currSearch);
+      }
+    }
+  }, [langCode]);
+
   // TODO: translate
   const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`;
 

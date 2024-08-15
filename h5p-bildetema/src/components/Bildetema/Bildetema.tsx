@@ -195,7 +195,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     );
   }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
 
-  const hidden = STATIC_PATHS.includes(pathname);
+  const hidden = pathname.endsWith(STATIC_PATH.COLLECTIONS);
 
   return (
     <SnackbarProvider
