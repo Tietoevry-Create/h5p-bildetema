@@ -337,6 +337,30 @@
           "default": "Vis"
         },
         {
+          "label": "Search input placeholder",
+          "default": "Søk blant {{amount}} ord"
+        },
+        {
+          "label": "Search label",
+          "default": "Søk på"
+        },
+        {
+          "label": "Topic filter title",
+          "default": "Filtrer etter tema"
+        },
+        {
+          "label": "Topic filter reset",
+          "default": "Nullstill filter"
+        },
+        {
+          "label": "View language label",
+          "default": "Vis på flere språk"
+        },
+        {
+          "label": "View language label short",
+          "default": "Vis på"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

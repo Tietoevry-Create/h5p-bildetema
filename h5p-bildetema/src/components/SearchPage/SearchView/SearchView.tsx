@@ -1,11 +1,12 @@
 import { Language } from "common/types/types";
 import { STATIC_PATH } from "common/constants/paths";
-import styles from "./SearchView.module.scss";
 import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
+import { useL10ns } from "../../../hooks/useL10n";
+import styles from "./SearchView.module.scss";
 
 export type SearchViewProps = {
   handleFilterChange: (topicId: string, add: boolean) => void;
@@ -38,14 +39,27 @@ const SearchView = ({
   const langCode = currentLang?.code;
   const isRtl = !!(currentLang?.rtl && search !== "");
 
+  const {
+    breadcrumbsHome,
+    search: breadcrumbsSearch,
+    searchLabel,
+    viewLanguageLabel,
+    viewLanguageLabelShort,
+  } = useL10ns(
+    "breadcrumbsHome",
+    "search",
+    "searchLabel",
+    "viewLanguageLabel",
+    "viewLanguageLabelShort",
+  );
+
   return (
     <div className={styles.searchField}>
       <Breadcrumbs
         currentLanguageCode={searchLanguage.code}
-        // TODO: translate search label
         breadCrumbs={[
-          { label: "Home", path: `/${langCode}` },
-          { label: "Søk", path: `${STATIC_PATH.SEARCH}` },
+          { label: breadcrumbsHome, path: `/${langCode}` },
+          { label: breadcrumbsSearch, path: `${STATIC_PATH.SEARCH}` },
         ]}
       />
       <div className={styles.wrapper}>
@@ -54,16 +68,14 @@ const SearchView = ({
             handleSearch={handleSearch}
             search={search}
             placeholder={searchInputPlaceholder}
-            rlt={isRtl}
-            // rlt
+            rtl={isRtl}
           />
           <Select
             options={languages}
             handleChange={handleSearchLanguageChange}
             selectedOption={searchLanguage}
             variant="secondary"
-            // TODO: translate
-            labelPrefix="Søk på"
+            labelPrefix={searchLabel}
           />
         </div>
         <div className={styles.buttonWrapper}>
@@ -72,15 +84,13 @@ const SearchView = ({
             filter={filter}
             resetFilter={resetFilter}
           />
-
           <Select
             options={languages}
             handleChange={handleViewLanguageChange}
             selectedOption={viewLanguage}
             variant="secondary"
-            // TODO: translate
             labelPrefix={`${
-              viewLanguage == null ? "Vis på flere språk" : "Vis på"
+              viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
             }`}
             withSelectedIcon
           />

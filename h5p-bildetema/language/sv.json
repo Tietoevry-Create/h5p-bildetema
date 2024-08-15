@@ -337,6 +337,30 @@
           "default": "Visa"
         },
         {
+          "label": "Search input placeholder",
+          "default": "Sök bland {{amount}} ord"
+        },
+        {
+          "label": "Search label",
+          "default": "Sök på"
+        },
+        {
+          "label": "Topic filter title",
+          "default": "Filtrera efter ämne"
+        },
+        {
+          "label": "Topic filter reset",
+          "default": "Återställ filter"
+        },
+        {
+          "label": "View language label",
+          "default": "Visa på flera språk"
+        },
+        {
+          "label": "View language label short",
+          "default": "Visa på"
+        },
+        {
           "label": "Arabiska",
           "default": "Arabiska"
         },

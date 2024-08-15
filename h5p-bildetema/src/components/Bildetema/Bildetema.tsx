@@ -4,7 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
-import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
+import { STATIC_PATH } from "common/constants/paths";
 import { SnackbarProvider } from "notistack";
 import { useMediaQuery } from "react-responsive";
 import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
