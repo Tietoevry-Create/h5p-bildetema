@@ -15,6 +15,8 @@ import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
 import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
+import { enqueueSnackbar } from "notistack";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
@@ -43,7 +45,8 @@ export const MultiLanguageWord = ({
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
-  const { isCollectionOwner, collectionId } = useCurrentCollection();
+  const { isCollectionOwner, collectionId, collectionName } =
+    useCurrentCollection();
   const { deleteWordFromCollection } = useMyCollections();
   const [searchParams, setSearchParams] = useSearchParams();
   const langCode = useCurrentLanguageCode();
@@ -59,6 +62,7 @@ export const MultiLanguageWord = ({
     deleteWord,
     deleteWordConfirmation,
     moreOptionsAriaLabel,
+    wordRemovedFromCollection,
   } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
@@ -66,6 +70,7 @@ export const MultiLanguageWord = ({
     "deleteWord",
     "deleteWordConfirmation",
     "moreOptionsAriaLabel",
+    "wordRemovedFromCollection",
   );
 
   const removeWordFromUrlParams = (wordId: string): void => {
@@ -82,9 +87,25 @@ export const MultiLanguageWord = ({
     setSearchParams(searchParams);
   };
 
+  const getMessage = (): React.ReactNode => {
+    const replacements = {
+      collection: <b key={1}>{collectionName}</b>,
+    };
+
+    const message = replacePlaceholders(
+      wordRemovedFromCollection,
+      replacements,
+    );
+
+    return <span>{message}</span>;
+  };
+
   const handleDeleteWord = (): void => {
     deleteWordFromCollection(collectionId ?? "", searchResult.id);
     removeWordFromUrlParams(searchResult.id);
+    enqueueSnackbar(getMessage(), {
+      variant: "success",
+    });
   };
 
   const renderImages = (): JSX.Element => {

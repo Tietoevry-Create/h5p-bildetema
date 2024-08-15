@@ -18,7 +18,7 @@ declare module "notistack" {
   interface VariantOverrides {
     // "extra" props it takes in options of `enqueueSnackbar`
     success: {
-      href: string;
+      href?: string;
     };
   }
 }
@@ -57,7 +57,7 @@ const ChooseCollectionsDialog = () => {
   const description = showCreate ? createACollection : chooseACollection;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getURL = (details: any): string => {
+  const getURL = (details: any = null): string => {
     if (!details) {
       return `${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`;
     }
@@ -95,10 +95,10 @@ const ChooseCollectionsDialog = () => {
 
   const confirm = () => {
     const details = getCollectionChangeDetails();
-    if (!details) {
+    if (!details || showCreate) {
       enqueueSnackbar(changesSaved, {
         variant: "success",
-        href: getURL(details),
+        href: getURL(),
       });
     } else {
       const message = getMessage(details);
