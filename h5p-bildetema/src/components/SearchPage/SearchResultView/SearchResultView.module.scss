@@ -43,7 +43,9 @@
   }
 }
 
-.searchLabel {
+.searchResultLabel {
+  margin: 0;
+
   & b {
     font-weight: bold;
   }

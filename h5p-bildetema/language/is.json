@@ -361,6 +361,14 @@
           "default": "Sýna áfram"
         },
         {
+          "label": "Search result label",
+          "default": "Sýnir {{amount}} orð."
+        },
+        {
+          "label": "Search result hits label",
+          "default": "Leitin þín á {{searchTerm}} skilaði {{amount}} heimsóknum."
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },

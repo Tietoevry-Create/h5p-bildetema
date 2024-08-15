@@ -361,6 +361,14 @@
           "default": "Visa på"
         },
         {
+          "label": "Search result label",
+          "default": "Visar {{amount}} ord."
+        },
+        {
+          "label": "Search result hits label",
+          "default": "Din sökning på {{searchTerm}} gav {{amount}} träffar."
+        },
+        {
           "label": "Arabiska",
           "default": "Arabiska"
         },

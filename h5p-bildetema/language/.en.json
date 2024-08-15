@@ -361,6 +361,14 @@
           "default": "Show on"
         },
         {
+          "label": "Search result label",
+          "default": "Showing {{amount}} words."
+        },
+        {
+          "label": "Search result hits label",
+          "default": "Your search for {{searchTerm}} gave {{amount}} hits."
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

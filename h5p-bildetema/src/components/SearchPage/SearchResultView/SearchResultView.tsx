@@ -14,7 +14,9 @@ import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
+import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchResultView.module.scss";
 
 type ListProps = {
@@ -56,6 +58,12 @@ const SearchResultView = ({
   search,
   searchResultAmount,
 }: SearchResultViewProps): JSX.Element => {
+  const { handleOpenDialog } = useDialogContext();
+  const { searchResultLabel, searchResultHitsLabel } = useL10ns(
+    "searchResultLabel",
+    "searchResultHitsLabel",
+  );
+
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
@@ -67,23 +75,33 @@ const SearchResultView = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const { handleOpenDialog } = useDialogContext();
-
-  const searchLabel =
-    search.trim() === "" ? (
-      <>
-        Viser <b>{searchResultAmount}</b> ord.
-      </>
-    ) : (
-      <>
-        Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
-      </>
+  const getSearchResultLabel = (): ReactNode => {
+    const searchResultReplacements = {
+      amount: <b>{searchResultAmount.toString()}</b>,
+    };
+    const searchResultLabelString = replacePlaceholders(
+      searchResultLabel,
+      searchResultReplacements,
     );
+
+    const searchResultHitsReplacements = {
+      searchTerm: <b>{search}</b>,
+      amount: <b>{searchResultAmount.toString()}</b>,
+    };
+    const searchResultHitsLabelString = replacePlaceholders(
+      searchResultHitsLabel,
+      searchResultHitsReplacements,
+    );
+
+    return search.trim() === ""
+      ? searchResultLabelString
+      : searchResultHitsLabelString;
+  };
 
   return (
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
-        <div className={styles.searchLabel}>{searchLabel}</div>
+        <p className={styles.searchResultLabel}>{getSearchResultLabel()}</p>
         {/* TODO REMOVE ? */}
         {/* <div className={styles.orderWrap}>
           <span>Sorter etter</span>

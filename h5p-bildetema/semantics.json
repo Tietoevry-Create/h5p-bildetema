@@ -541,6 +541,18 @@
         "type": "text"
       },
       {
+        "label": "Search result label",
+        "name": "searchResultLabel",
+        "default": "Showing {{amount}} words.",
+        "type": "text"
+      },
+      {
+        "label": "Search result hits label",
+        "name": "searchResultHitsLabel",
+        "default": "Your search for {{searchTerm}} gave {{amount}} hits.",
+        "type": "text"
+      },
+      {
         "label": "Arabic",
         "name": "lang_ara",
         "default": "Arabic",
