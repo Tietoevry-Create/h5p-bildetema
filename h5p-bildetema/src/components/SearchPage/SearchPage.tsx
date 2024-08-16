@@ -193,17 +193,11 @@ const SearchPage = (): JSX.Element => {
         <div className={`${styles.searchViewWrapper} ${styles.mainSize}`}>
           <div className={styles.searchView}>
             <SearchView
-              filter={filter}
               handleSearch={handleSearch}
-              handleFilterChange={handleFilterChange}
               search={currSearch}
               languages={languages}
               searchLanguage={searchLanguage}
-              resetFilter={resetFilter}
-              // Todo handle multiple languages
-              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
               handleSearchLanguageChange={handleSearchLanguageChange}
-              handleViewLanguageChange={handleViewLanguageChange}
               searchInputPlaceholder={searchInputPlaceholder}
             />
           </div>
@@ -216,6 +210,13 @@ const SearchPage = (): JSX.Element => {
               searchResults={deferredSearchResult}
               search={currSearch}
               searchResultAmount={state.filteredSearchResults.length}
+              filter={filter}
+              languages={languages}
+              // Todo handle multiple languages
+              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
+              resetFilter={resetFilter}
+              handleFilterChange={handleFilterChange}
+              handleViewLanguageChange={handleViewLanguageChange}
               // TODO: Remove if not needed
               // sortOptions={searchOrderOptions}
               // handleOrderChange={handleOrderChange}

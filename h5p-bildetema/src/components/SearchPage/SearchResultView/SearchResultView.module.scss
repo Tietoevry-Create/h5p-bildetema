@@ -50,3 +50,15 @@
     font-weight: bold;
   }
 }
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 100%;
+
+  & > * {
+    max-width: 100%;
+  }
+}

@@ -4,36 +4,25 @@ import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
-import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchView.module.scss";
 
 export type SearchViewProps = {
-  handleFilterChange: (topicId: string, add: boolean) => void;
   handleSearch: (value: string) => void;
   search: string;
   languages: OptionType<Language>[];
   handleSearchLanguageChange: (lang: OptionType<Language>) => void;
   searchLanguage: OptionType<Language>;
-  viewLanguage: OptionType<Language> | null;
-  filter: string[];
   searchInputPlaceholder: string;
-  resetFilter: () => void;
-  handleViewLanguageChange: (lang: OptionType<Language>) => void;
 };
 
 const SearchView = ({
-  filter,
-  handleFilterChange,
   handleSearch,
   search,
   languages,
   handleSearchLanguageChange,
   searchLanguage,
-  viewLanguage,
   searchInputPlaceholder,
-  resetFilter,
-  handleViewLanguageChange,
 }: SearchViewProps): JSX.Element => {
   const currentLang = useCurrentLanguage();
   const langCode = currentLang?.code;
@@ -43,15 +32,7 @@ const SearchView = ({
     breadcrumbsHome,
     search: breadcrumbsSearch,
     searchLabel,
-    viewLanguageLabel,
-    viewLanguageLabelShort,
-  } = useL10ns(
-    "breadcrumbsHome",
-    "search",
-    "searchLabel",
-    "viewLanguageLabel",
-    "viewLanguageLabelShort",
-  );
+  } = useL10ns("breadcrumbsHome", "search", "searchLabel");
 
   return (
     <div className={styles.searchField}>
@@ -76,23 +57,6 @@ const SearchView = ({
             selectedOption={searchLanguage}
             variant="secondary"
             labelPrefix={searchLabel}
-          />
-        </div>
-        <div className={styles.buttonWrapper}>
-          <SearchFilterDialog
-            handleFilterChange={handleFilterChange}
-            filter={filter}
-            resetFilter={resetFilter}
-          />
-          <Select
-            options={languages}
-            handleChange={handleViewLanguageChange}
-            selectedOption={viewLanguage}
-            variant="secondary"
-            labelPrefix={`${
-              viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
-            }`}
-            withSelectedIcon
           />
         </div>
       </div>

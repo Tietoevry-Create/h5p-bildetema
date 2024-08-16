@@ -26,19 +26,6 @@
   }
 }
 
-.buttonWrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  max-width: 100%;
-
-  & > * {
-    max-width: 100%;
-  }
-}
-
 .title {
   font-size: $font-size-24;
   font-weight: bold;
