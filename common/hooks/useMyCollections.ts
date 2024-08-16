@@ -101,7 +101,16 @@ export const useMyCollections = () => {
         collection => collection.id === id,
       );
       if (isExistingCollection) return prev;
-      return [...prev, { id: newId, title, wordsIds: wordIds || [] }];
+
+      const updatedCollections = prev.map(collection => ({
+        ...collection,
+        sortingNumber: collection.sortingNumber + 1,
+      }));
+
+      return [
+        ...updatedCollections,
+        { id: newId, title, wordsIds: wordIds || [], sortingNumber: 0 },
+      ];
     });
     return newId;
   };
