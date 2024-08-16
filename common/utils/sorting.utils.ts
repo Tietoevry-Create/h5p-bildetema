@@ -2,14 +2,13 @@
 import { Option } from "common/types/types";
 
 /**
- * Sorts options based on selection history and selected options.
+ * Sorts options based on their selection status.
  *
  * @param options The list of options to sort.
  * @param selectedIds The list of currently selected option IDs.
- * @param selectionHistory The history of selected option IDs.
- * @returns A sorted list of options.
+ * @returns A sorted list of options, with selected options appearing first.
  */
-export const sortOptions = (
+export const sortBySelectionStatus = (
   options: Option[],
   selectedIds: string[],
 ): Option[] => {
