@@ -5,7 +5,7 @@ import { Button } from "common/components/Button";
 import styles from "./CustomSuccessToastMessage.module.scss";
 
 interface CustomSuccessToastMessageProps extends CustomContentProps {
-  href: string;
+  href?: string;
 }
 
 const CustomSuccessToastMessage = React.forwardRef<
@@ -24,9 +24,9 @@ const CustomSuccessToastMessage = React.forwardRef<
 
   return (
     <SnackbarContent ref={ref} className={styles.container}>
-      <span>{message}</span>
+      {message}
       <div className={styles.group}>
-        <a href={`/#${href}`}>{show}</a>
+        {href && <a href={`/#${href}`}>{show}</a>}
         <Button variant="icon" type="button" onClick={() => closeSnackbar(id)}>
           &#x2715;
         </Button>
