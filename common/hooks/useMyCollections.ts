@@ -51,6 +51,25 @@ export const useMyCollections = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const updateSortOrder = (sortOrder: string[]): void => {
+    const sortOrderMap = new Map();
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < sortOrder.length; i++) {
+      const collectionId = sortOrder[i];
+      sortOrderMap.set(collectionId, i);
+    }
+
+    setMyCollections(prev => {
+      return prev.map(collection => {
+        return {
+          ...collection,
+          sortingNumber: sortOrderMap.get(collection.id),
+        };
+      });
+    });
+  };
+
   const deleteCollection = (id: string): void => {
     const newCollections = myCollections.filter(
       collection => collection.id !== id,
@@ -75,7 +94,7 @@ export const useMyCollections = () => {
     );
   };
 
-  const addCollection = ({ title, wordIds, id }: AddCollection): void => {
+  const addCollection = ({ title, wordIds, id }: AddCollection): string => {
     const newId = id || uuid();
     setMyCollections(prev => {
       const isExistingCollection = prev.some(
@@ -84,6 +103,7 @@ export const useMyCollections = () => {
       if (isExistingCollection) return prev;
       return [...prev, { id: newId, title, wordsIds: wordIds || [] }];
     });
+    return newId;
   };
 
   const addItemToCollection = ({ id, wordId }: ModifyCollection): void => {
@@ -172,5 +192,6 @@ export const useMyCollections = () => {
     addItemToCollection,
     removeItemFromCollection,
     changeCollectionTitle,
+    updateSortOrder,
   };
 };

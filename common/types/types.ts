@@ -161,6 +161,7 @@ export type Collection = {
   title: string;
   id: string;
   wordsIds: string[];
+  sortingNumber: number;
 };
 
 export type CollectionOption = {
