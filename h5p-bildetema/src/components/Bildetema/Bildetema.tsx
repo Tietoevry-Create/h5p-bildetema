@@ -42,8 +42,7 @@ export const Bildetema: FC<BildetemaProps> = ({
   } = useNewDBContext();
   const { pathname } = useLocation();
   const env = useEnvironment();
-  const shouldIncludeSearch =
-    env !== environment.prod && env !== environment.stage;
+  const shouldIncludeSearch = env !== environment.prod;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
