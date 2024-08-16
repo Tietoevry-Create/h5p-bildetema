@@ -70,6 +70,13 @@ const SearchPage = (): JSX.Element => {
     viewLanguage: viewLanguages,
   });
 
+  const searchInputPlaceholder = replacePlaceholders(
+    useL10n("searchInputPlaceholder"),
+    {
+      amount: state.filteredSearchResults.length.toString(),
+    },
+  ).join("");
+
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
   // TODO: Remove if not needed
@@ -179,13 +186,6 @@ const SearchPage = (): JSX.Element => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [langCode]);
-
-  const searchInputPlaceholder = replacePlaceholders(
-    useL10n("searchInputPlaceholder"),
-    {
-      amount: state.filteredSearchResults.length.toString(),
-    },
-  ).join("");
 
   return (
     <div className={styles.searchPage}>
