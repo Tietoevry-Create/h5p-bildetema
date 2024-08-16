@@ -24,7 +24,7 @@
     width: $main-content-width;
     flex-wrap: wrap;
 
-    @include breakpoint-min($x-small) {
+    @include breakpoint-min($small) {
       align-items: center;
       flex-wrap: nowrap;
     }
@@ -32,13 +32,13 @@
 }
 
 .langFavoritesVisible {
-  @include breakpoint-min($x-small) {
+  @include breakpoint-min($small) {
     padding: $spacing--32 0 $spacing--16;
   }
 }
 
 .langFavoritesHidden {
-  @include breakpoint-min($x-small) {
+  @include breakpoint-min($small) {
     padding: $spacing--32 0;
   }
 }
@@ -101,7 +101,7 @@
   text-decoration: none; // Overrides WordPress's default styling
   width: 100%;
 
-  @include breakpoint-min($x-small) {
+  @include breakpoint-min($small) {
     order: 0;
     width: auto;
   }
