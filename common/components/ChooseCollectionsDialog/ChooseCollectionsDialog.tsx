@@ -108,6 +108,7 @@ const ChooseCollectionsDialog = () => {
       });
     }
     handleConfirm(textInput);
+    setTextInput("");
   };
 
   return (
