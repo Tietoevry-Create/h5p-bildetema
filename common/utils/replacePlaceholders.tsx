@@ -4,7 +4,7 @@ import React from "react";
 
 export const replacePlaceholders = (
   text: string,
-  replacements: { [key: string]: JSX.Element },
+  replacements: { [key: string]: JSX.Element | string },
 ) => {
   return text.split(/(\{\{.+?\}\})/g).map(part => {
     if (!part.match(/(\{\{.+?\}\})/g)) return part;

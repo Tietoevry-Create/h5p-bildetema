@@ -44,8 +44,7 @@ const CollectionPage = ({
     "thisCollectionIsEmpty",
   );
 
-  const shouldIncludeSearch =
-    env !== environment.prod && env !== environment.stage;
+  const shouldIncludeSearch = env !== environment.prod;
 
   const replacements = {
     search: (

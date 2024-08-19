@@ -505,6 +505,54 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Search input placeholder",
+				name: "searchInputPlaceholder",
+				"default": "Search among {{amount}} words",
+				type: "text"
+			},
+			{
+				label: "Search label",
+				name: "searchLabel",
+				"default": "Search on",
+				type: "text"
+			},
+			{
+				label: "Topic filter title",
+				name: "topicFilterTitle",
+				"default": "Filter by topic",
+				type: "text"
+			},
+			{
+				label: "Topic filter reset",
+				name: "topicFilterReset",
+				"default": "Reset filter",
+				type: "text"
+			},
+			{
+				label: "View language label",
+				name: "viewLanguageLabel",
+				"default": "Show in multiple languages",
+				type: "text"
+			},
+			{
+				label: "View language label short",
+				name: "viewLanguageLabelShort",
+				"default": "Show on",
+				type: "text"
+			},
+			{
+				label: "Search result label",
+				name: "searchResultLabel",
+				"default": "Showing {{amount}} words.",
+				type: "text"
+			},
+			{
+				label: "Search result hits label",
+				name: "searchResultHitsLabel",
+				"default": "Your search for {{searchTerm}} gave {{amount}} hits.",
+				type: "text"
+			},
+			{
 				label: "Arabic",
 				name: "lang_ara",
 				"default": "Arabic",

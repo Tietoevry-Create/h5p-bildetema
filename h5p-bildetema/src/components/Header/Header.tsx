@@ -59,8 +59,7 @@ export const Header: FC<HeaderProps> = ({
     ...languageKeys,
   );
 
-  const shouldIncludeSearch =
-    env !== environment.prod && env !== environment.stage;
+  const shouldIncludeSearch = env !== environment.prod;
 
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);

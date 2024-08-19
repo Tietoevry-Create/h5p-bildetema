@@ -10,11 +10,15 @@ import React, {
   useState,
 } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
-import { SearchResult } from "common/types/types";
+import { Language, SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
+import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
+import Select, { OptionType } from "../../Select/Select";
+import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchResultView.module.scss";
 
 type ListProps = {
@@ -46,6 +50,12 @@ export type SearchResultViewProps = {
   searchResults: SearchResult[];
   search: string;
   searchResultAmount: number;
+  filter: string[];
+  languages: OptionType<Language>[];
+  viewLanguage: OptionType<Language> | null;
+  resetFilter: () => void;
+  handleFilterChange: (topicId: string, add: boolean) => void;
+  handleViewLanguageChange: (lang: OptionType<Language>) => void;
   // handleOrderChange: (option: SearchOrderOption) => void;
   // sortOptions: SearchOrderOption[];
   // resultSortType: SearchOrderOption;
@@ -55,7 +65,26 @@ const SearchResultView = ({
   searchResults,
   search,
   searchResultAmount,
+  filter,
+  languages,
+  viewLanguage,
+  resetFilter,
+  handleFilterChange,
+  handleViewLanguageChange,
 }: SearchResultViewProps): JSX.Element => {
+  const { handleOpenDialog } = useDialogContext();
+  const {
+    searchResultLabel,
+    searchResultHitsLabel,
+    viewLanguageLabel,
+    viewLanguageLabelShort,
+  } = useL10ns(
+    "searchResultLabel",
+    "searchResultHitsLabel",
+    "viewLanguageLabel",
+    "viewLanguageLabelShort",
+  );
+
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
@@ -67,23 +96,50 @@ const SearchResultView = ({
     return { contextAudioRef, setContextAudioRef };
   }, [contextAudioRef, setAudioRef]);
 
-  const { handleOpenDialog } = useDialogContext();
-
-  const searchLabel =
-    search.trim() === "" ? (
-      <>
-        Viser <b>{searchResultAmount}</b> ord.
-      </>
-    ) : (
-      <>
-        Ditt søk på <b>{search}</b> ga <b>{searchResultAmount}</b> treff.
-      </>
+  const getSearchResultLabel = (): ReactNode => {
+    const searchResultReplacements = {
+      amount: <b>{searchResultAmount.toString()}</b>,
+    };
+    const searchResultLabelString = replacePlaceholders(
+      searchResultLabel,
+      searchResultReplacements,
     );
+
+    const searchResultHitsReplacements = {
+      searchTerm: <b>{search}</b>,
+      amount: <b>{searchResultAmount.toString()}</b>,
+    };
+    const searchResultHitsLabelString = replacePlaceholders(
+      searchResultHitsLabel,
+      searchResultHitsReplacements,
+    );
+
+    return search.trim() === ""
+      ? searchResultLabelString
+      : searchResultHitsLabelString;
+  };
 
   return (
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
-        <div className={styles.searchLabel}>{searchLabel}</div>
+        <p className={styles.searchResultLabel}>{getSearchResultLabel()}</p>
+        <div className={styles.buttonWrapper}>
+          <SearchFilterDialog
+            handleFilterChange={handleFilterChange}
+            filter={filter}
+            resetFilter={resetFilter}
+          />
+          <Select
+            options={languages}
+            handleChange={handleViewLanguageChange}
+            selectedOption={viewLanguage}
+            variant="secondary"
+            labelPrefix={`${
+              viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
+            }`}
+            withSelectedIcon
+          />
+        </div>
         {/* TODO REMOVE ? */}
         {/* <div className={styles.orderWrap}>
           <span>Sorter etter</span>

@@ -14,8 +14,6 @@ const HeaderLink = ({ href, label, icon }: HeaderLinkProps): JSX.Element => {
       <span className={styles.icon} aria-hidden="true">
         {icon}
       </span>
-
-      {/* TODO translate */}
       <span className={styles.headerLinkLabel}>{label}</span>
     </Link>
   );

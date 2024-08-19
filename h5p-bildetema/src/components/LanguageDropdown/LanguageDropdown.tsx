@@ -38,7 +38,7 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
   firstTime,
   currentTopics,
 }) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(langSelectorIsShown);
 
   const handleOnClickOutside = (): void => {
     handleSelectorVisibility(false);
@@ -90,14 +90,12 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
         <span className={styles.languageLabel}>{selectLanguageLabel}</span>
         <span className={styles.arrowIcon} aria-hidden="true">
           <LanguageMenuArrowIcon
-            transform={
-              langSelectorIsShown ? "scale(0.9) rotate(180)" : "scale(0.9)"
-            }
+            transform={isActive ? "scale(0.9) rotate(180)" : "scale(0.9)"}
             transformOrigin="50% 50%"
           />
         </span>
       </button>
-      {langSelectorIsShown && (
+      {isActive && (
         <LanguageSelector
           search={search}
           currentLanguageCode={currentLanguageCode}

@@ -337,6 +337,38 @@
           "default": "Show"
         },
         {
+          "label": "Search input placeholder",
+          "default": "Search among {{amount}} words"
+        },
+        {
+          "label": "Search label",
+          "default": "Search on"
+        },
+        {
+          "label": "Topic filter title",
+          "default": "Filter by topic"
+        },
+        {
+          "label": "Topic filter reset",
+          "default": "Reset filter"
+        },
+        {
+          "label": "View language label",
+          "default": "Show in multiple languages"
+        },
+        {
+          "label": "View language label short",
+          "default": "Show on"
+        },
+        {
+          "label": "Search result label",
+          "default": "Showing {{amount}} words."
+        },
+        {
+          "label": "Search result hits label",
+          "default": "Your search for {{searchTerm}} gave {{amount}} hits."
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

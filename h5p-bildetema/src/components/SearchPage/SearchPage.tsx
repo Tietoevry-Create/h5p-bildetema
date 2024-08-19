@@ -4,6 +4,7 @@ import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
 import { isLanguageCode } from "common/types/LanguageCode";
 import { DialogProvider } from "common/context/DialogContext";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
@@ -16,6 +17,7 @@ import {
   useSearchResults,
 } from "./useSearchResults";
 import { useLanguagesWithTranslatedLabels } from "../../hooks/useLanguagesWithTranslatedLabels";
+import { useL10n } from "../../hooks/useL10n";
 
 // TODO TRANSLATE LABELS
 const searchOrderOptions: SearchOrderOption[] = [
@@ -33,18 +35,16 @@ const SearchParamKeys = {
 
 const SearchPage = (): JSX.Element => {
   const languages = useLanguagesWithTranslatedLabels();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const langCode = useCurrentLanguageCode();
 
-  const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
     languages.find(lang => lang.code === langCode) ||
       // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
   );
+
+  const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
   const [viewLanguages, setViewLanguages] = React.useState<Language[]>(() => {
@@ -58,8 +58,8 @@ const SearchPage = (): JSX.Element => {
     }
     return viewLangs;
   });
-  const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
 
+  const currSearch = searchParams.get(SearchParamKeys.SEARCH) ?? "";
   const filter = searchParams.get(SearchParamKeys.FILTER)?.split(",") ?? [];
 
   const { state, dispatch } = useSearchResults({
@@ -69,6 +69,13 @@ const SearchPage = (): JSX.Element => {
     order: searchOrderOptions[0],
     viewLanguage: viewLanguages,
   });
+
+  const searchInputPlaceholder = replacePlaceholders(
+    useL10n("searchInputPlaceholder"),
+    {
+      amount: state.filteredSearchResults.length.toString(),
+    },
+  ).join("");
 
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
@@ -169,8 +176,16 @@ const SearchPage = (): JSX.Element => {
     });
   };
 
-  // TODO: translate
-  const searchInputPlaceholder = `Søk blant ${state.filteredSearchResults.length} ord`;
+  React.useEffect(() => {
+    if (langCode !== searchLanguage.code) {
+      const updatedLanguage = languages.find(lang => lang.code === langCode);
+      if (updatedLanguage) {
+        setSearchLanguage(updatedLanguage);
+        handleSearch(currSearch);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [langCode]);
 
   return (
     <div className={styles.searchPage}>
@@ -178,17 +193,11 @@ const SearchPage = (): JSX.Element => {
         <div className={`${styles.searchViewWrapper} ${styles.mainSize}`}>
           <div className={styles.searchView}>
             <SearchView
-              filter={filter}
               handleSearch={handleSearch}
-              handleFilterChange={handleFilterChange}
               search={currSearch}
               languages={languages}
               searchLanguage={searchLanguage}
-              resetFilter={resetFilter}
-              // Todo handle multiple languages
-              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
               handleSearchLanguageChange={handleSearchLanguageChange}
-              handleViewLanguageChange={handleViewLanguageChange}
               searchInputPlaceholder={searchInputPlaceholder}
             />
           </div>
@@ -201,6 +210,13 @@ const SearchPage = (): JSX.Element => {
               searchResults={deferredSearchResult}
               search={currSearch}
               searchResultAmount={state.filteredSearchResults.length}
+              filter={filter}
+              languages={languages}
+              // Todo handle multiple languages
+              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
+              resetFilter={resetFilter}
+              handleFilterChange={handleFilterChange}
+              handleViewLanguageChange={handleViewLanguageChange}
               // TODO: Remove if not needed
               // sortOptions={searchOrderOptions}
               // handleOrderChange={handleOrderChange}

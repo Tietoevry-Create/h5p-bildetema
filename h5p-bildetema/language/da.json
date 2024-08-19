@@ -337,6 +337,38 @@
           "default": "Vis"
         },
         {
+          "label": "Search input placeholder",
+          "default": "Søg blandt {{amount}} ord"
+        },
+        {
+          "label": "Search label",
+          "default": "Søg på"
+        },
+        {
+          "label": "Topic filter title",
+          "default": "Filtrer efter emne"
+        },
+        {
+          "label": "Topic filter reset",
+          "default": "Nulstil filter"
+        },
+        {
+          "label": "View language label",
+          "default": "Vis på flere sprog"
+        },
+        {
+          "label": "View language label short",
+          "default": "Vis på"
+        },
+        {
+          "label": "Search result label",
+          "default": "Viser {{amount}} ord."
+        },
+        {
+          "label": "Search result hits label",
+          "default": "Din søgning på {{searchTerm}} gav {{amount}} hits."
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

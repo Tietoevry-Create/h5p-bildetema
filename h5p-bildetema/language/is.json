@@ -337,6 +337,38 @@
           "default": "Sýna"
         },
         {
+          "label": "Search input placeholder",
+          "default": "Leitaðu meðal {{amount}} orða"
+        },
+        {
+          "label": "Search label",
+          "default": "Leitaðu að"
+        },
+        {
+          "label": "Topic filter title",
+          "default": "Sía eftir efni"
+        },
+        {
+          "label": "Topic filter reset",
+          "default": "Endurstilla síu"
+        },
+        {
+          "label": "View language label",
+          "default": "Sýna á mörgum tungumálum"
+        },
+        {
+          "label": "View language label short",
+          "default": "Sýna áfram"
+        },
+        {
+          "label": "Search result label",
+          "default": "Sýnir {{amount}} orð."
+        },
+        {
+          "label": "Search result hits label",
+          "default": "Leitin þín á {{searchTerm}} skilaði {{amount}} heimsóknum."
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },

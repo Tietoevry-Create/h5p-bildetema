@@ -42,7 +42,10 @@ export const getPath = ({
   search: string;
   pathname: string;
 }): string => {
-  if (pathname.includes(STATIC_PATH.COLLECTIONS)) {
+  if (
+    pathname.includes(STATIC_PATH.COLLECTIONS) ||
+    pathname.includes(STATIC_PATH.SEARCH)
+  ) {
     // Regex replaces lang=currentLangCode with lang=langCode
     const query = search.replace(/lang=.*?(?=&|$)/g, `lang=${language.code}`);
     return pathname + query;

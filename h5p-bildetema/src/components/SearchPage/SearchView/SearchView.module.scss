@@ -2,7 +2,7 @@
 
 .searchField {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-direction: column;
 }
 
@@ -23,19 +23,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-  }
-}
-
-.buttonWrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  max-width: 100%;
-
-  & > * {
-    max-width: 100%;
   }
 }
 

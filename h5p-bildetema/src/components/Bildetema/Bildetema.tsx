@@ -4,7 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
-import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
+import { STATIC_PATH } from "common/constants/paths";
 import { SnackbarProvider } from "notistack";
 import { useMediaQuery } from "react-responsive";
 import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
@@ -42,8 +42,7 @@ export const Bildetema: FC<BildetemaProps> = ({
   } = useNewDBContext();
   const { pathname } = useLocation();
   const env = useEnvironment();
-  const shouldIncludeSearch =
-    env !== environment.prod && env !== environment.stage;
+  const shouldIncludeSearch = env !== environment.prod;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
@@ -195,7 +194,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     );
   }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
 
-  const hidden = STATIC_PATHS.includes(pathname);
+  const hidden = pathname.endsWith(STATIC_PATH.COLLECTIONS);
 
   return (
     <SnackbarProvider

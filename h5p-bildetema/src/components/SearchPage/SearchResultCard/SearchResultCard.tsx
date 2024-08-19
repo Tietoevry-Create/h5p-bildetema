@@ -11,7 +11,11 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { BookmarkIcon } from "common/components/Icons/Icons";
+import {
+  BookmarkFilledIcon,
+  BookmarkIcon,
+} from "common/components/Icons/Icons";
+import { useMyCollections } from "common/hooks/useMyCollections";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
@@ -26,6 +30,8 @@ export const SearchResultCard = ({
   handleBookmarkClick,
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
+  const { wordIdsInCollections } = useMyCollections();
+  const isInCollection = wordIdsInCollections.has(searchResult.id);
 
   const prevLabel = useL10n("prevImageLabel");
   const nextLabel = useL10n("nextImageLabel");
@@ -113,7 +119,7 @@ export const SearchResultCard = ({
             onClick={() => handleBookmarkClick(searchResult.id)}
             aria-label={menuToAddWordAriaLabel}
           >
-            <BookmarkIcon />
+            {isInCollection ? <BookmarkFilledIcon /> : <BookmarkIcon />}
           </Button>
         </div>
       )}

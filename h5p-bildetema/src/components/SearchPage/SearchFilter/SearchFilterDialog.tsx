@@ -4,8 +4,9 @@ import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { getMainTopics } from "common/utils/data.utils";
 import { toSingleLabel } from "common/utils/word.utils";
 import { Close, Filter } from "common/components/Icons/Icons";
-import { Dialog } from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
+import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchFilterDialog.module.scss";
 
 export type SearchFilterProps = {
@@ -20,6 +21,13 @@ const SearchFilterDialog = ({
   filter,
 }: SearchFilterProps): JSX.Element => {
   const { idToContent, idToWords } = useNewDBContext();
+  const { topicFilterTitle, topicFilterReset } = useL10ns(
+    "topicFilterTitle",
+    "topicFilterReset",
+  );
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const topics = useMemo(() => {
     return getMainTopics(idToWords, idToContent).toSorted((a, b) => {
       // TODO NOT HARDCODE "NOB"
@@ -33,14 +41,11 @@ const SearchFilterDialog = ({
     return topics?.filter(topic => filter.includes(topic.id)).length;
   }, [filter, topics]);
 
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <Button variant="filter" onClick={() => setIsOpen(true)}>
         <Filter />
-        {/* TODO: translate */}
-        <span className={styles.buttonLabel}>Filtrer etter tema</span>
+        <span className={styles.buttonLabel}>{topicFilterTitle}</span>
         {checkedTopicsAmount > 0 && (
           <div className={styles.amount}>{checkedTopicsAmount}</div>
         )}
@@ -52,14 +57,12 @@ const SearchFilterDialog = ({
       >
         <div className={styles.backdrop} aria-hidden />
         <div className={styles.panelContainer}>
-          <Dialog.Panel className={styles.panel}>
-            <Dialog.Title className={styles.titleWrapper}>
+          <DialogPanel className={styles.panel}>
+            <DialogTitle className={styles.titleWrapper}>
               <div className={styles.title}>
                 <Filter />
-                {/* TODO: translate */}
-                <span className={styles.label}>Filtrer etter tema</span>
+                <span className={styles.label}>{topicFilterTitle}</span>
               </div>
-
               <button
                 type="button"
                 className={styles.closeButton}
@@ -67,7 +70,7 @@ const SearchFilterDialog = ({
               >
                 <Close />
               </button>
-            </Dialog.Title>
+            </DialogTitle>
             <div className={styles.searchFilterBorderTop}>
               <div className={styles.searchFilter}>
                 {topics?.map(topic => (
@@ -88,10 +91,9 @@ const SearchFilterDialog = ({
               </div>
             </div>
             <Button variant="underline" onClick={resetFilter}>
-              {/* TODO: translate */}
-              Nullstill valg
+              {topicFilterReset}
             </Button>
-          </Dialog.Panel>
+          </DialogPanel>
         </div>
       </Dialog>
     </>
