@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { STATIC_PATH } from "common/constants/paths";
 import { Button } from "common/components/Button";
 import TextInput from "common/components/TextInput/TextInput";
 import Dialog from "common/components/Dialog/Dialog";
 import { AddIcon } from "common/components/Icons/Icons";
+import { useNavigate } from "react-router-dom";
 import styles from "./CollectionsPage.module.scss";
 import CollectionElement from "../CollectionElement/CollectionElement";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
@@ -24,8 +25,13 @@ const CollectionsPage = (): React.JSX.Element => {
   );
 
   const langCode = useCurrentLanguageCode();
+  const navigate = useNavigate();
 
   const { myCollections, addCollection } = useMyCollections();
+  const reversedCollections = useMemo(
+    () => myCollections.slice().reverse(),
+    [myCollections],
+  );
 
   const [createCollectionDialogOpen, setCreateCollectionDialogOpen] =
     useState(false);
@@ -35,9 +41,12 @@ const CollectionsPage = (): React.JSX.Element => {
   const handleCreateNewCollection = (): void => {
     if (!textInput) return;
 
-    addCollection({ title: textInput });
+    const id = addCollection({ title: textInput });
     setTextInput("");
     setCreateCollectionDialogOpen(false);
+    navigate(
+      `${STATIC_PATH.COLLECTIONS}/${textInput}?lang=${langCode}&id=${id}`,
+    );
   };
   return (
     <div className={styles.container}>
@@ -76,7 +85,7 @@ const CollectionsPage = (): React.JSX.Element => {
         <span>{createACollection}</span>
       </Button>
       <div className={styles.collectionWrapper}>
-        {myCollections.map(v => (
+        {reversedCollections.map(v => (
           <CollectionElement
             key={v?.id}
             id={v.id}
