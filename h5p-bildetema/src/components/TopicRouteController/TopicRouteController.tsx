@@ -29,6 +29,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const currentLang = useCurrentLanguageAttribute();
   const currentLanguageCode = useCurrentLanguageCode();
+  const [prevLanguageCode, setPrevLanguageCode] = useState(currentLanguageCode);
   const newWords = useCurrentWords();
   const { topicPaths, idToContent, langCodeTolanguages } = useNewDBContext();
   const { showArticles, showWrittenWords } = useSearchParamContext();
@@ -76,7 +77,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
       return;
     }
     const isFrontpage = !topicLabelParam;
-    const previousPageWasFrontpage = !currentTopicId && !currentSubTopicId;
 
     let newTopicId: string | undefined;
     let topicHasChanged = false;
@@ -109,17 +109,19 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     }
     subTopicHasChanged = newSubTopicId !== currentSubTopicId;
 
-    // If the previous page was the frontpage AND the new page is the frontpage,
-    // then we shouldn't trigger scroll into view, because it means that something
-    // other than the topic or sub topic was changed (language or search params).
+    const languageChanged = prevLanguageCode !== currentLanguageCode;
+
+    // Scroll to top if frontpage, topic or subtopic changes.
+    // Should not scroll to top just because language changes.
     const shouldScrollIntoView =
-      (isFrontpage && !previousPageWasFrontpage) ||
+      (isFrontpage && !languageChanged) ||
       topicHasChanged ||
       subTopicHasChanged;
     if (shouldScrollIntoView) {
       h5pInstance?.getWrapper().scrollIntoView();
     }
 
+    setPrevLanguageCode(currentLanguageCode);
     setCurrentTopicId(newTopicId);
     setCurrentSubTopicId(newSubTopicId);
 
