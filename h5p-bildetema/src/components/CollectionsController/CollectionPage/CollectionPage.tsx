@@ -48,7 +48,7 @@ const CollectionPage = ({
 
   const replacements = {
     search: (
-      <Link key={1} to={STATIC_PATH.SEARCH}>
+      <Link key={1} to={`${STATIC_PATH.SEARCH}?lang=${lang.code}`}>
         {search.toLowerCase()}
       </Link>
     ),
@@ -78,12 +78,18 @@ const CollectionPage = ({
             <Button
               variant="default"
               role="link"
-              onClick={() => navigate(STATIC_PATH.SEARCH)}
+              onClick={() =>
+                navigate(`${STATIC_PATH.SEARCH}?lang=${lang.code}`)
+              }
             >
               {goToSearch}
             </Button>
           )}
-          <Button variant="default" role="link" onClick={() => navigate("/")}>
+          <Button
+            variant="default"
+            role="link"
+            onClick={() => navigate(`/${lang.code}`)}
+          >
             {goToTopic}
           </Button>
         </div>
