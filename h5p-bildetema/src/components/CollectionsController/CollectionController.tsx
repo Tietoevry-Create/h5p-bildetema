@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { STATIC_PATH } from "common/constants/paths";
 import { searchResultsIncludesArticles } from "common/utils/word.utils";
+import { useH5PInstance } from "use-h5p";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import styles from "./CollectionController.module.scss";
 import CollectionPage from "./CollectionPage/CollectionPage";
@@ -11,6 +12,7 @@ import { useSelectedWords } from "../../hooks/useSelectedWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import useCurrentCollection from "../../hooks/useCurrentCollection";
 import { useL10ns } from "../../hooks/useL10n";
+import { H5PWrapper } from "../../h5p/H5PWrapper";
 
 type CollectionControllerProps = {
   rtl: boolean;
@@ -19,9 +21,10 @@ type CollectionControllerProps = {
 const CollectionController = ({
   rtl,
 }: CollectionControllerProps): JSX.Element => {
-  const { collection } = useParams();
+  const h5pInstance = useH5PInstance<H5PWrapper>();
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
+  const { collection } = useParams();
   const { showArticles, showWrittenWords } = useSearchParamContext();
   const { isCollectionOwner } = useCurrentCollection();
   const { breadcrumbsHome, myCollections } = useL10ns(
@@ -66,6 +69,12 @@ const CollectionController = ({
       />
     );
   };
+
+  useEffect(() => {
+    // Scroll into view on load and if collection param changes (i.e. when
+    // switching between the main collection page and a collection)
+    h5pInstance?.getWrapper().scrollIntoView();
+  }, [collection, h5pInstance]);
 
   return (
     <div className={`${styles.CollectionController} ${styles.mainSize}`}>
