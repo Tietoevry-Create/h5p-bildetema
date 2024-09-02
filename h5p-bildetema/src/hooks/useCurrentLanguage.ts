@@ -3,6 +3,7 @@ import { attributeLanguages } from "common/constants/languages";
 import { LanguageCode, isLanguageCode } from "common/types/LanguageCode";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { Language } from "common/types/types";
+import { STATIC_PATH } from "common/constants/paths";
 
 export const useCurrentLanguageCode = (): LanguageCode => {
   const { pathname } = useLocation();
@@ -43,9 +44,18 @@ export const useCurrentLanguage = (): Language => {
 export const getCurrentLanguageCode = (): LanguageCode => {
   const pathname = window.location.hash;
 
+  const isSearchPage = pathname.includes(STATIC_PATH.SEARCH);
+
   // Extract language code from pathname
-  const pathSegments = pathname.split("/").filter(Boolean);
-  const langFromPath = pathSegments.length > 0 ? pathSegments[1] : "";
+  let langFromPath = "";
+
+  if (isSearchPage) {
+    const pathSegments = pathname.split("lang=").filter(Boolean);
+    langFromPath = pathSegments[1].substring(0, 3);
+  } else {
+    const pathSegments = pathname.split("/").filter(Boolean);
+    langFromPath = pathSegments.length > 0 ? pathSegments[1] : "";
+  }
 
   if (isLanguageCode(langFromPath)) {
     return langFromPath;
