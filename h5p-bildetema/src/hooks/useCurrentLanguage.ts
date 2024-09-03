@@ -41,6 +41,12 @@ export const useCurrentLanguage = (): Language => {
 };
 
 // Without react router
+export const getSiteLanguage = (): string => {
+  const { pathname } = window.location;
+  return pathname.split("/").filter(Boolean)[0] || "";
+};
+
+// Without react router
 export const getCurrentLanguageCode = (): LanguageCode => {
   const pathname = window.location.hash;
 

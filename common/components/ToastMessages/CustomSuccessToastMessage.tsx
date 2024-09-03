@@ -26,7 +26,7 @@ const CustomSuccessToastMessage = React.forwardRef<
     <SnackbarContent ref={ref} className={styles.container}>
       {message}
       <div className={styles.group}>
-        {href && <a href={`/#${href}`}>{show}</a>}
+        {href && <a href={href}>{show}</a>}
         <Button variant="icon" type="button" onClick={() => closeSnackbar(id)}>
           &#x2715;
         </Button>
