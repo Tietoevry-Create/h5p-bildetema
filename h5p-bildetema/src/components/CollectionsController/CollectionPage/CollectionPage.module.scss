@@ -74,7 +74,16 @@ $gap: $spacing--24;
 }
 
 .description {
-  all: unset;
   font-size: $font-size-16;
   line-height: 1.4;
+
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
