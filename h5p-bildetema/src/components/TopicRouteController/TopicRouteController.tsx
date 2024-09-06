@@ -38,6 +38,8 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
   const [currentTopicId, setCurrentTopicId] = useState<string>();
   const [currentSubTopicId, setCurrentSubTopicId] = useState<string>();
   const [showTopicImageView, setShowTopicImageView] = useState(true);
+  const [previousPageWasFrontpage, setPreviousPageWasFrontpage] =
+    useState(false);
 
   const smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const [topicsSize, setTopicsSize] = useState(
@@ -76,7 +78,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
       return;
     }
     const isFrontpage = !topicLabelParam;
-    const previousPageWasFrontpage = !currentTopicId && !currentSubTopicId;
 
     let newTopicId: string | undefined;
     let topicHasChanged = false;
@@ -122,6 +123,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
 
     setCurrentTopicId(newTopicId);
     setCurrentSubTopicId(newSubTopicId);
+    setPreviousPageWasFrontpage(isFrontpage);
 
     // Avoid depending on `currentTopicId` and `currentSubTopicId` as they are set by the effect
     // eslint-disable-next-line react-hooks/exhaustive-deps

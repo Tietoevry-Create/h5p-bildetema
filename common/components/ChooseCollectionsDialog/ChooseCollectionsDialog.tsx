@@ -10,7 +10,10 @@ import { useCollectionDialog } from "common/hooks/useCollectionDialog";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 import { enqueueSnackbar } from "notistack";
 import { STATIC_PATH } from "common/constants/paths";
-import { getCurrentLanguageCode } from "h5p-bildetema/src/hooks/useCurrentLanguage";
+import {
+  getCurrentLanguageCode,
+  getSiteLanguage,
+} from "h5p-bildetema/src/hooks/useCurrentLanguage";
 import { useDialogContext } from "../../hooks/useDialogContext";
 import { replacePlaceholders } from "../../utils/replacePlaceholders";
 
@@ -26,6 +29,7 @@ declare module "notistack" {
 const ChooseCollectionsDialog = () => {
   const [textInput, setTextInput] = useState("");
   const currentLanguageCode = getCurrentLanguageCode();
+  const siteLanguage = getSiteLanguage();
   const { selectedId } = useDialogContext();
   const {
     options,
@@ -58,14 +62,16 @@ const ChooseCollectionsDialog = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getURL = (details: any = null): string => {
+    const siteLanguagePath = !siteLanguage ? "" : `/${siteLanguage}`;
+
     if (!details) {
-      return `${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`;
+      return `${siteLanguagePath}/#${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`;
     }
 
     if (!details.collection) return "";
     let words = [...details.collection.wordsIds];
 
-    let url = `${STATIC_PATH.COLLECTIONS}/${details.collection.title}?lang=${currentLanguageCode}&id=${details.collection.id}`;
+    let url = `${siteLanguagePath}/#${STATIC_PATH.COLLECTIONS}/${details.collection.title}?lang=${currentLanguageCode}&id=${details.collection.id}`;
     if (!details.wasRemoved && selectedId) {
       words.push(selectedId);
     } else if (details.wasRemoved && selectedId) {

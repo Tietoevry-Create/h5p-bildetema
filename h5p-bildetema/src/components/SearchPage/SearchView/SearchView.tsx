@@ -40,7 +40,10 @@ const SearchView = ({
         currentLanguageCode={searchLanguage.code}
         breadCrumbs={[
           { label: breadcrumbsHome, path: `/${langCode}` },
-          { label: breadcrumbsSearch, path: `${STATIC_PATH.SEARCH}` },
+          {
+            label: breadcrumbsSearch,
+            path: `${STATIC_PATH.SEARCH}?lang=${langCode}`,
+          },
         ]}
       />
       <div className={styles.wrapper}>

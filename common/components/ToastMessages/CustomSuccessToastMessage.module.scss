@@ -1,9 +1,11 @@
+@use "common/abstracts" as *;
+
 .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  color: black;
+  color: $black;
   background-color: white;
   padding: 1.5rem 2rem;
   border-radius: 0.5rem;
@@ -17,9 +19,18 @@
 .group {
   display: flex;
   align-items: center;
+  flex-grow: 1;
   gap: 1rem;
-}
+  justify-content: flex-end;
 
-.group a {
-  text-wrap: nowrap;
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+    text-wrap: nowrap;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

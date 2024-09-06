@@ -15,14 +15,12 @@
 }
 
 .label {
-  display: flex;
-  gap: 0.5rem;
   font-size: $font-size-18;
-  overflow: hidden;
-  text-wrap: nowrap;
+  padding-right: 2rem;
 
-  & b {
+  b {
     font-weight: bold;
+    padding-right: 0.5rem;
   }
 }
 
