@@ -24,7 +24,7 @@ const CollectionController = ({
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
-  const { collection } = useParams();
+  const { collection } = useParams<{ collection: string }>();
   const { showArticles, showWrittenWords } = useSearchParamContext();
   const { isCollectionOwner } = useCurrentCollection();
   const { breadcrumbsHome, myCollections } = useL10ns(
@@ -73,7 +73,10 @@ const CollectionController = ({
   useEffect(() => {
     // Scroll into view on load and if collection param changes (i.e. when
     // switching between the main collection page and a collection)
-    h5pInstance?.getWrapper().scrollIntoView();
+    const wrapper = h5pInstance?.getWrapper();
+    if (wrapper) {
+      wrapper.scrollIntoView();
+    }
   }, [collection, h5pInstance]);
 
   return (
