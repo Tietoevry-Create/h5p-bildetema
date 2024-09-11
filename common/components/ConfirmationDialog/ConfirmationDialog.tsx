@@ -12,6 +12,7 @@ type ConfirmationDialogProps = {
   title: string;
   onConfirm: () => void;
   onCancel: () => void;
+  disableConfirm?: boolean;
 };
 
 const ConfirmationDialog = ({
@@ -19,6 +20,7 @@ const ConfirmationDialog = ({
   title,
   onConfirm,
   onCancel,
+  disableConfirm = false,
 }: ConfirmationDialogProps) => {
   const { isOpen, handleCloseDialog } = useDialogContext();
   const { cancel } = useL10ns("cancel");
@@ -30,7 +32,7 @@ const ConfirmationDialog = ({
         <Button variant="secondary" onClick={onCancel}>
           {cancel}
         </Button>
-        <Button variant="default" onClick={onConfirm}>
+        <Button variant="default" disabled={disableConfirm} onClick={onConfirm}>
           Ok
         </Button>
       </div>

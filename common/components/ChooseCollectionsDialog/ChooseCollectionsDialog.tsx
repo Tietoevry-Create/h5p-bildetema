@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useState } from "react";
-
 import ConfirmationDialog from "common/components/ConfirmationDialog/ConfirmationDialog";
 import CheckboxItemList from "common/components/CheckboxItemList/CheckboxItemList";
 import NewOption from "common/components/NewOption/NewOption";
@@ -101,7 +100,7 @@ const ChooseCollectionsDialog = () => {
 
   const confirm = () => {
     const details = getCollectionChangeDetails();
-    if (!details || showCreate) {
+    if (!details?.collection || showCreate) {
       enqueueSnackbar(changesSaved, {
         variant: "success",
         href: getURL(),
@@ -117,11 +116,20 @@ const ChooseCollectionsDialog = () => {
     setTextInput("");
   };
 
+  const getDisableConfirm = () => {
+    const details = getCollectionChangeDetails();
+    if (showCreate) {
+      return !textInput;
+    }
+    return !details?.wasChanged;
+  };
+
   return (
     <ConfirmationDialog
       title={description}
       onCancel={handleCancel}
       onConfirm={confirm}
+      disableConfirm={getDisableConfirm()}
     >
       {showCreate ? (
         <NewOption
