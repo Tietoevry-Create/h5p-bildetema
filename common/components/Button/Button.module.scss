@@ -43,12 +43,28 @@
   color: black;
   background-color: $white;
   border: 2px solid $dark-beige;
+
+  &:hover {
+    border-color: $darker-beige;
+  }
 }
 
 .default {
   color: $white;
   background-color: $dark-teal;
   border: 2px solid $dark-teal;
+
+  &:hover {
+    background-color: $darker-teal;
+    border-color: $darker-teal;
+  }
+
+  &:disabled {
+    background-color: $dark-beige;
+    border-color: $dark-beige;
+    color: $disabled-font-color;
+    cursor: not-allowed;
+  }
 }
 
 .underline {
