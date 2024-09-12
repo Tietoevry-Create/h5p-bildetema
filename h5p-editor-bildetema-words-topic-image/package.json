@@ -1,11 +1,6 @@
 {
   "name": "bildetema-words-topic-image",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
@@ -27,7 +22,8 @@
     "storybook-custom": "*",
     "ts-node": "^10.9.2",
     "tsconfig-custom": "*",
-    "vite-utils": "*"
+    "vite-utils": "*",
+    "vitest": "*"
   },
   "eslintConfig": {
     "extends": "custom"

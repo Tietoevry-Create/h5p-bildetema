@@ -7,7 +7,6 @@
     "./src/**/*",
     "typings.d.ts",
     "vite.config.ts",
-    ".storybook/**/*",
-    "../common/**/*"
+    ".storybook/**/*"
   ]
 }
