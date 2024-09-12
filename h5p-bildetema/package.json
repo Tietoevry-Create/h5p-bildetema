@@ -45,7 +45,8 @@
     "storybook-custom": "*",
     "ts-node": "^10.9.2",
     "tsconfig-custom": "*",
-    "vite-utils": "*"
+    "vite-utils": "*",
+    "vitest": "^2.0.5"
   },
   "eslintConfig": {
     "extends": "custom"
