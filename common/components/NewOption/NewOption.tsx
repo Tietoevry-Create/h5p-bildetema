@@ -1,5 +1,5 @@
-import React from "react";
 import TextInput from "common/components/TextInput/TextInput";
+import React from "react";
 
 interface NewOptionProps {
   value: string;

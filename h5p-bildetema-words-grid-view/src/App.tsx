@@ -1,5 +1,5 @@
-import { Word } from "common/types/types";
 import { DialogProvider } from "common/context/DialogContext";
+import { Word } from "common/types/types";
 import { FC } from "react";
 import { TopicWordsGrid } from "./components/TopicWordsGrid/TopicWordsGrid";
 

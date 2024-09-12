@@ -1,5 +1,5 @@
 import { Button } from "common/components/Button";
-import { SuccessIcon, LinkIcon } from "common/components/Icons/Icons";
+import { LinkIcon, SuccessIcon } from "common/components/Icons/Icons";
 import { useState } from "react";
 import { useL10ns } from "../../hooks/useL10n";
 
@@ -15,6 +15,7 @@ const ShareButton = (): JSX.Element => {
       setTimeout(() => setIsCopied(false), 3000);
     } catch (error) {
       /* TODO: Show error message to user in for example a toast */
+      console.error(error);
     }
   };
 

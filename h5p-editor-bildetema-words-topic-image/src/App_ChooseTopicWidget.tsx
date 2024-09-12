@@ -53,6 +53,7 @@ export const AppChooseTopicWidget: FC<Params> = ({
     return newCurrentSubTopics;
   }, [currentTopic, data]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     if (data && topicId) {
       const newCurrentTopic = data.idToWords.get(topicId);

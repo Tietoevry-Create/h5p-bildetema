@@ -1,4 +1,5 @@
 import { AudioRefContext } from "common/context/AudioContext";
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import {
   CurrentTopics,
   Language,
@@ -6,9 +7,8 @@ import {
   TopicGridSizes,
   TopicIds,
 } from "common/types/types";
-import { FC, RefObject, useMemo, useState } from "react";
-import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
+import { FC, RefObject, useMemo, useState } from "react";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
@@ -36,6 +36,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
     {} as RefObject<HTMLAudioElement>,
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);

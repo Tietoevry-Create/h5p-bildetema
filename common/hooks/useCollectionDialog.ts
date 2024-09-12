@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect } from "react";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Option } from "common/types/types";
-import { sortBySelectionStatus } from "common/utils/sorting.utils";
 import { findDifference } from "common/utils/array.utils";
+import { sortBySelectionStatus } from "common/utils/sorting.utils";
+import { useCallback, useEffect, useState } from "react";
 
 export const useCollectionDialog = () => {
   const { selectedId, handleCloseDialog, isOpen } = useDialogContext();

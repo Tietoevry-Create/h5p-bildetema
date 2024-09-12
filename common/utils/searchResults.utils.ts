@@ -1,5 +1,5 @@
 import { Labels, NewWord } from "common/types/types";
-import { distance, closest } from "fastest-levenshtein";
+import { closest, distance } from "fastest-levenshtein";
 import { LanguageCode } from "../types/LanguageCode";
 
 const getLabelsArray = (labels: Labels): string[] => {

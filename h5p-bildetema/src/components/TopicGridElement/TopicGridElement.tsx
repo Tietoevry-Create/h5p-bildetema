@@ -1,14 +1,14 @@
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { NewWord, TopicGridSizes } from "common/types/types";
+import { getAudioFiles } from "common/utils/audio/audio.utils";
+import { getImageSrc } from "common/utils/image/image.utils";
 import { labelToUrlComponent } from "common/utils/string.utils";
+import { toSingleLabel } from "common/utils/word.utils";
 import { FC, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
-import { getImageSrc } from "common/utils/image/image.utils";
-import { getAudioFiles } from "common/utils/audio/audio.utils";
-import { toSingleLabel } from "common/utils/word.utils";
-import styles from "./TopicGridElement.module.scss";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
+import styles from "./TopicGridElement.module.scss";
 
 export type TopicGridElementProps = {
   topicSize: TopicGridSizes;

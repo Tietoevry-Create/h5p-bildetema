@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
-import styles from "./Image.module.scss";
 import { useBackendUrlContext } from "../../hooks/useBackendUrlContext";
 import { getImageUrl } from "../../utils/image/image.utils";
+import styles from "./Image.module.scss";
 
 export type srcSet = {
   src: string;

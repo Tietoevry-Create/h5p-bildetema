@@ -26,6 +26,7 @@ export const TopicImageWordList: FC<TopicImageWordListProps> = ({
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);

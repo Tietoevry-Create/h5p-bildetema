@@ -130,6 +130,7 @@ export const Ellipse: FC<EllipseProps> = ({
         onMouseUp={event => endFigureDraging(event)}
       />
 
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: This does not need a key event */}
       <circle
         className={`${styles.ellipsePoint} ${
           isDrawingThisEllipse ? styles.show : ""

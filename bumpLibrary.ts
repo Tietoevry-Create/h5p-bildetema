@@ -1,10 +1,10 @@
-import h5pBildetema from "./h5p-bildetema/library.json";
-import h5pBildetemaWordsGridView from "./h5p-bildetema-words-grid-view/library.json";
-import h5pBildetemaWordsTopicImage from "./h5p-bildetema-words-topic-image/library.json";
-import h5pEditorBildetemaWordsTopicImage from "./h5p-editor-bildetema-words-topic-image/library.json";
+import fs from "fs";
 import query from "cli-interact";
 import type { H5PLibrary } from "h5p-types";
-import fs from "fs";
+import h5pBildetemaWordsGridView from "./h5p-bildetema-words-grid-view/library.json";
+import h5pBildetemaWordsTopicImage from "./h5p-bildetema-words-topic-image/library.json";
+import h5pBildetema from "./h5p-bildetema/library.json";
+import h5pEditorBildetemaWordsTopicImage from "./h5p-editor-bildetema-words-topic-image/library.json";
 
 type PathAndLibrary = {
   path: string;
@@ -43,7 +43,7 @@ libs.forEach(el => {
 
   fs.readFile(path, "utf8", (err, data) => {
     if (err) {
-      console.log(err);
+      console.info(err);
       return;
     }
 
@@ -57,7 +57,7 @@ libs.forEach(el => {
       .join("\n");
 
     fs.writeFile(path, libraryFileWithBumpedPatchVersion, err => {
-      if (err) console.log(err);
+      if (err) console.info(err);
     });
   });
 });

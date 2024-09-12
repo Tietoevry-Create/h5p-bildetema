@@ -1,7 +1,7 @@
-import { Collection } from "common/types/types";
 import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
-import useLocalStorageState from "use-local-storage-state";
+import { Collection } from "common/types/types";
 import { useCallback, useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { v4 as uuid } from "uuid";
 
 type ModifyCollection = {
@@ -38,6 +38,7 @@ export const useMyCollections = () => {
 
   const wordIdsInCollections = getUniqueIds();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     setMyCollections(prev => {
       if (prev.length === 0) return prev;

@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { Color } from "common/enums/Color";
 import { Word } from "common/types/types";
+import { describe, expect, it } from "vitest";
 import { Hotspot } from "../../types/Hotspot";
 import { PointWithIndex } from "../../types/PointWithIndex";
 import {

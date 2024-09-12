@@ -46,12 +46,14 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
     setPlaying(false);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     // Reload sources whenever we get new audiofiles
     audioRef.current?.load();
     handleAudioEnded();
   }, [audioFiles]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);

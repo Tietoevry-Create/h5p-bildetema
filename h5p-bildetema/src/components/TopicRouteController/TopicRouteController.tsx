@@ -1,21 +1,21 @@
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, TopicGridSizes } from "common/types/types";
-import { FC, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { newWordsIncludesArticles } from "common/utils/word.utils";
+import { FC, useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
-import styles from "./TopicRouteController.module.scss";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
-import { TopicGrid } from "../TopicGrid/TopicGrid";
-import { SubHeader } from "../SubHeader/SubHeader";
 import {
   useCurrentLanguageAttribute,
   useCurrentLanguageCode,
 } from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
+import { SubHeader } from "../SubHeader/SubHeader";
+import { TopicGrid } from "../TopicGrid/TopicGrid";
+import styles from "./TopicRouteController.module.scss";
 
 export type TopicRouteControllerProps = {
   rtl: boolean;
@@ -71,6 +71,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     return newWords.at(0)?.id.charAt(0) !== "T";
   }, [newWords]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     // Scroll into view if topic and/or sub topic changes (or are reset - i.e. the user visits the frontpage)
 

@@ -1,5 +1,5 @@
-import { FC } from "react";
 import { CheckIcon } from "common/components/Icons/Icons";
+import { FC } from "react";
 import styles from "./FilterCheckbox.module.scss";
 
 type CheckboxProps = {

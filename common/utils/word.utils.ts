@@ -1,13 +1,13 @@
 import { LanguageCode } from "../types/LanguageCode";
 import {
   Labels,
+  Language,
+  NewWord,
   SearchResult,
+  SearchResultTranslations,
   Topic,
   TopicWord,
   Word,
-  Language,
-  NewWord,
-  SearchResultTranslations,
 } from "../types/types";
 
 export const toSingleLabel = (

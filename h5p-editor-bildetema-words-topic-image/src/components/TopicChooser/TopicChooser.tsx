@@ -1,6 +1,6 @@
 import { NewWord } from "common/types/types";
-import { ChangeEvent, FC } from "react";
 import { toSingleLabel } from "common/utils/word.utils";
+import { ChangeEvent, FC } from "react";
 import { t } from "../../h5p/H5P.util";
 import styles from "./TopicChooser.module.scss";
 

@@ -1,23 +1,23 @@
-import React, { useDeferredValue } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Language } from "common/types/types";
-import { useDebouncedCallback } from "use-debounce";
-import { isLanguageCode } from "common/types/LanguageCode";
 import { DialogProvider } from "common/context/DialogContext";
+import { isLanguageCode } from "common/types/LanguageCode";
+import { Language } from "common/types/types";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
+import { useDeferredValue, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useDebouncedCallback } from "use-debounce";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { useL10n } from "../../hooks/useL10n";
+import { useLanguagesWithTranslatedLabels } from "../../hooks/useLanguagesWithTranslatedLabels";
+import { OptionType } from "../Select/Select";
+import styles from "./SearchPage.module.scss";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
-import styles from "./SearchPage.module.scss";
-import { OptionType } from "../Select/Select";
 import {
   ActionType,
   SearchOrderOption,
   SortOptions,
   useSearchResults,
 } from "./useSearchResults";
-import { useLanguagesWithTranslatedLabels } from "../../hooks/useLanguagesWithTranslatedLabels";
-import { useL10n } from "../../hooks/useL10n";
 
 // TODO TRANSLATE LABELS
 const searchOrderOptions: SearchOrderOption[] = [
@@ -38,7 +38,7 @@ const SearchPage = (): JSX.Element => {
   const langCode = useCurrentLanguageCode();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchLanguage, setSearchLanguage] = React.useState<Language>(
+  const [searchLanguage, setSearchLanguage] = useState<Language>(
     languages.find(lang => lang.code === langCode) ||
       // TODO should not be static
       ({ code: langCode, label: "Bokmål" } as Language),
@@ -47,7 +47,7 @@ const SearchPage = (): JSX.Element => {
   const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguages, setViewLanguages] = React.useState<Language[]>(() => {
+  const [viewLanguages, setViewLanguages] = useState<Language[]>(() => {
     const viewLangs: Language[] = [];
     if (viewLangCode) {
       if (isLanguageCode(viewLangCode))
@@ -176,7 +176,8 @@ const SearchPage = (): JSX.Element => {
     });
   };
 
-  React.useEffect(() => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
+  useEffect(() => {
     if (langCode !== searchLanguage.code) {
       const updatedLanguage = languages.find(lang => lang.code === langCode);
       if (updatedLanguage) {

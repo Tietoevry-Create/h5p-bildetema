@@ -40,7 +40,7 @@ async function getEditorIframe(page: puppeteer.Page): Promise<puppeteer.Frame> {
 }
 
 async function openH5PContentTypeEditor(
-  page: puppeteer.Page,
+  _page: puppeteer.Page,
   contentType: string,
   editorIframe: puppeteer.Frame,
 ): Promise<void> {
@@ -50,7 +50,7 @@ async function openH5PContentTypeEditor(
 }
 
 async function saveH5PContentType(
-  page: puppeteer.Page,
+  _page: puppeteer.Page,
   editorIframe: puppeteer.Frame,
 ): Promise<void> {
   await editorIframe.click("#edit-submit");
@@ -185,7 +185,7 @@ async function createTopicImageInstance(
   //   headless: false,
   //   devtools: true,
   // });
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   // Create topic images

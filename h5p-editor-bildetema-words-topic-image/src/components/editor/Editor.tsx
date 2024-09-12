@@ -1,5 +1,6 @@
 import { Color } from "common/enums/Color";
 import { Word } from "common/types/types";
+import { extractWordLabel } from "common/utils/word.utils";
 import type { H5PImage } from "h5p-types";
 import {
   FC,
@@ -10,7 +11,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { extractWordLabel } from "common/utils/word.utils";
 import { SetValueContext } from "../../contexts/SetValueContext";
 import { t } from "../../h5p/H5P.util";
 import { Hotspot } from "../../types/Hotspot";

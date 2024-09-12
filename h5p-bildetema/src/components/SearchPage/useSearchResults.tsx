@@ -1,4 +1,8 @@
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
 import { Language, NewWord, SearchResult } from "common/types/types";
+import { newWordsToSearchResult } from "common/utils/data.utils";
 import {
   sortNewWordsByPosition,
   sortNewWordsBylevenshtein,
@@ -6,10 +10,6 @@ import {
 } from "common/utils/searchResults.utils";
 import { filterOutTopics, searchForNewWord } from "common/utils/word.utils";
 import { useReducer } from "react";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { LanguageCode } from "common/types/LanguageCode";
-import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
-import { newWordsToSearchResult } from "common/utils/data.utils";
 import { OptionType } from "../Select/Select";
 
 export const ActionType = {

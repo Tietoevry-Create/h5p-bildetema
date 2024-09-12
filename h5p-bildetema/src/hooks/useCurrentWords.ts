@@ -4,8 +4,8 @@ import { getMainTopics, getNewWordsFromId } from "common/utils/data.utils";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelectedNewWords } from "./useSelectedWords";
 import { useCurrentLanguageCode } from "./useCurrentLanguage";
+import { useSelectedNewWords } from "./useSelectedWords";
 
 export const useCurrentWords = (): NewWord[] => {
   const { topicPaths, idToWords, idToContent } = useNewDBContext();

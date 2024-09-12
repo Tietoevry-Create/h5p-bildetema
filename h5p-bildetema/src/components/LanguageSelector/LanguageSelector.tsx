@@ -2,13 +2,13 @@ import {
   languages as languagesConst,
   languagesOriginal,
 } from "common/constants/languages";
-import { CurrentTopics, Language } from "common/types/types";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCodeString } from "common/types/LanguageCode";
+import { CurrentTopics, Language } from "common/types/types";
 import { getPath } from "common/utils/router.utils";
 import { FC } from "react";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { useLocation } from "react-router-dom";
-import { useL10ns, useL10n } from "../../hooks/useL10n";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { translatedLabel } from "../../utils/language.utils";
 import { LanguageSelectorElement } from "../LanguageSelectorElement/LanguageSelectorElement";
 import styles from "./LanguageSelector.module.scss";

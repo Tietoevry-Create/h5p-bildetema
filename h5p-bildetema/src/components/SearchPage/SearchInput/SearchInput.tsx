@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { SearchIcon } from "common/components/Icons/Icons";
+import { useEffect, useRef } from "react";
 import styles from "./SearchInput.module.scss";
 
 export type SearchInputProps = {

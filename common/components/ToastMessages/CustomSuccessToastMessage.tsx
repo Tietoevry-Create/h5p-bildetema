@@ -1,7 +1,7 @@
-import { SnackbarContent, CustomContentProps, useSnackbar } from "notistack";
-import React from "react";
-import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 import { Button } from "common/components/Button";
+import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
+import { CustomContentProps, SnackbarContent, useSnackbar } from "notistack";
+import React from "react";
 import styles from "./CustomSuccessToastMessage.module.scss";
 
 interface CustomSuccessToastMessageProps extends CustomContentProps {

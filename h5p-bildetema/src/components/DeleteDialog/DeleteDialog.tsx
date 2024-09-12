@@ -1,7 +1,7 @@
 import { Button } from "common/components/Button";
 import Dialog from "common/components/Dialog/Dialog";
-import styles from "./DeleteDialog.module.scss";
 import { useL10ns } from "../../hooks/useL10n";
+import styles from "./DeleteDialog.module.scss";
 
 type DeleteDialogProps = {
   open: boolean;

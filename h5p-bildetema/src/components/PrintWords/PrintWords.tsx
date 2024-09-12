@@ -1,12 +1,12 @@
+import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { getImageSrc } from "common/utils/image/image.utils";
+import { toSingleLabel } from "common/utils/word.utils";
 import { forwardRef } from "react";
 import { useParams } from "react-router-dom";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { toSingleLabel } from "common/utils/word.utils";
-import { getImageSrc } from "common/utils/image/image.utils";
-import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
-import styles from "./PrintWords.module.scss";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
+import styles from "./PrintWords.module.scss";
 
 type PrintWordsProps = {
   showWrittenWords: boolean;

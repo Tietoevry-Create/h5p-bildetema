@@ -1,5 +1,5 @@
-import React from "react";
 import { Button as HButton } from "@headlessui/react";
+import React from "react";
 import styles from "./Button.module.scss";
 
 const buttonVariants = {

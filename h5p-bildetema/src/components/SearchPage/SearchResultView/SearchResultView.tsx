@@ -1,3 +1,8 @@
+import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
+import { AudioRefContext } from "common/context/AudioContext";
+import { useDialogContext } from "common/hooks/useDialogContext";
+import { Language, SearchResult } from "common/types/types";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import React, {
   forwardRef,
   ReactNode,
@@ -7,15 +12,10 @@ import React, {
   useState,
 } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
-import { Language, SearchResult } from "common/types/types";
-import { AudioRefContext } from "common/context/AudioContext";
-import { useDialogContext } from "common/hooks/useDialogContext";
-import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
-import { replacePlaceholders } from "common/utils/replacePlaceholders";
-import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
-import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
-import Select, { OptionType } from "../../Select/Select";
 import { useL10ns } from "../../../hooks/useL10n";
+import Select, { OptionType } from "../../Select/Select";
+import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
+import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import styles from "./SearchResultView.module.scss";
 
 type ListProps = {
@@ -86,6 +86,7 @@ const SearchResultView = ({
     {} as RefObject<HTMLAudioElement>,
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);

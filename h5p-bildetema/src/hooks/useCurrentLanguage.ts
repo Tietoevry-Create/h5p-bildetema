@@ -1,9 +1,9 @@
-import { useLocation, useSearchParams } from "react-router-dom";
 import { attributeLanguages } from "common/constants/languages";
-import { LanguageCode, isLanguageCode } from "common/types/LanguageCode";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { Language } from "common/types/types";
 import { STATIC_PATH } from "common/constants/paths";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { LanguageCode, isLanguageCode } from "common/types/LanguageCode";
+import { Language } from "common/types/types";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export const useCurrentLanguageCode = (): LanguageCode => {
   const { pathname } = useLocation();

@@ -1,22 +1,22 @@
-import SuperJSON from "superjson";
 import { getAudioFiles } from "common/utils/audio/audio.utils";
 import { getImageUrl } from "common/utils/image/image.utils";
+import SuperJSON from "superjson";
 import { LanguageCode } from "../types/LanguageCode";
 import {
-  Language,
-  Topic,
-  Word,
-  JSONTopic,
-  JSONData,
   Data,
-  Translations,
-  TopicWord,
-  NewWord,
+  JSONData,
+  JSONTopic,
+  Language,
   NewData,
-  WordId,
-  TopicId,
-  SearchResultTranslations,
+  NewWord,
   SearchResult,
+  SearchResultTranslations,
+  Topic,
+  TopicId,
+  TopicWord,
+  Translations,
+  Word,
+  WordId,
 } from "../types/types";
 
 const languages: Language[] = [];
@@ -55,18 +55,15 @@ const convertJsonToTopicsArray = (jsonTopic: JSONTopic[]): Topic[] => {
     const words = new Map<LanguageCode, Word[]>(
       Object.entries(topic.words) as [LanguageCode, Word[]][],
     );
-    t.push(
-      (topic.id,
-      {
-        id: topic.id,
-        label: topic.label,
-        images: topic.images,
-        subTopics,
-        labelTranslations,
-        words,
-        onlyTopicImage: topic?.onlyTopicImage ?? false,
-      }),
-    );
+    t.push({
+      id: topic.id,
+      label: topic.label,
+      images: topic.images,
+      subTopics,
+      labelTranslations,
+      words,
+      onlyTopicImage: topic?.onlyTopicImage ?? false,
+    });
   });
   return t;
 };

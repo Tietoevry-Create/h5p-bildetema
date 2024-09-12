@@ -1,5 +1,5 @@
-import * as puppeteer from "puppeteer";
 import fs from "fs";
+import * as puppeteer from "puppeteer";
 
 const { log } = console;
 

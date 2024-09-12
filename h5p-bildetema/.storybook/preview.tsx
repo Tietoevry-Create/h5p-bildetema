@@ -9,11 +9,11 @@ import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
+import { BackendUrlContext } from "common/context/BackendUrlContext";
+import { NewDBContext } from "common/context/NewDBContext";
 import semantics from "../semantics.json";
 import { H5PWrapper } from "../src/h5p/H5PWrapper";
 import { Params } from "../src/types/Params";
-import { BackendUrlContext } from "common/context/BackendUrlContext";
-import { NewDBContext } from "common/context/NewDBContext";
 
 const queryClient = new QueryClient();
 

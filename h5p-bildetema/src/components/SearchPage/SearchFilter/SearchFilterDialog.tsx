@@ -1,12 +1,12 @@
-import { useMemo, useState } from "react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Button } from "common/components/Button";
+import { Close, Filter } from "common/components/Icons/Icons";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { getMainTopics } from "common/utils/data.utils";
 import { toSingleLabel } from "common/utils/word.utils";
-import { Close, Filter } from "common/components/Icons/Icons";
-import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
+import { useMemo, useState } from "react";
 import { useL10ns } from "../../../hooks/useL10n";
+import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import styles from "./SearchFilterDialog.module.scss";
 
 export type SearchFilterProps = {

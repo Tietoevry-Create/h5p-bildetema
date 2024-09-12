@@ -1,15 +1,15 @@
-import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
-import { STATIC_PATH } from "common/constants/paths";
 import { BookmarkIcon } from "common/components/Icons/Icons";
+import { STATIC_PATH } from "common/constants/paths";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
-import { useSelectedWords } from "../../../hooks/useSelectedWords";
-import styles from "./CollectionPage.module.scss";
-import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
-import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+import { Link, useNavigate } from "react-router-dom";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
+import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+import { environment, useEnvironment } from "../../../hooks/useEnvironment";
 import { useL10ns } from "../../../hooks/useL10n";
-import { useEnvironment, environment } from "../../../hooks/useEnvironment";
+import { useSelectedWords } from "../../../hooks/useSelectedWords";
+import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
+import styles from "./CollectionPage.module.scss";
 
 type MyCollection = {
   showArticles: boolean;

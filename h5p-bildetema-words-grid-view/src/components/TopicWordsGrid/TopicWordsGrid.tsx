@@ -1,10 +1,10 @@
 import { FC, RefObject, useMemo, useState } from "react";
 
-import { AudioRefContext } from "common/context/AudioContext";
-import { Word as WordType } from "common/types/types";
-import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
 import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
+import { AudioRefContext } from "common/context/AudioContext";
+import { useDialogContext } from "common/hooks/useDialogContext";
+import { Word as WordType } from "common/types/types";
 import { useMediaQuery } from "react-responsive";
 
 import { useMyCollections } from "common/hooks/useMyCollections";
@@ -28,6 +28,7 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const audioContextValue = useMemo(() => {
     const setContextAudioRef = (ref: RefObject<HTMLAudioElement>): void => {
       setAudioRef(ref);

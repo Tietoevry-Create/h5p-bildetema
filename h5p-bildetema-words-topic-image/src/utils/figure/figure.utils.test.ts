@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { Point } from "common/types/Point";
+import { describe, expect, it } from "vitest";
 import { renderFigure } from "./figure.utils";
 
 describe(renderFigure.name, () => {

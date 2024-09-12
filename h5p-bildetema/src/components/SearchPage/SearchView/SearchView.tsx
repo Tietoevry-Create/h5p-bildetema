@@ -1,10 +1,10 @@
-import { Language } from "common/types/types";
 import { STATIC_PATH } from "common/constants/paths";
-import SearchInput from "../SearchInput/SearchInput";
-import Select, { OptionType } from "../../Select/Select";
-import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
+import { Language } from "common/types/types";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import { useL10ns } from "../../../hooks/useL10n";
+import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
+import Select, { OptionType } from "../../Select/Select";
+import SearchInput from "../SearchInput/SearchInput";
 import styles from "./SearchView.module.scss";
 
 export type SearchViewProps = {

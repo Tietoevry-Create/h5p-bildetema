@@ -1,5 +1,5 @@
-import { FC } from "react";
 import { StarFilledIcon, StarOutlineIcon } from "common/components/Icons/Icons";
+import { FC } from "react";
 import styles from "./Checkbox.module.scss";
 
 type CheckboxProps = {

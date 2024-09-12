@@ -1,8 +1,8 @@
 import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { Word as WordType } from "common/types/types";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { extractWordLabel } from "common/utils/word.utils";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./TopicImageWordAudio.module.scss";
 
@@ -31,11 +31,10 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Do not want or need to trigger unSelectWord each time a word is selected
   const handleAudioEnded = useCallback(() => {
     setPlaying(false);
     unSelectWord("");
-
-    // Do not want or need to trigger unSelectWord each time a word is selected
   }, []);
 
   useEffect(() => {
@@ -75,12 +74,14 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
     setPlaying(!playing);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     // Reload sources whenever the language changes
     audioRef.current?.load();
     setPlaying(false);
   }, [word]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);

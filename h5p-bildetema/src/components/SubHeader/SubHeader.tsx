@@ -2,17 +2,17 @@ import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, TopicGridSizes } from "common/types/types";
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useContentId } from "use-h5p";
+import useCurrentCollection from "../../hooks/useCurrentCollection";
+import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 import { useL10ns } from "../../hooks/useL10n";
+import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { PrintButton } from "../PrintButton/PrintButton";
+import SaveSharedCollectionButton from "../SaveSharedCollectionButton/SaveSharedCollectionButton";
+import ShareButton from "../ShareButton/ShareButton";
 import { Toggle } from "../Toggle/Toggle";
 import { TopicSizeButtons } from "../TopicSizeButtons/TopicSizeButtons";
 import styles from "./SubHeader.module.scss";
-import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
-import { useSearchParamContext } from "../../hooks/useSearchParamContext";
-import ShareButton from "../ShareButton/ShareButton";
-import SaveSharedCollectionButton from "../SaveSharedCollectionButton/SaveSharedCollectionButton";
-import useCurrentCollection from "../../hooks/useCurrentCollection";
 
 export type SubHeaderProps = {
   topicsSize?: TopicGridSizes;

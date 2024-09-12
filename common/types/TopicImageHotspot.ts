@@ -1,6 +1,6 @@
+import { Color } from "../enums/Color";
 import type { Point } from "./Point";
 import type { Word } from "./types";
-import { Color } from "../enums/Color";
 
 export type TopicImageHotspot = {
   points: Array<Point>;

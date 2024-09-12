@@ -1,10 +1,10 @@
-import { FC, FocusEvent, useEffect, useRef, useState } from "react";
-import { useDetectClickOutside } from "react-detect-click-outside";
-import { useReactToPrint } from "react-to-print";
 import {
   LanguageMenuArrowIcon,
   PrintIcon,
 } from "common/components/Icons/Icons";
+import { FC, FocusEvent, useEffect, useRef, useState } from "react";
+import { useDetectClickOutside } from "react-detect-click-outside";
+import { useReactToPrint } from "react-to-print";
 import { useL10ns } from "../../hooks/useL10n";
 import { PrintWords } from "../PrintWords/PrintWords";
 import styles from "./PrintButton.module.scss";
@@ -63,6 +63,7 @@ export const PrintButton: FC<PrintProps> = ({
     setIsActive(!isActive);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     if (printClicked) {
       setPrintClicked(false);

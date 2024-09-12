@@ -31,6 +31,7 @@ export const DialogProvider = ({
     setSelectedId(null);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const values: DialogContextType = useMemo(
     () => ({
       isOpen,

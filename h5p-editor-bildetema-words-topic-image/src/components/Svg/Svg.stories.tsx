@@ -30,6 +30,8 @@ export const Default: Story = {
         color: Color.ORANGE,
       },
     ],
-    handlePointClick: () => {},
+    handlePointClick: () => {
+      /* Intentionally left empty */
+    },
   },
 };

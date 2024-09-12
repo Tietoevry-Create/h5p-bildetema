@@ -1,4 +1,4 @@
-import { createContext, RefObject } from "react";
+import { RefObject, createContext } from "react";
 
 export type AudioContextType = {
   contextAudioRef: RefObject<HTMLAudioElement> | undefined;

@@ -21,7 +21,7 @@ export const Default: Story = {
       },
     ],
     currentLanguageCode: "nob",
-    handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
+    handleToggleFavoriteLanguage: (_lang: Language, fav: boolean): void => {
       console.info(fav);
     },
   },

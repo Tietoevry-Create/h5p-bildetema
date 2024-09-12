@@ -1,4 +1,6 @@
+import { BookmarkIcon, SearchIcon } from "common/components/Icons/Icons";
 import { languages } from "common/constants/languages";
+import { STATIC_PATH } from "common/constants/paths";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
 import {
@@ -11,15 +13,13 @@ import {
   useState,
 } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { STATIC_PATH } from "common/constants/paths";
-import { BookmarkIcon, SearchIcon } from "common/components/Icons/Icons";
+import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { environment, useEnvironment } from "../../hooks/useEnvironment";
 import { useL10n, useL10ns } from "../../hooks/useL10n";
+import HeaderLink from "../HeaderLink/HeaderLink";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
-import HeaderLink from "../HeaderLink/HeaderLink";
-import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
-import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 export type HeaderProps = {
   favLanguages: Language[];
@@ -72,6 +72,7 @@ export const Header: FC<HeaderProps> = ({
   const HomeLinkPath = `/${currentLanguageCode}`;
   const osloMetLogoAria = useL10n("headerOsloMetlogoAriaLabel");
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     if (firstTime === true) {
       setLangSelectorIsShown(true);
@@ -82,6 +83,7 @@ export const Header: FC<HeaderProps> = ({
   }, [pathname]);
 
   // TODO: Add better method to find screen width
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const handleIsMobile = useCallback((): void => {
     const mobileWidth = 768;
     const deviceWidth = headerRef.current?.clientWidth;

@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react";
+import { LanguageMenuArrowIcon } from "common/components/Icons/Icons";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { getMainTopics } from "common/utils/data.utils";
 import { toSingleLabel } from "common/utils/word.utils";
-import { LanguageMenuArrowIcon } from "common/components/Icons/Icons";
+import React, { useMemo, useState } from "react";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import style from "./SearchFilter.module.scss";
 

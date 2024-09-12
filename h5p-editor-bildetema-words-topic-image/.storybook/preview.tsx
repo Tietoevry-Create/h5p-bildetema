@@ -25,5 +25,6 @@ export const decorators = [
   ),
 ];
 
+// biome-ignore lint/suspicious/noExplicitAny:
 (H5PEditor.language as any)["H5PEditor.BildetemaWordsTopicImage"] =
   englishTranslations;

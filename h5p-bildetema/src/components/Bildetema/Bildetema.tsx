@@ -1,29 +1,29 @@
-import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { CurrentTopics, Language } from "common/types/types";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { uriComponentToTopicPath } from "common/utils/router.utils";
-import { LanguageCode } from "common/types/LanguageCode";
-import { STATIC_PATH } from "common/constants/paths";
-import { SnackbarProvider } from "notistack";
-import { useMediaQuery } from "react-responsive";
 import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
-import { useL10n } from "../../hooks/useL10n";
-import { useUserData } from "../../hooks/useUserData";
-import { Footer } from "../Footer/Footer";
-import { Header } from "../Header/Header";
-import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
-import { MainContentLink } from "../MainContentLink/MainContentLink";
-import { TopicRouteController } from "../TopicRouteController/TopicRouteController";
-import { sanitizeLanguages } from "../../utils/language.utils";
-import styles from "./Bildetema.module.scss";
-import SearchPage from "../SearchPage/SearchPage";
-import CollectionsController from "../CollectionsController/CollectionController";
+import { STATIC_PATH } from "common/constants/paths";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { LanguageCode } from "common/types/LanguageCode";
+import { CurrentTopics, Language } from "common/types/types";
+import { uriComponentToTopicPath } from "common/utils/router.utils";
+import { SnackbarProvider } from "notistack";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import {
   useCurrentLanguage,
   useCurrentLanguageCode,
 } from "../../hooks/useCurrentLanguage";
 import { environment, useEnvironment } from "../../hooks/useEnvironment";
+import { useL10n } from "../../hooks/useL10n";
+import { useUserData } from "../../hooks/useUserData";
+import { sanitizeLanguages } from "../../utils/language.utils";
+import CollectionsController from "../CollectionsController/CollectionController";
+import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
+import { LanguageFavorites } from "../LanguageFavorites/LanguageFavorites";
+import { MainContentLink } from "../MainContentLink/MainContentLink";
+import SearchPage from "../SearchPage/SearchPage";
+import { TopicRouteController } from "../TopicRouteController/TopicRouteController";
+import styles from "./Bildetema.module.scss";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -47,12 +47,15 @@ export const Bildetema: FC<BildetemaProps> = ({
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       if (isLoadingData) {
         setShowLoadingLabel(true);
       }
     }, 300);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const loadingLabel = useL10n("pageIsLoading");
@@ -101,6 +104,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     return { topic, subTopic };
   }, [currentLanguageCode, idToWords, pathname, topicPaths]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   const handleToggleFavoriteLanguage = useCallback(
     (language: Language, favorite: boolean): void => {
       if (favorite) {

@@ -1,21 +1,21 @@
 import { useState } from "react";
 
-import ConfirmationDialog from "common/components/ConfirmationDialog/ConfirmationDialog";
-import CheckboxItemList from "common/components/CheckboxItemList/CheckboxItemList";
-import NewOption from "common/components/NewOption/NewOption";
 import { Button } from "common/components/Button";
+import CheckboxItemList from "common/components/CheckboxItemList/CheckboxItemList";
+import ConfirmationDialog from "common/components/ConfirmationDialog/ConfirmationDialog";
 import { AddIcon } from "common/components/Icons/Icons";
-import { useCollectionDialog } from "common/hooks/useCollectionDialog";
-import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
-import { enqueueSnackbar } from "notistack";
+import NewOption from "common/components/NewOption/NewOption";
 import { STATIC_PATH } from "common/constants/paths";
+import { useCollectionDialog } from "common/hooks/useCollectionDialog";
 import {
   getCurrentLanguageCode,
   getSiteLanguage,
 } from "h5p-bildetema/src/hooks/useCurrentLanguage";
+import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
+import { enqueueSnackbar } from "notistack";
 import { useDialogContext } from "../../hooks/useDialogContext";
-import { replacePlaceholders } from "../../utils/replacePlaceholders";
 import { Collection } from "../../types/types";
+import { replacePlaceholders } from "../../utils/replacePlaceholders";
 
 declare module "notistack" {
   interface VariantOverrides {

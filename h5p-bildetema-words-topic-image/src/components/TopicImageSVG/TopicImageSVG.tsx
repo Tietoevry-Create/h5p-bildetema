@@ -40,6 +40,7 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
           onMouseLeave={() => selectHoveredSVG("")}
           onFocus={() => selectHoveredSVG(overlay.wordId)}
           onBlur={() => selectHoveredSVG("")}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml:
           dangerouslySetInnerHTML={{ __html: overlay.outline }}
         />
       );
@@ -58,6 +59,7 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
   return (
     <div className={styles.imageContainer}>
       {topicImageType === "vectorImageWithHotspots" && (
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: The image is sanitized
         <div dangerouslySetInnerHTML={{ __html: image }} />
       )}
       {topicImageType === "nonVectorImageWithHotspots" && (

@@ -4,14 +4,14 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Audio } from "common/components/Audio/Audio";
-import { extractWordLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import {
   BookmarkFilledIcon,
   BookmarkIcon,
 } from "common/components/Icons/Icons";
+import { extractWordLabel } from "common/utils/word.utils";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useL10n } from "../../hooks/useL10n";
 import { gridImageSizes } from "../../utils/image/image.utils";
 import { Image } from "../Image/Image";

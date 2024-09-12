@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
-import { useMyCollections } from "common/hooks/useMyCollections";
-import { STATIC_PATH } from "common/constants/paths";
 import { Button } from "common/components/Button";
-import TextInput from "common/components/TextInput/TextInput";
 import Dialog from "common/components/Dialog/Dialog";
 import { AddIcon } from "common/components/Icons/Icons";
+import TextInput from "common/components/TextInput/TextInput";
+import { STATIC_PATH } from "common/constants/paths";
+import { useMyCollections } from "common/hooks/useMyCollections";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./CollectionsPage.module.scss";
-import CollectionElement from "../CollectionElement/CollectionElement";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
 import { useL10ns } from "../../../hooks/useL10n";
+import CollectionElement from "../CollectionElement/CollectionElement";
+import styles from "./CollectionsPage.module.scss";
 
 const CollectionsPage = (): React.JSX.Element => {
   const {

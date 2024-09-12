@@ -1,15 +1,15 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ReactDOM from "react-dom/client";
 import { H5PL10n } from "h5p-types";
 import React from "react";
+import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
 import "../../h5p-bildetema-words-grid-view/src";
 import "../../h5p-bildetema-words-topic-image/src";
 import semantics from "../semantics.json";
+import { App } from "./components/App/App";
 import { H5PWrapper } from "./h5p/H5PWrapper";
 import { Params } from "./types/Params";
-import { App } from "./components/App/App";
 import "./index.scss";
 
 const queryClient = new QueryClient();

@@ -1,18 +1,18 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useMemo } from "react";
 import { STATIC_PATH } from "common/constants/paths";
 import { searchResultsIncludesArticles } from "common/utils/word.utils";
+import { useEffect, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import { useH5PInstance } from "use-h5p";
+import { H5PWrapper } from "../../h5p/H5PWrapper";
+import useCurrentCollection from "../../hooks/useCurrentCollection";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { useL10ns } from "../../hooks/useL10n";
+import { useSearchParamContext } from "../../hooks/useSearchParamContext";
+import { useSelectedWords } from "../../hooks/useSelectedWords";
+import { SubHeader } from "../SubHeader/SubHeader";
 import styles from "./CollectionController.module.scss";
 import CollectionPage from "./CollectionPage/CollectionPage";
 import CollectionsPage from "./CollectionsPage/CollectionsPage";
-import { SubHeader } from "../SubHeader/SubHeader";
-import { useSelectedWords } from "../../hooks/useSelectedWords";
-import { useSearchParamContext } from "../../hooks/useSearchParamContext";
-import useCurrentCollection from "../../hooks/useCurrentCollection";
-import { useL10ns } from "../../hooks/useL10n";
-import { H5PWrapper } from "../../h5p/H5PWrapper";
 
 type CollectionControllerProps = {
   rtl: boolean;
@@ -70,6 +70,7 @@ const CollectionController = ({
     );
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     // Scroll into view on load and if collection param changes (i.e. when
     // switching between the main collection page and a collection)

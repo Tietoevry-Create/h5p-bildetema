@@ -1,9 +1,9 @@
-import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { languages as languagesConst } from "common/constants/languages";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { Language } from "common/types/types";
-import { useL10ns } from "./useL10n";
 import { translatedLabel } from "../utils/language.utils";
+import { useL10ns } from "./useL10n";
 
 export const useLanguagesWithTranslatedLabels = (): Language[] => {
   const { languages } = useNewDBContext();

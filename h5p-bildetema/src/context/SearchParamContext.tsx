@@ -1,7 +1,7 @@
 import React, { useState, createContext, useMemo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useToggleSearchParam } from "../hooks/useToggleSearchParam";
 import { SearchParameters } from "../enums/SearchParameters";
+import { useToggleSearchParam } from "../hooks/useToggleSearchParam";
 
 export type SearchParamContextType = {
   showArticles: boolean;

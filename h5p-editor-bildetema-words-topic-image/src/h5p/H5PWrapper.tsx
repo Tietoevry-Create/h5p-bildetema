@@ -17,9 +17,9 @@ import { H5P, H5PEditor, H5PWidget } from "h5p-utils";
 import { Root, createRoot } from "react-dom/client";
 import { App } from "../App";
 import { SetValueContext } from "../contexts/SetValueContext";
+import { BackendUrlField, Field } from "../types/Fields";
 import { Hotspot } from "../types/Hotspot";
 import { Params as ChooseTopicParams } from "./ChooseTopicH5PWrapper";
-import { BackendUrlField, Field } from "../types/Fields";
 
 export type Params = Array<Hotspot>;
 

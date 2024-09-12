@@ -2,23 +2,23 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { gridImageSizes } from "common/utils/image/image.utils";
-import { Image } from "common/components/Image/Image";
-import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
-import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
-import { LanguageCodeString } from "common/types/LanguageCode";
-import { languages as languagesConst } from "common/constants/languages";
 import {
   BookmarkFilledIcon,
   BookmarkIcon,
 } from "common/components/Icons/Icons";
+import { Image } from "common/components/Image/Image";
+import { languages as languagesConst } from "common/constants/languages";
 import { useMyCollections } from "common/hooks/useMyCollections";
-import { useL10ns, useL10n } from "../../../hooks/useL10n";
-import styles from "./SearchResultCard.module.scss";
+import { LanguageCodeString } from "common/types/LanguageCode";
+import { SearchResult } from "common/types/types";
+import { gridImageSizes } from "common/utils/image/image.utils";
+import { toSingleLabel } from "common/utils/word.utils";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useL10n, useL10ns } from "../../../hooks/useL10n";
 import { translatedLabel } from "../../../utils/language.utils";
+import styles from "./SearchResultCard.module.scss";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;

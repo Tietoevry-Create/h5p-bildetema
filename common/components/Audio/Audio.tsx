@@ -1,8 +1,8 @@
 import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { FC, useEffect, useRef, useState } from "react";
-import styles from "./Audio.module.scss";
 import { AudioFile } from "../../types/AudioFile";
+import styles from "./Audio.module.scss";
 
 type AudioProps = {
   lang: string;
@@ -52,16 +52,17 @@ export const Audio: FC<AudioProps> = ({
 
     setPlaying(!playing);
   };
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     // Reload sources whenever the language changes
     audioRef.current?.load();
     setPlaying(false);
   }, [audioFiles]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     setPlaying(audioRef.current?.paused === false);
   }, [audioRef.current?.paused]);
-
 
   return (
     <div

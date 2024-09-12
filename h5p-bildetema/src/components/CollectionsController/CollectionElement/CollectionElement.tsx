@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
 import Dialog from "common/components/Dialog/Dialog";
-import TextInput from "common/components/TextInput/TextInput";
 import {
   DeleteIcon,
   EditIcon,
   MoreVertIcon,
 } from "common/components/Icons/Icons";
+import TextInput from "common/components/TextInput/TextInput";
+import { useMyCollections } from "common/hooks/useMyCollections";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useL10ns } from "../../../hooks/useL10n";
+import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
-import DeleteDialog from "../../DeleteDialog/DeleteDialog";
-import { useL10ns } from "../../../hooks/useL10n";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",

@@ -21,7 +21,7 @@ export const Default: Story = {
         rtl: false,
       },
     ],
-    handleToggleFavoriteLanguage: (lang: Language, fav: boolean): void => {
+    handleToggleFavoriteLanguage: (_lang: Language, fav: boolean): void => {
       console.info(fav);
     },
     language: {

@@ -1,4 +1,5 @@
 import { LanguageCode } from "common/types/LanguageCode";
+import { TopicImageHotspot } from "common/types/TopicImageHotspot";
 import { DisplayView, TopicIds, Word } from "common/types/types";
 import { getLibraryName } from "common/utils/library/library.utils";
 import type { H5PLibrary, IH5PContentType } from "h5p-types";
@@ -6,7 +7,6 @@ import { H5P } from "h5p-utils";
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { L10nContext, useContentId } from "use-h5p";
-import { TopicImageHotspot } from "common/types/TopicImageHotspot";
 import { SearchParameters } from "../../enums/SearchParameters";
 import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 import styles from "./Words.module.scss";
@@ -70,6 +70,7 @@ export const Words: FC<WordsProps> = ({
     setSearchParams(searchParams);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     (() => {
       if (!contentId) {
@@ -193,6 +194,7 @@ export const Words: FC<WordsProps> = ({
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
   }, [contentId, topicViewRef, gridViewRef]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     const h = hotspots.map(hotspot => {
       const word = words?.find(w => w.id === hotspot.word.id);

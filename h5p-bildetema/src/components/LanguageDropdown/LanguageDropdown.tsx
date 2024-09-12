@@ -1,3 +1,7 @@
+import {
+  LanguageIcon,
+  LanguageMenuArrowIcon,
+} from "common/components/Icons/Icons";
 import { CurrentTopics, Language } from "common/types/types";
 import {
   Dispatch,
@@ -8,10 +12,6 @@ import {
   useState,
 } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import {
-  LanguageIcon,
-  LanguageMenuArrowIcon,
-} from "common/components/Icons/Icons";
 import { LanguageSelector } from "../LanguageSelector/LanguageSelector";
 import styles from "./LanguageDropdown.module.scss";
 
@@ -65,6 +65,7 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
     });
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Only set `firstTime` when `currentLanguageCode` changes
   useEffect(() => {
     setIsActive(firstTime);
   }, [currentLanguageCode]);

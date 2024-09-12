@@ -1,14 +1,14 @@
 import { languages as languagesConst } from "common/constants/languages";
+import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
 import { getPath } from "common/utils/router.utils";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useNewDBContext } from "common/hooks/useNewDBContext";
-import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
-import { useL10n, useL10ns } from "../../hooks/useL10n";
-import styles from "./LanguageFavorites.module.scss";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { useL10n, useL10ns } from "../../hooks/useL10n";
+import { sanitizeLanguages, translatedLabel } from "../../utils/language.utils";
+import styles from "./LanguageFavorites.module.scss";
 
 export type LanguageFavoritesProps = {
   favLanguages: Language[];
