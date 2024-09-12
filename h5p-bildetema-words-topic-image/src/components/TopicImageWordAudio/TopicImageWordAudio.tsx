@@ -36,7 +36,6 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
     unSelectWord("");
 
     // Do not want or need to trigger unSelectWord each time a word is selected
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -98,7 +97,7 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
         playing ? styles.wordAudio_active : ""
       } ${showAsSelected ? styles.selected : ""}`}
     >
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      {/* biome-ignore lint/a11y/useMediaCaption: This is the global audio element. It does not need a caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
         {word.audioFiles?.map(file => (
           <source key={file.mimeType} src={file.url} type={file.mimeType} />

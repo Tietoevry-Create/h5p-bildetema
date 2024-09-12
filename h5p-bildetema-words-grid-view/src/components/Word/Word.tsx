@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
 import { Word as WordType } from "common/types/types";
 import { FC } from "react";
 import { Navigation, Pagination } from "swiper";
@@ -108,7 +107,11 @@ export const Word: FC<WordProps> = ({
   const label = textVisible ? extractWordLabel(word, showArticles) : "";
 
   return (
-    <li role="listitem" className={styles.word}>
+    <li
+      // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
+      role="listitem"
+      className={styles.word}
+    >
       <Button
         variant="circle"
         className={styles.bookmarkButton}

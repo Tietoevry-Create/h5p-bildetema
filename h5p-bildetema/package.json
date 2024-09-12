@@ -12,8 +12,6 @@
     "start:dev-mobile": "vite --host",
     "build:dev": "vite build --mode=development",
     "build": "tsc && vite build",
-    "lint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "npm run lint:check -- --fix",
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "storybook dev -p 6006 -h localhost",
@@ -41,14 +39,10 @@
     "@types/jquery": "^3.5.30",
     "@types/node": "^22.5.4",
     "esbuild": "^0.23.1",
-    "eslint-config-custom": "*",
     "storybook-custom": "*",
     "ts-node": "^10.9.2",
     "tsconfig-custom": "*",
     "vite-utils": "*",
     "vitest": "^2.0.5"
-  },
-  "eslintConfig": {
-    "extends": "custom"
   }
 }

@@ -79,7 +79,6 @@ export const Header: FC<HeaderProps> = ({
     } else {
       setLangSelectorIsShown(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // TODO: Add better method to find screen width

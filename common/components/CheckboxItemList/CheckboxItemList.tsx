@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import CheckboxItem from "common/components/CheckboxItem/CheckboxItem";
 import { Option } from "common/types/types";
 

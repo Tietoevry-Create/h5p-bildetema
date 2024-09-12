@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
-/* eslint-disable no-nested-ternary */
 import { AudioRefContext } from "common/context/AudioContext";
 import {
   CurrentTopics,
@@ -59,6 +57,7 @@ export const TopicGrid: FC<TopicGridProps> = ({
 
   const renderTopics = (): JSX.Element => (
     <ul
+      // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
       role="list"
       className={
         topicsSize === TopicGridSizes.Big ? styles.gridBig : styles.gridCompact

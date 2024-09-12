@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from "react";
 
 export type SpeakerIconProps = {
@@ -55,11 +53,7 @@ export type IconTransformProps = {
 
 // export type IconType
 
-export const HomeIcon: FC<IconProps & IconSizeProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const HomeIcon: FC<IconProps & IconSizeProps> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -72,11 +66,7 @@ export const HomeIcon: FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const BreadcrumbsArrowIcon: FC<IconProps & IconSizeProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const BreadcrumbsArrowIcon: FC<IconProps & IconSizeProps> = () => (
   <svg
     width="10"
     height="17"
@@ -107,11 +97,7 @@ export const LeftRightArrow: FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const BreadcrumbsArrowLeftIcon: FC<IconProps & IconSizeProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const BreadcrumbsArrowLeftIcon: FC<IconProps & IconSizeProps> = () => (
   <svg
     width="10"
     height="17"
@@ -123,17 +109,12 @@ export const BreadcrumbsArrowLeftIcon: FC<IconProps & IconSizeProps> = ({
       d="M1.5 17 .067 15.567l6.6-6.6-6.6-6.6L1.5.933l8.034 8.034L1.5 17Z"
       fill="currentcolor"
       transform="rotate(180)"
-      // eslint-disable-next-line react/no-unknown-property
       transform-origin="center center"
     />
   </svg>
 );
 
-export const BigTopicsIcon: FC<IconProps & IconSizeProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const BigTopicsIcon: FC<IconProps & IconSizeProps> = () => (
   <svg
     width="32"
     height="32"
@@ -172,11 +153,7 @@ export const BigTopicsIcon: FC<IconProps & IconSizeProps> = ({
   </svg>
 );
 
-export const CompactTopicsIcon: FC<IconProps & IconSizeProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const CompactTopicsIcon: FC<IconProps & IconSizeProps> = () => (
   <svg
     width="32"
     height="32"
@@ -193,7 +170,7 @@ export const CompactTopicsIcon: FC<IconProps & IconSizeProps> = ({
 
 export const LanguageMenuArrowIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
-> = ({ iconColor, width, height, transform, transformOrigin }) => (
+> = ({ transform, transformOrigin }) => (
   <svg
     width="16"
     height="10"
@@ -205,7 +182,6 @@ export const LanguageMenuArrowIcon: FC<
       d="M8 9.49974L0 1.49974L1.43333 0.0664062L8 6.66641L14.5667 0.0997391L16 1.53307L8 9.49974Z"
       fill="currentColor"
       transform={transform}
-      // eslint-disable-next-line react/no-unknown-property
       transform-origin={transformOrigin}
     />
   </svg>
@@ -213,7 +189,7 @@ export const LanguageMenuArrowIcon: FC<
 
 export const StarFilledIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
-> = ({ iconColor, width, height, transform, transformOrigin }) => (
+> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -229,7 +205,7 @@ export const StarFilledIcon: FC<
 
 export const StarOutlineIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
-> = ({ iconColor, width, height, transform, transformOrigin }) => (
+> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -242,13 +218,9 @@ export const StarOutlineIcon: FC<
   </svg>
 );
 
-export const CheckIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
-  iconColor,
-  width,
-  height,
-  transform,
-  transformOrigin,
-}) => (
+export const CheckIcon: FC<
+  IconProps & IconSizeProps & IconTransformProps
+> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -260,13 +232,9 @@ export const CheckIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
   </svg>
 );
 
-export const PrintIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
-  iconColor,
-  width,
-  height,
-  transform,
-  transformOrigin,
-}) => (
+export const PrintIcon: FC<
+  IconProps & IconSizeProps & IconTransformProps
+> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -281,7 +249,7 @@ export const PrintIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
 
 export const LanguageIcon: FC<
   IconProps & IconSizeProps & IconTransformProps
-> = ({ iconColor, width, height, transform, transformOrigin }) => (
+> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -304,13 +272,9 @@ export const SearchIcon: FC = () => (
   </svg>
 );
 
-export const BackIcon: FC<IconProps & IconSizeProps & IconTransformProps> = ({
-  iconColor,
-  width,
-  height,
-  transform,
-  transformOrigin,
-}) => (
+export const BackIcon: FC<
+  IconProps & IconSizeProps & IconTransformProps
+> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"

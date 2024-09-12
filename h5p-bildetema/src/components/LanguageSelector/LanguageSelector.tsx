@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
 import {
   languages as languagesConst,
   languagesOriginal,
@@ -49,7 +48,11 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({
       aria-label={navAriaLabel}
       className={`${styles.languageSelectorWrapper} ${styles.allignmentRight}`}
     >
-      <ul role="list" className={styles.languageSelector}>
+      <ul
+        // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
+        role="list"
+        className={styles.languageSelector}
+      >
         {languages
           ?.filter(language => languagesOriginal?.[language.code])
           ?.sort((a, b) =>

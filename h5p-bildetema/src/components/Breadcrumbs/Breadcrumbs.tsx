@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
@@ -106,6 +105,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
 
   return (
     <nav aria-label={breadcrumbsAriaLabel}>
+      {/* biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed */}
       <ol role="list" className={styles.breadcrumbs} lang={currentLang}>
         {breadCrumbsToRender.map(({ label, path }, index) => {
           const notLastBreadCrumb = index !== breadCrumbsToRender.length - 1;
@@ -114,6 +114,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
 
           return notLastBreadCrumb ? (
             <li
+              // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed */
               role="listitem"
               key={path}
               className={
@@ -149,6 +150,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
               </span>
             </li>
           ) : (
+            // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
             <li role="listitem" aria-current="location" key={path}>
               <h1 className={styles.currentPage}>{label}</h1>
             </li>

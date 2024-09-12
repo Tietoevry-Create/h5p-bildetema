@@ -4,9 +4,7 @@ import { H5PL10n } from "h5p-types";
 import React from "react";
 import { HashRouter } from "react-router-dom";
 import { ContentIdContext, H5PContext, L10nContext } from "use-h5p";
-// eslint-disable-next-line import/no-relative-packages
 import "../../h5p-bildetema-words-grid-view/src";
-// eslint-disable-next-line import/no-relative-packages
 import "../../h5p-bildetema-words-topic-image/src";
 import semantics from "../semantics.json";
 import { H5PWrapper } from "./h5p/H5PWrapper";

@@ -12,7 +12,6 @@ import { DisplayViewButtons } from "../DisplayViewButtons/DisplayViewButtons";
 import styles from "./Words.module.scss";
 
 // TODO: Export library from h5p-bildetema-words-topic-view
-// eslint-disable-next-line import/no-relative-packages
 import gridViewLibrary from "../../../../h5p-bildetema-words-grid-view/library.json";
 
 type WordsProps = {
@@ -192,7 +191,6 @@ export const Words: FC<WordsProps> = ({
       setViewInstances(topicViewRef.current, gridViewRef.current);
     })();
     // Avoid updating when params changes, because we want to trigger changes in the useEffect below
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentId, topicViewRef, gridViewRef]);
 
   useEffect(() => {
@@ -220,7 +218,6 @@ export const Words: FC<WordsProps> = ({
       showArticles,
     });
     // Avoid updating when `gridViewInstance` changes, because we don't want to trigger updates to the grid view when it initializes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, showWrittenWords, currentLanguage, showArticles, hotspots]);
 
   return (

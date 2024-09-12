@@ -1,8 +1,0 @@
-**/coverage/tmp/*
-**/storybook-static
-**/dist
-storybook-static
-language
-semantics.json.d.ts
-library.json.d.ts
-cmd

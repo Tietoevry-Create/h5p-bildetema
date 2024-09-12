@@ -209,7 +209,7 @@ export const MultiLanguageWord = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
     <li role="listitem" className={styles.searchResultCard}>
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
@@ -217,7 +217,6 @@ export const MultiLanguageWord = ({
           <div
             className={styles.translation}
             // Todo fix key when we never can have multiple of same language
-            // eslint-disable-next-line react/no-array-index-key
             key={`${translation.lang.code}-${index}`}
           >
             {searchResult.translations.length > 1 && (

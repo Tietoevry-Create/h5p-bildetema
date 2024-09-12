@@ -7,10 +7,10 @@
     "setup-drupal": "tsx puppeteer/setup-drupal.ts",
     "bump-library": "tsx bumpLibrary.ts",
     "bump-and-build": "npm run bump-library && npm run build",
-    "format:check": "prettier . --check",
-    "format:fix": "prettier . --write",
-    "lint:check": "turbo run lint:check",
-    "lint:fix": "turbo run lint:fix",
+    "format:check": "biome check",
+    "format:fix": "biome check --write",
+    "lint:check": "biome check",
+    "lint:fix": "biome check --write",
     "start": "turbo run start",
     "start:dev": "turbo run start:dev",
     "start:dev-mobile": "turbo run start:dev-mobile",
@@ -25,11 +25,11 @@
     "check-licenses": "npx license-checker --summary --production --excludePackages 'h5p-bildetema' --onlyAllow 'MIT;ISC;Apache-2.0;Apache 2.0;Apache*;BSD;WTFPL;Artistic-2.0;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Unlicense;Public Domain;Python-2.0;'"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
     "notistack": "^3.0.1",
     "react-responsive": "^10.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
     "@types/cli-interact": "^0.1.4",
     "@types/puppeteer": "^5.4.7",
     "@types/react": "^18.3.5",
@@ -39,7 +39,6 @@
     "jsdom": "^25.0.0",
     "license-checker": "^25.0.1",
     "postcss": "^8.4.45",
-    "prettier": "^3.3.3",
     "puppeteer": "^23.3.0",
     "tsx": "^4.19.1",
     "turbo": "^2.1.1"

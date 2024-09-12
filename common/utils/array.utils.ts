@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 type Primitive = number | string;
 
 /**

@@ -6,6 +6,7 @@ src
 .gitignore
 .h5pignore
 .prettierignore
+biome.json
 package-lock.json
 package.json
 postcss.config.js

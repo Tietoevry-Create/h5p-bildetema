@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
 import { FC, RefObject, useMemo, useState } from "react";
 
 import { AudioRefContext } from "common/context/AudioContext";
@@ -51,7 +50,11 @@ export const TopicWordsGrid: FC<TopicWordsGridProps> = ({
       }}
     >
       <ChooseCollectionsDialog />
-      <ul role="list" className={styles.topicgrid}>
+      <ul
+        // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
+        role="list"
+        className={styles.topicgrid}
+      >
         <AudioRefContext.Provider value={audioContextValue}>
           {words.map(word => (
             <Word

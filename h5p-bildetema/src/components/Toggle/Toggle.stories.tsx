@@ -6,7 +6,6 @@ export default {
   title: "Components/Toggle",
   component: Toggle,
   render: ({ id, checked, label }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [isChecked, setIsChecked] = useState(checked);
 
     let size;

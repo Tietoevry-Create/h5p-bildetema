@@ -53,7 +53,6 @@ export const Bildetema: FC<BildetemaProps> = ({
         setShowLoadingLabel(true);
       }
     }, 300);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadingLabel = useL10n("pageIsLoading");

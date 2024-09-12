@@ -82,8 +82,7 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
             );
           })}
           {index === chunksOfWords.length - 1 &&
-            [...Array(missingItemsInLastRow)].map((_, i) => (
-              // eslint-disable-next-line react/no-array-index-key
+            [new Array(missingItemsInLastRow)].map((_, i) => (
               <td key={`${i}${chunk.at(0)?.id}`} />
             ))}
         </tr>

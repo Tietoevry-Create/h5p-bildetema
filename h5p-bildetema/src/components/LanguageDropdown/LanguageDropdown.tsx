@@ -67,7 +67,6 @@ export const LanguageDropdown: FC<LanguageDropdownProps> = ({
 
   useEffect(() => {
     setIsActive(firstTime);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguageCode]);
 
   return (

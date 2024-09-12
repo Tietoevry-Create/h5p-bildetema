@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useState, useCallback, useEffect } from "react";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import { useMyCollections } from "common/hooks/useMyCollections";

@@ -17,7 +17,6 @@ export const Default: Story = {
     label: "Checkbox label",
   },
   render: ({ id, checked, disabled, label }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [isChecked, setIsChecked] = useState(checked);
 
     return (

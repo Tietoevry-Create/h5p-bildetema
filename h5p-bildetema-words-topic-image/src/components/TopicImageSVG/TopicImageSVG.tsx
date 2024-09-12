@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { FC } from "react";
 import { OverlayType } from "../../types/OverlayType";
 import { TopicImageTypes } from "../../types/TopicImageTypes";
@@ -29,6 +28,7 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
     .map(overlay => {
       const active = `${overlay.color}_active`;
       return (
+        // biome-ignore lint/a11y/useKeyWithClickEvents: The overlay does not need a key event
         <g
           key={overlay.wordId}
           className={`${styles.overlay} ${styles[overlay.color]} ${

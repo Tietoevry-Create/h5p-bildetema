@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import { Collection } from "common/types/types";
 import { LOCAL_STORAGE_KEYS } from "common/constants/local-storage-keys";
 import useLocalStorageState from "use-local-storage-state";
@@ -20,7 +19,6 @@ type AddCollection = {
   wordIds?: string[];
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useMyCollections = () => {
   const [myCollections, setMyCollections] = useLocalStorageState<Collection[]>(
     LOCAL_STORAGE_KEYS.MY_COLLECTIONS,
@@ -48,13 +46,11 @@ export const useMyCollections = () => {
         return { ...collection, id: uuid() };
       });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateSortOrder = (sortOrder: string[]): void => {
     const sortOrderMap = new Map();
 
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < sortOrder.length; i++) {
       const collectionId = sortOrder[i];
       sortOrderMap.set(collectionId, i);

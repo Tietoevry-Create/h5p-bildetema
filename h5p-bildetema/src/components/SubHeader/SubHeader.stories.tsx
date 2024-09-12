@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { TopicGridSizes } from "common/types/types";
 import { useState } from "react";

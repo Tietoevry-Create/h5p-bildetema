@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { Button as HButton } from "@headlessui/react";
 import styles from "./Button.module.scss";

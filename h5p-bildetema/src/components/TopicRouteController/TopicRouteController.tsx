@@ -126,7 +126,6 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     setPreviousPageWasFrontpage(isFrontpage);
 
     // Avoid depending on `currentTopicId` and `currentSubTopicId` as they are set by the effect
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage, h5pInstance, subTopicLabelParam, topicLabelParam]);
 
   const toggleShowTopicImageView = (value: boolean): void => {

@@ -6,6 +6,7 @@ src
 .gitignore
 .h5pignore
 .prettierignore
+biome.json
 index.html
 package-lock.json
 package.json

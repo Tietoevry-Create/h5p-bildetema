@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
 import { languages as languagesConst } from "common/constants/languages";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { CurrentTopics, Language } from "common/types/types";
@@ -46,7 +45,11 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
       aria-label={navAriaLabel}
       className={hidden ? styles.hidden : styles.languageWrapper}
     >
-      <ul role="list" className={styles.languages}>
+      <ul
+        // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
+        role="list"
+        className={styles.languages}
+      >
         {sanitizedFavLanguages
           .sort((a, b) =>
             translatedLabel(a, langs)?.localeCompare(translatedLabel(b, langs)),
@@ -54,6 +57,7 @@ export const LanguageFavorites: FC<LanguageFavoritesProps> = ({
           .map(language => {
             return (
               <li
+                // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
                 role="listitem"
                 key={language.code}
                 aria-current={

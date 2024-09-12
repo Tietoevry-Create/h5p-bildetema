@@ -184,7 +184,6 @@ const SearchPage = (): JSX.Element => {
         handleSearch(currSearch);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [langCode]);
 
   return (

@@ -54,8 +54,8 @@ export const LanguageSelectorElement: FC<LanguageSelectorElement> = ({
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li
+      // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
       role="listitem"
       className={`${styles.language} ${
         bottomElementAt2Col ? styles.languageBottom2Col : ""

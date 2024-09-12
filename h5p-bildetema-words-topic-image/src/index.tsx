@@ -8,5 +8,4 @@ registerContentType("BildetemaTopicImageView", H5PWrapper);
 
 // Import semantics into value space to ensure that `unplugin-json-dts`
 // generates the correct types.
-// eslint-disable-next-line no-unused-expressions
 semantics;

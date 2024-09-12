@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useState } from "react";
 
 import ConfirmationDialog from "common/components/ConfirmationDialog/ConfirmationDialog";
@@ -16,6 +15,7 @@ import {
 } from "h5p-bildetema/src/hooks/useCurrentLanguage";
 import { useDialogContext } from "../../hooks/useDialogContext";
 import { replacePlaceholders } from "../../utils/replacePlaceholders";
+import { Collection } from "../../types/types";
 
 declare module "notistack" {
   interface VariantOverrides {
@@ -25,6 +25,11 @@ declare module "notistack" {
     };
   }
 }
+
+type Details = {
+  collection: Collection | undefined;
+  wasRemoved: boolean;
+};
 
 const ChooseCollectionsDialog = () => {
   const [textInput, setTextInput] = useState("");
@@ -60,8 +65,7 @@ const ChooseCollectionsDialog = () => {
 
   const description = showCreate ? createACollection : chooseACollection;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getURL = (details: any = null): string => {
+  const getURL = (details: Details | null = null): string => {
     const siteLanguagePath = !siteLanguage ? "" : `/${siteLanguage}`;
 
     if (!details) {
@@ -85,8 +89,7 @@ const ChooseCollectionsDialog = () => {
     return url;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getMessage = (details: any): React.ReactNode => {
+  const getMessage = (details: Details): React.ReactNode => {
     const replacements = {
       collection: <b key={1}>{details.collection?.title ?? ""}</b>,
     };

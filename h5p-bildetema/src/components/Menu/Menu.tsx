@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { forwardRef, Fragment } from "react";
 import { Button } from "common/components/Button";
 import {

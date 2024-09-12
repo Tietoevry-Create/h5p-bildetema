@@ -42,7 +42,7 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
 
   const { search } = useLocation();
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    // biome-ignore lint/a11y/noRedundantRoles: The role is necessary because Safari will change the aria role if the `display` CSS property is changed
     <li role="listitem">
       <div className={topicCardClassName}>
         <img className={styles.topicImage} src={imageSrc} alt="" />
@@ -50,6 +50,7 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
           <h2>{title}</h2>
         </Link>
         <span className={gridElementClassName}>
+          {/* biome-ignore lint/a11y/useHeadingContent: The title is set in the link above */}
           <h2 aria-hidden="true">{title}</h2>
           <TopicGridElementAudio audioFiles={audioFiles} />
         </span>

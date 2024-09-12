@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 
 import { Button } from "common/components/Button";
