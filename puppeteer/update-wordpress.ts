@@ -42,7 +42,7 @@ async function updateLibrary(
   await fileChooser.accept([filePath]);
   await page.click("[name=submit]");
   log("Waiting 5s");
-  await page.waitForTimeout(5000);
+  await new Promise(resolve => setTimeout(resolve, 5000));
 }
 
 (async () => {
@@ -61,7 +61,7 @@ async function updateLibrary(
   //   devtools: true,
   // });
 
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   await openPage(page, url);
