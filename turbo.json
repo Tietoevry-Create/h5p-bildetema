@@ -17,8 +17,6 @@
       ],
       "persistent": true
     },
-    "lint:check": {},
-    "lint:fix": {},
     "start": {
       "cache": false,
       "persistent": true
