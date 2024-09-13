@@ -48,6 +48,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
     "react/require-default-props": "off",
+    "react/no-is-mounted": "off",
     "react/function-component-definition": [
       2,
       {
