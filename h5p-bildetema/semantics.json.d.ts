@@ -331,6 +331,24 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Aria text for disabled button in choose a collection dialog",
+				name: "ariaDisabledChooseACollection",
+				"default": "Choose a collection",
+				type: "text"
+			},
+			{
+				label: "Aria text for disabled button in choose a collection dialog with preselected collections",
+				name: "ariaDisabledChooseACollectionPreselected",
+				"default": "The word is already added to the selected collections",
+				type: "text"
+			},
+			{
+				label: "Aria text for disabled button in create a collection dialog",
+				name: "ariaDisabledCreateACollection",
+				"default": "Write a name for the collection",
+				type: "text"
+			},
+			{
 				label: "Save changes",
 				name: "saveChanges",
 				"default": "Save changes",

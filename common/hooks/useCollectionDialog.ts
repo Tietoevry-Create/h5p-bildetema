@@ -59,6 +59,7 @@ export const useCollectionDialog = () => {
   }, [isOpen]);
 
   const getCollectionChangeDetails = useCallback((): {
+    alreadySelected?: boolean;
     wasChanged?: boolean;
     wasRemoved?: boolean;
     collection?: Collection | undefined;
@@ -73,6 +74,8 @@ export const useCollectionDialog = () => {
       originallySelected,
       selectedOptions,
     );
+
+    const isAlreadySelected = originallySelected.length > 0;
 
     if (removedElements.length === 1 && addedElements.length === 0) {
       const collection = myCollections.find(c => c.id === removedElements[0]);
@@ -95,6 +98,12 @@ export const useCollectionDialog = () => {
     if (removedElements.length > 1 || addedElements.length > 1) {
       return {
         wasChanged: true,
+      };
+    }
+
+    if (isAlreadySelected) {
+      return {
+        alreadySelected: true,
       };
     }
 

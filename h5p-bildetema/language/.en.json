@@ -221,6 +221,18 @@
           "default": "Cancel"
         },
         {
+          "label": "Aria text for disabled button in choose a collection dialog",
+          "default": "Choose a collection"
+        },
+        {
+          "label": "Aria text for disabled button in choose a collection dialog with preselected collections",
+          "default": "The word is already added to the selected collections"
+        },
+        {
+          "label": "Aria text for disabled button in create a collection dialog",
+          "default": "Write a name for the collection"
+        },
+        {
           "label": "Save changes",
           "default": "Save changes"
         },

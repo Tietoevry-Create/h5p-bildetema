@@ -48,6 +48,9 @@ const ChooseCollectionsDialog = () => {
     changesSaved,
     wordSavedInCollection,
     wordRemovedFromCollection,
+    ariaDisabledChooseACollection,
+    ariaDisabledChooseACollectionPreselected,
+    ariaDisabledCreateACollection,
   } = useL10ns(
     "createACollection",
     "chooseACollection",
@@ -55,6 +58,9 @@ const ChooseCollectionsDialog = () => {
     "changesSaved",
     "wordSavedInCollection",
     "wordRemovedFromCollection",
+    "ariaDisabledChooseACollection",
+    "ariaDisabledChooseACollectionPreselected",
+    "ariaDisabledCreateACollection",
   );
 
   const description = showCreate ? createACollection : chooseACollection;
@@ -106,6 +112,17 @@ const ChooseCollectionsDialog = () => {
     return !details?.wasChanged;
   };
 
+  const getDisabledTooltip = () => {
+    if (showCreate) {
+      return ariaDisabledCreateACollection;
+    }
+    const details = getCollectionChangeDetails();
+    if (details?.alreadySelected) {
+      return ariaDisabledChooseACollectionPreselected;
+    }
+    return ariaDisabledChooseACollection;
+  };
+
   const confirm = () => {
     if (getDisableConfirm()) {
       return;
@@ -133,9 +150,7 @@ const ChooseCollectionsDialog = () => {
       onCancel={handleCancel}
       onConfirm={confirm}
       disableConfirm={getDisableConfirm()}
-      disabledTooltip={
-        showCreate ? "Skriv inn et navn" : "Velg en eller flere samlinger"
-      }
+      disabledTooltip={getDisabledTooltip()}
     >
       {showCreate ? (
         <NewOption
