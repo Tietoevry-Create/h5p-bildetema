@@ -69,7 +69,7 @@
 
     &:hover .tooltip,
     &:focus-visible .tooltip {
-      opacity: 1;
+      opacity: 0.9;
       visibility: visible;
     }
   }
@@ -148,7 +148,6 @@
   position: absolute;
   text-align: center;
   white-space: normal;
-  z-index: 1;
 
   opacity: 0;
   visibility: hidden;
