@@ -59,11 +59,19 @@
     border-color: $darker-teal;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled="true"] {
     background-color: $dark-beige;
     border-color: $dark-beige;
     color: $disabled-font-color;
     cursor: not-allowed;
+    position: relative;
+
+    &:hover .tooltip,
+    &:focus-visible .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
@@ -118,12 +126,30 @@
   background-color: $beige;
   border: none;
   cursor: pointer;
-
-  // TODO: change color or store as variable?
-  fill: #403933;
+  fill: $dark-grey;
 
   &:hover {
     background-color: $burgundy;
     fill: white;
   }
+}
+
+.tooltip {
+  background-color: $dark-grey;
+  border-radius: 0.5rem;
+  bottom: 100%;
+  color: $white;
+  font-family: sans-serif;
+  font-size: $font-size-14;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  max-width: 100%;
+  padding: 0.5rem;
+  position: absolute;
+  text-align: center;
+  white-space: normal;
+  z-index: 1;
+
+  opacity: 0;
+  visibility: hidden;
 }

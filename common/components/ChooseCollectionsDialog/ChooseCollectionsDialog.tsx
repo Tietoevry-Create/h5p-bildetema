@@ -98,7 +98,18 @@ const ChooseCollectionsDialog = () => {
     return <span>{message}</span>;
   };
 
+  const getDisableConfirm = () => {
+    if (showCreate) {
+      return !textInput;
+    }
+    const details = getCollectionChangeDetails();
+    return !details?.wasChanged;
+  };
+
   const confirm = () => {
+    if (getDisableConfirm()) {
+      return;
+    }
     const details = getCollectionChangeDetails();
     if (!details?.collection || showCreate) {
       enqueueSnackbar(changesSaved, {
@@ -116,20 +127,15 @@ const ChooseCollectionsDialog = () => {
     setTextInput("");
   };
 
-  const getDisableConfirm = () => {
-    const details = getCollectionChangeDetails();
-    if (showCreate) {
-      return !textInput;
-    }
-    return !details?.wasChanged;
-  };
-
   return (
     <ConfirmationDialog
       title={description}
       onCancel={handleCancel}
       onConfirm={confirm}
       disableConfirm={getDisableConfirm()}
+      disabledTooltip={
+        showCreate ? "Skriv inn et navn" : "Velg en eller flere samlinger"
+      }
     >
       {showCreate ? (
         <NewOption
