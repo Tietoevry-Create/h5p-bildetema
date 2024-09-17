@@ -221,6 +221,18 @@
           "default": "Avbryt"
         },
         {
+          "label": "Aria text for disabled button in choose a collection dialog",
+          "default": "Velg en samling"
+        },
+        {
+          "label": "Aria text for disabled button in choose a collection dialog with preselected collections",
+          "default": "Ordet er allerede lagret i samlingene som er markert"
+        },
+        {
+          "label": "Aria text for disabled button in create a collection dialog",
+          "default": "Skriv inn et navn på samlingen"
+        },
+        {
           "label": "Save changes",
           "default": "Lagre endringer"
         },

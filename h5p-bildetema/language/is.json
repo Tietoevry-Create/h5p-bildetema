@@ -221,6 +221,18 @@
           "default": "Hætta við"
         },
         {
+          "label": "Aria text for disabled button in choose a collection dialog",
+          "default": "Veldu safn"
+        },
+        {
+          "label": "Aria text for disabled button in choose a collection dialog with preselected collections",
+          "default": "Orðið er þegar geymt í völdum söfnum"
+        },
+        {
+          "label": "Aria text for disabled button in create a collection dialog",
+          "default": "Sláðu inn nafn fyrir safnið"
+        },
+        {
           "label": "Save changes",
           "default": "Vista breytingar"
         },

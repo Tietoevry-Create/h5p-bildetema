@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useState } from "react";
-
 import ConfirmationDialog from "common/components/ConfirmationDialog/ConfirmationDialog";
 import CheckboxItemList from "common/components/CheckboxItemList/CheckboxItemList";
 import NewOption from "common/components/NewOption/NewOption";
@@ -49,6 +48,9 @@ const ChooseCollectionsDialog = () => {
     changesSaved,
     wordSavedInCollection,
     wordRemovedFromCollection,
+    ariaDisabledChooseACollection,
+    ariaDisabledChooseACollectionPreselected,
+    ariaDisabledCreateACollection,
   } = useL10ns(
     "createACollection",
     "chooseACollection",
@@ -56,6 +58,9 @@ const ChooseCollectionsDialog = () => {
     "changesSaved",
     "wordSavedInCollection",
     "wordRemovedFromCollection",
+    "ariaDisabledChooseACollection",
+    "ariaDisabledChooseACollectionPreselected",
+    "ariaDisabledCreateACollection",
   );
 
   const description = showCreate ? createACollection : chooseACollection;
@@ -99,9 +104,31 @@ const ChooseCollectionsDialog = () => {
     return <span>{message}</span>;
   };
 
-  const confirm = () => {
+  const getDisableConfirm = () => {
+    if (showCreate) {
+      return !textInput;
+    }
     const details = getCollectionChangeDetails();
-    if (!details || showCreate) {
+    return !details?.wasChanged;
+  };
+
+  const getDisabledTooltip = () => {
+    if (showCreate) {
+      return ariaDisabledCreateACollection;
+    }
+    const details = getCollectionChangeDetails();
+    if (details?.alreadySelected) {
+      return ariaDisabledChooseACollectionPreselected;
+    }
+    return ariaDisabledChooseACollection;
+  };
+
+  const confirm = () => {
+    if (getDisableConfirm()) {
+      return;
+    }
+    const details = getCollectionChangeDetails();
+    if (!details?.collection || showCreate) {
       enqueueSnackbar(changesSaved, {
         variant: "success",
         href: getURL(),
@@ -122,6 +149,8 @@ const ChooseCollectionsDialog = () => {
       title={description}
       onCancel={handleCancel}
       onConfirm={confirm}
+      disableConfirm={getDisableConfirm()}
+      disabledTooltip={getDisabledTooltip()}
     >
       {showCreate ? (
         <NewOption

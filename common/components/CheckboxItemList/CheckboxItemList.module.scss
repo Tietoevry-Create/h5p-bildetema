@@ -6,5 +6,7 @@
   gap: 0.5rem;
   max-height: 300px;
   overflow-y: auto;
-  margin-bottom: 2rem;
+  // make outline of container elements visible
+  margin: -3px -3px 2rem;
+  padding: 3px;
 }
