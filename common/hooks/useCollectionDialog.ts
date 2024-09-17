@@ -95,7 +95,7 @@ export const useCollectionDialog = () => {
       };
     }
 
-    if (removedElements.length > 1 || addedElements.length > 1) {
+    if (removedElements.length > 0 || addedElements.length > 0) {
       return {
         wasChanged: true,
       };
