@@ -34,8 +34,8 @@ export const sortSearchByTopic = (results: NewWord[]): NewWord[] => {
 const getSearchPositionValue = (search: string, labels: Labels): number => {
   const equal = 0;
   const equalWithin = 1;
-  const endsWith = 2;
-  const startsWith = 3;
+  const startsWith = 2;
+  const endsWith = 3;
   const contains = 5;
 
   const lowerCaseSearch = search.toLowerCase();
