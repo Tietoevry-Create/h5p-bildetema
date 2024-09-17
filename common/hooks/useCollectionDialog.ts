@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import { useMyCollections } from "common/hooks/useMyCollections";
-import { Option } from "common/types/types";
+import { Collection, Option } from "common/types/types";
 import { sortBySelectionStatus } from "common/utils/sorting.utils";
 import { findDifference } from "common/utils/array.utils";
 
@@ -58,7 +58,12 @@ export const useCollectionDialog = () => {
     }
   }, [isOpen]);
 
-  const getCollectionChangeDetails = useCallback(() => {
+  const getCollectionChangeDetails = useCallback((): {
+    alreadySelected?: boolean;
+    wasChanged?: boolean;
+    wasRemoved?: boolean;
+    collection?: Collection | undefined;
+  } | null => {
     if (!selectedId) return null;
 
     const originallySelected = myCollections
@@ -70,13 +75,12 @@ export const useCollectionDialog = () => {
       selectedOptions,
     );
 
-    if (removedElements.length + addedElements.length > 1) {
-      return null;
-    }
+    const isAlreadySelected = originallySelected.length > 0;
 
     if (removedElements.length === 1 && addedElements.length === 0) {
       const collection = myCollections.find(c => c.id === removedElements[0]);
       return {
+        wasChanged: true,
         wasRemoved: true,
         collection,
       };
@@ -85,8 +89,21 @@ export const useCollectionDialog = () => {
     if (removedElements.length === 0 && addedElements.length === 1) {
       const collection = myCollections.find(c => c.id === addedElements[0]);
       return {
+        wasChanged: true,
         wasRemoved: false,
         collection,
+      };
+    }
+
+    if (removedElements.length > 1 || addedElements.length > 1) {
+      return {
+        wasChanged: true,
+      };
+    }
+
+    if (isAlreadySelected) {
+      return {
+        alreadySelected: true,
       };
     }
 
