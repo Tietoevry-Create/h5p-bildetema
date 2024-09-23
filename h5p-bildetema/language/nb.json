@@ -253,10 +253,6 @@
           "default": "Legg til ord ved å klikke på bokmerket på bildene via {{topicView}}."
         },
         {
-          "label": "Filter by theme",
-          "default": "Filtrer etter tema"
-        },
-        {
           "label": "Collections Page Description",
           "default": "Her kan du lagre ord i dine egne samlinger. Samlingene vil kun lagres i denne nettleseren. Om du ønsker å dele samlingen eller se den andre steder, kan du kopiere lenken til samlingen."
         },
@@ -363,6 +359,10 @@
         {
           "label": "Topic filter reset",
           "default": "Nullstill filter"
+        },
+        {
+          "label": "Close filter",
+          "default": "Lukk filter"
         },
         {
           "label": "View language label",

@@ -21,9 +21,10 @@ const SearchFilterDialog = ({
   filter,
 }: SearchFilterProps): JSX.Element => {
   const { idToContent, idToWords } = useNewDBContext();
-  const { topicFilterTitle, topicFilterReset } = useL10ns(
+  const { topicFilterTitle, topicFilterReset, topicFilterClose } = useL10ns(
     "topicFilterTitle",
     "topicFilterReset",
+    "topicFilterClose",
   );
 
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,9 @@ const SearchFilterDialog = ({
           <DialogPanel className={styles.panel}>
             <DialogTitle className={styles.titleWrapper}>
               <div className={styles.title}>
-                <Filter />
+                <span aria-hidden="true">
+                  <Filter />
+                </span>
                 <span className={styles.label}>{topicFilterTitle}</span>
               </div>
               <button
@@ -68,13 +71,18 @@ const SearchFilterDialog = ({
                 className={styles.closeButton}
                 onClick={() => setIsOpen(false)}
               >
-                <Close />
+                <span aria-hidden="true">
+                  <Close />
+                </span>
+                <span className={styles.visuallyHidden}>
+                  {topicFilterClose}
+                </span>
               </button>
             </DialogTitle>
-            <div className={styles.searchFilterBorderTop}>
-              <div className={styles.searchFilter}>
+            <div className={styles.searchFilterWrapper}>
+              <ul className={styles.searchFilter}>
                 {topics?.map(topic => (
-                  <div key={topic.id} className={styles.checkBoxWrapper}>
+                  <li key={topic.id} className={styles.checkBoxWrapper}>
                     <FilterCheckbox
                       key={topic.id}
                       id={topic.id}
@@ -86,9 +94,9 @@ const SearchFilterDialog = ({
                         topic.translations.get("nob")?.labels,
                       )}
                     />
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
             <Button variant="underline" onClick={resetFilter}>
               {topicFilterReset}

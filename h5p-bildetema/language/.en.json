@@ -365,6 +365,10 @@
           "default": "Reset filter"
         },
         {
+          "label": "Close filter",
+          "default": "Close filter"
+        },
+        {
           "label": "View language label",
           "default": "Show in multiple languages"
         },
