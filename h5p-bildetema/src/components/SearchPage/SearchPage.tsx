@@ -188,6 +188,9 @@ const SearchPage = (): JSX.Element => {
               searchLanguage={searchLanguage}
               handleSearchLanguageChange={handleSearchLanguageChange}
               searchInputPlaceholder={searchInputPlaceholder}
+              // Todo handle multiple languages
+              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
+              handleViewLanguageChange={handleViewLanguageChange}
             />
           </div>
         </div>
@@ -200,12 +203,8 @@ const SearchPage = (): JSX.Element => {
               search={currSearch}
               searchResultAmount={state.filteredSearchResults.length}
               filter={filter}
-              languages={languages}
-              // Todo handle multiple languages
-              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
               resetFilter={resetFilter}
               handleFilterChange={handleFilterChange}
-              handleViewLanguageChange={handleViewLanguageChange}
               // TODO: Remove if not needed
               // sortOptions={searchOrderOptions}
               // handleOrderChange={handleOrderChange}

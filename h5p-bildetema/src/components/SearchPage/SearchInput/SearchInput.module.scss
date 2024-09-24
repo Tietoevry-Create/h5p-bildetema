@@ -2,8 +2,14 @@
 
 .searchInputWrapper {
   flex-grow: 1;
-  min-width: 16rem;
   position: relative;
+
+  @include breakpoint-min($x-small) {
+    min-width: 18rem;
+  }
+  @include breakpoint-min($medium) {
+    max-width: 32rem;
+  }
 }
 
 // HACK use id to override default h5p styles

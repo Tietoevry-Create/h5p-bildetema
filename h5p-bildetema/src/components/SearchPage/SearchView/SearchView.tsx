@@ -14,6 +14,8 @@ export type SearchViewProps = {
   handleSearchLanguageChange: (lang: OptionType<Language>) => void;
   searchLanguage: OptionType<Language>;
   searchInputPlaceholder: string;
+  viewLanguage: OptionType<Language> | null;
+  handleViewLanguageChange: (lang: OptionType<Language>) => void;
 };
 
 const SearchView = ({
@@ -23,6 +25,8 @@ const SearchView = ({
   handleSearchLanguageChange,
   searchLanguage,
   searchInputPlaceholder,
+  viewLanguage,
+  handleViewLanguageChange,
 }: SearchViewProps): JSX.Element => {
   const currentLang = useCurrentLanguage();
   const langCode = currentLang?.code;
@@ -32,7 +36,15 @@ const SearchView = ({
     breadcrumbsHome,
     search: breadcrumbsSearch,
     searchLabel,
-  } = useL10ns("breadcrumbsHome", "search", "searchLabel");
+    viewLanguageLabel,
+    viewLanguageLabelShort,
+  } = useL10ns(
+    "breadcrumbsHome",
+    "search",
+    "searchLabel",
+    "viewLanguageLabel",
+    "viewLanguageLabelShort",
+  );
 
   return (
     <div className={styles.searchField}>
@@ -60,6 +72,16 @@ const SearchView = ({
             selectedOption={searchLanguage}
             variant="secondary"
             labelPrefix={searchLabel}
+          />
+          <Select
+            options={languages}
+            handleChange={handleViewLanguageChange}
+            selectedOption={viewLanguage}
+            variant="secondary"
+            labelPrefix={`${
+              viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
+            }`}
+            withSelectedIcon
           />
         </div>
       </div>
