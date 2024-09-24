@@ -4,7 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
-import { STATIC_PATH } from "common/constants/paths";
+import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
 import { SnackbarProvider } from "notistack";
 import { useMediaQuery } from "react-responsive";
 import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
@@ -194,7 +194,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     );
   }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
 
-  const hidden = pathname.endsWith(STATIC_PATH.COLLECTIONS);
+  const hideLanguageSelectors = STATIC_PATHS.includes(pathname);
 
   return (
     <SnackbarProvider
@@ -214,13 +214,13 @@ export const Bildetema: FC<BildetemaProps> = ({
             firstTime={firstTime}
             setFirstTime={setFirstTime}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-            hideLanguageSelectors={hidden}
+            hideLanguageSelectors={hideLanguageSelectors}
             currentTopics={currTopics}
           />
           <LanguageFavorites
             currentTopics={currTopics}
             favLanguages={favLanguages}
-            hidden={hidden}
+            hidden={hideLanguageSelectors}
           />
           <div
             id="bildetemaMain"

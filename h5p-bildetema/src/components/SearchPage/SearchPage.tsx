@@ -176,17 +176,6 @@ const SearchPage = (): JSX.Element => {
     });
   };
 
-  React.useEffect(() => {
-    if (langCode !== searchLanguage.code) {
-      const updatedLanguage = languages.find(lang => lang.code === langCode);
-      if (updatedLanguage) {
-        setSearchLanguage(updatedLanguage);
-        handleSearch(currSearch);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [langCode]);
-
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
