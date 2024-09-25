@@ -6,7 +6,7 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Close, Filter } from "common/components/Icons/Icons";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
-import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
+import { useSiteLanguage } from "../../../hooks/useSiteLanguage";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchFilterDialog.module.scss";
 
@@ -21,7 +21,7 @@ const SearchFilterDialog = ({
   resetFilter,
   filter,
 }: SearchFilterProps): JSX.Element => {
-  const langCode = useCurrentLanguageCode();
+  const siteLangCode = useSiteLanguage().code;
   const { idToContent, idToWords } = useNewDBContext();
   const { topicFilterTitle, topicFilterReset, topicFilterClose } = useL10ns(
     "topicFilterTitle",
@@ -33,11 +33,11 @@ const SearchFilterDialog = ({
 
   const topics = useMemo(() => {
     return getMainTopics(idToWords, idToContent).toSorted((a, b) => {
-      const labelA = toSingleLabel(a.translations.get(langCode)?.labels);
-      const labelB = toSingleLabel(b.translations.get(langCode)?.labels);
+      const labelA = toSingleLabel(a.translations.get(siteLangCode)?.labels);
+      const labelB = toSingleLabel(b.translations.get(siteLangCode)?.labels);
       return labelA.localeCompare(labelB);
     });
-  }, [idToContent, idToWords, langCode]);
+  }, [idToContent, idToWords, siteLangCode]);
 
   const checkedTopicsAmount = useMemo(() => {
     return topics?.filter(topic => filter.includes(topic.id)).length;
@@ -92,7 +92,7 @@ const SearchFilterDialog = ({
                       }
                       checked={filter.includes(topic.id)}
                       label={toSingleLabel(
-                        topic.translations.get(langCode)?.labels,
+                        topic.translations.get(siteLangCode)?.labels,
                       )}
                     />
                   </li>

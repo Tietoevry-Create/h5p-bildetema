@@ -35,15 +35,9 @@ export const useCurrentLanguage = (): Language => {
   const langCode = useCurrentLanguageCode();
   const language = langCodeTolanguages.get(langCode);
   if (!language) {
-    return { code: langCode, label: "Bokmål", rtl: false } as Language;
+    return { code: "nob", label: "Bokmål", rtl: false } as Language;
   }
   return language;
-};
-
-// Without react router
-export const getSiteLanguage = (): string => {
-  const { pathname } = window.location;
-  return pathname.split("/").filter(Boolean)[0] || "";
 };
 
 // Without react router

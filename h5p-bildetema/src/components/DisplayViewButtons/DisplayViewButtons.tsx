@@ -1,7 +1,7 @@
 import { DisplayView } from "common/types/types";
 import { FC } from "react";
 import { useL10n } from "../../hooks/useL10n";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
 import styles from "./DisplayViewButtons.module.scss";
 
 export type DisplayViewButtonsProps = {
@@ -21,7 +21,7 @@ export const DisplayViewButtons: FC<DisplayViewButtonsProps> = ({
     }
   };
 
-  const lang = useSiteLanguage();
+  const lang = useSiteLanguageString();
   const topicImageLabel = useL10n("viewTopicImage");
   const gridLabel = useL10n("viewGrid");
 

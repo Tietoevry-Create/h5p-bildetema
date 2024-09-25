@@ -6,6 +6,7 @@ import { isLanguageCode } from "common/types/LanguageCode";
 import { DialogProvider } from "common/context/DialogContext";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
 import styles from "./SearchPage.module.scss";
@@ -36,12 +37,11 @@ const SearchParamKeys = {
 const SearchPage = (): JSX.Element => {
   const languages = useLanguagesWithTranslatedLabels();
   const langCode = useCurrentLanguageCode();
+  const siteLanguage = useSiteLanguage();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
-    languages.find(lang => lang.code === langCode) ||
-      // TODO should not be static
-      ({ code: langCode, label: "Bokmål" } as Language),
+    languages.find(lang => lang.code === langCode) || siteLanguage,
   );
 
   const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);

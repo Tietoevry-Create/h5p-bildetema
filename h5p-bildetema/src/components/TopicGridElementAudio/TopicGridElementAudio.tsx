@@ -3,7 +3,7 @@ import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { AudioFile } from "common/types/AudioFile";
 import { FC, MouseEvent, useEffect, useRef, useState } from "react";
 import { useL10n } from "../../hooks/useL10n";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
 import styles from "./TopicGridElementAudio.module.scss";
 
 type TopicGridElementAudioProps = {
@@ -17,7 +17,7 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const lang = useSiteLanguage();
+  const lang = useSiteLanguageString();
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
   const toggleAudio = (event: MouseEvent): void => {
