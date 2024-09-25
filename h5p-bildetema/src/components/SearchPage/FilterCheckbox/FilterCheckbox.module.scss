@@ -4,8 +4,6 @@
   box-sizing: border-box;
   display: flex;
   gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
 }
 
@@ -16,6 +14,7 @@
   box-sizing: border-box;
   border: 0.125em solid $dark-teal;
   background-color: $white;
+  flex: 0 0 auto; // prevent item from shrinking
 
   /* Hide default HTML checkbox */
   & input {
@@ -52,5 +51,7 @@
 
 .textLabel {
   font-size: 1em;
+  line-height: 1.25;
+  max-width: 14rem;
   user-select: none;
 }
