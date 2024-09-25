@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { SearchIcon } from "common/components/Icons/Icons";
 import styles from "./SearchInput.module.scss";
+import { useL10ns } from "../../../hooks/useL10n";
 
 export type SearchInputProps = {
   handleSearch: (value: string) => void;
@@ -16,6 +17,7 @@ const SearchInput = ({
   rtl,
 }: SearchInputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
+  const { searchInputLabel } = useL10ns("searchInputLabel");
 
   useEffect(() => {
     ref.current?.focus();
@@ -27,20 +29,23 @@ const SearchInput = ({
 
   return (
     <div className={`${styles.searchInputWrapper}`}>
-      <input
-        ref={ref}
-        // TODO needs a label
-        id={styles.searchInput}
-        className={`${rtl ? styles.rtl : ""}`}
-        placeholder={placeholder ?? ""}
-        value={search}
-        autoComplete="off"
-        onChange={e => handleSearch(e.target.value)}
-        onKeyDown={e => e.key === "Enter" && handleEnter()}
-      />
-      <span className={styles.searchInputIcon}>
-        <SearchIcon />
-      </span>
+      <label htmlFor={styles.searchInput}>
+        <span className={styles.visuallyHidden}>{searchInputLabel}</span>
+        <input
+          ref={ref}
+          id={styles.searchInput}
+          type="search"
+          className={`${styles.searchInput} ${rtl ? styles.rtl : ""}`}
+          placeholder={placeholder ?? ""}
+          value={search}
+          autoComplete="off"
+          onChange={e => handleSearch(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && handleEnter()}
+        />
+        <span className={styles.searchInputIcon} aria-hidden="true">
+          <SearchIcon />
+        </span>
+      </label>
     </div>
   );
 };

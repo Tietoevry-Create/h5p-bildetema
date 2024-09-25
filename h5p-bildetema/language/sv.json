@@ -345,6 +345,10 @@
           "default": "Visa"
         },
         {
+          "label": "Search input label",
+          "default": "Sök i Bildteman"
+        },
+        {
           "label": "Search input placeholder",
           "default": "Sök bland {{amount}} ord"
         },

@@ -45,9 +45,7 @@ const SearchFilterDialog = ({
   return (
     <>
       <Button variant="filter" onClick={() => setIsOpen(true)}>
-        <span aria-hidden="true">
-          <Filter />
-        </span>
+        <Filter />
         <span className={styles.buttonLabel}>{topicFilterTitle}</span>
         {checkedTopicsAmount > 0 && (
           <div className={styles.amount}>{checkedTopicsAmount}</div>

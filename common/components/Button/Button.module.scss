@@ -91,8 +91,12 @@
   padding: 0.5rem 1rem;
   width: auto;
 
+  &:hover {
+    border-color: $darker-beige;
+  }
+
   span {
-    line-height: 2rem;
+    line-height: 1.75rem;
   }
 
   svg {

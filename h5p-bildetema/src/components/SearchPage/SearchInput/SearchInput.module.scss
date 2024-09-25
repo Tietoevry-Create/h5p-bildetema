@@ -23,8 +23,21 @@
   box-shadow: none;
   font-size: $font-size-16;
 
+  &:hover {
+    border-color: $darker-beige;
+  }
+
   &:focus-visible {
     outline: $outline-on-light-background !important;
+  }
+
+  // Remove default search input styles in browsers
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    display: none;
   }
 }
 
@@ -50,4 +63,8 @@
   height: 100%;
   padding: 0 1rem;
   line-height: 1;
+}
+
+.visuallyHidden {
+  @include visually-hidden;
 }

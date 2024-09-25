@@ -7,6 +7,7 @@
 }
 
 .selectButton {
+  cursor: pointer;
   padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -32,6 +33,10 @@
   color: black;
   background-color: $white;
   border: 2px solid $dark-beige;
+
+  &:hover {
+    border-color: $darker-beige;
+  }
 }
 
 .primary {
@@ -73,7 +78,7 @@
   line-height: 1.4;
   white-space: nowrap;
   padding: 0.5rem 1rem;
-  cursor: default;
+  cursor: pointer;
 
   &:hover,
   &:focus {

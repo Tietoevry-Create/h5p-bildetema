@@ -345,6 +345,10 @@
           "default": "Vis"
         },
         {
+          "label": "Search input label",
+          "default": "Søg i Billedtema"
+        },
+        {
           "label": "Search input placeholder",
           "default": "Søg blandt {{amount}} ord"
         },

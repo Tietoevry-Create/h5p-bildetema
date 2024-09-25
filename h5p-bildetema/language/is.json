@@ -345,6 +345,10 @@
           "default": "Sýna"
         },
         {
+          "label": "Search input label",
+          "default": "Leitaðu í Myndaþema"
+        },
+        {
           "label": "Search input placeholder",
           "default": "Leitaðu meðal {{amount}} orða"
         },

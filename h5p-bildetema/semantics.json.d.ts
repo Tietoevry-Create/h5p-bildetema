@@ -517,6 +517,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Search input label",
+				name: "searchInputLabel",
+				"default": "Search in Bildetema",
+				type: "text"
+			},
+			{
 				label: "Search input placeholder",
 				name: "searchInputPlaceholder",
 				"default": "Search among {{amount}} words",
