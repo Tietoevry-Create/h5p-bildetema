@@ -7,8 +7,9 @@
 .searchViewHeading {
   align-items: center;
   display: flex;
+  column-gap: 2rem;
   flex-wrap: wrap;
-  gap: 2rem;
+  row-gap: 1rem;
 }
 
 .orderWrap {
