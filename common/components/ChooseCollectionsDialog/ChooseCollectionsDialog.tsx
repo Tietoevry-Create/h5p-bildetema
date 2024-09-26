@@ -10,7 +10,7 @@ import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
 import { enqueueSnackbar } from "notistack";
 import { STATIC_PATH } from "common/constants/paths";
 import { getCurrentLanguageCode } from "h5p-bildetema/src/hooks/useCurrentLanguage";
-import { useSiteLanguageString } from "h5p-bildetema/src/hooks/useSiteLanguage";
+import { getSiteLanguagePath } from "h5p-bildetema/src/hooks/useSiteLanguage";
 import { useDialogContext } from "../../hooks/useDialogContext";
 import { replacePlaceholders } from "../../utils/replacePlaceholders";
 
@@ -26,7 +26,7 @@ declare module "notistack" {
 const ChooseCollectionsDialog = () => {
   const [textInput, setTextInput] = useState("");
   const currentLanguageCode = getCurrentLanguageCode();
-  const siteLanguage = useSiteLanguageString();
+  const siteLanguage = getSiteLanguagePath();
   const { selectedId } = useDialogContext();
   const {
     options,
