@@ -71,7 +71,7 @@ export const SearchResultCard = ({
                   srcSets={image.srcSets}
                   sizes={gridImageSizes}
                   width="250"
-                  height="226"
+                  height="250"
                 />
               </div>
             </SwiperSlide>
@@ -82,7 +82,7 @@ export const SearchResultCard = ({
               <Image
                 src="https://icon-library.com/images/placeholder-image-icon/placeholder-image-icon-17.jpg"
                 width="250"
-                height="226"
+                height="250"
               />
             </div>
           </SwiperSlide>
