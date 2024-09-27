@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { useMemo, useState } from "react";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { STATIC_PATH } from "common/constants/paths";
@@ -63,19 +64,20 @@ const CollectionsPage = (): React.JSX.Element => {
         <AddIcon />
         <span>{createACollection}</span>
       </Button>
-      <div className={styles.collectionWrapper}>
+      <ul role="list" className={styles.collectionWrapper}>
         {reversedCollections.map(v => (
-          <CollectionElement
-            key={v?.id}
-            id={v.id}
-            amountOfCollectionItems={v.wordsIds.length}
-            label={v.title}
-            href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${
-              v.id
-            }${v.wordsIds.length > 0 ? `&words=${v.wordsIds}` : ""}`}
-          />
+          <li role="listitem">
+            <CollectionElement
+              key={v?.id}
+              id={v.id}
+              amountOfCollectionItems={v.wordsIds.length}
+              label={v.title}
+              href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${v.id
+                }${v.wordsIds.length > 0 ? `&words=${v.wordsIds}` : ""}`}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

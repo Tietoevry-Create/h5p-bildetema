@@ -50,7 +50,7 @@ export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(
   ({ label, icon, onClick, ...props }, ref) => (
     <HMenuItem {...props} ref={ref}>
       <Button onClick={onClick} className={styles.menuItemButton}>
-        {icon}
+        <span aria-hidden="true">{icon}</span>
         {label}
       </Button>
     </HMenuItem>
