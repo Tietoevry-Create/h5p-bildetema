@@ -108,7 +108,6 @@ const SearchResultView = ({
   return (
     <div className={styles.searchResultView}>
       <div className={styles.searchViewHeading}>
-        <p className={styles.searchResultLabel}>{getSearchResultLabel()}</p>
         <div className={styles.buttonWrapper}>
           <SearchFilterDialog
             handleFilterChange={handleFilterChange}
@@ -116,6 +115,7 @@ const SearchResultView = ({
             resetFilter={resetFilter}
           />
         </div>
+        <p className={styles.searchResultLabel}>{getSearchResultLabel()}</p>
         {/* TODO REMOVE ? */}
         {/* <div className={styles.orderWrap}>
           <span>Sorter etter</span>
