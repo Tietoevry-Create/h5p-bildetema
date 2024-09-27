@@ -26,6 +26,9 @@ export const useSiteLanguage = (): Language => {
 
 // Without react router
 export const getSiteLanguagePath = (): string => {
+  if (typeof window === "undefined") {
+    return "";
+  }
   const { pathname } = window.location;
   return pathname.split("/").filter(Boolean)[0] || "";
 };

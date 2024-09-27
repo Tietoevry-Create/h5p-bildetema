@@ -42,6 +42,9 @@ export const useCurrentLanguage = (): Language => {
 
 // Without react router
 export const getCurrentLanguageCode = (): LanguageCode => {
+  if (typeof window === "undefined") {
+    return "nob";
+  }
   const pathname = window.location.hash;
 
   const isSearchPage = pathname.includes(STATIC_PATH.SEARCH);
