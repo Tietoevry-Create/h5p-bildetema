@@ -250,7 +250,7 @@
         },
         {
           "label": "Description text for adding a word to a collection",
-          "default": "Legg til ord ved å klikke på bokmerket på bildene, enten via {{search}} eller {{topicView}}."
+          "default": "Legg til ord via {{search}} eller {{topicView}}. Klikk på bokmerket på bildene."
         },
         {
           "label": "Description text for adding a word to a collection. (without search)",
