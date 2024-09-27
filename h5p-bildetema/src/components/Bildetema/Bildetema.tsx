@@ -194,7 +194,7 @@ export const Bildetema: FC<BildetemaProps> = ({
     );
   }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
 
-  const hideLanguageSelectors = STATIC_PATHS.includes(pathname);
+  const hiddenLanguageSelectors = STATIC_PATHS.includes(pathname);
 
   return (
     <SnackbarProvider
@@ -214,13 +214,13 @@ export const Bildetema: FC<BildetemaProps> = ({
             firstTime={firstTime}
             setFirstTime={setFirstTime}
             handleToggleFavoriteLanguage={handleToggleFavoriteLanguage}
-            hideLanguageSelectors={hideLanguageSelectors}
+            hideLanguageSelectors={hiddenLanguageSelectors}
             currentTopics={currTopics}
           />
           <LanguageFavorites
             currentTopics={currTopics}
             favLanguages={favLanguages}
-            hidden={hideLanguageSelectors}
+            hidden={hiddenLanguageSelectors}
           />
           <div
             id="bildetemaMain"
