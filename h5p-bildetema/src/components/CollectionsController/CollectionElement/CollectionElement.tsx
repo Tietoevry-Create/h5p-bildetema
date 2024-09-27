@@ -5,6 +5,7 @@ import { Button } from "common/components/Button";
 import {
   DeleteIcon,
   EditIcon,
+  LinkIcon,
   MoreVertIcon,
 } from "common/components/Icons/Icons";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
@@ -12,6 +13,7 @@ import styles from "./CollectionElement.module.scss";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import EditDialog from "../../EditDialog/EditDialog";
 import { useL10ns } from "../../../hooks/useL10n";
+import { getSiteLanguagePath } from "../../../hooks/useSiteLanguage";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -36,6 +38,7 @@ const CollectionElement = ({
   const [openDialog, setOpenDialog] = React.useState<OpenDialog>(
     OpenDialog.NONE,
   );
+  const siteLanguagePath = getSiteLanguagePath();
   const { deleteCollection, changeCollectionTitle } = useMyCollections();
   const {
     changeName,
@@ -44,6 +47,7 @@ const CollectionElement = ({
     deleteCollection: l10nDeleteCollection,
     deleteCollectionConfirmation,
     moreOptionsAriaLabel,
+    copyLink,
   } = useL10ns(
     "changeName",
     "delete",
@@ -51,6 +55,7 @@ const CollectionElement = ({
     "deleteCollection",
     "deleteCollectionConfirmation",
     "moreOptionsAriaLabel",
+    "copyLink",
   );
 
   const [title, setTitle] = useState(label);
@@ -74,6 +79,21 @@ const CollectionElement = ({
   const handleCancelEditDialog = (): void => {
     setOpenDialog(OpenDialog.NONE);
     setTitle(label);
+  };
+
+  const handleCopyLink = async (): Promise<void> => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const { origin } = window.location;
+    const language = siteLanguagePath ? `/${siteLanguagePath}` : "";
+    const url = `${origin}${language}/#${href}`;
+
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch (error) {
+      /* TODO: Show error message to user in for example a toast */
+    }
   };
 
   return (
@@ -112,6 +132,11 @@ const CollectionElement = ({
             label={changeName}
             icon={<EditIcon />}
             onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
+          />
+          <MenuItem
+            label={copyLink}
+            icon={<LinkIcon />}
+            onClick={handleCopyLink}
           />
           <MenuItem
             label={l10nDelete}
