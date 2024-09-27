@@ -52,7 +52,6 @@ const CollectionsPage = (): React.JSX.Element => {
     <div className={styles.container}>
       <Dialog
         title={createACollection}
-        description={nameOfTheCollection}
         open={createCollectionDialogOpen}
         onClose={() => setCreateCollectionDialogOpen(false)}
       >
@@ -60,6 +59,7 @@ const CollectionsPage = (): React.JSX.Element => {
           <TextInput
             handleChange={(e: string) => setTextInput(e)}
             handleEnter={handleCreateNewCollection}
+            label={nameOfTheCollection}
             value={textInput}
           />
           <div className={styles.dialogButtonWrapper}>

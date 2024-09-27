@@ -49,6 +49,7 @@ const ChooseCollectionsDialog = () => {
     ariaDisabledChooseACollection,
     ariaDisabledChooseACollectionPreselected,
     ariaDisabledCreateACollection,
+    nameOfTheCollection,
   } = useL10ns(
     "createACollection",
     "chooseACollection",
@@ -59,6 +60,7 @@ const ChooseCollectionsDialog = () => {
     "ariaDisabledChooseACollection",
     "ariaDisabledChooseACollectionPreselected",
     "ariaDisabledCreateACollection",
+    "nameOfTheCollection",
   );
 
   const description = showCreate ? createACollection : chooseACollection;
@@ -152,6 +154,7 @@ const ChooseCollectionsDialog = () => {
     >
       {showCreate ? (
         <NewOption
+          label={nameOfTheCollection}
           value={textInput}
           handleChange={value => setTextInput(value)}
           onCreateOption={handleConfirm}

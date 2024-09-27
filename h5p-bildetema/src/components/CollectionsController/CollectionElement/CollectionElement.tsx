@@ -96,11 +96,11 @@ const CollectionElement = ({
         open={openDialog === OpenDialog.EDIT_DIALOG}
         onClose={() => setOpenDialog(OpenDialog.NONE)}
         title={changeName}
-        description={nameOfTheCollection}
       >
         <div className={styles.editDialog}>
           <TextInput
             handleChange={handleEditCollectionTitle}
+            label={nameOfTheCollection}
             value={title}
             handleEnter={handleNewTitle}
           />
