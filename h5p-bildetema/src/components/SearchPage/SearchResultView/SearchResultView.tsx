@@ -10,14 +10,13 @@ import React, {
   useState,
 } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
-import { Language, SearchResult } from "common/types/types";
+import { SearchResult } from "common/types/types";
 import { AudioRefContext } from "common/context/AudioContext";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
-import Select, { OptionType } from "../../Select/Select";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchResultView.module.scss";
 
@@ -51,11 +50,8 @@ export type SearchResultViewProps = {
   search: string;
   searchResultAmount: number;
   filter: string[];
-  languages: OptionType<Language>[];
-  viewLanguage: OptionType<Language> | null;
   resetFilter: () => void;
   handleFilterChange: (topicId: string, add: boolean) => void;
-  handleViewLanguageChange: (lang: OptionType<Language>) => void;
   // handleOrderChange: (option: SearchOrderOption) => void;
   // sortOptions: SearchOrderOption[];
   // resultSortType: SearchOrderOption;
@@ -66,23 +62,13 @@ const SearchResultView = ({
   search,
   searchResultAmount,
   filter,
-  languages,
-  viewLanguage,
   resetFilter,
   handleFilterChange,
-  handleViewLanguageChange,
 }: SearchResultViewProps): JSX.Element => {
   const { handleOpenDialog } = useDialogContext();
-  const {
-    searchResultLabel,
-    searchResultHitsLabel,
-    viewLanguageLabel,
-    viewLanguageLabelShort,
-  } = useL10ns(
+  const { searchResultLabel, searchResultHitsLabel } = useL10ns(
     "searchResultLabel",
     "searchResultHitsLabel",
-    "viewLanguageLabel",
-    "viewLanguageLabelShort",
   );
 
   const [contextAudioRef, setAudioRef] = useState(
@@ -128,16 +114,6 @@ const SearchResultView = ({
             handleFilterChange={handleFilterChange}
             filter={filter}
             resetFilter={resetFilter}
-          />
-          <Select
-            options={languages}
-            handleChange={handleViewLanguageChange}
-            selectedOption={viewLanguage}
-            variant="secondary"
-            labelPrefix={`${
-              viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
-            }`}
-            withSelectedIcon
           />
         </div>
         {/* TODO REMOVE ? */}

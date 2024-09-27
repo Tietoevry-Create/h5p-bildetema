@@ -4,6 +4,10 @@
   object-position: top center;
   width: 100%;
 
+  // Set image height according to aspect ratio
+  height: unset;
+  aspect-ratio: 3 / 2;
+
   // Set pointer events to none to prevent microsoft edge to show visual search icon
   pointer-events: none;
 }

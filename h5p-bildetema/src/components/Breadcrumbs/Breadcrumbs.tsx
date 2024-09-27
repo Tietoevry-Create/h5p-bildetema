@@ -14,7 +14,7 @@ import {
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { useL10n } from "../../hooks/useL10n";
 import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
-import { useSiteLanguage } from "../../hooks/useSiteLanguage";
+import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import styles from "./Breadcrumbs.module.scss";
 
@@ -32,7 +32,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   currentLanguageCode,
   currentTopics,
 }) => {
-  const lang = useSiteLanguage();
+  const lang = useSiteLanguageString();
   const currentLang = useCurrentLanguageAttribute();
   const { translations } = useNewDBContext();
   const labelFromDb = getLabelFromTranslationRecord(

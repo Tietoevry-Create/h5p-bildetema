@@ -6,6 +6,7 @@ import { isLanguageCode } from "common/types/LanguageCode";
 import { DialogProvider } from "common/context/DialogContext";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
+import { useSiteLanguage } from "../../hooks/useSiteLanguage";
 import SearchResultView from "./SearchResultView/SearchResultView";
 import SearchView from "./SearchView/SearchView";
 import styles from "./SearchPage.module.scss";
@@ -36,12 +37,11 @@ const SearchParamKeys = {
 const SearchPage = (): JSX.Element => {
   const languages = useLanguagesWithTranslatedLabels();
   const langCode = useCurrentLanguageCode();
+  const siteLanguage = useSiteLanguage();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchLanguage, setSearchLanguage] = React.useState<Language>(
-    languages.find(lang => lang.code === langCode) ||
-      // TODO should not be static
-      ({ code: langCode, label: "Bokmål" } as Language),
+    languages.find(lang => lang.code === langCode) || siteLanguage,
   );
 
   const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
@@ -176,17 +176,6 @@ const SearchPage = (): JSX.Element => {
     });
   };
 
-  React.useEffect(() => {
-    if (langCode !== searchLanguage.code) {
-      const updatedLanguage = languages.find(lang => lang.code === langCode);
-      if (updatedLanguage) {
-        setSearchLanguage(updatedLanguage);
-        handleSearch(currSearch);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [langCode]);
-
   return (
     <div className={styles.searchPage}>
       <div className={styles.searchViewBackground}>
@@ -199,6 +188,9 @@ const SearchPage = (): JSX.Element => {
               searchLanguage={searchLanguage}
               handleSearchLanguageChange={handleSearchLanguageChange}
               searchInputPlaceholder={searchInputPlaceholder}
+              // Todo handle multiple languages
+              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
+              handleViewLanguageChange={handleViewLanguageChange}
             />
           </div>
         </div>
@@ -211,12 +203,8 @@ const SearchPage = (): JSX.Element => {
               search={currSearch}
               searchResultAmount={state.filteredSearchResults.length}
               filter={filter}
-              languages={languages}
-              // Todo handle multiple languages
-              viewLanguage={viewLanguages.length > 0 ? viewLanguages[0] : null}
               resetFilter={resetFilter}
               handleFilterChange={handleFilterChange}
-              handleViewLanguageChange={handleViewLanguageChange}
               // TODO: Remove if not needed
               // sortOptions={searchOrderOptions}
               // handleOrderChange={handleOrderChange}

@@ -345,6 +345,10 @@
           "default": "Show"
         },
         {
+          "label": "Search input label",
+          "default": "Search in Bildetema"
+        },
+        {
           "label": "Search input placeholder",
           "default": "Search among {{amount}} words"
         },

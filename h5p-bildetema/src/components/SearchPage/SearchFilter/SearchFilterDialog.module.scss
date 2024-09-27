@@ -73,8 +73,9 @@
 .searchFilter {
   font-size: $font-size-20;
   line-height: 1;
-  margin: 0;
-  padding: 0;
+  // Make sure focus outline is visible
+  margin: 0 -0.25rem;
+  padding: 0 0.25rem;
 
   li {
     list-style-type: none;
@@ -107,8 +108,8 @@
   align-items: center;
   justify-content: center;
   color: $white;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 100%;
   background-color: $dark-teal;
   line-height: 1;

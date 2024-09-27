@@ -4,9 +4,18 @@
   box-sizing: border-box;
   display: flex;
   gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
+
+  &:hover {
+    .wrapper {
+      border-color: $beige-700;
+    }
+
+    .backgroundDarkTeal {
+      background-color: $darker-teal;
+      border-color: $darker-teal;
+    }
+  }
 }
 
 .wrapper {
@@ -14,12 +23,15 @@
   height: 1.25em;
   width: 1.25em;
   box-sizing: border-box;
-  border: 0.125em solid $dark-teal;
+  border: 0.1em solid $beige-500;
+  border-radius: 0.25em;
   background-color: $white;
+  flex: 0 0 auto; // prevent item from shrinking
 
   /* Hide default HTML checkbox */
   & input {
     all: unset;
+    border-radius: 0.15em;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -28,9 +40,8 @@
     transform: translate(-50%, -50%);
 
     &:focus-visible {
-      border-color: none;
-      box-shadow: none;
       outline: $outline-on-light-background !important;
+      outline-offset: 3px;
     }
 
     &:checked::before {
@@ -48,9 +59,13 @@
 
 .backgroundDarkTeal {
   background-color: $dark-teal;
+  border-color: $dark-teal;
 }
 
 .textLabel {
   font-size: 1em;
+  line-height: 1.25;
+  max-width: 14rem;
+  page-break-inside: avoid;
   user-select: none;
 }

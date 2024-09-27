@@ -32,6 +32,7 @@
 .icon {
   border: none;
   background-color: transparent;
+  color: $black;
   padding: 0.25rem 0.5rem;
 
   &:hover {
@@ -78,6 +79,9 @@
 .underline {
   background: none;
   border: none;
+  border-radius: 0.25rem;
+  color: $black;
+  outline-offset: 2px;
   padding: 0rem;
   text-decoration: underline;
 }
@@ -88,11 +92,15 @@
   border: 2px solid $dark-beige;
   box-sizing: border-box;
   gap: $spacing--8;
-  padding: 0.5785rem 1.25rem;
+  padding: 0.5rem 1rem;
   width: auto;
 
+  &:hover {
+    border-color: $darker-beige;
+  }
+
   span {
-    line-height: 2rem;
+    line-height: 1.75rem;
   }
 
   svg {
@@ -103,6 +111,7 @@
 .capsule {
   border: 2px solid transparent;
   border-radius: 1rem;
+  color: $black;
   padding: 0.375rem 1rem;
   font-size: $font-size-18;
   background-color: $grey;
