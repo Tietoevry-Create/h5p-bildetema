@@ -417,6 +417,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
                   className={styles.button}
                   type="button"
                   onClick={moveHotspotUp}
+                  aria-label="Move up"
                 >
                   <ArrowIcon
                     transform="scale(0.9) rotate(180)"
@@ -427,6 +428,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
                   className={styles.button}
                   type="button"
                   onClick={moveHotspotDown}
+                  aria-label="Move down"
                 >
                   <ArrowIcon transform="scale(0.9)" transformOrigin="50% 50%" />
                 </button>
