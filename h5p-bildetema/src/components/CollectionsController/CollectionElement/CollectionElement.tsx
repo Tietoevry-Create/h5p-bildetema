@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
-import Dialog from "common/components/Dialog/Dialog";
-import TextInput from "common/components/TextInput/TextInput";
 import {
   DeleteIcon,
   EditIcon,
@@ -12,6 +10,7 @@ import {
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
+import EditDialog from "../../EditDialog/EditDialog";
 import { useL10ns } from "../../../hooks/useL10n";
 
 const OpenDialog = {
@@ -41,8 +40,6 @@ const CollectionElement = ({
   const {
     changeName,
     delete: l10nDelete,
-    cancel,
-    saveChanges,
     nameOfTheCollection,
     deleteCollection: l10nDeleteCollection,
     deleteCollectionConfirmation,
@@ -50,8 +47,6 @@ const CollectionElement = ({
   } = useL10ns(
     "changeName",
     "delete",
-    "cancel",
-    "saveChanges",
     "nameOfTheCollection",
     "deleteCollection",
     "deleteCollectionConfirmation",
@@ -76,6 +71,11 @@ const CollectionElement = ({
     setOpenDialog(OpenDialog.NONE);
   };
 
+  const handleCancelEditDialog = (): void => {
+    setOpenDialog(OpenDialog.NONE);
+    setTitle(label);
+  };
+
   return (
     <div className={styles.collectionElementWrapper}>
       <span className={styles.label}>
@@ -92,36 +92,15 @@ const CollectionElement = ({
         onClose={() => setOpenDialog(OpenDialog.NONE)}
         onDelete={handleDeleteCollection}
       />
-      <Dialog
+      <EditDialog
         open={openDialog === OpenDialog.EDIT_DIALOG}
-        onClose={() => setOpenDialog(OpenDialog.NONE)}
         title={changeName}
-      >
-        <div className={styles.editDialog}>
-          <TextInput
-            handleChange={handleEditCollectionTitle}
-            label={nameOfTheCollection}
-            value={title}
-            handleEnter={handleNewTitle}
-          />
-          <div>
-            <Button
-              className={styles.dialogButton}
-              variant="secondary"
-              onClick={() => setOpenDialog(OpenDialog.NONE)}
-            >
-              {cancel}
-            </Button>
-            <Button
-              className={styles.dialogButton}
-              variant="default"
-              onClick={handleNewTitle}
-            >
-              {saveChanges}
-            </Button>
-          </div>
-        </div>
-      </Dialog>
+        textInputValue={title}
+        textInputLabel={nameOfTheCollection}
+        onTextInputChange={handleEditCollectionTitle}
+        onClose={handleCancelEditDialog}
+        onSave={handleNewTitle}
+      />
       <Menu>
         <MenuButton className={styles.menuButton}>
           <Button variant="circle" aria-label={moreOptionsAriaLabel}>

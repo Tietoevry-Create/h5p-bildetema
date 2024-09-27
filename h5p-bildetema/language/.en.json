@@ -221,6 +221,10 @@
           "default": "Cancel"
         },
         {
+          "label": "Confirm",
+          "default": "Ok"
+        },
+        {
           "label": "Aria text for disabled button in choose a collection dialog",
           "default": "Choose a collection"
         },

@@ -331,6 +331,12 @@
         "type": "text"
       },
       {
+        "label": "Confirm",
+        "name": "confirm",
+        "default": "Ok",
+        "type": "text"
+      },
+      {
         "label": "Aria text for disabled button in choose a collection dialog",
         "name": "ariaDisabledChooseACollection",
         "default": "Choose a collection",

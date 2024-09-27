@@ -1,0 +1,13 @@
+@use "common/abstracts" as *;
+
+.dialogButtonWrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.dialogButton {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}

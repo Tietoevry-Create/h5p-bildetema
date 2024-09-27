@@ -221,6 +221,10 @@
           "default": "Hætta við"
         },
         {
+          "label": "Confirm",
+          "default": "Staðfesta"
+        },
+        {
           "label": "Aria text for disabled button in choose a collection dialog",
           "default": "Veldu safn"
         },

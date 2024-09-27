@@ -221,6 +221,10 @@
           "default": "Afbestille"
         },
         {
+          "label": "Confirm",
+          "default": "Okay"
+        },
+        {
           "label": "Aria text for disabled button in choose a collection dialog",
           "default": "Vælg en samling"
         },
