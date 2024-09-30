@@ -3,8 +3,9 @@ import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
 import { FC, ReactPortal } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
+import { STATIC_PATH } from "common/constants/paths";
 import {
   BackIcon,
   BreadcrumbsArrowIcon,
@@ -32,8 +33,14 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   currentLanguageCode,
   currentTopics,
 }) => {
+  const { pathname } = useLocation();
   const lang = useSiteLanguageString();
-  const currentLang = useCurrentLanguageAttribute();
+  const currentLangAttribute = useCurrentLanguageAttribute();
+  const currentLang =
+    pathname.startsWith(STATIC_PATH.COLLECTIONS) ||
+    pathname.startsWith(STATIC_PATH.SEARCH)
+      ? lang
+      : currentLangAttribute;
   const { translations } = useNewDBContext();
   const labelFromDb = getLabelFromTranslationRecord(
     currentLanguageCode,
@@ -128,7 +135,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
                 </span>
                 {homePageBreadCrumb ? (
                   <span className={styles.homeButton}>
-                    <span className={styles.homeIcon}>
+                    <span className={styles.homeIcon} aria-hidden="true">
                       <HomeIcon />
                     </span>
                     <span className={styles.visuallyHidden} lang={lang}>

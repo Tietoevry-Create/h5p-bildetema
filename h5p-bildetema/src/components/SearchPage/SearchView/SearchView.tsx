@@ -3,7 +3,10 @@ import { STATIC_PATH } from "common/constants/paths";
 import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";
-import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+import {
+  getLanguageAttribute,
+  useCurrentLanguage,
+} from "../../../hooks/useCurrentLanguage";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchView.module.scss";
 
@@ -65,6 +68,7 @@ const SearchView = ({
             search={search}
             placeholder={searchInputPlaceholder}
             rtl={isRtl}
+            lang={getLanguageAttribute(searchLanguage.code)}
           />
           <Select
             options={languages}

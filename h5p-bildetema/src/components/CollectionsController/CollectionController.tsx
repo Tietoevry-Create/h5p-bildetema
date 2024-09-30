@@ -15,11 +15,11 @@ import { useL10ns } from "../../hooks/useL10n";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 
 type CollectionControllerProps = {
-  rtl: boolean;
+  rtl?: boolean;
 };
 
 const CollectionController = ({
-  rtl,
+  rtl = false,
 }: CollectionControllerProps): JSX.Element => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const langCode = useCurrentLanguageCode();

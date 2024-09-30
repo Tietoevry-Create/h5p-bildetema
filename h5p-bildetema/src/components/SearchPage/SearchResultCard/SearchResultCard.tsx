@@ -19,6 +19,7 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
+import { getLanguageAttribute } from "../../../hooks/useCurrentLanguage";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
@@ -143,6 +144,7 @@ export const SearchResultCard = ({
             <Audio
               label={toSingleLabel(translation.labels)}
               lang={lang}
+              labelLang={getLanguageAttribute(translation.lang.code)}
               playAudioLabel={playAudioLabel}
               stopAudioLabel={stopAudioLabel}
               audioFiles={translation.audioFiles}

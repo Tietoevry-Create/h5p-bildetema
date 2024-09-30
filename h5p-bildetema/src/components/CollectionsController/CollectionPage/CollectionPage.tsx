@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
@@ -99,7 +100,7 @@ const CollectionPage = ({
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.words}>
+      <ul role="list" className={styles.words}>
         {words.map(word => (
           <MultiLanguageWord
             key={word.id}
@@ -108,7 +109,7 @@ const CollectionPage = ({
             showArticles={showArticles}
           />
         ))}
-      </div>
+      </ul>
       {isCollectionOwner ? (
         <p className={styles.description}>{descriptionWithLinks}</p>
       ) : null}
