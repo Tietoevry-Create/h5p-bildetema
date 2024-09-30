@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import { useMemo, useState } from "react";
 import { Button } from "common/components/Button";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
@@ -81,9 +82,13 @@ const SearchFilterDialog = ({
               </button>
             </DialogTitle>
             <div className={styles.searchFilterWrapper}>
-              <ul className={styles.searchFilter}>
+              <ul role="list" className={styles.searchFilter}>
                 {topics?.map(topic => (
-                  <li key={topic.id} className={styles.checkBoxWrapper}>
+                  <li
+                    role="listitem"
+                    key={topic.id}
+                    className={styles.checkBoxWrapper}
+                  >
                     <FilterCheckbox
                       key={topic.id}
                       id={topic.id}

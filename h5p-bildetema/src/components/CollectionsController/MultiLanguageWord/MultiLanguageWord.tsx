@@ -21,7 +21,10 @@ import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
-import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
+import {
+  getLanguageAttribute,
+  useCurrentLanguageCode,
+} from "../../../hooks/useCurrentLanguage";
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 
@@ -235,6 +238,7 @@ export const MultiLanguageWord = ({
                   : ""
               }
               lang={lang}
+              labelLang={getLanguageAttribute(translation.lang.code)}
               playAudioLabel={playAudioLabel}
               stopAudioLabel={stopAudioLabel}
               audioFiles={translation.audioFiles}

@@ -182,11 +182,11 @@ export const Bildetema: FC<BildetemaProps> = ({
 
           <Route
             path={`${STATIC_PATH.COLLECTIONS}`}
-            element={<CollectionsController rtl={directionRtl} />}
+            element={<CollectionsController />}
           />
           <Route
             path={`${STATIC_PATH.COLLECTIONS}/:collection`}
-            element={<CollectionsController rtl={directionRtl} />}
+            element={<CollectionsController />}
           />
         </>
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />

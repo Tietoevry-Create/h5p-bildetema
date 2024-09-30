@@ -1,11 +1,13 @@
 import { SpeakerIcon, SpeakerPlayingIcon } from "common/components/Icons/Icons";
 import { useAudioRefContext } from "common/hooks/useAudioContext";
 import { FC, useEffect, useRef, useState } from "react";
+import { v4 as uuid } from "uuid";
 import styles from "./Audio.module.scss";
 import { AudioFile } from "../../types/AudioFile";
 
 type AudioProps = {
   lang: string;
+  labelLang?: string;
   stopAudioLabel: string;
   playAudioLabel: string;
   audioFiles?: AudioFile[];
@@ -16,6 +18,7 @@ type AudioProps = {
 
 export const Audio: FC<AudioProps> = ({
   label,
+  labelLang,
   audioFiles,
   lang,
   stopAudioLabel,
@@ -26,6 +29,7 @@ export const Audio: FC<AudioProps> = ({
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
+  const descriptionId = uuid();
   const textVisible = !!label;
 
   const handleAudioEnded = (): void => {
@@ -78,6 +82,8 @@ export const Audio: FC<AudioProps> = ({
         type="button"
         onClick={toggleAudio}
         className={rtl ? styles.rtl : ""}
+        aria-describedby={descriptionId}
+        lang={labelLang}
       >
         {textVisible && (
           <h2
@@ -96,7 +102,12 @@ export const Audio: FC<AudioProps> = ({
             <SpeakerIcon className={styles.audioIcon} />
           )}
         </span>
-        <span className={styles.visuallyHidden} lang={lang}>
+        <span
+          id={descriptionId}
+          className={styles.visuallyHidden}
+          aria-hidden="true"
+          lang={lang}
+        >
           {playing ? stopAudioLabel : playAudioLabel}
         </span>
       </button>

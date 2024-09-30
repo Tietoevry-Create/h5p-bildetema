@@ -25,7 +25,7 @@ const ConfirmationDialog = ({
   disabledTooltip,
 }: ConfirmationDialogProps) => {
   const { isOpen, handleCloseDialog } = useDialogContext();
-  const { cancel } = useL10ns("cancel");
+  const { cancel, confirm } = useL10ns("cancel", "confirm");
 
   return (
     <Dialog open={isOpen} onClose={handleCloseDialog} title={title}>
@@ -40,7 +40,7 @@ const ConfirmationDialog = ({
           aria-disabled={disableConfirm}
           disabledTooltip={disabledTooltip}
         >
-          Ok
+          {confirm}
         </Button>
       </div>
     </Dialog>

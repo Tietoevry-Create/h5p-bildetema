@@ -20,6 +20,7 @@ export const ColorButton: FC<ColorButtonProps> = ({
         selected ? styles.selected : ""
       }`}
       type="button"
+      aria-label={`Select color ${color}`}
     >
       {}
     </button>

@@ -3,12 +3,14 @@ import styles from "./TextInput.module.scss";
 
 export type TextInputProps = {
   handleChange: (value: string) => void;
+  label: string;
   value: string;
   placeholder?: string;
   handleEnter?: () => void;
 };
 
 const TextInput = ({
+  label,
   placeholder,
   value,
   handleChange,
@@ -27,21 +29,23 @@ const TextInput = ({
   };
 
   return (
-    <input
-      ref={ref}
-      // TODO needs a label
-      id={styles.TextInput}
-      placeholder={placeholder ?? ""}
-      value={value}
-      autoComplete="off"
-      onChange={e => handleChange(e.target.value)}
-      onKeyDown={e => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          handleEnterPress();
-        }
-      }}
-    />
+    <label htmlFor={styles.TextInput}>
+      <span className={styles.label}>{label}</span>
+      <input
+        ref={ref}
+        id={styles.TextInput}
+        placeholder={placeholder ?? ""}
+        value={value}
+        autoComplete="off"
+        onChange={e => handleChange(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleEnterPress();
+          }
+        }}
+      />
+    </label>
   );
 };
 

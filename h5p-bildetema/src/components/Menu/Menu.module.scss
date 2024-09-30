@@ -27,4 +27,8 @@
   &[data-focus] {
     background-color: $beige;
   }
+
+  span {
+    display: flex;
+  }
 }

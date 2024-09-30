@@ -30,6 +30,10 @@ export const useCurrentLanguageAttribute = (): string => {
   return attributeLanguages[currentLanguageCode];
 };
 
+export const getLanguageAttribute = (langCode: LanguageCode): string => {
+  return attributeLanguages[langCode];
+};
+
 export const useCurrentLanguage = (): Language => {
   const { langCodeTolanguages } = useNewDBContext();
   const langCode = useCurrentLanguageCode();

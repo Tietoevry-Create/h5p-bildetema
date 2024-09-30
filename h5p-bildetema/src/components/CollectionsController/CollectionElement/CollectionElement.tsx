@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
-import Dialog from "common/components/Dialog/Dialog";
-import TextInput from "common/components/TextInput/TextInput";
 import {
   DeleteIcon,
   EditIcon,
+  LinkIcon,
   MoreVertIcon,
 } from "common/components/Icons/Icons";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
+import EditDialog from "../../EditDialog/EditDialog";
 import { useL10ns } from "../../../hooks/useL10n";
+import { getSiteLanguagePath } from "../../../hooks/useSiteLanguage";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -37,25 +38,24 @@ const CollectionElement = ({
   const [openDialog, setOpenDialog] = React.useState<OpenDialog>(
     OpenDialog.NONE,
   );
+  const siteLanguagePath = getSiteLanguagePath();
   const { deleteCollection, changeCollectionTitle } = useMyCollections();
   const {
     changeName,
     delete: l10nDelete,
-    cancel,
-    saveChanges,
     nameOfTheCollection,
     deleteCollection: l10nDeleteCollection,
     deleteCollectionConfirmation,
     moreOptionsAriaLabel,
+    copyLink,
   } = useL10ns(
     "changeName",
     "delete",
-    "cancel",
-    "saveChanges",
     "nameOfTheCollection",
     "deleteCollection",
     "deleteCollectionConfirmation",
     "moreOptionsAriaLabel",
+    "copyLink",
   );
 
   const [title, setTitle] = useState(label);
@@ -76,6 +76,26 @@ const CollectionElement = ({
     setOpenDialog(OpenDialog.NONE);
   };
 
+  const handleCancelEditDialog = (): void => {
+    setOpenDialog(OpenDialog.NONE);
+    setTitle(label);
+  };
+
+  const handleCopyLink = async (): Promise<void> => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const { origin } = window.location;
+    const language = siteLanguagePath ? `/${siteLanguagePath}` : "";
+    const url = `${origin}${language}/#${href}`;
+
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch (error) {
+      /* TODO: Show error message to user in for example a toast */
+    }
+  };
+
   return (
     <div className={styles.collectionElementWrapper}>
       <span className={styles.label}>
@@ -92,36 +112,15 @@ const CollectionElement = ({
         onClose={() => setOpenDialog(OpenDialog.NONE)}
         onDelete={handleDeleteCollection}
       />
-      <Dialog
+      <EditDialog
         open={openDialog === OpenDialog.EDIT_DIALOG}
-        onClose={() => setOpenDialog(OpenDialog.NONE)}
         title={changeName}
-        description={nameOfTheCollection}
-      >
-        <div className={styles.editDialog}>
-          <TextInput
-            handleChange={handleEditCollectionTitle}
-            value={title}
-            handleEnter={handleNewTitle}
-          />
-          <div>
-            <Button
-              className={styles.dialogButton}
-              variant="secondary"
-              onClick={() => setOpenDialog(OpenDialog.NONE)}
-            >
-              {cancel}
-            </Button>
-            <Button
-              className={styles.dialogButton}
-              variant="default"
-              onClick={handleNewTitle}
-            >
-              {saveChanges}
-            </Button>
-          </div>
-        </div>
-      </Dialog>
+        textInputValue={title}
+        textInputLabel={nameOfTheCollection}
+        onTextInputChange={handleEditCollectionTitle}
+        onClose={handleCancelEditDialog}
+        onSave={handleNewTitle}
+      />
       <Menu>
         <MenuButton className={styles.menuButton}>
           <Button variant="circle" aria-label={moreOptionsAriaLabel}>
@@ -133,6 +132,11 @@ const CollectionElement = ({
             label={changeName}
             icon={<EditIcon />}
             onClick={() => setOpenDialog(OpenDialog.EDIT_DIALOG)}
+          />
+          <MenuItem
+            label={copyLink}
+            icon={<LinkIcon />}
+            onClick={handleCopyLink}
           />
           <MenuItem
             label={l10nDelete}
