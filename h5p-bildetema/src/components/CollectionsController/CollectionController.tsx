@@ -14,13 +14,7 @@ import useCurrentCollection from "../../hooks/useCurrentCollection";
 import { useL10ns } from "../../hooks/useL10n";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
 
-type CollectionControllerProps = {
-  rtl?: boolean;
-};
-
-const CollectionController = ({
-  rtl = false,
-}: CollectionControllerProps): JSX.Element => {
+const CollectionController = (): JSX.Element => {
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
@@ -85,7 +79,7 @@ const CollectionController = ({
         <SubHeader
           breadCrumbs={breadCrumbs}
           isWordView={!!collection && words.length > 0}
-          rtl={rtl}
+          rtl={false}
           showArticlesToggle={showArticlesToggle}
           includeShareButton
           includeSaveButton={!isCollectionOwner}

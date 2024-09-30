@@ -68,7 +68,7 @@ const SearchView = ({
             search={search}
             placeholder={searchInputPlaceholder}
             rtl={isRtl}
-            lang={getLanguageAttribute(searchLanguage.code)}
+            langAttribute={getLanguageAttribute(searchLanguage.code)}
           />
           <Select
             options={languages}

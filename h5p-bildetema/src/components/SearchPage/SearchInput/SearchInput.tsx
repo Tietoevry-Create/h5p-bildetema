@@ -8,7 +8,7 @@ export type SearchInputProps = {
   search: string;
   placeholder?: string;
   rtl?: boolean;
-  lang?: string;
+  langAttribute?: string;
 };
 
 const SearchInput = ({
@@ -16,7 +16,7 @@ const SearchInput = ({
   search,
   placeholder,
   rtl,
-  lang,
+  langAttribute,
 }: SearchInputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
   const { searchInputLabel } = useL10ns("searchInputLabel");
@@ -37,7 +37,7 @@ const SearchInput = ({
           ref={ref}
           id={styles.searchInput}
           type="search"
-          lang={lang}
+          lang={langAttribute}
           className={`${styles.searchInput} ${rtl ? styles.rtl : ""}`}
           placeholder={placeholder ?? ""}
           value={search}

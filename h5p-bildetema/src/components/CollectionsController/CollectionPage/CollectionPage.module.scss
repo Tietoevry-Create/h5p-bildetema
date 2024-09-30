@@ -12,6 +12,9 @@ $gap: $spacing--24;
   padding: 0;
   width: 100%;
 
+  // TODO: Change to grid-template-columns if direction is not important
+  // Currently this mimics the grid size on the search page
+
   [class*="rtl"] & {
     justify-content: flex-end;
   }
@@ -22,15 +25,15 @@ $gap: $spacing--24;
     margin: 0;
     width: 100%;
 
-    @include breakpoint-min(700px) {
+    @include breakpoint-min(656px) {
       width: calc((100% - #{$gap}) / 2);
     }
 
-    @include breakpoint-min(1040px) {
+    @include breakpoint-min(980px) {
       width: calc((100% - (#{$gap} * 2)) / 3);
     }
 
-    @include breakpoint-min(1390px) {
+    @include breakpoint-min(1304px) {
       width: calc((100% - (#{$gap} * 3)) / 4);
     }
   }
