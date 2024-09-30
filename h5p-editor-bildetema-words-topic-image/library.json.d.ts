@@ -2,7 +2,7 @@ export const title : "Bildetema Words Topic Image Editor";
 export const machineName : "H5PEditor.BildetemaWordsTopicImage";
 export const majorVersion : 1;
 export const minorVersion : 0;
-export const patchVersion : 106;
+export const patchVersion : 107;
 export const runnable : 0;
 export const preloadedJs : [
 	{
