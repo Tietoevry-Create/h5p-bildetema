@@ -379,12 +379,6 @@
         "type": "text"
       },
       {
-        "label": "Description text for adding a word to a collection. (without search)",
-        "name": "addWordsDescriptionWithoutSearch",
-        "default": "Add words by clicking on the bookmark on the images via {{topicView}}.",
-        "type": "text"
-      },
-      {
         "label": "Collections Page Description",
         "name": "collectionsPageDescription",
         "default": "Here you can save words in your own collections. The collections will only be stored in this browser. If you want to share the collection or view it elsewhere, you can copy the link to the collection.",
@@ -400,12 +394,6 @@
         "label": "Choose a collection",
         "name": "chooseACollection",
         "default": "Choose a collection",
-        "type": "text"
-      },
-      {
-        "label": "Choose collection",
-        "name": "chooseCollection",
-        "default": "Choose collection",
         "type": "text"
       },
       {
@@ -448,6 +436,12 @@
         "label": "Delete collection confirmation",
         "name": "deleteCollectionConfirmation",
         "default": "Are you sure you want to delete the collection",
+        "type": "text"
+      },
+      {
+        "label": "Delete collection status message",
+        "name": "deleteCollectionStatusMessage",
+        "default": "{{collection}} was deleted",
         "type": "text"
       },
       {

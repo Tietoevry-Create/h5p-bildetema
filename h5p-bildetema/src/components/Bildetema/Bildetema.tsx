@@ -23,7 +23,6 @@ import {
   useCurrentLanguage,
   useCurrentLanguageCode,
 } from "../../hooks/useCurrentLanguage";
-import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 type BildetemaProps = {
   defaultLanguages: string[];
@@ -41,8 +40,6 @@ export const Bildetema: FC<BildetemaProps> = ({
     idToWords,
   } = useNewDBContext();
   const { pathname } = useLocation();
-  const env = useEnvironment();
-  const shouldIncludeSearch = env !== environment.prod;
 
   const [showLoadingLabel, setShowLoadingLabel] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
@@ -176,10 +173,7 @@ export const Bildetema: FC<BildetemaProps> = ({
         ))}
 
         <>
-          {shouldIncludeSearch && (
-            <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
-          )}
-
+          <Route path={`${STATIC_PATH.SEARCH}`} element={<SearchPage />} />
           <Route
             path={`${STATIC_PATH.COLLECTIONS}`}
             element={<CollectionsController />}
@@ -192,7 +186,7 @@ export const Bildetema: FC<BildetemaProps> = ({
         <Route path="*" element={<Navigate to={`/${defaultLanguages[0]}`} />} />
       </Routes>
     );
-  }, [currTopics, defaultLanguages, directionRtl, shouldIncludeSearch]);
+  }, [currTopics, defaultLanguages, directionRtl]);
 
   const hiddenLanguageSelectors = STATIC_PATHS.includes(pathname);
 

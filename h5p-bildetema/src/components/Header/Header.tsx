@@ -19,7 +19,6 @@ import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
 import HeaderLink from "../HeaderLink/HeaderLink";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
-import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 export type HeaderProps = {
   favLanguages: Language[];
@@ -38,7 +37,6 @@ export const Header: FC<HeaderProps> = ({
   hideLanguageSelectors,
   currentTopics,
 }) => {
-  const env = useEnvironment();
   const headerRef = useRef<HTMLDivElement>(null);
   const languageKeys = languages.map(
     lang => `lang_${lang}`,
@@ -58,8 +56,6 @@ export const Header: FC<HeaderProps> = ({
     "search",
     ...languageKeys,
   );
-
-  const shouldIncludeSearch = env !== environment.prod;
 
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [langSelectorIsShown, setLangSelectorIsShown] = useState(false);
@@ -147,15 +143,11 @@ export const Header: FC<HeaderProps> = ({
               currentTopics={currentTopics}
             />
           )}
-
-          {shouldIncludeSearch && (
-            <HeaderLink
-              icon={<SearchIcon />}
-              label={l10nsSearch}
-              href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
-            />
-          )}
-
+          <HeaderLink
+            icon={<SearchIcon />}
+            label={l10nsSearch}
+            href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
+          />
           <HeaderLink
             label={myCollections}
             icon={<BookmarkIcon />}

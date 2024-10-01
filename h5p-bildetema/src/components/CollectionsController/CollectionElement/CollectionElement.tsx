@@ -8,6 +8,8 @@ import {
   LinkIcon,
   MoreVertIcon,
 } from "common/components/Icons/Icons";
+import { enqueueSnackbar } from "notistack";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../../Menu";
 import styles from "./CollectionElement.module.scss";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
@@ -46,16 +48,22 @@ const CollectionElement = ({
     nameOfTheCollection,
     deleteCollection: l10nDeleteCollection,
     deleteCollectionConfirmation,
+    deleteCollectionStatusMessage,
     moreOptionsAriaLabel,
     copyLink,
+    linkCopied,
+    changesSaved,
   } = useL10ns(
     "changeName",
     "delete",
     "nameOfTheCollection",
     "deleteCollection",
     "deleteCollectionConfirmation",
+    "deleteCollectionStatusMessage",
     "moreOptionsAriaLabel",
     "copyLink",
+    "linkCopied",
+    "changesSaved",
   );
 
   const [title, setTitle] = useState(label);
@@ -68,12 +76,29 @@ const CollectionElement = ({
     if (title) {
       changeCollectionTitle({ newTitle: title, id });
       setOpenDialog(OpenDialog.NONE);
+      enqueueSnackbar(changesSaved, {
+        variant: "success",
+      });
     }
+  };
+
+  const getDeleteCollectionStatusMessage = (): React.ReactNode => {
+    const replacements = {
+      collection: <b key={1}>{label}</b>,
+    };
+    const message = replacePlaceholders(
+      deleteCollectionStatusMessage,
+      replacements,
+    );
+    return <span>{message}</span>;
   };
 
   const handleDeleteCollection = (): void => {
     deleteCollection(id);
     setOpenDialog(OpenDialog.NONE);
+    enqueueSnackbar(getDeleteCollectionStatusMessage(), {
+      variant: "success",
+    });
   };
 
   const handleCancelEditDialog = (): void => {
@@ -91,6 +116,9 @@ const CollectionElement = ({
 
     try {
       await navigator.clipboard.writeText(url);
+      enqueueSnackbar(linkCopied, {
+        variant: "success",
+      });
     } catch (error) {
       /* TODO: Show error message to user in for example a toast */
     }

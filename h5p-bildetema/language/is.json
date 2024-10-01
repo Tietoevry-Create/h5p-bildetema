@@ -253,10 +253,6 @@
           "default": "Bættu við orðum með {{search}} eða {{topicView}}. Smelltu á bókamerkið á myndunum."
         },
         {
-          "label": "Description text for adding a word to a collection. (without search)",
-          "default": "Bættu við orðum með því að smella á bókamerkið á myndunum í gegnum {{topicView}}."
-        },
-        {
           "label": "Collections Page Description",
           "default": "Hér getur þú vistað orð í þínum eigin söfnum. Söfnin verða aðeins geymd í þessum vafra. Ef þú vilt deila safninu eða skoða það annars staðar geturðu afritað hlekkinn á safnið."
         },
@@ -266,10 +262,6 @@
         },
         {
           "label": "Choose a collection",
-          "default": "Veldu safn"
-        },
-        {
-          "label": "Choose collection",
           "default": "Veldu safn"
         },
         {
@@ -299,6 +291,10 @@
         {
           "label": "Delete collection confirmation",
           "default": "Ertu viss um að þú viljir eyða safninu"
+        },
+        {
+          "label": "Delete collection status message",
+          "default": "{{collection}} var eytt"
         },
         {
           "label": "This collection is empty",

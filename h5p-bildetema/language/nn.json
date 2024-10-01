@@ -253,10 +253,6 @@
           "default": "Legg til ord via {{search}} eller {{topicView}}. Klikk på bokmerket på bileta."
         },
         {
-          "label": "Description text for adding a word to a collection. (without search)",
-          "default": "Legg til ord ved å klikke på bokmerket på bileta via {{topicView}}."
-        },
-        {
           "label": "Collections Page Description",
           "default": "Her kan du lagra ord i dine eigne samlingar. Samlingane vil berre lagrast i denne nettlesaren. Om du ønskjer å dela samlinga eller sjå den andre stader, kan du kopiera lenkja til samlinga."
         },
@@ -267,10 +263,6 @@
         {
           "label": "Choose a collection",
           "default": "Vel ei samling"
-        },
-        {
-          "label": "Choose collection",
-          "default": "Vel samling"
         },
         {
           "label": "Create new collection",
@@ -299,6 +291,10 @@
         {
           "label": "Delete collection confirmation",
           "default": "Er du sikker på at du vil slette samlinga"
+        },
+        {
+          "label": "Delete collection status message",
+          "default": "{{collection}} vart sletta"
         },
         {
           "label": "This collection is empty",

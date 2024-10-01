@@ -214,7 +214,7 @@
         },
         {
           "label": "Name of the collection",
-          "default": "Navnet på samlingen"
+          "default": "Navn på samlingen"
         },
         {
           "label": "Cancel",
@@ -253,10 +253,6 @@
           "default": "Legg til ord via {{search}} eller {{topicView}}. Klikk på bokmerket på bildene."
         },
         {
-          "label": "Description text for adding a word to a collection. (without search)",
-          "default": "Legg til ord ved å klikke på bokmerket på bildene via {{topicView}}."
-        },
-        {
           "label": "Collections Page Description",
           "default": "Her kan du lagre ord i dine egne samlinger. Samlingene vil kun lagres i denne nettleseren. Om du ønsker å dele samlingen eller se den andre steder, kan du kopiere lenken til samlingen."
         },
@@ -267,10 +263,6 @@
         {
           "label": "Choose a collection",
           "default": "Velg en samling"
-        },
-        {
-          "label": "Choose collection",
-          "default": "Velg samling"
         },
         {
           "label": "Create new collection",
@@ -299,6 +291,10 @@
         {
           "label": "Delete collection confirmation",
           "default": "Er du sikker på at du vil slette samlingen"
+        },
+        {
+          "label": "Delete collection status message",
+          "default": "{{collection}} ble slettet"
         },
         {
           "label": "This collection is empty",
