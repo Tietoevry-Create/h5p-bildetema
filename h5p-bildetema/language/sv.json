@@ -297,6 +297,10 @@
           "default": "Är du säker på att du vill radera samlingen"
         },
         {
+          "label": "Delete collection status message",
+          "default": "{{collection}} togs bort"
+        },
+        {
           "label": "This collection is empty",
           "default": "Denna samling är tom"
         },

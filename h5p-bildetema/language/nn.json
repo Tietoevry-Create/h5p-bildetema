@@ -297,6 +297,10 @@
           "default": "Er du sikker på at du vil slette samlinga"
         },
         {
+          "label": "Delete collection status message",
+          "default": "{{collection}} vart sletta"
+        },
+        {
           "label": "This collection is empty",
           "default": "Denne samlinga er tom"
         },

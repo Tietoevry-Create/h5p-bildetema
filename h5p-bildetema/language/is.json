@@ -297,6 +297,10 @@
           "default": "Ertu viss um að þú viljir eyða safninu"
         },
         {
+          "label": "Delete collection status message",
+          "default": "{{collection}} var eytt"
+        },
+        {
           "label": "This collection is empty",
           "default": "Þetta safn er tómt"
         },

@@ -297,6 +297,10 @@
           "default": "Are you sure you want to delete the collection"
         },
         {
+          "label": "Delete collection status message",
+          "default": "{{collection}} was deleted"
+        },
+        {
           "label": "This collection is empty",
           "default": "This collection is empty"
         },

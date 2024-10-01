@@ -445,6 +445,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Delete collection status message",
+				name: "deleteCollectionStatusMessage",
+				"default": "{{collection}} was deleted",
+				type: "text"
+			},
+			{
 				label: "This collection is empty",
 				name: "thisCollectionIsEmpty",
 				"default": "This collection is empty",
