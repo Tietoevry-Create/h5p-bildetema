@@ -2,7 +2,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
-import { BookmarkIcon } from "common/components/Icons/Icons";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useSelectedWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
@@ -69,9 +68,6 @@ const CollectionPage = ({
   if (words.length === 0) {
     return (
       <div className={styles.container}>
-        <div className={styles.bookmarkIcon}>
-          <BookmarkIcon />
-        </div>
         <p className={styles.description}>{`${thisCollectionIsEmpty}.`}</p>
         <p className={styles.description}>{descriptionWithLinks}</p>
         <div className={styles.navButtons}>
