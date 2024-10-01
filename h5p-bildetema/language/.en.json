@@ -265,10 +265,6 @@
           "default": "Choose a collection"
         },
         {
-          "label": "Choose collection",
-          "default": "Choose collection"
-        },
-        {
           "label": "Create new collection",
           "default": "Create new collection"
         },

@@ -265,10 +265,6 @@
           "default": "Välj en samling"
         },
         {
-          "label": "Choose collection",
-          "default": "Välj samling"
-        },
-        {
           "label": "Create new collection",
           "default": "Skapa ny samling"
         },

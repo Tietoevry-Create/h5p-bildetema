@@ -265,10 +265,6 @@
           "default": "Veldu safn"
         },
         {
-          "label": "Choose collection",
-          "default": "Veldu safn"
-        },
-        {
           "label": "Create new collection",
           "default": "Búðu til nýtt safn"
         },

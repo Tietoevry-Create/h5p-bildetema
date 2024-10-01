@@ -397,12 +397,6 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
-				label: "Choose collection",
-				name: "chooseCollection",
-				"default": "Choose collection",
-				type: "text"
-			},
-			{
 				label: "Create new collection",
 				name: "createNewCollection",
 				"default": "Create new collection",
