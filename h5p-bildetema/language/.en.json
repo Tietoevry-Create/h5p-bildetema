@@ -253,10 +253,6 @@
           "default": "Add words via {{search}} or {{topicView}}. Click on the bookmark on the images."
         },
         {
-          "label": "Description text for adding a word to a collection. (without search)",
-          "default": "Add words by clicking on the bookmark on the images via {{topicView}}."
-        },
-        {
           "label": "Collections Page Description",
           "default": "Here you can save words in your own collections. The collections will only be stored in this browser. If you want to share the collection or view it elsewhere, you can copy the link to the collection."
         },

@@ -9,7 +9,6 @@ import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { useL10ns } from "../../../hooks/useL10n";
-import { useEnvironment, environment } from "../../../hooks/useEnvironment";
 
 type MyCollection = {
   showArticles: boolean;
@@ -24,11 +23,9 @@ const CollectionPage = ({
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
   const { isCollectionOwner } = useCurrentCollection();
-  const env = useEnvironment();
 
   const {
     addWordsDescription,
-    addWordsDescriptionWithoutSearch,
     search,
     topicView,
     goToSearch,
@@ -36,15 +33,12 @@ const CollectionPage = ({
     thisCollectionIsEmpty,
   } = useL10ns(
     "addWordsDescription",
-    "addWordsDescriptionWithoutSearch",
     "search",
     "topicView",
     "goToSearch",
     "goToTopic",
     "thisCollectionIsEmpty",
   );
-
-  const shouldIncludeSearch = env !== environment.prod;
 
   const replacements = {
     search: (
@@ -59,11 +53,10 @@ const CollectionPage = ({
     ),
   };
 
-  const description = shouldIncludeSearch
-    ? addWordsDescription
-    : addWordsDescriptionWithoutSearch;
-
-  const descriptionWithLinks = replacePlaceholders(description, replacements);
+  const descriptionWithLinks = replacePlaceholders(
+    addWordsDescription,
+    replacements,
+  );
 
   if (words.length === 0) {
     return (
@@ -71,17 +64,13 @@ const CollectionPage = ({
         <p className={styles.description}>{`${thisCollectionIsEmpty}.`}</p>
         <p className={styles.description}>{descriptionWithLinks}</p>
         <div className={styles.navButtons}>
-          {shouldIncludeSearch && (
-            <Button
-              variant="default"
-              role="link"
-              onClick={() =>
-                navigate(`${STATIC_PATH.SEARCH}?lang=${lang.code}`)
-              }
-            >
-              {goToSearch}
-            </Button>
-          )}
+          <Button
+            variant="default"
+            role="link"
+            onClick={() => navigate(`${STATIC_PATH.SEARCH}?lang=${lang.code}`)}
+          >
+            {goToSearch}
+          </Button>
           <Button
             variant="default"
             role="link"
