@@ -25,24 +25,24 @@
     "check-licenses": "npx license-checker --summary --production --excludePackages 'h5p-bildetema' --onlyAllow 'MIT;ISC;Apache-2.0;Apache 2.0;Apache*;BSD;WTFPL;Artistic-2.0;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Unlicense;Public Domain;Python-2.0;'"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
     "notistack": "^3.0.1",
     "react-responsive": "^10.0.0"
   },
   "devDependencies": {
     "@types/cli-interact": "^0.1.4",
     "@types/puppeteer": "^5.4.7",
-    "@types/react": "^18.3.5",
+    "@types/react": "^18.3.11",
     "autoprefixer": "^10.4.20",
     "cli-interact": "^0.1.9",
     "happy-dom": "^15.7.4",
-    "jsdom": "^25.0.0",
+    "jsdom": "^25.0.1",
     "license-checker": "^25.0.1",
-    "postcss": "^8.4.45",
+    "postcss": "^8.4.47",
     "prettier": "^3.3.3",
-    "puppeteer": "^23.3.0",
+    "puppeteer": "^23.5.2",
     "tsx": "^4.19.1",
-    "turbo": "^2.1.1"
+    "turbo": "^2.1.3"
   },
   "workspaces": [
     "common",

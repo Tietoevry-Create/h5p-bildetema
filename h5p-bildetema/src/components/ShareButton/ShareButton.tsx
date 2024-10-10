@@ -13,6 +13,7 @@ const ShareButton = (): JSX.Element => {
       await navigator.clipboard.writeText(url);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 3000);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       /* TODO: Show error message to user in for example a toast */
     }
