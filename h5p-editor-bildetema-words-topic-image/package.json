@@ -1,6 +1,7 @@
 {
   "name": "bildetema-words-topic-image",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",
@@ -23,7 +24,7 @@
     "ts-node": "^10.9.2",
     "tsconfig-custom": "*",
     "vite-utils": "*",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.2"
   },
   "eslintConfig": {
     "extends": "custom"
