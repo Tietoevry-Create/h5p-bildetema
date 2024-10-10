@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import "common/polyfills";
 import { registerContentType } from "h5p-utils";
 import semantics from "../semantics.json";
@@ -8,5 +9,4 @@ registerContentType("Bildetema", H5PWrapper);
 
 // Import semantics into value space to ensure that `unplugin-json-dts`
 // generates the correct types.
-// eslint-disable-next-line no-unused-expressions
 semantics;

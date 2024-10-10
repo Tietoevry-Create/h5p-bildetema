@@ -16,14 +16,14 @@
   },
   "dependencies": {
     "common": "*",
-    "swiper": "^9.3.2",
+    "swiper": "^11.1.14",
     "use-h5p": "^2.0.0",
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.1",
-    "@types/jquery": "^3.5.30",
-    "@types/react": "^18.3.5",
+    "@types/jquery": "^3.5.31",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "eslint-config-custom": "*",
     "storybook-custom": "*",

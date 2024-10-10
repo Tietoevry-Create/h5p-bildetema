@@ -53,7 +53,7 @@ export const PrintButton: FC<PrintProps> = ({
   const { printImgLabel } = useL10ns("printImgLabel");
 
   const handlePrint = useReactToPrint({
-    content: () => printRef.current,
+    contentRef: printRef,
     pageStyle: "",
   });
 

@@ -119,6 +119,7 @@ const CollectionElement = ({
       enqueueSnackbar(linkCopied, {
         variant: "success",
       });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       /* TODO: Show error message to user in for example a toast */
     }
