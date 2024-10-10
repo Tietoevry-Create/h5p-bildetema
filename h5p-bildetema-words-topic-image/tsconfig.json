@@ -3,5 +3,5 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM"]
   },
-  "include": ["./src/**/*", "typings.d.ts", "vite.config.ts", ".storybook/**/*"]
+  "include": ["./src/**/*", "typings.d.ts", "vite.config.mts", ".storybook/**/*"]
 }

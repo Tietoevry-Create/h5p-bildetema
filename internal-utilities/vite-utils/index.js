@@ -1,7 +1,7 @@
 // @ts-check
 
-const react = require("@vitejs/plugin-react").default;
-const unpluginJsonDts = require("unplugin-json-dts/vite");
+import react from "@vitejs/plugin-react";
+import unpluginJsonDts from "unplugin-json-dts/vite";
 
 /**
  * @param {string} libName
@@ -22,11 +22,11 @@ const getBuildConfig = libName => ({
       assetFileNames: assetInfo => {
         // For some reason, an H5P content type's style file cannot be named `style.css`.
         // Therefore we need to change the name before saving it.
-        if (assetInfo.name === "style.css") {
+        if (assetInfo.names?.includes("style.css")) {
           return `main.css`;
         }
 
-        return assetInfo.name ?? "";
+        return assetInfo.names?.[0] ?? "";
       },
     },
   },
@@ -42,7 +42,7 @@ const define = {
  * @param {string} name
  * @param {"happy-dom" | "jsdom"} testEnvironment
  */
-const defineConfig = (name, testEnvironment) => ({
+export const defineConfig = (name, testEnvironment) => ({
   plugins: [react(), unpluginJsonDts()],
   build: getBuildConfig(name),
   define,
@@ -50,7 +50,3 @@ const defineConfig = (name, testEnvironment) => ({
     environment: testEnvironment,
   },
 });
-
-module.exports = {
-  defineConfig,
-};
