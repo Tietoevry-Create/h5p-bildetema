@@ -5,6 +5,7 @@ import { STATIC_PATH } from "common/constants/paths";
 import { Button } from "common/components/Button";
 import { AddIcon } from "common/components/Icons/Icons";
 import { useNavigate } from "react-router-dom";
+import { Collection } from "common/types/types";
 import styles from "./CollectionsPage.module.scss";
 import CollectionElement from "../CollectionElement/CollectionElement";
 import { useCurrentLanguageCode } from "../../../hooks/useCurrentLanguage";
@@ -43,6 +44,14 @@ const CollectionsPage = (): React.JSX.Element => {
       `${STATIC_PATH.COLLECTIONS}/${textInput}?lang=${langCode}&id=${id}`,
     );
   };
+
+  const getCollectionElementHref = (collection: Collection): string => {
+    const collectionTitle = encodeURIComponent(collection.title);
+    const collectionWordIds =
+      collection.wordsIds.length > 0 ? `&words=${collection.wordsIds}` : "";
+    return `${STATIC_PATH.COLLECTIONS}/${collectionTitle}?lang=${langCode}&id=${collection.id}${collectionWordIds}`;
+  };
+
   return (
     <div className={styles.container}>
       <EditDialog
@@ -72,9 +81,7 @@ const CollectionsPage = (): React.JSX.Element => {
               id={v.id}
               amountOfCollectionItems={v.wordsIds.length}
               label={v.title}
-              href={`${STATIC_PATH.COLLECTIONS}/${v.title}?lang=${langCode}&id=${
-                v.id
-              }${v.wordsIds.length > 0 ? `&words=${v.wordsIds}` : ""}`}
+              href={getCollectionElementHref(v)}
             />
           </li>
         ))}
