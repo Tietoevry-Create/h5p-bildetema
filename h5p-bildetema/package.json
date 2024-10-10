@@ -1,11 +1,7 @@
 {
   "name": "h5p-bildetema",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "type": "module",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "start:dev": "vite",

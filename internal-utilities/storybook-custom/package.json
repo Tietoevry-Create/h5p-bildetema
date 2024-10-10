@@ -1,6 +1,7 @@
 {
   "name": "storybook-custom",
   "version": "1.0.0",
+  "type": "module",
   "devDependencies": {
     "@mdx-js/react": "^3.0.1",
     "@storybook/addon-essentials": "^8.3.0",
