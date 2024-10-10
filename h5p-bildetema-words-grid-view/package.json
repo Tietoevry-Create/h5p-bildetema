@@ -1,11 +1,7 @@
 {
   "name": "h5p-bildetema-words-grid-view",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "type": "module",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",

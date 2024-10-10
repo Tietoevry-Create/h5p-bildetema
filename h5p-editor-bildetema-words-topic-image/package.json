@@ -1,6 +1,7 @@
 {
   "name": "bildetema-words-topic-image",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
     "build:dev": "vite build --mode=development",

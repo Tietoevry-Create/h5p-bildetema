@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const commonConfig =
-  require("common/utils/postcss-config/postcss-config.utils").commonPostCSSConfig;
+import { commonPostCSSConfig as commonConfig } from "common/utils/postcss-config/postcss-config.utils.js";
 
-module.exports = () => ({
+export default () => ({
   ...commonConfig,
 });
