@@ -1,4 +1,5 @@
 import SuperJSON from "superjson";
+import { searchOnlyWords } from "common/constants/search-only-words";
 import { getAudioFiles } from "common/utils/audio/audio.utils";
 import { getImageUrl } from "common/utils/image/image.utils";
 import { LanguageCode } from "../types/LanguageCode";
@@ -116,7 +117,8 @@ export const getNewWordsFromId = (
 
   return content
     .map(item => idToWords?.get(item))
-    .filter((item): item is NewWord => item !== undefined);
+    .filter((item): item is NewWord => item !== undefined)
+    .filter(item => !searchOnlyWords.includes(item.id));
 };
 
 export const getMainTopics = (
