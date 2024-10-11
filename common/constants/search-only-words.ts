@@ -1,6 +1,6 @@
 /**
- * Words that should only be visible on search page.
- * It includes ids of words that are duplicates of topic names
+ * Words that should only be found via the search page (not topic view). 
+ * The list includes ids of words that are duplicates of topic names 
  * that doesn't need to be shown in the topic view.
  */
 export const searchOnlyWords = [
