@@ -15,6 +15,7 @@ const ShareButton = (): JSX.Element => {
       setTimeout(() => setIsCopied(false), 3000);
     } catch (error) {
       /* TODO: Show error message to user in for example a toast */
+      console.error(error);
     }
   };
 

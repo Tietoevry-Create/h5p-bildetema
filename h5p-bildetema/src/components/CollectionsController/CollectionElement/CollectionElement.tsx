@@ -121,6 +121,7 @@ const CollectionElement = ({
       });
     } catch (error) {
       /* TODO: Show error message to user in for example a toast */
+      console.error(error);
     }
   };
 
