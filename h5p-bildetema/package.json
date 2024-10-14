@@ -28,7 +28,7 @@
     "react-virtuoso": "^4.10.4",
     "superjson": "^2.2.1",
     "swiper": "^11.1.14",
-    "use-debounce": "^10.0.3",
+    "use-debounce": "^10.0.4",
     "use-h5p": "^2.0.0",
     "use-react-router-breadcrumbs": "^4.0.1"
   },
