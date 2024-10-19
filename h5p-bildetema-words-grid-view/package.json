@@ -18,7 +18,7 @@
     "common": "*",
     "swiper": "^11.1.14",
     "use-h5p": "^2.0.0",
-    "react-router-dom": "^6.26.2"
+    "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.1",
