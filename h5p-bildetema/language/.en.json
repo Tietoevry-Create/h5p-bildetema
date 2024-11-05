@@ -150,7 +150,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2023 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
+          "default": "Copyright © {{year}} · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header title",

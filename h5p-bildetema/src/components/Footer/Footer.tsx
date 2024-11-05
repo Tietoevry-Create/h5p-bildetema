@@ -1,3 +1,4 @@
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./Footer.module.scss";
 
@@ -27,7 +28,11 @@ export const Footer = (): JSX.Element => {
     "footerAccessibilityStatementHref",
   );
 
-  const copyrightLabel = useL10n("footerCopyright");
+  const currentYear = new Date().getFullYear().toString();
+  const footerCopyrightLabel = useL10n("footerCopyright");
+  const copyrightLabel = replacePlaceholders(footerCopyrightLabel, {
+    year: currentYear,
+  });
 
   const creativeCommonsImgAlt = useL10n("footerCreativeCommonsImgAlt");
   const creativeCommonsText = useL10n("footerCreativeCommonsText");

@@ -150,7 +150,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Kopibeskytta © 2023 · Alle rettar · Nasjonalt senter for fleirkulturell opplæring (NAFO), OsloMet"
+          "default": "Kopibeskytta © {{year}} · Alle rettar · Nasjonalt senter for fleirkulturell opplæring (NAFO), OsloMet"
         },
         {
           "label": "Header: Tittel",
