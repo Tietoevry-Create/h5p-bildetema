@@ -25,4 +25,5 @@ export const searchOnlyWords = [
   "V1168",
   "V1169",
   "V1170",
+  "V1171",
 ];
