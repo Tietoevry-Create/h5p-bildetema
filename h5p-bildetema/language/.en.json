@@ -190,7 +190,7 @@
         },
         {
           "label": "Grid label",
-          "default": "Single photos"
+          "default": "Single images"
         },
         {
           "label": "Search",
@@ -206,7 +206,7 @@
         },
         {
           "label": "Change name",
-          "default": "Change name"
+          "default": "Edit name"
         },
         {
           "label": "Delete",
@@ -214,7 +214,7 @@
         },
         {
           "label": "Name of the collection",
-          "default": "Name of the collection"
+          "default": "Name of collection"
         },
         {
           "label": "Cancel",
@@ -230,11 +230,11 @@
         },
         {
           "label": "Aria text for disabled button in choose a collection dialog with preselected collections",
-          "default": "The word is already added to the selected collections"
+          "default": "The word has already been added to the selected collections"
         },
         {
           "label": "Aria text for disabled button in create a collection dialog",
-          "default": "Write a name for the collection"
+          "default": "Name your collection"
         },
         {
           "label": "Save changes",
@@ -250,7 +250,7 @@
         },
         {
           "label": "Description text for adding a word to a collection",
-          "default": "Add words via {{search}} or {{topicView}}. Click on the bookmark on the images."
+          "default": "Add words via {{search}} or {{topicView}}. Click the bookmark on the images."
         },
         {
           "label": "Collections Page Description",
@@ -346,7 +346,7 @@
         },
         {
           "label": "Search input label",
-          "default": "Search in Bildetema"
+          "default": "Search Bildetema"
         },
         {
           "label": "Search input placeholder",
@@ -354,7 +354,7 @@
         },
         {
           "label": "Search label",
-          "default": "Search on"
+          "default": "Search in"
         },
         {
           "label": "Topic filter title",
@@ -374,7 +374,7 @@
         },
         {
           "label": "View language label short",
-          "default": "Show on"
+          "default": "Show in"
         },
         {
           "label": "Search result label",
@@ -426,11 +426,11 @@
         },
         {
           "label": "Norwegian (nynorsk)",
-          "default": "Norwegian (nynorsk)"
+          "default": "Norwegian (Nynorsk)"
         },
         {
           "label": "Norwegian (bokmål)",
-          "default": "Norwegian (bokmål)"
+          "default": "Norwegian (Bokmål)"
         },
         {
           "label": "Polish",
