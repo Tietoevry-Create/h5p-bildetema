@@ -254,7 +254,7 @@
         },
         {
           "label": "Collections Page Description",
-          "default": "Her kan du lagra ord i dine eigne samlingar. Samlingane vil berre lagrast i denne nettlesaren. Om du ønskjer å dela samlinga eller sjå den andre stader, kan du kopiera lenkja til samlinga."
+          "default": "Her kan du lagre ord i dine eigne samlingar. Samlingane vil berre lagrast i denne nettlesaren. Om du ønskjer å dele samlinga eller sjå henne andre stader, kan du kopiere lenkja til samlinga."
         },
         {
           "label": "Add word",
@@ -266,7 +266,7 @@
         },
         {
           "label": "Create new collection",
-          "default": "Opprett ny samling"
+          "default": "Lag ny samling"
         },
         {
           "label": "Delete word",
@@ -318,7 +318,7 @@
         },
         {
           "label": "Collection saved",
-          "default": "Samling lagra"
+          "default": "Samlinga er lagra"
         },
         {
           "label": "More options aria label",
@@ -358,15 +358,15 @@
         },
         {
           "label": "Topic filter title",
-          "default": "Filtrar etter tema"
+          "default": "Filtrer etter tema"
         },
         {
           "label": "Topic filter reset",
-          "default": "Nullstill filtar"
+          "default": "Nullstill filter"
         },
         {
           "label": "Close filter",
-          "default": "Lukk filtar"
+          "default": "Lukk filter"
         },
         {
           "label": "View language label",
