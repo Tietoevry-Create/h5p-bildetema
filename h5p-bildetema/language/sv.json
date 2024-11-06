@@ -185,12 +185,12 @@
           "default": "Inget ämne valt."
         },
         {
-          "label": "Temabild text",
-          "default": "Temabild"
+          "label": "Topic image label",
+          "default": "Översiktsbild"
         },
         {
-          "label": "Grid text",
-          "default": "Grid"
+          "label": "Grid label",
+          "default": "Enkla bilder"
         },
         {
           "label": "Search",
@@ -230,11 +230,11 @@
         },
         {
           "label": "Aria text for disabled button in choose a collection dialog with preselected collections",
-          "default": "Ordet är redan lagrat i de valda samlingarna"
+          "default": "Ordet är redan sparat i de valda samlingarna"
         },
         {
           "label": "Aria text for disabled button in create a collection dialog",
-          "default": "Ange ett namn för samlingen"
+          "default": "Skriv ett namn på din samling"
         },
         {
           "label": "Save changes",
@@ -254,7 +254,7 @@
         },
         {
           "label": "Collections Page Description",
-          "default": "Här kan du spara ord i dina egna samlingar. Samlingarna kommer endast att lagras i den här webbläsaren. Om du vill dela samlingen eller se den någon annanstans kan du kopiera länken till samlingen."
+          "default": "Här kan du spara ord i dina egna samlingar. Samlingarna kommer endast att sparas i den här i webbläsaren. Om du vill dela samlingen eller visa den någon annanstans kan du kopiera länken till samlingen."
         },
         {
           "label": "Add word",
@@ -294,7 +294,7 @@
         },
         {
           "label": "Delete collection status message",
-          "default": "{{collection}} togs bort"
+          "default": "{{collection}} raderades"
         },
         {
           "label": "This collection is empty",
@@ -322,7 +322,7 @@
         },
         {
           "label": "More options aria label",
-          "default": "Flera val"
+          "default": "Fler val"
         },
         {
           "label": "Open menu to add word to collection aria label",
