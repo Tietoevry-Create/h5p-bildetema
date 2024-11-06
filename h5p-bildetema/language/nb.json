@@ -150,7 +150,7 @@
         },
         {
           "label": "Kopibeskyttelse",
-          "default": "Kopibeskyttet © 2023 · Alle rettigheter · Nasjonalt senter for flerkulturell opplæring (NAFO), OsloMet"
+          "default": "Kopibeskyttet © {{year}} · Alle rettigheter · Nasjonalt senter for flerkulturell opplæring (NAFO), OsloMet"
         },
         {
           "label": "Header: Tittel",

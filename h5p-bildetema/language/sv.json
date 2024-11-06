@@ -150,7 +150,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Upphovsrättsligt skyddad © 2023 · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
+          "default": "Upphovsrättsligt skyddad © {{year}} · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
         },
         {
           "label": "Sidhuvud: Titel",

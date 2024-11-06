@@ -150,7 +150,7 @@
         },
         {
           "label": "Copyright",
-          "default": "Copyright © 2023 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
+          "default": "Copyright © {{year}} · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header: Titel",
@@ -186,11 +186,11 @@
         },
         {
           "label": "Temabilde tekst",
-          "default": "Temabilde"
+          "default": "Oversigtsbillede"
         },
         {
           "label": "Grid tekst",
-          "default": "Grid"
+          "default": "Enkeltbilleder"
         },
         {
           "label": "Search",
@@ -218,7 +218,7 @@
         },
         {
           "label": "Cancel",
-          "default": "Afbestille"
+          "default": "Fortryd"
         },
         {
           "label": "Confirm",
@@ -246,7 +246,7 @@
         },
         {
           "label": "Link copied",
-          "default": "Link kopiert"
+          "default": "Link kopieret"
         },
         {
           "label": "Description text for adding a word to a collection",
@@ -382,7 +382,7 @@
         },
         {
           "label": "Search result hits label",
-          "default": "Din søgning på {{searchTerm}} gav {{amount}} hits."
+          "default": "Din søgning på {{searchTerm}} gav {{amount}} resultater."
         },
         {
           "label": "Arabisk",
