@@ -4,148 +4,148 @@
       "label": "Översättningar",
       "fields": [
         {
-          "label": "Språkkod",
+          "label": "Language code",
           "description": "Två teckens språkkod, används för att ställa in språk i kod (engelska: en, svenska: sv)",
           "default": "sv"
         },
         {
-          "label": "Sidan laddas",
+          "label": "Page is loading",
           "default": "Laddar…"
         },
         {
-          "label": "Hoppa till huvudinnehållet",
+          "label": "Skip to main content label",
           "default": "Hoppa till huvudinnehållet"
         },
         {
-          "label": "Huvudinnehåll aria text",
+          "label": "Main content aria label",
           "default": "Huvudinnehåll"
         },
         {
-          "label": "Visa ord",
+          "label": "Show written words label",
           "default": "Visa ord"
         },
         {
-          "label": "Visa artiklar",
+          "label": "Show articles label",
           "default": "Visa artiklar"
         },
         {
-          "label": "Skriv ut",
+          "label": "Print label",
           "default": "Skriv ut"
         },
         {
-          "label": "Skriv ut bild text",
+          "label": "Print img label",
           "default": "bilder i bredd"
         },
         {
-          "label": "Spela ljud",
+          "label": "Play audio",
           "default": "Spela ljud"
         },
         {
-          "label": "Stoppa ljudet",
+          "label": "Stop audio",
           "default": "Stoppa ljudet"
         },
         {
-          "label": "Sidfot: om text",
+          "label": "Footer about label",
           "default": "Om Bildteman"
         },
         {
-          "label": "Sidfot: om URL",
+          "label": "Footer about URL",
           "default": "/se/om-bildetema"
         },
         {
-          "label": "Sidfot: Kontaktinfo rubrik",
+          "label": "Footer contact info label",
           "default": "Kontakta oss"
         },
         {
-          "label": "Sidfot: Kontaktinfo e-postlänk",
+          "label": "Footer contact info URL",
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Sidfot: NAFO text",
+          "label": "Footer NAFO label",
           "default": "NAFO - Nationellt center för mångkulturell utbildning"
         },
         {
-          "label": "Sidfot: NAFO URL",
+          "label": "Footer NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Sidfot: länk 1 text",
+          "label": "Footer link 1 label",
           "default": "Språkrådet, Institutet för språk och folkminnen"
         },
         {
-          "label": "Sidfot: länk 1 URL",
+          "label": "Footer link 1 URL",
           "default": "https://www.isof.se/"
         },
         {
-          "label": "Sidfot: länk 2 text",
+          "label": "Footer link 2 label",
           "default": "LEXIN"
         },
         {
-          "label": "Sidfot: länk 2 URL",
+          "label": "Footer link 2 URL",
           "default": "https://lexin.csc.kth.se/lexin/"
         },
         {
-          "label": "Sidfot: Sekretesspolicy text",
+          "label": "Footer privacy statement label",
           "default": "Sekretesspolicy"
         },
         {
-          "label": "Sidfot: Sekretesspolicy URL",
+          "label": "Footer privacy statement URL",
           "default": "/se/personvernerklaering"
         },
         {
-          "label": "Sidfot: Tillgänglighetsförklaring text",
+          "label": "Footer accessibility statement label",
           "default": "Tillgänglighetsförklaring"
         },
         {
-          "label": "Sidfot: Tillgänglighetsförklaring URL",
+          "label": "Footer accessibility statement URL",
           "default": "/se/tilgjengelighetserklaering"
         },
         {
-          "label": "Sidfot: Creative commons img alt text",
+          "label": "Footer creative commons img alt text",
           "default": "Creative Commons-licens"
         },
         {
-          "label": "Sidfot: Creative commons text",
+          "label": "Footer creative commons text",
           "default": "Licensierad under en"
         },
         {
-          "label": "Sidfot: Creative commons link URL",
+          "label": "Footer creative commons link URL",
           "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.sv"
         },
         {
-          "label": "Sidfot: Creative commons link text",
+          "label": "Footer creative commons link text",
           "default": "Creative Commons Erkännande-IckeKommersiell-DelaLika 4.0 Internationell licens"
         },
         {
-          "label": "Länkstigen aria text",
+          "label": "Breadcrumbs aria label",
           "default": "Länkstigen"
         },
         {
-          "label": "Namn på första länken i länkstigen",
+          "label": "Breadcrumbs 'Topic' label",
           "default": "Välj ett tema"
         },
         {
-          "label": "Namn på hemsidan i länkstigen",
+          "label": "Breadcrumbs 'Home' label",
           "default": "Hem"
         },
         {
-          "label": "Favoritspråk aria text",
+          "label": "Favorite languages aria label",
           "default": "Favoritspråk"
         },
         {
-          "label": "Välj favoritspråk aria text del 1",
+          "label": "Choose favorite language aria label part 1",
           "default": "Välj"
         },
         {
-          "label": "Välj favoritspråk aria text del 2",
+          "label": "Choose favorite language aria label part 2",
           "default": "som favoritspråk"
         },
         {
-          "label": "Välj språk aria text",
+          "label": "Choose language aria label",
           "default": "Välj språk"
         },
         {
-          "label": "Namn på språkvalsknappen",
+          "label": "Language selection label",
           "default": "Språk"
         },
         {
@@ -153,35 +153,35 @@
           "default": "Upphovsrättsligt skyddad © {{year}} · Alla rättigheter · Nationellt center för mångkulturell utbildning (NAFO), OsloMet"
         },
         {
-          "label": "Sidhuvud: Titel",
+          "label": "Header title",
           "default": "Bildteman"
         },
         {
-          "label": "Sidhuvud: Undertitel",
+          "label": "Header subtitle",
           "default": "Flerspråkig bildordbok"
         },
         {
-          "label": "Sidhuvud: OsloMet logo aria text",
+          "label": "Header OsloMet logo aria label",
           "default": "OsloMet - Oslo Metropolitan University"
         },
         {
-          "label": "Temastorlek: stor",
+          "label": "Topic size big",
           "default": "Visa teman i rutnätsvy"
         },
         {
-          "label": "Temastorlek: kompakt",
+          "label": "Topic size compact",
           "default": "Visa teman i lista"
         },
         {
-          "label": "Föregående bild",
+          "label": "Previous image label",
           "default": "Föregående bild"
         },
         {
-          "label": "Nästa bild",
+          "label": "Next image label",
           "default": "Nästa bild"
         },
         {
-          "label": "Inget ämne valt.",
+          "label": "No topic selected.",
           "default": "Inget ämne valt."
         },
         {
