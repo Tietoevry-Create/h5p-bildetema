@@ -4,148 +4,148 @@
       "label": "Omsetjingar",
       "fields": [
         {
-          "label": "Språkkode",
+          "label": "Language code",
           "description": "Språkkoden skal vere skriven med to teikn (engelsk: en, norsk nynorsk: nn)",
           "default": "nn"
         },
         {
-          "label": "Sida lastar",
+          "label": "Page is loading",
           "default": "Lastar…"
         },
         {
-          "label": "Hopp til hovudinnhald",
+          "label": "Skip to main content label",
           "default": "Hopp til hovudinnhald"
         },
         {
-          "label": "Hovudinnhald aria tekst",
+          "label": "Main content aria label",
           "default": "Hovudinnhald"
         },
         {
-          "label": "Vis ord",
+          "label": "Show written words label",
           "default": "Vis ord"
         },
         {
-          "label": "Vis artikkel",
+          "label": "Show articles label",
           "default": "Vis artikkel"
         },
         {
-          "label": "Skriv ut",
+          "label": "Print label",
           "default": "Skriv ut"
         },
         {
-          "label": "Skriv ut bilete",
+          "label": "Print img label",
           "default": "bilete i breidda"
         },
         {
-          "label": "Spel lyd",
+          "label": "Play audio",
           "default": "Spel lyd"
         },
         {
-          "label": "Stopp lyd",
+          "label": "Stop audio",
           "default": "Stopp lyd"
         },
         {
-          "label": "Footer: Om Bildetema tekst",
+          "label": "Footer about label",
           "default": "Om Bildetema"
         },
         {
-          "label": "Footer: Om Bildetema URL",
+          "label": "Footer about URL",
           "default": "/nn/om-bildetema"
         },
         {
-          "label": "Footer: Kontaktinfo-overskrift",
+          "label": "Footer contact info label",
           "default": "Kontakt oss"
         },
         {
-          "label": "Footer: Kontaktinfo-URL",
+          "label": "Footer contact info URL",
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Footer: NAFO tekst",
+          "label": "Footer NAFO label",
           "default": "NAFO - Nasjonalt senter for fleirkulturell opplæring"
         },
         {
-          "label": "Footer: NAFO URL",
+          "label": "Footer NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer: lenkje 1 tekst",
+          "label": "Footer link 1 label",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Footer: lenkje 1 URL",
+          "label": "Footer link 1 URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer: lenkje 2 tekst",
+          "label": "Footer link 2 label",
           "default": "LEXIN"
         },
         {
-          "label": "Footer: lenkje 2 URL",
+          "label": "Footer link 2 URL",
           "default": "https://lexin.oslomet.no/"
         },
         {
-          "label": "Footer: Personvernerklæring tekst",
+          "label": "Footer privacy statement label",
           "default": "Personvernerklæring"
         },
         {
-          "label": "Footer: Personvernerklæring URL",
+          "label": "Footer privacy statement URL",
           "default": "/nn/personvernerklaering"
         },
         {
-          "label": "Footer: Tilgjengeerklæring tekst",
+          "label": "Footer accessibility statement label",
           "default": "Tilgjengelegheitserklæring"
         },
         {
-          "label": "Footer: Tilgjengeerklæring URL",
+          "label": "Footer accessibility statement URL",
           "default": "/nn/tilgjengelighetserklaering"
         },
         {
-          "label": "Footer: Creative commons img alt tekst",
+          "label": "Footer creative commons img alt text",
           "default": "Creative Commons-lisens"
         },
         {
-          "label": "Footer: Creative commons tekst",
+          "label": "Footer creative commons text",
           "default": "Lisensiert under ein"
         },
         {
-          "label": "Footer: Creative commons link URL",
+          "label": "Footer creative commons link URL",
           "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.no"
         },
         {
-          "label": "Footer: Creative commons link tekst",
+          "label": "Footer creative commons link text",
           "default": "Creative Commons Navngivelse-IkkeKommersiell-DelPåSammeVilkår 4.0 Internasjonal lisens"
         },
         {
-          "label": "Brødsmulesti aria tekst",
+          "label": "Breadcrumbs aria label",
           "default": "Brødsmulesti"
         },
         {
-          "label": "Namn på første lenkje i brødsmulestien",
+          "label": "Breadcrumbs 'Topic' label",
           "default": "Vel eit tema"
         },
         {
-          "label": "Namn på heimsida i brødsmulestien",
+          "label": "Breadcrumbs 'Home' label",
           "default": "Heim"
         },
         {
-          "label": "Favorittspråk aria tekst",
+          "label": "Favorite languages aria label",
           "default": "Favorittspråk"
         },
         {
-          "label": "Vel favorittspråk aria tekst del 1",
+          "label": "Choose favorite language aria label part 1",
           "default": "Vel"
         },
         {
-          "label": "Vel favorittspråk aria tekst del 2",
+          "label": "Choose favorite language aria label part 2",
           "default": "som favorittspråk"
         },
         {
-          "label": "Vel språk aria tekst",
+          "label": "Choose language aria label",
           "default": "Vel språk"
         },
         {
-          "label": "Namn på språkveljar-knapp",
+          "label": "Language selection label",
           "default": "Språk"
         },
         {
@@ -153,43 +153,43 @@
           "default": "Kopibeskytta © {{year}} · Alle rettar · Nasjonalt senter for fleirkulturell opplæring (NAFO), OsloMet"
         },
         {
-          "label": "Header: Tittel",
+          "label": "Header title",
           "default": "Bildetema"
         },
         {
-          "label": "Header: Undertekst",
+          "label": "Header subtitle",
           "default": "Fleirspråkleg biletordbok"
         },
         {
-          "label": "Header: OsloMet logo aria tekst",
+          "label": "Header OsloMet logo aria label",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Temastorleik stor",
+          "label": "Topic size big",
           "default": "Temavisning i rutenett"
         },
         {
-          "label": "Temastorleik kompakt",
+          "label": "Topic size compact",
           "default": "Temavisning i liste"
         },
         {
-          "label": "Førre bilete",
+          "label": "Previous image label",
           "default": "Førre bilete"
         },
         {
-          "label": "Neste bilete",
+          "label": "Next image label",
           "default": "Neste bilete"
         },
         {
-          "label": "Ingen tema er valde",
+          "label": "No topic selected",
           "default": "Ingen tema er valde."
         },
         {
-          "label": "Temabilete tekst",
+          "label": "Topic image label",
           "default": "Oversiktsbilete"
         },
         {
-          "label": "Grid tekst",
+          "label": "Grid label",
           "default": "Enkeltbilete"
         },
         {
