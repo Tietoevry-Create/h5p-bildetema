@@ -190,7 +190,7 @@
         },
         {
           "label": "Grid label",
-          "default": "Reitir"
+          "default": "Stakar myndir"
         },
         {
           "label": "Search",
@@ -322,7 +322,7 @@
         },
         {
           "label": "More options aria label",
-          "default": "nokkrir kostir"
+          "default": "Fleiri möguleikar"
         },
         {
           "label": "Open menu to add word to collection aria label",
@@ -374,7 +374,7 @@
         },
         {
           "label": "View language label short",
-          "default": "Sýna áfram"
+          "default": "Sýna í"
         },
         {
           "label": "Search result label",
