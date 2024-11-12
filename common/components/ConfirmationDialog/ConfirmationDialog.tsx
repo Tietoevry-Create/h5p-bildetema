@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import React from "react";
 import { useL10ns } from "h5p-bildetema/src/hooks/useL10n";
-
 import { Button } from "common/components/Button";
 import Dialog from "common/components/Dialog/Dialog";
 import { useDialogContext } from "common/hooks/useDialogContext";
-
 import styles from "./ConfirmationDialog.module.scss";
 
 type ConfirmationDialogProps = {
