@@ -146,8 +146,9 @@ export const useCollectionDialog = () => {
       setShowCreateNewOption(false);
     } else {
       setSelectedOptions([]);
-      handleCloseDialog();
     }
+
+    handleCloseDialog();
   };
 
   const toggleOption = (id: string): void => {
