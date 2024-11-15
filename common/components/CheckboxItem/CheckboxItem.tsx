@@ -17,6 +17,7 @@ const CheckboxItem = ({ option, isSelected, onToggle }: CheckboxItemProps) => {
       role="button"
       tabIndex={0}
       onKeyDown={e => {
+        // Toggle checkbox if Enter or Space key
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onToggle(option.id);
