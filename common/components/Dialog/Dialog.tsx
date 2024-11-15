@@ -1,5 +1,10 @@
-import { Dialog as HeadlessDialog } from "@headlessui/react";
 import React from "react";
+import {
+  Dialog as HeadlessDialog,
+  DialogPanel,
+  DialogTitle,
+  Description,
+} from "@headlessui/react";
 import styles from "./Dialog.module.scss";
 
 type dialogProps = {
@@ -21,19 +26,15 @@ const Dialog = ({
     <HeadlessDialog open={open} onClose={onClose}>
       <div className={styles.backdrop} aria-hidden />
       <div className={styles.panelContainer}>
-        <HeadlessDialog.Panel className={styles.panel}>
-          {title && (
-            <HeadlessDialog.Title className={styles.title}>
-              {title}
-            </HeadlessDialog.Title>
-          )}
+        <DialogPanel className={styles.panel}>
+          {title && <DialogTitle className={styles.title}>{title}</DialogTitle>}
           {description && (
-            <HeadlessDialog.Description className={styles.description}>
+            <Description className={styles.description}>
               {description}
-            </HeadlessDialog.Description>
+            </Description>
           )}
           {children}
-        </HeadlessDialog.Panel>
+        </DialogPanel>
       </div>
     </HeadlessDialog>
   );

@@ -4,192 +4,192 @@
       "label": "Oversettelser",
       "fields": [
         {
-          "label": "Språkkode",
+          "label": "Language code",
           "description": "Språkkoden skal være skrevet med to tegn (engelsk: en, norsk bokmål: nb)",
           "default": "nb"
         },
         {
-          "label": "Siden laster",
+          "label": "Page is loading",
           "default": "Laster…"
         },
         {
-          "label": "Hopp til hovedinnhold",
+          "label": "Skip to main content label",
           "default": "Hopp til hovedinnhold"
         },
         {
-          "label": "Hovedinnhold aria tekst",
+          "label": "Main content aria label",
           "default": "Hovedinnhold"
         },
         {
-          "label": "Vis ord",
+          "label": "Show written words label",
           "default": "Vis ord"
         },
         {
-          "label": "Vis artikkel",
+          "label": "Show articles label",
           "default": "Vis artikkel"
         },
         {
-          "label": "Skriv ut",
+          "label": "Print label",
           "default": "Skriv ut"
         },
         {
-          "label": "Skriv ut bilde",
+          "label": "Print img label",
           "default": "bilder i bredden"
         },
         {
-          "label": "Spill lyd",
+          "label": "Play audio",
           "default": "Spill lyd"
         },
         {
-          "label": "Stopp lyd",
+          "label": "Stop audio",
           "default": "Stopp lyd"
         },
         {
-          "label": "Footer: Om Bildetema tekst",
+          "label": "Footer about label",
           "default": "Om Bildetema"
         },
         {
-          "label": "Footer: Om Bildetema URL",
+          "label": "Footer about URL",
           "default": "/om-bildetema"
         },
         {
-          "label": "Footer: Kontaktinfo-overskrift",
+          "label": "Footer contact info label",
           "default": "Kontakt oss"
         },
         {
-          "label": "Footer: Kontaktinfo-URL",
+          "label": "Footer contact info URL",
           "default": "mailto:bildetema@oslomet.no"
         },
         {
-          "label": "Footer: NAFO tekst",
+          "label": "Footer NAFO label",
           "default": "NAFO - Nasjonalt senter for flerkulturell opplæring"
         },
         {
-          "label": "Footer: NAFO URL",
+          "label": "Footer NAFO URL",
           "default": "https://nafo.oslomet.no/"
         },
         {
-          "label": "Footer: lenke 1 tekst",
+          "label": "Footer link 1 label",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Footer: lenke 1 URL",
+          "label": "Footer link 1 URL",
           "default": "https://oslomet.no/"
         },
         {
-          "label": "Footer: lenke 2 tekst",
+          "label": "Footer link 2 label",
           "default": "LEXIN"
         },
         {
-          "label": "Footer: lenke 2 URL",
+          "label": "Footer link 2 URL",
           "default": "https://lexin.oslomet.no/"
         },
         {
-          "label": "Footer: Personvernerklæring tekst",
+          "label": "Footer privacy statement label",
           "default": "Personvernerklæring"
         },
         {
-          "label": "Footer: Personvernerklæring URL",
+          "label": "Footer privacy statement URL",
           "default": "/personvernerklaering"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring tekst",
+          "label": "Footer accessibility statement label",
           "default": "Tilgjengelighetserklæring"
         },
         {
-          "label": "Footer: Tilgjengelighetserklæring URL",
+          "label": "Footer accessibility statement URL",
           "default": "/tilgjengelighetserklaering"
         },
         {
-          "label": "Footer: Creative commons img alt tekst",
+          "label": "Footer creative commons img alt text",
           "default": "Creative Commons-lisens"
         },
         {
-          "label": "Footer: Creative commons tekst",
+          "label": "Footer creative commons text",
           "default": "Lisensiert under en"
         },
         {
-          "label": "Footer: Creative commons link URL",
+          "label": "Footer creative commons link URL",
           "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.no"
         },
         {
-          "label": "Footer: Creative commons link tekst",
+          "label": "Footer creative commons link text",
           "default": "Creative Commons Navngivelse-IkkeKommersiell-DelPåSammeVilkår 4.0 Internasjonal lisens"
         },
         {
-          "label": "Brødsmulesti aria tekst",
+          "label": "Breadcrumbs aria label",
           "default": "Brødsmulesti"
         },
         {
-          "label": "Navn på første lenke i brødsmulestien",
+          "label": "Breadcrumbs 'Topic' label",
           "default": "Velg et tema"
         },
         {
-          "label": "Navn på hjemsiden i brødsmulestien",
+          "label": "Breadcrumbs 'Home' label",
           "default": "Hjem"
         },
         {
-          "label": "Favorittspråk aria tekst",
+          "label": "Favorite languages aria label",
           "default": "Favorittspråk"
         },
         {
-          "label": "Velg favorittspråk aria tekst del 1",
+          "label": "Choose favorite language aria label part 1",
           "default": "Velg"
         },
         {
-          "label": "Velg favorittspråk aria tekst del 2",
+          "label": "Choose favorite language aria label part 2",
           "default": "som favorittspråk"
         },
         {
-          "label": "Velg språk aria tekst",
+          "label": "Choose language aria label",
           "default": "Velg språk"
         },
         {
-          "label": "Navn på språkvelger-knapp",
+          "label": "Language selection label",
           "default": "Språk"
         },
         {
-          "label": "Kopibeskyttelse",
+          "label": "Copyright",
           "default": "Kopibeskyttet © {{year}} · Alle rettigheter · Nasjonalt senter for flerkulturell opplæring (NAFO), OsloMet"
         },
         {
-          "label": "Header: Tittel",
+          "label": "Header title",
           "default": "Bildetema"
         },
         {
-          "label": "Header: Undertekst",
+          "label": "Header subtitle",
           "default": "Flerspråklig bildeordbok"
         },
         {
-          "label": "Header: OsloMet logo aria tekst",
+          "label": "Header OsloMet logo aria label",
           "default": "OsloMet - storbyuniversitetet"
         },
         {
-          "label": "Temastørrelse stor",
+          "label": "Topic size big",
           "default": "Temavisning i rutenett"
         },
         {
-          "label": "Temastørrelse kompakt",
+          "label": "Topic size compact",
           "default": "Temavisning i liste"
         },
         {
-          "label": "Forrige bilde",
+          "label": "Previous image label",
           "default": "Forrige bilde"
         },
         {
-          "label": "Neste bilde",
+          "label": "Next image label",
           "default": "Neste bilde"
         },
         {
-          "label": "Ingen tema er valgt",
+          "label": "No topic selected",
           "default": "Ingen tema er valgt."
         },
         {
-          "label": "Temabilde tekst",
+          "label": "Topic image label",
           "default": "Oversiktsbilde"
         },
         {
-          "label": "Grid tekst",
+          "label": "Grid label",
           "default": "Enkeltbilder"
         },
         {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { useState } from "react";
+import React, { useState } from "react";
 import ConfirmationDialog from "common/components/ConfirmationDialog/ConfirmationDialog";
 import CheckboxItemList from "common/components/CheckboxItemList/CheckboxItemList";
 import NewOption from "common/components/NewOption/NewOption";
@@ -123,6 +123,11 @@ const ChooseCollectionsDialog = () => {
     return ariaDisabledChooseACollection;
   };
 
+  const cancel = () => {
+    handleCancel();
+    setTextInput("");
+  };
+
   const confirm = () => {
     if (getDisableConfirm()) {
       return;
@@ -147,7 +152,7 @@ const ChooseCollectionsDialog = () => {
   return (
     <ConfirmationDialog
       title={description}
-      onCancel={handleCancel}
+      onCancel={cancel}
       onConfirm={confirm}
       disableConfirm={getDisableConfirm()}
       disabledTooltip={getDisabledTooltip()}
