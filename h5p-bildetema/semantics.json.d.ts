@@ -673,6 +673,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Romani",
+				name: "lang_rom",
+				"default": "Romani",
+				type: "text"
+			},
+			{
 				label: "Russian",
 				name: "lang_rus",
 				"default": "Russian",
@@ -821,6 +827,10 @@ declare const $defaultExport: [
 				{
 					label: "Romanian",
 					value: "ron"
+				},
+				{
+					label: "Romani",
+					value: "rom"
 				},
 				{
 					label: "Russian",
