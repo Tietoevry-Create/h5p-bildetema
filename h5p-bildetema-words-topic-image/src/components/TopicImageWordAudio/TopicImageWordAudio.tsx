@@ -101,7 +101,11 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
         {word.audioFiles?.map(file => (
-          <source key={file.mimeType} src={file.url} type={file.mimeType} />
+          <source
+            key={file.mimeType}
+            src={`${file.url}?${new Date().getTime()}`} // Add timestamp to force reload
+            type={file.mimeType}
+          />
         ))}
       </audio>
       <button
