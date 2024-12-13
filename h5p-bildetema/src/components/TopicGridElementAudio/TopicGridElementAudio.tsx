@@ -67,10 +67,11 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
-        {audioFiles?.map(file => (
+        {audioFiles?.map((file, index) => (
           <source
-            key={file.mimeType}
-            src={`${file.url}?${new Date().getTime()}`} // Add timestamp to force reload
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${file.mimeType}-${index}`}
+            src={`${file.url}?v=1`} // Force reload
             type={file.mimeType}
           />
         ))}
