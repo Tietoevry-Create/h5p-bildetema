@@ -667,15 +667,15 @@
         "type": "text"
       },
       {
-        "label": "Romanian",
-        "name": "lang_ron",
-        "default": "Romanian",
+        "label": "Vlax Romani",
+        "name": "lang_rmy",
+        "default": "Vlax Romani",
         "type": "text"
       },
       {
-        "label": "Romani",
-        "name": "lang_rom",
-        "default": "Romani",
+        "label": "Romanian",
+        "name": "lang_ron",
+        "default": "Romanian",
         "type": "text"
       },
       {
@@ -825,12 +825,12 @@
           "value": "pus"
         },
         {
-          "label": "Romanian",
-          "value": "ron"
+          "label": "Vlax Romani",
+          "value": "rmy"
         },
         {
-          "label": "Romani",
-          "value": "rom"
+          "label": "Romanian",
+          "value": "ron"
         },
         {
           "label": "Russian",
