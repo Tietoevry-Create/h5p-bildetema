@@ -445,6 +445,10 @@
           "default": "Pashto"
         },
         {
+          "label": "Romanes",
+          "default": "Romanes"
+        },
+        {
           "label": "Rumensk",
           "default": "Rumensk"
         },

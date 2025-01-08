@@ -445,6 +445,10 @@
           "default": "Pashto"
         },
         {
+          "label": "Vlax Romani",
+          "default": "Vlax Romani"
+        },
+        {
           "label": "Rumänska",
           "default": "Rumänska"
         },
