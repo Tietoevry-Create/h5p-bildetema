@@ -445,8 +445,8 @@
           "default": "Pashto"
         },
         {
-          "label": "Romanes",
-          "default": "Romanes"
+          "label": "Vlax Romani",
+          "default": "Vlax Romani"
         },
         {
           "label": "Rumensk",
@@ -571,7 +571,7 @@
             "value": "pus"
           },
           {
-            "label": "Romanes",
+            "label": "Vlax Romani",
             "value": "rmy"
           },
           {
