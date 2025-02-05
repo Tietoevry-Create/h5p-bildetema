@@ -4,28 +4,28 @@ import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
-import { useSelectedWords } from "../../../hooks/useSelectedWords";
-import styles from "./CollectionPage.module.scss";
-import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
-import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
-import useCurrentCollection from "../../../hooks/useCurrentCollection";
-import { useL10ns } from "../../../hooks/useL10n";
 import {
   DndContext,
   closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
-  useSensors
+  useSensors,
 } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-} from '@dnd-kit/sortable';
-import { SortableMultiLanguageWord } from "../MultiLanguageWord/SortableMultiLanguageWord";
+} from "@dnd-kit/sortable";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { enqueueSnackbar } from "notistack";
+import { useSelectedWords } from "../../../hooks/useSelectedWords";
+import styles from "./CollectionPage.module.scss";
+import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
+import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+import useCurrentCollection from "../../../hooks/useCurrentCollection";
+import { useL10ns } from "../../../hooks/useL10n";
+import { SortableMultiLanguageWord } from "../MultiLanguageWord/SortableMultiLanguageWord";
 
 type MyCollection = {
   showArticles: boolean;
@@ -41,10 +41,18 @@ const CollectionPage = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
-  const { isCollectionOwner, collectionId, collectionWords } = useCurrentCollection();
+  const { isCollectionOwner, collectionId, collectionWords } =
+    useCurrentCollection();
   const { updateCollection } = useMyCollections();
-  const words = isCollectionOwner && collectionWords ? useSelectedWords().filter(word => collectionWords.includes(word.id))
-    .sort((a, b) => collectionWords.indexOf(a.id) - collectionWords.indexOf(b.id)) : useSelectedWords();
+  const words =
+    isCollectionOwner && collectionWords
+      ? useSelectedWords()
+          .filter(word => collectionWords.includes(word.id))
+          .sort(
+            (a, b) =>
+              collectionWords.indexOf(a.id) - collectionWords.indexOf(b.id),
+          )
+      : useSelectedWords();
 
   const {
     addWordsDescription,
@@ -110,14 +118,14 @@ const CollectionPage = ({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
     if (active.id !== over.id) {
-      setSortedWords((sortedWords) => {
+      setSortedWords(sortedWords => {
         const oldIndex = sortedWords.findIndex(word => word.id === active.id);
         const newIndex = sortedWords.findIndex(word => word.id === over.id);
 
@@ -149,7 +157,11 @@ const CollectionPage = ({
   if (editMode) {
     return (
       <div className={styles.wrapper}>
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
           <SortableContext items={sortedWords}>
             <ul role="list" className={styles.words}>
               {sortedWords.map(word => (

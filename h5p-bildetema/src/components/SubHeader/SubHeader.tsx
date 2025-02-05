@@ -121,8 +121,9 @@ export const SubHeader: FC<SubHeaderProps> = ({
 
   return (
     <div
-      className={`${isWordView ? styles.subHeaderWords : styles.subHeaderThemes
-        } ${rtl ? styles.rtl : ""}`}
+      className={`${
+        isWordView ? styles.subHeaderWords : styles.subHeaderThemes
+      } ${rtl ? styles.rtl : ""}`}
     >
       {hideBreadCrumbs ? (
         <h1 className={styles.currentPage}>

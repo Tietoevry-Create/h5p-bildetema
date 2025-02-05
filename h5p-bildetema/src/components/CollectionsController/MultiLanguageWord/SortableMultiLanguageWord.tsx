@@ -14,9 +14,15 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { DeleteIcon, EditIcon, MoreVertIcon } from "common/components/Icons/Icons";
+import {
+  DeleteIcon,
+  EditIcon,
+  MoreVertIcon,
+} from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
@@ -28,8 +34,6 @@ import {
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -83,13 +87,8 @@ export const SortableMultiLanguageWord = ({
     "wordRemovedFromCollection",
   );
 
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id: id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -239,8 +238,14 @@ export const SortableMultiLanguageWord = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`} ref={setNodeRef} style={style} {...attributes} {...listeners}>
+     
+    <li
+      className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`}
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
         {searchResult.translations.map((translation, index) => (

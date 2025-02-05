@@ -15,7 +15,15 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
     <Button
       variant="capsule"
       onClick={() => handleEditModeChange(!editMode)}
-      style={editMode ? { backgroundColor: "#007271", borderColor: "#007271", color: "#fff" } : {}}
+      style={
+        editMode
+          ? {
+              backgroundColor: "#007271",
+              borderColor: "#007271",
+              color: "#fff",
+            }
+          : {}
+      }
     >
       <EditIcon />
       <span>{editMode ? "Lagre" : "Rediger"}</span>
