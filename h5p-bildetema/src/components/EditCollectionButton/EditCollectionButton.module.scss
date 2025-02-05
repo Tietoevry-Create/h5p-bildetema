@@ -1,0 +1,17 @@
+@use "common/abstracts" as *;
+
+.active {
+  background-color: $dark-teal;
+  border-color: $dark-teal;
+  color: $white;
+
+  &:hover {
+    background-color: $darker-teal;
+    border-color: $darker-teal;
+    color: $white;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+}

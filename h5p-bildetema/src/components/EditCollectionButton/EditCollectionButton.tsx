@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Button } from "common/components/Button";
 import { EditIcon } from "common/components/Icons/Icons";
+import styles from "./EditCollectionButton.module.scss";
 
 type EditCollectionButtonProps = {
   editMode: boolean;
@@ -15,15 +16,7 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
     <Button
       variant="capsule"
       onClick={() => handleEditModeChange(!editMode)}
-      style={
-        editMode
-          ? {
-              backgroundColor: "#007271",
-              borderColor: "#007271",
-              color: "#fff",
-            }
-          : {}
-      }
+      className={editMode ? styles.active : ""}
     >
       <EditIcon />
       <span>{editMode ? "Lagre" : "Rediger"}</span>

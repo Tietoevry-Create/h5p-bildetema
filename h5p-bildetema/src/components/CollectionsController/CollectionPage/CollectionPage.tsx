@@ -11,6 +11,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -19,7 +20,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { enqueueSnackbar } from "notistack";
-import { useSelectedWords } from "../../../hooks/useSelectedWords";
+import { useCollectionWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
@@ -41,18 +42,16 @@ const CollectionPage = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
-  const { isCollectionOwner, collectionId, collectionWords } =
-    useCurrentCollection();
+  const { isCollectionOwner, collectionId } = useCurrentCollection();
   const { updateCollection } = useMyCollections();
-  const words =
-    isCollectionOwner && collectionWords
-      ? useSelectedWords()
-          .filter(word => collectionWords.includes(word.id))
-          .sort(
-            (a, b) =>
-              collectionWords.indexOf(a.id) - collectionWords.indexOf(b.id),
-          )
-      : useSelectedWords();
+  const words = useCollectionWords();
+  const [sortedWords, setSortedWords] = useState(words);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
   const {
     addWordsDescription,
@@ -88,6 +87,42 @@ const CollectionPage = ({
     replacements,
   );
 
+  const handleDragEnd = (event: DragEndEvent): void => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setSortedWords(prevSortedWords => {
+        const oldIndex = prevSortedWords.findIndex(
+          word => word.id === active.id,
+        );
+        const newIndex = prevSortedWords.findIndex(word => word.id === over.id);
+
+        return arrayMove(prevSortedWords, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const changeWordOrderInUrlParams = (newWordIds: string[]): void => {
+    searchParams.set("words", newWordIds.join(","));
+    setSearchParams(searchParams);
+  };
+
+  const saveChanges = (): void => {
+    const newWords = sortedWords.map(word => word.id);
+    updateCollection(collectionId, newWords);
+    changeWordOrderInUrlParams(newWords);
+    enqueueSnackbar("Endringer lagret", {
+      variant: "success",
+    });
+  };
+
+  useEffect(() => {
+    if (!editMode && words !== sortedWords) {
+      saveChanges();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editMode]);
+
   if (words.length === 0) {
     return (
       <div className={styles.container}>
@@ -112,47 +147,6 @@ const CollectionPage = ({
       </div>
     );
   }
-
-  const [sortedWords, setSortedWords] = useState(words);
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
-
-  const handleDragEnd = (event: any) => {
-    const { active, over } = event;
-
-    if (active.id !== over.id) {
-      setSortedWords(sortedWords => {
-        const oldIndex = sortedWords.findIndex(word => word.id === active.id);
-        const newIndex = sortedWords.findIndex(word => word.id === over.id);
-
-        return arrayMove(sortedWords, oldIndex, newIndex);
-      });
-    }
-  };
-
-  const changeWordOrderInUrlParams = (newWordIds: string[]): void => {
-    searchParams.set("words", newWordIds.join(","));
-    setSearchParams(searchParams);
-  };
-
-  const saveChanges = () => {
-    const newWords = sortedWords.map(word => word.id);
-    updateCollection(collectionId, newWords);
-    changeWordOrderInUrlParams(newWords);
-    enqueueSnackbar("Endringer lagret", {
-      variant: "success",
-    });
-  };
-
-  useEffect(() => {
-    if (!editMode && words !== sortedWords) {
-      saveChanges();
-    }
-  }, [editMode]);
 
   if (editMode) {
     return (

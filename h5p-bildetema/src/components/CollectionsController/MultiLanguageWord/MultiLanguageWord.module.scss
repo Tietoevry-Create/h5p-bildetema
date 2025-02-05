@@ -50,8 +50,12 @@
 
 .editMode {
   &.searchResultCard {
-    border: 1.5px solid $darker-beige;
+    border: 1.5px solid $dark-teal;
     cursor: grab;
+
+    &:hover {
+      border-color: $darker-teal;
+    }
   }
 
   .swiper,

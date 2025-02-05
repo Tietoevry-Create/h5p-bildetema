@@ -27,6 +27,8 @@ export type SubHeaderProps = {
   includeShareButton?: boolean;
   includeSaveButton?: boolean;
   allowEdit?: boolean;
+  editMode?: boolean;
+  setEditMode?: (editMode: boolean) => void;
   rtl: boolean;
   isWordView: boolean;
   showArticlesToggle: boolean;
@@ -41,6 +43,8 @@ export const SubHeader: FC<SubHeaderProps> = ({
   includeShareButton = false,
   includeSaveButton = false,
   allowEdit = false,
+  editMode,
+  setEditMode,
   rtl,
   showArticlesToggle,
   breadCrumbs,
@@ -52,10 +56,8 @@ export const SubHeader: FC<SubHeaderProps> = ({
   const {
     showArticles,
     showWrittenWords,
-    editMode,
     handleShowArticlesChange,
     handleShowWrittenWordsChange,
-    handleEditModeChange,
     syncStateWithParams,
   } = useSearchParamContext();
 
@@ -78,10 +80,10 @@ export const SubHeader: FC<SubHeaderProps> = ({
       <div className={styles.tools}>
         {isWordView ? (
           <>
-            {allowEdit && (
+            {allowEdit && editMode !== undefined && setEditMode && (
               <EditCollectionButton
                 editMode={editMode}
-                handleEditModeChange={handleEditModeChange}
+                handleEditModeChange={setEditMode}
               />
             )}
             {includeSaveButton && <SaveSharedCollectionButton />}

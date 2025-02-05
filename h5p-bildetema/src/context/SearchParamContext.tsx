@@ -6,10 +6,8 @@ import { SearchParameters } from "../enums/SearchParameters";
 export type SearchParamContextType = {
   showArticles: boolean;
   showWrittenWords: boolean;
-  editMode: boolean;
   handleShowArticlesChange: (value: boolean) => void;
   handleShowWrittenWordsChange: (value: boolean) => void;
-  handleEditModeChange: (value: boolean) => void;
   syncStateWithParams: () => void;
 };
 
@@ -19,7 +17,6 @@ export const SearchParamContext = createContext<
 
 const defaultShowWrittenWords = true;
 const defaultShowArticles = false;
-const defaultEditMode = false;
 
 type SearchParamProviderType = {
   children: React.ReactNode;
@@ -42,12 +39,6 @@ export const SearchParamProvider = ({
       : defaultShowArticles,
   );
 
-  const [editMode, setEditMode] = useState(
-    searchParams.get(SearchParameters.editMode) !== null
-      ? searchParams.get(SearchParameters.editMode) === "true"
-      : defaultEditMode,
-  );
-
   const handleShowArticlesChange = useToggleSearchParam(
     SearchParameters.articlesVisible,
     defaultShowArticles,
@@ -58,12 +49,6 @@ export const SearchParamProvider = ({
     SearchParameters.wordsVisible,
     defaultShowWrittenWords,
     setShowWrittenWords,
-  );
-
-  const handleEditModeChange = useToggleSearchParam(
-    SearchParameters.editMode,
-    defaultEditMode,
-    setEditMode,
   );
 
   const syncStateWithParams = useCallback(() => {
@@ -82,19 +67,15 @@ export const SearchParamProvider = ({
     () => ({
       showArticles,
       showWrittenWords,
-      editMode,
       handleShowArticlesChange,
       handleShowWrittenWordsChange,
-      handleEditModeChange,
       syncStateWithParams,
     }),
     [
       handleShowArticlesChange,
       handleShowWrittenWordsChange,
-      handleEditModeChange,
       showArticles,
       showWrittenWords,
-      editMode,
       syncStateWithParams,
     ],
   );

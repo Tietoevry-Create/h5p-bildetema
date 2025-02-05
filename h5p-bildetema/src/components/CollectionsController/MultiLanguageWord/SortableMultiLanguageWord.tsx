@@ -14,11 +14,7 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import {
-  DeleteIcon,
-  EditIcon,
-  MoreVertIcon,
-} from "common/components/Icons/Icons";
+import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useSortable } from "@dnd-kit/sortable";
@@ -33,7 +29,6 @@ import {
 } from "../../../hooks/useCurrentLanguage";
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
-
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -149,11 +144,6 @@ export const SortableMultiLanguageWord = ({
                 icon={<DeleteIcon />}
                 onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
               />
-              <MenuItem
-                label="Endre plassering"
-                icon={<EditIcon />}
-                onClick={() => console.log("Endre plassering")}
-              />
             </MenuItems>
           </Menu>
         ) : (
@@ -238,12 +228,13 @@ export const SortableMultiLanguageWord = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-     
     <li
       className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`}
       ref={setNodeRef}
       style={style}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...attributes}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...listeners}
     >
       <div className={styles.image_container}>{renderImages()}</div>
