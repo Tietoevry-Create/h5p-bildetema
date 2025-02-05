@@ -51,6 +51,25 @@ export const useMyCollections = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /*
+   * Updates the collection with the given id with the new words.
+    * @param id - The id of the collection to update.
+    * @param newWords - The new words to update the collection with.
+  */
+  const updateCollection = (id: string | undefined, newWords: string[]): void => {
+    if (!id) return;
+
+    setMyCollections(prev => {
+      const updatedCollections = prev.map(collection => {
+        if (collection.id === id) {
+          return { ...collection, wordsIds: newWords };
+        }
+        return collection;
+      });
+      return updatedCollections;
+    });
+  };
+
   const updateSortOrder = (sortOrder: string[]): void => {
     const sortOrderMap = new Map();
 
@@ -194,6 +213,7 @@ export const useMyCollections = () => {
   return {
     myCollections,
     wordIdsInCollections,
+    updateCollection,
     deleteCollection,
     deleteWordFromCollection,
     addCollection,

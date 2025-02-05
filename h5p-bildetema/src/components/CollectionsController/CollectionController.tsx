@@ -19,7 +19,7 @@ const CollectionController = (): JSX.Element => {
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
   const { collection } = useParams<{ collection: string }>();
-  const { showArticles, showWrittenWords } = useSearchParamContext();
+  const { showArticles, showWrittenWords, editMode } = useSearchParamContext();
   const { isCollectionOwner } = useCurrentCollection();
   const { breadcrumbsHome, myCollections } = useL10ns(
     "breadcrumbsHome",
@@ -60,6 +60,7 @@ const CollectionController = (): JSX.Element => {
       <CollectionPage
         showWrittenWords={showWrittenWords}
         showArticles={showArticles}
+        editMode={editMode}
       />
     );
   };
@@ -83,6 +84,7 @@ const CollectionController = (): JSX.Element => {
           showArticlesToggle={showArticlesToggle}
           includeShareButton
           includeSaveButton={!isCollectionOwner}
+          allowEdit={isCollectionOwner}
         />
       </div>
       {currentPage()}

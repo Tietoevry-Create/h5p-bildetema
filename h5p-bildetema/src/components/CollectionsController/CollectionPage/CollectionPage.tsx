@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { Button } from "common/components/Button";
 import { STATIC_PATH } from "common/constants/paths";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
@@ -9,20 +10,41 @@ import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { useL10ns } from "../../../hooks/useL10n";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+} from '@dnd-kit/sortable';
+import { SortableMultiLanguageWord } from "../MultiLanguageWord/SortableMultiLanguageWord";
+import { useMyCollections } from "common/hooks/useMyCollections";
+import { enqueueSnackbar } from "notistack";
 
 type MyCollection = {
   showArticles: boolean;
   showWrittenWords: boolean;
+  editMode: boolean;
 };
 
 const CollectionPage = ({
   showWrittenWords,
   showArticles,
+  editMode,
 }: MyCollection): JSX.Element => {
-  const words = useSelectedWords();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
-  const { isCollectionOwner } = useCurrentCollection();
+  const { isCollectionOwner, collectionId, collectionWords } = useCurrentCollection();
+  const { updateCollection } = useMyCollections();
+  const words = isCollectionOwner && collectionWords ? useSelectedWords().filter(word => collectionWords.includes(word.id))
+    .sort((a, b) => collectionWords.indexOf(a.id) - collectionWords.indexOf(b.id)) : useSelectedWords();
 
   const {
     addWordsDescription,
@@ -79,6 +101,70 @@ const CollectionPage = ({
             {goToTopic}
           </Button>
         </div>
+      </div>
+    );
+  }
+
+  const [sortedWords, setSortedWords] = useState(words);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      setSortedWords((sortedWords) => {
+        const oldIndex = sortedWords.findIndex(word => word.id === active.id);
+        const newIndex = sortedWords.findIndex(word => word.id === over.id);
+
+        return arrayMove(sortedWords, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const changeWordOrderInUrlParams = (newWordIds: string[]): void => {
+    searchParams.set("words", newWordIds.join(","));
+    setSearchParams(searchParams);
+  };
+
+  const saveChanges = () => {
+    const newWords = sortedWords.map(word => word.id);
+    updateCollection(collectionId, newWords);
+    changeWordOrderInUrlParams(newWords);
+    enqueueSnackbar("Endringer lagret", {
+      variant: "success",
+    });
+  };
+
+  useEffect(() => {
+    if (!editMode && words !== sortedWords) {
+      saveChanges();
+    }
+  }, [editMode]);
+
+  if (editMode) {
+    return (
+      <div className={styles.wrapper}>
+        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+          <SortableContext items={sortedWords}>
+            <ul role="list" className={styles.words}>
+              {sortedWords.map(word => (
+                <SortableMultiLanguageWord
+                  key={word.id}
+                  id={word.id}
+                  searchResult={word}
+                  showWrittenWords={showWrittenWords}
+                  showArticles={showArticles}
+                  editMode={editMode}
+                />
+              ))}
+            </ul>
+          </SortableContext>
+        </DndContext>
       </div>
     );
   }

@@ -48,6 +48,26 @@
   top: 0.5rem;
 }
 
+.editMode {
+  &.searchResultCard {
+    border: 1.5px solid $darker-beige;
+    cursor: grab;
+  }
+
+  .swiper,
+  .image_container,
+  .translations {
+    pointer-events: none;
+    touch-action: none;
+  }
+
+  .menuButton,
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
 .visuallyHidden {
   @include visually-hidden;
 }
