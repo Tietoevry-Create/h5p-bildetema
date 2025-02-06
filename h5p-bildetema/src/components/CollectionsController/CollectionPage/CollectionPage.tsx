@@ -43,7 +43,7 @@ const CollectionPage = ({
   const navigate = useNavigate();
   const lang = useCurrentLanguage();
   const { isCollectionOwner, collectionId } = useCurrentCollection();
-  const { updateCollection } = useMyCollections();
+  const { updateCollectionWordIds } = useMyCollections();
   const words = useCollectionWords();
   const [sortedWords, setSortedWords] = useState(words);
   const sensors = useSensors(
@@ -108,8 +108,9 @@ const CollectionPage = ({
   };
 
   const saveChanges = (): void => {
+    if (!collectionId) return;
     const newWords = sortedWords.map(word => word.id);
-    updateCollection(collectionId, newWords);
+    updateCollectionWordIds(newWords, collectionId);
     changeWordOrderInUrlParams(newWords);
     enqueueSnackbar("Endringer lagret", {
       variant: "success",
