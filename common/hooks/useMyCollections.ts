@@ -51,11 +51,6 @@ export const useMyCollections = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /*
-   * Updates the collection with the given id with the new words.
-   * @param id - The id of the collection to update.
-   * @param newWords - The new words to update the collection with.
-   */
   const updateCollection = (
     id: string | undefined,
     newWords: string[],
