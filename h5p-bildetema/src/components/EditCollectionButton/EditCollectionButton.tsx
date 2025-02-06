@@ -4,18 +4,18 @@ import { EditIcon } from "common/components/Icons/Icons";
 import styles from "./EditCollectionButton.module.scss";
 
 type EditCollectionButtonProps = {
-  editMode: boolean;
-  handleEditModeChange: (editMode: boolean) => void;
+  editMode: boolean | undefined;
+  setEditMode: (editMode: boolean) => void;
 };
 
 export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
   editMode,
-  handleEditModeChange,
+  setEditMode,
 }) => {
   return (
     <Button
       variant="capsule"
-      onClick={() => handleEditModeChange(!editMode)}
+      onClick={() => setEditMode(!editMode)}
       className={editMode ? styles.active : ""}
     >
       <EditIcon />

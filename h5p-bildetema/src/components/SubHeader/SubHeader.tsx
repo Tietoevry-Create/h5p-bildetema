@@ -26,7 +26,7 @@ export type SubHeaderProps = {
   showTopicImageView?: boolean;
   includeShareButton?: boolean;
   includeSaveButton?: boolean;
-  allowEdit?: boolean;
+  includeEditButton?: boolean;
   editMode?: boolean;
   setEditMode?: (editMode: boolean) => void;
   rtl: boolean;
@@ -42,8 +42,8 @@ export const SubHeader: FC<SubHeaderProps> = ({
   showTopicImageView = false,
   includeShareButton = false,
   includeSaveButton = false,
-  allowEdit = false,
-  editMode,
+  includeEditButton = false,
+  editMode = false,
   setEditMode,
   rtl,
   showArticlesToggle,
@@ -80,12 +80,12 @@ export const SubHeader: FC<SubHeaderProps> = ({
       <div className={styles.tools}>
         {isWordView ? (
           <>
-            {allowEdit && editMode !== undefined && setEditMode && (
+            {includeEditButton && !!setEditMode ? (
               <EditCollectionButton
                 editMode={editMode}
-                handleEditModeChange={setEditMode}
+                setEditMode={setEditMode}
               />
-            )}
+            ) : null}
             {includeSaveButton && <SaveSharedCollectionButton />}
             {includeShareButton && <ShareButton />}
             <PrintButton

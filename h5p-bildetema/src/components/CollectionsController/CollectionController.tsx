@@ -96,7 +96,7 @@ const CollectionController = (): JSX.Element => {
           showArticlesToggle={showArticlesToggle}
           includeShareButton
           includeSaveButton={!isCollectionOwner}
-          allowEdit={isCollectionOwner && words.length > 0}
+          includeEditButton={isCollectionOwner && words.length > 0}
           editMode={editMode}
           setEditMode={handleSetEditMode}
         />
