@@ -158,17 +158,22 @@ export const useMyCollections = () => {
     });
   };
 
-  const updateCollectionWordIds = (
-    wordIds: string[],
-    id: string,
-  ): void => {
+  const updateCollectionWordIds = (newWordsIds: string[], id: string): void => {
     setMyCollections(prev => {
-      prev.forEach(collection => {
+      if (prev.length === 0) return prev;
+      const updatedCollection = prev.map(collection => {
         if (collection.id === id) {
-          collection.wordsIds = wordIds;
+          // Assign each property a value to avoid type errors
+          return {
+            id: collection.id,
+            title: collection.title,
+            wordsIds: newWordsIds,
+            sortingNumber: collection.sortingNumber,
+          };
         }
+        return collection;
       });
-      return [...prev];
+      return updatedCollection;
     });
   };
 
