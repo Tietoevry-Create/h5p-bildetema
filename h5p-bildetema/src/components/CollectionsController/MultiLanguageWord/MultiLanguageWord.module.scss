@@ -70,6 +70,13 @@
   .swiper-button-prev {
     display: none;
   }
+
+  .deleteButton {
+    z-index: $fav-language-selector-z-index;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
 }
 
 .visuallyHidden {

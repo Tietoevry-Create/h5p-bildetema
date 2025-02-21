@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { MouseEvent, useMemo, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,7 +14,7 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
+import { DeleteIcon } from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useSortable } from "@dnd-kit/sortable";
@@ -117,6 +117,11 @@ export const SortableMultiLanguageWord = ({
     return <span>{message}</span>;
   };
 
+  const handleOnDelete = (event: MouseEvent): void => {
+    event.preventDefault();
+    setOpenDialog(OpenDialog.DELETE_DIALOG);
+  };
+
   const handleDeleteWord = (): void => {
     deleteWordFromCollection(collectionId ?? "", searchResult.id);
     removeWordFromUrlParams(searchResult.id);
@@ -131,32 +136,6 @@ export const SortableMultiLanguageWord = ({
 
     return (
       <div>
-        {isCollectionOwner ? (
-          <Menu>
-            <MenuButton className={styles.menuButton}>
-              <Button variant="circle" aria-label={moreOptionsAriaLabel}>
-                <MoreVertIcon />
-              </Button>
-            </MenuButton>
-            <MenuItems anchor="bottom end">
-              <MenuItem
-                label={l10nDelete}
-                icon={<DeleteIcon />}
-                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-              />
-            </MenuItems>
-          </Menu>
-        ) : (
-          ""
-        )}
-        <DeleteDialog
-          open={openDialog === OpenDialog.DELETE_DIALOG}
-          title={deleteWord}
-          description={deleteWordConfirmation}
-          itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
-          onClose={() => setOpenDialog(OpenDialog.NONE)}
-          onDelete={handleDeleteWord}
-        />
         <Swiper
           pagination={{
             dynamicBullets: multipleImages && !editMode,
@@ -237,6 +216,28 @@ export const SortableMultiLanguageWord = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...listeners}
     >
+      {isCollectionOwner ? (
+        <>
+          <Button
+            variant="circle"
+            className={styles.deleteButton}
+            aria-label={deleteWord}
+            onClick={(event) => handleOnDelete(event)}
+          >
+            <DeleteIcon />
+          </Button>
+          <DeleteDialog
+            open={openDialog === OpenDialog.DELETE_DIALOG}
+            title={deleteWord}
+            description={deleteWordConfirmation}
+            itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
+            onClose={() => setOpenDialog(OpenDialog.NONE)}
+            onDelete={handleDeleteWord}
+          />
+        </>
+      ) : (
+        ""
+      )}
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
         {searchResult.translations.map((translation, index) => (

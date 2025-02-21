@@ -11,21 +11,17 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
-import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import {
   getLanguageAttribute,
   useCurrentLanguageCode,
 } from "../../../hooks/useCurrentLanguage";
-import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 
 const OpenDialog = {
@@ -117,32 +113,6 @@ export const MultiLanguageWord = ({
 
     return (
       <div>
-        {isCollectionOwner ? (
-          <Menu>
-            <MenuButton className={styles.menuButton}>
-              <Button variant="circle" aria-label={moreOptionsAriaLabel}>
-                <MoreVertIcon />
-              </Button>
-            </MenuButton>
-            <MenuItems anchor="bottom end">
-              <MenuItem
-                label={l10nDelete}
-                icon={<DeleteIcon />}
-                onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-              />
-            </MenuItems>
-          </Menu>
-        ) : (
-          ""
-        )}
-        <DeleteDialog
-          open={openDialog === OpenDialog.DELETE_DIALOG}
-          title={deleteWord}
-          description={deleteWordConfirmation}
-          itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
-          onClose={() => setOpenDialog(OpenDialog.NONE)}
-          onDelete={handleDeleteWord}
-        />
         <Swiper
           pagination={{
             dynamicBullets: multipleImages,
