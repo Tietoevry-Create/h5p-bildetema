@@ -48,6 +48,42 @@
   top: 0.5rem;
 }
 
+.editMode {
+  &.searchResultCard {
+    border: 1.5px solid $dark-teal;
+    cursor: grab;
+
+    &:hover {
+      border-color: $darker-teal;
+    }
+  }
+
+  // Placeholder styling
+  &.dragging {
+    background-color: $beige;
+    border-color: $darker-beige;
+    border-style: dashed;
+
+    > * {
+      opacity: 0;
+    }
+  }
+
+  .swiper,
+  .image_container,
+  .translations {
+    pointer-events: none;
+    touch-action: none;
+  }
+
+  .deleteButton {
+    z-index: $fav-language-selector-z-index;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}
+
 .visuallyHidden {
   @include visually-hidden;
 }

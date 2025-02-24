@@ -4,6 +4,7 @@ import { NewWord, SearchResult } from "common/types/types";
 import { newWordsToSearchResult } from "common/utils/data.utils";
 import { useLocation } from "react-router-dom";
 import { useCurrentLanguage } from "./useCurrentLanguage";
+import useCurrentCollection from "./useCurrentCollection";
 
 export const useSelectedWords = (): SearchResult[] => {
   const { idToWords } = useNewDBContext();
@@ -12,6 +13,32 @@ export const useSelectedWords = (): SearchResult[] => {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const words = params.get("words")?.split(",");
+
+  if (words?.length && words.length > 0) {
+    const newWords = words
+      .map(wordId => {
+        const newWord = idToWords.get(wordId);
+        return newWord;
+      })
+      .filter(el => el !== undefined);
+
+    // newWords as NewWord[] should not be necessary, because we filter out all undefined elements
+    // but we get some build errors if we do not do this...
+    return newWordsToSearchResult(newWords as NewWord[], [lang], backedUrl);
+  }
+  return [];
+};
+
+export const useCollectionWords = (): SearchResult[] => {
+  const { idToWords } = useNewDBContext();
+  const backedUrl = useBackendUrlContext();
+  const lang = useCurrentLanguage();
+  const { isCollectionOwner, collectionWords } = useCurrentCollection();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const selectedWords = params.get("words")?.split(",");
+
+  const words = isCollectionOwner ? collectionWords : selectedWords;
 
   if (words?.length && words.length > 0) {
     const newWords = words

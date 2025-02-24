@@ -158,6 +158,25 @@ export const useMyCollections = () => {
     });
   };
 
+  const updateCollectionWordIds = (newWordsIds: string[], id: string): void => {
+    setMyCollections(prev => {
+      if (prev.length === 0) return prev;
+      const updatedCollection = prev.map(collection => {
+        if (collection.id === id) {
+          // Assign each property a value to avoid type errors
+          return {
+            id: collection.id,
+            title: collection.title,
+            wordsIds: newWordsIds,
+            sortingNumber: collection.sortingNumber,
+          };
+        }
+        return collection;
+      });
+      return updatedCollection;
+    });
+  };
+
   const removeItemFromCollection = ({
     id: collectionId,
     wordId,
@@ -198,6 +217,7 @@ export const useMyCollections = () => {
     deleteWordFromCollection,
     addCollection,
     updateCollectionsWithWord,
+    updateCollectionWordIds,
     addItemToCollection,
     removeItemFromCollection,
     changeCollectionTitle,
