@@ -52,6 +52,7 @@
   &.searchResultCard {
     border: 1.5px solid $dark-teal;
     cursor: grab;
+    touch-action: none;
 
     &:hover {
       border-color: $darker-teal;
@@ -62,7 +63,6 @@
   .image_container,
   .translations {
     pointer-events: none;
-    touch-action: none;
   }
 
   .menuButton,
