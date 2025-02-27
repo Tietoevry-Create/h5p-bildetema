@@ -52,5 +52,5 @@
     "h5p-editor-bildetema-words-topic-image",
     "internal-utilities/*"
   ],
-  "packageManager": "npm@7.0.0"
+  "packageManager": "npm@10.9.0"
 }
