@@ -1,35 +1,19 @@
-import { useMemo, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSearchParams } from "react-router-dom";
 import { gridImageSizes } from "common/utils/image/image.utils";
 import { Image } from "common/components/Image/Image";
-import { useMyCollections } from "common/hooks/useMyCollections";
 import { SearchResult } from "common/types/types";
 import { Audio } from "common/components/Audio/Audio";
 import { toSingleLabel } from "common/utils/word.utils";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { enqueueSnackbar } from "notistack";
-import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
-import {
-  getLanguageAttribute,
-  useCurrentLanguageCode,
-} from "../../../hooks/useCurrentLanguage";
-import useCurrentCollection from "../../../hooks/useCurrentCollection";
-
-const OpenDialog = {
-  DELETE_DIALOG: "DELETE_DIALOG",
-  NONE: "NONE",
-} as const;
-
-type OpenDialog = (typeof OpenDialog)[keyof typeof OpenDialog];
+import { getLanguageAttribute } from "../../../hooks/useCurrentLanguage";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;
@@ -43,69 +27,11 @@ export const MultiLanguageWord = ({
   showWrittenWords,
 }: SearchResultCardProps): JSX.Element => {
   const { images } = searchResult;
-  const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
-  const { isCollectionOwner, collectionId, collectionName } =
-    useCurrentCollection();
-  const { deleteWordFromCollection } = useMyCollections();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const langCode = useCurrentLanguageCode();
-  const searchResultTranslation = useMemo(
-    () => searchResult.translations.find(x => x.lang.code === langCode),
-    [langCode, searchResult.translations],
-  );
 
-  const {
-    prevImageLabel,
-    nextImageLabel,
-    delete: l10nDelete,
-    deleteWord,
-    deleteWordConfirmation,
-    moreOptionsAriaLabel,
-    wordRemovedFromCollection,
-  } = useL10ns(
+  const { prevImageLabel, nextImageLabel } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
-    "delete",
-    "deleteWord",
-    "deleteWordConfirmation",
-    "moreOptionsAriaLabel",
-    "wordRemovedFromCollection",
   );
-
-  const removeWordFromUrlParams = (wordId: string): void => {
-    const param = "words";
-    const words = searchParams.get(param)?.split(",") ?? [];
-    const filteredWords = words.filter(word => word !== wordId);
-
-    if (filteredWords.length === 0) {
-      searchParams.delete(param);
-    } else {
-      searchParams.set(param, filteredWords.join(","));
-    }
-
-    setSearchParams(searchParams);
-  };
-
-  const getMessage = (): React.ReactNode => {
-    const replacements = {
-      collection: <b key={1}>{collectionName}</b>,
-    };
-
-    const message = replacePlaceholders(
-      wordRemovedFromCollection,
-      replacements,
-    );
-
-    return <span>{message}</span>;
-  };
-
-  const handleDeleteWord = (): void => {
-    deleteWordFromCollection(collectionId ?? "", searchResult.id);
-    removeWordFromUrlParams(searchResult.id);
-    enqueueSnackbar(getMessage(), {
-      variant: "success",
-    });
-  };
 
   const renderImages = (): JSX.Element => {
     const numberOfImages = images?.length ?? 0;

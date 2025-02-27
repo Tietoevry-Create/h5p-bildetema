@@ -27,7 +27,6 @@ import {
   getLanguageAttribute,
   useCurrentLanguageCode,
 } from "../../../hooks/useCurrentLanguage";
-import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 
 const OpenDialog = {
@@ -67,18 +66,14 @@ export const SortableMultiLanguageWord = ({
   const {
     prevImageLabel,
     nextImageLabel,
-    delete: l10nDelete,
     deleteWord,
     deleteWordConfirmation,
-    moreOptionsAriaLabel,
     wordRemovedFromCollection,
   } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
-    "delete",
     "deleteWord",
     "deleteWordConfirmation",
-    "moreOptionsAriaLabel",
     "wordRemovedFromCollection",
   );
 
@@ -222,7 +217,7 @@ export const SortableMultiLanguageWord = ({
             variant="circle"
             className={styles.deleteButton}
             aria-label={deleteWord}
-            onClick={(event) => handleOnDelete(event)}
+            onClick={event => handleOnDelete(event)}
           >
             <DeleteIcon />
           </Button>
