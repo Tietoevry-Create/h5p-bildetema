@@ -225,7 +225,7 @@ declare const $defaultExport: [
 			{
 				label: "Copyright",
 				name: "footerCopyright",
-				"default": "Copyright © 2023 · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
+				"default": "Copyright © {{year}} · All Rights Reserved · National Centre of Multicultural Education (NAFO), OsloMet",
 				type: "text"
 			},
 			{
@@ -285,7 +285,7 @@ declare const $defaultExport: [
 			{
 				label: "Grid label",
 				name: "viewGrid",
-				"default": "Single photos",
+				"default": "Single images",
 				type: "text"
 			},
 			{
@@ -309,7 +309,7 @@ declare const $defaultExport: [
 			{
 				label: "Change name",
 				name: "changeName",
-				"default": "Change name",
+				"default": "Edit name",
 				type: "text"
 			},
 			{
@@ -321,7 +321,7 @@ declare const $defaultExport: [
 			{
 				label: "Name of the collection",
 				name: "nameOfTheCollection",
-				"default": "Name of the collection",
+				"default": "Name of collection",
 				type: "text"
 			},
 			{
@@ -345,13 +345,13 @@ declare const $defaultExport: [
 			{
 				label: "Aria text for disabled button in choose a collection dialog with preselected collections",
 				name: "ariaDisabledChooseACollectionPreselected",
-				"default": "The word is already added to the selected collections",
+				"default": "The word has already been added to the selected collections",
 				type: "text"
 			},
 			{
 				label: "Aria text for disabled button in create a collection dialog",
 				name: "ariaDisabledCreateACollection",
-				"default": "Write a name for the collection",
+				"default": "Name your collection",
 				type: "text"
 			},
 			{
@@ -375,7 +375,7 @@ declare const $defaultExport: [
 			{
 				label: "Description text for adding a word to a collection",
 				name: "addWordsDescription",
-				"default": "Add words via {{search}} or {{topicView}}. Click on the bookmark on the images.",
+				"default": "Add words via {{search}} or {{topicView}}. Click the bookmark on the images.",
 				type: "text"
 			},
 			{
@@ -519,7 +519,7 @@ declare const $defaultExport: [
 			{
 				label: "Search input label",
 				name: "searchInputLabel",
-				"default": "Search in Bildetema",
+				"default": "Search Bildetema",
 				type: "text"
 			},
 			{
@@ -531,7 +531,7 @@ declare const $defaultExport: [
 			{
 				label: "Search label",
 				name: "searchLabel",
-				"default": "Search on",
+				"default": "Search in",
 				type: "text"
 			},
 			{
@@ -561,7 +561,7 @@ declare const $defaultExport: [
 			{
 				label: "View language label short",
 				name: "viewLanguageLabelShort",
-				"default": "Show on",
+				"default": "Show in",
 				type: "text"
 			},
 			{
@@ -639,13 +639,13 @@ declare const $defaultExport: [
 			{
 				label: "Norwegian (nynorsk)",
 				name: "lang_nno",
-				"default": "Norwegian (nynorsk)",
+				"default": "Norwegian (Nynorsk)",
 				type: "text"
 			},
 			{
 				label: "Norwegian (bokmål)",
 				name: "lang_nob",
-				"default": "Norwegian (bokmål)",
+				"default": "Norwegian (Bokmål)",
 				type: "text"
 			},
 			{
@@ -664,6 +664,12 @@ declare const $defaultExport: [
 				label: "Pashto",
 				name: "lang_pus",
 				"default": "Pashto",
+				type: "text"
+			},
+			{
+				label: "Vlax Romani",
+				name: "lang_rmy",
+				"default": "Vlax Romani",
 				type: "text"
 			},
 			{
@@ -817,6 +823,10 @@ declare const $defaultExport: [
 				{
 					label: "Pashto",
 					value: "pus"
+				},
+				{
+					label: "Vlax Romani",
+					value: "rmy"
 				},
 				{
 					label: "Romanian",

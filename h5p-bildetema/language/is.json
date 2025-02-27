@@ -4,7 +4,7 @@
       "label": "Þýðingar",
       "fields": [
         {
-          "label": "Tungumálakóði",
+          "label": "Language code",
           "description": "Tveggja stafa tungumálakóði, notaður til að setja tungumál í kóða (enska: en, íslenska: is)",
           "default": "is"
         },
@@ -145,12 +145,12 @@
           "default": "Veljið tungumál"
         },
         {
-          "label": "Tungumálavali texti",
+          "label": "Language selection label",
           "default": "Tungumál"
         },
         {
           "label": "Copyright",
-          "default": "Höfundaréttur © 2023· Allur réttur áskilinn· National Centre of Multicultural Education (NAFO), OsloMet"
+          "default": "Höfundaréttur © {{year}} · Allur réttur áskilinn· National Centre of Multicultural Education (NAFO), OsloMet"
         },
         {
           "label": "Header title",
@@ -173,15 +173,15 @@
           "default": "Sýna efnisflokka sem lista"
         },
         {
-          "label": "Fyrri mynd",
+          "label": "Previous image label",
           "default": "Fyrri mynd"
         },
         {
-          "label": "Næsta mynd",
+          "label": "Next image label",
           "default": "Næsta mynd"
         },
         {
-          "label": "Ekkert efni valið",
+          "label": "No topic selected",
           "default": "Ekkert efni valið."
         },
         {
@@ -190,7 +190,7 @@
         },
         {
           "label": "Grid label",
-          "default": "Reitir"
+          "default": "Stakar myndir"
         },
         {
           "label": "Search",
@@ -322,7 +322,7 @@
         },
         {
           "label": "More options aria label",
-          "default": "nokkrir kostir"
+          "default": "Fleiri möguleikar"
         },
         {
           "label": "Open menu to add word to collection aria label",
@@ -374,7 +374,7 @@
         },
         {
           "label": "View language label short",
-          "default": "Sýna áfram"
+          "default": "Sýna í"
         },
         {
           "label": "Search result label",
@@ -443,6 +443,10 @@
         {
           "label": "Pastú",
           "default": "Pastú"
+        },
+        {
+          "label": "Vlax Romani",
+          "default": "Vlax Romani"
         },
         {
           "label": "Rúmenska",
@@ -565,6 +569,10 @@
           {
             "label": "Pastú",
             "value": "pus"
+          },
+          {
+            "label": "Vlax Romani",
+            "value": "rmy"
           },
           {
             "label": "Rúmenska",

@@ -27,6 +27,9 @@ export const PrintButton: FC<PrintProps> = ({
   const [viewPrintDropDown, setViewPrintDropDown] = useState(false);
   const [renderPrintWords, setRenderPrintWords] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const printRef = useRef(null);
+  const { printLabel } = useL10ns("printLabel");
+  const { printImgLabel } = useL10ns("printImgLabel");
 
   const handleOnClickOutside = (): void => {
     setViewPrintDropDown(false);
@@ -47,14 +50,11 @@ export const PrintButton: FC<PrintProps> = ({
   const dropdownRef = useDetectClickOutside({
     onTriggered: handleOnClickOutside,
   });
-  const printRef = useRef(null);
-
-  const { printLabel } = useL10ns("printLabel");
-  const { printImgLabel } = useL10ns("printImgLabel");
 
   const handlePrint = useReactToPrint({
     contentRef: printRef,
     pageStyle: "",
+    preserveAfterPrint: true,
   });
 
   const handleDropDownClicked = (): void => {

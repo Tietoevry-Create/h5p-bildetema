@@ -100,8 +100,13 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
-        {word.audioFiles?.map(file => (
-          <source key={file.mimeType} src={file.url} type={file.mimeType} />
+        {word.audioFiles?.map((file, index) => (
+          <source
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${file.mimeType}-${index}`}
+            src={`${file.url}?v=1`} // Force reload
+            type={file.mimeType}
+          />
         ))}
       </audio>
       <button
