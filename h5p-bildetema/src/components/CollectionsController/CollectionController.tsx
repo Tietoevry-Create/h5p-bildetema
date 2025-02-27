@@ -13,12 +13,14 @@ import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import useCurrentCollection from "../../hooks/useCurrentCollection";
 import { useL10ns } from "../../hooks/useL10n";
 import { H5PWrapper } from "../../h5p/H5PWrapper";
+import { environment, useEnvironment } from "../../hooks/useEnvironment";
 
 const CollectionController = (): JSX.Element => {
   const [editMode, setEditMode] = useState(false);
   const h5pInstance = useH5PInstance<H5PWrapper>();
   const langCode = useCurrentLanguageCode();
   const words = useSelectedWords();
+  const env = useEnvironment();
   const { collection } = useParams<{ collection: string }>();
   const { showArticles, showWrittenWords } = useSearchParamContext();
   const { isCollectionOwner } = useCurrentCollection();
@@ -26,6 +28,8 @@ const CollectionController = (): JSX.Element => {
     "breadcrumbsHome",
     "myCollections",
   );
+
+  const shouldIncludeEditButton = env !== environment.prod;
 
   const handleSetEditMode = (value: boolean): void => {
     setEditMode(value);
@@ -96,7 +100,7 @@ const CollectionController = (): JSX.Element => {
           showArticlesToggle={showArticlesToggle}
           includeShareButton
           includeSaveButton={!isCollectionOwner}
-          includeEditButton={isCollectionOwner && words.length > 0}
+          includeEditButton={shouldIncludeEditButton && isCollectionOwner && words.length > 0}
           editMode={editMode}
           setEditMode={handleSetEditMode}
         />
