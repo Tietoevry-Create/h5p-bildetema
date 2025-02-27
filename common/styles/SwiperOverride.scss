@@ -51,3 +51,10 @@
     }
   }
 }
+
+[class*="editMode"] {
+  .swiper .swiper-wrapper {
+    overflow: clip;
+    transform: unset;
+  }
+}
