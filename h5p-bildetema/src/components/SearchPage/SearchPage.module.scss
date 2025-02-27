@@ -23,8 +23,17 @@
   border-bottom: 2px solid $dark-beige;
   padding: 1rem 0 3rem;
   flex: 1 1 0%;
+
+  @media print {
+    background-color: $white;
+    border: none;
+  }
 }
 
 .searchViewWrapper {
   padding: 2rem 0rem 3rem;
+
+  @media print {
+    display: none;
+  }
 }
