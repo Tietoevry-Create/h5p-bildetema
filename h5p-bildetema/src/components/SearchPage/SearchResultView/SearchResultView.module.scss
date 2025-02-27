@@ -10,6 +10,10 @@
   column-gap: 2rem;
   flex-wrap: wrap;
   row-gap: 1rem;
+
+  @media print {
+    display: none;
+  }
 }
 
 .orderWrap {

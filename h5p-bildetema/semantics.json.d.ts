@@ -667,6 +667,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Vlax Romani",
+				name: "lang_rmy",
+				"default": "Vlax Romani",
+				type: "text"
+			},
+			{
 				label: "Romanian",
 				name: "lang_ron",
 				"default": "Romanian",
@@ -817,6 +823,10 @@ declare const $defaultExport: [
 				{
 					label: "Pashto",
 					value: "pus"
+				},
+				{
+					label: "Vlax Romani",
+					value: "rmy"
 				},
 				{
 					label: "Romanian",

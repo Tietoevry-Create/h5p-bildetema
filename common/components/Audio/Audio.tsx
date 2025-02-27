@@ -74,8 +74,13 @@ export const Audio: FC<AudioProps> = ({
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
-        {audioFiles?.map(file => (
-          <source key={file.mimeType} src={file.url} type={file.mimeType} />
+        {audioFiles?.map((file, index) => (
+          <source
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${file.mimeType}-${index}`}
+            src={`${file.url}?v=1`} // Force reload
+            type={file.mimeType}
+          />
         ))}
       </audio>
       <button

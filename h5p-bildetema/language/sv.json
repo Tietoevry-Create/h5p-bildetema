@@ -445,6 +445,10 @@
           "default": "Pashto"
         },
         {
+          "label": "Vlax Romani",
+          "default": "Vlax Romani"
+        },
+        {
           "label": "Rumänska",
           "default": "Rumänska"
         },
@@ -565,6 +569,10 @@
           {
             "label": "Pashto",
             "value": "pus"
+          },
+          {
+            "label": "Vlax Romani",
+            "value": "rmy"
           },
           {
             "label": "Rumänska",

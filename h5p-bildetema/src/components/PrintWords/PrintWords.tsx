@@ -91,7 +91,7 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
     };
 
     return (
-      <div ref={ref} className="wrapper">
+      <div ref={ref} className={styles.wrapper}>
         <div className={styles.printHeader}>{getHeader()}</div>
         <table>
           <tbody>{renderTable()}</tbody>

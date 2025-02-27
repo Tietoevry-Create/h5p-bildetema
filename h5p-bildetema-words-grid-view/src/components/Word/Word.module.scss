@@ -12,6 +12,10 @@
   z-index: $fav-language-selector-z-index;
   right: 0.5rem;
   top: 2rem;
+
+  @media print {
+    display: none !important;
+  }
 }
 
 .image_container {
