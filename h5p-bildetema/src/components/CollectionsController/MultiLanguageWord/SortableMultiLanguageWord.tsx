@@ -36,31 +36,33 @@ const OpenDialog = {
 
 type OpenDialog = (typeof OpenDialog)[keyof typeof OpenDialog];
 
-type SearchResultCardProps = {
-  searchResult: SearchResult;
+type SortableMultiLanguageWordProps = {
+  multiLanguageWord: SearchResult;
   showArticles: boolean;
   showWrittenWords: boolean;
   editMode: boolean;
   id: string;
+  removeWord: (wordId: string) => void;
 };
 
 export const SortableMultiLanguageWord = ({
-  searchResult,
+  multiLanguageWord,
   showArticles,
   showWrittenWords,
   editMode,
   id,
-}: SearchResultCardProps): JSX.Element => {
-  const { images } = searchResult;
+  removeWord,
+}: SortableMultiLanguageWordProps): JSX.Element => {
+  const { images } = multiLanguageWord;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
   const { isCollectionOwner, collectionId, collectionName } =
     useCurrentCollection();
   const { deleteWordFromCollection } = useMyCollections();
   const [searchParams, setSearchParams] = useSearchParams();
   const langCode = useCurrentLanguageCode();
-  const searchResultTranslation = useMemo(
-    () => searchResult.translations.find(x => x.lang.code === langCode),
-    [langCode, searchResult.translations],
+  const wordTranslation = useMemo(
+    () => multiLanguageWord.translations.find(x => x.lang.code === langCode),
+    [langCode, multiLanguageWord.translations],
   );
 
   const {
@@ -118,8 +120,10 @@ export const SortableMultiLanguageWord = ({
   };
 
   const handleDeleteWord = (): void => {
-    deleteWordFromCollection(collectionId ?? "", searchResult.id);
-    removeWordFromUrlParams(searchResult.id);
+    deleteWordFromCollection(collectionId ?? "", multiLanguageWord.id);
+    removeWordFromUrlParams(multiLanguageWord.id);
+    removeWord(multiLanguageWord.id);
+    setOpenDialog(OpenDialog.NONE);
     enqueueSnackbar(getMessage(), {
       variant: "success",
     });
@@ -225,7 +229,7 @@ export const SortableMultiLanguageWord = ({
             open={openDialog === OpenDialog.DELETE_DIALOG}
             title={deleteWord}
             description={deleteWordConfirmation}
-            itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
+            itemToDeleteTitle={toSingleLabel(wordTranslation?.labels)}
             onClose={() => setOpenDialog(OpenDialog.NONE)}
             onDelete={handleDeleteWord}
           />
@@ -235,14 +239,14 @@ export const SortableMultiLanguageWord = ({
       )}
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
-        {searchResult.translations.map((translation, index) => (
+        {multiLanguageWord.translations.map((translation, index) => (
           <div
             className={styles.translation}
             // Todo fix key when we never can have multiple of same language
             // eslint-disable-next-line react/no-array-index-key
             key={`${translation.lang.code}-${index}`}
           >
-            {searchResult.translations.length > 1 && (
+            {multiLanguageWord.translations.length > 1 && (
               <span className={styles.translationLang}>
                 {translatedLabel(
                   translation.lang.code,

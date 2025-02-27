@@ -111,6 +111,12 @@ const CollectionPage = ({
     setSearchParams(searchParams);
   };
 
+  const removeWordFromSortedWords = (wordId: string): void => {
+    setSortedWords(prevSortedWords =>
+      prevSortedWords.filter(word => word.id !== wordId),
+    );
+  };
+
   const saveChanges = (): void => {
     if (!collectionId) return;
     const newWords = sortedWords.map(word => word.id);
@@ -167,10 +173,11 @@ const CollectionPage = ({
                 <SortableMultiLanguageWord
                   key={word.id}
                   id={word.id}
-                  searchResult={word}
+                  multiLanguageWord={word}
                   showWrittenWords={showWrittenWords}
                   showArticles={showArticles}
                   editMode={editMode}
+                  removeWord={removeWordFromSortedWords}
                 />
               ))}
             </ul>
