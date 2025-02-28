@@ -210,11 +210,16 @@ export const SortableMultiLanguageWord = ({
       className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`}
       ref={setNodeRef}
       style={style}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...attributes}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...listeners}
     >
+      <button
+        type="button"
+        className={styles.dragHandle}
+        aria-label="Reorder"
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...attributes}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...listeners}
+      />
       {isCollectionOwner ? (
         <>
           <Button

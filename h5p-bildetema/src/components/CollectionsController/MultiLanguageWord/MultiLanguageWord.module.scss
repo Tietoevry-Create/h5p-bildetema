@@ -57,6 +57,26 @@
     &:hover {
       border-color: $darker-teal;
     }
+
+    &:has(.dragHandle[aria-pressed="true"]) {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px 0px;
+      z-index: 1;
+    }
+  }
+
+  .dragHandle {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: grab;
+
+    &[aria-pressed="true"] {
+      cursor: grabbing;
+      outline-color: $dark-teal;
+      outline-width: 4px;
+    }
   }
 
   .swiper,
