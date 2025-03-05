@@ -128,11 +128,23 @@ const CollectionPage = ({
   };
 
   useEffect(() => {
-    if (!editMode && words !== sortedWords) {
+    const hasChanges = !words.every(
+      (word, index) => word.id === sortedWords[index].id,
+    );
+
+    if (!editMode && hasChanges) {
       saveChanges();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editMode]);
+
+  useEffect(() => {
+    if (editMode) {
+      // Reset sortedWords when language changes
+      setSortedWords(words);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   if (words.length === 0) {
     return (
