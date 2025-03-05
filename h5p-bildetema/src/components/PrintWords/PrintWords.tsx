@@ -72,7 +72,7 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
             const img = getImageSrc(activeImage, backendUrl);
             return (
               <td key={word.id}>
-                <div className={styles.imgWrapper}>
+                <div className={styles.content}>
                   {img && <img src={img} alt="" />}
                   {showWrittenWords && img && (
                     <div className={styles.label}>{wordLabel}</div>
