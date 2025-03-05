@@ -5,11 +5,11 @@
     border: none;
     width: 100%;
   }
-  
+
   tr {
     break-inside: avoid;
   }
-  
+
   tr td:last-child {
     border: none;
   }
@@ -17,7 +17,7 @@
 
 .content {
   break-inside: avoid;
-  
+
   img {
     object-fit: contain;
     object-position: bottom center;
