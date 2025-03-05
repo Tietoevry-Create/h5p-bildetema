@@ -1,35 +1,40 @@
 .wrapper {
   font-family: sans-serif;
+
+  table {
+    border: none;
+    width: 100%;
+  }
+  
+  tr {
+    break-inside: avoid;
+  }
+  
+  tr td:last-child {
+    border: none;
+  }
 }
 
-table {
-  border: none;
-  padding: 1rem;
-  width: 100%;
-}
-
-tr {
+.content {
   break-inside: avoid;
-}
-
-tr td:last-child {
-  border: none;
-}
-
-.imgWrapper img {
-  object-fit: contain;
-  object-position: bottom center;
-  width: 100%;
-  max-height: 250px;
-  margin-top: 1rem;
+  
+  img {
+    object-fit: contain;
+    object-position: bottom center;
+    width: 100%;
+    max-height: 250px;
+    margin-top: 1rem;
+  }
 }
 
 .label {
+  font-size: 1.125rem;
+  line-height: 1.4;
   text-align: center;
 }
 
 .printHeader {
-  padding: 1rem;
+  padding: 1rem 0;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1;
