@@ -32,7 +32,7 @@ import { environment, useEnvironment } from "../../../hooks/useEnvironment";
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
   NONE: "NONE",
-};
+} as const;
 
 type OpenDialog = (typeof OpenDialog)[keyof typeof OpenDialog];
 

@@ -50,12 +50,12 @@
 
 .editMode {
   &.searchResultCard {
-    border: 1.5px solid $dark-teal;
+    border-color: $teal-100;
     cursor: grab;
     touch-action: none;
 
     &:hover {
-      border-color: $darker-teal;
+      border-color: $teal-200;
     }
 
     &:has(.dragHandle[aria-pressed="true"]) {

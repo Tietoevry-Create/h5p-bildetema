@@ -64,6 +64,7 @@ const CollectionPage = ({
     goToSearch,
     goToTopic,
     thisCollectionIsEmpty,
+    sortWordsDescription,
   } = useL10ns(
     "addWordsDescription",
     "search",
@@ -71,6 +72,7 @@ const CollectionPage = ({
     "goToSearch",
     "goToTopic",
     "thisCollectionIsEmpty",
+    "sortWordsDescription",
   );
 
   const replacements = {
@@ -173,7 +175,7 @@ const CollectionPage = ({
 
   if (editMode) {
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.editWrapper}>
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -193,6 +195,7 @@ const CollectionPage = ({
                 />
               ))}
             </ul>
+            <p className={styles.description}>{sortWordsDescription}</p>
           </SortableContext>
         </DndContext>
       </div>
