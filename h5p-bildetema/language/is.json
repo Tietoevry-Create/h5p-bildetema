@@ -249,6 +249,18 @@
           "default": "Hlekkur afritaður"
         },
         {
+          "label": "Edit",
+          "default": "Breyta"
+        },
+        {
+          "label": "Save",
+          "default": "Vista"
+        },
+        {
+          "label": "Description text for sorting words in a collection",
+          "default": "Raða orðum með því að draga þau á viðeigandi stað."
+        },
+        {
           "label": "Description text for adding a word to a collection",
           "default": "Bættu við orðum með {{search}} eða {{topicView}}. Smelltu á bókamerkið á myndunum."
         },

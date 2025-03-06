@@ -13,6 +13,7 @@ import { useSearchParamContext } from "../../hooks/useSearchParamContext";
 import ShareButton from "../ShareButton/ShareButton";
 import SaveSharedCollectionButton from "../SaveSharedCollectionButton/SaveSharedCollectionButton";
 import useCurrentCollection from "../../hooks/useCurrentCollection";
+import { EditCollectionButton } from "../EditCollectionButton/EditCollectionButton";
 
 export type SubHeaderProps = {
   topicsSize?: TopicGridSizes;
@@ -25,6 +26,9 @@ export type SubHeaderProps = {
   showTopicImageView?: boolean;
   includeShareButton?: boolean;
   includeSaveButton?: boolean;
+  includeEditButton?: boolean;
+  editMode?: boolean;
+  setEditMode?: (editMode: boolean) => void;
   rtl: boolean;
   isWordView: boolean;
   showArticlesToggle: boolean;
@@ -38,6 +42,9 @@ export const SubHeader: FC<SubHeaderProps> = ({
   showTopicImageView = false,
   includeShareButton = false,
   includeSaveButton = false,
+  includeEditButton = false,
+  editMode = false,
+  setEditMode,
   rtl,
   showArticlesToggle,
   breadCrumbs,
@@ -73,6 +80,12 @@ export const SubHeader: FC<SubHeaderProps> = ({
       <div className={styles.tools}>
         {isWordView ? (
           <>
+            {includeEditButton && !!setEditMode ? (
+              <EditCollectionButton
+                editMode={editMode}
+                setEditMode={setEditMode}
+              />
+            ) : null}
             {includeSaveButton && <SaveSharedCollectionButton />}
             {includeShareButton && <ShareButton />}
             <PrintButton

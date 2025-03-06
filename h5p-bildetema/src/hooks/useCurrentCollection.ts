@@ -16,6 +16,7 @@ const useCurrentCollection = () => {
     isCollectionOwner,
     collectionId: collection?.id,
     collectionName: collection?.title,
+    collectionWords: collection?.wordsIds,
   };
 };
 

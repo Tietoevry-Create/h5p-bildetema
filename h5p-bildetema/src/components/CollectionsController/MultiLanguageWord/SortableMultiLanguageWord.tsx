@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { MouseEvent, useMemo, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,9 +14,11 @@ import { toSingleLabel } from "common/utils/word.utils";
 import { Button } from "common/components/Button";
 import { LanguageCodeString } from "common/types/LanguageCode";
 import { languages as languagesConst } from "common/constants/languages";
-import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
+import { DeleteIcon } from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
@@ -25,9 +27,7 @@ import {
   getLanguageAttribute,
   useCurrentLanguageCode,
 } from "../../../hooks/useCurrentLanguage";
-import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
-import { environment, useEnvironment } from "../../../hooks/useEnvironment";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -36,49 +36,56 @@ const OpenDialog = {
 
 type OpenDialog = (typeof OpenDialog)[keyof typeof OpenDialog];
 
-type SearchResultCardProps = {
-  searchResult: SearchResult;
+type SortableMultiLanguageWordProps = {
+  multiLanguageWord: SearchResult;
   showArticles: boolean;
   showWrittenWords: boolean;
+  editMode: boolean;
+  id: string;
+  removeWord: (wordId: string) => void;
 };
 
-export const MultiLanguageWord = ({
-  searchResult,
+export const SortableMultiLanguageWord = ({
+  multiLanguageWord,
   showArticles,
   showWrittenWords,
-}: SearchResultCardProps): JSX.Element => {
-  const env = useEnvironment();
-  const { images } = searchResult;
+  editMode,
+  id,
+  removeWord,
+}: SortableMultiLanguageWordProps): JSX.Element => {
+  const { images } = multiLanguageWord;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
   const { isCollectionOwner, collectionId, collectionName } =
     useCurrentCollection();
   const { deleteWordFromCollection } = useMyCollections();
   const [searchParams, setSearchParams] = useSearchParams();
   const langCode = useCurrentLanguageCode();
-  const searchResultTranslation = useMemo(
-    () => searchResult.translations.find(x => x.lang.code === langCode),
-    [langCode, searchResult.translations],
+  const wordTranslation = useMemo(
+    () => multiLanguageWord.translations.find(x => x.lang.code === langCode),
+    [langCode, multiLanguageWord.translations],
   );
-
-  const shouldIncludeMoreButton = env === environment.prod;
 
   const {
     prevImageLabel,
     nextImageLabel,
-    delete: l10nDelete,
     deleteWord,
     deleteWordConfirmation,
-    moreOptionsAriaLabel,
     wordRemovedFromCollection,
   } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
-    "delete",
     "deleteWord",
     "deleteWordConfirmation",
-    "moreOptionsAriaLabel",
     "wordRemovedFromCollection",
   );
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   const removeWordFromUrlParams = (wordId: string): void => {
     const param = "words";
@@ -107,9 +114,16 @@ export const MultiLanguageWord = ({
     return <span>{message}</span>;
   };
 
+  const handleOnDelete = (event: MouseEvent): void => {
+    event.preventDefault();
+    setOpenDialog(OpenDialog.DELETE_DIALOG);
+  };
+
   const handleDeleteWord = (): void => {
-    deleteWordFromCollection(collectionId ?? "", searchResult.id);
-    removeWordFromUrlParams(searchResult.id);
+    deleteWordFromCollection(collectionId ?? "", multiLanguageWord.id);
+    removeWordFromUrlParams(multiLanguageWord.id);
+    removeWord(multiLanguageWord.id);
+    setOpenDialog(OpenDialog.NONE);
     enqueueSnackbar(getMessage(), {
       variant: "success",
     });
@@ -121,41 +135,15 @@ export const MultiLanguageWord = ({
 
     return (
       <div>
-        {isCollectionOwner && shouldIncludeMoreButton && (
-          <>
-            <Menu>
-              <MenuButton className={styles.menuButton}>
-                <Button variant="circle" aria-label={moreOptionsAriaLabel}>
-                  <MoreVertIcon />
-                </Button>
-              </MenuButton>
-              <MenuItems anchor="bottom end">
-                <MenuItem
-                  label={l10nDelete}
-                  icon={<DeleteIcon />}
-                  onClick={() => setOpenDialog(OpenDialog.DELETE_DIALOG)}
-                />
-              </MenuItems>
-            </Menu>
-            <DeleteDialog
-              open={openDialog === OpenDialog.DELETE_DIALOG}
-              title={deleteWord}
-              description={deleteWordConfirmation}
-              itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
-              onClose={() => setOpenDialog(OpenDialog.NONE)}
-              onDelete={handleDeleteWord}
-            />
-          </>
-        )}
         <Swiper
           pagination={{
-            dynamicBullets: multipleImages,
+            dynamicBullets: multipleImages && !editMode,
           }}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
-          modules={multipleImages ? [Pagination, Navigation] : []}
+          modules={multipleImages && !editMode ? [Pagination, Navigation] : []}
           loop={multipleImages}
           spaceBetween={10}
         >
@@ -164,6 +152,7 @@ export const MultiLanguageWord = ({
             <button
               type="button"
               className="swiper-button-prev"
+              style={editMode ? { display: "none" } : {}}
               aria-label={prevImageLabel}
             />
           )}
@@ -197,6 +186,7 @@ export const MultiLanguageWord = ({
             <button
               type="button"
               className="swiper-button-next"
+              style={editMode ? { display: "none" } : {}}
               aria-label={nextImageLabel}
             />
           )}
@@ -216,18 +206,52 @@ export const MultiLanguageWord = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className={styles.searchResultCard}>
+    <li
+      className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`}
+      ref={setNodeRef}
+      style={style}
+    >
+      <button
+        type="button"
+        className={styles.dragHandle}
+        aria-label="Reorder"
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...attributes}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...listeners}
+      />
+      {isCollectionOwner ? (
+        <>
+          <Button
+            variant="circle"
+            className={styles.deleteButton}
+            aria-label={deleteWord}
+            onClick={event => handleOnDelete(event)}
+          >
+            <DeleteIcon />
+          </Button>
+          <DeleteDialog
+            open={openDialog === OpenDialog.DELETE_DIALOG}
+            title={deleteWord}
+            description={deleteWordConfirmation}
+            itemToDeleteTitle={toSingleLabel(wordTranslation?.labels)}
+            onClose={() => setOpenDialog(OpenDialog.NONE)}
+            onDelete={handleDeleteWord}
+          />
+        </>
+      ) : (
+        ""
+      )}
       <div className={styles.image_container}>{renderImages()}</div>
       <div className={styles.translations}>
-        {searchResult.translations.map((translation, index) => (
+        {multiLanguageWord.translations.map((translation, index) => (
           <div
             className={styles.translation}
             // Todo fix key when we never can have multiple of same language
             // eslint-disable-next-line react/no-array-index-key
             key={`${translation.lang.code}-${index}`}
           >
-            {searchResult.translations.length > 1 && (
+            {multiLanguageWord.translations.length > 1 && (
               <span className={styles.translationLang}>
                 {translatedLabel(
                   translation.lang.code,

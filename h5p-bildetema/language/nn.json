@@ -249,6 +249,18 @@
           "default": "Lenkje kopiert"
         },
         {
+          "label": "Edit",
+          "default": "Rediger"
+        },
+        {
+          "label": "Save",
+          "default": "Lagre"
+        },
+        {
+          "label": "Description text for sorting words in a collection",
+          "default": "Sorter ord ved å dra dei til ønskt posisjon."
+        },
+        {
           "label": "Description text for adding a word to a collection",
           "default": "Legg til ord via {{search}} eller {{topicView}}. Klikk på bokmerket på bileta."
         },
