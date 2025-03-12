@@ -57,13 +57,21 @@ $gap: $spacing--24;
   gap: 2rem;
 }
 
-.wrapper {
+.wrapper,
+.editWrapper {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
   gap: 2rem;
   align-items: center;
+}
+
+.editWrapper {
+  background-color: $teal-50;
+  border: 2px dashed $teal-200;
+  border-radius: 1rem;
+  padding: 1.5rem;
 }
 
 .description {

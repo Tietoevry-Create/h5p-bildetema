@@ -25,10 +25,6 @@
   @media print {
     display: none;
   }
-
-  @include breakpoint-min($medium) {
-    column-gap: 2rem;
-  }
 }
 
 .rtl {

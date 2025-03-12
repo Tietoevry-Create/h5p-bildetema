@@ -4,8 +4,11 @@
 .containerFocused {
   display: inline-flex;
   align-items: center;
+  border: none;
+  border-radius: 1rem;
   cursor: pointer;
-  gap: 0.75em;
+  gap: 0.4em;
+  padding: 0 0.2rem;
 }
 
 .containerFocused {
