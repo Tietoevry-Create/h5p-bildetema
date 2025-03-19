@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: auto !important; // WordPress slows down scrolling, this fixes it
+}
+
 .skip-link,
 .skip-link:focus {
   display: none !important; // hide Wordpress skip to content link
