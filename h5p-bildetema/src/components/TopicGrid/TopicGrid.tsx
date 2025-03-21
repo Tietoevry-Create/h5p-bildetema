@@ -8,7 +8,7 @@ import {
   TopicGridSizes,
   TopicIds,
 } from "common/types/types";
-import { FC, RefObject, useMemo, useState } from "react";
+import { FC, JSX, RefObject, useMemo, useState } from "react";
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";

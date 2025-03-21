@@ -2,7 +2,7 @@
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
-import { FC, ReactPortal } from "react";
+import { FC, ReactNode, ReactPortal } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { STATIC_PATH } from "common/constants/paths";
@@ -12,7 +12,7 @@ import {
   BreadcrumbsArrowLeftIcon,
   HomeIcon,
 } from "common/components/Icons/Icons";
-import useBreadcrumbs from "use-react-router-breadcrumbs";
+import useBreadcrumbs, { BreadcrumbData } from "use-react-router-breadcrumbs";
 import { useL10n } from "../../hooks/useL10n";
 import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
 import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
@@ -38,7 +38,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
   const currentLangAttribute = useCurrentLanguageAttribute();
   const currentLang =
     pathname.startsWith(STATIC_PATH.COLLECTIONS) ||
-    pathname.startsWith(STATIC_PATH.SEARCH)
+      pathname.startsWith(STATIC_PATH.SEARCH)
       ? lang
       : currentLangAttribute;
   const { translations } = useNewDBContext();
@@ -58,7 +58,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
     routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
       const label = ((): string => {
         const urlComponent = `${decodeURIComponent(
-          (breadcrumb as ReactPortal).props.children,
+          (breadcrumb as any).props.children,
         )}`;
         if (!currentTopics) {
           return urlComponent;

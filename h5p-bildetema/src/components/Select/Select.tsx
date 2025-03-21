@@ -4,6 +4,7 @@ import {
   LanguageMenuArrowIcon,
 } from "common/components/Icons/Icons";
 import styles from "./Select.module.scss";
+import { JSX } from "react";
 
 type Option = {
   label: string;
@@ -88,9 +89,8 @@ const Select = <T extends Option>({
                   return (
                     <div
                       className={`${styles.option} ${active && styles.active} 
-                      ${withSelectedIcon && styles.withCheckIcon} ${
-                        selected && styles.selected
-                      }`}
+                      ${withSelectedIcon && styles.withCheckIcon} ${selected && styles.selected
+                        }`}
                     >
                       {withSelectedIcon && (
                         <span className={styles.icon}>

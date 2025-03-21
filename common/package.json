@@ -11,25 +11,25 @@
     "lint:fix": "npm run lint:check -- --fix"
   },
   "dependencies": {
-    "@headlessui/react": "^2.1.9",
-    "core-js": "^3.38.1",
-    "h5p-types": "^5.5.0",
+    "@headlessui/react": "^2.2.0",
+    "core-js": "^3.41.0",
+    "h5p-types": "^5.6.0",
     "h5p-utils": "^4.0.0",
-    "jotai": "^2.10.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-hot-toast": "^2.4.1",
+    "jotai": "^2.12.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "replace-special-characters": "^1.2.7",
-    "use-local-storage-state": "^19.4.1",
-    "uuid": "^10.0.0"
+    "use-local-storage-state": "^19.5.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "@types/react-toggle": "^4.0.5",
     "@types/uuid": "^10.0.0",
     "eslint-config-custom": "*",
-    "vitest": "^2.1.2"
+    "vitest": "^3.0.9"
   },
   "eslintConfig": {
     "extends": "custom"

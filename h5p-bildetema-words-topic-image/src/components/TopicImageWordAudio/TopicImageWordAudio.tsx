@@ -69,7 +69,9 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
         contextAudioRef.current.pause();
         contextAudioRef.current.currentTime = 0;
       }
-      setContextAudioRef(audioRef);
+      if (audioRef.current) {
+        setContextAudioRef(audioRef as React.RefObject<HTMLAudioElement>);
+      }
       audioElement.play();
     }
 
@@ -94,9 +96,8 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
 
   return (
     <div
-      className={`${styles.wordAudio} ${
-        playing ? styles.wordAudio_active : ""
-      } ${showAsSelected ? styles.selected : ""}`}
+      className={`${styles.wordAudio} ${playing ? styles.wordAudio_active : ""
+        } ${showAsSelected ? styles.selected : ""}`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>

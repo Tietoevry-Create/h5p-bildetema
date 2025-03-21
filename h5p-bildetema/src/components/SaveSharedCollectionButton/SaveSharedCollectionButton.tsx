@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { enqueueSnackbar } from "notistack";
 import { useL10ns } from "../../hooks/useL10n";
+import { JSX } from "react";
 
 const SaveSharedCollectionButton = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();

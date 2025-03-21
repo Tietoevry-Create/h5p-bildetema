@@ -36,7 +36,9 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
         contextAudioRef.current.pause();
         contextAudioRef.current.currentTime = 0;
       }
-      setContextAudioRef(audioRef);
+      if (audioRef.current) {
+        setContextAudioRef(audioRef as React.RefObject<HTMLAudioElement>);
+      }
       audioElement.play();
     }
     setPlaying(!playing);
@@ -61,9 +63,8 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
 
   return (
     <div
-      className={`${styles.wordAudio} ${
-        playing ? styles.wordAudio_active : ""
-      }`}
+      className={`${styles.wordAudio} ${playing ? styles.wordAudio_active : ""
+        }`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>

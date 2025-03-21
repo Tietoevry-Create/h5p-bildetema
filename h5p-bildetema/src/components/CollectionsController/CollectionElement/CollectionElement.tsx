@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { JSX, useState, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useMyCollections } from "common/hooks/useMyCollections";
 import { Button } from "common/components/Button";
@@ -36,8 +36,8 @@ const CollectionElement = ({
   label,
   amountOfCollectionItems,
   id,
-}: CollectionElementProps): React.JSX.Element => {
-  const [openDialog, setOpenDialog] = React.useState<OpenDialog>(
+}: CollectionElementProps): JSX.Element => {
+  const [openDialog, setOpenDialog] = useState<OpenDialog>(
     OpenDialog.NONE,
   );
   const siteLanguagePath = getSiteLanguagePath();
@@ -82,7 +82,7 @@ const CollectionElement = ({
     }
   };
 
-  const getDeleteCollectionStatusMessage = (): React.ReactNode => {
+  const getDeleteCollectionStatusMessage = (): ReactNode => {
     const replacements = {
       collection: <b key={1}>{label}</b>,
     };

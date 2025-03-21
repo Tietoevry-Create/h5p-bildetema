@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { JSX, useEffect, useRef } from "react";
 import { SearchIcon } from "common/components/Icons/Icons";
 import styles from "./SearchInput.module.scss";
 import { useL10ns } from "../../../hooks/useL10n";

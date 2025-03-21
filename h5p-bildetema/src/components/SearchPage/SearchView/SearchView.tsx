@@ -9,6 +9,7 @@ import {
 } from "../../../hooks/useCurrentLanguage";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchView.module.scss";
+import { JSX } from "react";
 
 export type SearchViewProps = {
   handleSearch: (value: string) => void;
@@ -82,9 +83,8 @@ const SearchView = ({
             handleChange={handleViewLanguageChange}
             selectedOption={viewLanguage}
             variant="secondary"
-            labelPrefix={`${
-              viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
-            }`}
+            labelPrefix={`${viewLanguage == null ? viewLanguageLabel : viewLanguageLabelShort
+              }`}
             withSelectedIcon
           />
         </div>

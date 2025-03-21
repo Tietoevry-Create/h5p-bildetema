@@ -20,6 +20,7 @@ import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import { getLanguageAttribute } from "../../../hooks/useCurrentLanguage";
+import { JSX } from "react";
 
 type SearchResultCardProps = {
   searchResult: SearchResult;

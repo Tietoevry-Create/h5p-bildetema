@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { useMemo, useState } from "react";
+import { JSX, useMemo, useState } from "react";
 import { Button } from "common/components/Button";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { getMainTopics } from "common/utils/data.utils";

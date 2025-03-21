@@ -3,6 +3,7 @@ import TextInput from "common/components/TextInput/TextInput";
 import { Button } from "common/components/Button/Button";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./EditDialog.module.scss";
+import { JSX } from "react";
 
 type EditDialogProps = {
   open: boolean;
