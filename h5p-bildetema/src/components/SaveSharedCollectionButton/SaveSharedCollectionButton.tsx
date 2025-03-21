@@ -1,14 +1,13 @@
 import { Button } from "common/components/Button";
-import { DownloadIcon, SuccessIcon } from "common/components/Icons/Icons";
+import { DownloadIcon } from "common/components/Icons/Icons";
 import { useMyCollections } from "common/hooks/useMyCollections";
-import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { enqueueSnackbar } from "notistack";
 import { useL10ns } from "../../hooks/useL10n";
 
 const SaveSharedCollectionButton = (): JSX.Element => {
-  const [isSaved, setIsSaved] = useState(false);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { collection } = useParams();
   const { saveCollection, collectionSaved } = useL10ns(
     "saveCollection",
@@ -18,8 +17,6 @@ const SaveSharedCollectionButton = (): JSX.Element => {
   const { addCollection } = useMyCollections();
 
   const handleSaveCollection = (): void => {
-    if (isSaved) return;
-
     const wordIds = searchParams.get("words")?.split(",") ?? [];
     const newId = uuid();
 
@@ -28,13 +25,20 @@ const SaveSharedCollectionButton = (): JSX.Element => {
       wordIds,
       id: newId,
     });
-    setIsSaved(true);
+
+    searchParams.set("id", newId);
+    setSearchParams(searchParams);
+
+    enqueueSnackbar({
+      message: collectionSaved,
+      variant: "success",
+    });
   };
 
   return (
     <Button variant="capsule" onClick={() => handleSaveCollection()}>
-      {isSaved ? <SuccessIcon /> : <DownloadIcon />}
-      <span>{isSaved ? collectionSaved : saveCollection}</span>
+      <DownloadIcon />
+      <span>{saveCollection}</span>
     </Button>
   );
 };

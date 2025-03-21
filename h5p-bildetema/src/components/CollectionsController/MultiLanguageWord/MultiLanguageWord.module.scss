@@ -48,6 +48,57 @@
   top: 0.5rem;
 }
 
+.editMode {
+  &.searchResultCard {
+    border-color: $teal-100;
+    cursor: grab;
+    touch-action: none;
+
+    &:hover {
+      border-color: $teal-200;
+    }
+
+    &:has(.dragHandle[aria-pressed="true"]) {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px 0px;
+      z-index: 1;
+    }
+  }
+
+  .dragHandle {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: grab;
+
+    &[aria-pressed="true"] {
+      cursor: grabbing;
+      outline-color: $dark-teal;
+      outline-width: 4px;
+    }
+  }
+
+  .swiper,
+  .image_container,
+  .translations {
+    pointer-events: none;
+  }
+
+  .menuButton,
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+
+  .deleteButton {
+    z-index: $fav-language-selector-z-index;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}
+
 .visuallyHidden {
   @include visually-hidden;
 }

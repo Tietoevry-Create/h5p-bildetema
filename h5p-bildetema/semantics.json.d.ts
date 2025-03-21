@@ -373,6 +373,24 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Edit",
+				name: "edit",
+				"default": "Edit",
+				type: "text"
+			},
+			{
+				label: "Save",
+				name: "save",
+				"default": "Save",
+				type: "text"
+			},
+			{
+				label: "Description text for sorting words in a collection",
+				name: "sortWordsDescription",
+				"default": "Sort words by dragging them to the desired position.",
+				type: "text"
+			},
+			{
 				label: "Description text for adding a word to a collection",
 				name: "addWordsDescription",
 				"default": "Add words via {{search}} or {{topicView}}. Click the bookmark on the images.",
@@ -667,6 +685,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Vlax Romani",
+				name: "lang_rmy",
+				"default": "Vlax Romani",
+				type: "text"
+			},
+			{
 				label: "Romanian",
 				name: "lang_ron",
 				"default": "Romanian",
@@ -817,6 +841,10 @@ declare const $defaultExport: [
 				{
 					label: "Pashto",
 					value: "pus"
+				},
+				{
+					label: "Vlax Romani",
+					value: "rmy"
 				},
 				{
 					label: "Romanian",

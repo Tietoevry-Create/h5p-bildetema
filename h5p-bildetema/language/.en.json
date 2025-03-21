@@ -249,6 +249,18 @@
           "default": "Link copied"
         },
         {
+          "label": "Edit",
+          "default": "Edit"
+        },
+        {
+          "label": "Save",
+          "default": "Save"
+        },
+        {
+          "label": "Description text for sorting words in a collection",
+          "default": "Sort words by dragging them to the desired position."
+        },
+        {
           "label": "Description text for adding a word to a collection",
           "default": "Add words via {{search}} or {{topicView}}. Click the bookmark on the images."
         },
@@ -445,6 +457,10 @@
           "default": "Pashto"
         },
         {
+          "label": "Vlax Romani",
+          "default": "Vlax Romani"
+        },
+        {
           "label": "Romanian",
           "default": "Romanian"
         },
@@ -565,6 +581,10 @@
           {
             "label": "Pashto",
             "value": "pus"
+          },
+          {
+            "label": "Vlax Romani",
+            "value": "rmy"
           },
           {
             "label": "Romanian",

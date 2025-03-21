@@ -249,6 +249,18 @@
           "default": "Link kopieret"
         },
         {
+          "label": "Edit",
+          "default": "Rediger"
+        },
+        {
+          "label": "Save",
+          "default": "Spare"
+        },
+        {
+          "label": "Description text for sorting words in a collection",
+          "default": "Sorter ordene ved at trække dem til den ønskede position."
+        },
+        {
           "label": "Description text for adding a word to a collection",
           "default": "Tilføj ord via {{search}} eller {{topicView}}. Klik på bogmærket på billederne."
         },
@@ -445,6 +457,10 @@
           "default": "Pashto"
         },
         {
+          "label": "Vlax Romani",
+          "default": "Vlax Romani"
+        },
+        {
           "label": "Rumænsk",
           "default": "Rumænsk"
         },
@@ -565,6 +581,10 @@
           {
             "label": "Pashto",
             "value": "pus"
+          },
+          {
+            "label": "Vlax Romani",
+            "value": "rmy"
           },
           {
             "label": "Rumænsk",
