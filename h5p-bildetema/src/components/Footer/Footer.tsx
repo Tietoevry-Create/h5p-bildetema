@@ -1,7 +1,7 @@
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
+import { JSX } from "react";
 import { useL10n } from "../../hooks/useL10n";
 import styles from "./Footer.module.scss";
-import { JSX } from "react";
 
 export const Footer = (): JSX.Element => {
   const aboutLabel = useL10n("footerAboutLabel");

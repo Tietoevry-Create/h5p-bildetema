@@ -70,8 +70,9 @@ export const Audio: FC<AudioProps> = ({
 
   return (
     <div
-      className={`${styles.wordAudio} ${textVisible ? "" : styles.wordAudioHideForPrint
-        } ${playing ? styles.wordAudio_active : ""}`}
+      className={`${styles.wordAudio} ${
+        textVisible ? "" : styles.wordAudioHideForPrint
+      } ${playing ? styles.wordAudio_active : ""}`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
@@ -93,8 +94,9 @@ export const Audio: FC<AudioProps> = ({
       >
         {textVisible && (
           <h2
-            className={`${styles.word_label} ${lowerCaseLabel && styles.lowerCaseLabel
-              }`}
+            className={`${styles.word_label} ${
+              lowerCaseLabel && styles.lowerCaseLabel
+            }`}
           >
             {label}
             &nbsp;

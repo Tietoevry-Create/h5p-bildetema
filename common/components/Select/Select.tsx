@@ -1,7 +1,12 @@
-import { Listbox } from "@headlessui/react";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+} from "@headlessui/react";
+import React, { JSX } from "react";
 import { CheckIcon, LanguageMenuArrowIcon } from "../Icons/Icons";
 import styles from "./Select.module.scss";
-import React, { JSX } from "react";
 
 type Option = {
   label: string;
@@ -67,7 +72,7 @@ const Select = <T extends Option>({
     >
       {({ open }) => (
         <div className={styles.selectWrapper}>
-          <Listbox.Button
+          <ListboxButton
             className={`${styles.selectButton} ${styles[variant]}`}
           >
             {getLabel(selectedOption?.label)}
@@ -76,18 +81,19 @@ const Select = <T extends Option>({
               transform={open ? "scale(1) rotate(180)" : "scale(1)"}
               transformOrigin="50% 50%"
             />
-          </Listbox.Button>
-          <Listbox.Options
+          </ListboxButton>
+          <ListboxOptions
             className={`${styles.options} ${fixed && styles.fixed}`}
           >
             {options.map(option => (
-              <Listbox.Option key={option.id ?? option.label} value={option}>
-                {({ active, selected }) => {
+              <ListboxOption key={option.id ?? option.label} value={option}>
+                {({ focus, selected }) => {
                   return (
                     <div
-                      className={`${styles.option} ${active && styles.active} 
-                      ${withSelectedIcon && styles.withCheckIcon} ${selected && styles.selected
-                        }`}
+                      className={`${styles.option} ${focus && styles.active} 
+                      ${withSelectedIcon && styles.withCheckIcon} ${
+                        selected && styles.selected
+                      }`}
                     >
                       {withSelectedIcon && (
                         <span className={styles.icon}>
@@ -98,9 +104,9 @@ const Select = <T extends Option>({
                     </div>
                   );
                 }}
-              </Listbox.Option>
+              </ListboxOption>
             ))}
-          </Listbox.Options>
+          </ListboxOptions>
         </div>
       )}
     </Listbox>

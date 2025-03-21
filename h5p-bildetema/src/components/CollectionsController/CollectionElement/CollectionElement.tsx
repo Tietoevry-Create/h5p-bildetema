@@ -37,9 +37,7 @@ const CollectionElement = ({
   amountOfCollectionItems,
   id,
 }: CollectionElementProps): JSX.Element => {
-  const [openDialog, setOpenDialog] = useState<OpenDialog>(
-    OpenDialog.NONE,
-  );
+  const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
   const siteLanguagePath = getSiteLanguagePath();
   const { deleteCollection, changeCollectionTitle } = useMyCollections();
   const {

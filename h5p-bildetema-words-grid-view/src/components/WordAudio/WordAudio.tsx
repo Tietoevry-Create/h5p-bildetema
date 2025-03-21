@@ -65,8 +65,9 @@ export const WordAudio: FC<WordAudioProps> = ({
 
   return (
     <div
-      className={`${styles.wordAudio} ${textVisible ? "" : styles.wordAudioHideForPrint
-        } ${playing ? styles.wordAudio_active : ""}`}
+      className={`${styles.wordAudio} ${
+        textVisible ? "" : styles.wordAudioHideForPrint
+      } ${playing ? styles.wordAudio_active : ""}`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>

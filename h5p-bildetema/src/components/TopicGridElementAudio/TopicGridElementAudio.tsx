@@ -63,8 +63,9 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
 
   return (
     <div
-      className={`${styles.wordAudio} ${playing ? styles.wordAudio_active : ""
-        }`}
+      className={`${styles.wordAudio} ${
+        playing ? styles.wordAudio_active : ""
+      }`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>

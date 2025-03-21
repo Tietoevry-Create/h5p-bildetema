@@ -205,10 +205,10 @@ const SearchPage = (): JSX.Element => {
               filter={filter}
               resetFilter={resetFilter}
               handleFilterChange={handleFilterChange}
-            // TODO: Remove if not needed
-            // sortOptions={searchOrderOptions}
-            // handleOrderChange={handleOrderChange}
-            // resultSortType={state.order}
+              // TODO: Remove if not needed
+              // sortOptions={searchOrderOptions}
+              // handleOrderChange={handleOrderChange}
+              // resultSortType={state.order}
             />
           </DialogProvider>
         </div>

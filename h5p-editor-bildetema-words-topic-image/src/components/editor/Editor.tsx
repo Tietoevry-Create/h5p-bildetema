@@ -434,8 +434,9 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
                 </button>
 
                 <button
-                  className={`${styles.button} ${hideHotspotsWhileDrawing ? styles.active : ""
-                    }`}
+                  className={`${styles.button} ${
+                    hideHotspotsWhileDrawing ? styles.active : ""
+                  }`}
                   type="button"
                   onClick={() => sethideHotspotsWhileDrawing(prev => !prev)}
                 >

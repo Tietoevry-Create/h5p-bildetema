@@ -96,8 +96,9 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
 
   return (
     <div
-      className={`${styles.wordAudio} ${playing ? styles.wordAudio_active : ""
-        } ${showAsSelected ? styles.selected : ""}`}
+      className={`${styles.wordAudio} ${
+        playing ? styles.wordAudio_active : ""
+      } ${showAsSelected ? styles.selected : ""}`}
     >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} onEnded={handleAudioEnded}>
