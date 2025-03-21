@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { JSX, useMemo, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";

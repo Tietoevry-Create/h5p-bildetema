@@ -1,4 +1,4 @@
-import { MouseEvent, useMemo, useState } from "react";
+import { JSX, MouseEvent, useMemo, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";

@@ -1,6 +1,7 @@
 import Dialog from "common/components/Dialog/Dialog";
 import TextInput from "common/components/TextInput/TextInput";
 import { Button } from "common/components/Button/Button";
+import { JSX } from "react";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./EditDialog.module.scss";
 

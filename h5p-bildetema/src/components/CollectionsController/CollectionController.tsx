@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
+import { JSX, useEffect, useMemo, useState } from "react";
 import { STATIC_PATH } from "common/constants/paths";
 import { searchResultsIncludesArticles } from "common/utils/word.utils";
 import { useH5PInstance } from "use-h5p";

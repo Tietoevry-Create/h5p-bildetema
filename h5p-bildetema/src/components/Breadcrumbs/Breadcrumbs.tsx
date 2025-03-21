@@ -2,7 +2,7 @@
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics } from "common/types/types";
 import { labelToUrlComponent } from "common/utils/string.utils";
-import { FC, ReactPortal } from "react";
+import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { STATIC_PATH } from "common/constants/paths";
@@ -18,6 +18,12 @@ import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
 import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
 import { getLabelFromTranslationRecord } from "../../utils/db.utils";
 import styles from "./Breadcrumbs.module.scss";
+
+type RouteBreadCrumb = {
+  props: {
+    children: string;
+  };
+};
 
 export type BreadcrumbsProps = {
   breadCrumbs?: {
@@ -58,7 +64,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
     routeBreadCrumbs.slice(1).map(({ breadcrumb, key }) => {
       const label = ((): string => {
         const urlComponent = `${decodeURIComponent(
-          (breadcrumb as ReactPortal).props.children,
+          (breadcrumb as RouteBreadCrumb).props.children,
         )}`;
         if (!currentTopics) {
           return urlComponent;

@@ -36,7 +36,9 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
         contextAudioRef.current.pause();
         contextAudioRef.current.currentTime = 0;
       }
-      setContextAudioRef(audioRef);
+      if (audioRef.current) {
+        setContextAudioRef(audioRef as React.RefObject<HTMLAudioElement>);
+      }
       audioElement.play();
     }
     setPlaying(!playing);

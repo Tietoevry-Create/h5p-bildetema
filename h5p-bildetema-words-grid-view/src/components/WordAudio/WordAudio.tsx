@@ -41,7 +41,9 @@ export const WordAudio: FC<WordAudioProps> = ({
         contextAudioRef.current.pause();
         contextAudioRef.current.currentTime = 0;
       }
-      setContextAudioRef(audioRef);
+      if (audioRef.current) {
+        setContextAudioRef(audioRef as React.RefObject<HTMLAudioElement>);
+      }
       audioElement.play();
     }
 

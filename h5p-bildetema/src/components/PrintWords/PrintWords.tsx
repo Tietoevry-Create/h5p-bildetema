@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, JSX } from "react";
 import { useParams } from "react-router-dom";
 import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { toSingleLabel } from "common/utils/word.utils";

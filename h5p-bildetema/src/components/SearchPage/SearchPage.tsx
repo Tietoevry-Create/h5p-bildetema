@@ -1,4 +1,4 @@
-import React, { useDeferredValue } from "react";
+import { JSX, useState, useDeferredValue } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Language } from "common/types/types";
 import { useDebouncedCallback } from "use-debounce";
@@ -40,14 +40,14 @@ const SearchPage = (): JSX.Element => {
   const siteLanguage = useSiteLanguage();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchLanguage, setSearchLanguage] = React.useState<Language>(
+  const [searchLanguage, setSearchLanguage] = useState<Language>(
     languages.find(lang => lang.code === langCode) || siteLanguage,
   );
 
   const viewLangCode = searchParams.get(SearchParamKeys.VIEW_LANG);
 
   // TODO: if current language is not Norwegian, set viewLanguage to Norwegian
-  const [viewLanguages, setViewLanguages] = React.useState<Language[]>(() => {
+  const [viewLanguages, setViewLanguages] = useState<Language[]>(() => {
     const viewLangs: Language[] = [];
     if (viewLangCode) {
       if (isLanguageCode(viewLangCode))

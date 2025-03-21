@@ -1,5 +1,6 @@
 import { Language } from "common/types/types";
 import { STATIC_PATH } from "common/constants/paths";
+import { JSX } from "react";
 import SearchInput from "../SearchInput/SearchInput";
 import Select, { OptionType } from "../../Select/Select";
 import { Breadcrumbs } from "../../Breadcrumbs/Breadcrumbs";

@@ -1,5 +1,6 @@
 import { Button } from "common/components/Button";
 import Dialog from "common/components/Dialog/Dialog";
+import { JSX } from "react";
 import styles from "./DeleteDialog.module.scss";
 import { useL10ns } from "../../hooks/useL10n";
 

@@ -1,4 +1,4 @@
-import { FC, MouseEvent, RefObject } from "react";
+import { FC, JSX, MouseEvent, RefObject } from "react";
 import { Hotspot } from "../../types/Hotspot";
 import { Point } from "../../types/Point";
 import { PointWithIndex } from "../../types/PointWithIndex";

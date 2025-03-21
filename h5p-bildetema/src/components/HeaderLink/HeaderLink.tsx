@@ -1,11 +1,11 @@
-import React from "react";
+import { JSX } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeaderLink.module.scss";
 
 type HeaderLinkProps = {
   href: string;
   label: string;
-  icon: React.JSX.Element;
+  icon: JSX.Element;
 };
 
 const HeaderLink = ({ href, label, icon }: HeaderLinkProps): JSX.Element => {
