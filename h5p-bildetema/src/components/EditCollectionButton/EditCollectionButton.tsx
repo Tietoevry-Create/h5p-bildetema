@@ -13,7 +13,7 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
   editMode,
   setEditMode,
 }) => {
-  const { edit, save } = useL10ns("edit", "save");
+  const { edit, done } = useL10ns("edit", "done");
 
   return (
     <Button
@@ -22,7 +22,7 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
       className={editMode ? styles.active : ""}
     >
       <EditIcon />
-      <span>{editMode ? save : edit}</span>
+      <span>{editMode ? done : edit}</span>
     </Button>
   );
 };

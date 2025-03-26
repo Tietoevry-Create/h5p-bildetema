@@ -253,8 +253,12 @@
           "default": "Rediger"
         },
         {
-          "label": "Save",
-          "default": "Spare"
+          "label": "Done",
+          "default": "Parat"
+        },
+        {
+          "label": "Move word",
+          "default": "Flyt ord"
         },
         {
           "label": "Description text for sorting words in a collection",

@@ -68,12 +68,14 @@ export const SortableMultiLanguageWord = ({
   const {
     prevImageLabel,
     nextImageLabel,
+    moveWord,
     deleteWord,
     deleteWordConfirmation,
     wordRemovedFromCollection,
   } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
+    "moveWord",
     "deleteWord",
     "deleteWordConfirmation",
     "wordRemovedFromCollection",
@@ -83,7 +85,9 @@ export const SortableMultiLanguageWord = ({
     useSortable({ id });
 
   const style = {
-    transform: transform ? CSS.Transform.toString({ ...transform, scaleX: 1, scaleY: 1 }) : undefined,
+    transform: transform
+      ? CSS.Transform.toString({ ...transform, scaleX: 1, scaleY: 1 })
+      : undefined,
     transition,
   };
 
@@ -214,7 +218,7 @@ export const SortableMultiLanguageWord = ({
       <button
         type="button"
         className={styles.dragHandle}
-        aria-label="Reorder"
+        aria-label={moveWord}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...attributes}
         // eslint-disable-next-line react/jsx-props-no-spreading

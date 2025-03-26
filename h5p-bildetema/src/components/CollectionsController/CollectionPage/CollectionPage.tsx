@@ -19,7 +19,6 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 import { useMyCollections } from "common/hooks/useMyCollections";
-import { enqueueSnackbar } from "notistack";
 import { useCollectionWords } from "../../../hooks/useSelectedWords";
 import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
@@ -124,9 +123,6 @@ const CollectionPage = ({
     const newWords = sortedWords.map(word => word.id);
     updateCollectionWordIds(newWords, collectionId);
     changeWordOrderInUrlParams(newWords);
-    enqueueSnackbar("Endringer lagret", {
-      variant: "success",
-    });
   };
 
   const autoSaveChanges = (): void => {
@@ -136,8 +132,9 @@ const CollectionPage = ({
   };
 
   useEffect(() => {
-    const hasChanges = !words.every(
-      (word, index) => word.id === sortedWords[index].id,
+    const wordIds = searchParams.get("words")?.split(",") || [];
+    const hasChanges = !wordIds.every(
+      (wordId, index) => wordId === sortedWords[index].id,
     );
 
     if (!editMode && hasChanges) {
@@ -147,10 +144,8 @@ const CollectionPage = ({
   }, [editMode]);
 
   useEffect(() => {
-    if (editMode) {
-      // Reset sortedWords when language changes, else the language will be wrong
-      setSortedWords(words);
-    }
+    // Reset sortedWords when language changes, else the language will be wrong
+    setSortedWords(words);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
@@ -222,7 +217,7 @@ const CollectionPage = ({
         {words.map(word => (
           <MultiLanguageWord
             key={word.id}
-            searchResult={word}
+            multiLanguageWord={word}
             showWrittenWords={showWrittenWords}
             showArticles={showArticles}
           />

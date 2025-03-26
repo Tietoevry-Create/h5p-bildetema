@@ -379,9 +379,15 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
-				label: "Save",
-				name: "save",
-				"default": "Save",
+				label: "Done",
+				name: "done",
+				"default": "Done",
+				type: "text"
+			},
+			{
+				label: "Move word",
+				name: "moveWord",
+				"default": "Move word",
 				type: "text"
 			},
 			{

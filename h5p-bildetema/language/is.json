@@ -253,8 +253,12 @@
           "default": "Breyta"
         },
         {
-          "label": "Save",
-          "default": "Vista"
+          "label": "Done",
+          "default": "Tilbúið"
+        },
+        {
+          "label": "Move word",
+          "default": "Færa orð"
         },
         {
           "label": "Description text for sorting words in a collection",

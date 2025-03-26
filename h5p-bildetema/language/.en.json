@@ -253,8 +253,12 @@
           "default": "Edit"
         },
         {
-          "label": "Save",
-          "default": "Save"
+          "label": "Done",
+          "default": "Done"
+        },
+        {
+          "label": "Move word",
+          "default": "Move word"
         },
         {
           "label": "Description text for sorting words in a collection",
