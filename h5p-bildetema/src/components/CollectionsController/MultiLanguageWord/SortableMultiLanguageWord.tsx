@@ -207,7 +207,7 @@ export const SortableMultiLanguageWord = ({
 
   return (
     <li
-      className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`}
+      className={`${styles.card} ${editMode ? styles.editMode : ""}`}
       ref={setNodeRef}
       style={style}
     >
