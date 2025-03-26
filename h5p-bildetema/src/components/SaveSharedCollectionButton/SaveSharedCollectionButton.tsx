@@ -4,6 +4,7 @@ import { useMyCollections } from "common/hooks/useMyCollections";
 import { useParams, useSearchParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { enqueueSnackbar } from "notistack";
+import { JSX } from "react";
 import { useL10ns } from "../../hooks/useL10n";
 
 const SaveSharedCollectionButton = (): JSX.Element => {

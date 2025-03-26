@@ -16,6 +16,7 @@ import {
   BookmarkIcon,
 } from "common/components/Icons/Icons";
 import { useMyCollections } from "common/hooks/useMyCollections";
+import { JSX } from "react";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
 import styles from "./SearchResultCard.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";

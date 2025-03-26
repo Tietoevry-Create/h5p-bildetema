@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { JSX, useEffect, useRef } from "react";
 import styles from "./TextInput.module.scss";
 
 export type TextInputProps = {

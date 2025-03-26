@@ -31,6 +31,10 @@
   overflow-x: auto;
   padding: $spacing--16 0;
 
+  /* Styling for Firefox */
+  scrollbar-width: 0.75rem;
+  scrollbar-color: rgba(255, 255, 255, 0.6);
+
   &::-webkit-scrollbar {
     -webkit-appearance: none;
   }
@@ -48,10 +52,6 @@
     border: 2px solid $burgundy; // should match background, can't be transparent
     border-radius: 0.5rem;
   }
-
-  /* Styling for Firefox */
-  scrollbar-width: 0.75rem;
-  scrollbar-color: rgba(255, 255, 255, 0.6);
 
   li {
     list-style-type: none;

@@ -51,7 +51,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const setValue = useContext(SetValueContext);
 
-  const timer = useRef<NodeJS.Timeout>();
+  const timer = useRef<NodeJS.Timeout>(null);
   const click = useRef<Click>(Click.SINGLE);
 
   const [selectedWordId, setSelectedWord] = useState<string | null>(null);
@@ -479,7 +479,9 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
           }}
           onDoubleClick={() => {
             click.current = Click.DOUBLE;
-            clearTimeout(timer.current);
+            if (timer.current) {
+              clearTimeout(timer.current);
+            }
           }}
           onKeyDown={() => null}
           role="button"
@@ -493,7 +495,7 @@ export const Editor: FC<EditorProps> = ({ image, words, initialHotspots }) => {
             handleShapeClick={hotspotId => handleWordSelected(hotspotId)}
             handleShapeDrag={handleShapeDrag}
             aspectRatio={aspectRatio}
-            canvasRef={canvasRef}
+            canvasRef={canvasRef as React.RefObject<HTMLDivElement>}
             isDraggingEllipsePoint={isDraggingEllipsePoint}
             setIsDraggingEllipsePoint={setIsDraggingEllipsePoint}
             hideHotspotsWhileDrawing={hideHotspotsWhileDrawing}

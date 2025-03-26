@@ -1,4 +1,4 @@
-import React from "react";
+import { JSX } from "react";
 import {
   Dialog as HeadlessDialog,
   DialogPanel,
@@ -21,7 +21,7 @@ const Dialog = ({
   title,
   description,
   children,
-}: dialogProps): React.JSX.Element => {
+}: dialogProps): JSX.Element => {
   return (
     <HeadlessDialog open={open} onClose={onClose}>
       <div className={styles.backdrop} aria-hidden />

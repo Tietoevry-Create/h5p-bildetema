@@ -1,6 +1,6 @@
 import { LanguageCode } from "common/types/LanguageCode";
 import { CurrentTopics, TopicGridSizes } from "common/types/types";
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import { Dispatch, FC, JSX, SetStateAction, useEffect } from "react";
 import { useContentId } from "use-h5p";
 import { useL10ns } from "../../hooks/useL10n";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";

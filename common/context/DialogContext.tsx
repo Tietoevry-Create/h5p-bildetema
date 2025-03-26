@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState } from "react";
+import { ReactNode, createContext, JSX, useMemo, useState } from "react";
 
 export type DialogContextType = {
   isOpen: boolean;
@@ -12,7 +12,7 @@ export const DialogContext = createContext<DialogContextType | undefined>(
 );
 
 export type ChooseCollectionDialogProviderType = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const DialogProvider = ({

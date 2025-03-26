@@ -81,10 +81,11 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  transition-duration: 0.2s;
+
   &:not(:last-child) {
     border-bottom: 1px solid lightgrey;
   }
-  transition-duration: 0.2s;
 
   &:hover {
     background: $beige;

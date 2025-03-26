@@ -1,6 +1,6 @@
 import { Button } from "common/components/Button";
 import { SuccessIcon, LinkIcon } from "common/components/Icons/Icons";
-import { useState } from "react";
+import { JSX, useState } from "react";
 import { useL10ns } from "../../hooks/useL10n";
 
 const ShareButton = (): JSX.Element => {
