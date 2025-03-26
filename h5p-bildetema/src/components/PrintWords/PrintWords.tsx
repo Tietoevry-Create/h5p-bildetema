@@ -69,7 +69,7 @@ export const PrintWords = forwardRef<HTMLDivElement, PrintWordsProps>(
               word.images?.at(0) ||
               "";
 
-            const img = getImageSrc(activeImage, backendUrl);
+            const img = getImageSrc(activeImage, backendUrl, "xlarge");
             return (
               <td key={word.id}>
                 <div className={styles.content}>
