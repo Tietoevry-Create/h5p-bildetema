@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Button } from "common/components/Button";
-import { EditIcon } from "common/components/Icons/Icons";
+import { SuccessIcon, EditIcon } from "common/components/Icons/Icons";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./EditCollectionButton.module.scss";
 
@@ -21,7 +21,7 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
       onClick={() => setEditMode(!editMode)}
       className={editMode ? styles.active : ""}
     >
-      <EditIcon />
+      {editMode ? <SuccessIcon /> : <EditIcon />}
       <span>{editMode ? done : edit}</span>
     </Button>
   );
