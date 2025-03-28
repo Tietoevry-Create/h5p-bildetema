@@ -217,40 +217,42 @@ export const MultiLanguageWord = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className={styles.card}>
-      <div className={styles.image_container}>{renderImages()}</div>
-      <div className={styles.translations}>
-        {multiLanguageWord.translations.map((translation, index) => (
-          <div
-            className={styles.translation}
-            // Todo fix key when we never can have multiple of same language
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${translation.lang.code}-${index}`}
-          >
-            {multiLanguageWord.translations.length > 1 && (
-              <span className={styles.translationLang}>
-                {translatedLabel(
-                  translation.lang.code,
-                  translations,
-                ).toUpperCase()}
-              </span>
-            )}
-            <Audio
-              label={
-                showWrittenWords
-                  ? toSingleLabel(translation.labels, showArticles)
-                  : ""
-              }
-              lang={lang}
-              labelLang={getLanguageAttribute(translation.lang.code)}
-              playAudioLabel={playAudioLabel}
-              stopAudioLabel={stopAudioLabel}
-              audioFiles={translation.audioFiles}
-              rtl={translation.lang.rtl}
-              lowerCaseLabel
-            />
-          </div>
-        ))}
+    <li role="listitem" className={styles.cardWrapper}>
+      <div className={styles.card}>
+        <div className={styles.image_container}>{renderImages()}</div>
+        <div className={styles.translations}>
+          {multiLanguageWord.translations.map((translation, index) => (
+            <div
+              className={styles.translation}
+              // Todo fix key when we never can have multiple of same language
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${translation.lang.code}-${index}`}
+            >
+              {multiLanguageWord.translations.length > 1 && (
+                <span className={styles.translationLang}>
+                  {translatedLabel(
+                    translation.lang.code,
+                    translations,
+                  ).toUpperCase()}
+                </span>
+              )}
+              <Audio
+                label={
+                  showWrittenWords
+                    ? toSingleLabel(translation.labels, showArticles)
+                    : ""
+                }
+                lang={lang}
+                labelLang={getLanguageAttribute(translation.lang.code)}
+                playAudioLabel={playAudioLabel}
+                stopAudioLabel={stopAudioLabel}
+                audioFiles={translation.audioFiles}
+                rtl={translation.lang.rtl}
+                lowerCaseLabel
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </li>
   );

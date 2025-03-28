@@ -1,5 +1,9 @@
 @use "common/abstracts" as *;
 
+.cardWrapper {
+  list-style: none;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -52,7 +56,6 @@
   &.card {
     border-color: $teal-100;
     cursor: grab;
-    display: inline-block;
     touch-action: none;
 
     &:hover {
