@@ -20,7 +20,6 @@ import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
-import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import {
@@ -28,6 +27,7 @@ import {
   useCurrentLanguageCode,
 } from "../../../hooks/useCurrentLanguage";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
+import styles from "./MultiLanguageWord.module.scss";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -214,7 +214,7 @@ export const SortableMultiLanguageWord = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    <li className={`${styles.cardWrapper}`} ref={setNodeRef}>
+    <li className={styles.cardWrapper} ref={setNodeRef}>
       <div
         className={`${styles.card} ${editMode ? styles.editMode : ""}`}
         style={style}

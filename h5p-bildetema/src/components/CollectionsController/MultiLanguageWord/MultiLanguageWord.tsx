@@ -18,7 +18,6 @@ import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
-import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import {
@@ -28,6 +27,7 @@ import {
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { environment, useEnvironment } from "../../../hooks/useEnvironment";
+import styles from "./MultiLanguageWord.module.scss";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
