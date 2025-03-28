@@ -6,12 +6,13 @@ import { STATIC_PATH } from "common/constants/paths";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import {
   DndContext,
-  closestCenter,
   KeyboardSensor,
-  PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
+  DragOverEvent,
+  closestCorners,
+  MouseSensor,
+  TouchSensor,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -46,11 +47,8 @@ const CollectionPage = ({
   const words = useCollectionWords();
   const [sortedWords, setSortedWords] = useState(words);
   const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    }),
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
@@ -92,7 +90,13 @@ const CollectionPage = ({
     replacements,
   );
 
-  const handleDragEnd = (event: DragEndEvent): void => {
+  const autoSaveChanges = (): void => {
+    if (!collectionId) return;
+    const newWords = sortedWords.map(word => word.id);
+    updateCollectionWordIds(newWords, collectionId);
+  };
+
+  const handleDragOver = (event: DragOverEvent): void => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
@@ -105,6 +109,10 @@ const CollectionPage = ({
         return arrayMove(prevSortedWords, oldIndex, newIndex);
       });
     }
+  };
+
+  const handleDragEnd = (): void => {
+    autoSaveChanges();
   };
 
   const changeWordOrderInUrlParams = (newWordIds: string[]): void => {
@@ -125,12 +133,6 @@ const CollectionPage = ({
     changeWordOrderInUrlParams(newWords);
   };
 
-  const autoSaveChanges = (): void => {
-    if (!collectionId) return;
-    const newWords = sortedWords.map(word => word.id);
-    updateCollectionWordIds(newWords, collectionId);
-  };
-
   useEffect(() => {
     const wordIds = searchParams.get("words")?.split(",") || [];
     const hasChanges = !wordIds.every(
@@ -148,14 +150,6 @@ const CollectionPage = ({
     setSortedWords(words);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
-
-  useEffect(() => {
-    if (editMode) {
-      // Save changes if user navigates away from the page
-      autoSaveChanges();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortedWords]);
 
   if (words.length === 0) {
     return (
@@ -187,7 +181,8 @@ const CollectionPage = ({
       <div className={styles.editWrapper}>
         <DndContext
           sensors={sensors}
-          collisionDetection={closestCenter}
+          collisionDetection={closestCorners}
+          onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={sortedWords}>

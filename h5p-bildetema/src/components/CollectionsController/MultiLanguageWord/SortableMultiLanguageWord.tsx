@@ -85,9 +85,7 @@ export const SortableMultiLanguageWord = ({
     useSortable({ id });
 
   const style = {
-    transform: transform
-      ? CSS.Transform.toString({ ...transform, scaleX: 1, scaleY: 1 })
-      : undefined,
+    transform: transform ? CSS.Translate.toString(transform) : undefined,
     transition,
   };
 

@@ -52,6 +52,7 @@
   &.card {
     border-color: $teal-100;
     cursor: grab;
+    display: inline-block;
     touch-action: none;
 
     &:hover {
