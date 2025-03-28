@@ -11,8 +11,7 @@ import {
   useSensors,
   DragOverEvent,
   closestCorners,
-  MouseSensor,
-  TouchSensor,
+  PointerSensor,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -47,8 +46,11 @@ const CollectionPage = ({
   const words = useCollectionWords();
   const [sortedWords, setSortedWords] = useState(words);
   const sensors = useSensors(
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
@@ -96,7 +98,7 @@ const CollectionPage = ({
     updateCollectionWordIds(newWords, collectionId);
   };
 
-  const handleDragOver = (event: DragOverEvent): void => {
+  const handleDragEnd = (event: DragOverEvent): void => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
@@ -108,11 +110,8 @@ const CollectionPage = ({
 
         return arrayMove(prevSortedWords, oldIndex, newIndex);
       });
+      autoSaveChanges();
     }
-  };
-
-  const handleDragEnd = (): void => {
-    autoSaveChanges();
   };
 
   const changeWordOrderInUrlParams = (newWordIds: string[]): void => {
@@ -182,7 +181,6 @@ const CollectionPage = ({
         <DndContext
           sensors={sensors}
           collisionDetection={closestCorners}
-          onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={sortedWords}>
