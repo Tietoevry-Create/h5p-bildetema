@@ -6,11 +6,13 @@ import { STATIC_PATH } from "common/constants/paths";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import {
   DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
   useSensor,
   useSensors,
+  PointerSensor,
+  KeyboardSensor,
+  closestCorners,
+  DragStartEvent,
+  DragOverEvent,
   DragEndEvent,
 } from "@dnd-kit/core";
 import {
@@ -19,14 +21,13 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 import { useMyCollections } from "common/hooks/useMyCollections";
-import { enqueueSnackbar } from "notistack";
 import { useCollectionWords } from "../../../hooks/useSelectedWords";
-import styles from "./CollectionPage.module.scss";
 import { MultiLanguageWord } from "../MultiLanguageWord/MultiLanguageWord";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { useL10ns } from "../../../hooks/useL10n";
 import { SortableMultiLanguageWord } from "../MultiLanguageWord/SortableMultiLanguageWord";
+import styles from "./CollectionPage.module.scss";
 
 type MyCollection = {
   showArticles: boolean;
@@ -45,6 +46,7 @@ const CollectionPage = ({
   const { isCollectionOwner, collectionId } = useCurrentCollection();
   const { updateCollectionWordIds } = useMyCollections();
   const words = useCollectionWords();
+  const [isKeyboardEvent, setIsKeyboardEvent] = useState(false);
   const [sortedWords, setSortedWords] = useState(words);
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -93,8 +95,59 @@ const CollectionPage = ({
     replacements,
   );
 
+  const handleDragStart = (event: DragStartEvent): void => {
+    if (event.activatorEvent && event.activatorEvent.type === "keydown") {
+      setIsKeyboardEvent(true);
+    }
+  };
+
+  /**
+   * Handles the keyboard drag over event.
+   * It updates the order of the items in sortedWords.
+   * We use onDragOver for keyboard events because it provides a better placement for the dragged item,
+   * and it avoids the height of the dragged item potentially overlapping the other items when moved.
+   * @param {DragOverEvent} event - The drag over event.
+   */
+  const handleKeyboardDragOver = (event: DragOverEvent): void => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setSortedWords(prevSortedWords => {
+        const oldIndex = prevSortedWords.findIndex(
+          word => word.id === active.id,
+        );
+        const newIndex = prevSortedWords.findIndex(word => word.id === over.id);
+
+        return arrayMove(prevSortedWords, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const handleDragOver = (event: DragOverEvent): void => {
+    if (event.activatorEvent && event.activatorEvent.type === "keydown") {
+      handleKeyboardDragOver(event);
+    } else if (isKeyboardEvent) {
+      setIsKeyboardEvent(false);
+    }
+  };
+
+  /**
+   * Handles the end of a drag event.
+   * If the drag was initiated by a keyboard event, it saves the changes.
+   * If the drag was initiated by a mouse or touch event it updates the order of the items.
+   * We use onDragEnd for mouse and touch events because it gives a better dragging experience.
+   * @param {DragEndEvent} event - The drag end event.
+   */
   const handleDragEnd = (event: DragEndEvent): void => {
     const { active, over } = event;
+
+    if (isKeyboardEvent) {
+      setIsKeyboardEvent(false);
+    }
+
+    if (event.activatorEvent && event.activatorEvent.type === "keydown") {
+      return;
+    }
 
     if (over && active.id !== over.id) {
       setSortedWords(prevSortedWords => {
@@ -124,9 +177,6 @@ const CollectionPage = ({
     const newWords = sortedWords.map(word => word.id);
     updateCollectionWordIds(newWords, collectionId);
     changeWordOrderInUrlParams(newWords);
-    enqueueSnackbar("Endringer lagret", {
-      variant: "success",
-    });
   };
 
   const autoSaveChanges = (): void => {
@@ -136,8 +186,9 @@ const CollectionPage = ({
   };
 
   useEffect(() => {
-    const hasChanges = !words.every(
-      (word, index) => word.id === sortedWords[index].id,
+    const wordIds = searchParams.get("words")?.split(",") || [];
+    const hasChanges = !wordIds.every(
+      (wordId, index) => wordId === sortedWords[index].id,
     );
 
     if (!editMode && hasChanges) {
@@ -147,10 +198,8 @@ const CollectionPage = ({
   }, [editMode]);
 
   useEffect(() => {
-    if (editMode) {
-      // Reset sortedWords when language changes, else the language will be wrong
-      setSortedWords(words);
-    }
+    // Reset sortedWords when language changes, else the language will be wrong
+    setSortedWords(words);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
@@ -192,7 +241,9 @@ const CollectionPage = ({
       <div className={styles.editWrapper}>
         <DndContext
           sensors={sensors}
-          collisionDetection={closestCenter}
+          collisionDetection={closestCorners}
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={sortedWords}>
@@ -206,6 +257,7 @@ const CollectionPage = ({
                   showArticles={showArticles}
                   editMode={editMode}
                   removeWord={removeWordFromSortedWords}
+                  isKeyboardEvent={isKeyboardEvent}
                 />
               ))}
             </ul>
@@ -222,7 +274,7 @@ const CollectionPage = ({
         {words.map(word => (
           <MultiLanguageWord
             key={word.id}
-            searchResult={word}
+            multiLanguageWord={word}
             showWrittenWords={showWrittenWords}
             showArticles={showArticles}
           />

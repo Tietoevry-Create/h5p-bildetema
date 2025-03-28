@@ -1,6 +1,10 @@
 @use "common/abstracts" as *;
 
-.searchResultCard {
+.cardWrapper {
+  list-style: none;
+}
+
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +53,7 @@
 }
 
 .editMode {
-  &.searchResultCard {
+  &.card {
     border-color: $teal-100;
     cursor: grab;
     touch-action: none;

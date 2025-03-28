@@ -20,7 +20,6 @@ import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
-import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import {
@@ -28,6 +27,7 @@ import {
   useCurrentLanguageCode,
 } from "../../../hooks/useCurrentLanguage";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
+import styles from "./MultiLanguageWord.module.scss";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -43,6 +43,7 @@ type SortableMultiLanguageWordProps = {
   editMode: boolean;
   id: string;
   removeWord: (wordId: string) => void;
+  isKeyboardEvent?: boolean;
 };
 
 export const SortableMultiLanguageWord = ({
@@ -52,6 +53,7 @@ export const SortableMultiLanguageWord = ({
   editMode,
   id,
   removeWord,
+  isKeyboardEvent = false,
 }: SortableMultiLanguageWordProps): JSX.Element => {
   const { images } = multiLanguageWord;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
@@ -68,12 +70,14 @@ export const SortableMultiLanguageWord = ({
   const {
     prevImageLabel,
     nextImageLabel,
+    moveWord,
     deleteWord,
     deleteWordConfirmation,
     wordRemovedFromCollection,
   } = useL10ns(
     "prevImageLabel",
     "nextImageLabel",
+    "moveWord",
     "deleteWord",
     "deleteWordConfirmation",
     "wordRemovedFromCollection",
@@ -83,7 +87,11 @@ export const SortableMultiLanguageWord = ({
     useSortable({ id });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: transform
+      ? CSS.Translate.toString(
+          isKeyboardEvent ? { ...transform, y: 0 } : transform,
+        )
+      : undefined,
     transition,
   };
 
@@ -206,75 +214,76 @@ export const SortableMultiLanguageWord = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    <li
-      className={`${styles.searchResultCard} ${editMode ? styles.editMode : ""}`}
-      ref={setNodeRef}
-      style={style}
-    >
-      <button
-        type="button"
-        className={styles.dragHandle}
-        aria-label="Reorder"
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...attributes}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...listeners}
-      />
-      {isCollectionOwner ? (
-        <>
-          <Button
-            variant="circle"
-            className={styles.deleteButton}
-            aria-label={deleteWord}
-            onClick={event => handleOnDelete(event)}
-          >
-            <DeleteIcon />
-          </Button>
-          <DeleteDialog
-            open={openDialog === OpenDialog.DELETE_DIALOG}
-            title={deleteWord}
-            description={deleteWordConfirmation}
-            itemToDeleteTitle={toSingleLabel(wordTranslation?.labels)}
-            onClose={() => setOpenDialog(OpenDialog.NONE)}
-            onDelete={handleDeleteWord}
-          />
-        </>
-      ) : (
-        ""
-      )}
-      <div className={styles.image_container}>{renderImages()}</div>
-      <div className={styles.translations}>
-        {multiLanguageWord.translations.map((translation, index) => (
-          <div
-            className={styles.translation}
-            // Todo fix key when we never can have multiple of same language
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${translation.lang.code}-${index}`}
-          >
-            {multiLanguageWord.translations.length > 1 && (
-              <span className={styles.translationLang}>
-                {translatedLabel(
-                  translation.lang.code,
-                  translations,
-                ).toUpperCase()}
-              </span>
-            )}
-            <Audio
-              label={
-                showWrittenWords
-                  ? toSingleLabel(translation.labels, showArticles)
-                  : ""
-              }
-              lang={lang}
-              labelLang={getLanguageAttribute(translation.lang.code)}
-              playAudioLabel={playAudioLabel}
-              stopAudioLabel={stopAudioLabel}
-              audioFiles={translation.audioFiles}
-              rtl={translation.lang.rtl}
-              lowerCaseLabel
+    <li className={styles.cardWrapper} ref={setNodeRef}>
+      <div
+        className={`${styles.card} ${editMode ? styles.editMode : ""}`}
+        style={style}
+      >
+        <button
+          type="button"
+          className={styles.dragHandle}
+          aria-label={moveWord}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...attributes}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...listeners}
+        />
+        {isCollectionOwner ? (
+          <>
+            <Button
+              variant="circle"
+              className={styles.deleteButton}
+              aria-label={deleteWord}
+              onClick={event => handleOnDelete(event)}
+            >
+              <DeleteIcon />
+            </Button>
+            <DeleteDialog
+              open={openDialog === OpenDialog.DELETE_DIALOG}
+              title={deleteWord}
+              description={deleteWordConfirmation}
+              itemToDeleteTitle={toSingleLabel(wordTranslation?.labels)}
+              onClose={() => setOpenDialog(OpenDialog.NONE)}
+              onDelete={handleDeleteWord}
             />
-          </div>
-        ))}
+          </>
+        ) : (
+          ""
+        )}
+        <div className={styles.image_container}>{renderImages()}</div>
+        <div className={styles.translations}>
+          {multiLanguageWord.translations.map((translation, index) => (
+            <div
+              className={styles.translation}
+              // Todo fix key when we never can have multiple of same language
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${translation.lang.code}-${index}`}
+            >
+              {multiLanguageWord.translations.length > 1 && (
+                <span className={styles.translationLang}>
+                  {translatedLabel(
+                    translation.lang.code,
+                    translations,
+                  ).toUpperCase()}
+                </span>
+              )}
+              <Audio
+                label={
+                  showWrittenWords
+                    ? toSingleLabel(translation.labels, showArticles)
+                    : ""
+                }
+                lang={lang}
+                labelLang={getLanguageAttribute(translation.lang.code)}
+                playAudioLabel={playAudioLabel}
+                stopAudioLabel={stopAudioLabel}
+                audioFiles={translation.audioFiles}
+                rtl={translation.lang.rtl}
+                lowerCaseLabel
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </li>
   );

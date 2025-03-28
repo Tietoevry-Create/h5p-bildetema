@@ -18,7 +18,6 @@ import { DeleteIcon, MoreVertIcon } from "common/components/Icons/Icons";
 import { enqueueSnackbar } from "notistack";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { useL10ns, useL10n } from "../../../hooks/useL10n";
-import styles from "./MultiLanguageWord.module.scss";
 import { translatedLabel } from "../../../utils/language.utils";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import {
@@ -28,6 +27,7 @@ import {
 import { Menu, MenuItem, MenuItems, MenuButton } from "../../Menu";
 import useCurrentCollection from "../../../hooks/useCurrentCollection";
 import { environment, useEnvironment } from "../../../hooks/useEnvironment";
+import styles from "./MultiLanguageWord.module.scss";
 
 const OpenDialog = {
   DELETE_DIALOG: "DELETE_DIALOG",
@@ -36,28 +36,28 @@ const OpenDialog = {
 
 type OpenDialog = (typeof OpenDialog)[keyof typeof OpenDialog];
 
-type SearchResultCardProps = {
-  searchResult: SearchResult;
+type MultiLanguageWordProps = {
+  multiLanguageWord: SearchResult;
   showArticles: boolean;
   showWrittenWords: boolean;
 };
 
 export const MultiLanguageWord = ({
-  searchResult,
+  multiLanguageWord,
   showArticles,
   showWrittenWords,
-}: SearchResultCardProps): JSX.Element => {
+}: MultiLanguageWordProps): JSX.Element => {
   const env = useEnvironment();
-  const { images } = searchResult;
+  const { images } = multiLanguageWord;
   const [openDialog, setOpenDialog] = useState<OpenDialog>(OpenDialog.NONE);
   const { isCollectionOwner, collectionId, collectionName } =
     useCurrentCollection();
   const { deleteWordFromCollection } = useMyCollections();
   const [searchParams, setSearchParams] = useSearchParams();
   const langCode = useCurrentLanguageCode();
-  const searchResultTranslation = useMemo(
-    () => searchResult.translations.find(x => x.lang.code === langCode),
-    [langCode, searchResult.translations],
+  const wordTranslation = useMemo(
+    () => multiLanguageWord.translations.find(x => x.lang.code === langCode),
+    [langCode, multiLanguageWord.translations],
   );
 
   const shouldIncludeMoreButton = env === environment.prod;
@@ -108,8 +108,8 @@ export const MultiLanguageWord = ({
   };
 
   const handleDeleteWord = (): void => {
-    deleteWordFromCollection(collectionId ?? "", searchResult.id);
-    removeWordFromUrlParams(searchResult.id);
+    deleteWordFromCollection(collectionId ?? "", multiLanguageWord.id);
+    removeWordFromUrlParams(multiLanguageWord.id);
     enqueueSnackbar(getMessage(), {
       variant: "success",
     });
@@ -141,7 +141,7 @@ export const MultiLanguageWord = ({
               open={openDialog === OpenDialog.DELETE_DIALOG}
               title={deleteWord}
               description={deleteWordConfirmation}
-              itemToDeleteTitle={toSingleLabel(searchResultTranslation?.labels)}
+              itemToDeleteTitle={toSingleLabel(wordTranslation?.labels)}
               onClose={() => setOpenDialog(OpenDialog.NONE)}
               onDelete={handleDeleteWord}
             />
@@ -217,40 +217,42 @@ export const MultiLanguageWord = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className={styles.searchResultCard}>
-      <div className={styles.image_container}>{renderImages()}</div>
-      <div className={styles.translations}>
-        {searchResult.translations.map((translation, index) => (
-          <div
-            className={styles.translation}
-            // Todo fix key when we never can have multiple of same language
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${translation.lang.code}-${index}`}
-          >
-            {searchResult.translations.length > 1 && (
-              <span className={styles.translationLang}>
-                {translatedLabel(
-                  translation.lang.code,
-                  translations,
-                ).toUpperCase()}
-              </span>
-            )}
-            <Audio
-              label={
-                showWrittenWords
-                  ? toSingleLabel(translation.labels, showArticles)
-                  : ""
-              }
-              lang={lang}
-              labelLang={getLanguageAttribute(translation.lang.code)}
-              playAudioLabel={playAudioLabel}
-              stopAudioLabel={stopAudioLabel}
-              audioFiles={translation.audioFiles}
-              rtl={translation.lang.rtl}
-              lowerCaseLabel
-            />
-          </div>
-        ))}
+    <li role="listitem" className={styles.cardWrapper}>
+      <div className={styles.card}>
+        <div className={styles.image_container}>{renderImages()}</div>
+        <div className={styles.translations}>
+          {multiLanguageWord.translations.map((translation, index) => (
+            <div
+              className={styles.translation}
+              // Todo fix key when we never can have multiple of same language
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${translation.lang.code}-${index}`}
+            >
+              {multiLanguageWord.translations.length > 1 && (
+                <span className={styles.translationLang}>
+                  {translatedLabel(
+                    translation.lang.code,
+                    translations,
+                  ).toUpperCase()}
+                </span>
+              )}
+              <Audio
+                label={
+                  showWrittenWords
+                    ? toSingleLabel(translation.labels, showArticles)
+                    : ""
+                }
+                lang={lang}
+                labelLang={getLanguageAttribute(translation.lang.code)}
+                playAudioLabel={playAudioLabel}
+                stopAudioLabel={stopAudioLabel}
+                audioFiles={translation.audioFiles}
+                rtl={translation.lang.rtl}
+                lowerCaseLabel
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </li>
   );

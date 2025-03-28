@@ -253,8 +253,12 @@
           "default": "Redigera"
         },
         {
-          "label": "Save",
-          "default": "Spara"
+          "label": "Done",
+          "default": "Redo"
+        },
+        {
+          "label": "Move word",
+          "default": "Flytta ordet"
         },
         {
           "label": "Description text for sorting words in a collection",

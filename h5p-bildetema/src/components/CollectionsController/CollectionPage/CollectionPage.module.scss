@@ -1,41 +1,16 @@
 @use "common/abstracts" as *;
-$gap: $spacing--24;
 
 .words {
-  align-items: flex-start;
   direction: ltr;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: $gap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
   width: 100%;
 
-  // TODO: Change to grid-template-columns if direction is not important
-  // Currently this mimics the grid size on the search page
-
   [class*="rtl"] & {
-    justify-content: flex-end;
-  }
-
-  & > li {
-    box-sizing: border-box;
-    list-style-type: none;
-    margin: 0;
-    width: 100%;
-
-    @include breakpoint-min(656px) {
-      width: calc((100% - #{$gap}) / 2);
-    }
-
-    @include breakpoint-min(980px) {
-      width: calc((100% - (#{$gap} * 2)) / 3);
-    }
-
-    @include breakpoint-min(1304px) {
-      width: calc((100% - (#{$gap} * 3)) / 4);
-    }
+    direction: rtl;
   }
 }
 

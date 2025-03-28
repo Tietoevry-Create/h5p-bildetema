@@ -253,8 +253,12 @@
           "default": "Rediger"
         },
         {
-          "label": "Save",
-          "default": "Lagre"
+          "label": "Done",
+          "default": "Ferdig"
+        },
+        {
+          "label": "Move word",
+          "default": "Flytt ord"
         },
         {
           "label": "Description text for sorting words in a collection",

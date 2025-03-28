@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Button } from "common/components/Button";
-import { EditIcon } from "common/components/Icons/Icons";
+import { SuccessIcon, EditIcon } from "common/components/Icons/Icons";
 import { useL10ns } from "../../hooks/useL10n";
 import styles from "./EditCollectionButton.module.scss";
 
@@ -13,7 +13,7 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
   editMode,
   setEditMode,
 }) => {
-  const { edit, save } = useL10ns("edit", "save");
+  const { edit, done } = useL10ns("edit", "done");
 
   return (
     <Button
@@ -21,8 +21,8 @@ export const EditCollectionButton: FC<EditCollectionButtonProps> = ({
       onClick={() => setEditMode(!editMode)}
       className={editMode ? styles.active : ""}
     >
-      <EditIcon />
-      <span>{editMode ? save : edit}</span>
+      {editMode ? <SuccessIcon /> : <EditIcon />}
+      <span>{editMode ? done : edit}</span>
     </Button>
   );
 };
