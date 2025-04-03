@@ -20,10 +20,9 @@ const getBuildConfig = libName => ({
   rollupOptions: {
     output: {
       assetFileNames: assetInfo => {
-        // For some reason, an H5P content type's style file cannot be named `style.css`.
-        // Therefore we need to change the name before saving it.
-        if (assetInfo.names?.includes("style.css")) {
-          return `main.css`;
+        const isCssFile = assetInfo.names?.every(name => name.endsWith(".css"));
+        if (isCssFile) {
+          return "main.css";
         }
 
         return assetInfo.names?.[0] ?? "";
