@@ -25,6 +25,7 @@ export type SubHeaderProps = {
   }[];
   showTopicImageView?: boolean;
   includeShareButton?: boolean;
+  includePrintButton?: boolean;
   includeSaveButton?: boolean;
   includeEditButton?: boolean;
   editMode?: boolean;
@@ -41,6 +42,7 @@ export const SubHeader: FC<SubHeaderProps> = ({
   isWordView,
   showTopicImageView = false,
   includeShareButton = false,
+  includePrintButton = true,
   includeSaveButton = false,
   includeEditButton = false,
   editMode = false,
@@ -88,12 +90,14 @@ export const SubHeader: FC<SubHeaderProps> = ({
             ) : null}
             {includeSaveButton && <SaveSharedCollectionButton />}
             {includeShareButton && <ShareButton />}
-            <PrintButton
-              showWrittenWords={showWrittenWords}
-              isWordView={isWordView}
-              showTopicImageView={showTopicImageView}
-              showArticles={showArticles && showArticlesToggle}
-            />
+            {includePrintButton && (
+              <PrintButton
+                showWrittenWords={showWrittenWords}
+                isWordView={isWordView}
+                showTopicImageView={showTopicImageView}
+                showArticles={showArticles && showArticlesToggle}
+              />
+            )}
             <Toggle
               label={showWrittenWordsLabel}
               checked={showWrittenWords}

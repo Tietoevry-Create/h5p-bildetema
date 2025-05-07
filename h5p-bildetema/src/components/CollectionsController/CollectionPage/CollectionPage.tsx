@@ -8,7 +8,8 @@ import {
   DndContext,
   useSensor,
   useSensors,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   KeyboardSensor,
   closestCorners,
   DragStartEvent,
@@ -49,9 +50,15 @@ const CollectionPage = ({
   const [isKeyboardEvent, setIsKeyboardEvent] = useState(false);
   const [sortedWords, setSortedWords] = useState(words);
   const sensors = useSensors(
-    useSensor(PointerSensor, {
+    useSensor(MouseSensor, {
       activationConstraint: {
         distance: 5,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 50,
+        tolerance: 5,
       },
     }),
     useSensor(KeyboardSensor, {
