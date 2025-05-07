@@ -98,7 +98,8 @@ const CollectionController = (): JSX.Element => {
           isWordView={!!collection && words.length > 0}
           rtl={false}
           showArticlesToggle={showArticlesToggle}
-          includeShareButton
+          includeShareButton={!editMode}
+          includePrintButton={!editMode}
           includeSaveButton={!isCollectionOwner}
           includeEditButton={
             shouldIncludeEditButton && isCollectionOwner && words.length > 0
