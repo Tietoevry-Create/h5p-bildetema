@@ -265,6 +265,10 @@
           "default": "Sorter ord ved å dra dei til ønskt posisjon."
         },
         {
+          "label": "Description text for adding words in a collection (short)",
+          "default": "Legg til ord via {{search}} eller {{topicView}}."
+        },
+        {
           "label": "Description text for adding a word to a collection",
           "default": "Legg til ord via {{search}} eller {{topicView}}. Klikk på bokmerket på bileta."
         },

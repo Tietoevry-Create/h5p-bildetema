@@ -74,6 +74,7 @@ const CollectionPage = ({
     goToTopic,
     thisCollectionIsEmpty,
     sortWordsDescription,
+    addWordsDescriptionShort,
   } = useL10ns(
     "addWordsDescription",
     "search",
@@ -82,6 +83,7 @@ const CollectionPage = ({
     "goToTopic",
     "thisCollectionIsEmpty",
     "sortWordsDescription",
+    "addWordsDescriptionShort",
   );
 
   const replacements = {
@@ -99,6 +101,11 @@ const CollectionPage = ({
 
   const descriptionWithLinks = replacePlaceholders(
     addWordsDescription,
+    replacements,
+  );
+
+  const shortDescriptionWithLinks = replacePlaceholders(
+    addWordsDescriptionShort,
     replacements,
   );
 
@@ -254,6 +261,13 @@ const CollectionPage = ({
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={sortedWords}>
+            <p className={styles.description}>
+              {sortWordsDescription}
+              <span className={styles.hiddenMobile}>
+                {` `}
+                {shortDescriptionWithLinks}
+              </span>
+            </p>
             <ul role="list" className={styles.words}>
               {sortedWords.map(word => (
                 <SortableMultiLanguageWord
@@ -268,7 +282,6 @@ const CollectionPage = ({
                 />
               ))}
             </ul>
-            <p className={styles.description}>{sortWordsDescription}</p>
           </SortableContext>
         </DndContext>
       </div>
