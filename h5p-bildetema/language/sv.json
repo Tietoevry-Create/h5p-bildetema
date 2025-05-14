@@ -265,6 +265,10 @@
           "default": "Sortera ord genom att dra dem till önskad position."
         },
         {
+          "label": "Description text for adding words in a collection (short)",
+          "default": "Lägg till ord via {{search}} eller {{topicView}}."
+        },
+        {
           "label": "Description text for adding a word to a collection",
           "default": "Lägg till ord via {{search}} eller {{topicView}}. Klicka på bokmärket på bilderna."
         },

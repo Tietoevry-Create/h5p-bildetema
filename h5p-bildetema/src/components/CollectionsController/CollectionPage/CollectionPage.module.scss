@@ -46,6 +46,7 @@
   background-color: $teal-50;
   border: 2px dashed $teal-200;
   border-radius: 1rem;
+  flex-grow: unset;
   padding: 1.5rem;
 }
 
@@ -62,5 +63,11 @@
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+.hiddenMobile {
+  @include breakpoint-max($small) {
+    display: none;
   }
 }

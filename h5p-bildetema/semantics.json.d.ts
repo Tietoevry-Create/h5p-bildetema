@@ -397,6 +397,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Description text for adding words in a collection (short)",
+				name: "addWordsDescriptionShort",
+				"default": "Add words via {{search}} or {{topicView}}.",
+				type: "text"
+			},
+			{
 				label: "Description text for adding a word to a collection",
 				name: "addWordsDescription",
 				"default": "Add words via {{search}} or {{topicView}}. Click the bookmark on the images.",
