@@ -254,6 +254,7 @@ const CollectionPage = ({
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={sortedWords}>
+            <p className={styles.description}>{sortWordsDescription}</p>
             <ul role="list" className={styles.words}>
               {sortedWords.map(word => (
                 <SortableMultiLanguageWord
@@ -268,7 +269,6 @@ const CollectionPage = ({
                 />
               ))}
             </ul>
-            <p className={styles.description}>{sortWordsDescription}</p>
           </SortableContext>
         </DndContext>
       </div>
