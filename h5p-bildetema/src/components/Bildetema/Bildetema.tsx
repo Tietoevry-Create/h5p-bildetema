@@ -216,7 +216,7 @@ export const Bildetema: FC<BildetemaProps> = ({
             favLanguages={favLanguages}
             hidden={hiddenLanguageSelectors}
           />
-          <div
+          <main
             id="bildetemaMain"
             className={styles.bildetemaMain}
             aria-label={mainContentAriaLabel}
@@ -232,7 +232,7 @@ export const Bildetema: FC<BildetemaProps> = ({
                   </p>
                 )
               : routes}
-          </div>
+          </main>
           <Footer />
         </div>
       </div>
