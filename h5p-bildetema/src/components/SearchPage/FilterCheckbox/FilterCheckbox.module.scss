@@ -20,8 +20,8 @@
 
 .wrapper {
   position: relative;
-  height: 1.25em;
-  width: 1.25em;
+  height: 1.4em;
+  width: 1.4em;
   box-sizing: border-box;
   border: 0.1em solid $beige-500;
   border-radius: 0.25em;
@@ -64,7 +64,7 @@
 
 .textLabel {
   font-size: 1em;
-  line-height: 1.25;
+  line-height: $line-height-default;
   max-width: 14rem;
   page-break-inside: avoid;
   user-select: none;
