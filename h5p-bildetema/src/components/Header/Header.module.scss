@@ -96,7 +96,7 @@
   flex-direction: column;
   font-size: $font-size-16;
   justify-self: flex-start;
-  line-height: 1.4;
+  line-height: $line-height-default;
   order: 3;
   text-decoration: none; // Overrides WordPress's default styling
   width: 100%;

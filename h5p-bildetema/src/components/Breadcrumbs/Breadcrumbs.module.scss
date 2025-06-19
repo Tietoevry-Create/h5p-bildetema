@@ -64,7 +64,7 @@
   font-size: $font-size-18;
   gap: 0.5rem;
   height: 1.5rem;
-  line-height: 1.4;
+  line-height: $line-height-default;
   text-decoration: none;
   cursor: pointer;
 
@@ -167,7 +167,7 @@
   color: $base-font-color;
   font-size: $font-size-24 !important;
   font-weight: bold !important;
-  line-height: 1.4 !important;
+  line-height: $line-height-default !important;
   margin: 0 !important;
   padding: 0 !important;
   word-break: break-all;

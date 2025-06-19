@@ -70,7 +70,7 @@
 .option {
   font-family: sans-serif;
   font-size: $font-size-16;
-  line-height: 1.4;
+  line-height: $line-height-default;
   white-space: nowrap;
   padding: 0.5rem 1rem;
   cursor: default;
