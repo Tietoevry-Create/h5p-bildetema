@@ -37,8 +37,7 @@ export const TopicSizeButtons: FC<TopicSizeButtonsProps> = ({
         onClick={handleClick}
         tabIndex={topicsSize === TopicGridSizes.Big ? -1 : 0}
       >
-        <BigTopicsIcon />
-        <span className={styles.visuallyHidden}>{bigTopicsLabel}</span>
+        <BigTopicsIcon alternativeText={bigTopicsLabel} />
       </button>
       <button
         type="button"
@@ -48,8 +47,7 @@ export const TopicSizeButtons: FC<TopicSizeButtonsProps> = ({
         onClick={handleClick}
         tabIndex={topicsSize === TopicGridSizes.Compact ? -1 : 0}
       >
-        <CompactTopicsIcon />
-        <span className={styles.visuallyHidden}>{compactTopicsLabel}</span>
+        <CompactTopicsIcon alternativeText={compactTopicsLabel} />
       </button>
     </div>
   );
