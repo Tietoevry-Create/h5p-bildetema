@@ -61,13 +61,13 @@ const SearchFilterDialog = ({
         <div className={styles.backdrop} aria-hidden />
         <div className={styles.panelContainer}>
           <DialogPanel className={styles.panel}>
-            <DialogTitle className={styles.titleWrapper}>
-              <div className={styles.title}>
+            <div className={styles.topWrapper}>
+              <DialogTitle className={styles.titleWrapper}>
                 <span aria-hidden="true">
                   <Filter />
                 </span>
                 <span className={styles.label}>{topicFilterTitle}</span>
-              </div>
+              </DialogTitle>
               <button
                 type="button"
                 className={styles.closeButton}
@@ -80,7 +80,7 @@ const SearchFilterDialog = ({
                   {topicFilterClose}
                 </span>
               </button>
-            </DialogTitle>
+            </div>
             <div className={styles.searchFilterWrapper}>
               <ul role="list" className={styles.searchFilter}>
                 {topics?.map(topic => (

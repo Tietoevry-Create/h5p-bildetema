@@ -53,7 +53,7 @@
   gap: $spacing--8 $spacing--16;
   height: 100%;
   align-items: center;
-  line-height: 1.4;
+  line-height: $line-height-default;
   padding: $spacing--8;
 
   @include breakpoint-min($x-small) {
