@@ -2,6 +2,7 @@ import { useNewDBContext } from "common/hooks/useNewDBContext";
 import { CurrentTopics, Language } from "common/types/types";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { uriComponentToTopicPath } from "common/utils/router.utils";
 import { LanguageCode } from "common/types/LanguageCode";
 import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
@@ -145,12 +146,6 @@ export const Bildetema: FC<BildetemaProps> = ({
     setUserData(userData);
   }, [favLanguages, userData, setUserData, languagesFromDB]);
 
-  useEffect(() => {
-    if (document.title !== pageTitle) {
-      document.title = pageTitle;
-    }
-  });
-
   const routes = useMemo(() => {
     const paths = [
       "/:langCodeParam",
@@ -200,6 +195,9 @@ export const Bildetema: FC<BildetemaProps> = ({
         success: CustomSuccessToastMessage,
       }}
     >
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
       <div className={styles.wrapper}>
         <MainContentLink />
         <div className={styles.container}>
