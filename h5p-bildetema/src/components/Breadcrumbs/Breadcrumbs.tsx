@@ -204,7 +204,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
               <li role="listitem" aria-current="location" key={path}>
                 <h1 className={styles.currentPage}>{label}</h1>
                 <Helmet>
-                  <title>{`${fullLabel} - ${headerTitle}`}</title>
+                  <title>{`${fullLabel} – ${headerTitle}`}</title>
                 </Helmet>
               </li>
             );
