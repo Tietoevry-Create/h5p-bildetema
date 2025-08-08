@@ -68,6 +68,7 @@ export const TopicImageSVG: FC<TopicImageSVGProps> = ({
         />
       )}
       <svg
+        role="img"
         className={`${styles.overlays} ${
           isVertical ? styles.overlaysVertical : ""
         }`}
