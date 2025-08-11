@@ -205,6 +205,10 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
                 <h1 className={styles.currentPage}>{label}</h1>
                 <Helmet>
                   <title>{`${fullLabel} – ${headerTitle}`}</title>
+                  <meta
+                    property="og:title"
+                    content={`${fullLabel} – ${headerTitle}`}
+                  />
                 </Helmet>
               </li>
             );
