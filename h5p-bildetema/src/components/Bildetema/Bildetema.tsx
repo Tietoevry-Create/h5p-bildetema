@@ -9,7 +9,7 @@ import { STATIC_PATH, STATIC_PATHS } from "common/constants/paths";
 import { SnackbarProvider } from "notistack";
 import { useMediaQuery } from "react-responsive";
 import CustomSuccessToastMessage from "common/components/ToastMessages/CustomSuccessToastMessage";
-import { useL10n } from "../../hooks/useL10n";
+import { useL10ns } from "../../hooks/useL10n";
 import { useUserData } from "../../hooks/useUserData";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
@@ -54,11 +54,18 @@ export const Bildetema: FC<BildetemaProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadingLabel = useL10n("pageIsLoading");
-  const pageTitle = useL10n("headerTitle");
-  const mainContentAriaLabel = useL10n("mainContentAriaLabel");
+  const {
+    pageIsLoading: loadingLabel,
+    headerTitle,
+    headerSubtitle,
+    mainContentAriaLabel,
+  } = useL10ns(
+    "pageIsLoading",
+    "headerTitle",
+    "headerSubtitle",
+    "mainContentAriaLabel",
+  );
   const [firstTime, setFirstTime] = useState(false);
-
   const [userData, setUserData] = useUserData();
   const [favLanguages, setFavLanguages] = useState(userData.favoriteLanguages);
 
@@ -196,7 +203,7 @@ export const Bildetema: FC<BildetemaProps> = ({
       }}
     >
       <Helmet>
-        <title>{pageTitle}</title>
+        <title>{`${headerTitle} – ${headerSubtitle}`}</title>
       </Helmet>
       <div className={styles.wrapper}>
         <MainContentLink />
@@ -214,7 +221,7 @@ export const Bildetema: FC<BildetemaProps> = ({
             favLanguages={favLanguages}
             hidden={hiddenLanguageSelectors}
           />
-          <div
+          <main
             id="bildetemaMain"
             className={styles.bildetemaMain}
             aria-label={mainContentAriaLabel}
@@ -230,7 +237,7 @@ export const Bildetema: FC<BildetemaProps> = ({
                   </p>
                 )
               : routes}
-          </div>
+          </main>
           <Footer />
         </div>
       </div>

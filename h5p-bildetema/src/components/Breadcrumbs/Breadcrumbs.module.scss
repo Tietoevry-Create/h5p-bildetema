@@ -22,6 +22,7 @@
     &::after {
       $nbsp: \00a0;
       content: "#{$nbsp}"; /* {1} */
+      color: transparent;
     }
   }
 
