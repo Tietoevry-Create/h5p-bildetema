@@ -405,6 +405,12 @@
           "default": "Your search for {{searchTerm}} gave {{amount}} hits."
         },
         {
+          "label": "Search suggestion text",
+          "name": "searchSuggestionText",
+          "default": "To get more results: {{newLine}} Check if the word is spelled correctly. {{newLine}} Use fewer words or only single words: {{emStart}}car{{emEnd}} gives more search results than {{emStart}}blue car{{emEnd}}. {{newLine}} Check if you are searching in the right language. To the right of the search field, you can select the language you are searching in. {{newLine}} Remove filters that may restrict your search. {{newLine}} If you still can't find what you're looking for, try a different word, or go to {{linkStart}}the topic overview{{linkEnd}}.",
+          "type": "text"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },

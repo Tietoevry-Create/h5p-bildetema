@@ -16,12 +16,11 @@ import { AudioRefContext } from "common/context/AudioContext";
 import { useDialogContext } from "common/hooks/useDialogContext";
 import ChooseCollectionsDialog from "common/components/ChooseCollectionsDialog/ChooseCollectionsDialog";
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
-import { Link } from "react-router-dom";
 import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 import { useL10ns } from "../../../hooks/useL10n";
-import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
 import styles from "./SearchResultView.module.scss";
+import SearchSuggestion from "./SearchSuggestion";
 
 type ListProps = {
   style?: React.CSSProperties;
@@ -69,12 +68,10 @@ const SearchResultView = ({
   handleFilterChange,
 }: SearchResultViewProps): JSX.Element => {
   const { handleOpenDialog } = useDialogContext();
-  // TODO: Translate empty search text
   const { searchResultLabel, searchResultHitsLabel } = useL10ns(
     "searchResultLabel",
     "searchResultHitsLabel",
   );
-  const lang = useCurrentLanguage();
 
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
@@ -151,30 +148,7 @@ const SearchResultView = ({
           )}
         />
       </AudioRefContext.Provider>
-      {searchResultAmount === 0 && (
-        <div>
-          <p>For å få flere resultater, prøv å justere søket ditt:</p>
-          <ul>
-            <li>Sjekk om ordet er stavet riktig.</li>
-            <li>
-              Bruk færre ord eller kun enkeltord: <em>bil</em> gir flere
-              søketreff enn <em>blå bil</em>.
-            </li>
-            <li>
-              Sjekk om du søker på riktig språk. Til høyre for søkefeltet kan du
-              velge språket du søker på.
-            </li>
-            <li>Fjern filtre som kan begrense søket ditt.</li>
-          </ul>
-          <p>
-            Finner du fortsatt ikke det du leter etter?{" "}
-            <Link key={1} to={`/${lang.code}`}>
-              Prøv temaoversikten
-            </Link>
-            .
-          </p>
-        </div>
-      )}
+      {searchResultAmount === 0 && <SearchSuggestion />}
     </div>
   );
 };
