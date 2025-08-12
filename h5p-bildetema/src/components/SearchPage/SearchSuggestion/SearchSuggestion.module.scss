@@ -1,0 +1,30 @@
+@use "common/abstracts" as *;
+
+.searchSuggestionP {
+  line-height: 1.5;
+  margin-block-start: 1.125rem;
+  margin-block-end: 1.125rem;
+
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.searchSuggestionUl {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  list-style: disc;
+  margin-block-start: 1.125rem;
+  margin-block-end: 1.125rem;
+  padding-inline-start: 2.5rem;
+
+  em {
+    font-style: italic;
+  }
+}
