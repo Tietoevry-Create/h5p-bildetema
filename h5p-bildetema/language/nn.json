@@ -405,6 +405,12 @@
           "default": "Søket ditt på {{searchTerm}} gav {{amount}} treff."
         },
         {
+          "label": "Search suggestion text",
+          "name": "searchSuggestionText",
+          "default": "For å få fleire resultat: {{newLine}} Sjekk om ordet er stava rett. {{newLine}} Bruk færre ord eller berre enkeltord: {{emStart}}bil{{emEnd}} gir fleire søkjetreff enn {{emStart}}blå bil{{emEnd}}. {{newLine}} Sjekk om du søkjer på rett språk. Til høgre for søkjefeltet kan du velja språket du søkjer på. {{newLine}} Fjern filtre som kan avgrensa søkjet ditt. {{newLine}} Finn du framleis ikkje det du leitar etter? Prøv eit anna ord, eller gå til {{linkStart}}temaoversikten{{linkEnd}}.",
+          "type": "text"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

@@ -405,6 +405,12 @@
           "default": "Leitin þín á {{searchTerm}} skilaði {{amount}} heimsóknum."
         },
         {
+          "label": "Search suggestion text",
+          "name": "searchSuggestionText",
+          "default": "Til að fá fleiri niðurstöður: {{newLine}} Athugaðu hvort orðið sé rétt stafsett. {{newLine}} Notaðu færri orð eða aðeins stök orð: {{emStart}}bíll{{emEnd}} gefur fleiri leitarniðurstöður en {{emStart}}bláur bíll{{emEnd}}. {{newLine}} Athugaðu hvort þú sért að leita á réttu tungumáli. Hægra megin við leitarreitinn geturðu valið tungumálið sem þú ert að leita á. {{newLine}} Fjarlægðu sía sem gæti takmarkað leitina þína. {{newLine}} Ef þú finnur enn ekki það sem þú ert að leita að, reyndu annað orð, eða farðu í {{linkStart}}efnisyfirlitið{{linkEnd}}.",
+          "type": "text"
+        },
+        {
           "label": "Arabíska",
           "default": "Arabíska"
         },

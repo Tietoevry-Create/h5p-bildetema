@@ -20,6 +20,7 @@ import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchResultView.module.scss";
+import SearchSuggestion from "./SearchSuggestion";
 
 type ListProps = {
   style?: React.CSSProperties;
@@ -147,6 +148,7 @@ const SearchResultView = ({
           )}
         />
       </AudioRefContext.Provider>
+      {searchResultAmount === 0 && <SearchSuggestion />}
     </div>
   );
 };
