@@ -20,7 +20,7 @@ import { SearchResultCard } from "../SearchResultCard/SearchResultCard";
 import SearchFilterDialog from "../SearchFilter/SearchFilterDialog";
 import { useL10ns } from "../../../hooks/useL10n";
 import styles from "./SearchResultView.module.scss";
-import SearchSuggestion from "./SearchSuggestion";
+import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
 
 type ListProps = {
   style?: React.CSSProperties;

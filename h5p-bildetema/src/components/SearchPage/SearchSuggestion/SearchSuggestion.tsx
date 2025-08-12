@@ -3,6 +3,7 @@ import { replacePlaceholdersWithHTML } from "common/utils/replacePlaceholders";
 import { Link } from "react-router-dom";
 import { useL10ns } from "../../../hooks/useL10n";
 import { useCurrentLanguage } from "../../../hooks/useCurrentLanguage";
+import styles from "./SearchSuggestion.module.scss";
 
 const SearchSuggestion = (): JSX.Element => {
   const lang = useCurrentLanguage();
@@ -36,14 +37,14 @@ const SearchSuggestion = (): JSX.Element => {
 
   return (
     <div>
-      <p>{items[0]}</p>
-      <ul>
+      <p className={styles.searchSuggestionP}>{items[0]}</p>
+      <ul className={styles.searchSuggestionUl}>
         <li>{items[1]}</li>
         <li>{items[2]}</li>
         <li>{items[3]}</li>
         <li>{items[4]}</li>
       </ul>
-      <p>{items[5]}</p>
+      <p className={styles.searchSuggestionP}>{items[5]}</p>
     </div>
   );
 };
