@@ -13,7 +13,7 @@ jobs:
       docker_image_tag: ${{  steps.docker_image.outputs.tag  }}
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get commit sha
         shell: bash
@@ -79,7 +79,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: azure/webapps-deploy@v2
         with:
@@ -97,7 +97,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: azure/webapps-deploy@v2
         with:
@@ -120,7 +120,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
@@ -149,7 +149,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
