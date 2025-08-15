@@ -406,9 +406,15 @@
         },
         {
           "label": "Search suggestion text",
-          "name": "searchSuggestionText",
-          "default": "To get more results: {{newLine}} Check if the word is spelled correctly. {{newLine}} Use fewer words or only single words: {{emStart}}car{{emEnd}} gives more search results than {{emStart}}blue car{{emEnd}}. {{newLine}} Check if you are searching in the right language. To the right of the search field, you can select the language you are searching in. {{newLine}} Remove filters that may restrict your search. {{newLine}} If you still can't find what you're looking for, try a different word, or go to {{linkStart}}the topic overview{{linkEnd}}.",
-          "type": "text"
+          "default": "To get more results: {{newLine}} Check if the word is spelled correctly. {{newLine}} Use fewer words or only single words: {{emStart}}car{{emEnd}} gives more search results than {{emStart}}blue car{{emEnd}}. {{newLine}} Check if you are searching in the right language. To the right of the search field, you can select the language you are searching in. {{newLine}} Remove filters that may restrict your search. {{newLine}} If you still can't find what you're looking for, try a different word, or go to {{linkStart}}the topic overview{{linkEnd}}."
+        },
+        {
+          "label": "Page not found title",
+          "default": "Page not found"
+        },
+        {
+          "label": "Page not found description",
+          "default": "The page you are looking for could not be found. It may have been moved or deleted. {{newLine}}You can:{{newLine}}Check if the address is correct in the address bar.{{newLine}}Go to the search page at the top right.{{newLine}}Go to the front page of Bildetema."
         },
         {
           "label": "Arabic",

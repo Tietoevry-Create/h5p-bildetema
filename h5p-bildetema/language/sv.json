@@ -406,9 +406,15 @@
         },
         {
           "label": "Search suggestion text",
-          "name": "searchSuggestionText",
-          "default": "För att få fler resultat: {{newLine}} Kontrollera att ordet är rätt stavat. {{newLine}} Använd färre ord eller bara enstaka ord: {{emStart}}bil{{emEnd}} ger fler sökresultat än {{emStart}}blå bil{{emEnd}}. {{newLine}} Kontrollera att du söker på rätt språk. Till höger om sökfältet kan du välja vilket språk du söker på. {{newLine}} Ta bort filter som kan begränsa din sökning. {{newLine}} Hittar du fortfarande inte det du letar efter? Prova ett annat ord, eller gå till {{linkStart}}ämnesöversikten{{linkEnd}}.",
-          "type": "text"
+          "default": "För att få fler resultat: {{newLine}} Kontrollera att ordet är rätt stavat. {{newLine}} Använd färre ord eller bara enstaka ord: {{emStart}}bil{{emEnd}} ger fler sökresultat än {{emStart}}blå bil{{emEnd}}. {{newLine}} Kontrollera att du söker på rätt språk. Till höger om sökfältet kan du välja vilket språk du söker på. {{newLine}} Ta bort filter som kan begränsa din sökning. {{newLine}} Hittar du fortfarande inte det du letar efter? Prova ett annat ord, eller gå till {{linkStart}}ämnesöversikten{{linkEnd}}."
+        },
+        {
+          "label": "Page not found title",
+          "default": "Sidan hittades inte"
+        },
+        {
+          "label": "Page not found description",
+          "default": "Beklagar, vi hittar inte sidan du letar efter. Den kan ha flyttats eller tagits bort. {{newLine}}Du kan:{{newLine}}kontrollera att adressen är korrekt i adressfältet.{{newLine}}gå till söksidan uppe till höger.{{newLine}}gå till framsidan av Bildteman."
         },
         {
           "label": "Arabiska",
