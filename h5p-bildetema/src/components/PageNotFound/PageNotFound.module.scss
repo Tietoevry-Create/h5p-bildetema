@@ -1,0 +1,45 @@
+@use "common/abstracts" as *;
+
+.pageNotFound {
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pageNotFoundH1 {
+  color: $base-font-color;
+  font-size: $font-size-24 !important;
+  font-weight: bold !important;
+  line-height: $line-height-default !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  word-break: break-all;
+}
+
+.pageNotFoundP {
+  line-height: 1.5;
+  margin-block-start: 1.125rem;
+  margin-block-end: 1.125rem;
+
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.pageNotFoundUl {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  list-style: disc;
+  margin-block-start: 1.125rem;
+  margin-block-end: 1.125rem;
+  padding-inline-start: 2.5rem;
+
+  em {
+    font-style: italic;
+  }
+}

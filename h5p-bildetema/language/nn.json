@@ -406,9 +406,15 @@
         },
         {
           "label": "Search suggestion text",
-          "name": "searchSuggestionText",
-          "default": "For å få fleire resultat: {{newLine}} Sjekk om ordet er stava rett. {{newLine}} Bruk færre ord eller berre enkeltord: {{emStart}}bil{{emEnd}} gir fleire søkjetreff enn {{emStart}}blå bil{{emEnd}}. {{newLine}} Sjekk om du søkjer på rett språk. Til høgre for søkjefeltet kan du velja språket du søkjer på. {{newLine}} Fjern filtre som kan avgrensa søkjet ditt. {{newLine}} Finn du framleis ikkje det du leitar etter? Prøv eit anna ord, eller gå til {{linkStart}}temaoversikten{{linkEnd}}.",
-          "type": "text"
+          "default": "For å få fleire resultat: {{newLine}} Sjekk om ordet er stava rett. {{newLine}} Bruk færre ord eller berre enkeltord: {{emStart}}bil{{emEnd}} gir fleire søkjetreff enn {{emStart}}blå bil{{emEnd}}. {{newLine}} Sjekk om du søkjer på rett språk. Til høgre for søkjefeltet kan du velja språket du søkjer på. {{newLine}} Fjern filtre som kan avgrensa søkjet ditt. {{newLine}} Finn du framleis ikkje det du leitar etter? Prøv eit anna ord, eller gå til {{linkStart}}temaoversikten{{linkEnd}}."
+        },
+        {
+          "label": "Page not found title",
+          "default": "Vi finn ikkje siden"
+        },
+        {
+          "label": "Page not found description",
+          "default": "Beklager, vi finn ikkje siden du leitar etter. Den kan vere flytta eller sletta. {{newLine}}Du kan: {{newLine}} sjekke om adressen er riktig i adressefeltet. {{newLine}} gå til søkesida oppe til høgre. {{newLine}} gå til framsida av Bildetema."
         },
         {
           "label": "Arabisk",

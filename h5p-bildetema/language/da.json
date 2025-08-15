@@ -406,9 +406,15 @@
         },
         {
           "label": "Search suggestion text",
-          "name": "searchSuggestionText",
-          "default": "Sådan får du flere resultater: {{newLine}} Tjek om ordet er stavet korrekt. {{newLine}} Brug færre ord eller kun enkelte ord: {{emStart}}bil{{emEnd}} giver flere søgetreff end {{emStart}}blå bil{{emEnd}}. {{newLine}} Tjek om du søger på det rigtige sprog. Til højre for søgefeltet kan du vælge det sprog, du søger på. {{newLine}} Fjern filtre, der kan begrænse din søgning. {{newLine}} Kan du stadig ikke finde det, du leder efter? Prøv et andet ord, eller gå til {{linkStart}}temaoversigten{{linkEnd}}.",
-          "type": "text"
+          "default": "Sådan får du flere resultater: {{newLine}} Tjek om ordet er stavet korrekt. {{newLine}} Brug færre ord eller kun enkelte ord: {{emStart}}bil{{emEnd}} giver flere søgetreff end {{emStart}}blå bil{{emEnd}}. {{newLine}} Tjek om du søger på det rigtige sprog. Til højre for søgefeltet kan du vælge det sprog, du søger på. {{newLine}} Fjern filtre, der kan begrænse din søgning. {{newLine}} Kan du stadig ikke finde det, du leder efter? Prøv et andet ord, eller gå til {{linkStart}}temaoversigten{{linkEnd}}."
+        },
+        {
+          "label": "Page not found title",
+          "default": "Siden blev ikke fundet"
+        },
+        {
+          "label": "Page not found description",
+          "default": "Beklager, vi kan ikke finde siden du leder efter. Den kan være flyttet eller slettet. {{newLine}}Du kan: {{newLine}} tjekke om adressen er korrekt i adressefeltet. {{newLine}} gå til søgesiden øverst til højre. {{newLine}} gå til forsiden af Billedtema."
         },
         {
           "label": "Arabisk",

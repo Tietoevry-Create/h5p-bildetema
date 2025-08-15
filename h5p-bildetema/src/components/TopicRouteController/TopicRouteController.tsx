@@ -16,6 +16,7 @@ import {
 } from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
+import PageNotFound from "../PageNotFound/PageNotFound";
 
 export type TopicRouteControllerProps = {
   rtl: boolean;
@@ -164,9 +165,5 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
     );
   }
 
-  return (
-    <div>
-      <p>Page does not exist</p>
-    </div>
-  );
+  return <PageNotFound />;
 };
