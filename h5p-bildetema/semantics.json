@@ -621,7 +621,7 @@
       {
         "label": "Page not found description",
         "name": "pageNotFoundDescription",
-        "default": "The page you are looking for could not be found. It may have been moved or deleted. {{newLine}}You can:{{newLine}}Check if the address is correct in the address bar.{{newLine}}Go to the search page at the top right.{{newLine}}Go to the front page of Bildetema.",
+        "default": "The page you are looking for could not be found. It may have been moved or deleted. {{newLine}}You can:{{newLine}}check if the address is correct in the address bar.{{newLine}}go to the search page at the top right.{{newLine}}go to the front page of Bildetema.",
         "type": "text"
       },
       {
