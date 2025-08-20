@@ -9,6 +9,7 @@ import { getAudioFiles } from "common/utils/audio/audio.utils";
 import { toSingleLabel } from "common/utils/word.utils";
 import styles from "./TopicGridElement.module.scss";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
+import { useL10n } from "../../hooks/useL10n";
 
 export type TopicGridElementProps = {
   topicSize: TopicGridSizes;
@@ -21,6 +22,7 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
   topicSize,
   languageCode,
 }) => {
+  const topicAccessibleLabel = useL10n("topicAccessibleLabel");
   const backendUrl = useBackendUrlContext();
 
   const { audioFiles, imageSrc, title } = useMemo(() => {
@@ -47,10 +49,10 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
       <div className={topicCardClassName}>
         <img className={styles.topicImage} src={imageSrc} alt="" />
         <Link className={styles.topicLink} to={`${linkTo}${search}`}>
-          <h2>{title}</h2>
+          <span>{`${topicAccessibleLabel  } ${  title}`}</span>
         </Link>
         <span className={gridElementClassName}>
-          <h2 aria-hidden="true">{title}</h2>
+          <h2>{title}</h2>
           <TopicGridElementAudio audioFiles={audioFiles} />
         </span>
       </div>

@@ -159,6 +159,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
             toggleShowTopicImageView={toggleShowTopicImageView}
             showArticles={showArticles}
             currentTopics={currentTopics}
+            isFrontPage={!topicLabelParam}
           />
         </div>
       </div>

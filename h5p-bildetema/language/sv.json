@@ -417,6 +417,22 @@
           "default": "Beklagar, vi hittar inte sidan du letar efter. Den kan ha flyttats eller tagits bort. {{newLine}}Du kan:{{newLine}}kontrollera att adressen är korrekt i adressfältet.{{newLine}}gå till söksidan uppe till höger.{{newLine}}gå till framsidan av Bildteman."
         },
         {
+          "label": "All topics accessible label",
+          "default": "All topics in Bildetema"
+        },
+        {
+          "label": "Topic accessible label",
+          "default": "Topic:"
+        },
+        {
+          "label": "Topics accessible label",
+          "default": "Topics"
+        },
+        {
+          "label": "Subtopic accessible label",
+          "default": "under {{topic}}"
+        },
+        {
           "label": "Arabiska",
           "default": "Arabiska"
         },

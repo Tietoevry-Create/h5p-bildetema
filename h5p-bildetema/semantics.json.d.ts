@@ -625,6 +625,30 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "All topics accessible label",
+				name: "allTopicsAccessibleLabel",
+				"default": "All topics in Bildetema",
+				type: "text"
+			},
+			{
+				label: "Topic accessible label",
+				name: "topicAccessibleLabel",
+				"default": "Topic:",
+				type: "text"
+			},
+			{
+				label: "Topics accessible label",
+				name: "topicsAccessibleLabel",
+				"default": "Topics",
+				type: "text"
+			},
+			{
+				label: "Subtopic accessible label",
+				name: "subtopicAccessibleLabel",
+				"default": "under {{topic}}",
+				type: "text"
+			},
+			{
 				label: "Arabic",
 				name: "lang_ara",
 				"default": "Arabic",

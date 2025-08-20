@@ -417,6 +417,22 @@
           "default": "Beklager, vi kan ikke finde siden du leder efter. Den kan være flyttet eller slettet. {{newLine}}Du kan: {{newLine}} tjekke om adressen er korrekt i adressefeltet. {{newLine}} gå til søgesiden øverst til højre. {{newLine}} gå til forsiden af Billedtema."
         },
         {
+          "label": "All topics accessible label",
+          "default": "All topics in Bildetema"
+        },
+        {
+          "label": "Topic accessible label",
+          "default": "Topic:"
+        },
+        {
+          "label": "Topics accessible label",
+          "default": "Topics"
+        },
+        {
+          "label": "Subtopic accessible label",
+          "default": "under {{topic}}"
+        },
+        {
           "label": "Arabisk",
           "default": "Arabisk"
         },

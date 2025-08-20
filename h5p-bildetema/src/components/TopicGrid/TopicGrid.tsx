@@ -11,9 +11,11 @@ import {
 import { FC, JSX, RefObject, useMemo, useState } from "react";
 import { useBackendUrlContext } from "common/hooks/useBackendUrlContext";
 import { newWordsIsTopics, newWordsToWords } from "common/utils/data.utils";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { TopicGridElement } from "../TopicGridElement/TopicGridElement";
 import { Words } from "../Words/Words";
 import styles from "./TopicGrid.module.scss";
+import { useL10n } from "../../hooks/useL10n";
 
 export type TopicGridProps = {
   topicsSize: TopicGridSizes;
@@ -23,6 +25,7 @@ export type TopicGridProps = {
   showArticles: boolean;
   newWords: NewWord[];
   currentTopics: CurrentTopics;
+  isFrontPage?: boolean;
 };
 
 export const TopicGrid: FC<TopicGridProps> = ({
@@ -33,7 +36,12 @@ export const TopicGrid: FC<TopicGridProps> = ({
   showArticles,
   newWords,
   currentTopics,
+  isFrontPage,
 }) => {
+  const allTopicsAccessibleLabel = useL10n("allTopicsAccessibleLabel");
+  const topicsAccessibleLabel = useL10n("topicsAccessibleLabel");
+  const subtopicAccessibleLabel = useL10n("subtopicAccessibleLabel");
+
   const [contextAudioRef, setAudioRef] = useState(
     {} as RefObject<HTMLAudioElement>,
   );
@@ -57,12 +65,28 @@ export const TopicGrid: FC<TopicGridProps> = ({
     topicId: currentTopics?.topic?.id,
   };
 
+  const subTopicLabel = useMemo(() => {
+    if (currentTopics && currentTopics.topic) {
+      const topicLabelOnSiteLanguage = currentTopics?.topic?.translations.get(
+        currentLanguage.code,
+      )?.labels[0].label;
+      if (topicLabelOnSiteLanguage) {
+        const subTranslation = replacePlaceholders(subtopicAccessibleLabel, {
+          topic: topicLabelOnSiteLanguage,
+        }).join("");
+        return `${topicsAccessibleLabel} ${subTranslation}`;
+      }
+    }
+    return topicsAccessibleLabel;
+  }, [currentTopics?.topic, currentLanguage.code]);
+
   const renderTopics = (): JSX.Element => (
     <ul
       role="list"
       className={
         topicsSize === TopicGridSizes.Big ? styles.gridBig : styles.gridCompact
       }
+      aria-label={isFrontPage ? allTopicsAccessibleLabel : subTopicLabel}
     >
       <AudioRefContext.Provider value={audioContextValue}>
         {newWords?.map(topic => (

@@ -417,6 +417,22 @@
           "default": "The page you are looking for could not be found. It may have been moved or deleted. {{newLine}}You can:{{newLine}}check if the address is correct in the address bar.{{newLine}}go to the search page at the top right.{{newLine}}go to the front page of Bildetema."
         },
         {
+          "label": "All topics accessible label",
+          "default": "All topics in Bildetema"
+        },
+        {
+          "label": "Topic accessible label",
+          "default": "Topic:"
+        },
+        {
+          "label": "Topics accessible label",
+          "default": "Topics"
+        },
+        {
+          "label": "Subtopic accessible label",
+          "default": "under {{topic}}"
+        },
+        {
           "label": "Arabic",
           "default": "Arabic"
         },
