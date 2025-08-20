@@ -106,7 +106,6 @@ export const MultiLanguageWord = ({
 
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
-  const stopAudioLabel = useL10n("stopAudio");
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
@@ -138,7 +137,6 @@ export const MultiLanguageWord = ({
                 lang={lang}
                 labelLang={getLanguageAttribute(translation.lang.code)}
                 playAudioLabel={playAudioLabel}
-                stopAudioLabel={stopAudioLabel}
                 audioFiles={translation.audioFiles}
                 rtl={translation.lang.rtl}
                 lowerCaseLabel

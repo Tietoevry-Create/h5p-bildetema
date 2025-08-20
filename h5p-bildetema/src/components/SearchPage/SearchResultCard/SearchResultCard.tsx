@@ -109,11 +109,9 @@ export const SearchResultCard = ({
 
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
-  const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className={styles.searchResultCard}>
+    <div className={styles.searchResultCard}>
       {handleBookmarkClick && (
         <div className={styles.bookmarkButton}>
           <Button
@@ -147,7 +145,6 @@ export const SearchResultCard = ({
               lang={lang}
               labelLang={getLanguageAttribute(translation.lang.code)}
               playAudioLabel={playAudioLabel}
-              stopAudioLabel={stopAudioLabel}
               audioFiles={translation.audioFiles}
               rtl={translation.lang.rtl}
               lowerCaseLabel
@@ -155,6 +152,6 @@ export const SearchResultCard = ({
           </div>
         ))}
       </div>
-    </li>
+    </div>
   );
 };

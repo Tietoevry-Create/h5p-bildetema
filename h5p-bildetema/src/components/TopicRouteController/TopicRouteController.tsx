@@ -16,7 +16,7 @@ import {
 } from "../../hooks/useCurrentLanguage";
 import { useCurrentWords } from "../../hooks/useCurrentWords";
 import { useSearchParamContext } from "../../hooks/useSearchParamContext";
-import PageNotFound from "../PageNotFound/PageNotFound";
+import { PageNotFound } from "../PageNotFound/PageNotFound";
 
 export type TopicRouteControllerProps = {
   rtl: boolean;
@@ -159,6 +159,7 @@ export const TopicRouteController: FC<TopicRouteControllerProps> = ({
             toggleShowTopicImageView={toggleShowTopicImageView}
             showArticles={showArticles}
             currentTopics={currentTopics}
+            isFrontPage={!topicLabelParam}
           />
         </div>
       </div>

@@ -5,19 +5,23 @@ import { FC, MouseEvent, useEffect, useRef, useState } from "react";
 import { useL10n } from "../../hooks/useL10n";
 import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
 import styles from "./TopicGridElementAudio.module.scss";
+import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
 
 type TopicGridElementAudioProps = {
   audioFiles?: AudioFile[];
+  label: string;
 };
 
 export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
   audioFiles,
+  label,
 }) => {
+  const lang = useSiteLanguageString();
+  const currentLang = useCurrentLanguageAttribute();
+
   const [playing, setPlaying] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const lang = useSiteLanguageString();
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
 
   const toggleAudio = (event: MouseEvent): void => {
@@ -59,7 +63,6 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
   }, [audioRef.current?.paused]);
 
   const playAudioLabel = useL10n("playAudio");
-  const stopAudioLabel = useL10n("stopAudio");
 
   return (
     <div
@@ -87,7 +90,7 @@ export const TopicGridElementAudio: FC<TopicGridElementAudioProps> = ({
           )}
         </span>
         <span className={styles.visuallyHidden} lang={lang}>
-          {playing ? stopAudioLabel : playAudioLabel}
+          {playAudioLabel} <span lang={currentLang}>{label}</span>
         </span>
       </button>
     </div>

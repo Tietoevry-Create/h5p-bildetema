@@ -90,7 +90,6 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
 
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
-  const stopAudioLabel = useL10n("stopAudio");
 
   const showAsSelected = word.id === currentWordId || word.id === hoveredSVG;
 
@@ -127,7 +126,7 @@ export const TopicImageWordAudio: FC<TopicImageWordAudioProps> = ({
           )}
         </span>
         <span className={styles.visuallyHidden} lang={lang}>
-          {playing ? stopAudioLabel : playAudioLabel}
+          {playAudioLabel}
         </span>
         {showWrittenWords && (
           <span className={styles.word_label}>
