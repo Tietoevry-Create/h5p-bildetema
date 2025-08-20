@@ -112,8 +112,7 @@ export const SearchResultCard = ({
   const stopAudioLabel = useL10n("stopAudio");
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className={styles.searchResultCard}>
+    <div className={styles.searchResultCard}>
       {handleBookmarkClick && (
         <div className={styles.bookmarkButton}>
           <Button
@@ -155,6 +154,6 @@ export const SearchResultCard = ({
           </div>
         ))}
       </div>
-    </li>
+    </div>
   );
 };
