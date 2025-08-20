@@ -418,19 +418,19 @@
         },
         {
           "label": "All topics accessible label",
-          "default": "All topics in Bildetema"
+          "default": "Öll efni í Myndaþema"
         },
         {
           "label": "Topic accessible label",
-          "default": "Topic:"
+          "default": "Efni:"
         },
         {
           "label": "Topics accessible label",
-          "default": "Topics"
+          "default": "Efni"
         },
         {
           "label": "Subtopic accessible label",
-          "default": "under {{topic}}"
+          "default": "undir {{topic}}"
         },
         {
           "label": "Arabíska",
