@@ -104,7 +104,6 @@ export const Word: FC<WordProps> = ({
   const hasAudio = word.audioFiles && word.audioFiles.length > 0;
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
-  const stopAudioLabel = useL10n("stopAudio");
   const label = textVisible ? extractWordLabel(word, showArticles) : "";
 
   return (
@@ -121,7 +120,6 @@ export const Word: FC<WordProps> = ({
       {hasAudio && (
         <Audio
           lang={lang}
-          stopAudioLabel={stopAudioLabel}
           playAudioLabel={playAudioLabel}
           audioFiles={word.audioFiles}
           label={label}

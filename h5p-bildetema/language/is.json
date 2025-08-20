@@ -38,7 +38,7 @@
         },
         {
           "label": "Play audio",
-          "default": "Spila hljóð"
+          "default": "Spila hljóð fyrir "
         },
         {
           "label": "Stop audio",

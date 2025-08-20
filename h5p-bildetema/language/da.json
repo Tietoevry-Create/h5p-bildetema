@@ -38,7 +38,7 @@
         },
         {
           "label": "Play audio",
-          "default": "Spil lyd"
+          "default": "Spil lyd til "
         },
         {
           "label": "Stop audio",

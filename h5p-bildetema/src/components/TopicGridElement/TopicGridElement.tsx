@@ -10,6 +10,7 @@ import { toSingleLabel } from "common/utils/word.utils";
 import styles from "./TopicGridElement.module.scss";
 import { TopicGridElementAudio } from "../TopicGridElementAudio/TopicGridElementAudio";
 import { useL10n } from "../../hooks/useL10n";
+import { useCurrentLanguageAttribute } from "../../hooks/useCurrentLanguage";
 
 export type TopicGridElementProps = {
   topicSize: TopicGridSizes;
@@ -23,6 +24,7 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
   languageCode,
 }) => {
   const topicAccessibleLabel = useL10n("topicAccessibleLabel");
+  const currentLang = useCurrentLanguageAttribute();
   const backendUrl = useBackendUrlContext();
 
   const { audioFiles, imageSrc, title } = useMemo(() => {
@@ -49,11 +51,13 @@ export const TopicGridElement: FC<TopicGridElementProps> = ({
       <div className={topicCardClassName}>
         <img className={styles.topicImage} src={imageSrc} alt="" />
         <Link className={styles.topicLink} to={`${linkTo}${search}`}>
-          <span>{`${topicAccessibleLabel  } ${  title}`}</span>
+          <span>
+            {topicAccessibleLabel} <span lang={currentLang}>{title}</span>
+          </span>
         </Link>
         <span className={gridElementClassName}>
           <h2>{title}</h2>
-          <TopicGridElementAudio audioFiles={audioFiles} />
+          <TopicGridElementAudio audioFiles={audioFiles} label={title} />
         </span>
       </div>
     </li>

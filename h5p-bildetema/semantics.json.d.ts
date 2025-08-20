@@ -57,7 +57,7 @@ declare const $defaultExport: [
 			{
 				label: "Play audio",
 				name: "playAudio",
-				"default": "Play audio",
+				"default": "Play audio for ",
 				type: "text"
 			},
 			{

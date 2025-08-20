@@ -78,7 +78,12 @@ export const TopicGrid: FC<TopicGridProps> = ({
       }
     }
     return topicsAccessibleLabel;
-  }, [currentTopics?.topic, currentLanguage.code]);
+  }, [
+    currentTopics,
+    currentLanguage,
+    subtopicAccessibleLabel,
+    topicsAccessibleLabel,
+  ]);
 
   const renderTopics = (): JSX.Element => (
     <ul

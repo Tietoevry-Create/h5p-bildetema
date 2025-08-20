@@ -17,6 +17,7 @@ export const WordAudio: FC<WordAudioProps> = ({
   textVisible,
   showArticles,
 }) => {
+  // TODO: Fjerne komponent da den ikke brukes lenger?
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const { contextAudioRef, setContextAudioRef } = useAudioRefContext();
@@ -61,7 +62,6 @@ export const WordAudio: FC<WordAudioProps> = ({
 
   const lang = useL10n("htmlLanguageCode");
   const playAudioLabel = useL10n("playAudio");
-  const stopAudioLabel = useL10n("stopAudio");
 
   return (
     <div
@@ -81,6 +81,9 @@ export const WordAudio: FC<WordAudioProps> = ({
         ))}
       </audio>
       <button type="button" onClick={toggleAudio}>
+        <span className={styles.visuallyHidden} lang={lang}>
+          {playAudioLabel}
+        </span>
         {textVisible && (
           <h2 className={styles.word_label}>
             {text}
@@ -93,9 +96,6 @@ export const WordAudio: FC<WordAudioProps> = ({
           ) : (
             <SpeakerIcon className={styles.audioIcon} />
           )}
-        </span>
-        <span className={styles.visuallyHidden} lang={lang}>
-          {playing ? stopAudioLabel : playAudioLabel}
         </span>
       </button>
     </div>
