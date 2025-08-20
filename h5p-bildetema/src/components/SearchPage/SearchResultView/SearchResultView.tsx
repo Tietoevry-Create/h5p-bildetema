@@ -54,9 +54,6 @@ export type SearchResultViewProps = {
   filter: string[];
   resetFilter: () => void;
   handleFilterChange: (topicId: string, add: boolean) => void;
-  // handleOrderChange: (option: SearchOrderOption) => void;
-  // sortOptions: SearchOrderOption[];
-  // resultSortType: SearchOrderOption;
 };
 
 const SearchResultView = ({
@@ -118,16 +115,6 @@ const SearchResultView = ({
           />
         </div>
         <p className={styles.searchResultLabel}>{getSearchResultLabel()}</p>
-        {/* TODO REMOVE ? */}
-        {/* <div className={styles.orderWrap}>
-          <span>Sorter etter</span>
-          <Select
-            options={sortOptions}
-            handleChange={handleOrderChange}
-            selectedOption={resultSortType}
-            variant="secondary"
-          />
-        </div> */}
       </div>
       <ChooseCollectionsDialog />
       <AudioRefContext.Provider value={audioContextValue}>

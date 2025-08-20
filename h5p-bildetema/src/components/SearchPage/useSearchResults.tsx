@@ -87,6 +87,7 @@ const filterSearchResults = (
   return searchResults.filter(result => filter.includes(result.topicId));
 };
 
+// TODO: Remove other options as we are currently only using priority sorting?
 const sortResults = (
   sortOption: SortOptions,
   search: string,
