@@ -79,19 +79,6 @@ const SearchPage = (): JSX.Element => {
 
   const deferredSearchResult = useDeferredValue(state.visibleSearchResults);
 
-  // TODO: Remove if not needed
-  // const handleOrderChange = (option: SearchOrderOption): void => {
-  //   dispatch({
-  //     type: ActionType.SORT,
-  //     payload: {
-  //       searchOrderOption: option,
-  //       search: currSearch,
-  //       langCode,
-  //       languages: [searchLanguage, viewLanguage],
-  //     },
-  //   });
-  // };
-
   const debouncedSearch = useDebouncedCallback((search: string) => {
     dispatch({
       type: ActionType.SEARCH,
@@ -205,10 +192,6 @@ const SearchPage = (): JSX.Element => {
               filter={filter}
               resetFilter={resetFilter}
               handleFilterChange={handleFilterChange}
-              // TODO: Remove if not needed
-              // sortOptions={searchOrderOptions}
-              // handleOrderChange={handleOrderChange}
-              // resultSortType={state.order}
             />
           </DialogProvider>
         </div>
