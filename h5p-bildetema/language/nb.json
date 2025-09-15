@@ -101,22 +101,6 @@
           "default": "/tilgjengelighetserklaering"
         },
         {
-          "label": "Footer creative commons img alt text",
-          "default": "Creative Commons-lisens"
-        },
-        {
-          "label": "Footer creative commons text",
-          "default": "Lisensiert under en"
-        },
-        {
-          "label": "Footer creative commons link URL",
-          "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.no"
-        },
-        {
-          "label": "Footer creative commons link text",
-          "default": "Creative Commons Navngivelse-IkkeKommersiell-DelPåSammeVilkår 4.0 Internasjonal lisens"
-        },
-        {
           "label": "Breadcrumbs aria label",
           "default": "Brødsmulesti"
         },
@@ -493,8 +477,8 @@
           "default": "Pashto"
         },
         {
-          "label": "Vlax Romani",
-          "default": "Vlax Romani"
+          "label": "Romanes",
+          "default": "Romanes"
         },
         {
           "label": "Rumensk",
