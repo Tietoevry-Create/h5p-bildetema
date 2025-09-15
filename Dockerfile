@@ -1,4 +1,4 @@
-FROM node:18.0.0 as builder
+FROM node:18.0.0 AS builder
 RUN apt-get update && apt-get install vim less -y
 RUN npm install -g h5p
 RUN mkdir -p /dev-h5p/cp

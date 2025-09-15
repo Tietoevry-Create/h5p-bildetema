@@ -8,7 +8,6 @@ import { AudioFile } from "../../types/AudioFile";
 type AudioProps = {
   lang: string;
   labelLang?: string;
-  stopAudioLabel: string;
   playAudioLabel: string;
   audioFiles?: AudioFile[];
   label?: string;
@@ -21,7 +20,6 @@ export const Audio: FC<AudioProps> = ({
   labelLang,
   audioFiles,
   lang,
-  stopAudioLabel,
   playAudioLabel,
   rtl,
   lowerCaseLabel = false,
@@ -115,7 +113,7 @@ export const Audio: FC<AudioProps> = ({
           aria-hidden="true"
           lang={lang}
         >
-          {playing ? stopAudioLabel : playAudioLabel}
+          {playAudioLabel} <span lang={labelLang}>{label}</span>
         </span>
       </button>
     </div>

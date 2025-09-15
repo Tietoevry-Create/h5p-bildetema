@@ -34,8 +34,9 @@ To test with wordpress you can do the following:
 
 1. `npm start`
 2. `npm run docker:run-wordpress` (without logs: `docker:run-wordpress-no-logs`)
-3. When changes have been made make sure that the modules has been built (`npm start`) When the build is complete run: `npm run pack-and-update-wordpress`
+3. When changes have been made make sure that the modules has been built (`npm start`) When the build is complete run: `npm run pack-and-update-wordpress`. (If you get the message "sh: h5p: command not found", you need to install the H5P Command Line Interface by running `npm install -g h5p`, then `npm install` + `npm run build`. If you get a TimeoutError at login, then manually log in with the info mentioned of login above.)
 4. To speed things up `dist dirs` have been mounted in the container such that changes should automatically be applied. (If this does not work, or you need to update semantics, library or language run `npm run pack-and-update-wordpress`.)
+5. Translations may be out of date, so if you see "Missing translation..." in web view, then update the translations by logging in and updating them manually
 
 **Tip:**
 The vscode extention [fiveserver](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server) can proxy requests to wordpress and auto refresh the page when changes are detected.

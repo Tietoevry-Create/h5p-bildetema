@@ -57,7 +57,7 @@ declare const $defaultExport: [
 			{
 				label: "Play audio",
 				name: "playAudio",
-				"default": "Play audio",
+				"default": "Play audio for ",
 				type: "text"
 			},
 			{
@@ -622,6 +622,30 @@ declare const $defaultExport: [
 				label: "Page not found description",
 				name: "pageNotFoundDescription",
 				"default": "The page you are looking for could not be found. It may have been moved or deleted. {{newLine}}You can:{{newLine}}check if the address is correct in the address bar.{{newLine}}go to the search page at the top right.{{newLine}}go to the front page of Bildetema.",
+				type: "text"
+			},
+			{
+				label: "All topics accessible label",
+				name: "allTopicsAccessibleLabel",
+				"default": "All topics in Bildetema",
+				type: "text"
+			},
+			{
+				label: "Topic accessible label",
+				name: "topicAccessibleLabel",
+				"default": "Topic:",
+				type: "text"
+			},
+			{
+				label: "Topics accessible label",
+				name: "topicsAccessibleLabel",
+				"default": "Topics",
+				type: "text"
+			},
+			{
+				label: "Subtopic accessible label",
+				name: "subtopicAccessibleLabel",
+				"default": "under {{topic}}",
 				type: "text"
 			},
 			{
