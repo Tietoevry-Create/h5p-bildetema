@@ -101,22 +101,6 @@
           "default": "/dk/tilgjengelighetserklaering"
         },
         {
-          "label": "Footer creative commons img alt text",
-          "default": "Creative Commons-licens"
-        },
-        {
-          "label": "Footer creative commons text",
-          "default": "Licenseret under en"
-        },
-        {
-          "label": "Footer creative commons link URL",
-          "default": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.da"
-        },
-        {
-          "label": "Footer creative commons link text",
-          "default": "Creative Commons Kreditering-Ikkekommerciel-Deling på samme vilkår 4.0 International licens"
-        },
-        {
           "label": "Breadcrumbs aria label",
           "default": "Brødkrummesti"
         },
