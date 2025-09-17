@@ -386,11 +386,11 @@
         },
         {
           "label": "Search result hits label",
-          "default": "Leitin þín á {{searchTerm}} skilaði {{amount}} heimsóknum."
+          "default": "Leitin þín: {{searchTerm}} skilaði {{amount}} niðurstöðu."
         },
         {
           "label": "Search suggestion text",
-          "default": "Til að fá fleiri niðurstöður: {{newLine}} Athugaðu hvort orðið sé rétt stafsett. {{newLine}} Notaðu færri orð eða aðeins stök orð: {{emStart}}bíll{{emEnd}} gefur fleiri leitarniðurstöður en {{emStart}}bláur bíll{{emEnd}}. {{newLine}} Athugaðu hvort þú sért að leita á réttu tungumáli. Hægra megin við leitarreitinn geturðu valið tungumálið sem þú ert að leita á. {{newLine}} Fjarlægðu sía sem gæti takmarkað leitina þína. {{newLine}} Ef þú finnur enn ekki það sem þú ert að leita að, reyndu annað orð, eða farðu í {{linkStart}}efnisyfirlitið{{linkEnd}}."
+          "default": "Til að fá fleiri niðurstöður: {{newLine}} Athugaðu hvort orðið sé rétt stafsett. {{newLine}} Notaðu færri orð eða aðeins stök orð: {{emStart}}bíll{{emEnd}} gefur fleiri leitarniðurstöður en {{emStart}}bláur bíll{{emEnd}}. {{newLine}} Athugaðu hvort þú sért að leita á réttu tungumáli. Hægra megin við leitarreitinn getur tu valid tungumál sem leitað er á. {{newLine}} Fjarlægðu síu sem gæti takmarkað leit þína. {{newLine}} Ef þú finnur enn ekki það sem þú ert að leita að, reyndu annað orð, eða farðu í {{linkStart}}efnisyfirlitið{{linkEnd}}."
         },
         {
           "label": "Page not found title",
