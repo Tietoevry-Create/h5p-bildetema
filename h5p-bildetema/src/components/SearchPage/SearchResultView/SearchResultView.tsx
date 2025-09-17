@@ -91,7 +91,7 @@ const SearchResultView = ({
     );
 
     const searchResultHitsReplacements = {
-      searchTerm: <b>"{search}"</b>,
+      searchTerm: <b>{`"${search}"`}</b>,
       amount: <b>{searchResultAmount.toString()}</b>,
     };
     const searchResultHitsLabelString = replacePlaceholders(
