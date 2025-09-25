@@ -13,6 +13,10 @@
           "default": "Hleður…"
         },
         {
+          "label": "Go to top label",
+          "default": "Á toppinn"
+        },
+        {
           "label": "Skip to main content label",
           "default": "Fara í megin efni"
         },

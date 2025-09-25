@@ -13,6 +13,10 @@
           "default": "Laddar…"
         },
         {
+          "label": "Go to top label",
+          "default": "Till toppen"
+        },
+        {
           "label": "Skip to main content label",
           "default": "Hoppa till huvudinnehållet"
         },

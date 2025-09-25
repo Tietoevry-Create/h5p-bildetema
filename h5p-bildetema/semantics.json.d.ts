@@ -19,6 +19,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Go to top label",
+				name: "goToTopLink",
+				"default": "To top",
+				type: "text"
+			},
+			{
 				label: "Skip to main content label",
 				name: "mainContentLink",
 				"default": "Skip to main content",
