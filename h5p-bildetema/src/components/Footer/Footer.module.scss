@@ -49,17 +49,17 @@
     }
 
     a {
-    text-decoration: underline;
-    text-underline-offset: 0.25rem;
+      text-decoration: underline;
+      text-underline-offset: 0.25rem;
 
-    &:hover {
-      text-decoration: none;
-    }
+      &:hover {
+        text-decoration: none;
+      }
 
-    &:focus {
-      box-shadow: none;
+      &:focus {
+        box-shadow: none;
+      }
     }
-  }
   }
 
   &_to_top {

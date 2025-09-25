@@ -1,8 +1,7 @@
 import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { JSX } from "react";
 import { useL10n } from "../../hooks/useL10n";
-import { ArrowUpIcon } from "common/components/Icons/Icons";
-import LinkButton from "../LinkButton/LinkButton";
+import { ScrollToTopButton } from "../ScrollToTopButton/ScrollToTopButton";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
@@ -79,12 +78,7 @@ export const Footer = (): JSX.Element => {
         </div>
         <p>{copyrightLabel}</p>
         <div className={styles.footer_to_top}>
-          <LinkButton
-            icon={<ArrowUpIcon />}
-            label="Til toppen"
-            href="#bildetemaMain"
-            hash={true}
-          />
+          <ScrollToTopButton />
         </div>
       </div>
     </footer>

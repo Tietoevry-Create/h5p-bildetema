@@ -147,13 +147,11 @@ export const Header: FC<HeaderProps> = ({
             icon={<SearchIcon />}
             label={l10nsSearch}
             href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
-            hideLabel
           />
           <LinkButton
             label={myCollections}
             icon={<BookmarkIcon />}
             href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}
-            hideLabel
           />
         </div>
       </div>
