@@ -48,6 +48,24 @@ export const Footer = (): JSX.Element => {
               <li>
                 <a href={contactInfoHref}>{contactInfoLabel}</a>
               </li>
+              <li>
+                <a href={privacyStatementHref}>{privacyStatementLabel}</a>
+              </li>
+              <li>
+                <a href={accessibilityStatementHref}>
+                  {accessibilityStatementLabel}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.footer_section}>
+            <ul>
+              <li><a href="#">{"English version"}</a></li>
+              <li><a href="#">{"Dansk version"}</a></li>
+              <li><a href="#">{"Íslensk útgáfa"}</a></li>
+              <li><a href="#">{"Norsk versjon (bokmål)"}</a></li>
+              <li><a href="#">{"Norsk versjon (nynorsk)"}</a></li>
+              <li><a href="#">{"Svensk version"}</a></li>
             </ul>
           </div>
           <div className={styles.footer_section}>
@@ -63,6 +81,7 @@ export const Footer = (): JSX.Element => {
               </li>
             </ul>
           </div>
+          {/*
           <div className={styles.footer_section}>
             <ul>
               <li>
@@ -75,12 +94,13 @@ export const Footer = (): JSX.Element => {
               </li>
             </ul>
           </div>
+          */}
         </div>
-        <p>{copyrightLabel}</p>
         <div className={styles.footer_to_top}>
           <ScrollToTopButton />
         </div>
       </div>
+      <div className={styles.copyright}><p>{copyrightLabel}</p></div>
     </footer>
   );
 };

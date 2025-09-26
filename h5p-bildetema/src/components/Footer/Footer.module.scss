@@ -2,7 +2,7 @@
 
 .footer {
   background-color: $burgundy;
-  padding: $spacing--40 0 $spacing--48;
+  padding: $spacing--40 0;
 
   &_wrapper {
     margin: $main-content-margin;
@@ -65,7 +65,7 @@
   &_to_top {
     display: flex;
     justify-content: center;
-    margin-top: $spacing--48;
+    margin: $spacing--48 0;
   }
 
   a,
@@ -76,8 +76,15 @@
     color: $white;
   }
 
-  p {
-    margin-bottom: $spacing--16;
+  .copyright {
+    //background-color: $burgundy-600;
+    //padding: $spacing--24 0;
+
+    p {
+      margin: $main-content-margin;
+      max-width: $main-content-max-width;
+      width: $main-content-width;
+    }
   }
 
   :focus {
