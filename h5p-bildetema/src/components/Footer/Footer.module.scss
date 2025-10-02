@@ -2,7 +2,7 @@
 
 .footer {
   background-color: $burgundy;
-  padding: $spacing--40 0;
+  padding: $spacing--40 0 0;
 
   &_wrapper {
     margin: $main-content-margin;
@@ -77,8 +77,8 @@
   }
 
   .copyright {
-    //background-color: $burgundy-600;
-    //padding: $spacing--24 0;
+    background-color: $burgundy-600;
+    padding: $spacing--24 0;
 
     p {
       margin: $main-content-margin;

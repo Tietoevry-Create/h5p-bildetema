@@ -62,6 +62,15 @@ export const languagesOriginal = {
   vie: "Việt",
 } as const;
 
+export const languageVersions = [
+  { code: "en", label: "English version" },
+  { code: "da", label: "Dansk version" },
+  { code: "is", label: "Íslensk útgáfa" },
+  { code: "nb", label: "Norsk versjon (bokmål)" },
+  { code: "nn", label: "Norsk versjon (nynorsk)" },
+  { code: "sv", label: "Svensk version" },
+];
+
 /**
  * ISO-639-1 codes are used in cases where there's some lack of support
  * for ISO-639-3 codes, for example with the HTML `lang` attribute.
