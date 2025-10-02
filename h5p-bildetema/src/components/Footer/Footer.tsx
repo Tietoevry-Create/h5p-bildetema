@@ -1,9 +1,14 @@
-import { replacePlaceholders } from "common/utils/replacePlaceholders";
 import { JSX } from "react";
+import { replacePlaceholders } from "common/utils/replacePlaceholders";
+import { languageVersions } from "common/constants/languages";
 import { useL10n } from "../../hooks/useL10n";
+import { useSiteLanguageString } from "../../hooks/useSiteLanguage";
+import { ScrollToTopButton } from "../ScrollToTopButton/ScrollToTopButton";
 import styles from "./Footer.module.scss";
 
 export const Footer = (): JSX.Element => {
+  const siteLanguage = useSiteLanguageString();
+
   const aboutLabel = useL10n("footerAboutLabel");
   const aboutHref = useL10n("footerAboutHref");
 
@@ -35,6 +40,16 @@ export const Footer = (): JSX.Element => {
     year: currentYear,
   });
 
+  const getLanguageVersionHref = (langCode: string): string => {
+    const baseUrl = window.location.origin;
+    const languageCode = langCode === "sv" ? "se" : langCode; // Use 'se' for Swedish in the URL
+    const { hash } = window.location;
+    if (langCode === "nb") {
+      return `${baseUrl}/${hash}`;
+    }
+    return `${baseUrl}/${languageCode}/${hash}`;
+  };
+
   return (
     <footer role="contentinfo" className={styles.footer}>
       <div className={styles.footer_wrapper}>
@@ -47,6 +62,27 @@ export const Footer = (): JSX.Element => {
               <li>
                 <a href={contactInfoHref}>{contactInfoLabel}</a>
               </li>
+              <li>
+                <a href={privacyStatementHref}>{privacyStatementLabel}</a>
+              </li>
+              <li>
+                <a href={accessibilityStatementHref}>
+                  {accessibilityStatementLabel}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.footer_section}>
+            <ul>
+              {languageVersions
+                .filter(language => language.code !== siteLanguage)
+                .map(language => (
+                  <li key={language.label} lang={language.code}>
+                    <a href={getLanguageVersionHref(language.code)}>
+                      {language.label}
+                    </a>
+                  </li>
+                ))}
             </ul>
           </div>
           <div className={styles.footer_section}>
@@ -62,19 +98,12 @@ export const Footer = (): JSX.Element => {
               </li>
             </ul>
           </div>
-          <div className={styles.footer_section}>
-            <ul>
-              <li>
-                <a href={privacyStatementHref}>{privacyStatementLabel}</a>
-              </li>
-              <li>
-                <a href={accessibilityStatementHref}>
-                  {accessibilityStatementLabel}
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
+        <div className={styles.footer_to_top}>
+          <ScrollToTopButton />
+        </div>
+      </div>
+      <div className={styles.copyright}>
         <p>{copyrightLabel}</p>
       </div>
     </footer>

@@ -13,6 +13,10 @@
           "default": "Loader…"
         },
         {
+          "label": "Go to top label",
+          "default": "Til toppen"
+        },
+        {
           "label": "Skip to main content label",
           "default": "Spring til hovedindhold"
         },

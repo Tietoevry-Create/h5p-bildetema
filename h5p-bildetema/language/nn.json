@@ -13,6 +13,10 @@
           "default": "Lastar…"
         },
         {
+          "label": "Go to top label",
+          "default": "Til toppen"
+        },
+        {
           "label": "Skip to main content label",
           "default": "Hopp til hovudinnhald"
         },

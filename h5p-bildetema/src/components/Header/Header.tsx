@@ -17,7 +17,7 @@ import { useL10n, useL10ns } from "../../hooks/useL10n";
 import { LanguageDropdown } from "../LanguageDropdown/LanguageDropdown";
 import { OsloMetLogo } from "../Logos/Logos";
 import styles from "./Header.module.scss";
-import HeaderLink from "../HeaderLink/HeaderLink";
+import LinkButton from "../LinkButton/LinkButton";
 import { useCurrentLanguageCode } from "../../hooks/useCurrentLanguage";
 
 export type HeaderProps = {
@@ -143,12 +143,12 @@ export const Header: FC<HeaderProps> = ({
               currentTopics={currentTopics}
             />
           )}
-          <HeaderLink
+          <LinkButton
             icon={<SearchIcon />}
             label={l10nsSearch}
             href={`${STATIC_PATH.SEARCH}?lang=${currentLanguageCode}`}
           />
-          <HeaderLink
+          <LinkButton
             label={myCollections}
             icon={<BookmarkIcon />}
             href={`${STATIC_PATH.COLLECTIONS}?lang=${currentLanguageCode}`}

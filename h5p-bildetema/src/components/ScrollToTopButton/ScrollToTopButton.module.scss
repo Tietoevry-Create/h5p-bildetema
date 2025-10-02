@@ -1,0 +1,37 @@
+@use "../../../../common/abstracts" as *;
+
+.button {
+  all: unset;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: $font-size-18;
+  gap: $spacing--8;
+  padding: 0.25rem 0.5rem;
+  line-height: normal;
+
+  &:hover {
+    box-shadow: 0 0 0 2px #fff;
+  }
+
+  &:focus {
+    outline: $outline-on-dark-background !important;
+    outline-offset: 2px;
+  }
+
+  @include breakpoint-min($x-small) {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.icon,
+.icon svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: $white;
+  stroke: $white;
+}

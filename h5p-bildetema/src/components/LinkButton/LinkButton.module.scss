@@ -1,6 +1,6 @@
 @use "../../../../common/abstracts" as *;
 
-.headerLink {
+.linkButton {
   all: unset;
   align-items: center;
   background-color: transparent;
@@ -28,7 +28,7 @@
   }
 }
 
-.headerLinkLabel {
+.linkButtonLabel {
   @include breakpoint-max($medium) {
     display: none;
   }
