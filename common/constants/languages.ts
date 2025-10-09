@@ -62,15 +62,6 @@ export const languagesOriginal = {
   vie: "Việt",
 } as const;
 
-export const languageVersions = [
-  { code: "en", label: "English version" },
-  { code: "da", label: "Dansk version" },
-  { code: "is", label: "Íslensk útgáfa" },
-  { code: "nb", label: "Norsk versjon (bokmål)" },
-  { code: "nn", label: "Norsk versjon (nynorsk)" },
-  { code: "sv", label: "Svensk version" },
-];
-
 /**
  * ISO-639-1 codes are used in cases where there's some lack of support
  * for ISO-639-3 codes, for example with the HTML `lang` attribute.
@@ -106,3 +97,29 @@ export const attributeLanguages: Record<(typeof languages)[number], string> = {
   urd: "ur",
   vie: "vi",
 } as const;
+
+/**
+ * List of language versions available on the site sorted alphabetically.
+ * The `code` property is the ISO-639-3 code used internally in the application.
+ * The `attribute` property is the ISO-639-1 code used in the HTML `lang` attribute.
+ * The `site` property is the part of the URL path that links to the WordPress site.
+ * The `label` property is the text displayed to users for selecting a language version.
+ */
+export const languageVersions: Array<{
+  code: (typeof languages)[number];
+  attribute: string;
+  site: string;
+  label: string;
+}> = [
+  { code: "eng", attribute: "en", site: "/en", label: "English version" },
+  { code: "dan", attribute: "da", site: "/da", label: "Dansk version" },
+  { code: "isl", attribute: "is", site: "/is", label: "Íslensk útgáfa" },
+  { code: "nob", attribute: "nb", site: "", label: "Norsk versjon (bokmål)" },
+  {
+    code: "nno",
+    attribute: "nn",
+    site: "/nn",
+    label: "Norsk versjon (nynorsk)",
+  },
+  { code: "swe", attribute: "sv", site: "/se", label: "Svensk version" },
+];

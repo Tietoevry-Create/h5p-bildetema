@@ -40,14 +40,9 @@ export const Footer = (): JSX.Element => {
     year: currentYear,
   });
 
-  const getLanguageVersionHref = (langCode: string): string => {
+  const getLanguageVersionHref = (site: string, langCode: string): string => {
     const baseUrl = window.location.origin;
-    const languageCode = langCode === "sv" ? "se" : langCode; // Use 'se' for Swedish in the URL
-    const { hash } = window.location;
-    if (langCode === "nb") {
-      return `${baseUrl}/${hash}`;
-    }
-    return `${baseUrl}/${languageCode}/${hash}`;
+    return `${baseUrl}${site}/#/${langCode}`;
   };
 
   return (
@@ -75,10 +70,15 @@ export const Footer = (): JSX.Element => {
           <div className={styles.footer_section}>
             <ul>
               {languageVersions
-                .filter(language => language.code !== siteLanguage)
+                .filter(language => language.attribute !== siteLanguage)
                 .map(language => (
-                  <li key={language.label} lang={language.code}>
-                    <a href={getLanguageVersionHref(language.code)}>
+                  <li key={language.code} lang={language.attribute}>
+                    <a
+                      href={getLanguageVersionHref(
+                        language.site,
+                        language.code,
+                      )}
+                    >
                       {language.label}
                     </a>
                   </li>
