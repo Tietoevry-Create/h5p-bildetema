@@ -112,7 +112,7 @@ export const languageVersions: Array<{
   label: string;
 }> = [
   { code: "eng", attribute: "en", site: "/en", label: "English version" },
-  { code: "dan", attribute: "da", site: "/da", label: "Dansk version" },
+  { code: "dan", attribute: "da", site: "/dk", label: "Dansk version" },
   { code: "isl", attribute: "is", site: "/is", label: "Íslensk útgáfa" },
   { code: "nob", attribute: "nb", site: "", label: "Norsk versjon (bokmål)" },
   {
