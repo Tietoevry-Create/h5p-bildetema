@@ -437,6 +437,10 @@
           "default": "English"
         },
         {
+          "label": "Faroese",
+          "default": "Faroese"
+        },
+        {
           "label": "Persian",
           "default": "Persian"
         },
@@ -561,6 +565,10 @@
           {
             "label": "English",
             "value": "eng"
+          },
+          {
+            "label": "Faroese",
+            "value": "fao"
           },
           {
             "label": "Persian",

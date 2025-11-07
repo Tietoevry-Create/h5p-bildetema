@@ -437,6 +437,10 @@
           "default": "Engelsk"
         },
         {
+          "label": "Færøsk",
+          "default": "Færøsk"
+        },
+        {
           "label": "Persisk",
           "default": "Persisk"
         },
@@ -561,6 +565,10 @@
           {
             "label": "Engelsk",
             "value": "eng"
+          },
+          {
+            "label": "Færøsk",
+            "value": "fao"
           },
           {
             "label": "Persisk",
