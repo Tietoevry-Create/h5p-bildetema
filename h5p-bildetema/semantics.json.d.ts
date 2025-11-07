@@ -655,6 +655,12 @@ declare const $defaultExport: [
 				type: "text"
 			},
 			{
+				label: "Faroese",
+				name: "lang_fao",
+				"default": "Faroese",
+				type: "text"
+			},
+			{
 				label: "Persian",
 				name: "lang_fas",
 				"default": "Persian",
@@ -833,6 +839,10 @@ declare const $defaultExport: [
 				{
 					label: "English",
 					value: "eng"
+				},
+				{
+					label: "Faroese",
+					value: "fao"
 				},
 				{
 					label: "Persian",

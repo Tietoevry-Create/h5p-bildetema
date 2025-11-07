@@ -437,6 +437,10 @@
           "default": "Enska"
         },
         {
+          "label": "Færeyska",
+          "default": "Færeyska"
+        },
+        {
           "label": "Persneska",
           "default": "Persneska"
         },
@@ -561,6 +565,10 @@
           {
             "label": "Enska",
             "value": "eng"
+          },
+          {
+            "label": "Færeyska",
+            "value": "fao"
           },
           {
             "label": "Persneska",
