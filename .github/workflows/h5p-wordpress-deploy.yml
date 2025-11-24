@@ -23,7 +23,7 @@ jobs:
     name: Pack and release
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
@@ -51,7 +51,7 @@ jobs:
     name: Pack and release
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
@@ -79,7 +79,7 @@ jobs:
     name: Pack and release
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
