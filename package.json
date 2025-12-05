@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/cli-interact": "^0.1.4",
     "@types/puppeteer": "^5.4.7",
-    "@types/react": "^19.0.12",
+    "@types/react": "^19.2.7",
     "@types/react-helmet": "^6.1.11",
     "autoprefixer": "^10.4.21",
     "cli-interact": "^0.1.9",
