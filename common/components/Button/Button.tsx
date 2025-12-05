@@ -31,8 +31,7 @@ const buttonVariants = {
   },
 };
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   variant?: keyof (typeof buttonVariants)["variants"]["variant"];
   size?: keyof (typeof buttonVariants)["variants"]["size"];
